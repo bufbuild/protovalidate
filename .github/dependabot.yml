@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  # duplicated gomod checks for each module pending:
+  # https://github.com/dependabot/dependabot-core/issues/6012
+  - package-ecosystem: "gomod"
+    directory: "/tools/internal/gen"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
+    directory: "/tools"
+    schedule:
+      interval: "weekly"
+

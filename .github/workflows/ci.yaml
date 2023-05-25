@@ -1,0 +1,47 @@
+name: CI
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '15 22 * * *'
+  workflow_dispatch: {} # support manual runs
+permissions:
+  contents: read
+jobs:
+  tools:
+    name: Tools
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Install bazelisk
+        uses: bazelbuild/setup-bazelisk@v2
+      - name: Mount bazel cache
+        uses: actions/cache@v3
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+      - name: Install go
+        uses: actions/setup-go@v4
+        with:
+          go-version: stable
+          cache-dependency-path: go.work.sum
+      - name: Test
+        run: make test
+      - name: Lint
+        # Often, lint guidelines depend on the Go version. To prevent
+        # conflicting guidance, run only on the most recent supported version.
+        if: matrix.go-version == 'stable'
+        uses: golangci/golangci-lint-action@v3
+        with:
+          skip-pkg-cache: true
+          only-new-issues: true
+          args: >
+            --modules-download-mode=readonly
+            --timeout=3m0s
+            ./tools/... 
