@@ -28,3 +28,9 @@ buf_lint_test(
     config = "//proto/protovalidate-testing:buf.yaml",
     targets = [":buf_validate_conformance_cases_yet_another_package_proto"],
 )
+
+cc_proto_library(
+    name = "buf_validate_conformance_cases_yet_another_package_proto_cc",
+    visibility = ["//visibility:public"],
+    deps = [":buf_validate_conformance_cases_yet_another_package_proto"],
+)
