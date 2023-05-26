@@ -127,3 +127,12 @@ message DynRuntimeError {
 
   int32 a = 1;
 }
+
+message StringStartsWith {
+  option (message).cel = {
+    id: "string_starts_with_foo",
+    message: "val must start with 'foo'",
+    expression: "this.val.startsWith('foo')",
+  };
+  string val = 1;
+}
