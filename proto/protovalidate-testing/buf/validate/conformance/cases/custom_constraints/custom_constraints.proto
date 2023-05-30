@@ -127,3 +127,11 @@ message DynRuntimeError {
 
   int32 a = 1;
 }
+
+message NowEqualsNow {
+  option (message).cel = {
+    id: "now_equals_now",
+    message: "now should equal now within an expression",
+    expression: "now == now",
+  };
+}
