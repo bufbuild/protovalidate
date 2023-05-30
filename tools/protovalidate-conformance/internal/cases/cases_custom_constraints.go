@@ -138,6 +138,10 @@ func customSuite() suites.Suite {
 				},
 			),
 		},
+		"now/equality": {
+			Message:  &custom_constraints.NowEqualsNow{},
+			Expected: results.Success(true),
+		},
 		"compilation/missing_field": {
 			Message: &custom_constraints.MissingField{A: 123},
 			Expected: results.CompilationError(
