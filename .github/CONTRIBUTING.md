@@ -74,18 +74,18 @@ We aim for `protovalidate` to support multiple languages, including but not
 limited to Go, Java, Python, C++, and Typescript. Here are the requirements for
 adding a new language:
 
-1. __Conformance__: Make sure that your language addition passes the conformance
-   test suite. This ensures that your addition meets the project's standards and
+1. __Conformance__: Make sure that your language addition passes the [conformance
+   test suite](../docs/conformance.md). This ensures that your addition meets the project's standards and
    behaves as expected.
 
-2. __CEL Interpreter__: Implement a Common Expression Language (CEL) interpreter
+2. __CEL Interpreter__: Use or implement a Common Expression Language (CEL) interpreter
    in your chosen language. CEL is a non-Turing complete language that makes it
    easy to write simple expressions, and it's crucial to `protovalidate`.
 
 3. __Custom Function Equivalence__: Ensure that custom functions have equivalent
    behavior across all languages. This uniformity is essential to maintain the
    integrity and consistency of the project. Check out
-   the [Custom Functions](../docs/cel.md#custom-library-in-protovalidate) for more
+   the [Custom Functions](../docs/cel.md#custom-library-in-protovalidate) for more.
 
 If you are interested in adding a new language to `protovalidate`, please open
 an issue to discuss the details and requirements. We will be more than happy to
