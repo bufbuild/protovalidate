@@ -87,6 +87,8 @@ func (suite *SuiteResults) printCase(w io.Writer, testCase *harness.CaseResult) 
 	if testCase.Success {
 		return
 	}
+	_, _ = fmt.Fprintf(w, "%sinput: %v\n",
+		resultPadding, testCase.Input)
 	_, _ = fmt.Fprintf(w, "%s want: %v\n",
 		resultPadding, FromProto(testCase.Wanted))
 	_, _ = fmt.Fprintf(w, "%s  got: %v\n",
