@@ -31,11 +31,11 @@ This repository is the core of the `protovalidate` project. It contains:
 
 Runtime implementations of `protovalidate` can be found in their own repositories:
 
- - [`protovalidate-go`][pv-go]: The Go implementation (beta release)
- - `protovalidate-cc`: The C++ implementation (coming soon)
- - `protovalidate-java`: The Java implementation (coming soon)
- - `protovalidate-py`: The Python implementation (coming soon)
- - `protovalidate-ts`: The TypeScript implementation (coming soon)
+ - Go: [`protovalidate-go`][pv-go] (beta release)
+ - C++: `protovalidate-cc` (coming soon)
+ - Java: `protovalidate-java` (coming soon)
+ - Python: `protovalidate-py` (coming soon)
+ - TypeScript: `protovalidate-ts` (coming soon)
 
 Interested in adding support for another language? Check out our 
 [Contributing Guidelines](https://github.com/bufbuild/protovalidate/blob/main/.github/CONTRIBUTING.md).
