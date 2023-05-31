@@ -90,7 +90,6 @@ func (s Suite) ProcessResults(
 				"missing results on response")
 		}
 
-		// Pack the value into an Any.
 		anyInput, err := anypb.New(testCase.Message)
 		if err != nil {
 			return err
