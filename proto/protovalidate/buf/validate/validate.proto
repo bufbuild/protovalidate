@@ -3618,7 +3618,7 @@ message TimestampRules {
   //```
   optional bool lt_now = 7 [(priv.field).cel = {
     id: "timestamp.lt_now",
-    expression: "this > now() ? 'value must be less than now' : ''"
+    expression: "this > now ? 'value must be less than now' : ''"
   }];
 
   //`gt_now` specifies that this field, of the `google.protobuf.Timestamp` type, must be greater than the current time. `gt_now` can only be used with the `within` rule.
@@ -3631,7 +3631,7 @@ message TimestampRules {
   //```
   optional bool gt_now = 8 [(priv.field).cel = {
     id: "timestamp.gt_now",
-    expression: "this < now() ? 'value must be greater than now' : ''"
+    expression: "this < now ? 'value must be greater than now' : ''"
   }];
 
   // `within` specifies that this field, of the `google.protobuf.Timestamp` type, must be within the specified duration of the current time. If the field value isn't within the duration, an error message is generated.
@@ -3644,6 +3644,6 @@ message TimestampRules {
   //```
   optional google.protobuf.Duration within = 9 [(priv.field).cel = {
     id: "timestamp.within",
-    expression: "this < now()-rules.within || this > now()+rules.within ? 'value must be within %s of now'.format([rules.within]) : ''"
+    expression: "this < now-rules.within || this > now+rules.within ? 'value must be within %s of now'.format([rules.within]) : ''"
   }];
 }

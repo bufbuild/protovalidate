@@ -1,24 +1,44 @@
-# [![](.githubuf-logo.svg)][buf] protovalidate
+# [![](.github/buf-logo.svg)][buf] protovalidate
 
 [![CI](https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml/badge.svg?branch=main)][ci]
 [![Slack](https://img.shields.io/badge/Slack-Buf-%23e01563)][slack]
 [![BSR](https://img.shields.io/badge/BSR-Module-0C65EC)][buf-mod]
 
-**_Update: The next generation of protoc-gen-validate, now called `protovalidate`, is 
-available in beta for Golang! We're hard at work on TypeScript, C++, Java, 
-and Python as well. To learn more, check out 
-our [blog post](https://buf.build/blog/protoc-gen-validate-v1-and-v2/). We 
-value your input in refining our products, so don't hesitate to share your 
-feedback on `protovalidate`. Join us on [Slack][slack] to talk more._**
+**_Update: The next generation of `protoc-gen-validate`, now called 
+`protovalidate`, is available in beta for Golang! We're hard at work on C++, 
+Java, TypeScript, and Python implementations as well. To learn more, check out 
+our [blog post][announce]. We value your input in refining our products, so 
+don't hesitate to share your feedback on `protovalidate`._**
 
-`protovalidate` is a polyglot library designed to validate Protobuf messages at
+`protovalidate` is a series of libraries designed to validate Protobuf messages at
 runtime based on user-defined validation rules. Powered by Google's Common
 Expression Language ([CEL][cel-spec]), it provides a
 flexible and efficient foundation for defining and evaluating custom validation
 rules. The primary goal of `protovalidate` is to help developers ensure data
 consistency and integrity across the network without requiring generated code.
 
-> ❓ Looking for `protoc-gen-validate`? Checkout the original [repository][pgv].
+> ❓ `protovalidate` is the spiritual successor to `protoc-gen-validate`. Looking
+ for `protoc-gen-validate`? Checkout the original [repository][pgv].
+
+## What is this repository?
+
+This repository is the core of the `protovalidate` project. It contains:
+
+- [The API definition](proto/protovalidate/buf/validate/validate.proto): used to describe validation constraints
+- [Documentation](docs): how to apply `protovalidate` effectively
+- [Migration tooling](docs/migrate.md): incrementally migrate from `protoc-gen-validate`
+- [Conformance testing utilities](docs/conformance.md): for acceptance testing of `protovalidate` implementations
+
+Runtime implementations of `protovalidate` can be found in their own repositories:
+
+ - Go: [`protovalidate-go`][pv-go] (beta release)
+ - C++: `protovalidate-cc` (coming soon)
+ - Java: `protovalidate-java` (coming soon)
+ - Python: `protovalidate-py` (coming soon)
+ - TypeScript: `protovalidate-ts` (coming soon)
+
+Interested in adding support for another language? Check out our 
+[Contributing Guidelines](https://github.com/bufbuild/protovalidate/blob/main/.github/CONTRIBUTING.md).
 
 ## Usage
 
@@ -131,12 +151,12 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
    ```protobuf
    syntax = "proto3";
    
-   import "google/type/date.proto";
+   import "google/protobuf/timestamp.proto";
    import "buf/validate/validate.proto";
    
    message Transaction {
-     google.type.Date purchase_date = 1;
-     google.type.Date delivery_date = 2;
+     google.protobuf.Timestamp purchase_date = 1;
+     google.protobuf.Timestamp delivery_date = 2;
      
      option (buf.validate.message).cel = {
        id: "transaction.delivery_date",
@@ -160,6 +180,10 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
      }];
    }
    ```
+
+### Validate Messages
+
+Once the messages are annotated with constraints, use one of the [supported language libraries](#language-support) to validate; no additional code generation necessary.
 
 ## Documentation
 
@@ -187,15 +211,11 @@ The key components include:
   detailed error information to help you quickly identify the source and fix for
   an issue.
 
-### Language-specific support & documentation
+### protoc-gen-validate
 
-- [x] [Go][pv-go] (beta release)
-- [ ] Typescript (coming soon)
-- [ ] C++ (coming soon)
-- [ ] Java (coming soon)
-- [ ] Python (coming soon)
-
-### Migrating from protoc-gen-validate
+`protovalidate` is the spiritual successor to [`protoc-gen-validate`][pgv], offering
+all of the same functionality present in the original plugin, without the need 
+for custom code generation, and the new ability to describe complex constraints in CEL.
 
 `protovalidate`'s constraints very closely emulate those
 in `protoc-gen-validate` to ensure an easy transition for developers. To
@@ -203,52 +223,19 @@ migrate from `protoc-gen-validate` to `protovalidate`, use the
 provided [migration tool](https://github.com/bufbuild/protovalidate/blob/main/tools/protovalidate-migrate) to
 incrementally upgrade your `.proto` files.
 
-## Community
-
-For help and discussion around Protobuf, best practices, and more, join us
-on the Buf [Slack][slack].
-
 ## Ecosystem
 
-- [protovalidate-go][pv-go]
 - [Buf][buf]
-- [CEL Go][cel-go]
-- [CEL Spec][cel-spec]
-
-## Status: BETA
-
-This library is currently in a beta status. While it's functional and provides
-the features described in the documentation, it may still contain some bugs,
-incomplete features, or performance issues. We encourage users to test the
-library and provide feedback on any issues they encounter.
-
-Please note the following when using this beta version:
-
-- **API stability**: The API might undergo changes as we continue to refine and
-  improve the library.
-- **Bug reporting**: If you encounter any bugs,
-  please [file a GitHub issue][file-bug].
-  Provide a detailed description of the issue, steps to reproduce it, and
-  any relevant system information or error messages.
-- **Feature requests**: We welcome feature requests and suggestions for
-  improvements. Please [file a GitHub issue][file-feature-request] to request a
-  new feature or enhancement.
-- **Support and feedback**: For questions, support, or general feedback, feel
-  free to reach out to the maintainers via
-  our [community Slack channel][slack].
-
-We appreciate your interest in this library and your assistance in making it
-better. Your contributions will help us advance the project from beta to a
-stable release more quickly.
+- [CEL Specification][cel-spec]
 
 ## Legal
 
 Offered under the [Apache 2 license][license].
 
+[announce]: https://buf.build/blog/protoc-gen-validate-v1-and-v2/
 [buf-deps]: https://buf.build/docs/configuration/v1/buf-yaml/#deps
 [buf-mod]: https://buf.build/bufbuild/protovalidate
 [buf]: https://buf.build
-[cel-go]: https://github.com/google/cel-go
 [cel-spec]: https://github.com/google/cel-spec
 [ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
 [file-bug]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Bug&template=bug_report.md&title=%5BBUG%5D
