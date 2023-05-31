@@ -145,7 +145,7 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapKeysPattern{Val: map[string]string{"A": "a", "!@#$%^&*()": "b"}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[\"!@#$%!^(MISSING)&*()\"]",
+					FieldPath:    "val[\"!@#$%^&*()\"]",
 					ConstraintId: "string.pattern",
 					Message:      "must match the pattern `(?i)^[a-z0-9]+$`",
 				},
