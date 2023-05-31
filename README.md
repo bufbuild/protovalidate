@@ -4,6 +4,12 @@
 [![Slack](https://img.shields.io/badge/Slack-Buf-%23e01563)][slack]
 [![BSR](https://img.shields.io/badge/BSR-Module-0C65EC)][buf-mod]
 
+**_Update: The next generation of `protoc-gen-validate`, now called 
+`protovalidate`, is available in beta for Golang! We're hard at work on C++, 
+Java, TypeScript, and Python implementations as well. To learn more, check out 
+our [blog post][announce]. We value your input in refining our products, so 
+don't hesitate to share your feedback on `protovalidate`._**
+
 `protovalidate` is a series of libraries designed to validate Protobuf messages at
 runtime based on user-defined validation rules. Powered by Google's Common
 Expression Language ([CEL][cel-spec]), it provides a
@@ -14,13 +20,22 @@ consistency and integrity across the network without requiring generated code.
 > ❓ `protovalidate` is the spiritual successor to `protoc-gen-validate`. Looking
  for `protoc-gen-validate`? Checkout the original [repository][pgv].
 
-## Language support
+## What is this repository?
 
-- [x] [Go][pv-go] (beta release)
-- [ ] C++ (coming soon)
-- [ ] Java (coming soon)
-- [ ] Python (coming soon)
-- [ ] Typescript (coming soon)
+This repository is the core of the `protovalidate` project. It contains:
+
+- [The API definition](proto/protovalidate/buf/validate/validate.proto): used to describe validation constraints
+- [Documentation](docs): how to apply `protovalidate` effectively
+- [Migration tooling](docs/migrate.md): incrementally migrate from `protoc-gen-validate`
+- [Conformance testing utilities](docs/conformance.md): for acceptance testing of `protovalidate` implementations
+
+Runtime implementations of `protovalidate` can be found in their own repositories:
+
+ - [`protovalidate-go`][pv-go]: The Go implementation (beta release)
+ - `protovalidate-cc`: The C++ implementation (coming soon)
+ - `protovalidate-java`: The Java implementation (coming soon)
+ - `protovalidate-py`: The Python implementation (coming soon)
+ - `protovalidate-ts`: The TypeScript implementation (coming soon)
 
 Interested in adding support for another language? Check out our 
 [Contributing Guidelines](https://github.com/bufbuild/protovalidate/blob/main/.github/CONTRIBUTING.md).
@@ -211,17 +226,16 @@ incrementally upgrade your `.proto` files.
 ## Ecosystem
 
 - [Buf][buf]
-- [CEL Go][cel-go]
-- [CEL Spec][cel-spec]
+- [CEL Specification][cel-spec]
 
 ## Legal
 
 Offered under the [Apache 2 license][license].
 
+[announce]: https://buf.build/blog/protoc-gen-validate-v1-and-v2/
 [buf-deps]: https://buf.build/docs/configuration/v1/buf-yaml/#deps
 [buf-mod]: https://buf.build/bufbuild/protovalidate
 [buf]: https://buf.build
-[cel-go]: https://github.com/google/cel-go
 [cel-spec]: https://github.com/google/cel-spec
 [ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
 [file-bug]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Bug&template=bug_report.md&title=%5BBUG%5D
