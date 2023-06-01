@@ -90,11 +90,16 @@ func (s Suite) ProcessResults(
 				"missing results on response")
 		}
 
+		anyInput, err := anypb.New(testCase.Message)
+		if err != nil {
+			return err
+		}
 		out.AddCase(&harness2.CaseResult{
 			Name:    caseName,
 			Success: testCase.Expected.IsSuccessWith(actual, strict),
 			Wanted:  testCase.Expected.ToProto(),
 			Got:     actual.ToProto(),
+			Input:   anyInput,
 		}, verbose)
 		return nil
 	})
