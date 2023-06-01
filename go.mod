@@ -37,6 +37,7 @@ retract (
 	v0.4.0-java
 	v0.3.0-java
 	v0.2.0-java
+	v0.1.6
 	v0.1.5
 	v0.1.4
 	v0.1.3
