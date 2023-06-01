@@ -161,6 +161,8 @@ func (c compilationErrorResult) IsSuccessWith(other Result, strict bool) bool {
 		return res.IsSuccessWith(c, strict)
 	case compilationErrorResult:
 		return true
+	case runtimeErrorResult:
+		return !strict
 	default:
 		return false
 	}
