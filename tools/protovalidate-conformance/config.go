@@ -35,6 +35,7 @@ type config struct {
 	proto              bool
 	json               bool
 	print              bool
+	dump               bool
 	cmd                string
 	args               []string
 }
@@ -56,16 +57,20 @@ func parseFlags() config {
 	flag.BoolVar(&cfg.strict, "strict", cfg.strict, "strict mode")
 	flag.BoolVar(&cfg.json, "json", cfg.json, "return results as JSON to stdout")
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
+	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results instead of running the command")
 	flag.Parse()
 
 	cfg.print = !cfg.json && !cfg.proto
 
 	args := flag.Args()
 	if len(args) == 0 {
-		log.Fatal("a command must be specified")
+		if !cfg.dump {
+			log.Fatal("a command must be specified")
+		}
+	} else {
+		cfg.cmd = args[0]
+		cfg.args = args[1:]
 	}
-	cfg.cmd = args[0]
-	cfg.args = args[1:]
 
 	if cfg.suiteFilterPattern != "" {
 		filter, err := regexp.Compile(cfg.suiteFilterPattern)
