@@ -18,6 +18,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
@@ -39,9 +40,13 @@ func main() {
 		if err != nil || len(req.Cases) == 0 {
 			return err
 		}
-		resp, err := runCommand(&cfg, req)
-		if err != nil {
-			return err
+
+		var resp *harness.TestConformanceResponse
+		if len(cfg.cmd) > 0 { // optional with --dump
+			resp, err = runCommand(&cfg, req)
+			if err != nil {
+				return err
+			}
 		}
 		res := suite.ProcessResults(
 			suiteName,
@@ -50,6 +55,7 @@ func main() {
 			cfg.verbose,
 			cfg.strict,
 		)
+		res.Fdset = req.Fdset
 		resultSet.AddSuite(res, cfg.verbose)
 		return nil
 	})
