@@ -57,7 +57,7 @@ func parseFlags() config {
 	flag.BoolVar(&cfg.strict, "strict", cfg.strict, "strict mode")
 	flag.BoolVar(&cfg.json, "json", cfg.json, "return results as JSON to stdout")
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
-	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results instead of running the command")
+	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
 	flag.Parse()
 
 	cfg.print = !cfg.json && !cfg.proto
