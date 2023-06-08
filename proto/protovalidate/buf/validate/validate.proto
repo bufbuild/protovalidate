@@ -2869,7 +2869,7 @@ message BytesRules {
   //```
   optional uint64 len = 13 [(priv.field).cel = {
     id: "bytes.len",
-    expression: "this.size() != int(rules.len) ? 'value length must be %s bytes'.format([rules.len]) : ''"
+    expression: "uint(this.size()) != rules.len ? 'value length must be %s bytes'.format([rules.len]) : ''"
   }];
 
   //`min_len` requires the field value to have at least the specified minimum
@@ -2884,7 +2884,7 @@ message BytesRules {
   //```
   optional uint64 min_len = 2 [(priv.field).cel = {
     id: "bytes.min_len",
-    expression: "this.size() < int(rules.min_len) ? 'value must be at least %s bytes'.format([rules.min_len]) : ''"
+    expression: "uint(this.size()) < rules.min_len ? 'value must be at least %s bytes'.format([rules.min_len]) : ''"
   }];
 
   //`max_len` requires the field value to have at most the specified maximum
@@ -2899,7 +2899,7 @@ message BytesRules {
   //```
   optional uint64 max_len = 3 [(priv.field).cel = {
     id: "bytes.max_len",
-    expression: "this.size() > int(rules.max_len) ? 'value must be at most %s bytes'.format([rules.max_len]) : ''"
+    expression: "uint(this.size()) > rules.max_len ? 'value must be at most %s bytes'.format([rules.max_len]) : ''"
   }];
 
   //`pattern` requires the field value to match the specified regular
@@ -3136,7 +3136,7 @@ message RepeatedRules {
   //```
   optional uint64 min_items = 1 [(priv.field).cel = {
     id: "repeated.min_items"
-    expression: "this.size() < rules.min_items ? 'value must contain at least %d item(s)'.format([rules.min_items]) : ''"
+    expression: "uint(this.size()) < rules.min_items ? 'value must contain at least %d item(s)'.format([rules.min_items]) : ''"
   }];
 
   //`max_items` denotes that this field must not exceed a
@@ -3152,7 +3152,7 @@ message RepeatedRules {
   //```
   optional uint64 max_items = 2 [(priv.field).cel = {
     id: "repeated.max_items"
-    expression: "this.size() > rules.max_items ? 'value must contain no more than %s item(s)'.format([rules.max_items]) : ''"
+    expression: "uint(this.size()) > rules.max_items ? 'value must contain no more than %s item(s)'.format([rules.max_items]) : ''"
   }];
 
   //`unique` indicates that all elements in this field must
@@ -3201,7 +3201,7 @@ message MapRules {
   //```
   optional uint64 min_pairs = 1 [(priv.field).cel = {
     id: "map.min_pairs"
-    expression: "this.size() < rules.min_pairs ? 'map must be at least %d entries'.format([rules.min_pairs]) : ''"
+    expression: "uint(this.size()) < rules.min_pairs ? 'map must be at least %d entries'.format([rules.min_pairs]) : ''"
   }];
 
   //Specifies the maximum number of key-value pairs allowed. If the field has
@@ -3215,7 +3215,7 @@ message MapRules {
   //```
   optional uint64 max_pairs = 2 [(priv.field).cel = {
     id: "map.max_pairs"
-    expression: "this.size() > rules.max_pairs ? 'map must be at most %d entries'.format([rules.max_pairs]) : ''"
+    expression: "uint(this.size()) > rules.max_pairs ? 'map must be at most %d entries'.format([rules.max_pairs]) : ''"
   }];
 
   //Specifies the constraints to be applied to each key in the field.
