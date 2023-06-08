@@ -26,6 +26,7 @@ linters:
   disable:
     - cyclop            # covered by gocyclo
     - deadcode          # abandoned
+    - depguard          # we can manage dependencies strictly if the need arises in the future
     - exhaustivestruct  # replaced by exhaustruct
     - exhaustruct       # don't _always_ need to exhaustively create struct
     - funlen            # rely on code review to limit function length
@@ -70,6 +71,7 @@ issues:
         - funlen
         - maintidx
         - dupl
+        - gosmopolitan
     # Loosen requirements on tests
     - path: _test.go
       linters:
