@@ -32,9 +32,6 @@ import (
 )
 
 type Migrator struct {
-	print   bool
-	write   bool
-	output  string
 	cfg     Config
 	Handler *reporter.Handler
 }
@@ -55,7 +52,7 @@ func NewMigrator(cfg Config) *Migrator {
 }
 
 func (m *Migrator) Migrate(paths ...string) error {
-	if m.print && (len(paths) > 1 || filepath.Ext(paths[0]) != ".proto") {
+	if m.cfg.print && (len(paths) > 1 || filepath.Ext(paths[0]) != ".proto") {
 		return errors.New("only a single proto file path can be supplied in print mode")
 	}
 
@@ -82,20 +79,20 @@ func (m *Migrator) Migrate(paths ...string) error {
 
 func (m *Migrator) migrate(rootPath, srcPath string, stat fs.DirEntry) error {
 	switch {
-	case m.print:
+	case m.cfg.print:
 		return m.PrintMigrate(srcPath)
-	case m.write:
+	case m.cfg.write:
 		fileInfo, err := stat.Info()
 		if err != nil {
 			return fmt.Errorf("failed to stat %s: %w", srcPath, err)
 		}
 		return m.InPlaceMigrate(fileInfo, srcPath)
-	case m.output != "":
+	case m.cfg.output != "":
 		fileInfo, err := stat.Info()
 		if err != nil {
 			return fmt.Errorf("failed to stat %s: %w", srcPath, err)
 		}
-		dstPath := filepath.Join(m.output, strings.TrimPrefix(srcPath, rootPath))
+		dstPath := filepath.Join(m.cfg.output, strings.TrimPrefix(srcPath, rootPath))
 		return m.OutputMigrate(fileInfo, srcPath, dstPath)
 	default:
 		return errors.New("nothing to migrate")
