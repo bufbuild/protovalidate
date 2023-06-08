@@ -1,1 +1,1 @@
-docs/migrate.md
+../../docs/migrate.md
