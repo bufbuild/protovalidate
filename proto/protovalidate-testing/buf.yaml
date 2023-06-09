@@ -8,6 +8,8 @@ build:
 breaking:
   use:
     - FILE
+  ignore:
+    - buf/validate/conformance
 lint:
   use:
     - DEFAULT

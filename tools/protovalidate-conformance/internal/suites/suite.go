@@ -17,7 +17,6 @@ package suites
 import (
 	"regexp"
 
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	harness2 "github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	results2 "github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"google.golang.org/protobuf/proto"
@@ -74,7 +73,7 @@ func (s Suite) ProcessResults(
 	suiteName string,
 	filter *regexp.Regexp,
 	resp *harness2.TestConformanceResponse,
-	options *harness.ResultOptions,
+	options *harness2.ResultOptions,
 ) *results2.SuiteResults {
 	out := &results2.SuiteResults{
 		Name: suiteName,
