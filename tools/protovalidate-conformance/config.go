@@ -33,6 +33,7 @@ type config struct {
 	verbose            bool
 	strict             bool
 	strictMessage      bool
+	strictError        bool
 	proto              bool
 	json               bool
 	print              bool
@@ -57,6 +58,7 @@ func parseFlags() config {
 	flag.BoolVarP(&cfg.verbose, "verbose", "v", cfg.verbose, "verbose output")
 	flag.BoolVar(&cfg.strict, "strict", cfg.strict, "strict mode")
 	flag.BoolVar(&cfg.strictMessage, "strict_message", cfg.strictMessage, "require that violation messages match the expected message exactly")
+	flag.BoolVar(&cfg.strictError, "strict_error", cfg.strictError, "require that compile-time errors are distinguished from runtime errors")
 	flag.BoolVar(&cfg.json, "json", cfg.json, "return results as JSON to stdout")
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")

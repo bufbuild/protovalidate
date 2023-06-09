@@ -28,6 +28,8 @@ message ResultOptions {
 
   // If the violation message must be an exact match.
   bool strict_message = 5;
+  // If the distinciton between runtime and compile time errors must be exact.
+  bool strict_error = 6;
 }
 
 message ResultSet {

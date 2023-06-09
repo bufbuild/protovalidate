@@ -35,6 +35,7 @@ func main() {
 		Verbose:       cfg.verbose,
 		Strict:        cfg.strict,
 		StrictMessage: cfg.strictMessage,
+		StrictError:   cfg.strictError,
 	}
 	resultSet := &results.Set{
 		Options: options,
