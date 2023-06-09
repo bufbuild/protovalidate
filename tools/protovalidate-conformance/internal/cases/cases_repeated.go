@@ -88,7 +88,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.min_items",
-					Message:      "repeated.min_items",
+					Message:      "value must contain at least 2 item(s)",
 				},
 			),
 		},
@@ -236,7 +236,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "string.in",
-					Message:      "value must be in list the following values: [\"foo\", \"bar\"]",
+					Message:      `value must be in list ["foo", "bar"]`,
 				},
 			),
 		},
@@ -250,7 +250,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "string.not_in",
-					Message:      "value must not be one in list [\"foo\", \"bar\"]",
+					Message:      "value must not be in list [\"foo\", \"bar\"]",
 				},
 			),
 		},

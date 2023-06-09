@@ -157,7 +157,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "string.suffix",
-				Message:      "value must have the suffix `bar`",
+				Message:      "value does not have suffix `bar`",
 			}),
 		},
 		"bytes/valid": {
@@ -173,7 +173,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.min_len",
-				Message:      "value must contain at least 3 bytes",
+				Message:      "value length must be at least 3 bytes",
 			}),
 		},
 		"required/string/valid": {
@@ -225,7 +225,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "string.uuid",
-				Message:      "value must be a valid UUID as defined by RFC 4122",
+				Message:      "value must be a valid UUID",
 			}),
 		},
 		"required/float/valid": {

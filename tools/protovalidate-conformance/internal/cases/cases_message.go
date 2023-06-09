@@ -96,7 +96,7 @@ func messageSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "one",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val",

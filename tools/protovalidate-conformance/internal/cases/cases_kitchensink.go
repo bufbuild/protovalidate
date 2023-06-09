@@ -41,7 +41,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "value must equal the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.double_in",
@@ -61,7 +61,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.dur_val",
@@ -81,12 +81,12 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.another.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "value must equal the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "value must equal the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.double_in",
@@ -121,12 +121,12 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.dur_val",
@@ -161,12 +161,12 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "value must equal the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.nested.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "value must equal the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.double_in",
@@ -201,7 +201,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.dur_val",
@@ -211,7 +211,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.nested.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.nested.dur_val",
@@ -241,7 +241,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "value must equal the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.double_in",
@@ -271,7 +271,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.dur_val",

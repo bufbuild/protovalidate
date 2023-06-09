@@ -177,7 +177,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.prefix",
-				Message:      "value must have the prefix \"foo\"",
+				Message:      "value does not have prefix 99",
 			}),
 		},
 		"contains/valid": {
@@ -193,7 +193,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.contains",
-				Message:      "value must contain \"bar\"",
+				Message:      "value does not contain 626172",
 			}),
 		},
 		"suffix/valid": {
@@ -209,7 +209,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.suffix",
-				Message:      "value must have the suffix \"baz\"",
+				Message:      "value does not have suffix 62757a7a",
 			}),
 		},
 		"suffix/case_sensitive/invalid": {
@@ -217,7 +217,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.suffix",
-				Message:      "value must have the suffix \"baz\"",
+				Message:      "value does not have suffix 62757a7a",
 			}),
 		},
 		"IP/valid/v4": {
