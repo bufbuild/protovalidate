@@ -133,6 +133,9 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			if !matchingField || !matchingConstraint {
 				return false
 			}
+			if options.StrictMessage && want[i].Message != got[i].Message {
+				return false
+			}
 		}
 		return true
 	default:

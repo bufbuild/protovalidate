@@ -25,6 +25,9 @@ message ResultOptions {
   string case_filter = 2;
   bool verbose = 3;
   bool strict = 4;
+
+  // If the violation message must be an exact match.
+  bool strict_message = 5;
 }
 
 message ResultSet {
