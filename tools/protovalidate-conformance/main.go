@@ -29,11 +29,14 @@ import (
 func main() {
 	cfg := parseFlags()
 
-	resultSet := &results.Set{
+	options := &harness.ResultOptions{
 		SuiteFilter: cfg.suiteFilterPattern,
 		CaseFilter:  cfg.caseFilterPattern,
 		Verbose:     cfg.verbose,
 		Strict:      cfg.strict,
+	}
+	resultSet := &results.Set{
+		Options: options,
 	}
 	err := cases.GlobalSuites().Range(cfg.suiteFilter, func(suiteName string, suite suites.Suite) error {
 		req, err := suite.ToRequestProto(cfg.caseFilter)
@@ -52,8 +55,7 @@ func main() {
 			suiteName,
 			cfg.caseFilter,
 			resp,
-			cfg.verbose,
-			cfg.strict,
+			options,
 		)
 		res.Fdset = req.Fdset
 		resultSet.AddSuite(res, cfg.verbose)

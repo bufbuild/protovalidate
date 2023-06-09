@@ -20,15 +20,19 @@ import "buf/validate/conformance/harness/harness.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
 
+message ResultOptions {
+  string suite_filter = 4;
+  string case_filter = 5;
+  bool verbose = 6;
+  bool strict = 7;
+}
+
 message ResultSet {
   int32 successes = 1;
   int32 failures = 2;
   repeated SuiteResults suites = 3;
 
-  string suite_filter = 4;
-  string case_filter = 5;
-  bool verbose = 6;
-  bool strict = 7;
+  ResultOptions options = 4;
 }
 
 message SuiteResults {
