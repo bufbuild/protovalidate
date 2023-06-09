@@ -51,7 +51,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.in",
-					Message:      "value must be in [3]",
+					Message:      "value must be in list [2, 3]",
 				},
 			),
 		},
@@ -65,7 +65,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.not_in",
-					Message:      "value must not be in [0]",
+					Message:      "value must not be in list [0]",
 				},
 			),
 		},
@@ -79,7 +79,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.lt",
-					Message:      "value must be less than -1",
+					Message:      "value must be less than 0",
 				},
 			),
 		},
@@ -89,7 +89,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.lt",
-					Message:      "value must be less than -1",
+					Message:      "value must be less than 0",
 				},
 			),
 		},
@@ -163,7 +163,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.gt_lt",
-					Message:      "must be greater than 0 and less than 10",
+					Message:      "value must be greater than 0 and less than 10",
 				},
 			),
 		},
@@ -173,7 +173,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.gt_lt",
-					Message:      "value must be less than 10",
+					Message:      "value must be greater than 0 and less than 10",
 				},
 			),
 		},
@@ -183,7 +183,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.gt_lt",
-					Message:      "must be greater than 0 and less than 10",
+					Message:      "value must be greater than 0 and less than 10",
 				},
 			),
 		},
@@ -211,7 +211,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.gt_lt_exclusive",
-					Message:      "value must be greater than 10",
+					Message:      "value must be greater than 10 or less than 0",
 				},
 			),
 		},
@@ -221,7 +221,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.gt_lt_exclusive",
-					Message:      "must be greater than 10 or less than 0",
+					Message:      "value must be greater than 10 or less than 0",
 				},
 			),
 		},
@@ -253,7 +253,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.gte_lte",
-					Message:      "must be greater than or equal to 128 and less than or equal to 256",
+					Message:      "value must be greater than or equal to 128 and less than or equal to 256",
 				},
 			),
 		},
@@ -263,7 +263,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "sfixed64.gte_lte",
-					Message:      "value must be greater than or equal to 128",
+					Message:      "value must be greater than or equal to 128 and less than or equal to 256",
 				},
 			),
 		},

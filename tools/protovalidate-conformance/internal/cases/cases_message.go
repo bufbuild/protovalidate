@@ -54,7 +54,7 @@ func messageSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.const",
 					ConstraintId: "string.const",
-					Message:      "must equal 'foo'",
+					Message:      "value must equal `foo`",
 				},
 			),
 		},
@@ -64,7 +64,7 @@ func messageSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.nested.const",
 					ConstraintId: "string.const",
-					Message:      "must equal 'foo'",
+					Message:      "value must equal `foo`",
 				},
 			),
 		},
@@ -133,7 +133,7 @@ func messageSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.val",
 					ConstraintId: "int64.gt",
-					Message:      "must be greater than 0",
+					Message:      "value must be greater than 0",
 				},
 			),
 		},
@@ -143,7 +143,7 @@ func messageSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.val",
 					ConstraintId: "int64.gt",
-					Message:      "must be greater than 0",
+					Message:      "value must be greater than 0",
 				},
 			),
 		},

@@ -77,7 +77,7 @@ func stringSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "string.len",
-					Message:      "composite emoji are treated as separate characters",
+					Message:      "value length must be 3 characters",
 				}),
 		},
 		"min_len/valid/equal": {

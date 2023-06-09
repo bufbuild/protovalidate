@@ -81,7 +81,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.min_len",
-				Message:      "value must be at least 3 bytes long",
+				Message:      "value length must be at least 3 bytes",
 			}),
 		},
 		"max_len/valid": {
@@ -97,7 +97,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.max_len",
-				Message:      "value must be at most 5 bytes long",
+				Message:      "value must be at most 5 bytes",
 			}),
 		},
 		"min/max_len/valid-01": {
@@ -117,7 +117,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.min_len",
-				Message:      "value must be at least 3 bytes long",
+				Message:      "value length must be at least 3 bytes",
 			}),
 		},
 		"min/max_len/invalid/above": {
@@ -149,7 +149,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.pattern",
-				Message:      "value must match the pattern \"你好你好\"",
+				Message:      "value must match regex pattern `^[-]+$`",
 			}),
 		},
 		"pattern/invalid/empty": {
@@ -157,7 +157,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.pattern",
-				Message:      "value must match the pattern \"\"",
+				Message:      "value must match regex pattern `^[-]+$`",
 			}),
 		},
 		"pattern/invalid/not_utf8": {

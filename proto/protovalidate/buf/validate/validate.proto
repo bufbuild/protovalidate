@@ -2434,13 +2434,13 @@ message StringRules {
   //
   //```proto
   //message MyString {
-  //  // value must equal 5 runes
+  //  // value length must be 5 characters
   //   string value = 1 [(buf.validate.field).string.len = 5];
   //}
   //```
   optional uint64 len = 19 [(priv.field).cel = {
     id: "string.len",
-    expression: "uint(this.size()) != rules.len ? 'value must equal %s runes'.format([rules.len]) : ''"
+    expression: "uint(this.size()) != rules.len ? 'value length must be %s characters'.format([rules.len]) : ''"
   }];
 
   //`min_len` specifies that the field value must have at least the specified
@@ -2450,13 +2450,13 @@ message StringRules {
   //
   //```proto
   //message MyString {
-  //  // value length must be at least 3 runes
+  //  // value length must be at least 3 characters
   //   string value = 1 [(buf.validate.field).string.min_len = 3];
   //}
   //```
   optional uint64 min_len = 2 [(priv.field).cel = {
     id: "string.min_len",
-    expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %s runes'.format([rules.min_len]) : ''"
+    expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %s characters'.format([rules.min_len]) : ''"
   }];
 
   //`max_len` specifies that the field value must have no more than the specified
@@ -2466,13 +2466,13 @@ message StringRules {
   //
   //```proto
   //message MyString {
-  //  // value length must be at most 10 runes
+  //  // value length must be at most 10 characters
   //   string value = 1 [(buf.validate.field).string.max_len = 10];
   //}
   //```
   optional uint64 max_len = 3 [(priv.field).cel = {
     id: "string.max_len",
-    expression: "uint(this.size()) > rules.max_len ? 'value length must be at most %s runes'.format([rules.max_len]) : ''"
+    expression: "uint(this.size()) > rules.max_len ? 'value length must be at most %s characters'.format([rules.max_len]) : ''"
   }];
 
   //`len_bytes` dictates that the field value must have the specified number of
@@ -2878,13 +2878,13 @@ message BytesRules {
   //
   //```proto
   //message MyBytes {
-  // // value must be at least 2 bytes.
+  // // value length must be at least 2 bytes.
   // optional bytes value = 1 [(buf.validate.field).bytes.min_len = 2];
   //}
   //```
   optional uint64 min_len = 2 [(priv.field).cel = {
     id: "bytes.min_len",
-    expression: "uint(this.size()) < rules.min_len ? 'value must be at least %s bytes'.format([rules.min_len]) : ''"
+    expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %s bytes'.format([rules.min_len]) : ''"
   }];
 
   //`max_len` requires the field value to have at most the specified maximum
@@ -2910,13 +2910,13 @@ message BytesRules {
   //
   //```proto
   //message MyBytes {
-  // // value must match pattern "^[a-zA-Z0-9]+$".
+  // // value must match regex pattern "^[a-zA-Z0-9]+$".
   // optional bytes value = 1 [(buf.validate.field).bytes.pattern = "^[a-zA-Z0-9]+$"];
   //}
   //```
   optional string pattern = 4 [(priv.field).cel = {
     id: "bytes.pattern",
-    expression: "!string(this).matches(rules.pattern) ? 'value must match pattern %s'.format([rules.pattern]) : ''"
+    expression: "!string(this).matches(rules.pattern) ? 'value must match regex pattern `%s`'.format([rules.pattern]) : ''"
   }];
 
   //`prefix` requires the field value to have the specified bytes at the
