@@ -30,10 +30,11 @@ func main() {
 	cfg := parseFlags()
 
 	options := &harness.ResultOptions{
-		SuiteFilter: cfg.suiteFilterPattern,
-		CaseFilter:  cfg.caseFilterPattern,
-		Verbose:     cfg.verbose,
-		Strict:      cfg.strict,
+		SuiteFilter:   cfg.suiteFilterPattern,
+		CaseFilter:    cfg.caseFilterPattern,
+		Verbose:       cfg.verbose,
+		Strict:        cfg.strict,
+		StrictMessage: cfg.strictMessage,
 	}
 	resultSet := &results.Set{
 		Options: options,
