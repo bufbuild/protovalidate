@@ -73,8 +73,7 @@ func (s Suite) ProcessResults(
 	suiteName string,
 	filter *regexp.Regexp,
 	resp *harness2.TestConformanceResponse,
-	verbose bool,
-	strict bool,
+	options *harness2.ResultOptions,
 ) *results2.SuiteResults {
 	out := &results2.SuiteResults{
 		Name: suiteName,
@@ -96,11 +95,11 @@ func (s Suite) ProcessResults(
 		}
 		out.AddCase(&harness2.CaseResult{
 			Name:    caseName,
-			Success: testCase.Expected.IsSuccessWith(actual, strict),
+			Success: testCase.Expected.IsSuccessWith(actual, options),
 			Wanted:  testCase.Expected.ToProto(),
 			Got:     actual.ToProto(),
 			Input:   anyInput,
-		}, verbose)
+		}, options.Verbose)
 		return nil
 	})
 
