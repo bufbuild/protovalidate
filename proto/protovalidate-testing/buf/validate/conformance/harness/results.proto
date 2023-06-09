@@ -21,10 +21,10 @@ import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
 
 message ResultOptions {
-  string suite_filter = 4;
-  string case_filter = 5;
-  bool verbose = 6;
-  bool strict = 7;
+  string suite_filter = 1;
+  string case_filter = 2;
+  bool verbose = 3;
+  bool strict = 4;
 }
 
 message ResultSet {
