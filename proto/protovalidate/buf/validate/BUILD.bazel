@@ -16,14 +16,19 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_buf//buf:defs.bzl", "buf_lint_test")
 
 proto_library(
+    name = "expression_proto",
+    srcs = ["expression.proto"],
+    strip_import_prefix = "/proto/protovalidate",
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
     name = "validate_proto",
-    srcs = [
-        "expression.proto",
-        "validate.proto",
-    ],
+    srcs = ["validate.proto"],
     strip_import_prefix = "/proto/protovalidate",
     visibility = ["//visibility:public"],
     deps = [
+        ":expression_proto",
         "//proto/protovalidate/buf/validate/priv:priv_proto",
         "@com_google_protobuf//:descriptor_proto",
         "@com_google_protobuf//:duration_proto",
@@ -34,11 +39,17 @@ proto_library(
 buf_lint_test(
     name = "validate_proto_lint",
     config = "//proto/protovalidate:buf.yaml",
-    targets = [":validate_proto"],
+    targets = [
+        ":expression_proto",
+        ":validate_proto",
+    ],
 )
 
 cc_proto_library(
     name = "validate_proto_cc",
     visibility = ["//visibility:public"],
-    deps = [":validate_proto"],
+    deps = [
+        ":expression_proto",
+        ":validate_proto",
+    ],
 )
