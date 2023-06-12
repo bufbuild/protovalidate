@@ -15,15 +15,14 @@
 package main
 
 import (
-	"log"
-	"os"
-
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
+	"log"
+	"os"
 )
 
 func main() {
@@ -39,7 +38,8 @@ func main() {
 	resultSet := &results.Set{
 		Options: options,
 	}
-	err := cases.GlobalSuites().Range(cfg.suiteFilter, func(suiteName string, suite suites.Suite) error {
+
+	exec := func(suiteName string, suite suites.Suite) error {
 		req, err := suite.ToRequestProto(cfg.caseFilter)
 		if err != nil || len(req.Cases) == 0 {
 			return err
@@ -61,11 +61,27 @@ func main() {
 		res.Fdset = req.Fdset
 		resultSet.AddSuite(res, cfg.verbose)
 		return nil
-	})
+	}
+
+	var err error
+	if cfg.benchmark > 0 {
+		err = suites.NewBenchmark(cfg.benchmark, cases.KitchenSink()).Run(cfg.suiteFilter, exec)
+	} else {
+		err = cases.GlobalSuites().Range(cfg.suiteFilter, exec)
+	}
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	err = printResults(cfg, err, resultSet)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	os.Exit(int(resultSet.Failures))
+}
+
+func printResults(cfg config, err error, resultSet *results.Set) error {
 	switch {
 	case cfg.proto:
 		err = resultSet.MarshalTo(os.Stdout, proto.Marshal)
@@ -74,10 +90,5 @@ func main() {
 	default:
 		resultSet.Print(os.Stderr)
 	}
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	os.Exit(int(resultSet.Failures))
+	return err
 }

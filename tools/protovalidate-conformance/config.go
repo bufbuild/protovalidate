@@ -37,6 +37,7 @@ type config struct {
 	json               bool
 	print              bool
 	dump               bool
+	benchmark          int
 	cmd                string
 	args               []string
 }
@@ -60,6 +61,7 @@ func parseFlags() config {
 	flag.BoolVar(&cfg.json, "json", cfg.json, "return results as JSON to stdout")
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
+	flag.IntVar(&cfg.benchmark, "benchmark", cfg.benchmark, "run benchmarks")
 	flag.Parse()
 
 	cfg.print = !cfg.json && !cfg.proto

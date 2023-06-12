@@ -52,3 +52,9 @@ func GlobalSuites() suites.Suites {
 		"standard_constraints/well_known_types/wrapper":   wrapperSuite(),
 	}
 }
+
+func KitchenSink() suites.Suites {
+	return suites.Suites{
+		"kitchen_sink": kitchenSinkSuite(),
+	}
+}
