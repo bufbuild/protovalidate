@@ -73,15 +73,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = printResults(cfg, err, resultSet)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	os.Exit(int(resultSet.Failures))
-}
-
-func printResults(cfg config, err error, resultSet *results.Set) error {
 	switch {
 	case cfg.proto:
 		err = resultSet.MarshalTo(os.Stdout, proto.Marshal)
@@ -90,5 +81,6 @@ func printResults(cfg config, err error, resultSet *results.Set) error {
 	default:
 		resultSet.Print(os.Stderr)
 	}
-	return err
+
+	os.Exit(int(resultSet.Failures))
 }

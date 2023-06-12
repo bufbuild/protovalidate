@@ -50,9 +50,6 @@ func (b Benchmark) Run(filter *regexp.Regexp, fn func(suiteName string, suite Su
 	return nil
 }
 
-// StartTimer starts timing a test. This function is called automatically
-// before a Benchmark starts, but it can also be used to resume timing after
-// a call to StopTimer.
 func (b *Benchmark) StartTimer() {
 	if !b.timerOn {
 		b.start = time.Now()
@@ -60,9 +57,6 @@ func (b *Benchmark) StartTimer() {
 	}
 }
 
-// StopTimer stops timing a test. This can be used to pause the timer
-// while performing complex initialization that you don't
-// want to measure.
 func (b *Benchmark) StopTimer(i int) {
 	if b.timerOn {
 		b.duration += time.Since(b.start)
@@ -71,9 +65,6 @@ func (b *Benchmark) StopTimer(i int) {
 	}
 }
 
-// ResetTimer zeroes the elapsed Benchmark time and memory allocation counters
-// and deletes user-reported metrics.
-// It does not affect whether the timer is running.
 func (b *Benchmark) ResetTimer() {
 	if b.timerOn {
 		b.start = time.Now()
@@ -81,7 +72,6 @@ func (b *Benchmark) ResetTimer() {
 	b.duration = 0
 }
 
-// time returns the elapsed Benchmark time.
 func (b *Benchmark) time() time.Duration {
 	if b.timerOn {
 		return time.Since(b.start) + b.duration
@@ -89,7 +79,6 @@ func (b *Benchmark) time() time.Duration {
 	return b.duration
 }
 
-// BenchmarkResults is the struct used to store Benchmark results.
 type BenchmarkResults struct {
 	count   uint64
 	total   time.Duration
@@ -98,7 +87,6 @@ type BenchmarkResults struct {
 	slowest time.Duration
 }
 
-// Results returns the Benchmark results.
 func (b *Benchmark) Results() *BenchmarkResults {
 	out := &BenchmarkResults{
 		count: uint64(len(b.runs)),
@@ -116,7 +104,6 @@ func (b *Benchmark) Results() *BenchmarkResults {
 	return out
 }
 
-// prettyPrint prints the Benchmark results.
 func (r *BenchmarkResults) prettyPrint() {
 	print(fmt.Sprintf("Benchmark Results:\n"))
 	print(fmt.Sprintf("  Count:   %d\n", r.count))
