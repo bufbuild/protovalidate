@@ -149,7 +149,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.pattern",
-				Message:      "value must match regex pattern `^[-]+$`",
+				Message:      "value must match regex pattern `^[\\x00-\\x7F]+$`",
 			}),
 		},
 		"pattern/invalid/empty": {
@@ -157,7 +157,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.pattern",
-				Message:      "value must match regex pattern `^[-]+$`",
+				Message:      "value must match regex pattern `^[\\x00-\\x7F]+$`",
 			}),
 		},
 		"pattern/invalid/not_utf8": {
