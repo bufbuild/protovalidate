@@ -5,7 +5,7 @@
 [![BSR](https://img.shields.io/badge/BSR-Module-0C65EC)][buf-mod]
 
 **_Update: The next generation of `protoc-gen-validate`, now called 
-`protovalidate`, is available in beta for Golang! We're hard at work on C++, 
+`protovalidate`, is available in beta for Golang and C++! We're hard at work on
 Java, TypeScript, and Python implementations as well. To learn more, check out 
 our [blog post][announce]. We value your input in refining our products, so 
 don't hesitate to share your feedback on `protovalidate`._**
