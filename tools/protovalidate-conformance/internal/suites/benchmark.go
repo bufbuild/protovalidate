@@ -37,7 +37,7 @@ func NewBenchmark(n int, ss Suites) *Benchmark {
 	}
 }
 
-func (b *Benchmark) Range(filter *regexp.Regexp, fn func(suiteName string, suite Suite) error) error {
+func (b *Benchmark) Range(filter *regexp.Regexp, exec func(suiteName string, suite Suite) error) error {
 	for suiteName, suite := range b.suites {
 		if filter != nil && !filter.MatchString(suiteName) {
 			continue
@@ -45,7 +45,7 @@ func (b *Benchmark) Range(filter *regexp.Regexp, fn func(suiteName string, suite
 		for i := 0; i < b.n; i++ {
 			b.resetTimer()
 			b.startTimer()
-			if err := fn(suiteName, suite); err != nil {
+			if err := exec(suiteName, suite); err != nil {
 				return err
 			}
 			b.stopTimer(suiteName, i)
