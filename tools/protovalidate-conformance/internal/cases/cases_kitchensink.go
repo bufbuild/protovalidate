@@ -41,27 +41,27 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "field must be exactly the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.double_in",
 					ConstraintId: "double.in",
-					Message:      "must be one of [456.789000, 123.000000]",
+					Message:      "value must be in list [456.789000, 123.000000]",
 				},
 				&validate.Violation{
 					FieldPath:    "val.enum_const",
 					ConstraintId: "enum.const",
-					Message:      "must be exactly 2",
+					Message:      "value must equal 2",
 				},
 				&validate.Violation{
 					FieldPath:    "val.int_const",
 					ConstraintId: "int32.const",
-					Message:      "must be exactly 5",
+					Message:      "value must equal 5",
 				},
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.dur_val",
@@ -71,7 +71,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.const",
 					ConstraintId: "string.const",
-					Message:      "must be exactly `abcd`",
+					Message:      "value must equal `abcd`",
 				},
 			),
 		},
@@ -81,52 +81,52 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.another.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "field must be exactly the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "field must be exactly the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.double_in",
 					ConstraintId: "double.in",
-					Message:      "must be one of [456.789000, 123.000000]",
+					Message:      "value must be in list [456.789000, 123.000000]",
 				},
 				&validate.Violation{
 					FieldPath:    "val.double_in",
 					ConstraintId: "double.in",
-					Message:      "must be one of [456.789000, 123.000000]",
+					Message:      "value must be in list [456.789000, 123.000000]",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.enum_const",
 					ConstraintId: "enum.const",
-					Message:      "must be exactly 2",
+					Message:      "value must equal 2",
 				},
 				&validate.Violation{
 					FieldPath:    "val.enum_const",
 					ConstraintId: "enum.const",
-					Message:      "must be exactly 2",
+					Message:      "value must equal 2",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.int_const",
 					ConstraintId: "int32.const",
-					Message:      "must be exactly 5",
+					Message:      "value must equal 5",
 				},
 				&validate.Violation{
 					FieldPath:    "val.int_const",
 					ConstraintId: "int32.const",
-					Message:      "must be exactly 5",
+					Message:      "value must equal 5",
 				},
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.another.dur_val",
@@ -141,12 +141,12 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.another.const",
 					ConstraintId: "string.const",
-					Message:      "must be exactly `abcd`",
+					Message:      "value must equal `abcd`",
 				},
 				&validate.Violation{
 					FieldPath:    "val.const",
 					ConstraintId: "string.const",
-					Message:      "must be exactly `abcd`",
+					Message:      "value must equal `abcd`",
 				},
 			),
 		},
@@ -156,52 +156,52 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.bool_const",
 					ConstraintId: "bool.const",
-					Message:      "must be exactly false",
+					Message:      "value must equal false",
 				},
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "field must be exactly the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.nested.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "field must be exactly the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.double_in",
 					ConstraintId: "double.in",
-					Message:      "must be one of [456.789000, 123.000000]",
+					Message:      "value must be in list [456.789000, 123.000000]",
 				},
 				&validate.Violation{
 					FieldPath:    "val.nested.double_in",
 					ConstraintId: "double.in",
-					Message:      "must be one of [456.789000, 123.000000]",
+					Message:      "value must be in list [456.789000, 123.000000]",
 				},
 				&validate.Violation{
 					FieldPath:    "val.enum_const",
 					ConstraintId: "enum.const",
-					Message:      "must be exactly 2",
+					Message:      "value must equal 2",
 				},
 				&validate.Violation{
 					FieldPath:    "val.nested.enum_const",
 					ConstraintId: "enum.const",
-					Message:      "must be exactly 2",
+					Message:      "value must equal 2",
 				},
 				&validate.Violation{
 					FieldPath:    "val.int_const",
 					ConstraintId: "int32.const",
-					Message:      "must be exactly 5",
+					Message:      "value must equal 5",
 				},
 				&validate.Violation{
 					FieldPath:    "val.nested.int_const",
 					ConstraintId: "int32.const",
-					Message:      "must be exactly 5",
+					Message:      "value must equal 5",
 				},
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.dur_val",
@@ -211,7 +211,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.nested.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.nested.dur_val",
@@ -221,7 +221,7 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.nested.const",
 					ConstraintId: "string.const",
-					Message:      "must be exactly `abcd`",
+					Message:      "value must equal `abcd`",
 				},
 			),
 		},
@@ -236,42 +236,42 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.bool_const",
 					ConstraintId: "bool.const",
-					Message:      "must be exactly false",
+					Message:      "value must equal false",
 				},
 				&validate.Violation{
 					FieldPath:    "val.bytes_val",
 					ConstraintId: "bytes.const",
-					Message:      "field must be exactly the specified value",
+					Message:      "value must be 0099",
 				},
 				&validate.Violation{
 					FieldPath:    "val.double_in",
 					ConstraintId: "double.in",
-					Message:      "must be one of [456.789000, 123.000000]",
+					Message:      "value must be in list [456.789000, 123.000000]",
 				},
 				&validate.Violation{
 					FieldPath:    "val.enum_const",
 					ConstraintId: "enum.const",
-					Message:      "must be exactly 2",
+					Message:      "value must equal 2",
 				},
 				&validate.Violation{
 					FieldPath:    "val.float_val",
 					ConstraintId: "float.gt",
-					Message:      "must be greater than 0",
+					Message:      "value must be greater than 0",
 				},
 				&validate.Violation{
 					FieldPath:    "val.float_const",
 					ConstraintId: "float.lt",
-					Message:      "must be less than 8",
+					Message:      "value must be less than 8",
 				},
 				&validate.Violation{
 					FieldPath:    "val.int_const",
 					ConstraintId: "int32.const",
-					Message:      "must be exactly 5",
+					Message:      "value must equal 5",
 				},
 				&validate.Violation{
 					FieldPath:    "val.o",
 					ConstraintId: "required",
-					Message:      "exactly one of oneof fields is required",
+					Message:      "exactly one field is required in oneof",
 				},
 				&validate.Violation{
 					FieldPath:    "val.dur_val",
@@ -281,17 +281,17 @@ func kitchenSinkSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val.const",
 					ConstraintId: "string.const",
-					Message:      "must be exactly `abcd`",
+					Message:      "value must equal `abcd`",
 				},
 				&validate.Violation{
 					FieldPath:    "val.ts_val",
 					ConstraintId: "timestamp.gt",
-					Message:      "must be greater than 1970-01-01T00:00:07Z",
+					Message:      "value must be greater than 1970-01-01T00:00:07Z",
 				},
 				&validate.Violation{
 					FieldPath:    "val.rep_ts_val[0]",
 					ConstraintId: "timestamp.gte",
-					Message:      "must be greater than or equal to 1970-01-01T00:00:00.001Z",
+					Message:      "value must be greater than or equal to 1970-01-01T00:00:00.001Z",
 				},
 			),
 		},

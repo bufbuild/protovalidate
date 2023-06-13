@@ -2,23 +2,20 @@ name: CI
 on:
   push:
     branches: [main]
-    tags: ['v*']
   pull_request:
     branches: [main]
-  schedule:
-    - cron: '15 22 * * *'
   workflow_dispatch: {} # support manual runs
 permissions:
   contents: read
 jobs:
-  tools:
-    name: Tools
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 2
       - name: Install bazelisk
         uses: bazelbuild/setup-bazelisk@v2
       - name: Mount bazel cache
@@ -31,12 +28,26 @@ jobs:
         with:
           go-version: stable
           cache-dependency-path: go.work.sum
+      - name: Install buf
+        uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ github.token }}
+      - name: Buf format
+        run: buf format -d --exit-code
+      - name: Buf lint
+        uses: bufbuild/buf-lint-action@v1
+      - name: Buf breaking change detection
+        uses: bufbuild/buf-breaking-action@v1
+        with:
+          against: https://github.com/bufbuild/protovalidate.git#branch=main
+      - name: Buf generate
+        run: |
+          mkdir -p .tmp/bin
+          cp $(which buf) .tmp/bin/buf
+          make checkgenerate
       - name: Test
         run: make test
       - name: Lint
-        # Often, lint guidelines depend on the Go version. To prevent
-        # conflicting guidance, run only on the most recent supported version.
-        if: matrix.go-version == 'stable'
         uses: golangci/golangci-lint-action@v3
         with:
           skip-pkg-cache: true

@@ -68,7 +68,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.const",
-				Message:      "field must be exactly the specified value",
+				Message:      "value must equal 3s",
 			}),
 		},
 		"in/valid": {
@@ -89,7 +89,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.in",
-				Message:      "field must be in the specified set of values",
+				Message:      `value must be in list [duration("1s"), duration("0.000001s")]`,
 			}),
 		},
 		"not in/valid": {
@@ -110,7 +110,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.not_in",
-				Message:      "field must not be in the specified set of values",
+				Message:      `value must not be in list [duration("0s")]`,
 			}),
 		},
 		"lt/valid": {
@@ -131,7 +131,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.lt",
-				Message:      "field must be less than 0s",
+				Message:      "value must be less than 0s",
 			}),
 		},
 		"lt/invalid": {
@@ -143,7 +143,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.lt",
-				Message:      "field must be less than 0s",
+				Message:      "value must be less than 0s",
 			}),
 		},
 		"lte/valid": {
@@ -205,7 +205,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt",
-				Message:      "must be greater than 0.000001s",
+				Message:      "value must be greater than 0.000001s",
 			}),
 		},
 		"gte/valid": {
@@ -234,7 +234,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gte",
-				Message:      "must be greater than or equal to 0.001s",
+				Message:      "value must be greater than or equal to 0.001s",
 			}),
 		},
 		"gt_lt/valid": {
@@ -257,7 +257,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt_lt",
-				Message:      "must be greater than 0s and less than 1s",
+				Message:      "value must be greater than 0s and less than 1s",
 			}),
 		},
 		"gt_lt/invalid/below": {
@@ -268,7 +268,7 @@ func durationSuite() suites.Suite {
 			}, Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt_lt",
-				Message:      "must be greater than 0s and less than 1s",
+				Message:      "value must be greater than 0s and less than 1s",
 			}),
 		},
 		"gt_lt/invalid/max": {
@@ -280,7 +280,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt_lt",
-				Message:      "must be greater than 0s and less than 1s",
+				Message:      "value must be greater than 0s and less than 1s",
 			}),
 		},
 		"gt_lt/invalid/min": {
@@ -290,7 +290,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt_lt",
-				Message:      "must be greater than 0s and less than 1s",
+				Message:      "value must be greater than 0s and less than 1s",
 			}),
 		},
 		"gt_lt/exclusive/valid/empty": {
@@ -321,7 +321,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt_lt_exclusive",
-				Message:      "must be greater than 1s or less than 0s",
+				Message:      "value must be greater than 1s or less than 0s",
 			}),
 		},
 		"gt_lt/exclusive/invalid/max": {
@@ -333,7 +333,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt_lt_exclusive",
-				Message:      "must be greater than 1s or less than 0s",
+				Message:      "value must be greater than 1s or less than 0s",
 			}),
 		},
 		"gt_lt/exclusive/invalid/min": {
@@ -343,7 +343,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gt_lt_exclusive",
-				Message:      "must be greater than 1s or less than 0s",
+				Message:      "value must be greater than 1s or less than 0s",
 			}),
 		},
 		"gte_lte/valid": {
@@ -379,7 +379,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gte_lte",
-				Message:      "must be greater than or equal to 60s and less than or equal to 3600s",
+				Message:      "value must be greater than or equal to 60s and less than or equal to 3600s",
 			}),
 		},
 		"gte_lte/invalid/below": {
@@ -391,7 +391,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gte_lte",
-				Message:      "must be greater than or equal to 60s and less than or equal to 3600s",
+				Message:      "value must be greater than or equal to 60s and less than or equal to 3600s",
 			}),
 		},
 		"Ex gte_lte/valid/empty": {
@@ -434,7 +434,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "duration.gte_lte_exclusive",
-				Message:      "must be greater than or equal to 3600s or less than or equal to 60s",
+				Message:      "value must be greater than or equal to 3600s or less than or equal to 60s",
 			}),
 		},
 		"fields_with_other_fields/invalid_other_field": {
@@ -442,7 +442,7 @@ func durationSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "int_val",
 				ConstraintId: "int32.gt",
-				Message:      "must be greater than 16",
+				Message:      "value must be greater than 16",
 			}),
 		},
 	}

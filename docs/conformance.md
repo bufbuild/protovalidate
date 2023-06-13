@@ -10,7 +10,7 @@ The conformance test harness can be built using make:
 
 ```shell
 # builds the conformance test harness into .tmp/bin
-make conformance 
+make conformance
 
 # run the conformance tests against an executor
 .tmp/bin/protovalidate-conformance my-executor
@@ -21,7 +21,7 @@ make conformance
 You can customize the behavior of the tests using the following flags:
 
 | Flag                   | Description                                          | Default Value |
-|------------------------|------------------------------------------------------|---------------|
+| ---------------------- | ---------------------------------------------------- | ------------- |
 | `--suite <regex>`      | Filter suites using the provided regular expression. | None          |
 | `--case <regex>`       | Filter cases using the provided regular expression.  | None          |
 | `--timeout <duration>` | Set a per-suite timeout.                             | 5 seconds     |
@@ -29,6 +29,7 @@ You can customize the behavior of the tests using the following flags:
 | `--strict`             | Enable strict mode.                                  | `false`       |
 | `--json`               | Return results as JSON to stdout.                    | `false`       |
 | `--proto`              | Return results as binary serialized proto to stdout. | `false`       |
+| `--dump`               | Output the expected results, without a command.      | `false`       |
 
 ## Components
 
@@ -46,7 +47,7 @@ responsible for reading a Protobuf-serialized [`TestConformanceRequest`][harness
 Protobuf-serialized [`TestConformanceResponse`][harness-proto] over `stdout`.
 
 It is recommended that the executor should be as type-agnostic as possible,
-preferably constructing the descriptors at runtime from the provided 
+preferably constructing the descriptors at runtime from the provided
 `FileDescriptorSet` instead of using a local resolver.
 
 For a reference implementation, see [Go's conformance test executor][pv-go].

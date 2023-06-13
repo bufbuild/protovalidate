@@ -25,7 +25,7 @@ import (
 
 type Result interface {
 	fmt.Stringer
-	IsSuccessWith(other Result, strict bool) bool
+	IsSuccessWith(other Result, options *harness.ResultOptions) bool
 	ToProto() *harness.TestResult
 }
 
@@ -80,12 +80,12 @@ func (s successResult) String() string {
 	return "invalid (no further details provided)"
 }
 
-func (s successResult) IsSuccessWith(other Result, strict bool) bool {
+func (s successResult) IsSuccessWith(other Result, options *harness.ResultOptions) bool {
 	switch res := other.(type) {
 	case successResult:
 		return s.inner.GetSuccess() == res.inner.GetSuccess()
 	default:
-		return !strict && !s.inner.GetSuccess()
+		return !options.Strict && !s.inner.GetSuccess()
 	}
 }
 
@@ -114,13 +114,13 @@ func (v violationsResult) String() string {
 	return bldr.String()
 }
 
-func (v violationsResult) IsSuccessWith(other Result, strict bool) bool {
+func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOptions) bool {
 	switch res := other.(type) {
 	case successResult:
-		return res.IsSuccessWith(v, strict)
+		return res.IsSuccessWith(v, options)
 	case violationsResult:
 		got := res.inner.GetValidationError().GetViolations()
-		if !strict {
+		if !options.Strict {
 			return len(got) > 0
 		}
 		want := v.inner.GetValidationError().GetViolations()
@@ -131,6 +131,10 @@ func (v violationsResult) IsSuccessWith(other Result, strict bool) bool {
 			matchingField := want[i].FieldPath == got[i].FieldPath
 			matchingConstraint := want[i].ConstraintId == got[i].ConstraintId
 			if !matchingField || !matchingConstraint {
+				return false
+			}
+			if options.StrictMessage && len(want[i].Message) > 0 &&
+				want[i].Message != got[i].Message {
 				return false
 			}
 		}
@@ -155,14 +159,14 @@ func (c compilationErrorResult) String() string {
 	return "compilation err: " + c.inner.GetCompilationError()
 }
 
-func (c compilationErrorResult) IsSuccessWith(other Result, strict bool) bool {
+func (c compilationErrorResult) IsSuccessWith(other Result, options *harness.ResultOptions) bool {
 	switch res := other.(type) {
 	case successResult:
-		return res.IsSuccessWith(c, strict)
+		return res.IsSuccessWith(c, options)
 	case compilationErrorResult:
 		return true
 	case runtimeErrorResult:
-		return !strict
+		return !options.StrictError
 	default:
 		return false
 	}
@@ -183,10 +187,10 @@ func (r runtimeErrorResult) String() string {
 	return "runtime error: " + r.inner.GetRuntimeError()
 }
 
-func (r runtimeErrorResult) IsSuccessWith(other Result, strict bool) bool {
+func (r runtimeErrorResult) IsSuccessWith(other Result, options *harness.ResultOptions) bool {
 	switch res := other.(type) {
 	case successResult:
-		return res.IsSuccessWith(r, strict)
+		return res.IsSuccessWith(r, options)
 	case runtimeErrorResult:
 		return true
 	default:
@@ -210,7 +214,7 @@ func (u unexpectedErrorResult) String() string {
 	return "unexpected error: " + u.inner.GetUnexpectedError()
 }
 
-func (u unexpectedErrorResult) IsSuccessWith(_ Result, _ bool) bool {
+func (u unexpectedErrorResult) IsSuccessWith(_ Result, _ *harness.ResultOptions) bool {
 	return false
 }
 

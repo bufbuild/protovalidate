@@ -45,7 +45,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "float.gt",
-				Message:      "must be greater than 0",
+				Message:      "value must be greater than 0",
 			}),
 		},
 		"double/valid": {
@@ -61,7 +61,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "double.gt",
-				Message:      "must be greater than 0",
+				Message:      "value must be greater than 0",
 			}),
 		},
 		"int64/valid": {
@@ -77,7 +77,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "int64.gt",
-				Message:      "must be greater than 0",
+				Message:      "value must be greater than 0",
 			}),
 		},
 		"int32/valid": {
@@ -93,7 +93,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "int32.gt",
-				Message:      "must be greater than 0",
+				Message:      "value must be greater than 0",
 			}),
 		},
 		"uint64/valid": {
@@ -109,7 +109,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "uint64.gt",
-				Message:      "must be greater than 0",
+				Message:      "value must be greater than 0",
 			}),
 		},
 		"uint32/valid": {
@@ -125,7 +125,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "uint32.gt",
-				Message:      "must be greater than 0",
+				Message:      "value must be greater than 0",
 			}),
 		},
 		"bool/valid": {
@@ -141,7 +141,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bool.const",
-				Message:      "must be exactly true",
+				Message:      "value must equal true",
 			}),
 		},
 		"string/valid": {
@@ -157,7 +157,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "string.suffix",
-				Message:      "must have the suffix `bar`",
+				Message:      "value does not have suffix `bar`",
 			}),
 		},
 		"bytes/valid": {
@@ -173,7 +173,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "bytes.min_len",
-				Message:      "must contain at least 3 bytes",
+				Message:      "value length must be at least 3 bytes",
 			}),
 		},
 		"required/string/valid": {
@@ -185,7 +185,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "string.const",
-				Message:      "must be exactly `bar`",
+				Message:      "value must equal `bar`",
 			}),
 		},
 		"required/string/empty/invalid": {
@@ -205,7 +205,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "string.const",
-				Message:      "must be exactly ``",
+				Message:      "value must equal ``",
 			}),
 		},
 		"required/empty/string/empty/invalid": {
@@ -225,7 +225,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "string.uuid",
-				Message:      "must be a valid UUID as defined by RFC 4122",
+				Message:      "value must be a valid UUID",
 			}),
 		},
 		"required/float/valid": {
@@ -237,7 +237,7 @@ func wrapperSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				FieldPath:    "val",
 				ConstraintId: "float.gt",
-				Message:      "must be greater than 0",
+				Message:      "value must be greater than 0",
 			}),
 		},
 		"required/float/empty/invalid": {

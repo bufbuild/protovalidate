@@ -48,7 +48,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0].val",
 					ConstraintId: "int64.gt",
-					Message:      "must be greater than 0",
+					Message:      "value must be greater than 0",
 				},
 			),
 		},
@@ -70,7 +70,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0].val",
 					ConstraintId: "int64.gt",
-					Message:      "must be greater than 0",
+					Message:      "value must be greater than 0",
 				},
 			),
 		},
@@ -88,7 +88,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.min_items",
-					Message:      "repeated.min_items",
+					Message:      "value must contain at least 2 item(s)",
 				},
 			),
 		},
@@ -98,7 +98,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[1].val",
 					ConstraintId: "int64.gt",
-					Message:      "must be greater than 0",
+					Message:      "value must be greater than 0",
 				},
 			),
 		},
@@ -116,7 +116,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.max_items",
-					Message:      "list must be at most 3 items",
+					Message:      "value must contain no more than 3 item(s)",
 				},
 			),
 		},
@@ -138,7 +138,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.min_items",
-					Message:      "list must be at least 2 items",
+					Message:      "value must contain at least 2 item(s)",
 				},
 			),
 		},
@@ -148,7 +148,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.max_items",
-					Message:      "list must be at most 4 items",
+					Message:      "value must contain no more than 4 item(s)",
 				},
 			),
 		},
@@ -162,7 +162,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.min_items",
-					Message:      "list must be at least 3 items",
+					Message:      "value must contain at least 3 item(s)",
 				},
 			),
 		},
@@ -172,7 +172,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.max_items",
-					Message:      "list must be at most 3 items",
+					Message:      "value must contain no more than 3 item(s)",
 				},
 			),
 		},
@@ -216,7 +216,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[1]",
 					ConstraintId: "float.gt",
-					Message:      "must be greater than 0",
+					Message:      "value must be greater than 0",
 				},
 			),
 		},
@@ -226,7 +226,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[1]",
 					ConstraintId: "string.pattern",
-					Message:      "must match the pattern `(?i)^[a-z0-9]+$`",
+					Message:      "value does not match regex pattern `(?i)^[a-z0-9]+$`",
 				},
 			),
 		},
@@ -236,7 +236,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "string.in",
-					Message:      "must be one of the following values: [\"foo\", \"bar\"]",
+					Message:      `value must be in list ["foo", "bar"]`,
 				},
 			),
 		},
@@ -250,7 +250,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "string.not_in",
-					Message:      "must not be one of the following values: [\"foo\", \"bar\"]",
+					Message:      "value must not be in list [\"foo\", \"bar\"]",
 				},
 			),
 		},
@@ -264,7 +264,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "enum.in",
-					Message:      "must be one of [0]",
+					Message:      "value must be in list [0]",
 				},
 			),
 		},
@@ -278,7 +278,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "enum.not_in",
-					Message:      "must not be one of [0]",
+					Message:      "value must not be in list [0]",
 				},
 			),
 		},
@@ -292,7 +292,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "enum.in",
-					Message:      "must be one of [0]",
+					Message:      "value must be in list [0]",
 				},
 			),
 		},
@@ -306,7 +306,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "enum.not_in",
-					Message:      "must not be one of [0]",
+					Message:      "value must not be in list [0]",
 				},
 			),
 		},
@@ -360,7 +360,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.min_items",
-					Message:      "list must be at least 1 items",
+					Message:      "value must contain at least 1 item(s)",
 				},
 			),
 		},
@@ -370,7 +370,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "string.len",
-					Message:      "must be exactly 3 characters",
+					Message:      "value length must be 3 characters",
 				},
 			),
 		},
@@ -384,7 +384,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.min_items",
-					Message:      "list must be at least 1 items",
+					Message:      "value must contain at least 1 item(s)",
 				},
 			),
 		},
@@ -394,7 +394,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.max_items",
-					Message:      "list must be at most 3 items",
+					Message:      "value must contain no more than 3 item(s)",
 				},
 			),
 		},
@@ -416,7 +416,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0]",
 					ConstraintId: "duration.gte",
-					Message:      "must be greater than or equal to 0.001s",
+					Message:      "value must be greater than or equal to 0.001s",
 				},
 			),
 		},

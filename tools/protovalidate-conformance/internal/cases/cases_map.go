@@ -137,7 +137,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[1]",
 					ConstraintId: "sint64.lt",
-					Message:      "must be less than 0",
+					Message:      "value must be less than 0",
 				},
 			),
 		},
@@ -147,7 +147,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[\"!@#$%^&*()\"]",
 					ConstraintId: "string.pattern",
-					Message:      "must match the pattern `(?i)^[a-z0-9]+$`",
+					Message:      "value does not match regex pattern `(?i)^[a-z0-9]+$`",
 				},
 			),
 		},
@@ -169,12 +169,12 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[\"a\"]",
 					ConstraintId: "string.min_len",
-					Message:      "must be at least 3 characters",
+					Message:      "value length must be at least 3 characters",
 				},
 				&validate.Violation{
 					FieldPath:    "val[\"b\"]",
 					ConstraintId: "string.min_len",
-					Message:      "must be at least 3 characters",
+					Message:      "value length must be at least 3 characters",
 				},
 			),
 		},
@@ -184,7 +184,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[\"b\"]",
 					ConstraintId: "string.pattern",
-					Message:      "must match the pattern `(?i)^[a-z0-9]+$`",
+					Message:      "value does not match regex pattern `(?i)^[a-z0-9]+$`",
 				},
 			),
 		},
@@ -198,7 +198,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val[0x1].val",
 					ConstraintId: "string.min_len",
-					Message:      "must be at least 3 characters",
+					Message:      "value length must be at least 3 characters",
 				},
 			),
 		},
