@@ -166,7 +166,7 @@ func (c compilationErrorResult) IsSuccessWith(other Result, options *harness.Res
 	case compilationErrorResult:
 		return true
 	case runtimeErrorResult:
-		return !options.Strict
+		return !options.StrictError
 	default:
 		return false
 	}
