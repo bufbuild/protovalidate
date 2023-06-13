@@ -21,32 +21,37 @@ import (
 )
 
 type Benchmark struct {
-	suite    Suites
+	suites   Suites
 	n        int
 	timerOn  bool
 	start    time.Time
 	duration time.Duration
-	runs     map[int]time.Duration
+	runs     map[string]map[int]time.Duration
 }
 
-func NewBenchmark(n int, sink Suites) *Benchmark {
+func NewBenchmark(n int, ss Suites) *Benchmark {
 	return &Benchmark{
-		n:     n,
-		suite: sink,
-		runs:  make(map[int]time.Duration, n),
+		n:      n,
+		suites: ss,
+		runs:   make(map[string]map[int]time.Duration),
 	}
 }
 
-func (b *Benchmark) Run(filter *regexp.Regexp, fn func(suiteName string, suite Suite) error) error {
-	for i := 0; i < b.n; i++ {
-		b.resetTimer()
-		b.startTimer()
-		if err := b.suite.Range(filter, fn); err != nil {
-			return err
+func (b *Benchmark) Range(filter *regexp.Regexp, fn func(suiteName string, suite Suite) error) error {
+	for suiteName, suite := range b.suites {
+		if filter != nil && !filter.MatchString(suiteName) {
+			continue
 		}
-		b.stopTimer(i)
+		for i := 0; i < b.n; i++ {
+			b.resetTimer()
+			b.startTimer()
+			if err := fn(suiteName, suite); err != nil {
+				return err
+			}
+			b.stopTimer(suiteName, i)
+		}
 	}
-	b.results().prettyPrint()
+	b.results()
 	return nil
 }
 
@@ -57,12 +62,19 @@ func (b *Benchmark) startTimer() {
 	}
 }
 
-func (b *Benchmark) stopTimer(i int) {
+func (b *Benchmark) stopTimer(name string, i int) {
 	if b.timerOn {
 		b.duration += time.Since(b.start)
 		b.timerOn = false
-		b.runs[i] = b.duration
+		b.record(name, i)
 	}
+}
+
+func (b *Benchmark) record(name string, i int) {
+	if _, ok := b.runs[name]; !ok {
+		b.runs[name] = make(map[int]time.Duration)
+	}
+	b.runs[name][i] = b.duration
 }
 
 func (b *Benchmark) resetTimer() {
@@ -72,7 +84,8 @@ func (b *Benchmark) resetTimer() {
 	b.duration = 0
 }
 
-type BenchmarkResults struct {
+type suiteResults struct {
+	name    string
 	count   uint64
 	total   time.Duration
 	average time.Duration
@@ -80,25 +93,54 @@ type BenchmarkResults struct {
 	slowest time.Duration
 }
 
+type BenchmarkResults struct {
+	suiteResults
+	results map[string]*suiteResults
+}
+
 func (b *Benchmark) results() *BenchmarkResults {
 	out := &BenchmarkResults{
-		count: uint64(len(b.runs)),
+		results: make(map[string]*suiteResults),
 	}
-	for _, run := range b.runs {
+	for name, suite := range b.runs {
+		run := calculateRun(suite)
+		run.name = name
+		run.prettyPrint()
+		out.total += run.total
+		out.count += run.count
+		if run.fastest < out.fastest || out.fastest == 0 {
+			out.fastest = run.fastest
+		}
+		if run.slowest > out.slowest {
+			out.slowest = run.slowest
+		}
+		out.results[name] = run
+	}
+	out.average = out.total / time.Duration(b.n)
+	out.name = "Total"
+	out.prettyPrint()
+	return out
+}
+
+func calculateRun(runs map[int]time.Duration) *suiteResults {
+	out := &suiteResults{
+		count: uint64(len(runs)),
+	}
+	for _, run := range runs {
+		out.total += run
 		if run < out.fastest || out.fastest == 0 {
 			out.fastest = run
 		}
 		if run > out.slowest {
 			out.slowest = run
 		}
-		out.total += run
 	}
-	out.average = out.total / time.Duration(len(b.runs))
+	out.average = out.total / time.Duration(out.count)
 	return out
 }
 
-func (r *BenchmarkResults) prettyPrint() {
-	print("Benchmark results:\n")
+func (r *suiteResults) prettyPrint() {
+	print(fmt.Sprintf("Benchmark results: %s\n", r.name))
 	print(fmt.Sprintf("  Count:   %d\n", r.count))
 	print(fmt.Sprintf("  Total:   %s\n", r.total))
 	print(fmt.Sprintf("  Average: %s\n", r.average))

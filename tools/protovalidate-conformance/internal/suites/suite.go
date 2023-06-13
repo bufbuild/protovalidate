@@ -40,6 +40,10 @@ func (ss Suites) Range(filter *regexp.Regexp, fn func(suiteName string, suite Su
 	return nil
 }
 
+func (ss Suites) Benchmark(n int) *Benchmark {
+	return NewBenchmark(n, ss)
+}
+
 type Suite map[string]Case
 
 func (s Suite) Range(filter *regexp.Regexp, fn func(caseName string, testCase Case) error) error {

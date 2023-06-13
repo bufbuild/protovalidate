@@ -67,9 +67,12 @@ func main() {
 
 	var err error
 	if cfg.benchmark > 0 {
-		err = suites.NewBenchmark(cfg.benchmark, cases.KitchenSink()).Run(cfg.suiteFilter, exec)
+		err = cases.GlobalSuites().
+			Benchmark(cfg.benchmark).
+			Range(cfg.suiteFilter, exec)
 	} else {
-		err = cases.GlobalSuites().Range(cfg.suiteFilter, exec)
+		err = cases.GlobalSuites().
+			Range(cfg.suiteFilter, exec)
 	}
 	if err != nil {
 		log.Fatal(err)
