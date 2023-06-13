@@ -37,27 +37,27 @@ func NewBenchmark(n int, sink Suites) *Benchmark {
 	}
 }
 
-func (b Benchmark) Run(filter *regexp.Regexp, fn func(suiteName string, suite Suite) error) error {
+func (b *Benchmark) Run(filter *regexp.Regexp, fn func(suiteName string, suite Suite) error) error {
 	for i := 0; i < b.n; i++ {
-		b.ResetTimer()
-		b.StartTimer()
+		b.resetTimer()
+		b.startTimer()
 		if err := b.suite.Range(filter, fn); err != nil {
 			return err
 		}
-		b.StopTimer(i)
+		b.stopTimer(i)
 	}
-	b.Results().prettyPrint()
+	b.results().prettyPrint()
 	return nil
 }
 
-func (b *Benchmark) StartTimer() {
+func (b *Benchmark) startTimer() {
 	if !b.timerOn {
 		b.start = time.Now()
 		b.timerOn = true
 	}
 }
 
-func (b *Benchmark) StopTimer(i int) {
+func (b *Benchmark) stopTimer(i int) {
 	if b.timerOn {
 		b.duration += time.Since(b.start)
 		b.timerOn = false
@@ -65,18 +65,11 @@ func (b *Benchmark) StopTimer(i int) {
 	}
 }
 
-func (b *Benchmark) ResetTimer() {
+func (b *Benchmark) resetTimer() {
 	if b.timerOn {
 		b.start = time.Now()
 	}
 	b.duration = 0
-}
-
-func (b *Benchmark) time() time.Duration {
-	if b.timerOn {
-		return time.Since(b.start) + b.duration
-	}
-	return b.duration
 }
 
 type BenchmarkResults struct {
@@ -87,25 +80,25 @@ type BenchmarkResults struct {
 	slowest time.Duration
 }
 
-func (b *Benchmark) Results() *BenchmarkResults {
+func (b *Benchmark) results() *BenchmarkResults {
 	out := &BenchmarkResults{
 		count: uint64(len(b.runs)),
 	}
-	for _, v := range b.runs {
-		if v < out.fastest || out.fastest == 0 {
-			out.fastest = v
+	for _, run := range b.runs {
+		if run < out.fastest || out.fastest == 0 {
+			out.fastest = run
 		}
-		if v > out.slowest {
-			out.slowest = v
+		if run > out.slowest {
+			out.slowest = run
 		}
-		out.total += v
+		out.total += run
 	}
 	out.average = out.total / time.Duration(len(b.runs))
 	return out
 }
 
 func (r *BenchmarkResults) prettyPrint() {
-	print(fmt.Sprintf("Benchmark Results:\n"))
+	print("Benchmark results:\n")
 	print(fmt.Sprintf("  Count:   %d\n", r.count))
 	print(fmt.Sprintf("  Total:   %s\n", r.total))
 	print(fmt.Sprintf("  Average: %s\n", r.average))

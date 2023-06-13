@@ -15,14 +15,15 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
-	"log"
-	"os"
 )
 
 func main() {
@@ -80,6 +81,9 @@ func main() {
 		err = resultSet.MarshalTo(os.Stdout, protojson.Marshal)
 	default:
 		resultSet.Print(os.Stderr)
+	}
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	os.Exit(int(resultSet.Failures))
