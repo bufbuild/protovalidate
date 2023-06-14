@@ -59,7 +59,7 @@ func enumSuite() suites.Suite {
 		"defined_only/invalid/unknown": {
 			Message: &cases.EnumDefined{Val: math.MaxInt32},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.defined_only"}),
+				&validate.Violation{FieldPath: "val", ConstraintId: "enum.defined_only", Message: "value must be one of the defined enum values"}),
 		},
 		"alias/defined_only/valid/unspecified": {
 			Message:  &cases.EnumAliasDefined{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_UNSPECIFIED},
