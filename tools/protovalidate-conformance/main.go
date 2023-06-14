@@ -40,7 +40,8 @@ func main() {
 	resultSet := &results.Set{
 		Options: options,
 	}
-	err := cases.GlobalSuites().Range(cfg.suiteFilter, func(suiteName string, suite suites.Suite) error {
+
+	exec := func(suiteName string, suite suites.Suite) error {
 		req, err := suite.ToRequestProto(cfg.caseFilter)
 		if err != nil || len(req.Cases) == 0 {
 			return err
@@ -62,7 +63,17 @@ func main() {
 		res.Fdset = req.Fdset
 		resultSet.AddSuite(res, cfg.verbose)
 		return nil
-	})
+	}
+
+	var err error
+	if cfg.benchmark > 0 {
+		err = cases.GlobalSuites().
+			Benchmark(cfg.benchmark).
+			Range(cfg.suiteFilter, exec)
+	} else {
+		err = cases.GlobalSuites().
+			Range(cfg.suiteFilter, exec)
+	}
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -75,7 +86,6 @@ func main() {
 	default:
 		resultSet.Print(os.Stderr)
 	}
-
 	if err != nil {
 		log.Fatal(err)
 	}
