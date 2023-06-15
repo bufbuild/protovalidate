@@ -27,6 +27,7 @@ gazelle_binary(
 )
 
 # gazelle:exclude proto/protovalidate-testing/tests
+# gazelle:proto file
 gazelle(
     name = "gazelle",
     gazelle = ":gazelle-buf",
