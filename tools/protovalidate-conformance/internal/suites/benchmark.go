@@ -17,6 +17,7 @@ package suites
 import (
 	"fmt"
 	"regexp"
+	"sort"
 	"time"
 )
 
@@ -102,12 +103,20 @@ func (b *Benchmark) results() *BenchmarkResults {
 	out := &BenchmarkResults{
 		results: make(map[string]*suiteResults),
 	}
-	for name, suite := range b.runs {
+	sorted := make([]string, 0, len(b.runs))
+	for name := range b.runs {
+		sorted = append(sorted, name)
+	}
+	sort.StringSlice(sorted).Sort()
+	var totalCount uint64
+	for _, name := range sorted {
+		suite := b.runs[name]
 		run := calculateRun(suite)
 		run.name = name
 		run.prettyPrint()
 		out.total += run.total
 		out.count += run.count
+		totalCount += run.count
 		if run.fastest < out.fastest || out.fastest == 0 {
 			out.fastest = run.fastest
 		}
@@ -116,7 +125,7 @@ func (b *Benchmark) results() *BenchmarkResults {
 		}
 		out.results[name] = run
 	}
-	out.average = out.total / time.Duration(b.n)
+	out.average = out.total / time.Duration(totalCount)
 	out.name = "Total"
 	out.prettyPrint()
 	return out
