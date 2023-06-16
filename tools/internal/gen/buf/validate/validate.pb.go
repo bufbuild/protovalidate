@@ -193,7 +193,7 @@ type OneofConstraints struct {
 	//	message MyMessage {
 	//	 oneof value {
 	//	   // The field `a` or `b` must be set.
-	//	   option [(buf.validate.oneof).required = true]
+	//	   option (buf.validate.oneof).required = true;
 	//	   optional string a = 1;
 	//	   optional string b = 2;
 	//	 }
