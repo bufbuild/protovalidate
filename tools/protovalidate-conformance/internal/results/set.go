@@ -16,11 +16,11 @@ package results
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
-	"io"
-
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"google.golang.org/protobuf/proto"
+	"io"
 )
 
 const (
@@ -56,6 +56,32 @@ func (set *Set) Print(w io.Writer) {
 	_, _ = fmt.Fprintf(writer, "%s (failed: %d, passed: %d, total: %d)\n",
 		res, set.Failures, set.Successes, set.Failures+set.Successes)
 	_ = writer.Flush()
+}
+
+func (set *Set) Compare(expected io.Reader) (bool, error) {
+	actual := &bytes.Buffer{}
+	set.Print(actual)
+
+	for {
+		const sz = 1024
+		scratch1 := make([]byte, sz)
+		scratch2 := make([]byte, sz)
+		n1, err1 := actual.Read(scratch1)
+		n2, err2 := expected.Read(scratch2)
+		if err1 != nil && err1 != io.EOF {
+			return false, err1
+		}
+		if err2 != nil && err2 != io.EOF {
+			return false, err2
+		}
+		if err1 == io.EOF || err2 == io.EOF {
+			return err1 == err2, nil
+		}
+		if !bytes.Equal(scratch1[0:n1], scratch2[0:n2]) {
+			return false, nil
+		}
+	}
+	return true, nil
 }
 
 type SuiteResults harness.SuiteResults

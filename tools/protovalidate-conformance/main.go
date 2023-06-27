@@ -90,5 +90,17 @@ func main() {
 		log.Fatal(err)
 	}
 
+	file, err := os.Open("nonconforming.txt")
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		match, err := resultSet.Compare(file)
+		if err != nil {
+			log.Fatal(err)
+		} else if match {
+			os.Exit(0)
+		}
+	}
+
 	os.Exit(int(resultSet.Failures))
 }

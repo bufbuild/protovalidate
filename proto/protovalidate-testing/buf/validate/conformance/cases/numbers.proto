@@ -162,7 +162,7 @@ message Int32None {
 message Int32Const {
   int32 val = 1 [(buf.validate.field).int32.const = 1];
 }
-message Int32In {
+message AAInt32In {
   int32 val = 1 [(buf.validate.field).int32 = {
     in: [
       2,
