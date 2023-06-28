@@ -18,9 +18,13 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"io"
+	"log"
+	"os"
+	"sort"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"google.golang.org/protobuf/proto"
-	"io"
 )
 
 const (
@@ -60,14 +64,16 @@ func (set *Set) Print(w io.Writer) {
 
 func (set *Set) Compare(expected io.Reader) (bool, error) {
 	actual := &bytes.Buffer{}
-	set.Print(actual)
+	set.Summary(actual)
+
+	const sz = 1024
+	scratch1 := make([]byte, sz)
+	scratch2 := make([]byte, sz)
 
 	for {
-		const sz = 1024
-		scratch1 := make([]byte, sz)
-		scratch2 := make([]byte, sz)
 		n1, err1 := actual.Read(scratch1)
 		n2, err2 := expected.Read(scratch2)
+
 		if err1 != nil && err1 != io.EOF {
 			return false, err1
 		}
@@ -77,11 +83,54 @@ func (set *Set) Compare(expected io.Reader) (bool, error) {
 		if err1 == io.EOF || err2 == io.EOF {
 			return err1 == err2, nil
 		}
-		if !bytes.Equal(scratch1[0:n1], scratch2[0:n2]) {
+
+		if !bytes.Equal(scratch1[:n1], scratch2[:n2]) {
 			return false, nil
 		}
 	}
-	return true, nil
+}
+
+func (set *Set) Summary(w io.Writer) {
+	out := make(map[string][]string, len(set.Suites))
+
+	for _, suite := range set.Suites {
+		value := make([]string, len(suite.Cases))
+		for i, test := range suite.Cases {
+			value[i] = test.Name
+		}
+		sort.Strings(value)
+		out[suite.GetName()] = value
+	}
+
+	keys := make([]string, len(out))
+	i := 0
+	for k := range out {
+		keys[i] = k
+		i++
+	}
+	sort.Strings(keys)
+
+	for _, k := range keys {
+		_, _ = fmt.Fprintf(w, "%s --- %s\n", casePadding, k)
+		for _, v := range out[k] {
+			_, _ = fmt.Fprintf(w, "%s --- %s\n", resultPadding, v)
+		}
+	}
+}
+
+func (set *Set) Check() bool {
+	file, err := os.Open("nonconforming.txt")
+	if err != nil {
+		log.Fatal(err)
+		return false
+	}
+	defer file.Close()
+
+	match, err := set.Compare(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return match
 }
 
 type SuiteResults harness.SuiteResults
