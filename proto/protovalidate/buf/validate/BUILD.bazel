@@ -55,3 +55,9 @@ buf_lint_test(
     config = "//proto/protovalidate:buf.yaml",
     targets = [":expression_proto"],
 )
+
+cc_proto_library(
+    name = "expression_proto_cc",
+    visibility = ["//visibility:public"],
+    deps = [":expression_proto"],
+)
