@@ -63,9 +63,9 @@ type SuiteResults harness.SuiteResults
 
 func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
 	switch {
-	case res.Success && !res.ExpectedFail:
+	case res.Success && !res.ExpectedFailure:
 		suite.Successes++
-	case !res.Success && res.ExpectedFail:
+	case !res.Success && res.ExpectedFailure:
 		suite.ExpectedFailures++
 	default:
 		suite.Failures++

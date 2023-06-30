@@ -56,5 +56,5 @@ message CaseResult {
   TestResult wanted = 3;
   TestResult got = 4;
   google.protobuf.Any input = 5;
-  bool expected_fail = 6;
+  bool expected_failure = 6;
 }
