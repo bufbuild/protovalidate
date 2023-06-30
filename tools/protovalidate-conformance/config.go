@@ -105,11 +105,11 @@ func parseFlags() config {
 		if err != nil {
 			log.Fatal(err)
 		}
+		defer file.Close()
 		bytes, err := io.ReadAll(file)
 		if err != nil {
 			log.Fatal(err)
 		}
-		defer file.Close()
 
 		var out map[string][]string
 		if err = yaml.Unmarshal(bytes, &out); err != nil {
