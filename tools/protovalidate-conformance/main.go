@@ -62,7 +62,7 @@ func main() {
 			cfg.caseFilter,
 			resp,
 			options,
-			cfg.skippedTests[suiteName],
+			cfg.expectedFailures[suiteName],
 		)
 		res.Fdset = req.Fdset
 		resultSet.AddSuite(res, cfg.verbose)

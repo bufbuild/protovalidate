@@ -44,7 +44,7 @@ type config struct {
 	cmd                 string
 	args                []string
 	expectedFailureFile string
-	skippedTests        map[string][]string
+	expectedFailures    map[string][]string
 }
 
 func parseFlags() (*config, error) {
@@ -113,7 +113,7 @@ func parseFlags() (*config, error) {
 		if err = yaml.Unmarshal(bytes, &out); err != nil {
 			return nil, fmt.Errorf("failed to unmarshal contents of skip file %w", err)
 		}
-		cfg.skippedTests = out
+		cfg.expectedFailures = out
 	}
 
 	return cfg, nil
