@@ -98,12 +98,12 @@ func (s Suite) ProcessResults(
 			return err
 		}
 		out.AddCase(&harness.CaseResult{
-			Name:    caseName,
-			Success: testCase.Expected.IsSuccessWith(actual, options),
-			Wanted:  testCase.Expected.ToProto(),
-			Got:     actual.ToProto(),
-			Input:   anyInput,
-			Skipped: isSkipped(caseName, skippedCases),
+			Name:         caseName,
+			Success:      testCase.Expected.IsSuccessWith(actual, options),
+			Wanted:       testCase.Expected.ToProto(),
+			Got:          actual.ToProto(),
+			Input:        anyInput,
+			ExpectedFail: isSkipped(caseName, skippedCases),
 		}, options.Verbose)
 		return nil
 	})
