@@ -86,7 +86,7 @@ func parseFlags() (*config, error) {
 	if cfg.suiteFilterPattern != "" {
 		filter, err := regexp.Compile(cfg.suiteFilterPattern)
 		if err != nil {
-			return nil, fmt.Errorf("failed to parse suite filter pattern %v", err)
+			return nil, fmt.Errorf("failed to parse suite filter pattern %w", err)
 		}
 		cfg.suiteFilter = filter
 	}
@@ -94,7 +94,7 @@ func parseFlags() (*config, error) {
 	if cfg.caseFilterPattern != "" {
 		filter, err := regexp.Compile(cfg.caseFilterPattern)
 		if err != nil {
-			return nil, fmt.Errorf("failed to parse case filter pattern %v", err)
+			return nil, fmt.Errorf("failed to parse case filter pattern %w", err)
 		}
 		cfg.caseFilter = filter
 	}
@@ -102,16 +102,16 @@ func parseFlags() (*config, error) {
 	if cfg.skippedFile != "" {
 		file, err := os.Open(cfg.skippedFile)
 		if err != nil {
-			return nil, fmt.Errorf("failed to open skipped case file %v", err)
+			return nil, fmt.Errorf("failed to open skipped case file %w", err)
 		}
 		bytes, err := io.ReadAll(file)
 		if err != nil {
-			return nil, fmt.Errorf("failed to read contents of skip file %v", err)
+			return nil, fmt.Errorf("failed to read contents of skip file %w", err)
 		}
 
 		var out map[string][]string
 		if err = yaml.Unmarshal(bytes, &out); err != nil {
-			return nil, fmt.Errorf("failed to unmarshal contents of skip file %v", err)
+			return nil, fmt.Errorf("failed to unmarshal contents of skip file %w", err)
 		}
 		cfg.skippedTests = out
 	}
