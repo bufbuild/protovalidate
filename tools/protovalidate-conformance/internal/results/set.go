@@ -17,9 +17,10 @@ package results
 import (
 	"bufio"
 	"fmt"
+	"io"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"google.golang.org/protobuf/proto"
-	"io"
 )
 
 const (

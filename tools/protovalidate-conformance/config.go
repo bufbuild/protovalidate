@@ -16,12 +16,13 @@ package main
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 	"io"
 	"log"
 	"os"
 	"regexp"
 	"time"
+
+	"gopkg.in/yaml.v3"
 
 	flag "github.com/spf13/pflag"
 )
