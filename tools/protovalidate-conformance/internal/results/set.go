@@ -62,11 +62,12 @@ func (set *Set) Print(w io.Writer) {
 type SuiteResults harness.SuiteResults
 
 func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
-	if res.Success && !res.Skipped {
+	switch {
+	case res.Success && !res.Skipped:
 		suite.Successes++
-	} else if !res.Success && res.Skipped {
+	case !res.Success && res.Skipped:
 		suite.Skipped++
-	} else {
+	default:
 		suite.Failures++
 	}
 	if verbose || !res.Success {

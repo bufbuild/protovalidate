@@ -22,9 +22,8 @@ import (
 	"regexp"
 	"time"
 
-	"gopkg.in/yaml.v3"
-
 	flag "github.com/spf13/pflag"
+	"gopkg.in/yaml.v3"
 )
 
 type config struct {
@@ -105,7 +104,6 @@ func parseFlags() config {
 		if err != nil {
 			log.Fatal(err)
 		}
-		defer file.Close()
 		bytes, err := io.ReadAll(file)
 		if err != nil {
 			log.Fatal(err)
