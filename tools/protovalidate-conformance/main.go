@@ -27,7 +27,10 @@ import (
 )
 
 func main() {
-	cfg := parseFlags()
+	cfg, err := parseFlags()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	options := &harness.ResultOptions{
 		SuiteFilter:   cfg.suiteFilterPattern,
@@ -49,7 +52,7 @@ func main() {
 
 		var resp *harness.TestConformanceResponse
 		if len(cfg.cmd) > 0 { // optional with --dump
-			resp, err = runCommand(&cfg, req)
+			resp, err = runCommand(cfg, req)
 			if err != nil {
 				return err
 			}
@@ -66,7 +69,6 @@ func main() {
 		return nil
 	}
 
-	var err error
 	if cfg.benchmark > 0 {
 		err = cases.GlobalSuites().
 			Benchmark(cfg.benchmark).

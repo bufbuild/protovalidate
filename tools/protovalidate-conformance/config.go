@@ -47,8 +47,8 @@ type config struct {
 	skippedTests       map[string][]string
 }
 
-func parseFlags() config {
-	cfg := config{
+func parseFlags() (*config, error) {
+	cfg := &config{
 		suiteTimeout: 5 * time.Second,
 	}
 	log.SetFlags(0)
@@ -76,7 +76,7 @@ func parseFlags() config {
 	args := flag.Args()
 	if len(args) == 0 {
 		if !cfg.dump {
-			log.Fatal("a command must be specified")
+			return nil, fmt.Errorf("a command must be specified")
 		}
 	} else {
 		cfg.cmd = args[0]
@@ -86,7 +86,7 @@ func parseFlags() config {
 	if cfg.suiteFilterPattern != "" {
 		filter, err := regexp.Compile(cfg.suiteFilterPattern)
 		if err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("failed to parse suite filter pattern %v", err)
 		}
 		cfg.suiteFilter = filter
 	}
@@ -94,7 +94,7 @@ func parseFlags() config {
 	if cfg.caseFilterPattern != "" {
 		filter, err := regexp.Compile(cfg.caseFilterPattern)
 		if err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("failed to parse case filter pattern %v", err)
 		}
 		cfg.caseFilter = filter
 	}
@@ -102,19 +102,19 @@ func parseFlags() config {
 	if cfg.skippedFile != "" {
 		file, err := os.Open(cfg.skippedFile)
 		if err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("failed to open skipped case file %v", err)
 		}
 		bytes, err := io.ReadAll(file)
 		if err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("failed to read contents of skip file %v", err)
 		}
 
 		var out map[string][]string
 		if err = yaml.Unmarshal(bytes, &out); err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("failed to unmarshal contents of skip file %v", err)
 		}
 		cfg.skippedTests = out
 	}
 
-	return cfg
+	return cfg, nil
 }
