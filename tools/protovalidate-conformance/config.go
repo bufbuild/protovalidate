@@ -27,24 +27,24 @@ import (
 )
 
 type config struct {
-	suiteFilterPattern string
-	suiteFilter        *regexp.Regexp
-	caseFilterPattern  string
-	caseFilter         *regexp.Regexp
-	suiteTimeout       time.Duration
-	verbose            bool
-	strict             bool
-	strictMessage      bool
-	strictError        bool
-	proto              bool
-	json               bool
-	print              bool
-	dump               bool
-	benchmark          int
-	cmd                string
-	args               []string
-	skippedFile        string
-	skippedTests       map[string][]string
+	suiteFilterPattern  string
+	suiteFilter         *regexp.Regexp
+	caseFilterPattern   string
+	caseFilter          *regexp.Regexp
+	suiteTimeout        time.Duration
+	verbose             bool
+	strict              bool
+	strictMessage       bool
+	strictError         bool
+	proto               bool
+	json                bool
+	print               bool
+	dump                bool
+	benchmark           int
+	cmd                 string
+	args                []string
+	expectedFailureFile string
+	skippedTests        map[string][]string
 }
 
 func parseFlags() (*config, error) {
@@ -68,7 +68,7 @@ func parseFlags() (*config, error) {
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
 	flag.IntVar(&cfg.benchmark, "benchmark", cfg.benchmark, "run benchmarks")
-	flag.StringVar(&cfg.skippedFile, "skipped", cfg.skippedFile, "yaml file containing list of skipped tests")
+	flag.StringVar(&cfg.expectedFailureFile, "expected-failures", cfg.expectedFailureFile, "yaml file containing list of expected failures")
 	flag.Parse()
 
 	cfg.print = !cfg.json && !cfg.proto
@@ -99,8 +99,8 @@ func parseFlags() (*config, error) {
 		cfg.caseFilter = filter
 	}
 
-	if cfg.skippedFile != "" {
-		file, err := os.Open(cfg.skippedFile)
+	if cfg.expectedFailureFile != "" {
+		file, err := os.Open(cfg.expectedFailureFile)
 		if err != nil {
 			return nil, fmt.Errorf("failed to open skipped case file %w", err)
 		}
