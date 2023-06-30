@@ -16,6 +16,8 @@ package main
 
 import (
 	"fmt"
+	"gopkg.in/yaml.v3"
+	"io"
 	"log"
 	"os"
 	"regexp"
@@ -41,6 +43,8 @@ type config struct {
 	benchmark          int
 	cmd                string
 	args               []string
+	skippedFile        string
+	skippedTests       map[string][]string
 }
 
 func parseFlags() config {
@@ -64,6 +68,7 @@ func parseFlags() config {
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
 	flag.IntVar(&cfg.benchmark, "benchmark", cfg.benchmark, "run benchmarks")
+	flag.StringVar(&cfg.skippedFile, "skipped", cfg.skippedFile, "yaml file containing list of skipped tests")
 	flag.Parse()
 
 	cfg.print = !cfg.json && !cfg.proto
@@ -92,6 +97,24 @@ func parseFlags() config {
 			log.Fatal(err)
 		}
 		cfg.caseFilter = filter
+	}
+
+	if cfg.skippedFile != "" {
+		file, err := os.Open(cfg.skippedFile)
+		if err != nil {
+			log.Fatal(err)
+		}
+		bytes, err := io.ReadAll(file)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer file.Close()
+
+		var out map[string][]string
+		if err = yaml.Unmarshal(bytes, &out); err != nil {
+			log.Fatal(err)
+		}
+		cfg.skippedTests = out
 	}
 
 	return cfg

@@ -16,15 +16,10 @@ package results
 
 import (
 	"bufio"
-	"bytes"
 	"fmt"
-	"io"
-	"log"
-	"os"
-	"sort"
-
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"google.golang.org/protobuf/proto"
+	"io"
 )
 
 const (
@@ -36,6 +31,7 @@ type Set harness.ResultSet
 
 func (set *Set) AddSuite(res *SuiteResults, verbose bool) {
 	set.Successes += res.Successes
+	set.Skipped += res.Skipped
 	set.Failures += res.Failures
 	if verbose || res.Failures > 0 {
 		set.Suites = append(set.Suites, (*harness.SuiteResults)(res))
@@ -57,87 +53,18 @@ func (set *Set) Print(w io.Writer) {
 		(*SuiteResults)(suite).Print(writer)
 	}
 	res := resultLabel(set.Failures == 0)
-	_, _ = fmt.Fprintf(writer, "%s (failed: %d, passed: %d, total: %d)\n",
-		res, set.Failures, set.Successes, set.Failures+set.Successes)
+	_, _ = fmt.Fprintf(writer, "%s (failed: %d, skipped: %d, passed: %d, total: %d)\n",
+		res, set.Failures, set.Skipped, set.Successes, set.Failures+set.Successes+set.Skipped)
 	_ = writer.Flush()
-}
-
-func (set *Set) Compare(expected io.Reader) (bool, error) {
-	actual := &bytes.Buffer{}
-	set.Summary(actual)
-
-	const sz = 1024
-	scratch1 := make([]byte, sz)
-	scratch2 := make([]byte, sz)
-
-	for {
-		n1, err1 := actual.Read(scratch1)
-		n2, err2 := expected.Read(scratch2)
-
-		if err1 != nil && err1 != io.EOF {
-			return false, err1
-		}
-		if err2 != nil && err2 != io.EOF {
-			return false, err2
-		}
-		if err1 == io.EOF || err2 == io.EOF {
-			return err1 == err2, nil
-		}
-
-		if !bytes.Equal(scratch1[:n1], scratch2[:n2]) {
-			return false, nil
-		}
-	}
-}
-
-func (set *Set) Summary(w io.Writer) {
-	out := make(map[string][]string, len(set.Suites))
-
-	for _, suite := range set.Suites {
-		value := make([]string, len(suite.Cases))
-		for i, test := range suite.Cases {
-			value[i] = test.Name
-		}
-		sort.Strings(value)
-		out[suite.GetName()] = value
-	}
-
-	keys := make([]string, len(out))
-	i := 0
-	for k := range out {
-		keys[i] = k
-		i++
-	}
-	sort.Strings(keys)
-
-	for _, k := range keys {
-		_, _ = fmt.Fprintf(w, "%s --- %s\n", casePadding, k)
-		for _, v := range out[k] {
-			_, _ = fmt.Fprintf(w, "%s --- %s\n", resultPadding, v)
-		}
-	}
-}
-
-func (set *Set) Check() bool {
-	file, err := os.Open("nonconforming.txt")
-	if err != nil {
-		log.Fatal(err)
-		return false
-	}
-	defer file.Close()
-
-	match, err := set.Compare(file)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return match
 }
 
 type SuiteResults harness.SuiteResults
 
 func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
-	if res.Success {
+	if res.Success && !res.Skipped {
 		suite.Successes++
+	} else if !res.Success && res.Skipped {
+		suite.Skipped++
 	} else {
 		suite.Failures++
 	}
@@ -148,8 +75,8 @@ func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
 
 func (suite *SuiteResults) Print(w io.Writer) {
 	res := resultLabel(suite.Failures == 0)
-	_, _ = fmt.Fprintf(w, "--- %s: %s (failed: %d, passed: %d, total: %d)\n",
-		res, suite.Name, suite.Failures, suite.Successes, suite.Failures+suite.Successes)
+	_, _ = fmt.Fprintf(w, "--- %s: %s (failed: %d, skipped: %d, passed: %d, total: %d)\n",
+		res, suite.Name, suite.Failures, suite.Skipped, suite.Successes, suite.Failures+suite.Successes+suite.Skipped)
 	for _, testCase := range suite.Cases {
 		suite.printCase(w, testCase)
 	}

@@ -38,6 +38,7 @@ message ResultSet {
   repeated SuiteResults suites = 3;
 
   ResultOptions options = 4;
+  int32 skipped = 5;
 }
 
 message SuiteResults {
@@ -46,6 +47,7 @@ message SuiteResults {
   int32 failures = 3;
   repeated CaseResult cases = 4;
   google.protobuf.FileDescriptorSet fdset = 5;
+  int32 skipped = 6;
 }
 
 message CaseResult {
@@ -54,4 +56,5 @@ message CaseResult {
   TestResult wanted = 3;
   TestResult got = 4;
   google.protobuf.Any input = 5;
+  bool skipped = 6;
 }

@@ -17,8 +17,8 @@ package suites
 import (
 	"regexp"
 
-	harness2 "github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
-	results2 "github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
+	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
@@ -58,9 +58,9 @@ func (s Suite) Range(filter *regexp.Regexp, fn func(caseName string, testCase Ca
 	return nil
 }
 
-func (s Suite) ToRequestProto(filter *regexp.Regexp) (*harness2.TestConformanceRequest, error) {
+func (s Suite) ToRequestProto(filter *regexp.Regexp) (*harness.TestConformanceRequest, error) {
 	bldr := &fdsetBuilder{seen: map[string]struct{}{}}
-	req := &harness2.TestConformanceRequest{
+	req := &harness.TestConformanceRequest{
 		Fdset: &bldr.fdest,
 		Cases: map[string]*anypb.Any{},
 	}
@@ -76,20 +76,20 @@ func (s Suite) ToRequestProto(filter *regexp.Regexp) (*harness2.TestConformanceR
 func (s Suite) ProcessResults(
 	suiteName string,
 	filter *regexp.Regexp,
-	resp *harness2.TestConformanceResponse,
-	options *harness2.ResultOptions,
-) *results2.SuiteResults {
-	out := &results2.SuiteResults{
+	resp *harness.TestConformanceResponse,
+	options *harness.ResultOptions,
+	skippedCases []string,
+) *results.SuiteResults {
+	out := &results.SuiteResults{
 		Name: suiteName,
 	}
-
 	respResults := resp.GetResults()
 	_ = s.Range(filter, func(caseName string, testCase Case) error {
-		var actual results2.Result
+		var actual results.Result
 		if result, ok := respResults[caseName]; ok {
-			actual = results2.FromProto(result)
+			actual = results.FromProto(result)
 		} else {
-			actual = results2.UnexpectedError(
+			actual = results.UnexpectedError(
 				"missing results on response")
 		}
 
@@ -97,17 +97,27 @@ func (s Suite) ProcessResults(
 		if err != nil {
 			return err
 		}
-		out.AddCase(&harness2.CaseResult{
+		out.AddCase(&harness.CaseResult{
 			Name:    caseName,
 			Success: testCase.Expected.IsSuccessWith(actual, options),
 			Wanted:  testCase.Expected.ToProto(),
 			Got:     actual.ToProto(),
 			Input:   anyInput,
+			Skipped: isSkipped(caseName, skippedCases),
 		}, options.Verbose)
 		return nil
 	})
 
 	return out
+}
+
+func isSkipped(caseName string, cases []string) bool {
+	for _, testCase := range cases {
+		if caseName == testCase {
+			return true
+		}
+	}
+	return false
 }
 
 type fdsetBuilder struct {
@@ -130,5 +140,5 @@ func (b *fdsetBuilder) addFile(desc protoreflect.FileDescriptor) {
 
 type Case struct {
 	Message  proto.Message
-	Expected results2.Result
+	Expected results.Result
 }

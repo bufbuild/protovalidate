@@ -15,7 +15,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -60,6 +59,7 @@ func main() {
 			cfg.caseFilter,
 			resp,
 			options,
+			cfg.skippedTests[suiteName],
 		)
 		res.Fdset = req.Fdset
 		resultSet.AddSuite(res, cfg.verbose)
@@ -89,12 +89,6 @@ func main() {
 	}
 	if err != nil {
 		log.Fatal(err)
-	}
-
-	if resultSet.Check() {
-		_, _ = fmt.Fprintf(os.Stdout, "Failures expected")
-		os.Exit(0)
-		return
 	}
 
 	os.Exit(int(resultSet.Failures))
