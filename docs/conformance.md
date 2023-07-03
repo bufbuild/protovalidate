@@ -21,7 +21,7 @@ make conformance
 You can customize the behavior of the tests using the following flags:
 
 | Flag                   | Description                                          | Default Value |
-| ---------------------- | ---------------------------------------------------- | ------------- |
+|------------------------|------------------------------------------------------|---------------|
 | `--suite <regex>`      | Filter suites using the provided regular expression. | None          |
 | `--case <regex>`       | Filter cases using the provided regular expression.  | None          |
 | `--timeout <duration>` | Set a per-suite timeout.                             | 5 seconds     |
@@ -30,6 +30,7 @@ You can customize the behavior of the tests using the following flags:
 | `--json`               | Return results as JSON to stdout.                    | `false`       |
 | `--proto`              | Return results as binary serialized proto to stdout. | `false`       |
 | `--dump`               | Output the expected results, without a command.      | `false`       |
+| `--expected-failures`  | `.yaml` file containing list of expected failures    | None          |
 
 ## Components
 
@@ -42,7 +43,8 @@ collating the results.
 ### Executor
 
 Each target library should provide a _conformance test executor_, an executable
-responsible for reading a Protobuf-serialized [`TestConformanceRequest`][harness-proto] over
+responsible for reading a
+Protobuf-serialized [`TestConformanceRequest`][harness-proto] over
 `stdin`, executing the provided test case validations, and respond with a
 Protobuf-serialized [`TestConformanceResponse`][harness-proto] over `stdout`.
 
@@ -58,6 +60,43 @@ The test messages are defined in [`.proto` files][cases-proto]. These are
 utilized to make concrete message _test cases_ which are organized into groups
 known as [_test suites_][suites]. Which tests are passed to the executor can be
 controlled through the `-suite` and `-case` flags mentioned above.
+
+### Expected Failures
+
+The conformance test harness can be configured to expect certain failures. This
+is useful for testing the behavior of a library when it encounters an invalid
+message. To use this feature, pass the `--expected-failures` flag with a path to
+a `.yaml` file containing a list of expected failures. The format of the file is
+as follows:
+
+```yaml
+<test_suite>:
+  - <test_case>
+```
+
+For example, if we wanted to test the behavior of a library when it encounters
+an invalid recursive message, we could create a file
+called `expected_failures.yaml` with the following contents:
+
+```yaml
+standard_constraints/map:
+  - recursive/invalid
+standard_constraints/well_known_types/duration:
+  - gte_lte/invalid/above
+  - lte/invalid
+  - not in/valid
+standard_constraints/well_known_types/timestamp:
+  - gte_lte/invalid/above
+  - lte/invalid
+```
+
+Then we could run the conformance tests with the following command:
+
+```shell
+.tmp/bin/protovalidate-conformance \
+  --expected-failures=expected_failures.yaml \
+  my-executor
+```
 
 [harness-proto]: /proto/protovalidate-testing/buf/validate/conformance/harness/harness.proto
 [cases-proto]: /proto/protovalidate-testing/buf/validate/conformance/cases

@@ -20,38 +20,65 @@ import "buf/validate/conformance/harness/harness.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
 
+// ResultOptions are the options passed to the test runner to configure the
+// test run.
 message ResultOptions {
+  // The suite filter is a regex that matches against the suite name.
   string suite_filter = 1;
+  // The case filter is a regex that matches against the case name.
   string case_filter = 2;
+  // If the test runner should print verbose output.
   bool verbose = 3;
+  // If the violation type must be an exact match.
   bool strict = 4;
-
   // If the violation message must be an exact match.
   bool strict_message = 5;
-  // If the distinciton between runtime and compile time errors must be exact.
+  // If the distinction between runtime and compile time errors must be exact.
   bool strict_error = 6;
 }
 
+// A result is the result of a test run.
 message ResultSet {
+  // Count of successes.
   int32 successes = 1;
+  // Count of failures.
   int32 failures = 2;
+  // List of suite results.
   repeated SuiteResults suites = 3;
-
+  // Options used to generate this result.
   ResultOptions options = 4;
+  // Count of expected failures.
+  int32 expected_failures = 5;
 }
 
+// A suite result is a single test suite result.
 message SuiteResults {
+  // The suite name.
   string name = 1;
+  // Count of successes.
   int32 successes = 2;
+  // Count of failures.
   int32 failures = 3;
+  // List of case results.
   repeated CaseResult cases = 4;
+  // The file descriptor set used to generate this result.
   google.protobuf.FileDescriptorSet fdset = 5;
+  // Count of expected failures.
+  int32 expected_failures = 6;
 }
 
+// A case result is a single test case result.
 message CaseResult {
+  // The case name.
   string name = 1;
+  // Success state of the test case. True if the test case succeeded.
   bool success = 2;
+  // The expected result.
   TestResult wanted = 3;
+  // The actual result.
   TestResult got = 4;
+  // The input used to invoke the test case.
   google.protobuf.Any input = 5;
+  // Denotes if the test is expected to fail. True, if the test case was expected to fail.
+  bool expected_failure = 6;
 }
