@@ -36,18 +36,24 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// ResultOptions are the options passed to the test runner to configure the
+// test run.
 type ResultOptions struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The suite filter is a regex that matches against the suite name.
 	SuiteFilter string `protobuf:"bytes,1,opt,name=suite_filter,json=suiteFilter,proto3" json:"suite_filter,omitempty"`
-	CaseFilter  string `protobuf:"bytes,2,opt,name=case_filter,json=caseFilter,proto3" json:"case_filter,omitempty"`
-	Verbose     bool   `protobuf:"varint,3,opt,name=verbose,proto3" json:"verbose,omitempty"`
-	Strict      bool   `protobuf:"varint,4,opt,name=strict,proto3" json:"strict,omitempty"`
+	// The case filter is a regex that matches against the case name.
+	CaseFilter string `protobuf:"bytes,2,opt,name=case_filter,json=caseFilter,proto3" json:"case_filter,omitempty"`
+	// If the test runner should print verbose output.
+	Verbose bool `protobuf:"varint,3,opt,name=verbose,proto3" json:"verbose,omitempty"`
+	// If the violation type must be an exact match.
+	Strict bool `protobuf:"varint,4,opt,name=strict,proto3" json:"strict,omitempty"`
 	// If the violation message must be an exact match.
 	StrictMessage bool `protobuf:"varint,5,opt,name=strict_message,json=strictMessage,proto3" json:"strict_message,omitempty"`
-	// If the distinciton between runtime and compile time errors must be exact.
+	// If the distinction between runtime and compile time errors must be exact.
 	StrictError bool `protobuf:"varint,6,opt,name=strict_error,json=strictError,proto3" json:"strict_error,omitempty"`
 }
 
@@ -125,16 +131,22 @@ func (x *ResultOptions) GetStrictError() bool {
 	return false
 }
 
+// A result is the result of a test run.
 type ResultSet struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Successes        int32           `protobuf:"varint,1,opt,name=successes,proto3" json:"successes,omitempty"`
-	Failures         int32           `protobuf:"varint,2,opt,name=failures,proto3" json:"failures,omitempty"`
-	Suites           []*SuiteResults `protobuf:"bytes,3,rep,name=suites,proto3" json:"suites,omitempty"`
-	Options          *ResultOptions  `protobuf:"bytes,4,opt,name=options,proto3" json:"options,omitempty"`
-	ExpectedFailures int32           `protobuf:"varint,5,opt,name=expected_failures,json=expectedFailures,proto3" json:"expected_failures,omitempty"`
+	// Count of successes.
+	Successes int32 `protobuf:"varint,1,opt,name=successes,proto3" json:"successes,omitempty"`
+	// Count of failures.
+	Failures int32 `protobuf:"varint,2,opt,name=failures,proto3" json:"failures,omitempty"`
+	// List of suite results.
+	Suites []*SuiteResults `protobuf:"bytes,3,rep,name=suites,proto3" json:"suites,omitempty"`
+	// Options used to generate this result.
+	Options *ResultOptions `protobuf:"bytes,4,opt,name=options,proto3" json:"options,omitempty"`
+	// Count of expected failures.
+	ExpectedFailures int32 `protobuf:"varint,5,opt,name=expected_failures,json=expectedFailures,proto3" json:"expected_failures,omitempty"`
 }
 
 func (x *ResultSet) Reset() {
@@ -204,17 +216,24 @@ func (x *ResultSet) GetExpectedFailures() int32 {
 	return 0
 }
 
+// A suite result is a single test suite result.
 type SuiteResults struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name             string                          `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Successes        int32                           `protobuf:"varint,2,opt,name=successes,proto3" json:"successes,omitempty"`
-	Failures         int32                           `protobuf:"varint,3,opt,name=failures,proto3" json:"failures,omitempty"`
-	Cases            []*CaseResult                   `protobuf:"bytes,4,rep,name=cases,proto3" json:"cases,omitempty"`
-	Fdset            *descriptorpb.FileDescriptorSet `protobuf:"bytes,5,opt,name=fdset,proto3" json:"fdset,omitempty"`
-	ExpectedFailures int32                           `protobuf:"varint,6,opt,name=expected_failures,json=expectedFailures,proto3" json:"expected_failures,omitempty"`
+	// The suite name.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Count of successes.
+	Successes int32 `protobuf:"varint,2,opt,name=successes,proto3" json:"successes,omitempty"`
+	// Count of failures.
+	Failures int32 `protobuf:"varint,3,opt,name=failures,proto3" json:"failures,omitempty"`
+	// List of case results.
+	Cases []*CaseResult `protobuf:"bytes,4,rep,name=cases,proto3" json:"cases,omitempty"`
+	// The file descriptor set used to generate this result.
+	Fdset *descriptorpb.FileDescriptorSet `protobuf:"bytes,5,opt,name=fdset,proto3" json:"fdset,omitempty"`
+	// Count of expected failures.
+	ExpectedFailures int32 `protobuf:"varint,6,opt,name=expected_failures,json=expectedFailures,proto3" json:"expected_failures,omitempty"`
 }
 
 func (x *SuiteResults) Reset() {
@@ -291,17 +310,24 @@ func (x *SuiteResults) GetExpectedFailures() int32 {
 	return 0
 }
 
+// A case result is a single test case result.
 type CaseResult struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name            string      `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Success         bool        `protobuf:"varint,2,opt,name=success,proto3" json:"success,omitempty"`
-	Wanted          *TestResult `protobuf:"bytes,3,opt,name=wanted,proto3" json:"wanted,omitempty"`
-	Got             *TestResult `protobuf:"bytes,4,opt,name=got,proto3" json:"got,omitempty"`
-	Input           *anypb.Any  `protobuf:"bytes,5,opt,name=input,proto3" json:"input,omitempty"`
-	ExpectedFailure bool        `protobuf:"varint,6,opt,name=expected_failure,json=expectedFailure,proto3" json:"expected_failure,omitempty"`
+	// The case name.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Success state of the test case. True if the test case succeeded.
+	Success bool `protobuf:"varint,2,opt,name=success,proto3" json:"success,omitempty"`
+	// The expected result.
+	Wanted *TestResult `protobuf:"bytes,3,opt,name=wanted,proto3" json:"wanted,omitempty"`
+	// The actual result.
+	Got *TestResult `protobuf:"bytes,4,opt,name=got,proto3" json:"got,omitempty"`
+	// The input used to invoke the test case.
+	Input *anypb.Any `protobuf:"bytes,5,opt,name=input,proto3" json:"input,omitempty"`
+	// Denotes if the test is expected to fail. True, if the test case was expected to fail.
+	ExpectedFailure bool `protobuf:"varint,6,opt,name=expected_failure,json=expectedFailure,proto3" json:"expected_failure,omitempty"`
 }
 
 func (x *CaseResult) Reset() {
