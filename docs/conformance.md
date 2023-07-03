@@ -99,9 +99,6 @@ Then we could run the conformance tests with the following command:
 ```
 
 [harness-proto]: /proto/protovalidate-testing/buf/validate/conformance/harness/harness.proto
-
 [cases-proto]: /proto/protovalidate-testing/buf/validate/conformance/cases
-
 [suites]: /tools/protovalidate-conformance/internal/cases
-
 [pv-go]: https://github.com/bufbuild/protovalidate-go/internal/cmd/protovalidate-conformance-go
