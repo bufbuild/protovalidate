@@ -23,7 +23,6 @@ import (
 	"time"
 
 	flag "github.com/spf13/pflag"
-	"gopkg.in/yaml.v3"
 )
 
 type config struct {
@@ -68,7 +67,7 @@ func parseFlags() (*config, error) {
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
 	flag.IntVar(&cfg.benchmark, "benchmark", cfg.benchmark, "run benchmarks")
-	flag.StringVar(&cfg.expectedFailureFile, "expected-failures", cfg.expectedFailureFile, "yaml file containing list of expected failures")
+	flag.StringVar(&cfg.expectedFailureFile, "expected_failures", cfg.expectedFailureFile, "yaml file containing list of expected failures")
 	flag.Parse()
 
 	cfg.print = !cfg.json && !cfg.proto
