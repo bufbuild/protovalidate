@@ -23,6 +23,7 @@ import (
 	"time"
 
 	flag "github.com/spf13/pflag"
+    "gopkg.in/yaml.v3"
 )
 
 type config struct {
