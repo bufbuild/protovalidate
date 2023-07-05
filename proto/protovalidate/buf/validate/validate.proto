@@ -31,7 +31,7 @@ option go_package = "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/
 extend google.protobuf.MessageOptions {
   // Rules specify the validations to be performed on this message. By default,
   // no validation is performed against a message.
-  optional MessageConstraints message = 51071;
+  optional MessageConstraints message = 1159;
 }
 
 // OneofOptions is an extension to google.protobuf.OneofOptions. It allows
@@ -41,7 +41,7 @@ extend google.protobuf.MessageOptions {
 extend google.protobuf.OneofOptions {
   // Rules specify the validations to be performed on this oneof. By default,
   // no validation is performed against a oneof.
-  optional OneofConstraints oneof = 51071;
+  optional OneofConstraints oneof = 1159;
 }
 
 // FieldOptions is an extension to google.protobuf.FieldOptions. It allows
@@ -51,7 +51,7 @@ extend google.protobuf.OneofOptions {
 extend google.protobuf.FieldOptions {
   // Rules specify the validations to be performed on this field. By default,
   // no validation is performed against a field.
-  optional FieldConstraints field = 51071;
+  optional FieldConstraints field = 1159;
 }
 
 // MessageConstraints represents validation rules that are applied to the entire message.
