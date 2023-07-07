@@ -196,7 +196,7 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapRecursive{Val: map[uint32]*cases.MapRecursive_Msg{1: {}}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[0x1].val",
+					FieldPath:    "val[1].val",
 					ConstraintId: "string.min_len",
 					Message:      "value length must be at least 3 characters",
 				},
