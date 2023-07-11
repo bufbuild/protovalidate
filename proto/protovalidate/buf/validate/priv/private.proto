@@ -22,7 +22,7 @@ option go_package = "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/
 
 extend google.protobuf.FieldOptions {
   // Do not use. Internal to protovalidate library
-  optional FieldConstraints field = 51072;
+  optional FieldConstraints field = 1160;
 }
 
 // Do not use. Internal to protovalidate library
