@@ -37,6 +37,9 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// TestConformanceRequest is the request for Conformance Tests.
+// The FileDescriptorSet is the FileDescriptorSet to test against.
+// The cases map is a map of case name to the Any message that represents the case.
 type TestConformanceRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -92,6 +95,8 @@ func (x *TestConformanceRequest) GetCases() map[string]*anypb.Any {
 	return nil
 }
 
+// TestConformanceResponse is the response for Conformance Tests.
+// The results map is a map of case name to the TestResult.
 type TestConformanceResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -139,6 +144,7 @@ func (x *TestConformanceResponse) GetResults() map[string]*TestResult {
 	return nil
 }
 
+// TestResult is the result of a single test. Only one of the fields will be set.
 type TestResult struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -233,22 +239,27 @@ type isTestResult_Result interface {
 }
 
 type TestResult_Success struct {
+	// success is true if the test succeeded.
 	Success bool `protobuf:"varint,1,opt,name=success,proto3,oneof"`
 }
 
 type TestResult_ValidationError struct {
+	// validation_error is the error if the test failed due to validation errors.
 	ValidationError *validate.Violations `protobuf:"bytes,2,opt,name=validation_error,json=validationError,proto3,oneof"`
 }
 
 type TestResult_CompilationError struct {
+	// compilation_error is the error if the test failed due to compilation errors.
 	CompilationError string `protobuf:"bytes,3,opt,name=compilation_error,json=compilationError,proto3,oneof"`
 }
 
 type TestResult_RuntimeError struct {
+	// runtime_error is the error if the test failed due to runtime errors.
 	RuntimeError string `protobuf:"bytes,4,opt,name=runtime_error,json=runtimeError,proto3,oneof"`
 }
 
 type TestResult_UnexpectedError struct {
+	// unexpected_error is any other error that may have occurred.
 	UnexpectedError string `protobuf:"bytes,5,opt,name=unexpected_error,json=unexpectedError,proto3,oneof"`
 }
 
