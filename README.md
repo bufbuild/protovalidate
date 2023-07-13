@@ -34,7 +34,7 @@ Runtime implementations of `protovalidate` can be found in their own repositorie
  - Go: [`protovalidate-go`][pv-go] (beta release)
  - C++: [`protovalidate-cc`][pv-cc] (beta release)
  - Python: [`protovalidate-python`][pv-py] (beta release)
- - Java: `protovalidate-java` (coming soon)
+ - Java: [`protovalidate-java`][pv-java] (beta release)
  - TypeScript: `protovalidate-ts` (coming soon)
 
 Interested in adding support for another language? Check out our 
@@ -243,6 +243,7 @@ Offered under the [Apache 2 license][license].
 [license]: https://github.com/bufbuild/protovalidate/blob/main/LICENSE
 [pgv]: https://github.com/bufbuild/protoc-gen-validate
 [pv-go]: https://github.com/bufbuild/protovalidate-go
+[pv-java]: https://github.com/bufbuild/protovalidate-java
 [pv-cc]: https://github.com/bufbuild/protovalidate-cc
 [pv-py]: https://github.com/bufbuild/protovalidate-python
 [slack]: https://buf.build/links/slack
