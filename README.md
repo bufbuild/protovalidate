@@ -4,10 +4,10 @@
 [![Slack](https://img.shields.io/badge/Slack-Buf-%23e01563)][slack]
 [![BSR](https://img.shields.io/badge/BSR-Module-0C65EC)][buf-mod]
 
-**_Update: The next generation of `protoc-gen-validate`, now called 
-`protovalidate`, is available in beta for Golang and C++! We're hard at work on
-Java, TypeScript, and Python implementations as well. To learn more, check out 
-our [blog post][announce]. We value your input in refining our products, so 
+**_Update: The next generation of `protoc-gen-validate`, now called
+`protovalidate`, is available in beta for Golang, Python, and C++! We're hard at work on
+Java and TypeScript implementations as well. To learn more, check out
+our [blog post][announce]. We value your input in refining our products, so
 don't hesitate to share your feedback on `protovalidate`._**
 
 `protovalidate` is a series of libraries designed to validate Protobuf messages at
@@ -32,12 +32,12 @@ This repository is the core of the `protovalidate` project. It contains:
 Runtime implementations of `protovalidate` can be found in their own repositories:
 
  - Go: [`protovalidate-go`][pv-go] (beta release)
- - C++: [`protovalidate-cc`][pv-cc] (beta release)
  - Python: [`protovalidate-python`][pv-py] (beta release)
+ - C++: [`protovalidate-cc`][pv-cc] (beta release)
  - Java: [`protovalidate-java`][pv-java] (beta release)
  - TypeScript: `protovalidate-ts` (coming soon)
 
-Interested in adding support for another language? Check out our 
+Interested in adding support for another language? Check out our
 [Contributing Guidelines](https://github.com/bufbuild/protovalidate/blob/main/.github/CONTRIBUTING.md).
 
 ## Usage
@@ -77,7 +77,7 @@ Add an import path (`-I` flag) pointing to the contents of the `proto/protovalid
 directory to your invocation of `protoc`:
 
 ```shell
-protoc \ 
+protoc \
   -I ./vendor/protovalidate/proto/protovalidate \
   # <snip>
 ```
@@ -92,9 +92,9 @@ Let's consider a few examples:
 
    ```protobuf
    syntax = "proto3";
-   
+
    import "buf/validate/validate.proto";
-   
+
    message User {
      // User's name, must be at least 1 character long.
      string name = 1 [(buf.validate.field).string.min_len = 1];
@@ -105,9 +105,9 @@ Let's consider a few examples:
 
    ```protobuf
    syntax = "proto3";
-   
+
    import "buf/validate/validate.proto";
-   
+
    message Product {
      // Map of item quantities, all quantities must be positive.
      map<string, int32> item_quantities = 1 [(buf.validate.field).map.values.int32.gt = 0];
@@ -118,10 +118,10 @@ Let's consider a few examples:
 
    ```protobuf
    syntax = "proto3";
-   
+
    import "google/protobuf/timestamp.proto";
    import "buf/validate/validate.proto";
-   
+
    message User {
      // User's creation date must be in the past.
      google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.lt_now = true];
@@ -134,9 +134,9 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
 
    ```protobuf
    syntax = "proto3";
-   
+
    import "buf/validate/validate.proto";
-   
+
    message Product {
      string price = 1 [(buf.validate.field).cel = {
        id: "product.price",
@@ -150,14 +150,14 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
 
    ```protobuf
    syntax = "proto3";
-   
+
    import "google/protobuf/timestamp.proto";
    import "buf/validate/validate.proto";
-   
+
    message Transaction {
      google.protobuf.Timestamp purchase_date = 1;
      google.protobuf.Timestamp delivery_date = 2;
-     
+
      option (buf.validate.message).cel = {
        id: "transaction.delivery_date",
        message: "Delivery date must be after purchase date",
@@ -170,9 +170,9 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
 
    ```protobuf
    syntax = "proto3";
-   
+
    import "buf/validate/validate.proto";
-   
+
    message User {
      int32 age = 1 [(buf.validate.field).cel = {
        id: "user.age",
@@ -214,7 +214,7 @@ The key components include:
 ### protoc-gen-validate
 
 `protovalidate` is the spiritual successor to [`protoc-gen-validate`][pgv], offering
-all of the same functionality present in the original plugin, without the need 
+all of the same functionality present in the original plugin, without the need
 for custom code generation, and the new ability to describe complex constraints in CEL.
 
 `protovalidate`'s constraints very closely emulate those
@@ -243,7 +243,7 @@ Offered under the [Apache 2 license][license].
 [license]: https://github.com/bufbuild/protovalidate/blob/main/LICENSE
 [pgv]: https://github.com/bufbuild/protoc-gen-validate
 [pv-go]: https://github.com/bufbuild/protovalidate-go
-[pv-java]: https://github.com/bufbuild/protovalidate-java
-[pv-cc]: https://github.com/bufbuild/protovalidate-cc
 [pv-py]: https://github.com/bufbuild/protovalidate-python
+[pv-cc]: https://github.com/bufbuild/protovalidate-cc
+[pv-java]: https://github.com/bufbuild/protovalidate-java
 [slack]: https://buf.build/links/slack
