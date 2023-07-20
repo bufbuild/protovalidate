@@ -15,6 +15,8 @@
 package cases
 
 import (
+	"math"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
@@ -197,6 +199,35 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.gte_lte_exclusive"}),
+		},
+		"finite/valid": {
+			Message:  &cases.FloatFinite{Val: 1},
+			Expected: results.Success(true),
+		},
+		"finite/nan": {
+			Message: &cases.FloatFinite{Val: float32(math.NaN())},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "float.finite",
+					Message:      "value must be finite",
+				}),
+		},
+		"finite/inf": {
+			Message: &cases.FloatFinite{Val: float32(math.Inf(1))},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "float.finite",
+					Message:      "value must be finite"}),
+		},
+		"finite/neginf": {
+			Message: &cases.FloatFinite{Val: float32(math.Inf(-1))},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "float.finite",
+					Message:      "value must be finite"}),
 		},
 		"ignore_empty/valid/empty": {
 			Message:  &cases.FloatIgnore{Val: 0},
