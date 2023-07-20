@@ -108,7 +108,11 @@ func (v violationsResult) String() string {
 	errs := v.inner.GetValidationError().GetViolations()
 	_, _ = fmt.Fprintf(bldr, "%d validation error(s)", len(errs))
 	for i, err := range errs {
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s: %s", resultPadding, i+1, err.FieldPath, err.ConstraintId)
+		forKey := ""
+		if err.ForKey {
+			forKey = " (key)"
+		}
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s", resultPadding, i+1, err.FieldPath, forKey, err.ConstraintId)
 		_, _ = fmt.Fprintf(bldr, "\n%s      %s", resultPadding, err.Message)
 	}
 	return bldr.String()
@@ -128,7 +132,7 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			return false
 		}
 		for i := 0; i < len(want); i++ {
-			matchingField := want[i].FieldPath == got[i].FieldPath
+			matchingField := want[i].FieldPath == got[i].FieldPath && want[i].ForKey == got[i].ForKey
 			matchingConstraint := want[i].ConstraintId == got[i].ConstraintId
 			if !matchingField || !matchingConstraint {
 				return false
