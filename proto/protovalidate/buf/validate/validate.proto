@@ -567,7 +567,7 @@ message DoubleRules {
   //`finite` requires the field value to be finite. If the field value is
   // infinite or NaN, an error message is generated.
   bool finite = 8 [(priv.field).cel = {
-    id: "float.finite",
+    id: "double.finite",
     expression: "this == 1.0/0.0 || this == -1.0/0.0 || string(this) == 'NaN' ? 'value must be finite' : ''",
   }];
 }
