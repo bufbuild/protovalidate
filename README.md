@@ -5,8 +5,8 @@
 [![BSR](https://img.shields.io/badge/BSR-Module-0C65EC)][buf-mod]
 
 **_Update: The next generation of `protoc-gen-validate`, now called
-`protovalidate`, is available in beta for Golang, Python, and C++! We're hard at work on
-Java and TypeScript implementations as well. To learn more, check out
+`protovalidate`, is available in beta for Golang, Python, Java, and C++! 
+We're hard at work on a TypeScript implementations as well. To learn more, check out
 our [blog post][announce]. We value your input in refining our products, so
 don't hesitate to share your feedback on `protovalidate`._**
 
@@ -34,7 +34,7 @@ Runtime implementations of `protovalidate` can be found in their own repositorie
  - Go: [`protovalidate-go`][pv-go] (beta release)
  - Python: [`protovalidate-python`][pv-py] (beta release)
  - C++: [`protovalidate-cc`][pv-cc] (beta release)
- - Java: `protovalidate-java` (coming soon)
+ - Java: [`protovalidate-java`][pv-java] (beta release)
  - TypeScript: `protovalidate-ts` (coming soon)
 
 Interested in adding support for another language? Check out our
@@ -245,4 +245,5 @@ Offered under the [Apache 2 license][license].
 [pv-go]: https://github.com/bufbuild/protovalidate-go
 [pv-py]: https://github.com/bufbuild/protovalidate-python
 [pv-cc]: https://github.com/bufbuild/protovalidate-cc
+[pv-java]: https://github.com/bufbuild/protovalidate-java
 [slack]: https://buf.build/links/slack
