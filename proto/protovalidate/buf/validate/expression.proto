@@ -17,6 +17,9 @@ syntax = "proto3";
 package buf.validate;
 
 option go_package = "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate";
+option java_multiple_files = true;
+option java_package = "build.buf.validate";
+option java_outer_classname = "ExpressionProto";
 
 // `Constraint` represents a validation rule written in the Common Expression
 // Language (CEL) syntax. Each Constraint includes a unique identifier, an

@@ -23,6 +23,9 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate";
+option java_multiple_files = true;
+option java_package = "build.buf.validate";
+option java_outer_classname = "ValidateProto";
 
 // MessageOptions is an extension to google.protobuf.MessageOptions. It allows
 // the addition of validation rules at the message level. These rules can be
