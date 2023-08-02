@@ -375,6 +375,13 @@ message FloatRules {
     id: "float.not_in",
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''",
   }];
+
+  //`finite` requires the field value to be finite. If the field value is
+  // infinite or NaN, an error message is generated.
+  bool finite = 8 [(priv.field).cel = {
+    id: "float.finite",
+    expression: "this == 1.0/0.0 || this == -1.0/0.0 || string(this) in ['NaN', 'nan'] ? 'value must be finite' : ''",
+  }];
 }
 
 // DoubleRules describes the constraints applied to `double` values. These
@@ -558,6 +565,13 @@ message DoubleRules {
   repeated double not_in = 7 [(priv.field).cel = {
     id: "double.not_in",
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''",
+  }];
+
+  //`finite` requires the field value to be finite. If the field value is
+  // infinite or NaN, an error message is generated.
+  bool finite = 8 [(priv.field).cel = {
+    id: "double.finite",
+    expression: "this == 1.0/0.0 || this == -1.0/0.0 || string(this) in ['NaN', 'nan'] ? 'value must be finite' : ''",
   }];
 }
 

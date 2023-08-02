@@ -15,6 +15,8 @@
 package cases
 
 import (
+	"math"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
@@ -197,6 +199,35 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.gte_lte_exclusive"}),
+		},
+		"finite/valid": {
+			Message:  &cases.DoubleFinite{Val: 1},
+			Expected: results.Success(true),
+		},
+		"finite/nan": {
+			Message: &cases.DoubleFinite{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "double.finite",
+					Message:      "value must be finite",
+				}),
+		},
+		"finite/inf": {
+			Message: &cases.DoubleFinite{Val: math.Inf(1)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "double.finite",
+					Message:      "value must be finite"}),
+		},
+		"finite/neginf": {
+			Message: &cases.DoubleFinite{Val: math.Inf(-1)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "double.finite",
+					Message:      "value must be finite"}),
 		},
 		"ignore_empty/valid/empty": {
 			Message:  &cases.DoubleIgnore{Val: 0},
