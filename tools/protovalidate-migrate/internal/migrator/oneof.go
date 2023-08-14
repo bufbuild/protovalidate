@@ -18,11 +18,11 @@ import (
 	"github.com/bufbuild/protocompile/ast"
 )
 
-type OneOfVisitor struct {
+type OneofVisitor struct {
 	PrinterVisitor
 }
 
-func (v *OneOfVisitor) VisitOptionNode(node *ast.OptionNode) error {
+func (v *OneofVisitor) VisitOptionNode(node *ast.OptionNode) error {
 	name := node.Name.Parts[0].Value()
 	isPGV := name == "(validate.required)"
 	isPV := name == "(buf.validate.oneof)"
@@ -47,6 +47,6 @@ func (v *OneOfVisitor) VisitOptionNode(node *ast.OptionNode) error {
 	return nil
 }
 
-func (v *OneOfVisitor) VisitFieldNode(node *ast.FieldNode) error {
+func (v *OneofVisitor) VisitFieldNode(node *ast.FieldNode) error {
 	return ast.VisitChildren(node, &FieldVisitor{PrinterVisitor: v.PrinterVisitor})
 }

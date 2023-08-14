@@ -164,7 +164,7 @@ func (v PrinterVisitor) VisitMapTypeNode(node *ast.MapTypeNode) error {
 	return v.PrintNodes(true, node)
 }
 
-func (v PrinterVisitor) VisitOneOfNode(node *ast.OneOfNode) error {
+func (v PrinterVisitor) VisitOneofNode(node *ast.OneofNode) error {
 	return v.PrintNodes(true, node)
 }
 
