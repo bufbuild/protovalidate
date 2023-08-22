@@ -1,7 +1,7 @@
 version: v1
 name: buf.build/bufbuild/protovalidate-testing
 deps:
-  - buf.build/bufbuild/protovalidate
+  - buf.build/bufbuild/protovalidate:ejackson/refactor-lt-gt
 build:
   excludes:
     - tests
