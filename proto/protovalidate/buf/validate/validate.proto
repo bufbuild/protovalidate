@@ -384,7 +384,7 @@ message FloatRules {
   // infinite or NaN, an error message is generated.
   bool finite = 8 [(priv.field).cel = {
     id: "float.finite",
-    expression: "this == 1.0/0.0 || this == -1.0/0.0 || string(this) in ['NaN', 'nan'] ? 'value must be finite' : ''",
+    expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''",
   }];
 }
 
@@ -576,7 +576,7 @@ message DoubleRules {
   // infinite or NaN, an error message is generated.
   bool finite = 8 [(priv.field).cel = {
     id: "double.finite",
-    expression: "this == 1.0/0.0 || this == -1.0/0.0 || string(this) in ['NaN', 'nan'] ? 'value must be finite' : ''",
+    expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''",
   }];
 }
 
