@@ -38,12 +38,22 @@ func floatSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.const"}),
 		},
+		"const/nan": {
+			Message: &cases.FloatConst{Val: float32(math.NaN())},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.const"}),
+		},
 		"in/valid": {
 			Message:  &cases.FloatIn{Val: 7.89},
 			Expected: results.Success(true),
 		},
 		"in/invalid": {
 			Message: &cases.FloatIn{Val: 10.11},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.in"}),
+		},
+		"in/nan": {
+			Message: &cases.FloatIn{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.in"}),
 		},
@@ -55,6 +65,10 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatNotIn{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.not_in"}),
+		},
+		"not_in/nan": {
+			Message:  &cases.FloatNotIn{Val: float32(math.NaN())},
+			Expected: results.Success(true),
 		},
 		"lt/valid/less": {
 			Message:  &cases.FloatLT{Val: -1},
@@ -70,6 +84,11 @@ func floatSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.lt"}),
 		},
+		"lt/invalid/nan": {
+			Message: &cases.FloatLT{Val: float32(math.NaN())},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.lt"}),
+		},
 		"lte/valid/less": {
 			Message:  &cases.FloatLTE{Val: 63},
 			Expected: results.Success(true),
@@ -80,6 +99,11 @@ func floatSuite() suites.Suite {
 		},
 		"lte/invalid/greater": {
 			Message: &cases.FloatLTE{Val: 65},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.lte"}),
+		},
+		"lte/invalid/nan": {
+			Message: &cases.FloatLTE{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.lte"}),
 		},
@@ -97,6 +121,11 @@ func floatSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.gt"}),
 		},
+		"gt/invalid/nan": {
+			Message: &cases.FloatGT{Val: float32(math.NaN())},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.gt"}),
+		},
 		"gte/valid/greater": {
 			Message:  &cases.FloatGTE{Val: 9},
 			Expected: results.Success(true),
@@ -107,6 +136,11 @@ func floatSuite() suites.Suite {
 		},
 		"gte/invalid/less": {
 			Message: &cases.FloatGTE{Val: 7},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.gte"}),
+		},
+		"gte/invalid/nan": {
+			Message: &cases.FloatGTE{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.gte"}),
 		},
@@ -134,6 +168,11 @@ func floatSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.gt_lt"}),
 		},
+		"gt_lt/inclusive/invalid/nan": {
+			Message: &cases.FloatGTLT{Val: float32(math.NaN())},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.gt_lt"}),
+		},
 		"gt_lt/exclusive/valid/above": {
 			Message:  &cases.FloatExLTGT{Val: 11},
 			Expected: results.Success(true),
@@ -154,6 +193,11 @@ func floatSuite() suites.Suite {
 		},
 		"gt_lt/exclusive/invalid/min": {
 			Message: &cases.FloatExLTGT{Val: 0},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.gt_lt_exclusive"}),
+		},
+		"gt_lt/exclusive/invalid/nan": {
+			Message: &cases.FloatExLTGT{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.gt_lt_exclusive"}),
 		},
@@ -179,6 +223,11 @@ func floatSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.gte_lte"}),
 		},
+		"gte_lte/inclusive/invalid/nan": {
+			Message: &cases.FloatGTELTE{Val: float32(math.NaN())},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.gte_lte"}),
+		},
 		"gte_lte/exclusive/valid/above": {
 			Message:  &cases.FloatExGTELTE{Val: 300},
 			Expected: results.Success(true),
@@ -197,6 +246,11 @@ func floatSuite() suites.Suite {
 		},
 		"gte_lte/exclusive/invalid/within": {
 			Message: &cases.FloatExGTELTE{Val: 200},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "float.gte_lte_exclusive"}),
+		},
+		"gte_lte/exclusive/invalid/nan": {
+			Message: &cases.FloatExGTELTE{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "float.gte_lte_exclusive"}),
 		},

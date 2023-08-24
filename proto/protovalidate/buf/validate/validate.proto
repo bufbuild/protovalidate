@@ -224,7 +224,7 @@ message FloatRules {
     float lt = 2 [(priv.field).cel = {
       id: "float.lt",
       expression:
-        "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
+        "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)"
         "? 'value must be less than %s'.format([rules.lt]) : ''"
     }];
 
@@ -241,7 +241,7 @@ message FloatRules {
     float lte = 3 [(priv.field).cel = {
       id: "float.lte",
       expression:
-        "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
+        "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this > rules.lte)"
         "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
     }];
   }
@@ -269,31 +269,31 @@ message FloatRules {
       (priv.field).cel = {
         id: "float.gt",
         expression:
-          "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
+          "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this <= rules.gt)"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lt",
         expression:
-          "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
+          "has(rules.lt) && rules.lt >= rules.gt && (this.isNan() || this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lt_exclusive",
         expression:
-          "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
+          "has(rules.lt) && rules.lt < rules.gt && (this.isNan() || (rules.lt <= this && this <= rules.gt))"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lte",
         expression:
-          "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
+          "has(rules.lte) && rules.lte >= rules.gt && (this.isNan() || this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lte_exclusive",
         expression:
-          "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
+          "has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))"
           "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       }
     ];
@@ -320,31 +320,31 @@ message FloatRules {
       (priv.field).cel = {
         id: "float.gte",
         expression:
-          "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
+          "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this < rules.gte)"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lt",
         expression:
-          "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
+          "has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lt_exclusive",
         expression:
-          "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
+          "has(rules.lt) && rules.lt < rules.gte && (this.isNan() || (rules.lt <= this && this < rules.gte))"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lte",
         expression:
-          "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
+          "has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lte_exclusive",
         expression:
-          "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
+          "has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))"
           "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       }
     ];
@@ -418,7 +418,7 @@ message DoubleRules {
     double lt = 2 [(priv.field).cel = {
       id: "double.lt",
       expression:
-        "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
+        "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)"
         "? 'value must be less than %s'.format([rules.lt]) : ''"
     }];
 
@@ -435,7 +435,7 @@ message DoubleRules {
     double lte = 3 [(priv.field).cel = {
       id: "double.lte",
       expression:
-        "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
+        "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this > rules.lte)"
         "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
     }];
   }
@@ -462,31 +462,31 @@ message DoubleRules {
       (priv.field).cel = {
         id: "double.gt",
         expression:
-          "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
+          "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this <= rules.gt)"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lt",
         expression:
-          "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
+          "has(rules.lt) && rules.lt >= rules.gt && (this.isNan() || this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lt_exclusive",
         expression:
-          "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
+          "has(rules.lt) && rules.lt < rules.gt && (this.isNan() || (rules.lt <= this && this <= rules.gt))"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lte",
         expression:
-          "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
+          "has(rules.lte) && rules.lte >= rules.gt && (this.isNan() || this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lte_exclusive",
         expression:
-          "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
+          "has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))"
           "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       }
     ];
@@ -513,31 +513,31 @@ message DoubleRules {
       (priv.field).cel = {
         id: "double.gte",
         expression:
-          "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
+          "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this < rules.gte)"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lt",
         expression:
-          "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
+          "has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lt_exclusive",
         expression:
-          "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
+          "has(rules.lt) && rules.lt < rules.gte && (this.isNan() || (rules.lt <= this && this < rules.gte))"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lte",
         expression:
-          "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
+          "has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lte_exclusive",
         expression:
-          "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
+          "has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))"
           "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       }
     ];
