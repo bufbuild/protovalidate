@@ -3209,7 +3209,7 @@ message RepeatedRules {
   optional bool unique = 3 [(priv.field).cel = {
     id: "repeated.unique"
     message: "repeated value must contain unique items"
-    expression: "this.unique()"
+    expression: "dyn(this).unique()"
   }];
 
   //`items` details the constraints to be applied to each item

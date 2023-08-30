@@ -1,7 +1,7 @@
 version: v1
 name: buf.build/bufbuild/protovalidate-testing
 deps:
-  - buf.build/bufbuild/protovalidate
+  - buf.build/bufbuild/protovalidate:ejackson/tcn-2320-protovalidate-go37-bug-processing-a-message-that-contains
 build:
   excludes:
     - tests
