@@ -20,21 +20,32 @@ import "buf/validate/expression.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
 
+// TestConformanceRequest is the request for Conformance Tests.
+// The FileDescriptorSet is the FileDescriptorSet to test against.
+// The cases map is a map of case name to the Any message that represents the case.
 message TestConformanceRequest {
   google.protobuf.FileDescriptorSet fdset = 2;
   map<string, google.protobuf.Any> cases = 3;
 }
 
+// TestConformanceResponse is the response for Conformance Tests.
+// The results map is a map of case name to the TestResult.
 message TestConformanceResponse {
   map<string, TestResult> results = 1;
 }
 
+// TestResult is the result of a single test. Only one of the fields will be set.
 message TestResult {
   oneof result {
+    // success is true if the test succeeded.
     bool success = 1;
+    // validation_error is the error if the test failed due to validation errors.
     Violations validation_error = 2;
+    // compilation_error is the error if the test failed due to compilation errors.
     string compilation_error = 3;
+    // runtime_error is the error if the test failed due to runtime errors.
     string runtime_error = 4;
+    // unexpected_error is any other error that may have occurred.
     string unexpected_error = 5;
   }
 }

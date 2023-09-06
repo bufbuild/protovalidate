@@ -62,7 +62,7 @@ message BytesEqualMinMaxLen {
   }];
 }
 message BytesPattern {
-  bytes val = 1 [(buf.validate.field).bytes.pattern = "^[\x00-\x7F]+$"];
+  bytes val = 1 [(buf.validate.field).bytes.pattern = "^[\\x00-\\x7F]+$"];
 }
 message BytesPrefix {
   bytes val = 1 [(buf.validate.field).bytes.prefix = "\x99"];

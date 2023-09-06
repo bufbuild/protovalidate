@@ -316,6 +316,11 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.email"}),
 		},
+		"email/invalid/only_dot_hostname": {
+			Message: &cases.StringEmail{Val: "foo@."},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.email"}),
+		},
 		"hostname/valid/lowercase": {
 			Message:  &cases.StringHostname{Val: "example.com"},
 			Expected: results.Success(true),
@@ -364,6 +369,11 @@ func stringSuite() suites.Suite {
 		},
 		"hostname/invalid/IDNs": {
 			Message: &cases.StringHostname{Val: "你好.com"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.hostname"}),
+		},
+		"hostname/invalid/only_dot": {
+			Message: &cases.StringHostname{Val: "."},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.hostname"}),
 		},

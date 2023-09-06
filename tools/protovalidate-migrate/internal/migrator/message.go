@@ -66,6 +66,6 @@ func (v *MessageVisitor) VisitMapFieldNode(node *ast.MapFieldNode) error {
 	return ast.VisitChildren(node, &FieldVisitor{PrinterVisitor: v.PrinterVisitor})
 }
 
-func (v *MessageVisitor) VisitOneOfNode(node *ast.OneOfNode) error {
-	return ast.VisitChildren(node, &OneOfVisitor{PrinterVisitor: v.PrinterVisitor})
+func (v *MessageVisitor) VisitOneofNode(node *ast.OneofNode) error {
+	return ast.VisitChildren(node, &OneofVisitor{PrinterVisitor: v.PrinterVisitor})
 }

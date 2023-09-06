@@ -18,7 +18,7 @@ help: ## Describe useful make targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
 
 .PHONY: all
-all: test lint ## Run all tests and lint (default)
+all: generate lint test conformance ## Run all tests and lint (default)
 
 .PHONY: clean
 clean: ## Delete intermediate build artifacts
@@ -99,4 +99,5 @@ $(BIN)/license-header: $(BIN) Makefile
 		  github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@latest
 
 $(BIN)/golangci-lint: $(BIN) Makefile
-	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.3
+

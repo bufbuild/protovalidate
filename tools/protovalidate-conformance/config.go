@@ -16,34 +16,39 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"regexp"
 	"time"
 
 	flag "github.com/spf13/pflag"
+	"gopkg.in/yaml.v3"
 )
 
 type config struct {
-	suiteFilterPattern string
-	suiteFilter        *regexp.Regexp
-	caseFilterPattern  string
-	caseFilter         *regexp.Regexp
-	suiteTimeout       time.Duration
-	verbose            bool
-	strict             bool
-	strictMessage      bool
-	strictError        bool
-	proto              bool
-	json               bool
-	print              bool
-	dump               bool
-	cmd                string
-	args               []string
+	suiteFilterPattern  string
+	suiteFilter         *regexp.Regexp
+	caseFilterPattern   string
+	caseFilter          *regexp.Regexp
+	suiteTimeout        time.Duration
+	verbose             bool
+	strict              bool
+	strictMessage       bool
+	strictError         bool
+	proto               bool
+	json                bool
+	print               bool
+	dump                bool
+	benchmark           int
+	cmd                 string
+	args                []string
+	expectedFailureFile string
+	expectedFailures    map[string][]string
 }
 
-func parseFlags() config {
-	cfg := config{
+func parseFlags() (*config, error) {
+	cfg := &config{
 		suiteTimeout: 5 * time.Second,
 	}
 	log.SetFlags(0)
@@ -62,6 +67,8 @@ func parseFlags() config {
 	flag.BoolVar(&cfg.json, "json", cfg.json, "return results as JSON to stdout")
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
+	flag.IntVar(&cfg.benchmark, "benchmark", cfg.benchmark, "run benchmarks")
+	flag.StringVar(&cfg.expectedFailureFile, "expected_failures", cfg.expectedFailureFile, "yaml file containing list of expected failures")
 	flag.Parse()
 
 	cfg.print = !cfg.json && !cfg.proto
@@ -69,7 +76,7 @@ func parseFlags() config {
 	args := flag.Args()
 	if len(args) == 0 {
 		if !cfg.dump {
-			log.Fatal("a command must be specified")
+			return nil, fmt.Errorf("a command must be specified")
 		}
 	} else {
 		cfg.cmd = args[0]
@@ -79,7 +86,7 @@ func parseFlags() config {
 	if cfg.suiteFilterPattern != "" {
 		filter, err := regexp.Compile(cfg.suiteFilterPattern)
 		if err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("failed to parse suite filter pattern %w", err)
 		}
 		cfg.suiteFilter = filter
 	}
@@ -87,10 +94,27 @@ func parseFlags() config {
 	if cfg.caseFilterPattern != "" {
 		filter, err := regexp.Compile(cfg.caseFilterPattern)
 		if err != nil {
-			log.Fatal(err)
+			return nil, fmt.Errorf("failed to parse case filter pattern %w", err)
 		}
 		cfg.caseFilter = filter
 	}
 
-	return cfg
+	if cfg.expectedFailureFile != "" {
+		file, err := os.Open(cfg.expectedFailureFile)
+		if err != nil {
+			return nil, fmt.Errorf("failed to open skipped case file %w", err)
+		}
+		bytes, err := io.ReadAll(file)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read contents of skip file %w", err)
+		}
+
+		var out map[string][]string
+		if err = yaml.Unmarshal(bytes, &out); err != nil {
+			return nil, fmt.Errorf("failed to unmarshal contents of skip file %w", err)
+		}
+		cfg.expectedFailures = out
+	}
+
+	return cfg, nil
 }

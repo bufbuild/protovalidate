@@ -32,6 +32,7 @@ type Set harness.ResultSet
 
 func (set *Set) AddSuite(res *SuiteResults, verbose bool) {
 	set.Successes += res.Successes
+	set.ExpectedFailures += res.ExpectedFailures
 	set.Failures += res.Failures
 	if verbose || res.Failures > 0 {
 		set.Suites = append(set.Suites, (*harness.SuiteResults)(res))
@@ -53,17 +54,20 @@ func (set *Set) Print(w io.Writer) {
 		(*SuiteResults)(suite).Print(writer)
 	}
 	res := resultLabel(set.Failures == 0)
-	_, _ = fmt.Fprintf(writer, "%s (failed: %d, passed: %d, total: %d)\n",
-		res, set.Failures, set.Successes, set.Failures+set.Successes)
+	_, _ = fmt.Fprintf(writer, "%s (failed: %d, skipped: %d, passed: %d, total: %d)\n",
+		res, set.Failures, set.ExpectedFailures, set.Successes, set.Failures+set.Successes+set.ExpectedFailures)
 	_ = writer.Flush()
 }
 
 type SuiteResults harness.SuiteResults
 
 func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
-	if res.Success {
+	switch {
+	case res.Success && !res.ExpectedFailure:
 		suite.Successes++
-	} else {
+	case !res.Success && res.ExpectedFailure:
+		suite.ExpectedFailures++
+	default:
 		suite.Failures++
 	}
 	if verbose || !res.Success {
@@ -73,8 +77,8 @@ func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
 
 func (suite *SuiteResults) Print(w io.Writer) {
 	res := resultLabel(suite.Failures == 0)
-	_, _ = fmt.Fprintf(w, "--- %s: %s (failed: %d, passed: %d, total: %d)\n",
-		res, suite.Name, suite.Failures, suite.Successes, suite.Failures+suite.Successes)
+	_, _ = fmt.Fprintf(w, "--- %s: %s (failed: %d, skipped: %d, passed: %d, total: %d)\n",
+		res, suite.Name, suite.Failures, suite.ExpectedFailures, suite.Successes, suite.Failures+suite.Successes+suite.ExpectedFailures)
 	for _, testCase := range suite.Cases {
 		suite.printCase(w, testCase)
 	}

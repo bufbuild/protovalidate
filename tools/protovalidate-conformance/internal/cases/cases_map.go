@@ -138,6 +138,7 @@ func mapSuite() suites.Suite {
 					FieldPath:    "val[1]",
 					ConstraintId: "sint64.lt",
 					Message:      "value must be less than 0",
+					ForKey:       true,
 				},
 			),
 		},
@@ -148,6 +149,7 @@ func mapSuite() suites.Suite {
 					FieldPath:    "val[\"!@#$%^&*()\"]",
 					ConstraintId: "string.pattern",
 					Message:      "value does not match regex pattern `(?i)^[a-z0-9]+$`",
+					ForKey:       true,
 				},
 			),
 		},
@@ -196,7 +198,7 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapRecursive{Val: map[uint32]*cases.MapRecursive_Msg{1: {}}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[0x1].val",
+					FieldPath:    "val[1].val",
 					ConstraintId: "string.min_len",
 					Message:      "value length must be at least 3 characters",
 				},

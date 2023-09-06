@@ -17,6 +17,9 @@ syntax = "proto3";
 package buf.validate;
 
 option go_package = "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate";
+option java_multiple_files = true;
+option java_outer_classname = "ExpressionProto";
+option java_package = "build.buf.validate";
 
 // `Constraint` represents a validation rule written in the Common Expression
 // Language (CEL) syntax. Each Constraint includes a unique identifier, an
@@ -83,4 +86,7 @@ message Violation {
   // `message` is a human-readable error message that describes the nature of the violation.
   // This can be the default error message from the violated `Constraint`, or it can be a custom message that gives more context about the violation.
   string message = 3;
+
+  // `for_key` indicates whether the violation was caused by a map key, rather than a value.
+  bool for_key = 4;
 }

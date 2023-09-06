@@ -19,10 +19,13 @@ package buf.validate.priv;
 import "google/protobuf/descriptor.proto";
 
 option go_package = "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate/priv";
+option java_multiple_files = true;
+option java_outer_classname = "PrivateProto";
+option java_package = "build.buf.validate.priv";
 
 extend google.protobuf.FieldOptions {
   // Do not use. Internal to protovalidate library
-  optional FieldConstraints field = 51072;
+  optional FieldConstraints field = 1160;
 }
 
 // Do not use. Internal to protovalidate library

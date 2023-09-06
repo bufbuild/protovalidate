@@ -15,6 +15,8 @@
 package cases
 
 import (
+	"math"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
@@ -36,6 +38,11 @@ func doubleSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.const"}),
 		},
+		"const/invalid_nan": {
+			Message: &cases.DoubleConst{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.const"}),
+		},
 		"in/valid": {
 			Message:  &cases.DoubleIn{Val: 7.89},
 			Expected: results.Success(true),
@@ -45,8 +52,17 @@ func doubleSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.in"}),
 		},
+		"in/invalid_nan": {
+			Message: &cases.DoubleIn{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.in"}),
+		},
 		"not_in/valid": {
 			Message:  &cases.DoubleNotIn{Val: 1},
+			Expected: results.Success(true),
+		},
+		"not_in/valid_nan": {
+			Message:  &cases.DoubleNotIn{Val: math.NaN()},
 			Expected: results.Success(true),
 		},
 		"not_in/invalid": {
@@ -68,6 +84,11 @@ func doubleSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.lt"}),
 		},
+		"lt/invalid/nan": {
+			Message: &cases.DoubleLT{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.lt"}),
+		},
 		"lte/valid/less": {
 			Message:  &cases.DoubleLTE{Val: 63},
 			Expected: results.Success(true),
@@ -78,6 +99,11 @@ func doubleSuite() suites.Suite {
 		},
 		"lte/invalid/greater": {
 			Message: &cases.DoubleLTE{Val: 65},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.lte"}),
+		},
+		"lte/invalid/nan": {
+			Message: &cases.DoubleLTE{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.lte"}),
 		},
@@ -95,6 +121,11 @@ func doubleSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.gt"}),
 		},
+		"gt/invalid/nan": {
+			Message: &cases.DoubleGT{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.gt"}),
+		},
 		"gte/valid/greater": {
 			Message:  &cases.DoubleGTE{Val: 9},
 			Expected: results.Success(true),
@@ -105,6 +136,11 @@ func doubleSuite() suites.Suite {
 		},
 		"gte/invalid/less": {
 			Message: &cases.DoubleGTE{Val: 7},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.gte"}),
+		},
+		"gte/invalid/nan": {
+			Message: &cases.DoubleGTE{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.gte"}),
 		},
@@ -155,6 +191,11 @@ func doubleSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.gt_lt_exclusive"}),
 		},
+		"gt_lt/exclusive/invalid/nan": {
+			Message: &cases.DoubleExLTGT{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.gt_lt_exclusive"}),
+		},
 		"gte_lte/inclusive/valid/within": {
 			Message:  &cases.DoubleGTELTE{Val: 200},
 			Expected: results.Success(true),
@@ -174,6 +215,11 @@ func doubleSuite() suites.Suite {
 		},
 		"gte_lte/inclusive/invalid/below": {
 			Message: &cases.DoubleGTELTE{Val: 100},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.gte_lte"}),
+		},
+		"gte_lte/inclusive/invalid/nan": {
+			Message: &cases.DoubleGTELTE{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.gte_lte"}),
 		},
@@ -197,6 +243,40 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "double.gte_lte_exclusive"}),
+		},
+		"gte_lte/exclusive/invalid/nan": {
+			Message: &cases.DoubleExGTELTE{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "double.gte_lte_exclusive"}),
+		},
+		"finite/valid": {
+			Message:  &cases.DoubleFinite{Val: 1},
+			Expected: results.Success(true),
+		},
+		"finite/nan": {
+			Message: &cases.DoubleFinite{Val: math.NaN()},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "double.finite",
+					Message:      "value must be finite",
+				}),
+		},
+		"finite/inf": {
+			Message: &cases.DoubleFinite{Val: math.Inf(1)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "double.finite",
+					Message:      "value must be finite"}),
+		},
+		"finite/neginf": {
+			Message: &cases.DoubleFinite{Val: math.Inf(-1)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "double.finite",
+					Message:      "value must be finite"}),
 		},
 		"ignore_empty/valid/empty": {
 			Message:  &cases.DoubleIgnore{Val: 0},
