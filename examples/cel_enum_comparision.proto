@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service FileService {
+  // UploadFile uploads a file to the server.
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
+}
+
+message UploadFileRequest {
+  bytes content = 1;
+  CompressionScheme compression_scheme = 2 [(buf.validate.field).cel = {
+    id: "compression_specified",
+    message: "compression scheme must be specified",
+    expression: "this != 0"
+  }];
+}
+
+// CompressionScheme are the supported compression scheme for UploadFileRequest
+enum CompressionScheme {
+  // COMPRESSION_SCHEME_UNSPECIFIED is when compression scheme is not specified.
+  COMPRESSION_SCHEME_UNSPECIFIED = 0;
+  // COMPRESSION_SCHEME_NONE is when the file is not compressed.
+  COMPRESSION_SCHEME_NONE = 1;
+  // COMPRESSION_SCHEME_GZIP is the gzip compression scheme.
+  COMPRESSION_SCHEME_GZIP = 2;
+}
+
+message UploadFileResponse {}

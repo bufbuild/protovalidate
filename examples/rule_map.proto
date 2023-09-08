@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+// Movie is a movie.
+message Movie {
+  // name of the movie
+  string name = 1;
+  // director of the movie
+  string director = 2;
+  // character to actor/actress
+  map<string, string> played_by = 3 [(buf.validate.field).map = {
+    // `min_pairs` validates that a map must have at least this many key-value pairs.
+    // The map must include at least 1 character.
+    min_pairs: 1,
+    // `max_pairs` validates that a map must have at most this many key-value pairs.
+    // The map must include at most 30 character.
+    max_pairs: 30,
+    // `keys` validates on the keys of a map.
+    keys: {
+      string: {
+        // The same set of rules allowed for a string field are allowed here (contains, endsWith, etc.).
+        // Each character character's name must have 3 - 24 characters.
+        min_len: 3
+        max_len: 24
+      }
+    },
+    // `values` validates on the values of a map.
+    values: {
+      string: {
+        // The same set of rules allowed for a string field are allowed here (contains, endsWith, etc.).
+        // Each member of cast's name must have 1 - 50 characters.
+        min_len: 1
+        max_len: 50
+      }
+    },
+  }];
+}

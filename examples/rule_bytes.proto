@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service BlogService {
+  // PublishBlog publishes a blog.
+  rpc PublishBlog(PublishBlogRequest) returns (PublishBlogResponse);
+}
+
+message PublishBlogRequest {
+  // blog_content is the content of the blog.
+  bytes blog_content = 1 [(buf.validate.field).bytes = {
+    // the blog must be at least 100 bytes long.
+    min_len: 100
+    // the blog must be at most 1,000,000 bytes long.
+    max_len: 1000000
+  }];
+}
+
+message PublishBlogResponse {}

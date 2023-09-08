@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message User {
+  // username must be at least 3 characters long and at most 16 characters long.
+  // Additionally, it cannot be "user" or "users" and cannot contain space.
+  string username = 1 [(buf.validate.field).string = {
+    min_len: 3;
+    max_len: 16;
+    not_in: [
+      "user",
+      "users"
+    ];
+    not_contains: " ";
+  }];
+  string id = 2 [(buf.validate.field).string.uuid = true];
+  // email must be a valid email and a company email.
+  string email = 3 [(buf.validate.field).string = {
+    email: true,
+    suffix: "@company.com",
+  }];
+  // phone_number must match the this pattern if it's not empty.
+  // Note: the `\`s in the regex pattern must be escaped.
+  string phone_number = 4 [(buf.validate.field) = {
+    string: {pattern: "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"},
+    ignore_empty: true,
+  }];
+}

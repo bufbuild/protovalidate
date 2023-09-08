@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+service HaircutAppointmentService {
+  // BookHaircutAppointment books a haircut appointment
+  rpc BookHaircutAppointment(BookHaircutAppointmentRequest) returns (BookHaircutAppointmentResponse);
+}
+
+message BookHaircutAppointmentRequest {
+  // appointment_time is the time of the appoint.
+  google.protobuf.Timestamp appointment_time = 1 [(buf.validate.field).cel = {
+    id: "not_open_on_monday",
+    message: "the barbershop is closed on Monday",
+    // `getDayOfWeek(<time zone string>)` gets day of week from the date with timezone.
+    // The result is an int, where 0 means Sunday, 1 means Monday and so on.
+    // Similar functions can be found at https://github.com/google/cel-spec/blob/master/doc/langdef.md#list-of-standard-definitions.
+    expression: "this.getDayOfWeek('US/Central') != 1"
+  }];
+}
+
+message BookHaircutAppointmentResponse {}

@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service MovieReviewService {
+  // SubmitReview submits a movie review.
+  rpc SubmitReview(SubmitReviewRequest) returns (SubmitReviewResponse);
+}
+
+message SubmitReviewRequest {
+  // movie_id is the ID of the movie
+  uint64 movie_id = 1;
+  // comment is the comment attached to the review
+  string comment = 2;
+  uint32 rating = 3 [(buf.validate.field).uint32 = {
+    // validates a rating is at least 1
+    gt: 0,
+    // validates a rating is at most 10
+    lte: 10
+  }];
+}
+
+message SubmitReviewResponse {
+  // aggregated_review is the aggregated review after this one.
+  // This value is empty if there are less than a 100 reviews submitted.
+  AggregatedReview aggregated_review = 1 [(buf.validate.field).ignore_empty = true];
+}
+
+message AggregatedReview {
+  // movie_id is the ID of the movie
+  uint64 movie_id = 1;
+  // average_rating is the average of individual ratings
+  float average_rating = 2 [(buf.validate.field).float = {
+    // validates the average rating is at least 1.0
+    gte: 1.0,
+    // validates the average rating is at most 10.0
+    lte: 10.0
+  }];
+  // number_of_reviews is the number of individual reviews aggregated.
+  // There must be at least a hundred reviews before an aggregated review is valid.
+  uint32 number_of_reviews = 3 [(buf.validate.field).uint32 = {gt: 100}];
+}

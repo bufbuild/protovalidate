@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+service ReservationService {
+  // BookReservation books an reservation.
+  rpc BookReservation(BookReservationRequest) returns (BookReservationResponse);
+}
+
+message BookReservationRequest {
+  google.protobuf.Timestamp start_time = 1 [(buf.validate.field).cel = {
+    id: "book_24_hrs_ahead",
+    message: "must book at least 24 hours ahead",
+    // `now` evaluates to a timestamp at the current time.
+    // Subtracting two timestamps evaluates to a duration, and we are
+    // comparing the time period between now and the reservation to 24 hours
+    // and see if right now is early enough for booking the reservation.
+    // Note that a duration can be created from `duration(string)`, where the
+    // string has the form of `1m6s`. The suffix supported are "h", "m", "s",
+    // "ms", "us" and "ns".
+    expression: "duration('24h') <= this - now"
+  }];
+}
+
+message BookReservationResponse {}

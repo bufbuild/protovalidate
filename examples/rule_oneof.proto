@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service IdentityService {
+  // VerifyIdentity updates the waitlist.
+  rpc VerifyIdentity(VerifyIdentityRequest) returns (VerifyIdentityResponse);
+}
+
+message VerifyIdentityRequest {
+  // contact_info is the user's contact information
+  oneof contact_info {
+    // required ensures that exactly one field in oneof is set. Without this
+    // option, at most one of email and phone_number is set.
+    option (buf.validate.oneof).required = true;
+    // email is the user's email
+    string email = 1;
+    // phone_number is the user's phone number.
+    string phone_number = 2;
+  }
+  string password = 3;
+}
+
+message VerifyIdentityResponse {}

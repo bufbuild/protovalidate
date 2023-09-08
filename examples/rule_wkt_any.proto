@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+
+// AuditLog is an audit log entry.
+message AuditLog {
+  // id is the ID of the log.
+  uint64 id = 1;
+  // payload is the payload of the log.
+  google.protobuf.Any payload = 2 [(buf.validate.field).any = {
+    // validate that the payload itself must not be an Audit log or a timestamp
+    not_in: [
+      "AuditLog",
+      "google.protobuf.Timestamp"
+    ]
+  }];
+}

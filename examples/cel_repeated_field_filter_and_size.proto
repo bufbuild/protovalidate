@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+// FiveTruthsThreeLies is a new game based on the classic Two Truths One Lie.
+message FiveTruthsThreeLies {
+  option (buf.validate.message).cel = {
+    id: "exactly_three_lies",
+    message: "there must be exactly three lies",
+    // `this.statement.filter` evaluates to a new list, whose elements are those
+    // from the original one that satisfies the predicate. In this case, the filter
+    // evaluates to the list of statments that are true.
+    // `size` evaluates to the length of the list, and we compare it to 3 to make
+    // validate after filtering out the true statements, there are three false statements left.
+    expression: "size(this.statement.filter(s, !s.is_truth)) == 3"
+  };
+  option (buf.validate.message).cel = {
+    id: "exactly_five_truths",
+    message: "there must be exactly five truths",
+    // Similarly, validate that exactly five truths
+    expression: "size(this.statement.filter(s, s.is_truth)) == 5"
+  };
+  repeated TruthOrLieStatement statement = 1;
+}
+
+message TruthOrLieStatement {
+  string statement = 1;
+  bool is_truth = 2;
+}

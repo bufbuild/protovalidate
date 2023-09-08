@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/wrappers.proto";
+
+service AparmentService {
+  // SearchApartment searches for apartments.
+  rpc SearchApartment(SearchApartmentRequest) returns (SearchApartmentResponse);
+}
+
+message SearchApartmentRequest {
+  option (buf.validate.message).cel = {
+    id: "secondary_address_after_primary_address",
+    message: "the minimum number of bedrooms cannot be higher than the maximum number",
+    // In a message-level constraint, `this` refers to the message itself, the `SearchApartmentRequest`.
+    // You can access a field with `this.field_name`.
+    // The following expression is broken down into three string literals.
+    expression:
+      // If the request does not specify the maximum number of bedrooms, this request is valid.
+      "!has(this.max_bedroom_count) ? true "
+      // If the request does not specify the minimum number of bedrooms, this request is valid.
+      ": !has(this.min_bedroom_count) ? true "
+      // If both the maximum and minimum number of bedrooms are specified, validate that minimum <= maximum.
+      ": this.min_bedroom_count <= this.max_bedroom_count"
+  };
+  // only looking for apartments with at most this many bedrooms
+  google.protobuf.UInt32Value max_bedroom_count = 1;
+  // only looking for apartments with at least this many bedrooms
+  google.protobuf.UInt32Value min_bedroom_count = 2;
+}
+
+message SearchApartmentResponse {
+  repeated Apartment apartment = 1;
+  message Apartment {
+    // Fields not relevant to this example
+    // ...
+  }
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service GroupChatService {
+  // CreateGroupChat creates a group chat.
+  rpc CreateGroupChat(CreateGroupChatRequest) returns (CreateGroupChatResponse);
+}
+
+message CreateGroupChatRequest {
+  // all members of the group chat must be verified users
+  // Note: to treat a repeated field as a list in cel, access it from the message
+  // option as opposed to the field option.
+  option (buf.validate.message).cel = {
+    id: "group_chat_member_must_be_verified",
+    message: "all group chat members must be verified users",
+    // `m.is_verified` must be true for all `m` in `this.member`
+    expression: "this.member.all(m, m.is_verified)"
+  };
+  // member is the members of the group chat
+  repeated ChatAppUser member = 1;
+}
+
+message ChatAppUser {
+  uint64 user_id = 1;
+  bool is_verified = 2;
+}
+
+message CreateGroupChatResponse {}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+// TeamRoster is a team roster.
+message TeamRoster {
+  // one and only one players on the team is the captain.
+  option (buf.validate.message).cel = {
+    id: "captain_exists",
+    message: "captain must be among the list of players",
+    // `exists_one` checks that one and only one item in the list satisfies
+    // the predicate, which is `p.name == this.captain_name` in this case.
+    expression: "this.players.exists_one(p, p.name == this.captain_name)"
+  };
+
+  repeated Player players = 1;
+  string captain_name = 2;
+
+  message Player {
+    string name = 1;
+    uint32 jersy_number = 2;
+  }
+}

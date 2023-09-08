@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service PingService {
+  // Ping pings the server.
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+message PingRequest {
+  // the request must be sent by a human
+  bool is_human = 1 [(buf.validate.field).bool.const = true];
+}
+
+message PingResponse {}

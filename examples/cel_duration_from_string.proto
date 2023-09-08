@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+
+service TimerService {
+  // StartTimer starts a timer on the server.
+  rpc StartTimer(StartTimerRequest) returns (StartTimerResponse);
+}
+
+message StartTimerRequest {
+  google.protobuf.Duration duration = 1 [(buf.validate.field).cel = {
+    id: "maximum_duration",
+    message: "timer duration must be shorter than a day",
+    expression: "this <= duration('23h59m59s')"
+  }];
+}
+
+message StartTimerResponse {}

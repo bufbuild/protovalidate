@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/type/postal_address.proto";
+
+service AddressService {
+  // UpdateAddressInfo updates address information
+  rpc UpdateAddressInfo(UpdateAddressInfoRequest) returns (UpdateAddressInfoResponse);
+}
+
+message UpdateAddressInfoRequest {
+  // If a secondary residence is set, the primary one must also be set.
+  option (buf.validate.message).cel = {
+    id: "secondary_residence_depends_on_primary",
+    // `has(this.field)` evaluates to true if a field is present.
+    expression:
+      "has(this.new_secondary_residence) && !has(this.new_primary_residence)"
+      "? 'cannot set a secondary residence without setting a primary one'"
+      ": ''"
+  };
+  google.type.PostalAddress new_primary_residence = 1;
+  google.type.PostalAddress new_secondary_residence = 2;
+}
+
+message UpdateAddressInfoResponse {}
