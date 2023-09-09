@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/wrappers.proto";
+
+service FridgeControlService {
+  // SetTemperature sets the fridge's target temperature.
+  rpc SetTemperature(SetTemperatureRequest) returns (SetTemperatureResponse);
+}
+
+message SetTemperatureRequest {
+  // temperature is the target temperature in degree celcius.
+  // Validate that the field is set. There is a difference between
+  // not setting the value and setting it to 0 degree celsius.
+  google.protobuf.FloatValue temperature_celsius = 3 [(buf.validate.field).required = true];
+}
+
+message SetTemperatureResponse {}
