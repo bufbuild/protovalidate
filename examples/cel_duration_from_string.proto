@@ -12,6 +12,11 @@ message StartTimerRequest {
   google.protobuf.Duration duration = 1 [(buf.validate.field).cel = {
     id: "maximum_duration",
     message: "timer duration must be shorter than a day",
+    // You can create a duration from a string literal in the form of `1m30s`,
+    // where each number is has a unit suffix. The suffix supported are "h", "m",
+    // "s", "ms", "us" and "ns".
+    // Validate the timer duration is less than a day. Note that durations
+    // can be compared.
     expression: "this <= duration('23h59m59s')"
   }];
 }
