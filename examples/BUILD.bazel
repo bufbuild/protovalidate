@@ -45,6 +45,7 @@ proto_library(
         "option_wkt_any.proto",
         "option_wkt_duration.proto",
     ],
+    strip_import_prefix = "/examples",
     visibility = ["//visibility:public"],
     deps = [
         "//proto/protovalidate/buf/validate:validate_proto",
@@ -58,5 +59,6 @@ proto_library(
 
 buf_lint_test(
     name = "examples_proto_lint",
+    config = "//examples:buf.yaml",
     targets = [":examples_proto"],
 )
