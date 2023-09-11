@@ -27,6 +27,7 @@ This repository is the core of the `protovalidate` project. It contains:
 - [The API definition](proto/protovalidate/buf/validate/validate.proto): used to describe validation constraints
 - [Documentation](docs): how to apply `protovalidate` effectively
 - [Migration tooling](docs/migrate.md): incrementally migrate from `protoc-gen-validate`
+- [Examples](examples): example `.proto` files using `protovalidate`
 - [Conformance testing utilities](docs/conformance.md): for acceptance testing of `protovalidate` implementations
 
 Runtime implementations of `protovalidate` can be found in their own repositories:
@@ -180,6 +181,8 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
      }];
    }
    ```
+
+Check out [`examples`](examples) for examples on both standard constraints and custom CEL constraints.
 
 ### Validate Messages
 
