@@ -1,0 +1,34 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service UsernameService {
+  // UpdateUsername updates username.
+  rpc UpdateUsername(UpdateUsernameRequest) returns (UpdateUsernameResponse);
+}
+
+message UpdateUsernameRequest {
+  // new_username is the username to update to.
+  string new_username = 1 [(buf.validate.field).cel = {
+    id: "username_format",
+    message: "username must be 3 - 16 characters long and only conatain letters and digits",
+    // `this.matches` match the string against a regex pattern, and evaluates to a bool.
+    expression: "this.matches('^[A-Za-z0-9]{3,16}$')"
+  }];
+}
+
+message UpdateUsernameResponse {}

@@ -1,0 +1,43 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message User {
+  // username must be at least 3 characters long and at most 16 characters long.
+  // Additionally, it cannot be "user" or "users" and cannot contain space.
+  string username = 1 [(buf.validate.field).string = {
+    min_len: 3;
+    max_len: 16;
+    not_in: [
+      "user",
+      "users"
+    ];
+    not_contains: " ";
+  }];
+  string id = 2 [(buf.validate.field).string.uuid = true];
+  // email must be a valid email and a company email.
+  string email = 3 [(buf.validate.field).string = {
+    email: true,
+    suffix: "@company.com",
+  }];
+  // phone_number must match the this pattern if it's not empty.
+  // Note: the `\`s in the regex pattern must be escaped.
+  string phone_number = 4 [(buf.validate.field) = {
+    string: {pattern: "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"},
+    ignore_empty: true,
+  }];
+}

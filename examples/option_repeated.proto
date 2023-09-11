@@ -1,0 +1,46 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service WaitlistService {
+  // UpdateWaitlist updates the waitlist.
+  rpc UpdateWaitlist(UpdateWaitlistRequest) returns (UpdateWaitlistResponse);
+}
+
+message UpdateWaitlistRequest {
+  // name is the names of people on the waitlist
+  repeated string name = 1 [(buf.validate.field).repeated = {
+    // Validate that no name can be in the list twice.
+    unique: true,
+    // At most 500 people can be on the waitlist. A lower bound can be set
+    // similarly with `min_items`.
+    max_items: 500,
+    // `items` validate each value in this `repeated` field.
+    items: {
+      // `string` has string-specific rules for each value in the `repeated` field.
+      // The set of rules allowed here is the same as that of a string field.
+      string: {
+        // Each name must not be empty
+        min_len: 1,
+        // Each name can contain at most 30 characters.
+        max_len: 30
+      }
+    }
+  }];
+}
+
+message UpdateWaitlistResponse {}
