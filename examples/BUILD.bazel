@@ -1,0 +1,64 @@
+# Copyright 2023 Buf Technologies, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_buf//buf:defs.bzl", "buf_lint_test")
+
+proto_library(
+    name = "examples_proto",
+    srcs = [
+        "cel_conditional_operator.proto",
+        "cel_duration_from_string.proto",
+        "cel_enum_comparision.proto",
+        "cel_field_access.proto",
+        "cel_field_presence.proto",
+        "cel_field_selection.proto",
+        "cel_map_key.proto",
+        "cel_repeated_field_all.proto",
+        "cel_repeated_field_exists_one.proto",
+        "cel_repeated_field_filter_and_size.proto",
+        "cel_string_contains.proto",
+        "cel_string_match_pattern.proto",
+        "cel_string_starts_with_ends_with.proto",
+        "cel_timestamp_plus_duration.proto",
+        "cel_timestamp_subtraction.proto",
+        "cel_timestamp_to_day_of_week.proto",
+        "option_bool.proto",
+        "option_bytes.proto",
+        "option_map.proto",
+        "option_number.proto",
+        "option_oneof.proto",
+        "option_repeated.proto",
+        "option_require_field_presence.proto",
+        "option_string.proto",
+        "option_wkt_any.proto",
+        "option_wkt_duration.proto",
+    ],
+    strip_import_prefix = "/examples",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//proto/protovalidate/buf/validate:validate_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+        "@go_googleapis//google/type:postaladdress_proto",
+    ],
+)
+
+buf_lint_test(
+    name = "examples_proto_lint",
+    config = "//examples:buf.yaml",
+    targets = [":examples_proto"],
+)

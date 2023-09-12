@@ -1,0 +1,47 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message Triangle {
+  option (buf.validate.message).cel = {
+    id: "no two points are the same",
+    // This is a nested ternary expression. If the expression evaluates to a non-empty
+    // string, validation will fail with that string as the error message.
+    // The expression below is a nested ternary expression.
+    expression:
+      "this.point_a == this.point_b ? 'point A and point B cannot be the same'"
+      ": this.point_b == this.point_c ? 'point B and point C cannot be the same'"
+      ": this.point_a == this.point_c ? 'point A and point C cannot be the same'"
+      ": ''",
+  };
+  option (buf.validate.message).cel = {
+    id: "points_on_same_line",
+    message: "three points must not be on the same line",
+    expression:
+      "(this.point_a.y - this.point_b.y) * (this.point_a.x - this.point_c.x)"
+      "!= (this.point_a.y - this.point_c.y) * (this.point_a.x - this.point_b.x)";
+  };
+  Point point_a = 1;
+  Point point_b = 2;
+  Point point_c = 3;
+}
+
+// Point is a point on a Cartesian plane.
+message Point {
+  double x = 1;
+  double y = 2;
+}

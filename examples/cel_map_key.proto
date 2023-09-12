@@ -1,0 +1,30 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message ShoppingCart {
+  // product_id_to_quantity maps from a product id to its quantiy in the shopping cart
+  map<uint64, uint32> product_id_to_quantity = 1;
+  option (buf.validate.message).cel = {
+    id: "quantity_positive",
+    message: "each product in the shopping cart must have positive quantity",
+    // `all` checks whether a predicate holds true for all keys in a map. In this
+    // case, each key of the map binds to a `pid` and the predicate is evaluated.
+    // `this[pid]` looks up this product id in the map and evaluates to its amount.
+    expression: "this.product_id_to_quantity.all(pid, this.product_id_to_quantity[pid] > 0)"
+  };
+}
