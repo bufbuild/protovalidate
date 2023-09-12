@@ -177,7 +177,7 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
    message User {
      int32 age = 1 [(buf.validate.field).cel = {
        id: "user.age",
-       expression: "this.age < 18 ? 'User must be at least 18 years old': ''"
+       expression: "this < 18 ? 'User must be at least 18 years old': ''"
      }];
    }
    ```
