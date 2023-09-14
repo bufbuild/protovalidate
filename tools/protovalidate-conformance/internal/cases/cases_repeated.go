@@ -194,9 +194,26 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "val",
 					ConstraintId: "repeated.unique",
-					Message:      "",
 				},
 			),
+		},
+		"unique/multiple/valid": {
+			Message:  &cases.RepeatedMultipleUnique{A: []string{"foo", "bar"}, B: []int32{1, 2}},
+			Expected: results.Success(true),
+		},
+		"unique/multiple/invalid": {
+			Message: &cases.RepeatedMultipleUnique{A: []string{"foo", "foo"}, B: []int32{1, 1}},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "repeated.unique",
+					Message:      "repeated value must contain unique items",
+				},
+				&validate.Violation{
+					FieldPath:    "b",
+					ConstraintId: "repeated.unique",
+					Message:      "repeated value must contain unique items",
+				}),
 		},
 		"items/valid": {
 			Message:  &cases.RepeatedItemRule{Val: []float32{1, 2, 3}},
