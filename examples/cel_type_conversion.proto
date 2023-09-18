@@ -15,7 +15,6 @@
 syntax = "proto3";
 
 import "buf/validate/validate.proto";
-import "google/protobuf/struct.proto";
 
 message Sound {
   uint32 frequency_hz = 1 [(buf.validate.field).cel = {
