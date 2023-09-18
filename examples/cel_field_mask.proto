@@ -1,0 +1,54 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+service SongService {
+  rpc UpdateSong(UpdateSongRequest) returns (UpdateSongResponse);
+}
+
+message UpdateSongRequest {
+  // song is the updated song.
+  Song song = 1;
+  // field_mask masks the fields to update.
+  google.protobuf.FieldMask field_mask = 2 [(buf.validate.field).cel = {
+    id: "valid_field_mask",
+    message: "a field mask path must be one of name, duration and artist.name",
+    // `some_list.all()` validates that a predicate is true for all elements
+    // from that list.
+    // In this case, `this.paths` is the field paths from.
+    expression: "this.paths.all(path, path in ['name', 'duration', 'artist.name'])",
+  }];
+}
+
+message Song {
+  string name = 1;
+  fixed64 id = 2;
+  google.protobuf.Timestamp create_time = 3;
+  google.protobuf.Duration duration = 4;
+  Artist artist = 5;
+}
+
+message Artist {
+  string name = 1;
+  // other fields:
+  // ...
+}
+
+message UpdateSongResponse {}

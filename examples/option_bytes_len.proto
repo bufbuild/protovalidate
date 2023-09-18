@@ -1,0 +1,37 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service BlogService {
+  // PublishBlog publishes a blog.
+  rpc PublishBlog(PublishBlogRequest) returns (PublishBlogResponse);
+}
+
+message PublishBlogRequest {
+  // blog_id is the id of the blog.
+  // validate that the blog has an id of exactly 16 bytes.
+  bytes blog_id = 1 [(buf.validate.field).bytes = {len: 16}];
+  // blog_content is the content of the blog.
+  bytes blog_content = 2 [(buf.validate.field).bytes = {
+    // the blog must be at least 100 bytes long.
+    min_len: 100
+    // the blog must be at most 1,000,000 bytes long.
+    max_len: 1000000
+  }];
+}
+
+message PublishBlogResponse {}
