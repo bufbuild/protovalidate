@@ -27,5 +27,7 @@ message Sound {
       "this < 20 ? string(this) + ' hz is too low for human ears'"
       ": this > 20000 ? string(this) + ' hz is too high for human ears'"
       ": ''"
+    // Other type conversions are `uint()`, `int()`, `bytes()` and `double()`.
+    // See https://github.com/google/cel-spec/blob/master/doc/langdef.md#list-of-standard-definitions.
   }];
 }
