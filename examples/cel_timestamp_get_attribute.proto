@@ -27,10 +27,14 @@ message BookHaircutAppointmentRequest {
   google.protobuf.Timestamp appointment_time = 1 [(buf.validate.field).cel = {
     id: "not_open_on_monday",
     message: "the barbershop is closed on Monday",
-    // `getDayOfWeek(<time zone string>)` gets day of week from the date with timezone.
+    // `getDayOfWeek(<time zone string>)` gets day of week from the date with
+    // timezone.
     // The result is an int, where 0 means Sunday, 1 means Monday and so on.
-    // Similar functions can be found at https://github.com/google/cel-spec/blob/master/doc/langdef.md#list-of-standard-definitions.
     expression: "this.getDayOfWeek('US/Central') != 1"
+    // Similar functions include `getDate`, `getDayOfMonth`, `getDayOfYear`,
+    // `getFullYear`, `getHours`, `getMilliseconds`, `getMinutes`, `getMonth`
+    // and `getSeconds`, and their definitions can be found at
+    // https://github.com/google/cel-spec/blob/master/doc/langdef.md#list-of-standard-definitions..
   }];
 }
 
