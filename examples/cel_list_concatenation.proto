@@ -1,0 +1,29 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message DrinksMenu {
+  repeated string hot_drinks = 1;
+  repeated string cold_drinks = 2;
+  string daily_special_drink = 3;
+
+  option (buf.validate.message).cel = {
+    id: "daily_special_either_hot_or_cold",
+    message: "the daily special drink must be in either the hot drink menu or the cold drink menu",
+    expression: "this.daily_special_drink in this.hot_drinks + this.cold_drinks"
+  };
+}
