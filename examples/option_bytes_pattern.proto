@@ -25,4 +25,7 @@ message NetworkAddress {
   // `ipv6` is built in and validates the bytes are a valid ipv6 address in
   // binary form, having exactly 16 bytes.
   bytes ip_address = 2 [(buf.validate.field).bytes.ipv6 = true];
+  // Similarly you can validate that it's ipv4 or either version with:
+  // bytes ip_address = 2 [(buf.validate.field).bytes.ipv4 = true];
+  // bytes ip_address = 2 [(buf.validate.field).bytes.ip = true];
 }

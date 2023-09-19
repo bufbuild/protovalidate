@@ -32,5 +32,6 @@ message EventFromTheTwentiethCentury {
     // In this case, it validates the event happens before 2000-01-01T00:00:00Z,
     // which is 946684800 seconds after the Unix epoch.
     lt: {seconds: 946684800}
+    // You can also use `gt` for "greater than" and `lte` for "less than or equal to".
   }];
 }

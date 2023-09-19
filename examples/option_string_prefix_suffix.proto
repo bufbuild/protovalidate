@@ -1,0 +1,35 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service ChatbotService {
+  rpc GetDirection(GetDirectionRequest) returns (GetDirectionResponse);
+}
+
+message GetDirectionRequest {
+  // query is the query asking for direction.
+  string query = 1 [(buf.validate.field).string = {
+    // `prefix` validates that a string field starts with this prefix.
+    // This validates that the question starts with 'Where'.
+    prefix: "Where",
+    // `suffix` validates that a string field ends with this suffix.
+    // This validates that the question ends with '?'.
+    suffix: "?"
+  }];
+}
+
+message GetDirectionResponse {}
