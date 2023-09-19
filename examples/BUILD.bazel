@@ -37,6 +37,7 @@ proto_library(
         "cel_map_exists.proto",
         "cel_map_exists_one.proto",
         "cel_map_size.proto",
+        "cel_number_arithmetic.proto",
         "cel_repeated_field_all.proto",
         "cel_repeated_field_exists_one.proto",
         "cel_repeated_field_filter_and_count.proto",
