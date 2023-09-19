@@ -1,0 +1,36 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service FeedbackService {
+  rpc SubmitFeedback(SubmitFeedbackRequest) returns (SubmitFeedbackResponse);
+}
+
+message SubmitFeedbackRequest {
+  // feedback is the content of feedback to submit.
+  string feedback = 1;
+  // email is the email.
+  string email = 2 [
+    // `ignore_empty` skips validation on a field if it's empty.
+    // The email will be not validated if it's empty.
+    (buf.validate.field).ignore_empty = true,
+    // `string.email` validates that a string field is a valid email.
+    (buf.validate.field).string.email = true
+  ];
+}
+
+message SubmitFeedbackResponse {}

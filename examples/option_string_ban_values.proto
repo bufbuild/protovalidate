@@ -15,18 +15,21 @@
 syntax = "proto3";
 
 import "buf/validate/validate.proto";
-import "google/protobuf/any.proto";
 
-// AuditLog is an audit log entry.
-message AuditLog {
-  // id is the ID of the log.
-  uint64 id = 1;
-  // payload is the payload of the log.
-  google.protobuf.Any payload = 2 [(buf.validate.field).any = {
-    // validate that the payload itself must not be an Audit log or a timestamp
+service TeamService {
+  rpc UpdateTeamName(UpdateTeamNameRequest) returns (UpdateTeamNameResponse);
+}
+
+message UpdateTeamNameRequest {
+  string name = 1 [(buf.validate.field).string = {
+    // `not_in` validates that a string field is not any value from the list
+    // defined. In this case, it validates that you cannot set a team name
+    // to "The winners" or "winners".
     not_in: [
-      "AuditLog",
-      "google.protobuf.Timestamp"
+      "The winners",
+      "winners"
     ]
   }];
 }
+
+message UpdateTeamNameResponse {}

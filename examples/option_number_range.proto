@@ -27,7 +27,7 @@ message CreateReviewRequest {
   // comment is the comment attached to the review
   string comment = 2;
   uint32 rating = 3 [(buf.validate.field).uint32 = {
-    // validates a rating is at least 1
+    // validates a rating is greater than 0
     gt: 0,
     // validates a rating is at most 10
     lte: 10

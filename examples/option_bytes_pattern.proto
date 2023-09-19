@@ -1,0 +1,31 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message NetworkAddress {
+  // mac_address is the MAC address
+  // pattern validates that these bytes match this pattern. In this case, it
+  // validates that it's a MAC address.
+  bytes mac_address = 1 [(buf.validate.field).bytes.pattern = "(?:[0-9a-fA-F]{2}\\:){5}[0-9a-fA-F]{2}"];
+  // ip_address is the IP address
+  // `ipv6` is built in and validates the bytes are a valid ipv6 address in
+  // binary form, having exactly 16 bytes.
+  bytes ip_address = 2 [(buf.validate.field).bytes.ipv6 = true];
+  // Similarly you can validate that it's ipv4 or either version with:
+  // bytes ip_address = 2 [(buf.validate.field).bytes.ipv4 = true];
+  // bytes ip_address = 2 [(buf.validate.field).bytes.ip = true];
+}
