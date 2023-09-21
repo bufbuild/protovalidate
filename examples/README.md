@@ -8,8 +8,8 @@ This directory has examples for protovalidate.
 
 To get started, checkout the following examples:
 
-- [`option_number.proto`](option_number.proto)
-- [`option_string.proto`](option_string.proto)
+- [`option_number_range.proto`](option_number_range.proto)
+- [`option_string_match_pattern.proto`](option_string_match_pattern.proto)
 - [`option_repeated.proto`](option_repeated.proto)
 
 The complete set of options can be found [here](../proto/protovalidate/buf/validate/validate.proto).
