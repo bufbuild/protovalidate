@@ -97,7 +97,7 @@ type MessageConstraints struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// disabled is a boolean flag that, when set to true, nullifies any validation rules for this message.
+	// `disabled` is a boolean flag that, when set to true, nullifies any validation rules for this message.
 	// This includes any fields within the message that would otherwise support validation.
 	//
 	// ```proto
@@ -109,20 +109,20 @@ type MessageConstraints struct {
 	//
 	// ```
 	Disabled *bool `protobuf:"varint,1,opt,name=disabled,proto3,oneof" json:"disabled,omitempty"`
-	// cel is a repeated field of type Constraint. Each Constraint specifies a validation rule to be applied to this message.
+	// `cel` is a repeated field of type Constraint. Each Constraint specifies a validation rule to be applied to this message.
 	// These constraints are written in Common Expression Language (CEL) syntax. For more information on
 	// CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
 	//
 	// ```proto
 	//
 	//	message MyMessage {
-	//	 // The field `foo` must be greater than 42.
-	//	 option (buf.validate.message).cel = {
-	//	   id: "my_message.value",
-	//	   message: "value must be greater than 42",
-	//	   expression: "this.foo > 42",
-	//	 };
-	//	 optional int32 foo = 1;
+	//	  // The field `foo` must be greater than 42.
+	//	  option (buf.validate.message).cel = {
+	//	    id: "my_message.value",
+	//	    message: "value must be greater than 42",
+	//	    expression: "this.foo > 42",
+	//	  };
+	//	  optional int32 foo = 1;
 	//	}
 	//
 	// ```
@@ -191,12 +191,12 @@ type OneofConstraints struct {
 	// ```proto
 	//
 	//	message MyMessage {
-	//	 oneof value {
-	//	   // The field `a` or `b` must be set.
-	//	   option (buf.validate.oneof).required = true;
-	//	   optional string a = 1;
-	//	   optional string b = 2;
-	//	 }
+	//	  oneof value {
+	//	    // The field `a` or `b` must be set.
+	//	    option (buf.validate.oneof).required = true;
+	//	    optional string a = 1;
+	//	    optional string b = 2;
+	//	  }
 	//	}
 	//
 	// ```
@@ -249,19 +249,19 @@ type FieldConstraints struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// `Constraint` is a repeated field used to represent a textual expression
+	// `cel` is a repeated field used to represent a textual expression
 	// in the Common Expression Language (CEL) syntax. For more information on
 	// CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
 	//
 	// ```proto
 	//
 	//	message MyMessage {
-	//	 // The field `value` must be greater than 42.
-	//	 optional int32 value = 1 [(buf.validate.field).cel = {
-	//	   id: "my_message.value",
-	//	   message: "value must be greater than 42",
-	//	   expression: "this > 42",
-	//	 }];
+	//	  // The field `value` must be greater than 42.
+	//	  optional int32 value = 1 [(buf.validate.field).cel = {
+	//	    id: "my_message.value",
+	//	    message: "value must be greater than 42",
+	//	    expression: "this > 42",
+	//	  }];
 	//	}
 	//
 	// ```
@@ -273,8 +273,8 @@ type FieldConstraints struct {
 	// ```proto
 	//
 	//	message MyMessage {
-	//	 // The field `value` must not be set.
-	//	 optional MyOtherMessage value = 1 [(buf.validate.field).skipped = true];
+	//	  // The field `value` must not be set.
+	//	  optional MyOtherMessage value = 1 [(buf.validate.field).skipped = true];
 	//	}
 	//
 	// ```
@@ -283,11 +283,15 @@ type FieldConstraints struct {
 	// this field must be set. If required is set to true, the field value must
 	// not be empty; otherwise, an error message will be generated.
 	//
+	// Note that `required` does *not* validate that repeated fields are non-empty.
+	// If you'd like to validate that a `repeated` field is non-empty, use
+	// `repeated.min_items = 1`.
+	//
 	// ```proto
 	//
 	//	message MyMessage {
-	//	 // The field `value` must be set.
-	//	 optional MyOtherMessage value = 1 [(buf.validate.field).required = true];
+	//	  // The field `value` must be set.
+	//	  optional MyOtherMessage value = 1 [(buf.validate.field).required = true];
 	//	}
 	//
 	// ```
@@ -299,8 +303,8 @@ type FieldConstraints struct {
 	// ```proto
 	//
 	//	message MyRepeated {
-	//	 // The field `value` validation rules should be evaluated only if the field isn't empty.
-	//	 repeated string value = 1 [(buf.validate.field).ignore_empty = true];
+	//	  // The field `value` validation rules should be evaluated only if the field isn't empty.
+	//	  repeated string value = 1 [(buf.validate.field).ignore_empty = true];
 	//	}
 	//
 	// ```
@@ -691,7 +695,7 @@ type FloatRules struct {
 	// ```proto
 	//
 	//	message MyFloat {
-	//	 // value must equal 42.0
+	//	  // value must equal 42.0
 	//	  float value = 1 [(buf.validate.field).float.const = 42.0];
 	//	}
 	//
@@ -714,8 +718,8 @@ type FloatRules struct {
 	// ```proto
 	//
 	//	message MyFloat {
-	//	 // value must be in list [1.0, 2.0, 3.0]
-	//	 repeated float value = 1 (buf.validate.field).float = { in: [1.0, 2.0, 3.0] };
+	//	  // value must be in list [1.0, 2.0, 3.0]
+	//	  repeated float value = 1 (buf.validate.field).float = { in: [1.0, 2.0, 3.0] };
 	//	}
 	//
 	// ```
@@ -727,8 +731,8 @@ type FloatRules struct {
 	// ```proto
 	//
 	//	message MyFloat {
-	//	 // value must not be in list [1.0, 2.0, 3.0]
-	//	 repeated float value = 1 (buf.validate.field).float = { not_in: [1.0, 2.0, 3.0] };
+	//	  // value must not be in list [1.0, 2.0, 3.0]
+	//	  repeated float value = 1 (buf.validate.field).float = { not_in: [1.0, 2.0, 3.0] };
 	//	}
 	//
 	// ```
@@ -852,7 +856,7 @@ type FloatRules_Lt struct {
 	// ```proto
 	//
 	//	message MyFloat {
-	//	 // value must be less than 10.0
+	//	  // value must be less than 10.0
 	//	  float value = 1 [(buf.validate.field).float.lt = 10.0];
 	//	}
 	//
@@ -868,7 +872,7 @@ type FloatRules_Lte struct {
 	// ```proto
 	//
 	//	message MyFloat {
-	//	 // value must be less than or equal to 10.0
+	//	  // value must be less than or equal to 10.0
 	//	  float value = 1 [(buf.validate.field).float.lte = 10.0];
 	//	}
 	//
@@ -894,14 +898,14 @@ type FloatRules_Gt struct {
 	// ```proto
 	//
 	//	message MyFloat {
-	//	 // value must be greater than 5.0 [float.gt]
-	//	 float value = 1 [(buf.validate.field).float.gt = 5.0];
+	//	  // value must be greater than 5.0 [float.gt]
+	//	  float value = 1 [(buf.validate.field).float.gt = 5.0];
 	//
-	//	 // value must be greater than 5 and less than 10.0 [float.gt_lt]
-	//	 float other_value = 2 [(buf.validate.field).float = { gt: 5.0, lt: 10.0 }];
+	//	  // value must be greater than 5 and less than 10.0 [float.gt_lt]
+	//	  float other_value = 2 [(buf.validate.field).float = { gt: 5.0, lt: 10.0 }];
 	//
-	//	 // value must be greater than 10 or less than 5.0 [float.gt_lt_exclusive]
-	//	 float another_value = 3 [(buf.validate.field).float = { gt: 10.0, lt: 5.0 }];
+	//	  // value must be greater than 10 or less than 5.0 [float.gt_lt_exclusive]
+	//	  float another_value = 3 [(buf.validate.field).float = { gt: 10.0, lt: 5.0 }];
 	//	}
 	//
 	// ```
@@ -918,14 +922,14 @@ type FloatRules_Gte struct {
 	// ```proto
 	//
 	//	message MyFloat {
-	//	 // value must be greater than or equal to 5.0 [float.gte]
-	//	 float value = 1 [(buf.validate.field).float.gte = 5.0];
+	//	  // value must be greater than or equal to 5.0 [float.gte]
+	//	  float value = 1 [(buf.validate.field).float.gte = 5.0];
 	//
-	//	 // value must be greater than or equal to 5.0 and less than 10.0 [float.gte_lt]
-	//	 float other_value = 2 [(buf.validate.field).float = { gte: 5.0, lt: 10.0 }];
+	//	  // value must be greater than or equal to 5.0 and less than 10.0 [float.gte_lt]
+	//	  float other_value = 2 [(buf.validate.field).float = { gte: 5.0, lt: 10.0 }];
 	//
-	//	 // value must be greater than or equal to 10.0 or less than 5.0 [float.gte_lt_exclusive]
-	//	 float another_value = 3 [(buf.validate.field).float = { gte: 10.0, lt: 5.0 }];
+	//	  // value must be greater than or equal to 10.0 or less than 5.0 [float.gte_lt_exclusive]
+	//	  float another_value = 3 [(buf.validate.field).float = { gte: 10.0, lt: 5.0 }];
 	//	}
 	//
 	// ```
@@ -949,7 +953,7 @@ type DoubleRules struct {
 	// ```proto
 	//
 	//	message MyDouble {
-	//	 // value must equal 42.0
+	//	  // value must equal 42.0
 	//	  double value = 1 [(buf.validate.field).double.const = 42.0];
 	//	}
 	//
@@ -972,8 +976,8 @@ type DoubleRules struct {
 	// ```proto
 	//
 	//	message MyDouble {
-	//	 // value must be in list [1.0, 2.0, 3.0]
-	//	 repeated double value = 1 (buf.validate.field).double = { in: [1.0, 2.0, 3.0] };
+	//	  // value must be in list [1.0, 2.0, 3.0]
+	//	  repeated double value = 1 (buf.validate.field).double = { in: [1.0, 2.0, 3.0] };
 	//	}
 	//
 	// ```
@@ -985,8 +989,8 @@ type DoubleRules struct {
 	// ```proto
 	//
 	//	message MyDouble {
-	//	 // value must not be in list [1.0, 2.0, 3.0]
-	//	 repeated double value = 1 (buf.validate.field).double = { not_in: [1.0, 2.0, 3.0] };
+	//	  // value must not be in list [1.0, 2.0, 3.0]
+	//	  repeated double value = 1 (buf.validate.field).double = { not_in: [1.0, 2.0, 3.0] };
 	//	}
 	//
 	// ```
@@ -1110,7 +1114,7 @@ type DoubleRules_Lt struct {
 	// ```proto
 	//
 	//	message MyDouble {
-	//	 // value must be less than 10.0
+	//	  // value must be less than 10.0
 	//	  double value = 1 [(buf.validate.field).double.lt = 10.0];
 	//	}
 	//
@@ -1126,7 +1130,7 @@ type DoubleRules_Lte struct {
 	// ```proto
 	//
 	//	message MyDouble {
-	//	 // value must be less than or equal to 10.0
+	//	  // value must be less than or equal to 10.0
 	//	  double value = 1 [(buf.validate.field).double.lte = 10.0];
 	//	}
 	//
@@ -1152,14 +1156,14 @@ type DoubleRules_Gt struct {
 	// ```proto
 	//
 	//	message MyDouble {
-	//	 // value must be greater than 5.0 [double.gt]
-	//	 double value = 1 [(buf.validate.field).double.gt = 5.0];
+	//	  // value must be greater than 5.0 [double.gt]
+	//	  double value = 1 [(buf.validate.field).double.gt = 5.0];
 	//
-	//	 // value must be greater than 5 and less than 10.0 [double.gt_lt]
-	//	 double other_value = 2 [(buf.validate.field).double = { gt: 5.0, lt: 10.0 }];
+	//	  // value must be greater than 5 and less than 10.0 [double.gt_lt]
+	//	  double other_value = 2 [(buf.validate.field).double = { gt: 5.0, lt: 10.0 }];
 	//
-	//	 // value must be greater than 10 or less than 5.0 [double.gt_lt_exclusive]
-	//	 double another_value = 3 [(buf.validate.field).double = { gt: 10.0, lt: 5.0 }];
+	//	  // value must be greater than 10 or less than 5.0 [double.gt_lt_exclusive]
+	//	  double another_value = 3 [(buf.validate.field).double = { gt: 10.0, lt: 5.0 }];
 	//	}
 	//
 	// ```
@@ -1176,14 +1180,14 @@ type DoubleRules_Gte struct {
 	// ```proto
 	//
 	//	message MyDouble {
-	//	 // value must be greater than or equal to 5.0 [double.gte]
-	//	 double value = 1 [(buf.validate.field).double.gte = 5.0];
+	//	  // value must be greater than or equal to 5.0 [double.gte]
+	//	  double value = 1 [(buf.validate.field).double.gte = 5.0];
 	//
-	//	 // value must be greater than or equal to 5.0 and less than 10.0 [double.gte_lt]
-	//	 double other_value = 2 [(buf.validate.field).double = { gte: 5.0, lt: 10.0 }];
+	//	  // value must be greater than or equal to 5.0 and less than 10.0 [double.gte_lt]
+	//	  double other_value = 2 [(buf.validate.field).double = { gte: 5.0, lt: 10.0 }];
 	//
-	//	 // value must be greater than or equal to 10.0 or less than 5.0 [double.gte_lt_exclusive]
-	//	 double another_value = 3 [(buf.validate.field).double = { gte: 10.0, lt: 5.0 }];
+	//	  // value must be greater than or equal to 10.0 or less than 5.0 [double.gte_lt_exclusive]
+	//	  double another_value = 3 [(buf.validate.field).double = { gte: 10.0, lt: 5.0 }];
 	//	}
 	//
 	// ```
@@ -1207,7 +1211,7 @@ type Int32Rules struct {
 	// ```proto
 	//
 	//	message MyInt32 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  int32 value = 1 [(buf.validate.field).int32.const = 42];
 	//	}
 	//
@@ -1230,8 +1234,8 @@ type Int32Rules struct {
 	// ```proto
 	//
 	//	message MyInt32 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated int32 value = 1 (buf.validate.field).int32 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated int32 value = 1 (buf.validate.field).int32 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -1243,8 +1247,8 @@ type Int32Rules struct {
 	// ```proto
 	//
 	//	message MyInt32 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated int32 value = 1 (buf.validate.field).int32 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated int32 value = 1 (buf.validate.field).int32 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -1358,7 +1362,7 @@ type Int32Rules_Lt struct {
 	// ```proto
 	//
 	//	message MyInt32 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  int32 value = 1 [(buf.validate.field).int32.lt = 10];
 	//	}
 	//
@@ -1374,7 +1378,7 @@ type Int32Rules_Lte struct {
 	// ```proto
 	//
 	//	message MyInt32 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  int32 value = 1 [(buf.validate.field).int32.lte = 10];
 	//	}
 	//
@@ -1400,14 +1404,14 @@ type Int32Rules_Gt struct {
 	// ```proto
 	//
 	//	message MyInt32 {
-	//	 // value must be greater than 5 [int32.gt]
-	//	 int32 value = 1 [(buf.validate.field).int32.gt = 5];
+	//	  // value must be greater than 5 [int32.gt]
+	//	  int32 value = 1 [(buf.validate.field).int32.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [int32.gt_lt]
-	//	 int32 other_value = 2 [(buf.validate.field).int32 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [int32.gt_lt]
+	//	  int32 other_value = 2 [(buf.validate.field).int32 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [int32.gt_lt_exclusive]
-	//	 int32 another_value = 3 [(buf.validate.field).int32 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [int32.gt_lt_exclusive]
+	//	  int32 another_value = 3 [(buf.validate.field).int32 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -1424,14 +1428,14 @@ type Int32Rules_Gte struct {
 	// ```proto
 	//
 	//	message MyInt32 {
-	//	 // value must be greater than or equal to 5 [int32.gte]
-	//	 int32 value = 1 [(buf.validate.field).int32.gte = 5];
+	//	  // value must be greater than or equal to 5 [int32.gte]
+	//	  int32 value = 1 [(buf.validate.field).int32.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [int32.gte_lt]
-	//	 int32 other_value = 2 [(buf.validate.field).int32 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [int32.gte_lt]
+	//	  int32 other_value = 2 [(buf.validate.field).int32 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [int32.gte_lt_exclusive]
-	//	 int32 another_value = 3 [(buf.validate.field).int32 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [int32.gte_lt_exclusive]
+	//	  int32 another_value = 3 [(buf.validate.field).int32 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -1455,7 +1459,7 @@ type Int64Rules struct {
 	// ```proto
 	//
 	//	message MyInt64 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  int64 value = 1 [(buf.validate.field).int64.const = 42];
 	//	}
 	//
@@ -1478,8 +1482,8 @@ type Int64Rules struct {
 	// ```proto
 	//
 	//	message MyInt64 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated int64 value = 1 (buf.validate.field).int64 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated int64 value = 1 (buf.validate.field).int64 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -1491,8 +1495,8 @@ type Int64Rules struct {
 	// ```proto
 	//
 	//	message MyInt64 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated int64 value = 1 (buf.validate.field).int64 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated int64 value = 1 (buf.validate.field).int64 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -1606,7 +1610,7 @@ type Int64Rules_Lt struct {
 	// ```proto
 	//
 	//	message MyInt64 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  int64 value = 1 [(buf.validate.field).int64.lt = 10];
 	//	}
 	//
@@ -1622,7 +1626,7 @@ type Int64Rules_Lte struct {
 	// ```proto
 	//
 	//	message MyInt64 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  int64 value = 1 [(buf.validate.field).int64.lte = 10];
 	//	}
 	//
@@ -1648,14 +1652,14 @@ type Int64Rules_Gt struct {
 	// ```proto
 	//
 	//	message MyInt64 {
-	//	 // value must be greater than 5 [int64.gt]
-	//	 int64 value = 1 [(buf.validate.field).int64.gt = 5];
+	//	  // value must be greater than 5 [int64.gt]
+	//	  int64 value = 1 [(buf.validate.field).int64.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [int64.gt_lt]
-	//	 int64 other_value = 2 [(buf.validate.field).int64 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [int64.gt_lt]
+	//	  int64 other_value = 2 [(buf.validate.field).int64 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [int64.gt_lt_exclusive]
-	//	 int64 another_value = 3 [(buf.validate.field).int64 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [int64.gt_lt_exclusive]
+	//	  int64 another_value = 3 [(buf.validate.field).int64 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -1672,14 +1676,14 @@ type Int64Rules_Gte struct {
 	// ```proto
 	//
 	//	message MyInt64 {
-	//	 // value must be greater than or equal to 5 [int64.gte]
-	//	 int64 value = 1 [(buf.validate.field).int64.gte = 5];
+	//	  // value must be greater than or equal to 5 [int64.gte]
+	//	  int64 value = 1 [(buf.validate.field).int64.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [int64.gte_lt]
-	//	 int64 other_value = 2 [(buf.validate.field).int64 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [int64.gte_lt]
+	//	  int64 other_value = 2 [(buf.validate.field).int64 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [int64.gte_lt_exclusive]
-	//	 int64 another_value = 3 [(buf.validate.field).int64 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [int64.gte_lt_exclusive]
+	//	  int64 another_value = 3 [(buf.validate.field).int64 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -1703,7 +1707,7 @@ type UInt32Rules struct {
 	// ```proto
 	//
 	//	message MyUInt32 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  uint32 value = 1 [(buf.validate.field).uint32.const = 42];
 	//	}
 	//
@@ -1726,8 +1730,8 @@ type UInt32Rules struct {
 	// ```proto
 	//
 	//	message MyUInt32 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated uint32 value = 1 (buf.validate.field).uint32 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated uint32 value = 1 (buf.validate.field).uint32 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -1739,8 +1743,8 @@ type UInt32Rules struct {
 	// ```proto
 	//
 	//	message MyUInt32 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated uint32 value = 1 (buf.validate.field).uint32 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated uint32 value = 1 (buf.validate.field).uint32 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -1854,7 +1858,7 @@ type UInt32Rules_Lt struct {
 	// ```proto
 	//
 	//	message MyUInt32 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  uint32 value = 1 [(buf.validate.field).uint32.lt = 10];
 	//	}
 	//
@@ -1870,7 +1874,7 @@ type UInt32Rules_Lte struct {
 	// ```proto
 	//
 	//	message MyUInt32 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  uint32 value = 1 [(buf.validate.field).uint32.lte = 10];
 	//	}
 	//
@@ -1896,14 +1900,14 @@ type UInt32Rules_Gt struct {
 	// ```proto
 	//
 	//	message MyUInt32 {
-	//	 // value must be greater than 5 [uint32.gt]
-	//	 uint32 value = 1 [(buf.validate.field).uint32.gt = 5];
+	//	  // value must be greater than 5 [uint32.gt]
+	//	  uint32 value = 1 [(buf.validate.field).uint32.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [uint32.gt_lt]
-	//	 uint32 other_value = 2 [(buf.validate.field).uint32 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [uint32.gt_lt]
+	//	  uint32 other_value = 2 [(buf.validate.field).uint32 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [uint32.gt_lt_exclusive]
-	//	 uint32 another_value = 3 [(buf.validate.field).uint32 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [uint32.gt_lt_exclusive]
+	//	  uint32 another_value = 3 [(buf.validate.field).uint32 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -1920,14 +1924,14 @@ type UInt32Rules_Gte struct {
 	// ```proto
 	//
 	//	message MyUInt32 {
-	//	 // value must be greater than or equal to 5 [uint32.gte]
-	//	 uint32 value = 1 [(buf.validate.field).uint32.gte = 5];
+	//	  // value must be greater than or equal to 5 [uint32.gte]
+	//	  uint32 value = 1 [(buf.validate.field).uint32.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [uint32.gte_lt]
-	//	 uint32 other_value = 2 [(buf.validate.field).uint32 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [uint32.gte_lt]
+	//	  uint32 other_value = 2 [(buf.validate.field).uint32 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [uint32.gte_lt_exclusive]
-	//	 uint32 another_value = 3 [(buf.validate.field).uint32 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [uint32.gte_lt_exclusive]
+	//	  uint32 another_value = 3 [(buf.validate.field).uint32 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -1951,7 +1955,7 @@ type UInt64Rules struct {
 	// ```proto
 	//
 	//	message MyUInt64 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  uint64 value = 1 [(buf.validate.field).uint64.const = 42];
 	//	}
 	//
@@ -1974,8 +1978,8 @@ type UInt64Rules struct {
 	// ```proto
 	//
 	//	message MyUInt64 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated uint64 value = 1 (buf.validate.field).uint64 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated uint64 value = 1 (buf.validate.field).uint64 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -1987,8 +1991,8 @@ type UInt64Rules struct {
 	// ```proto
 	//
 	//	message MyUInt64 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated uint64 value = 1 (buf.validate.field).uint64 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated uint64 value = 1 (buf.validate.field).uint64 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2102,7 +2106,7 @@ type UInt64Rules_Lt struct {
 	// ```proto
 	//
 	//	message MyUInt64 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  uint64 value = 1 [(buf.validate.field).uint64.lt = 10];
 	//	}
 	//
@@ -2118,7 +2122,7 @@ type UInt64Rules_Lte struct {
 	// ```proto
 	//
 	//	message MyUInt64 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  uint64 value = 1 [(buf.validate.field).uint64.lte = 10];
 	//	}
 	//
@@ -2144,14 +2148,14 @@ type UInt64Rules_Gt struct {
 	// ```proto
 	//
 	//	message MyUInt64 {
-	//	 // value must be greater than 5 [uint64.gt]
-	//	 uint64 value = 1 [(buf.validate.field).uint64.gt = 5];
+	//	  // value must be greater than 5 [uint64.gt]
+	//	  uint64 value = 1 [(buf.validate.field).uint64.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [uint64.gt_lt]
-	//	 uint64 other_value = 2 [(buf.validate.field).uint64 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [uint64.gt_lt]
+	//	  uint64 other_value = 2 [(buf.validate.field).uint64 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [uint64.gt_lt_exclusive]
-	//	 uint64 another_value = 3 [(buf.validate.field).uint64 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [uint64.gt_lt_exclusive]
+	//	  uint64 another_value = 3 [(buf.validate.field).uint64 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -2168,14 +2172,14 @@ type UInt64Rules_Gte struct {
 	// ```proto
 	//
 	//	message MyUInt64 {
-	//	 // value must be greater than or equal to 5 [uint64.gte]
-	//	 uint64 value = 1 [(buf.validate.field).uint64.gte = 5];
+	//	  // value must be greater than or equal to 5 [uint64.gte]
+	//	  uint64 value = 1 [(buf.validate.field).uint64.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [uint64.gte_lt]
-	//	 uint64 other_value = 2 [(buf.validate.field).uint64 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [uint64.gte_lt]
+	//	  uint64 other_value = 2 [(buf.validate.field).uint64 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [uint64.gte_lt_exclusive]
-	//	 uint64 another_value = 3 [(buf.validate.field).uint64 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [uint64.gte_lt_exclusive]
+	//	  uint64 another_value = 3 [(buf.validate.field).uint64 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -2198,7 +2202,7 @@ type SInt32Rules struct {
 	// ```proto
 	//
 	//	message MySInt32 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  sint32 value = 1 [(buf.validate.field).sint32.const = 42];
 	//	}
 	//
@@ -2221,8 +2225,8 @@ type SInt32Rules struct {
 	// ```proto
 	//
 	//	message MySInt32 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated sint32 value = 1 (buf.validate.field).sint32 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated sint32 value = 1 (buf.validate.field).sint32 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2234,8 +2238,8 @@ type SInt32Rules struct {
 	// ```proto
 	//
 	//	message MySInt32 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated sint32 value = 1 (buf.validate.field).sint32 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated sint32 value = 1 (buf.validate.field).sint32 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2349,7 +2353,7 @@ type SInt32Rules_Lt struct {
 	// ```proto
 	//
 	//	message MySInt32 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  sint32 value = 1 [(buf.validate.field).sint32.lt = 10];
 	//	}
 	//
@@ -2365,7 +2369,7 @@ type SInt32Rules_Lte struct {
 	// ```proto
 	//
 	//	message MySInt32 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  sint32 value = 1 [(buf.validate.field).sint32.lte = 10];
 	//	}
 	//
@@ -2391,14 +2395,14 @@ type SInt32Rules_Gt struct {
 	// ```proto
 	//
 	//	message MySInt32 {
-	//	 // value must be greater than 5 [sint32.gt]
-	//	 sint32 value = 1 [(buf.validate.field).sint32.gt = 5];
+	//	  // value must be greater than 5 [sint32.gt]
+	//	  sint32 value = 1 [(buf.validate.field).sint32.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [sint32.gt_lt]
-	//	 sint32 other_value = 2 [(buf.validate.field).sint32 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [sint32.gt_lt]
+	//	  sint32 other_value = 2 [(buf.validate.field).sint32 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [sint32.gt_lt_exclusive]
-	//	 sint32 another_value = 3 [(buf.validate.field).sint32 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [sint32.gt_lt_exclusive]
+	//	  sint32 another_value = 3 [(buf.validate.field).sint32 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -2445,7 +2449,7 @@ type SInt64Rules struct {
 	// ```proto
 	//
 	//	message MySInt64 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  sint64 value = 1 [(buf.validate.field).sint64.const = 42];
 	//	}
 	//
@@ -2468,8 +2472,8 @@ type SInt64Rules struct {
 	// ```proto
 	//
 	//	message MySInt64 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated sint64 value = 1 (buf.validate.field).sint64 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated sint64 value = 1 (buf.validate.field).sint64 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2481,8 +2485,8 @@ type SInt64Rules struct {
 	// ```proto
 	//
 	//	message MySInt64 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated sint64 value = 1 (buf.validate.field).sint64 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated sint64 value = 1 (buf.validate.field).sint64 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2596,7 +2600,7 @@ type SInt64Rules_Lt struct {
 	// ```proto
 	//
 	//	message MySInt64 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  sint64 value = 1 [(buf.validate.field).sint64.lt = 10];
 	//	}
 	//
@@ -2612,7 +2616,7 @@ type SInt64Rules_Lte struct {
 	// ```proto
 	//
 	//	message MySInt64 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  sint64 value = 1 [(buf.validate.field).sint64.lte = 10];
 	//	}
 	//
@@ -2638,14 +2642,14 @@ type SInt64Rules_Gt struct {
 	// ```proto
 	//
 	//	message MySInt64 {
-	//	 // value must be greater than 5 [sint64.gt]
-	//	 sint64 value = 1 [(buf.validate.field).sint64.gt = 5];
+	//	  // value must be greater than 5 [sint64.gt]
+	//	  sint64 value = 1 [(buf.validate.field).sint64.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [sint64.gt_lt]
-	//	 sint64 other_value = 2 [(buf.validate.field).sint64 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [sint64.gt_lt]
+	//	  sint64 other_value = 2 [(buf.validate.field).sint64 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [sint64.gt_lt_exclusive]
-	//	 sint64 another_value = 3 [(buf.validate.field).sint64 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [sint64.gt_lt_exclusive]
+	//	  sint64 another_value = 3 [(buf.validate.field).sint64 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -2662,14 +2666,14 @@ type SInt64Rules_Gte struct {
 	// ```proto
 	//
 	//	message MySInt64 {
-	//	 // value must be greater than or equal to 5 [sint64.gte]
-	//	 sint64 value = 1 [(buf.validate.field).sint64.gte = 5];
+	//	  // value must be greater than or equal to 5 [sint64.gte]
+	//	  sint64 value = 1 [(buf.validate.field).sint64.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [sint64.gte_lt]
-	//	 sint64 other_value = 2 [(buf.validate.field).sint64 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [sint64.gte_lt]
+	//	  sint64 other_value = 2 [(buf.validate.field).sint64 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [sint64.gte_lt_exclusive]
-	//	 sint64 another_value = 3 [(buf.validate.field).sint64 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [sint64.gte_lt_exclusive]
+	//	  sint64 another_value = 3 [(buf.validate.field).sint64 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -2692,7 +2696,7 @@ type Fixed32Rules struct {
 	// ```proto
 	//
 	//	message MyFixed32 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  fixed32 value = 1 [(buf.validate.field).fixed32.const = 42];
 	//	}
 	//
@@ -2715,8 +2719,8 @@ type Fixed32Rules struct {
 	// ```proto
 	//
 	//	message MyFixed32 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated fixed32 value = 1 (buf.validate.field).fixed32 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated fixed32 value = 1 (buf.validate.field).fixed32 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2728,8 +2732,8 @@ type Fixed32Rules struct {
 	// ```proto
 	//
 	//	message MyFixed32 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated fixed32 value = 1 (buf.validate.field).fixed32 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated fixed32 value = 1 (buf.validate.field).fixed32 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2843,7 +2847,7 @@ type Fixed32Rules_Lt struct {
 	// ```proto
 	//
 	//	message MyFixed32 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  fixed32 value = 1 [(buf.validate.field).fixed32.lt = 10];
 	//	}
 	//
@@ -2859,7 +2863,7 @@ type Fixed32Rules_Lte struct {
 	// ```proto
 	//
 	//	message MyFixed32 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  fixed32 value = 1 [(buf.validate.field).fixed32.lte = 10];
 	//	}
 	//
@@ -2885,14 +2889,14 @@ type Fixed32Rules_Gt struct {
 	// ```proto
 	//
 	//	message MyFixed32 {
-	//	 // value must be greater than 5 [fixed32.gt]
-	//	 fixed32 value = 1 [(buf.validate.field).fixed32.gt = 5];
+	//	  // value must be greater than 5 [fixed32.gt]
+	//	  fixed32 value = 1 [(buf.validate.field).fixed32.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [fixed32.gt_lt]
-	//	 fixed32 other_value = 2 [(buf.validate.field).fixed32 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [fixed32.gt_lt]
+	//	  fixed32 other_value = 2 [(buf.validate.field).fixed32 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [fixed32.gt_lt_exclusive]
-	//	 fixed32 another_value = 3 [(buf.validate.field).fixed32 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [fixed32.gt_lt_exclusive]
+	//	  fixed32 another_value = 3 [(buf.validate.field).fixed32 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -2909,14 +2913,14 @@ type Fixed32Rules_Gte struct {
 	// ```proto
 	//
 	//	message MyFixed32 {
-	//	 // value must be greater than or equal to 5 [fixed32.gte]
-	//	 fixed32 value = 1 [(buf.validate.field).fixed32.gte = 5];
+	//	  // value must be greater than or equal to 5 [fixed32.gte]
+	//	  fixed32 value = 1 [(buf.validate.field).fixed32.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [fixed32.gte_lt]
-	//	 fixed32 other_value = 2 [(buf.validate.field).fixed32 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [fixed32.gte_lt]
+	//	  fixed32 other_value = 2 [(buf.validate.field).fixed32 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [fixed32.gte_lt_exclusive]
-	//	 fixed32 another_value = 3 [(buf.validate.field).fixed32 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [fixed32.gte_lt_exclusive]
+	//	  fixed32 another_value = 3 [(buf.validate.field).fixed32 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -2939,7 +2943,7 @@ type Fixed64Rules struct {
 	// ```proto
 	//
 	//	message MyFixed64 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  fixed64 value = 1 [(buf.validate.field).fixed64.const = 42];
 	//	}
 	//
@@ -2962,8 +2966,8 @@ type Fixed64Rules struct {
 	// ```proto
 	//
 	//	message MyFixed64 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated fixed64 value = 1 (buf.validate.field).fixed64 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated fixed64 value = 1 (buf.validate.field).fixed64 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -2975,8 +2979,8 @@ type Fixed64Rules struct {
 	// ```proto
 	//
 	//	message MyFixed64 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated fixed64 value = 1 (buf.validate.field).fixed64 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated fixed64 value = 1 (buf.validate.field).fixed64 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -3090,7 +3094,7 @@ type Fixed64Rules_Lt struct {
 	// ```proto
 	//
 	//	message MyFixed64 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  fixed64 value = 1 [(buf.validate.field).fixed64.lt = 10];
 	//	}
 	//
@@ -3106,7 +3110,7 @@ type Fixed64Rules_Lte struct {
 	// ```proto
 	//
 	//	message MyFixed64 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  fixed64 value = 1 [(buf.validate.field).fixed64.lte = 10];
 	//	}
 	//
@@ -3132,14 +3136,14 @@ type Fixed64Rules_Gt struct {
 	// ```proto
 	//
 	//	message MyFixed64 {
-	//	 // value must be greater than 5 [fixed64.gt]
-	//	 fixed64 value = 1 [(buf.validate.field).fixed64.gt = 5];
+	//	  // value must be greater than 5 [fixed64.gt]
+	//	  fixed64 value = 1 [(buf.validate.field).fixed64.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [fixed64.gt_lt]
-	//	 fixed64 other_value = 2 [(buf.validate.field).fixed64 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [fixed64.gt_lt]
+	//	  fixed64 other_value = 2 [(buf.validate.field).fixed64 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [fixed64.gt_lt_exclusive]
-	//	 fixed64 another_value = 3 [(buf.validate.field).fixed64 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [fixed64.gt_lt_exclusive]
+	//	  fixed64 another_value = 3 [(buf.validate.field).fixed64 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -3156,14 +3160,14 @@ type Fixed64Rules_Gte struct {
 	// ```proto
 	//
 	//	message MyFixed64 {
-	//	 // value must be greater than or equal to 5 [fixed64.gte]
-	//	 fixed64 value = 1 [(buf.validate.field).fixed64.gte = 5];
+	//	  // value must be greater than or equal to 5 [fixed64.gte]
+	//	  fixed64 value = 1 [(buf.validate.field).fixed64.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [fixed64.gte_lt]
-	//	 fixed64 other_value = 2 [(buf.validate.field).fixed64 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [fixed64.gte_lt]
+	//	  fixed64 other_value = 2 [(buf.validate.field).fixed64 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [fixed64.gte_lt_exclusive]
-	//	 fixed64 another_value = 3 [(buf.validate.field).fixed64 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [fixed64.gte_lt_exclusive]
+	//	  fixed64 another_value = 3 [(buf.validate.field).fixed64 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -3186,7 +3190,7 @@ type SFixed32Rules struct {
 	// ```proto
 	//
 	//	message MySFixed32 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  sfixed32 value = 1 [(buf.validate.field).sfixed32.const = 42];
 	//	}
 	//
@@ -3209,8 +3213,8 @@ type SFixed32Rules struct {
 	// ```proto
 	//
 	//	message MySFixed32 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -3222,8 +3226,8 @@ type SFixed32Rules struct {
 	// ```proto
 	//
 	//	message MySFixed32 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -3337,7 +3341,7 @@ type SFixed32Rules_Lt struct {
 	// ```proto
 	//
 	//	message MySFixed32 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  sfixed32 value = 1 [(buf.validate.field).sfixed32.lt = 10];
 	//	}
 	//
@@ -3353,7 +3357,7 @@ type SFixed32Rules_Lte struct {
 	// ```proto
 	//
 	//	message MySFixed32 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  sfixed32 value = 1 [(buf.validate.field).sfixed32.lte = 10];
 	//	}
 	//
@@ -3379,14 +3383,14 @@ type SFixed32Rules_Gt struct {
 	// ```proto
 	//
 	//	message MySFixed32 {
-	//	 // value must be greater than 5 [sfixed32.gt]
-	//	 sfixed32 value = 1 [(buf.validate.field).sfixed32.gt = 5];
+	//	  // value must be greater than 5 [sfixed32.gt]
+	//	  sfixed32 value = 1 [(buf.validate.field).sfixed32.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [sfixed32.gt_lt]
-	//	 sfixed32 other_value = 2 [(buf.validate.field).sfixed32 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [sfixed32.gt_lt]
+	//	  sfixed32 other_value = 2 [(buf.validate.field).sfixed32 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [sfixed32.gt_lt_exclusive]
-	//	 sfixed32 another_value = 3 [(buf.validate.field).sfixed32 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [sfixed32.gt_lt_exclusive]
+	//	  sfixed32 another_value = 3 [(buf.validate.field).sfixed32 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -3403,14 +3407,14 @@ type SFixed32Rules_Gte struct {
 	// ```proto
 	//
 	//	message MySFixed32 {
-	//	 // value must be greater than or equal to 5 [sfixed32.gte]
-	//	 sfixed32 value = 1 [(buf.validate.field).sfixed32.gte = 5];
+	//	  // value must be greater than or equal to 5 [sfixed32.gte]
+	//	  sfixed32 value = 1 [(buf.validate.field).sfixed32.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [sfixed32.gte_lt]
-	//	 sfixed32 other_value = 2 [(buf.validate.field).sfixed32 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [sfixed32.gte_lt]
+	//	  sfixed32 other_value = 2 [(buf.validate.field).sfixed32 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [sfixed32.gte_lt_exclusive]
-	//	 sfixed32 another_value = 3 [(buf.validate.field).sfixed32 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [sfixed32.gte_lt_exclusive]
+	//	  sfixed32 another_value = 3 [(buf.validate.field).sfixed32 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -3433,7 +3437,7 @@ type SFixed64Rules struct {
 	// ```proto
 	//
 	//	message MySFixed64 {
-	//	 // value must equal 42
+	//	  // value must equal 42
 	//	  sfixed64 value = 1 [(buf.validate.field).sfixed64.const = 42];
 	//	}
 	//
@@ -3456,8 +3460,8 @@ type SFixed64Rules struct {
 	// ```proto
 	//
 	//	message MySFixed64 {
-	//	 // value must be in list [1, 2, 3]
-	//	 repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+	//	  // value must be in list [1, 2, 3]
+	//	  repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -3469,8 +3473,8 @@ type SFixed64Rules struct {
 	// ```proto
 	//
 	//	message MySFixed64 {
-	//	 // value must not be in list [1, 2, 3]
-	//	 repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+	//	  // value must not be in list [1, 2, 3]
+	//	  repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
 	//	}
 	//
 	// ```
@@ -3584,7 +3588,7 @@ type SFixed64Rules_Lt struct {
 	// ```proto
 	//
 	//	message MySFixed64 {
-	//	 // value must be less than 10
+	//	  // value must be less than 10
 	//	  sfixed64 value = 1 [(buf.validate.field).sfixed64.lt = 10];
 	//	}
 	//
@@ -3600,7 +3604,7 @@ type SFixed64Rules_Lte struct {
 	// ```proto
 	//
 	//	message MySFixed64 {
-	//	 // value must be less than or equal to 10
+	//	  // value must be less than or equal to 10
 	//	  sfixed64 value = 1 [(buf.validate.field).sfixed64.lte = 10];
 	//	}
 	//
@@ -3626,14 +3630,14 @@ type SFixed64Rules_Gt struct {
 	// ```proto
 	//
 	//	message MySFixed64 {
-	//	 // value must be greater than 5 [sfixed64.gt]
-	//	 sfixed64 value = 1 [(buf.validate.field).sfixed64.gt = 5];
+	//	  // value must be greater than 5 [sfixed64.gt]
+	//	  sfixed64 value = 1 [(buf.validate.field).sfixed64.gt = 5];
 	//
-	//	 // value must be greater than 5 and less than 10 [sfixed64.gt_lt]
-	//	 sfixed64 other_value = 2 [(buf.validate.field).sfixed64 = { gt: 5, lt: 10 }];
+	//	  // value must be greater than 5 and less than 10 [sfixed64.gt_lt]
+	//	  sfixed64 other_value = 2 [(buf.validate.field).sfixed64 = { gt: 5, lt: 10 }];
 	//
-	//	 // value must be greater than 10 or less than 5 [sfixed64.gt_lt_exclusive]
-	//	 sfixed64 another_value = 3 [(buf.validate.field).sfixed64 = { gt: 10, lt: 5 }];
+	//	  // value must be greater than 10 or less than 5 [sfixed64.gt_lt_exclusive]
+	//	  sfixed64 another_value = 3 [(buf.validate.field).sfixed64 = { gt: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -3650,14 +3654,14 @@ type SFixed64Rules_Gte struct {
 	// ```proto
 	//
 	//	message MySFixed64 {
-	//	 // value must be greater than or equal to 5 [sfixed64.gte]
-	//	 sfixed64 value = 1 [(buf.validate.field).sfixed64.gte = 5];
+	//	  // value must be greater than or equal to 5 [sfixed64.gte]
+	//	  sfixed64 value = 1 [(buf.validate.field).sfixed64.gte = 5];
 	//
-	//	 // value must be greater than or equal to 5 and less than 10 [sfixed64.gte_lt]
-	//	 sfixed64 other_value = 2 [(buf.validate.field).sfixed64 = { gte: 5, lt: 10 }];
+	//	  // value must be greater than or equal to 5 and less than 10 [sfixed64.gte_lt]
+	//	  sfixed64 other_value = 2 [(buf.validate.field).sfixed64 = { gte: 5, lt: 10 }];
 	//
-	//	 // value must be greater than or equal to 10 or less than 5 [sfixed64.gte_lt_exclusive]
-	//	 sfixed64 another_value = 3 [(buf.validate.field).sfixed64 = { gte: 10, lt: 5 }];
+	//	  // value must be greater than or equal to 10 or less than 5 [sfixed64.gte_lt_exclusive]
+	//	  sfixed64 another_value = 3 [(buf.validate.field).sfixed64 = { gte: 10, lt: 5 }];
 	//	}
 	//
 	// ```
@@ -3681,7 +3685,7 @@ type BoolRules struct {
 	// ```proto
 	//
 	//	message MyBool {
-	//	 // value must equal true
+	//	  // value must equal true
 	//	  bool value = 1 [(buf.validate.field).bool.const = true];
 	//	}
 	//
@@ -3741,7 +3745,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must equal `hello`
+	//	  // value must equal `hello`
 	//	  string value = 1 [(buf.validate.field).string.const = "hello"];
 	//	}
 	//
@@ -3755,7 +3759,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value length must be 5 characters
+	//	  // value length must be 5 characters
 	//	  string value = 1 [(buf.validate.field).string.len = 5];
 	//	}
 	//
@@ -3769,7 +3773,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value length must be at least 3 characters
+	//	  // value length must be at least 3 characters
 	//	  string value = 1 [(buf.validate.field).string.min_len = 3];
 	//	}
 	//
@@ -3783,7 +3787,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value length must be at most 10 characters
+	//	  // value length must be at most 10 characters
 	//	  string value = 1 [(buf.validate.field).string.max_len = 10];
 	//	}
 	//
@@ -3796,7 +3800,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value length must be 6 bytes
+	//	  // value length must be 6 bytes
 	//	  string value = 1 [(buf.validate.field).string.len_bytes = 6];
 	//	}
 	//
@@ -3809,7 +3813,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value length must be at least 4 bytes
+	//	  // value length must be at least 4 bytes
 	//	  string value = 1 [(buf.validate.field).string.min_bytes = 4];
 	//	}
 	//
@@ -3822,7 +3826,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value length must be at most 8 bytes
+	//	  // value length must be at most 8 bytes
 	//	  string value = 1 [(buf.validate.field).string.max_bytes = 8];
 	//	}
 	//
@@ -3836,7 +3840,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value does not match regex pattern `^[a-zA-Z]//$`
+	//	  // value does not match regex pattern `^[a-zA-Z]//$`
 	//	  string value = 1 [(buf.validate.field).string.pattern = "^[a-zA-Z]//$"];
 	//	}
 	//
@@ -3850,7 +3854,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value does not have prefix `pre`
+	//	  // value does not have prefix `pre`
 	//	  string value = 1 [(buf.validate.field).string.prefix = "pre"];
 	//	}
 	//
@@ -3863,7 +3867,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value does not have suffix `post`
+	//	  // value does not have suffix `post`
 	//	  string value = 1 [(buf.validate.field).string.suffix = "post"];
 	//	}
 	//
@@ -3876,7 +3880,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value does not contain substring `inside`.
+	//	  // value does not contain substring `inside`.
 	//	  string value = 1 [(buf.validate.field).string.contains = "inside"];
 	//	}
 	//
@@ -3889,7 +3893,7 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value contains substring `inside`.
+	//	  // value contains substring `inside`.
 	//	  string value = 1 [(buf.validate.field).string.not_contains = "inside"];
 	//	}
 	//
@@ -3902,8 +3906,8 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be in list ["apple", "banana"]
-	//	 repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
+	//	  // value must be in list ["apple", "banana"]
+	//	  repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
 	//	}
 	//
 	// ```
@@ -3914,8 +3918,8 @@ type StringRules struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must not be in list ["orange", "grape"]
-	//	 repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
+	//	  // value must not be in list ["orange", "grape"]
+	//	  repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
 	//	}
 	//
 	// ```
@@ -4179,7 +4183,7 @@ type StringRules_Email struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid email address
+	//	  // value must be a valid email address
 	//	  string value = 1 [(buf.validate.field).string.email = true];
 	//	}
 	//
@@ -4196,7 +4200,7 @@ type StringRules_Hostname struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid hostname
+	//	  // value must be a valid hostname
 	//	  string value = 1 [(buf.validate.field).string.hostname = true];
 	//	}
 	//
@@ -4213,7 +4217,7 @@ type StringRules_Ip struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IP address
+	//	  // value must be a valid IP address
 	//	  string value = 1 [(buf.validate.field).string.ip = true];
 	//	}
 	//
@@ -4229,7 +4233,7 @@ type StringRules_Ipv4 struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IPv4 address
+	//	  // value must be a valid IPv4 address
 	//	  string value = 1 [(buf.validate.field).string.ipv4 = true];
 	//	}
 	//
@@ -4245,7 +4249,7 @@ type StringRules_Ipv6 struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IPv6 address
+	//	  // value must be a valid IPv6 address
 	//	  string value = 1 [(buf.validate.field).string.ipv6 = true];
 	//	}
 	//
@@ -4261,7 +4265,7 @@ type StringRules_Uri struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid URI
+	//	  // value must be a valid URI
 	//	  string value = 1 [(buf.validate.field).string.uri = true];
 	//	}
 	//
@@ -4277,7 +4281,7 @@ type StringRules_UriRef struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid URI
+	//	  // value must be a valid URI
 	//	  string value = 1 [(buf.validate.field).string.uri_ref = true];
 	//	}
 	//
@@ -4295,7 +4299,7 @@ type StringRules_Address struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid hostname, or ip address
+	//	  // value must be a valid hostname, or ip address
 	//	  string value = 1 [(buf.validate.field).string.address = true];
 	//	}
 	//
@@ -4311,7 +4315,7 @@ type StringRules_Uuid struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid UUID
+	//	  // value must be a valid UUID
 	//	  string value = 1 [(buf.validate.field).string.uuid = true];
 	//	}
 	//
@@ -4327,7 +4331,7 @@ type StringRules_WellKnownRegex struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid HTTP header value
+	//	  // value must be a valid HTTP header value
 	//	  string value = 1 [(buf.validate.field).string.well_known_regex = 2];
 	//	}
 	//
@@ -4378,7 +4382,7 @@ type BytesRules struct {
 	// ```proto
 	//
 	//	message MyBytes {
-	//	 // value must be "\x01\x02\x03\x04"
+	//	  // value must be "\x01\x02\x03\x04"
 	//	  bytes value = 1 [(buf.validate.field).bytes.const = "\x01\x02\x03\x04"];
 	//	}
 	//
@@ -4390,8 +4394,8 @@ type BytesRules struct {
 	// ```proto
 	//
 	//	message MyBytes {
-	//	     // value length must be 4 bytes.
-	//	     optional bytes value = 1 [(buf.validate.field).bytes.len = 4];
+	//	  // value length must be 4 bytes.
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.len = 4];
 	//	}
 	//
 	// ```
@@ -4401,10 +4405,12 @@ type BytesRules struct {
 	// If the field value doesn't meet the requirement, an error message is generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value length must be at least 2 bytes.
-	// optional bytes value = 1 [(buf.validate.field).bytes.min_len = 2];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value length must be at least 2 bytes.
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.min_len = 2];
+	//	}
+	//
 	// ```
 	MinLen *uint64 `protobuf:"varint,2,opt,name=min_len,json=minLen,proto3,oneof" json:"min_len,omitempty"`
 	// `max_len` requires the field value to have at most the specified maximum
@@ -4412,10 +4418,12 @@ type BytesRules struct {
 	// If the field value exceeds the requirement, an error message is generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value must be at most 6 bytes.
-	// optional bytes value = 1 [(buf.validate.field).bytes.max_len = 6];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value must be at most 6 bytes.
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.max_len = 6];
+	//	}
+	//
 	// ```
 	MaxLen *uint64 `protobuf:"varint,3,opt,name=max_len,json=maxLen,proto3,oneof" json:"max_len,omitempty"`
 	// `pattern` requires the field value to match the specified regular
@@ -4425,10 +4433,12 @@ type BytesRules struct {
 	// If the field value doesn't match the pattern, an error message is generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value must match regex pattern "^[a-zA-Z0-9]+$".
-	// optional bytes value = 1 [(buf.validate.field).bytes.pattern = "^[a-zA-Z0-9]+$"];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value must match regex pattern "^[a-zA-Z0-9]+$".
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.pattern = "^[a-zA-Z0-9]+$"];
+	//	}
+	//
 	// ```
 	Pattern *string `protobuf:"bytes,4,opt,name=pattern,proto3,oneof" json:"pattern,omitempty"`
 	// `prefix` requires the field value to have the specified bytes at the
@@ -4436,10 +4446,12 @@ type BytesRules struct {
 	// If the field value doesn't meet the requirement, an error message is generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value does not have prefix \x01\x02
-	// optional bytes value = 1 [(buf.validate.field).bytes.prefix = "\x01\x02"];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value does not have prefix \x01\x02
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.prefix = "\x01\x02"];
+	//	}
+	//
 	// ```
 	Prefix []byte `protobuf:"bytes,5,opt,name=prefix,proto3,oneof" json:"prefix,omitempty"`
 	// `suffix` requires the field value to have the specified bytes at the end
@@ -4447,10 +4459,12 @@ type BytesRules struct {
 	// If the field value doesn't meet the requirement, an error message is generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value does not have suffix \x03\x04
-	// optional bytes value = 1 [(buf.validate.field).bytes.suffix = "\x03\x04"];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value does not have suffix \x03\x04
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.suffix = "\x03\x04"];
+	//	}
+	//
 	// ```
 	Suffix []byte `protobuf:"bytes,6,opt,name=suffix,proto3,oneof" json:"suffix,omitempty"`
 	// `contains` requires the field value to have the specified bytes anywhere in
@@ -4458,10 +4472,12 @@ type BytesRules struct {
 	// If the field value doesn't meet the requirement, an error message is generated.
 	//
 	// ```protobuf
-	// message MyBytes {
-	// // value does not contain \x02\x03
-	// optional bytes value = 1 [(buf.validate.field).bytes.contains = "\x02\x03"];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value does not contain \x02\x03
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.contains = "\x02\x03"];
+	//	}
+	//
 	// ```
 	Contains []byte `protobuf:"bytes,7,opt,name=contains,proto3,oneof" json:"contains,omitempty"`
 	// `in` requires the field value to be equal to one of the specified
@@ -4469,10 +4485,12 @@ type BytesRules struct {
 	// error message is generated.
 	//
 	// ```protobuf
-	// message MyBytes {
-	// // value must in ["\x01\x02", "\x02\x03", "\x03\x04"]
-	// optional bytes value = 1 [(buf.validate.field).bytes.in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value must in ["\x01\x02", "\x02\x03", "\x03\x04"]
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
+	//	}
+	//
 	// ```
 	In [][]byte `protobuf:"bytes,8,rep,name=in,proto3" json:"in,omitempty"`
 	// `not_in` requires the field value to be not equal to any of the specified
@@ -4481,10 +4499,12 @@ type BytesRules struct {
 	// generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value must not in ["\x01\x02", "\x02\x03", "\x03\x04"]
-	// optional bytes value = 1 [(buf.validate.field).bytes.not_in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value must not in ["\x01\x02", "\x02\x03", "\x03\x04"]
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.not_in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
+	//	}
+	//
 	// ```
 	NotIn [][]byte `protobuf:"bytes,9,rep,name=not_in,json=notIn,proto3" json:"not_in,omitempty"`
 	// WellKnown rules provide advanced constraints against common byte
@@ -4637,10 +4657,12 @@ type BytesRules_Ip struct {
 	// If the field value doesn't meet this constraint, an error message is generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value must be a valid IP address
-	// optional bytes value = 1 [(buf.validate.field).bytes.ip = true];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value must be a valid IP address
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.ip = true];
+	//	}
+	//
 	// ```
 	Ip bool `protobuf:"varint,10,opt,name=ip,proto3,oneof"`
 }
@@ -4650,10 +4672,12 @@ type BytesRules_Ipv4 struct {
 	// If the field value doesn't meet this constraint, an error message is generated.
 	//
 	// ```proto
-	// message MyBytes {
-	// // value must be a valid IPv4 address
-	// optional bytes value = 1 [(buf.validate.field).bytes.ipv4 = true];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value must be a valid IPv4 address
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.ipv4 = true];
+	//	}
+	//
 	// ```
 	Ipv4 bool `protobuf:"varint,11,opt,name=ipv4,proto3,oneof"`
 }
@@ -4662,10 +4686,12 @@ type BytesRules_Ipv6 struct {
 	// `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
 	// If the field value doesn't meet this constraint, an error message is generated.
 	// ```proto
-	// message MyBytes {
-	// // value must be a valid IPv6 address
-	// optional bytes value = 1 [(buf.validate.field).bytes.ipv6 = true];
-	// }
+	//
+	//	message MyBytes {
+	//	  // value must be a valid IPv6 address
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.ipv6 = true];
+	//	}
+	//
 	// ```
 	Ipv6 bool `protobuf:"varint,12,opt,name=ipv6,proto3,oneof"`
 }
@@ -4688,13 +4714,13 @@ type EnumRules struct {
 	// ```proto
 	//
 	//	enum MyEnum {
-	//	 MY_ENUM_UNSPECIFIED = 0;
-	//	 MY_ENUM_VALUE1 = 1;
-	//	 MY_ENUM_VALUE2 = 2;
+	//	  MY_ENUM_UNSPECIFIED = 0;
+	//	  MY_ENUM_VALUE1 = 1;
+	//	  MY_ENUM_VALUE2 = 2;
 	//	}
 	//
 	//	message MyMessage {
-	//	 // The field `value` must be exactly MY_ENUM_VALUE1.
+	//	  // The field `value` must be exactly MY_ENUM_VALUE1.
 	//	  MyEnum value = 1 [(buf.validate.field).enum.const = 1];
 	//	}
 	//
@@ -4706,13 +4732,13 @@ type EnumRules struct {
 	// ```proto
 	//
 	//	enum MyEnum {
-	//	 MY_ENUM_UNSPECIFIED = 0;
-	//	 MY_ENUM_VALUE1 = 1;
-	//	 MY_ENUM_VALUE2 = 2;
+	//	  MY_ENUM_UNSPECIFIED = 0;
+	//	  MY_ENUM_VALUE1 = 1;
+	//	  MY_ENUM_VALUE2 = 2;
 	//	}
 	//
 	//	message MyMessage {
-	//	 // The field `value` must be a defined value of MyEnum.
+	//	  // The field `value` must be a defined value of MyEnum.
 	//	  MyEnum value = 1 [(buf.validate.field).enum.defined_only = true];
 	//	}
 	//
@@ -4725,13 +4751,13 @@ type EnumRules struct {
 	// ```proto
 	//
 	//	enum MyEnum {
-	//	 MY_ENUM_UNSPECIFIED = 0;
-	//	 MY_ENUM_VALUE1 = 1;
-	//	 MY_ENUM_VALUE2 = 2;
+	//	  MY_ENUM_UNSPECIFIED = 0;
+	//	  MY_ENUM_VALUE1 = 1;
+	//	  MY_ENUM_VALUE2 = 2;
 	//	}
 	//
 	//	message MyMessage {
-	//	 // The field `value` must be equal to one of the specified values.
+	//	  // The field `value` must be equal to one of the specified values.
 	//	  MyEnum value = 1 [(buf.validate.field).enum.in = {1, 2}];
 	//	}
 	//
@@ -4744,13 +4770,13 @@ type EnumRules struct {
 	// ```proto
 	//
 	//	enum MyEnum {
-	//	 MY_ENUM_UNSPECIFIED = 0;
-	//	 MY_ENUM_VALUE1 = 1;
-	//	 MY_ENUM_VALUE2 = 2;
+	//	  MY_ENUM_UNSPECIFIED = 0;
+	//	  MY_ENUM_VALUE1 = 1;
+	//	  MY_ENUM_VALUE2 = 2;
 	//	}
 	//
 	//	message MyMessage {
-	//	 // The field `value` must not be equal to any of the specified values.
+	//	  // The field `value` must not be equal to any of the specified values.
 	//	  MyEnum value = 1 [(buf.validate.field).enum.not_in = {1, 2}];
 	//	}
 	//
@@ -4830,8 +4856,8 @@ type RepeatedRules struct {
 	// ```proto
 	//
 	//	message MyRepeated {
-	//	 // value must contain at least  2 items
-	//	 repeated string value = 1 [(buf.validate.field).repeated.min_items = 2];
+	//	  // value must contain at least  2 items
+	//	  repeated string value = 1 [(buf.validate.field).repeated.min_items = 2];
 	//	}
 	//
 	// ```
@@ -4844,8 +4870,8 @@ type RepeatedRules struct {
 	// ```proto
 	//
 	//	message MyRepeated {
-	//	 // value must contain no more than 3 item(s)
-	//	 repeated string value = 1 [(buf.validate.field).repeated.max_items = 3];
+	//	  // value must contain no more than 3 item(s)
+	//	  repeated string value = 1 [(buf.validate.field).repeated.max_items = 3];
 	//	}
 	//
 	// ```
@@ -4857,8 +4883,8 @@ type RepeatedRules struct {
 	// ```proto
 	//
 	//	message MyRepeated {
-	//	 // repeated value must contain unique items
-	//	 repeated string value = 1 [(buf.validate.field).repeated.unique = true];
+	//	  // repeated value must contain unique items
+	//	  repeated string value = 1 [(buf.validate.field).repeated.unique = true];
 	//	}
 	//
 	// ```
@@ -4870,13 +4896,13 @@ type RepeatedRules struct {
 	// ```proto
 	//
 	//	message MyRepeated {
-	//	 // The items in the field `value` must follow the specified constraints.
-	//	 repeated string value = 1 [(buf.validate.field).repeated.items = {
-	//	   string: {
-	//	     min_len: 3
-	//	     max_len: 10
-	//	   }
-	//	 }];
+	//	  // The items in the field `value` must follow the specified constraints.
+	//	  repeated string value = 1 [(buf.validate.field).repeated.items = {
+	//	    string: {
+	//	      min_len: 3
+	//	      max_len: 10
+	//	    }
+	//	  }];
 	//	}
 	//
 	// ```
@@ -4955,8 +4981,8 @@ type MapRules struct {
 	// ```proto
 	//
 	//	message MyMap {
-	//	 // The field `value` must have at least 2 key-value pairs.
-	//	 map<string, string> value = 1 [(buf.validate.field).map.min_pairs = 2];
+	//	  // The field `value` must have at least 2 key-value pairs.
+	//	  map<string, string> value = 1 [(buf.validate.field).map.min_pairs = 2];
 	//	}
 	//
 	// ```
@@ -4967,8 +4993,8 @@ type MapRules struct {
 	// ```proto
 	//
 	//	message MyMap {
-	//	 // The field `value` must have at most 3 key-value pairs.
-	//	 map<string, string> value = 1 [(buf.validate.field).map.max_pairs = 3];
+	//	  // The field `value` must have at most 3 key-value pairs.
+	//	  map<string, string> value = 1 [(buf.validate.field).map.max_pairs = 3];
 	//	}
 	//
 	// ```
@@ -4978,13 +5004,13 @@ type MapRules struct {
 	// ```proto
 	//
 	//	message MyMap {
-	//	 // The keys in the field `value` must follow the specified constraints.
-	//	 map<string, string> value = 1 [(buf.validate.field).map.keys = {
-	//	   string: {
-	//	     min_len: 3
-	//	     max_len: 10
-	//	   }
-	//	 }];
+	//	  // The keys in the field `value` must follow the specified constraints.
+	//	  map<string, string> value = 1 [(buf.validate.field).map.keys = {
+	//	    string: {
+	//	      min_len: 3
+	//	      max_len: 10
+	//	    }
+	//	  }];
 	//	}
 	//
 	// ```
@@ -4996,13 +5022,13 @@ type MapRules struct {
 	// ```proto
 	//
 	//	message MyMap {
-	//	 // The values in the field `value` must follow the specified constraints.
-	//	 map<string, string> value = 1 [(buf.validate.field).map.values = {
-	//	   string: {
-	//	     min_len: 5
-	//	     max_len: 20
-	//	   }
-	//	 }];
+	//	  // The values in the field `value` must follow the specified constraints.
+	//	  map<string, string> value = 1 [(buf.validate.field).map.values = {
+	//	    string: {
+	//	      min_len: 5
+	//	      max_len: 20
+	//	    }
+	//	  }];
 	//	}
 	//
 	// ```
@@ -5082,7 +5108,7 @@ type AnyRules struct {
 	// ```proto
 	//
 	//	message MyAny {
-	//	 //  The `value` field must have a `type_url` equal to one of the specified values.
+	//	  //  The `value` field must have a `type_url` equal to one of the specified values.
 	//	  google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
 	//	}
 	//
@@ -5093,7 +5119,7 @@ type AnyRules struct {
 	// ```proto
 	//
 	//	message MyAny {
-	//	 // The field `value` must not have a `type_url` equal to any of the specified values.
+	//	  // The field `value` must not have a `type_url` equal to any of the specified values.
 	//	  google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
 	//	}
 	//
@@ -5160,7 +5186,7 @@ type DurationRules struct {
 	// ```proto
 	//
 	//	message MyDuration {
-	//	 // value must equal 5s
+	//	  // value must equal 5s
 	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.const = "5s"];
 	//	}
 	//
@@ -5183,7 +5209,7 @@ type DurationRules struct {
 	// ```proto
 	//
 	//	message MyDuration {
-	//	 // value must be in list [1s, 2s, 3s]
+	//	  // value must be in list [1s, 2s, 3s]
 	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.in = ["1s", "2s", "3s"]];
 	//	}
 	//
@@ -5197,7 +5223,7 @@ type DurationRules struct {
 	// ```proto
 	//
 	//	message MyDuration {
-	//	 // value must not be in list [1s, 2s, 3s]
+	//	  // value must not be in list [1s, 2s, 3s]
 	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.not_in = ["1s", "2s", "3s"]];
 	//	}
 	//
@@ -5312,7 +5338,7 @@ type DurationRules_Lt struct {
 	// ```proto
 	//
 	//	message MyDuration {
-	//	 // value must be less than 5s
+	//	  // value must be less than 5s
 	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.lt = "5s"];
 	//	}
 	//
@@ -5328,7 +5354,7 @@ type DurationRules_Lte struct {
 	// ```proto
 	//
 	//	message MyDuration {
-	//	 // value must be less than or equal to 10s
+	//	  // value must be less than or equal to 10s
 	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.lte = "10s"];
 	//	}
 	//
@@ -5354,14 +5380,14 @@ type DurationRules_Gt struct {
 	// ```proto
 	//
 	//	message MyDuration {
-	//	 // duration must be greater than 5s [duration.gt]
-	//	 google.protobuf.Duration value = 1 [(buf.validate.field).duration.gt = { seconds: 5 }];
+	//	  // duration must be greater than 5s [duration.gt]
+	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.gt = { seconds: 5 }];
 	//
-	//	 // duration must be greater than 5s and less than 10s [duration.gt_lt]
-	//	 google.protobuf.Duration another_value = 2 [(buf.validate.field).duration = { gt: { seconds: 5 }, lt: { seconds: 10 } }];
+	//	  // duration must be greater than 5s and less than 10s [duration.gt_lt]
+	//	  google.protobuf.Duration another_value = 2 [(buf.validate.field).duration = { gt: { seconds: 5 }, lt: { seconds: 10 } }];
 	//
-	//	 // duration must be greater than 10s or less than 5s [duration.gt_lt_exclusive]
-	//	 google.protobuf.Duration other_value = 3 [(buf.validate.field).duration = { gt: { seconds: 10 }, lt: { seconds: 5 } }];
+	//	  // duration must be greater than 10s or less than 5s [duration.gt_lt_exclusive]
+	//	  google.protobuf.Duration other_value = 3 [(buf.validate.field).duration = { gt: { seconds: 10 }, lt: { seconds: 5 } }];
 	//	}
 	//
 	// ```
@@ -5407,7 +5433,7 @@ type TimestampRules struct {
 	// ```proto
 	//
 	//	message MyTimestamp {
-	//	 // value must equal 2023-05-03T10:00:00Z
+	//	  // value must equal 2023-05-03T10:00:00Z
 	//	  google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.const = {seconds: 1727998800}];
 	//	}
 	//
@@ -5430,7 +5456,7 @@ type TimestampRules struct {
 	// ```proto
 	//
 	//	message MyTimestamp {
-	//	 // value must be within 1 hour of now
+	//	  // value must be within 1 hour of now
 	//	  google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.within = {seconds: 3600}];
 	//	}
 	//
@@ -5606,14 +5632,14 @@ type TimestampRules_Gt struct {
 	// ```proto
 	//
 	//	message MyTimestamp {
-	//	 // timestamp must be greater than '2023-01-01T00:00:00Z' [timestamp.gt]
-	//	 google.protobuf.Timestamp value = 1 [(buf.validate.field).timestamp.gt = { seconds: 1672444800 }];
+	//	  // timestamp must be greater than '2023-01-01T00:00:00Z' [timestamp.gt]
+	//	  google.protobuf.Timestamp value = 1 [(buf.validate.field).timestamp.gt = { seconds: 1672444800 }];
 	//
-	//	 // timestamp must be greater than '2023-01-01T00:00:00Z' and less than '2023-01-02T00:00:00Z' [timestamp.gt_lt]
-	//	 google.protobuf.Timestamp another_value = 2 [(buf.validate.field).timestamp = { gt: { seconds: 1672444800 }, lt: { seconds: 1672531200 } }];
+	//	  // timestamp must be greater than '2023-01-01T00:00:00Z' and less than '2023-01-02T00:00:00Z' [timestamp.gt_lt]
+	//	  google.protobuf.Timestamp another_value = 2 [(buf.validate.field).timestamp = { gt: { seconds: 1672444800 }, lt: { seconds: 1672531200 } }];
 	//
-	//	 // timestamp must be greater than '2023-01-02T00:00:00Z' or less than '2023-01-01T00:00:00Z' [timestamp.gt_lt_exclusive]
-	//	 google.protobuf.Timestamp other_value = 3 [(buf.validate.field).timestamp = { gt: { seconds: 1672531200 }, lt: { seconds: 1672444800 } }];
+	//	  // timestamp must be greater than '2023-01-02T00:00:00Z' or less than '2023-01-01T00:00:00Z' [timestamp.gt_lt_exclusive]
+	//	  google.protobuf.Timestamp other_value = 3 [(buf.validate.field).timestamp = { gt: { seconds: 1672531200 }, lt: { seconds: 1672444800 } }];
 	//	}
 	//
 	// ```
@@ -5630,14 +5656,14 @@ type TimestampRules_Gte struct {
 	// ```proto
 	//
 	//	message MyTimestamp {
-	//	 // timestamp must be greater than or equal to '2023-01-01T00:00:00Z' [timestamp.gte]
-	//	 google.protobuf.Timestamp value = 1 [(buf.validate.field).timestamp.gte = { seconds: 1672444800 }];
+	//	  // timestamp must be greater than or equal to '2023-01-01T00:00:00Z' [timestamp.gte]
+	//	  google.protobuf.Timestamp value = 1 [(buf.validate.field).timestamp.gte = { seconds: 1672444800 }];
 	//
-	//	 // timestamp must be greater than or equal to '2023-01-01T00:00:00Z' and less than '2023-01-02T00:00:00Z' [timestamp.gte_lt]
-	//	 google.protobuf.Timestamp another_value = 2 [(buf.validate.field).timestamp = { gte: { seconds: 1672444800 }, lt: { seconds: 1672531200 } }];
+	//	  // timestamp must be greater than or equal to '2023-01-01T00:00:00Z' and less than '2023-01-02T00:00:00Z' [timestamp.gte_lt]
+	//	  google.protobuf.Timestamp another_value = 2 [(buf.validate.field).timestamp = { gte: { seconds: 1672444800 }, lt: { seconds: 1672531200 } }];
 	//
-	//	 // timestamp must be greater than or equal to '2023-01-02T00:00:00Z' or less than '2023-01-01T00:00:00Z' [timestamp.gte_lt_exclusive]
-	//	 google.protobuf.Timestamp other_value = 3 [(buf.validate.field).timestamp = { gte: { seconds: 1672531200 }, lt: { seconds: 1672444800 } }];
+	//	  // timestamp must be greater than or equal to '2023-01-02T00:00:00Z' or less than '2023-01-01T00:00:00Z' [timestamp.gte_lt_exclusive]
+	//	  google.protobuf.Timestamp other_value = 3 [(buf.validate.field).timestamp = { gte: { seconds: 1672531200 }, lt: { seconds: 1672444800 } }];
 	//	}
 	//
 	// ```
@@ -5650,7 +5676,7 @@ type TimestampRules_GtNow struct {
 	// ```proto
 	//
 	//	message MyTimestamp {
-	//	 // value must be greater than now
+	//	  // value must be greater than now
 	//	  google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.gt_now = true];
 	//	}
 	//
