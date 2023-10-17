@@ -283,9 +283,8 @@ type FieldConstraints struct {
 	// this field must be set. If required is set to true, the field value must
 	// not be empty; otherwise, an error message will be generated.
 	//
-	// Note that `required` does *not* validate that repeated fields are non-empty.
-	// If you'd like to validate that a `repeated` field is non-empty, use
-	// `repeated.min_items = 1`.
+	// Note that `required` validates that `repeated` fields are non-empty, that is
+	// setting a `repeated` field as `required` is equivalent to `repeated.min_items = 1`.
 	//
 	// ```proto
 	//
@@ -4852,6 +4851,8 @@ type RepeatedRules struct {
 
 	// `min_items` requires that this field must contain at least the specified
 	// minimum number of items.
+	//
+	// Note that `min_items = 1` is equivalent to setting a field as `required`.
 	//
 	// ```proto
 	//
