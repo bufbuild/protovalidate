@@ -25,10 +25,42 @@ import (
 )
 
 func timestampSuite() suites.Suite {
+	minTimestampSeconds := int64(-62135596800)
+	maxTimestampSeconds := int64(+253402300799)
+	minTimestampNanos := int32(0)
+	maxTimestampNanos := int32(1e9 - 1)
 	return suites.Suite{
 		"none/valid": {
 			Message:  &cases.TimestampNone{Val: &timestamppb.Timestamp{Seconds: 123}},
 			Expected: results.Success(true),
+		},
+		"valid/valid": {
+			Message:  &cases.TimestampValid{Val: &timestamppb.Timestamp{Seconds: 123}},
+			Expected: results.Success(true),
+		},
+		"valid/valid/max": {
+			Message:  &cases.TimestampValid{Val: &timestamppb.Timestamp{Seconds: maxTimestampSeconds, Nanos: maxTimestampNanos}},
+			Expected: results.Success(true),
+		},
+		"valid/valid/min": {
+			Message:  &cases.TimestampValid{Val: &timestamppb.Timestamp{Seconds: minTimestampSeconds, Nanos: minTimestampNanos}},
+			Expected: results.Success(true),
+		},
+		"valid/invalid/seconds/above": {
+			Message:  &cases.TimestampValid{Val: &timestamppb.Timestamp{Seconds: maxTimestampSeconds + 1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "timestamp.valid"}),
+		},
+		"valid/invalid/seconds/below": {
+			Message:  &cases.TimestampValid{Val: &timestamppb.Timestamp{Seconds: minTimestampSeconds - 1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "timestamp.valid"}),
+		},
+		"valid/invalid/nanos/above": {
+			Message:  &cases.TimestampValid{Val: &timestamppb.Timestamp{Nanos: maxTimestampNanos + 1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "timestamp.valid"}),
+		},
+		"valid/invalid/nanos/below": {
+			Message:  &cases.TimestampValid{Val: &timestamppb.Timestamp{Nanos: minTimestampNanos - 1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "timestamp.valid"}),
 		},
 		"required/valid": {
 			Message:  &cases.TimestampRequired{Val: &timestamppb.Timestamp{}},
