@@ -3697,4 +3697,9 @@ message TimestampRules {
     id: "timestamp.within",
     expression: "this < now-rules.within || this > now+rules.within ? 'value must be within %s of now'.format([rules.within]) : ''"
   }];
+
+  // `valid` specifies that this field, of the `google.protobuf.Timestamp` type, must adhere to the documented specification:
+  // * the `seconds` field must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
+  // * the `nanos` field must be from 0 to 999,999,999 inclusive.
+  bool valid = 10;
 }
