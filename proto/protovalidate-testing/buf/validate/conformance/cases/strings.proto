@@ -118,25 +118,24 @@ message StringIPv4 {
 message StringIPv6 {
   string val = 1 [(buf.validate.field).string.ipv6 = true];
 }
-
-//message StringIPWithPrefixLen {
-//  string val = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
-//}
-//message StringIPv4WithPrefixLen {
-//  string val = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
-//}
-//message StringIPv6WithPrefixLen {
-//  string val = 1 [(buf.validate.field).string.ipv6_with_prefixlen = true];
-//}
-//message StringIPPrefix {
-//  string val = 1 [(buf.validate.field).string.ip_prefix = true];
-//}
-//message StringIPv4Prefix {
-//  string val = 1 [(buf.validate.field).string.ipv4_prefix = true];
-//}
-//message StringIPv6Prefix {
-//  string val = 1 [(buf.validate.field).string.ipv6_prefix = true];
-//}
+message StringIPWithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
+}
+message StringIPv4WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
+}
+message StringIPv6WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv6_with_prefixlen = true];
+}
+message StringIPPrefix {
+  string val = 1 [(buf.validate.field).string.ip_prefix = true];
+}
+message StringIPv4Prefix {
+  string val = 1 [(buf.validate.field).string.ipv4_prefix = true];
+}
+message StringIPv6Prefix {
+  string val = 1 [(buf.validate.field).string.ipv6_prefix = true];
+}
 message StringURI {
   string val = 1 [(buf.validate.field).string.uri = true];
 }

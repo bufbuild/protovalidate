@@ -432,98 +432,98 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6"}),
 		},
-		// "ip_with_prefixlen/valid/v4": {
-		// 	Message:  &cases.StringIPWithPrefixLen{Val: "192.168.0.1/24"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ip_with_prefixlen/valid/v6": {
-		// 	Message:  &cases.StringIPWithPrefixLen{Val: "2001:db8:1::1/64"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ip_with_prefixlen/invalid": {
-		// 	Message: &cases.StringIPWithPrefixLen{Val: "foobar"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ip_with_prefixlen"}),
-		// },
-		// "ipv4_with_prefixlen/valid": {
-		// 	Message:  &cases.StringIPv4WithPrefixLen{Val: "192.168.0.1/24"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ipv4_with_prefixlen/invalid/malformed": {
-		// 	Message: &cases.StringIPv4WithPrefixLen{Val: "foobar"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_with_prefixlen"}),
-		// },
-		// "ipv4_with_prefixlen/invalid/v6": {
-		// 	Message: &cases.StringIPv4WithPrefixLen{Val: "2001:db8:1::1/64"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_with_prefixlen"}),
-		// },
-		// "ipv6_with_prefixlen/valid/v6": {
-		// 	Message:  &cases.StringIPv6WithPrefixLen{Val: "2001:db8:1::1/64"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ipv6_with_prefixlen/invalid/malformed": {
-		// 	Message: &cases.StringIPv6WithPrefixLen{Val: "foobar"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_with_prefixlen"}),
-		// },
-		// "ipv6_with_prefixlen/invalid/v4": {
-		// 	Message: &cases.StringIPv6WithPrefixLen{Val: "192.168.0.1/24"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_with_prefixlen"}),
-		// },
-		// "ip_prefix/valid/v4": {
-		// 	Message:  &cases.StringIPPrefix{Val: "192.168.0.0/24"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ip_prefix/valid/v6": {
-		// 	Message:  &cases.StringIPPrefix{Val: "2001:db8:1::/48"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ip_prefix/invalid/malformed": {
-		// 	Message: &cases.StringIPPrefix{Val: "foobar"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ip_prefix"}),
-		// },
-		// "ipv4_prefix/valid": {
-		// 	Message:  &cases.StringIPv4Prefix{Val: "192.168.0.0/24"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ipv4_prefix/invalid/not_network_address": {
-		// 	Message: &cases.StringIPv4Prefix{Val: "192.168.0.1/24"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_prefix"}),
-		// },
-		// "ipv4_prefix/invalid/malformed": {
-		// 	Message: &cases.StringIPv4Prefix{Val: "foobar"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_prefix"}),
-		// },
-		// "ipv4_prefix/invalid/v6": {
-		// 	Message: &cases.StringIPv4Prefix{Val: "2001:db8:1::/48"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_prefix"}),
-		// },
-		// "ipv6_prefix/valid/v6": {
-		// 	Message:  &cases.StringIPv6Prefix{Val: "2001:db8:1::/48"},
-		// 	Expected: results.Success(true),
-		// },
-		// "ipv6_prefix/invalid/not_network_address": {
-		// 	Message: &cases.StringIPv6Prefix{Val: "2001:db8:1::1/48"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_prefix"}),
-		// },
-		// "ipv6_prefix/invalid/malformed": {
-		// 	Message: &cases.StringIPv6Prefix{Val: "foobar"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_prefix"}),
-		// },
-		// "ipv6_prefix/invalid/v4": {
-		// 	Message: &cases.StringIPv6Prefix{Val: "192.168.0.0/24"},
-		// 	Expected: results.Violations(
-		// 		&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_prefix"}),
-		// },
+		"ip_with_prefixlen/valid/v4": {
+			Message:  &cases.StringIPWithPrefixLen{Val: "192.168.0.1/24"},
+			Expected: results.Success(true),
+		},
+		"ip_with_prefixlen/valid/v6": {
+			Message:  &cases.StringIPWithPrefixLen{Val: "2001:db8:1::1/64"},
+			Expected: results.Success(true),
+		},
+		"ip_with_prefixlen/invalid": {
+			Message: &cases.StringIPWithPrefixLen{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ip_with_prefixlen"}),
+		},
+		"ipv4_with_prefixlen/valid": {
+			Message:  &cases.StringIPv4WithPrefixLen{Val: "192.168.0.1/24"},
+			Expected: results.Success(true),
+		},
+		"ipv4_with_prefixlen/invalid/malformed": {
+			Message: &cases.StringIPv4WithPrefixLen{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_with_prefixlen"}),
+		},
+		"ipv4_with_prefixlen/invalid/v6": {
+			Message: &cases.StringIPv4WithPrefixLen{Val: "2001:db8:1::1/64"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_with_prefixlen"}),
+		},
+		"ipv6_with_prefixlen/valid/v6": {
+			Message:  &cases.StringIPv6WithPrefixLen{Val: "2001:db8:1::1/64"},
+			Expected: results.Success(true),
+		},
+		"ipv6_with_prefixlen/invalid/malformed": {
+			Message: &cases.StringIPv6WithPrefixLen{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_with_prefixlen"}),
+		},
+		"ipv6_with_prefixlen/invalid/v4": {
+			Message: &cases.StringIPv6WithPrefixLen{Val: "192.168.0.1/24"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_with_prefixlen"}),
+		},
+		"ip_prefix/valid/v4": {
+			Message:  &cases.StringIPPrefix{Val: "192.168.0.0/24"},
+			Expected: results.Success(true),
+		},
+		"ip_prefix/valid/v6": {
+			Message:  &cases.StringIPPrefix{Val: "2001:db8:1::/48"},
+			Expected: results.Success(true),
+		},
+		"ip_prefix/invalid/malformed": {
+			Message: &cases.StringIPPrefix{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ip_prefix"}),
+		},
+		"ipv4_prefix/valid": {
+			Message:  &cases.StringIPv4Prefix{Val: "192.168.0.0/24"},
+			Expected: results.Success(true),
+		},
+		"ipv4_prefix/invalid/not_network_address": {
+			Message: &cases.StringIPv4Prefix{Val: "192.168.0.1/24"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_prefix"}),
+		},
+		"ipv4_prefix/invalid/malformed": {
+			Message: &cases.StringIPv4Prefix{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_prefix"}),
+		},
+		"ipv4_prefix/invalid/v6": {
+			Message: &cases.StringIPv4Prefix{Val: "2001:db8:1::/48"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_prefix"}),
+		},
+		"ipv6_prefix/valid/v6": {
+			Message:  &cases.StringIPv6Prefix{Val: "2001:db8:1::/48"},
+			Expected: results.Success(true),
+		},
+		"ipv6_prefix/invalid/not_network_address": {
+			Message: &cases.StringIPv6Prefix{Val: "2001:db8:1::1/48"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_prefix"}),
+		},
+		"ipv6_prefix/invalid/malformed": {
+			Message: &cases.StringIPv6Prefix{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_prefix"}),
+		},
+		"ipv6_prefix/invalid/v4": {
+			Message: &cases.StringIPv6Prefix{Val: "192.168.0.0/24"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_prefix"}),
+		},
 		"uri/valid": {
 			Message:  &cases.StringURI{Val: "https://example.com/foo/bar?baz=quux"},
 			Expected: results.Success(true),
