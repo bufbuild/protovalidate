@@ -4378,8 +4378,8 @@ type StringRules_IpWithPrefixlen struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IP with prefix length
-	//	  string value = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
+	//	  // value must be a valid IP with prefix length
+	//	   string value = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
 	//	}
 	//
 	// ```
@@ -4395,8 +4395,8 @@ type StringRules_Ipv4WithPrefixlen struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IPv4 address with prefix lentgh
-	//	  string value = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
+	//	  // value must be a valid IPv4 address with prefix lentgh
+	//	   string value = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
 	//	}
 	//
 	// ```
@@ -4412,8 +4412,8 @@ type StringRules_Ipv6WithPrefixlen struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IPv6 address prefix length
-	//	  string value = 1 [(buf.validate.field).string.ipv6_with_prefixlen = true];
+	//	  // value must be a valid IPv6 address prefix length
+	//	   string value = 1 [(buf.validate.field).string.ipv6_with_prefixlen = true];
 	//	}
 	//
 	// ```
@@ -4423,13 +4423,14 @@ type StringRules_Ipv6WithPrefixlen struct {
 type StringRules_IpPrefix struct {
 	// `ip_prefix` specifies that the field value must be a valid IP (v4 or v6) prefix.
 	// If the field value isn't a valid IP prefix, an error message will be
-	// generated.
+	// generated. The prefix must have all zeros for the masked bits of the prefix (e.g.,
+	// `127.0.0.0/16`, not `127.0.0.1/16`).
 	//
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IP prefix
-	//	  string value = 1 [(buf.validate.field).string.ip_prefix = true];
+	//	  // value must be a valid IP prefix
+	//	   string value = 1 [(buf.validate.field).string.ip_prefix = true];
 	//	}
 	//
 	// ```
@@ -4439,13 +4440,14 @@ type StringRules_IpPrefix struct {
 type StringRules_Ipv4Prefix struct {
 	// `ipv4_prefix` specifies that the field value must be a valid IPv4
 	// prefix. If the field value isn't a valid IPv4 prefix, an error message
-	// will be generated.
+	// will be generated. The prefix must have all zeros for the masked bits of
+	// the prefix (e.g., `127.0.0.0/16`, not `127.0.0.1/16`).
 	//
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IPv4 prefix
-	//	  string value = 1 [(buf.validate.field).string.ipv4_prefix = true];
+	//	  // value must be a valid IPv4 prefix
+	//	   string value = 1 [(buf.validate.field).string.ipv4_prefix = true];
 	//	}
 	//
 	// ```
@@ -4453,15 +4455,16 @@ type StringRules_Ipv4Prefix struct {
 }
 
 type StringRules_Ipv6Prefix struct {
-	// `ipv6_prefix` specifies that the field value must be a valid
-	// IPv6 prefix.
-	// If the field value is not a valid IPv6 prefix, an error message will be generated.
+	// `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix.
+	// If the field value is not a valid IPv6 prefix, an error message will be
+	// generated. The prefix must have all zeros for the masked bits of the prefix
+	// (e.g., `2001:db8::/48`, not `2001:db8::1/48`).
 	//
 	// ```proto
 	//
 	//	message MyString {
-	//	 // value must be a valid IPv6 prefix
-	//	  string value = 1 [(buf.validate.field).string.ipv6_prefix = true];
+	//	  // value must be a valid IPv6 prefix
+	//	   string value = 1 [(buf.validate.field).string.ipv6_prefix = true];
 	//	}
 	//
 	// ```

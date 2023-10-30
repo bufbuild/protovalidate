@@ -2874,7 +2874,7 @@ message StringRules {
 
     // `ip_prefix` specifies that the field value must be a valid IP (v4 or v6) prefix.
     // If the field value isn't a valid IP prefix, an error message will be
-    // generated. The prefix must have all zeros for the masked bits of the prefix (e.g., 
+    // generated. The prefix must have all zeros for the masked bits of the prefix (e.g.,
     // `127.0.0.0/16`, not `127.0.0.1/16`).
     //
     // ```proto
@@ -2907,8 +2907,8 @@ message StringRules {
     }];
 
     // `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix.
-    // If the field value is not a valid IPv6 prefix, an error message will be 
-    // generated. The prefix must have all zeros for the masked bits of the prefix 
+    // If the field value is not a valid IPv6 prefix, an error message will be
+    // generated. The prefix must have all zeros for the masked bits of the prefix
     // (e.g., `2001:db8::/48`, not `2001:db8::1/48`).
     //
     // ```proto
