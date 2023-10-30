@@ -2821,6 +2821,108 @@ message StringRules {
       expression: "!this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$') ? 'value must be a valid UUID' : ''"
     }];
 
+    // `ip_with_prefixlen` specifies that the field value must be a valid IP (v4 or v6)
+    // address with prefix length. If the field value isn't a valid IP with prefix
+    // length, an error message will be generated.
+    //
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid IP with prefix length
+    //    string value = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
+    // }
+    // ```
+    bool ip_with_prefixlen = 26 [(priv.field).cel = {
+      id: "string.ip_with_prefixlen",
+      message: "value must be a valid IP prefix",
+      expression: "this.isIpPrefix()",
+    }];
+
+    // `ipv4_with_prefixlen` specifies that the field value must be a valid
+    // IPv4 address with prefix.
+    // If the field value isn't a valid IPv4 address with prefix length,
+    // an error message will be generated.
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid IPv4 address with prefix lentgh
+    //    string value = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
+    // }
+    // ```
+    bool ipv4_with_prefixlen = 27 [(priv.field).cel = {
+      id: "string.ipv4_with_prefixlen",
+      message: "value must be a valid IPv4 address with prefix length",
+      expression: "this.isIpPrefix(4)"
+    }];
+
+    // `ipv6_with_prefixlen` specifies that the field value must be a valid
+    // IPv6 address with prefix length.
+    // If the field value is not a valid IPv6 address with prefix length,
+    // an error message will be generated.
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid IPv6 address prefix length
+    //    string value = 1 [(buf.validate.field).string.ipv6_with_prefixlen = true];
+    // }
+    // ```
+    bool ipv6_with_prefixlen = 28 [(priv.field).cel = {
+      id: "string.ipv6_with_prefixlen",
+      message: "value must be a valid IPv6 address with prefix length",
+      expression: "this.isIpPrefix(6)",
+    }];
+
+    // `ip_prefix` specifies that the field value must be a valid IP (v4 or v6) prefix.
+    // If the field value isn't a valid IP prefix, an error message will be
+    // generated. The prefix must have all zeros for the masked bits of the prefix (e.g.,
+    // `127.0.0.0/16`, not `127.0.0.1/16`).
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid IP prefix
+    //    string value = 1 [(buf.validate.field).string.ip_prefix = true];
+    // }
+    // ```
+    bool ip_prefix = 29 [(priv.field).cel = {
+      id: "string.ip_prefix",
+      message: "value must be a valid IP prefix",
+      expression: "this.isIpPrefix(true)",
+    }];
+
+    // `ipv4_prefix` specifies that the field value must be a valid IPv4
+    // prefix. If the field value isn't a valid IPv4 prefix, an error message
+    // will be generated. The prefix must have all zeros for the masked bits of
+    // the prefix (e.g., `127.0.0.0/16`, not `127.0.0.1/16`).
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid IPv4 prefix
+    //    string value = 1 [(buf.validate.field).string.ipv4_prefix = true];
+    // }
+    // ```
+    bool ipv4_prefix = 30 [(priv.field).cel = {
+      id: "string.ipv4_prefix",
+      message: "value must be a valid IPv4 prefix",
+      expression: "this.isIpPrefix(4, true)"
+    }];
+
+    // `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix.
+    // If the field value is not a valid IPv6 prefix, an error message will be
+    // generated. The prefix must have all zeros for the masked bits of the prefix
+    // (e.g., `2001:db8::/48`, not `2001:db8::1/48`).
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid IPv6 prefix
+    //    string value = 1 [(buf.validate.field).string.ipv6_prefix = true];
+    // }
+    // ```
+    bool ipv6_prefix = 31 [(priv.field).cel = {
+      id: "string.ipv6_prefix",
+      message: "value must be a valid IPv6 prefix",
+      expression: "this.isIpPrefix(6, true)",
+    }];
+
     // `well_known_regex` specifies a common well-known pattern
     // defined as a regex. If the field value doesn't match the well-known
     // regex, an error message will be generated.
