@@ -118,6 +118,7 @@ message StringIPv4 {
 message StringIPv6 {
   string val = 1 [(buf.validate.field).string.ipv6 = true];
 }
+
 //message StringIPWithPrefixLen {
 //  string val = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
 //}
