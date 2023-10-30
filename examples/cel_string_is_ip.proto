@@ -18,6 +18,7 @@ import "buf/validate/validate.proto";
 
 service LocationService {
   rpc LocationForIp(LocationForIpRequest) returns (LocationForIpResponse);
+  rpc LocationForIpPrefix(LocationForIpPrefixRequest) returns (LocationForIpPrefixResponse);
 }
 
 message LocationForIpRequest {
@@ -34,5 +35,25 @@ message LocationForIpRequest {
 }
 
 message LocationForIpResponse {
+  // ...
+}
+
+message LocationForIpPrefixRequest {
+  string ip_prefix = 1 [(buf.validate.field).cel = {
+    id: "valid_prefix",
+    message: ".",
+    // `some_string.isIpPrefix()` returns whether the string is a valid ip with prefix length.
+    // `isIpPrefix(4)` returns whether a string is an ipv4 with prefix length.
+    // `isIpPrefix(6)` returns whether a string is an ipv6 with prefix length.
+    // `isIpPrefix(true)` returns whether a string is an ip prefix.
+    // `isIpPrefix(4, true)` returns whether a string is an ipv4 prefix.
+    // `isIpPrefix(6, true)` returns whether a string is an ipv6 prefix.
+    // In this case, it validates that field `ip_prefix` must be a valid ip with
+    // prefix length, either ipv4 or ipv6.
+    expression: "this.isIpPrefix()"
+  }];
+}
+
+message LocationForIpPrefixResponse {
   // ...
 }

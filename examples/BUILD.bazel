@@ -47,7 +47,6 @@ proto_library(
         "cel_string_is_email.proto",
         "cel_string_is_hostname.proto",
         "cel_string_is_ip.proto",
-        "cel_string_is_ip_prefix.proto",
         "cel_string_is_uri.proto",
         "cel_string_match_pattern.proto",
         "cel_string_starts_with_ends_with.proto",
