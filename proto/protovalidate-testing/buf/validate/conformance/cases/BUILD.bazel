@@ -28,6 +28,8 @@ proto_library(
         "numbers.proto",
         "oneofs.proto",
         "repeated.proto",
+        "required_field_proto2.proto",
+        "required_field_proto3.proto",
         "strings.proto",
         "wkt_any.proto",
         "wkt_duration.proto",

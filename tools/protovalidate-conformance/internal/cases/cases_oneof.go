@@ -59,13 +59,41 @@ func oneofSuite() suites.Suite {
 			Message:  &cases.Oneof{O: &cases.Oneof_Z{Z: &cases.TestOneofMsg{}}},
 			Expected: results.Violations(&validate.Violation{FieldPath: "z.val", ConstraintId: "bool.const"}),
 		},
-		"required/valid": {
+		"required/valid/empty": {
 			Message:  &cases.OneofRequired{O: &cases.OneofRequired_X{X: ""}},
+			Expected: results.Success(true),
+		},
+		"required/valid/non-empty": {
+			Message:  &cases.OneofRequired{O: &cases.OneofRequired_X{X: "foo"}},
 			Expected: results.Success(true),
 		},
 		"required/invalid": {
 			Message:  &cases.OneofRequired{},
 			Expected: results.Violations(&validate.Violation{FieldPath: "o", ConstraintId: "required"}),
+		},
+		"required/required_field/valid/empty": {
+			Message: &cases.OneofRequiredWithRequiredField{
+				O: &cases.OneofRequiredWithRequiredField_A{A: ""},
+			},
+			Expected: results.Success(true),
+		},
+		"required/required_field/valid/non-empty": {
+			Message: &cases.OneofRequiredWithRequiredField{
+				O: &cases.OneofRequiredWithRequiredField_A{A: "foo"},
+			},
+			Expected: results.Success(true),
+		},
+		"required/required_field/wrong_field": {
+			Message: &cases.OneofRequiredWithRequiredField{
+				O: &cases.OneofRequiredWithRequiredField_B{B: "foo"},
+			},
+			Expected: results.Violations(&validate.Violation{FieldPath: "a", ConstraintId: "required"}),
+		},
+		"required/required_field/invalid": {
+			Message: &cases.OneofRequiredWithRequiredField{},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "o", ConstraintId: "required"},
+				&validate.Violation{FieldPath: "a", ConstraintId: "required"}),
 		},
 		"ignore_empty/X/valid": {
 			Message:  &cases.OneofIgnoreEmpty{O: &cases.OneofIgnoreEmpty_X{X: ""}},
