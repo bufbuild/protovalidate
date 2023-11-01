@@ -177,16 +177,16 @@ func (x *MessageConstraints) GetCel() []*Constraint {
 
 // The `OneofConstraints` message type enables you to manage constraints for
 // oneof fields in your protobuf messages. Use the `required` constraint to ensure
-// that exactly one of the fields within a oneof is set; validation will fail
-// if none of the fields in the oneof are set:
+// that exactly one of the fields within a oneof is not empty; validation will fail
+// if all of the fields in the oneof are empty:
 type OneofConstraints struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// `required` is an optional boolean attribute that ensures that
-	// exactly one of the field options in a oneof is set; validation fails if
-	// no fields in the oneof are set.
+	// exactly one of the field options in a oneof is not empty; validation fails if
+	// all fields in the oneof are empty.
 	//
 	// ```proto
 	//

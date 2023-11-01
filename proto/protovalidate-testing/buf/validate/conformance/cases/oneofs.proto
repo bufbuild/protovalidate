@@ -17,6 +17,7 @@ syntax = "proto3";
 package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
 
 message TestOneofMsg {
   bool val = 1 [(buf.validate.field).bool.const = true];
@@ -45,6 +46,7 @@ message OneofRequired {
     int32 y = 2;
     int32 name_with_underscores = 3;
     int32 under_and_1_number = 4;
+    google.protobuf.Duration duration = 5;
   }
 }
 

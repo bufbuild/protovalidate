@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/types/known/durationpb"
 )
 
 func oneofSuite() suites.Suite {
@@ -59,9 +60,21 @@ func oneofSuite() suites.Suite {
 			Message:  &cases.Oneof{O: &cases.Oneof_Z{Z: &cases.TestOneofMsg{}}},
 			Expected: results.Violations(&validate.Violation{FieldPath: "z.val", ConstraintId: "bool.const"}),
 		},
-		"required/valid": {
-			Message:  &cases.OneofRequired{O: &cases.OneofRequired_X{X: ""}},
+		"required/valid_scalar": {
+			Message:  &cases.OneofRequired{O: &cases.OneofRequired_X{X: "foo"}},
 			Expected: results.Success(true),
+		},
+		"required/empty_scalar": {
+			Message:  &cases.OneofRequired{O: &cases.OneofRequired_X{X: ""}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "o", ConstraintId: "required"}),
+		},
+		"required/valid_message": {
+			Message:  &cases.OneofRequired{O: &cases.OneofRequired_Duration{Duration: &durationpb.Duration{}}},
+			Expected: results.Success(true),
+		},
+		"required/empty_message": {
+			Message:  &cases.OneofRequired{O: &cases.OneofRequired_Duration{Duration: nil}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "o", ConstraintId: "required"}),
 		},
 		"required/invalid": {
 			Message:  &cases.OneofRequired{},
