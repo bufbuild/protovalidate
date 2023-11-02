@@ -48,6 +48,15 @@ message OneofRequired {
   }
 }
 
+message OneofRequiredWithRequiredField {
+  oneof o {
+    option (buf.validate.oneof).required = true;
+
+    string a = 1 [(buf.validate.field).required = true];
+    string b = 2;
+  }
+}
+
 message OneofIgnoreEmpty {
   oneof o {
     string x = 1 [
@@ -66,8 +75,8 @@ message OneofIgnoreEmpty {
     ];
     int32 z = 3 [
       (buf.validate.field).int32 = {
-        lte: 128,
-        gte: 256,
+        gte: 128,
+        lte: 256,
       },
       (buf.validate.field).ignore_empty = true
     ];
