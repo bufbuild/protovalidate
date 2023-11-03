@@ -18,31 +18,6 @@ package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
 
-// all fields in this message should not be impacted by ignore_empty
-message IgnoreEmptyProto2Noop {
-  optional Msg msg = 1 [
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).cel = {
-      id: "ignore_empty.proto2.message",
-      message: "val must be foo",
-      expression: "this.val == 'foo'",
-    }
-  ];
-  oneof o {
-    int32 a = 2 [
-      (buf.validate.field).ignore_empty = true,
-      (buf.validate.field).int32.gt = 0
-    ];
-  }
-  optional string str = 3 [
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).string.min_len = 5
-  ];
-  message Msg {
-    optional string val = 1;
-  }
-}
-
 message IgnoreEmptyProto2ScalarOptional {
   optional int32 val = 1 [
     (buf.validate.field).ignore_empty = true,
