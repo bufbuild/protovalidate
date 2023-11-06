@@ -1,0 +1,78 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+package buf.validate.conformance.cases;
+
+import "buf/validate/validate.proto";
+
+message IgnoreEmptyProto2ScalarOptional {
+  optional int32 val = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message IgnoreEmptyProto2ScalarOptionalWithDefault {
+  optional int32 val = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).int32.gt = 0,
+    default = 42
+  ];
+}
+
+message IgnoreEmptyProto2ScalarRequired {
+  required int32 val = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message IgnoreEmptyProto2Message {
+  optional Msg val = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).cel = {
+      id: "ignore_empty.proto2.message",
+      message: "foobar",
+      expression: "this.val == 'foo'",
+    }
+  ];
+  message Msg {
+    optional string val = 1;
+  }
+}
+
+message IgnoreEmptyProto2Oneof {
+  oneof o {
+    int32 val = 1 [
+      (buf.validate.field).ignore_empty = true,
+      (buf.validate.field).int32.gt = 0
+    ];
+  }
+}
+
+message IgnoreEmptyProto2Repeated {
+  repeated int32 val = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).repeated.min_items = 3
+  ];
+}
+
+message IgnoreEmptyProto2Map {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).map.min_pairs = 3
+  ];
+}
