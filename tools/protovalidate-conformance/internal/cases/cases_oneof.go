@@ -95,17 +95,5 @@ func oneofSuite() suites.Suite {
 				&validate.Violation{FieldPath: "o", ConstraintId: "required"},
 				&validate.Violation{FieldPath: "a", ConstraintId: "required"}),
 		},
-		"ignore_empty/X/valid": {
-			Message:  &cases.OneofIgnoreEmpty{O: &cases.OneofIgnoreEmpty_X{X: ""}},
-			Expected: results.Success(true),
-		},
-		"ignore_empty/Y/valid": {
-			Message:  &cases.OneofIgnoreEmpty{O: &cases.OneofIgnoreEmpty_Y{Y: []byte("")}},
-			Expected: results.Success(true),
-		},
-		"ignore_empty/Z/valid": {
-			Message:  &cases.OneofIgnoreEmpty{O: &cases.OneofIgnoreEmpty_Z{Z: 0}},
-			Expected: results.Success(true),
-		},
 	}
 }
