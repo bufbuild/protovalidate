@@ -24,9 +24,13 @@ import (
 
 func ignoreEmptySuite() suites.Suite {
 	return suites.Suite{
-		"proto2/scalar/optional/nonzero": suites.Case{
+		"proto2/scalar/optional/nonzero/valid": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarOptional{Val: proto.Int32(42)},
 			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyProto2ScalarOptional{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
 		},
 		"proto2/scalar/optional/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarOptional{Val: proto.Int32(0)},
@@ -36,9 +40,13 @@ func ignoreEmptySuite() suites.Suite {
 			Message:  &cases.IgnoreEmptyProto2ScalarOptional{},
 			Expected: results.Success(true),
 		},
-		"proto2/scalar/optional_with_default/nonzero": suites.Case{
+		"proto2/scalar/optional_with_default/nonzero/valid": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(1)},
 			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional_with_default/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
 		},
 		"proto2/scalar/optional_with_default/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(0)},
@@ -52,9 +60,13 @@ func ignoreEmptySuite() suites.Suite {
 			Message:  &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{},
 			Expected: results.Success(true),
 		},
-		"proto2/scalar/required/nonzero": suites.Case{
+		"proto2/scalar/required/nonzero/valid": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarRequired{Val: proto.Int32(42)},
 			Expected: results.Success(true),
+		},
+		"proto2/scalar/required/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyProto2ScalarRequired{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
 		},
 		"proto2/scalar/required/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarRequired{Val: proto.Int32(0)},
