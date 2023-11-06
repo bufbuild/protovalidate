@@ -56,29 +56,3 @@ message OneofRequiredWithRequiredField {
     string b = 2;
   }
 }
-
-message OneofIgnoreEmpty {
-  oneof o {
-    string x = 1 [
-      (buf.validate.field).string = {
-        min_len: 3,
-        max_len: 5
-      },
-      (buf.validate.field).ignore_empty = true
-    ];
-    bytes y = 2 [
-      (buf.validate.field).bytes = {
-        min_len: 3,
-        max_len: 5
-      },
-      (buf.validate.field).ignore_empty = true
-    ];
-    int32 z = 3 [
-      (buf.validate.field).int32 = {
-        gte: 128,
-        lte: 256,
-      },
-      (buf.validate.field).ignore_empty = true
-    ];
-  }
-}

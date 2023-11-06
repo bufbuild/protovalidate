@@ -192,5 +192,41 @@ func ignoreEmptySuite() suites.Suite {
 			Message:  &cases.IgnoreEmptyProto3Map{},
 			Expected: results.Success(true),
 		},
+		"proto3/repeated/items/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyRepeatedItems{Val: []int32{0}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/items/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyRepeatedItems{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/items/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyRepeatedItems{Val: []int32{-1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val[0]", ConstraintId: "int32.gt"}),
+		},
+		"proto3/map/keys/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"": 42}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/keys/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": 42}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/keys/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"x": 42}},
+			Expected: results.Violations(&validate.Violation{FieldPath: `val["x"]`, ForKey: true, ConstraintId: "string.min_len"}),
+		},
+		"proto3/map/values/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": 0}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/values/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": 42}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/values/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": -1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: `val["foo"]`, ConstraintId: "int32.gt"}),
+		},
 	}
 }
