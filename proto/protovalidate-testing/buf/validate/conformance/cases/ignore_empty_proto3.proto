@@ -68,3 +68,23 @@ message IgnoreEmptyProto3Map {
     (buf.validate.field).map.min_pairs = 3
   ];
 }
+
+message IgnoreEmptyRepeatedItems {
+  repeated int32 val = 1 [(buf.validate.field).repeated.items = {
+    ignore_empty: true,
+    int32: {gt: 0},
+  }];
+}
+
+message IgnoreEmptyMapPairs {
+  map<string, int32> val = 1 [
+    (buf.validate.field).map.keys = {
+      ignore_empty: true,
+      string: {min_len: 3},
+    },
+    (buf.validate.field).map.values = {
+      ignore_empty: true,
+      int32: {gt: 0},
+    }
+  ];
+}
