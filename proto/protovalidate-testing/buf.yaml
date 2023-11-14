@@ -13,6 +13,8 @@ breaking:
 lint:
   use:
     - DEFAULT
+  except:
+    - PROTOVALIDATE
   ignore_only:
     ENUM_NO_ALLOW_ALIAS:
       - buf/validate/conformance/cases/enums.proto
