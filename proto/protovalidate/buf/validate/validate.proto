@@ -3249,7 +3249,7 @@ message EnumRules {
   //
   // message MyMessage {
   //   // The field `value` must be equal to one of the specified values.
-  //   MyEnum value = 1 [(buf.validate.field).enum.in = {1, 2}];
+  //   MyEnum value = 1 [(buf.validate.field).enum = { in: [1, 2]}];
   // }
   // ```
   repeated int32 in = 3 [(priv.field).cel = {
@@ -3270,7 +3270,7 @@ message EnumRules {
   //
   // message MyMessage {
   //   // The field `value` must not be equal to any of the specified values.
-  //   MyEnum value = 1 [(buf.validate.field).enum.not_in = {1, 2}];
+  //   MyEnum value = 1 [(buf.validate.field).enum = { not_in: [1, 2]}];
   // }
   // ```
   repeated int32 not_in = 4 [(priv.field).cel = {
