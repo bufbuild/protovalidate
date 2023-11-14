@@ -13,6 +13,8 @@ breaking:
 lint:
   use:
     - DEFAULT
+  except:
+    - PROTOVALIDATE
   ignore_only:
     ENUM_NO_ALLOW_ALIAS:
       - buf/validate/conformance/cases/enums.proto
@@ -23,5 +25,3 @@ lint:
       - buf/validate/conformance/cases/filename-with-dash.proto
     PACKAGE_VERSION_SUFFIX:
       - buf/validate/conformance
-    PROTOVALIDATE:
-      - buf/validate/conformance/cases
