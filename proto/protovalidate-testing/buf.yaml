@@ -23,3 +23,5 @@ lint:
       - buf/validate/conformance/cases/filename-with-dash.proto
     PACKAGE_VERSION_SUFFIX:
       - buf/validate/conformance
+    PROTOVALIDATE:
+      - buf/validate/conformance/cases
