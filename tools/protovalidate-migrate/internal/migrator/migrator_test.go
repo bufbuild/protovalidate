@@ -131,6 +131,10 @@ func TestMigrator(t *testing.T) {
 			srcPath: "field_ignore_empty.source.proto",
 			dstPath: "field_ignore_empty.migrated.proto",
 		},
+		{
+			srcPath: "no_separator.source.proto",
+			dstPath: "no_separator.migrated.proto",
+		},
 	}
 
 	pathPrefix := "../../../../proto/protovalidate-testing/tests/migrate/"

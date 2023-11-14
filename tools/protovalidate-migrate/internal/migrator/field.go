@@ -253,7 +253,11 @@ func (v *MessageLiteralVisitor) VisitMessageFieldNode(node *ast.MessageFieldNode
 		v.wroteItem = false
 		return nil
 	default:
-		if err := v.PrintNodes(false, node.Name, node.Sep); err != nil {
+		nodes := []ast.Node{node.Name}
+		if node.Sep != nil {
+			nodes = append(nodes, node.Sep)
+		}
+		if err := v.PrintNodes(false, nodes...); err != nil {
 			return err
 		}
 
