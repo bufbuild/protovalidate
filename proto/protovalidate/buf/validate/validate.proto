@@ -3269,10 +3269,18 @@ message BytesRules {
     //   optional bytes value = 1 [(buf.validate.field).bytes.ip = true];
     // }
     // ```
-    bool ip = 10 [(priv.field).cel = {
-      id: "bytes.ip",
-      expression: "this.size() != 4 && this.size() != 16 ? 'value must be a valid IP address' : ''"
-    }];
+    bool ip = 10 [
+      (priv.field).cel = {
+        id: "bytes.ip",
+        message: "value must be a valid IP address",
+        expression: "this.size() == 4 || this.size() == 16 || this.size() == 0 ",
+      },
+      (priv.field).cel = {
+        id: "bytes.ip_empty",
+        message: "an empty value is not a valid IP address",
+        expression: "this.size() != 0",
+      }
+    ];
 
     // `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
     // If the field value doesn't meet this constraint, an error message is generated.
@@ -3283,10 +3291,18 @@ message BytesRules {
     //   optional bytes value = 1 [(buf.validate.field).bytes.ipv4 = true];
     // }
     // ```
-    bool ipv4 = 11 [(priv.field).cel = {
-      id: "bytes.ipv4",
-      expression: "this.size() != 4 ? 'value must be a valid IPv4 address' : ''"
-    }];
+    bool ipv4 = 11 [
+      (priv.field).cel = {
+        id: "bytes.ipv4",
+        message: "value must be a valid IPv4 address",
+        expression: "this.size() == 4 || this.size() == 0",
+      },
+      (priv.field).cel = {
+        id: "bytes.ipv4_empty",
+        message: "an empty value is not a valid IPv4 address",
+        expression: "this.size() != 0",
+      }
+    ];
 
     // `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
     // If the field value doesn't meet this constraint, an error message is generated.
@@ -3296,10 +3312,18 @@ message BytesRules {
     //   optional bytes value = 1 [(buf.validate.field).bytes.ipv6 = true];
     // }
     // ```
-    bool ipv6 = 12 [(priv.field).cel = {
-      id: "bytes.ipv6",
-      expression: "this.size() != 16 ? 'value must be a valid IPv6 address' : ''"
-    }];
+    bool ipv6 = 12 [
+      (priv.field).cel = {
+        id: "bytes.ipv6",
+        message: "value must be a valid IPv6 address",
+        expression: "this.size() == 16 || this.size() == 0"
+      },
+      (priv.field).cel = {
+        id: "bytes.ipv6_empty",
+        message: "an empty value is not a valid IPv6 address",
+        expression: "this.size() != 0",
+      }
+    ];
   }
 }
 
