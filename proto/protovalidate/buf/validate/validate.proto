@@ -2702,7 +2702,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.email_empty",
-        message: "an empty value is not a valid email address",
+        message: "value is empty, which is not a valid email address",
         expression: "this != ''",
       }
     ];
@@ -2726,7 +2726,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.hostname_empty",
-        message: "an empty value is not a valid hostname",
+        message: "value is empty, which is not a valid hostname",
         expression: "this != ''",
       }
     ];
@@ -2750,7 +2750,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ip_empty",
-        message: "an empty value is not a valid IP address",
+        message: "value is empty, which is not a valid IP address",
         expression: "this != ''",
       }
     ];
@@ -2773,7 +2773,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ipv4_empty",
-        message: "an empty value is not a valid IPv4 address",
+        message: "value is empty, which is not a valid IPv4 address",
         expression: "this != ''",
       }
     ];
@@ -2796,7 +2796,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ipv6_empty",
-        message: "an empty value is not a valid IPv6 address",
+        message: "value is empty, which is not a valid IPv6 address",
         expression: "this != ''",
       }
     ];
@@ -2819,7 +2819,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.uri_emtpy",
-        message: "an empty value is not a valid URI",
+        message: "value is empty, which is not a valid URI",
         expression: "this != ''",
       }
     ];
@@ -2860,7 +2860,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.address_empty",
-        message: "an empty value is not a valid hostname, or ip address",
+        message: "value is empty, which is not a valid hostname, or ip address",
         expression: "this != ''",
       }
     ];
@@ -2883,7 +2883,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.uuid_empty",
-        message: "an empty value is not a valid UUID",
+        message: "value is empty, which is not a valid UUID",
         expression: "this != ''",
       }
     ];
@@ -2907,7 +2907,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ip_with_prefixlen_empty",
-        message: "an empty value is not a valid IP prefix",
+        message: "value is empty, which is not a valid IP prefix",
         expression: "this != ''",
       }
     ];
@@ -2931,7 +2931,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ipv4_with_prefixlen_empty",
-        message: "an empty value is not a valid IPv4 address with prefix length",
+        message: "value is empty, which is not a valid IPv4 address with prefix length",
         expression: "this != ''"
       }
     ];
@@ -2955,7 +2955,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ipv6_with_prefixlen_empty",
-        message: "an empty value is not a valid IPv6 address with prefix length",
+        message: "value is empty, which is not a valid IPv6 address with prefix length",
         expression: "this != ''",
       }
     ];
@@ -2979,7 +2979,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ip_prefix_empty",
-        message: "an empty value is not a valid IP prefix",
+        message: "value is empty, which is not a valid IP prefix",
         expression: "this != ''",
       }
     ];
@@ -3003,7 +3003,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ipv4_prefix_empty",
-        message: "an empty value is not a valid IPv4 prefix",
+        message: "value is empty, which is not a valid IPv4 prefix",
         expression: "this != ''"
       }
     ];
@@ -3027,7 +3027,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.ipv6_prefix_empty",
-        message: "an empty value is not a valid IPv6 prefix",
+        message: "value is empty, which is not a valid IPv6 prefix",
         expression: "this != ''",
       }
     ];
@@ -3063,7 +3063,7 @@ message StringRules {
       },
       (priv.field).cel = {
         id: "string.well_known_regex.header_name_empty",
-        message: "an empty value is not a valid HTTP header name",
+        message: "value is empty, which is not a valid HTTP header name",
         expression: "rules.well_known_regex != 1 || this != ''",
       },
       (priv.field).cel = {
@@ -3277,7 +3277,7 @@ message BytesRules {
       },
       (priv.field).cel = {
         id: "bytes.ip_empty",
-        message: "an empty value is not a valid IP address",
+        message: "value is empty, which is not a valid IP address",
         expression: "this.size() != 0",
       }
     ];
@@ -3299,7 +3299,7 @@ message BytesRules {
       },
       (priv.field).cel = {
         id: "bytes.ipv4_empty",
-        message: "an empty value is not a valid IPv4 address",
+        message: "value is empty, which is not a valid IPv4 address",
         expression: "this.size() != 0",
       }
     ];
@@ -3320,7 +3320,7 @@ message BytesRules {
       },
       (priv.field).cel = {
         id: "bytes.ipv6_empty",
-        message: "an empty value is not a valid IPv6 address",
+        message: "value is empty, which is not a valid IPv6 address",
         expression: "this.size() != 0",
       }
     ];
