@@ -2818,7 +2818,7 @@ message StringRules {
         expression: "this.isUri() || this == ''",
       },
       (priv.field).cel = {
-        id: "string.uri_emtpy",
+        id: "string.uri_empty",
         message: "value is empty, which is not a valid URI",
         expression: "this != ''",
       }
