@@ -15,11 +15,10 @@
 package results
 
 import (
-	"fmt"
-	"strings"
-
 	"cmp"
+	"fmt"
 	"slices"
+	"strings"
 
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
