@@ -48,4 +48,11 @@ jobs:
       - name: Test
         run: make test
       - name: Lint
-        run: make lint-go
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.53
+          skip-pkg-cache: true
+          args: >
+            --modules-download-mode=readonly
+            --timeout=3m0s
+            ./tools/... 
