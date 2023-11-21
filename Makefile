@@ -37,6 +37,10 @@ lint: lint-proto lint-go  ## Lint code and protos
 lint-go: $(BIN)/golangci-lint
 	$(BIN)/golangci-lint run --modules-download-mode=readonly --timeout=3m0s ./tools/...
 
+.PHONY: lint-go-fix
+lint-go-fix: $(BIN)/golangci-lint
+	$(BIN)/golangci-lint run --fix --modules-download-mode=readonly --timeout=3m0s ./tools/...
+
 .PHONY: lint-proto
 lint-proto: $(BIN)/buf
 	$(BIN)/buf lint
