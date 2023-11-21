@@ -65,6 +65,10 @@ issues:
       linters:
         - gosec
         - forbidigo
+    # gci is confused by "slices" and suggests to move it to the end of the import list
+    - path: tools/protovalidate-conformance/internal/results/result.go
+      linters:
+        - gci
     # Building the conformance test suites
     - path: tools/protovalidate-conformance/internal/cases/
       linters:

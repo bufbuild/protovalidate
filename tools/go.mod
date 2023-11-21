@@ -1,6 +1,6 @@
 module github.com/bufbuild/protovalidate/tools
 
-go 1.18
+go 1.21
 
 require (
 	github.com/bufbuild/protocompile v0.6.0
