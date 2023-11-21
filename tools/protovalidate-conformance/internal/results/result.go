@@ -19,9 +19,10 @@ import (
 	"strings"
 
 	"cmp"
+	"slices"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
-	"slices"
 )
 
 type Result interface {
