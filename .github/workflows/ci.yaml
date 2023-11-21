@@ -51,7 +51,7 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: v1.53
-          install-mode: "goinstall"
+          install-mode: goinstall
           skip-pkg-cache: true
           only-new-issues: false
           args: >
