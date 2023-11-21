@@ -15,13 +15,12 @@
 package results
 
 import (
-	"cmp"
 	"fmt"
-	"slices"
 	"strings"
 
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
+	"golang.org/x/exp/slices"
 )
 
 type Result interface {
@@ -224,10 +223,10 @@ func (u unexpectedErrorResult) IsSuccessWith(_ Result, _ *harness.ResultOptions)
 }
 
 func SortViolations(violations []*validate.Violation) {
-	slices.SortFunc(violations, func(a, b *validate.Violation) int {
+	slices.SortFunc(violations, func(a, b *validate.Violation) bool {
 		if a.GetConstraintId() == b.GetConstraintId() {
-			return cmp.Compare(a.GetFieldPath(), b.GetFieldPath())
+			return a.GetFieldPath() < b.GetFieldPath()
 		}
-		return cmp.Compare(a.GetConstraintId(), b.GetConstraintId())
+		return a.GetConstraintId() < b.GetConstraintId()
 	})
 }
