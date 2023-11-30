@@ -214,8 +214,8 @@ enum Ignore {
   IGNORE_UNSPECIFIED = 0;
   // Validation is skipped if the field is unpopulated.
   IGNORE_EMPTY = 1;
-  // Validation is skipped if this field is unpopulated or if it is a nullable
-  // field set to its default value.
+  // Validation is skipped if the field is unpopulated or if it is a nullable
+  // field populated with its default value.
   IGNORE_EMPTY_AND_DEFAULT_VALUE = 2;
 }
 
