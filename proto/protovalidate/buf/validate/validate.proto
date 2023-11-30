@@ -161,7 +161,7 @@ message FieldConstraints {
   // ```
   bool required = 25;
   // DEPRECATED: use ignore=IGNORE_EMPTY instead.
-  bool ignore_empty = 26 [deprecated=true];
+  bool ignore_empty = 26 [deprecated = true];
   // Skip validation on the field if its value matches the specified rule.
   //
   // ```proto
