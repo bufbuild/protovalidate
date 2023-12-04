@@ -216,7 +216,7 @@ enum Ignore {
   IGNORE_EMPTY = 1;
   // Validation is skipped if the field is unpopulated or if it is a nullable
   // field populated with its default value.
-  IGNORE_EMPTY_AND_DEFAULT_VALUE = 2;
+  IGNORE_DEFAULT = 2;
 }
 
 // FloatRules describes the constraints applied to `float` values. These
