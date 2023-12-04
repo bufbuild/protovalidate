@@ -169,7 +169,7 @@ message FieldConstraints {
   //   // The uri rule only applies if the field is populated and not an empty
   //   // string.
   //   optional string url = 1 [
-  //     (buf.validate.field).ignore = IGNORE_EMPTY_AND_DEFAULT_VALUE,
+  //     (buf.validate.field).ignore = IGNORE_DEFAULT,
   //     (buf.validate.field).string.uri = true,
   //   ];
   // }
