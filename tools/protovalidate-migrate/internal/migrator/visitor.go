@@ -22,11 +22,7 @@ import (
 
 func New(cfg Config, fileNode *ast.FileNode, out io.Writer) ast.Visitor {
 	return &RootVisitor{
-		printer: PrinterVisitor{
-			Config: cfg,
-			file:   fileNode,
-			w:      out,
-		},
+		printer: NewPrinterVisitor(cfg, fileNode, out),
 	}
 }
 
