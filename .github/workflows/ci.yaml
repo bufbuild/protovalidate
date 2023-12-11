@@ -24,7 +24,7 @@ jobs:
           path: "~/.cache/bazel"
           key: bazel
       - name: Install go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: stable
           cache-dependency-path: go.work.sum
