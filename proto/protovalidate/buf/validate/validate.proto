@@ -233,7 +233,7 @@ message FloatRules {
   // ```
   optional float const = 1 [(priv.field).cel = {
     id: "float.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
 
   oneof less_than {
@@ -251,7 +251,7 @@ message FloatRules {
       id: "float.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -268,7 +268,7 @@ message FloatRules {
       id: "float.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this > rules.lte)"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
 
@@ -296,31 +296,31 @@ message FloatRules {
         id: "float.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this <= rules.gt)"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this.isNan() || this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (this.isNan() || (rules.lt <= this && this <= rules.gt))"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this.isNan() || this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "float.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -347,31 +347,31 @@ message FloatRules {
         id: "float.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this < rules.gte)"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (this.isNan() || (rules.lt <= this && this < rules.gte))"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "float.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -428,7 +428,7 @@ message DoubleRules {
   // ```
   optional double const = 1 [(priv.field).cel = {
     id: "double.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -445,7 +445,7 @@ message DoubleRules {
       id: "double.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified value
@@ -462,7 +462,7 @@ message DoubleRules {
       id: "double.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this > rules.lte)"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -489,31 +489,31 @@ message DoubleRules {
         id: "double.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this <= rules.gt)"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this.isNan() || this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (this.isNan() || (rules.lt <= this && this <= rules.gt))"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this.isNan() || this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "double.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -540,31 +540,31 @@ message DoubleRules {
         id: "double.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this < rules.gte)"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (this.isNan() || (rules.lt <= this && this < rules.gte))"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "double.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -620,7 +620,7 @@ message Int32Rules {
   // ```
   optional int32 const = 1 [(priv.field).cel = {
     id: "int32.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field
@@ -637,7 +637,7 @@ message Int32Rules {
       id: "int32.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -654,7 +654,7 @@ message Int32Rules {
       id: "int32.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -681,31 +681,31 @@ message Int32Rules {
         id: "int32.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -732,31 +732,31 @@ message Int32Rules {
         id: "int32.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "int32.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -806,7 +806,7 @@ message Int64Rules {
   // ```
   optional int64 const = 1 [(priv.field).cel = {
     id: "int64.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -823,7 +823,7 @@ message Int64Rules {
       id: "int64.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -840,7 +840,7 @@ message Int64Rules {
       id: "int64.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -867,31 +867,31 @@ message Int64Rules {
         id: "int64.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -918,31 +918,31 @@ message Int64Rules {
         id: "int64.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "int64.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -992,7 +992,7 @@ message UInt32Rules {
   // ```
   optional uint32 const = 1 [(priv.field).cel = {
     id: "uint32.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -1009,7 +1009,7 @@ message UInt32Rules {
       id: "uint32.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -1026,7 +1026,7 @@ message UInt32Rules {
       id: "uint32.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -1053,31 +1053,31 @@ message UInt32Rules {
         id: "uint32.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -1104,31 +1104,31 @@ message UInt32Rules {
         id: "uint32.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "uint32.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -1178,7 +1178,7 @@ message UInt64Rules {
   // ```
   optional uint64 const = 1 [(priv.field).cel = {
     id: "uint64.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -1195,7 +1195,7 @@ message UInt64Rules {
       id: "uint64.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -1212,7 +1212,7 @@ message UInt64Rules {
       id: "uint64.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -1239,31 +1239,31 @@ message UInt64Rules {
         id: "uint64.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -1290,31 +1290,31 @@ message UInt64Rules {
         id: "uint64.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "uint64.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -1362,7 +1362,7 @@ message SInt32Rules {
   // ```
   optional sint32 const = 1 [(priv.field).cel = {
     id: "sint32.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field
@@ -1379,7 +1379,7 @@ message SInt32Rules {
       id: "sint32.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -1396,7 +1396,7 @@ message SInt32Rules {
       id: "sint32.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -1423,31 +1423,31 @@ message SInt32Rules {
         id: "sint32.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -1474,31 +1474,31 @@ message SInt32Rules {
         id: "sint32.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sint32.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -1547,7 +1547,7 @@ message SInt64Rules {
   // ```
   optional sint64 const = 1 [(priv.field).cel = {
     id: "sint64.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field
@@ -1564,7 +1564,7 @@ message SInt64Rules {
       id: "sint64.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -1581,7 +1581,7 @@ message SInt64Rules {
       id: "sint64.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -1608,31 +1608,31 @@ message SInt64Rules {
         id: "sint64.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -1659,31 +1659,31 @@ message SInt64Rules {
         id: "sint64.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sint64.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -1732,7 +1732,7 @@ message Fixed32Rules {
   // ```
   optional fixed32 const = 1 [(priv.field).cel = {
     id: "fixed32.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -1749,7 +1749,7 @@ message Fixed32Rules {
       id: "fixed32.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -1766,7 +1766,7 @@ message Fixed32Rules {
       id: "fixed32.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -1793,31 +1793,31 @@ message Fixed32Rules {
         id: "fixed32.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -1844,31 +1844,31 @@ message Fixed32Rules {
         id: "fixed32.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "fixed32.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -1917,7 +1917,7 @@ message Fixed64Rules {
   // ```
   optional fixed64 const = 1 [(priv.field).cel = {
     id: "fixed64.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -1934,7 +1934,7 @@ message Fixed64Rules {
       id: "fixed64.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -1951,7 +1951,7 @@ message Fixed64Rules {
       id: "fixed64.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -1978,31 +1978,31 @@ message Fixed64Rules {
         id: "fixed64.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -2029,31 +2029,31 @@ message Fixed64Rules {
         id: "fixed64.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "fixed64.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -2102,7 +2102,7 @@ message SFixed32Rules {
   // ```
   optional sfixed32 const = 1 [(priv.field).cel = {
     id: "sfixed32.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -2119,7 +2119,7 @@ message SFixed32Rules {
       id: "sfixed32.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -2136,7 +2136,7 @@ message SFixed32Rules {
       id: "sfixed32.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -2163,31 +2163,31 @@ message SFixed32Rules {
         id: "sfixed32.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -2214,31 +2214,31 @@ message SFixed32Rules {
         id: "sfixed32.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed32.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -2287,7 +2287,7 @@ message SFixed64Rules {
   // ```
   optional sfixed64 const = 1 [(priv.field).cel = {
     id: "sfixed64.const",
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''",
+    expression: "this != rules.const ? 'value must equal %d'.format([rules.const]) : ''",
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -2304,7 +2304,7 @@ message SFixed64Rules {
       id: "sfixed64.lt",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
-        "? 'value must be less than %s'.format([rules.lt]) : ''"
+        "? 'value must be less than %d'.format([rules.lt]) : ''"
     }];
 
     // `lte` requires the field value to be less than or equal to the specified
@@ -2321,7 +2321,7 @@ message SFixed64Rules {
       id: "sfixed64.lte",
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
-        "? 'value must be less than or equal to %s'.format([rules.lte]) : ''"
+        "? 'value must be less than or equal to %d'.format([rules.lte]) : ''"
     }];
   }
   oneof greater_than {
@@ -2348,31 +2348,31 @@ message SFixed64Rules {
         id: "sfixed64.gt",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
-          "? 'value must be greater than %s'.format([rules.gt]) : ''"
+          "? 'value must be greater than %d'.format([rules.gt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gt_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
-          "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d and less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gt_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
+          "? 'value must be greater than %d or less than %d'.format([rules.gt, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gt_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
-          "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d and less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gt_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
-          "? 'value must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
+          "? 'value must be greater than %d or less than or equal to %d'.format([rules.gt, rules.lte]) : ''"
       }
     ];
 
@@ -2399,31 +2399,31 @@ message SFixed64Rules {
         id: "sfixed64.gte",
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
-          "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
+          "? 'value must be greater than or equal to %d'.format([rules.gte]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gte_lt",
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d and less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gte_lt_exclusive",
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
+          "? 'value must be greater than or equal to %d or less than %d'.format([rules.gte, rules.lt]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gte_lte",
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
-          "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d and less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       },
       (priv.field).cel = {
         id: "sfixed64.gte_lte_exclusive",
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
-          "? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
+          "? 'value must be greater than or equal to %d or less than or equal to %d'.format([rules.gte, rules.lte]) : ''"
       }
     ];
   }
@@ -2507,7 +2507,7 @@ message StringRules {
   // ```
   optional uint64 len = 19 [(priv.field).cel = {
     id: "string.len",
-    expression: "uint(this.size()) != rules.len ? 'value length must be %s characters'.format([rules.len]) : ''"
+    expression: "uint(this.size()) != rules.len ? 'value length must be %d characters'.format([rules.len]) : ''"
   }];
 
   // `min_len` specifies that the field value must have at least the specified
@@ -2523,7 +2523,7 @@ message StringRules {
   // ```
   optional uint64 min_len = 2 [(priv.field).cel = {
     id: "string.min_len",
-    expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %s characters'.format([rules.min_len]) : ''"
+    expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %d characters'.format([rules.min_len]) : ''"
   }];
 
   // `max_len` specifies that the field value must have no more than the specified
@@ -2539,7 +2539,7 @@ message StringRules {
   // ```
   optional uint64 max_len = 3 [(priv.field).cel = {
     id: "string.max_len",
-    expression: "uint(this.size()) > rules.max_len ? 'value length must be at most %s characters'.format([rules.max_len]) : ''"
+    expression: "uint(this.size()) > rules.max_len ? 'value length must be at most %d characters'.format([rules.max_len]) : ''"
   }];
 
   // `len_bytes` dictates that the field value must have the specified number of
@@ -2554,7 +2554,7 @@ message StringRules {
   // ```
   optional uint64 len_bytes = 20 [(priv.field).cel = {
     id: "string.len_bytes",
-    expression: "uint(bytes(this).size()) != rules.len_bytes ? 'value length must be %s bytes'.format([rules.len_bytes]) : ''"
+    expression: "uint(bytes(this).size()) != rules.len_bytes ? 'value length must be %d bytes'.format([rules.len_bytes]) : ''"
   }];
 
   // `min_bytes` specifies that the field value must have at least the specified
@@ -2570,7 +2570,7 @@ message StringRules {
   // ```
   optional uint64 min_bytes = 4 [(priv.field).cel = {
     id: "string.min_bytes",
-    expression: "uint(bytes(this).size()) < rules.min_bytes ? 'value length must be at least %s bytes'.format([rules.min_bytes]) : ''"
+    expression: "uint(bytes(this).size()) < rules.min_bytes ? 'value length must be at least %d bytes'.format([rules.min_bytes]) : ''"
   }];
 
   // `max_bytes` specifies that the field value must have no more than the
@@ -2585,7 +2585,7 @@ message StringRules {
   // ```
   optional uint64 max_bytes = 5 [(priv.field).cel = {
     id: "string.max_bytes",
-    expression: "uint(bytes(this).size()) > rules.max_bytes ? 'value length must be at most %s bytes'.format([rules.max_bytes]) : ''",
+    expression: "uint(bytes(this).size()) > rules.max_bytes ? 'value length must be at most %d bytes'.format([rules.max_bytes]) : ''",
   }];
 
   // `pattern` specifies that the field value must match the specified
@@ -3038,7 +3038,7 @@ message BytesRules {
   // ```
   optional uint64 len = 13 [(priv.field).cel = {
     id: "bytes.len",
-    expression: "uint(this.size()) != rules.len ? 'value length must be %s bytes'.format([rules.len]) : ''"
+    expression: "uint(this.size()) != rules.len ? 'value length must be %d bytes'.format([rules.len]) : ''"
   }];
 
   // `min_len` requires the field value to have at least the specified minimum
@@ -3053,7 +3053,7 @@ message BytesRules {
   // ```
   optional uint64 min_len = 2 [(priv.field).cel = {
     id: "bytes.min_len",
-    expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %s bytes'.format([rules.min_len]) : ''"
+    expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %d bytes'.format([rules.min_len]) : ''"
   }];
 
   // `max_len` requires the field value to have at most the specified maximum
@@ -3068,7 +3068,7 @@ message BytesRules {
   // ```
   optional uint64 max_len = 3 [(priv.field).cel = {
     id: "bytes.max_len",
-    expression: "uint(this.size()) > rules.max_len ? 'value must be at most %s bytes'.format([rules.max_len]) : ''"
+    expression: "uint(this.size()) > rules.max_len ? 'value must be at most %d bytes'.format([rules.max_len]) : ''"
   }];
 
   // `pattern` requires the field value to match the specified regular
@@ -3323,7 +3323,7 @@ message RepeatedRules {
   // ```
   optional uint64 max_items = 2 [(priv.field).cel = {
     id: "repeated.max_items"
-    expression: "uint(this.size()) > rules.max_items ? 'value must contain no more than %s item(s)'.format([rules.max_items]) : ''"
+    expression: "uint(this.size()) > rules.max_items ? 'value must contain no more than %d item(s)'.format([rules.max_items]) : ''"
   }];
 
   // `unique` indicates that all elements in this field must
