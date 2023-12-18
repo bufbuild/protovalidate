@@ -264,8 +264,9 @@ message Int64GTE {
 }
 message Int64GTLT {
   int64 val = 1 [(buf.validate.field).int64 = {
-    gt: 0,
-    lt: 10
+    // Intentionally choose limits that are outside the range of an unsigned 32-bit integer.
+    gt: -5000000000,
+    lt: 5000000000
   }];
 }
 message Int64ExLTGT {
