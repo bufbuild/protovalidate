@@ -295,6 +295,31 @@ message Int64Ignore {
     (buf.validate.field).ignore_empty = true
   ];
 }
+message Int64BigConstraints {
+  // Intentionally choose limits that are outside the range of both signed and unsigned 32-bit integers.
+  int64 lt_pos = 1 [(buf.validate.field).int64.lt = 5444333222];
+  int64 lt_neg = 2 [(buf.validate.field).int64.lt = -5444333222];
+  int64 gt_pos = 3 [(buf.validate.field).int64.gt = 5444333222];
+  int64 gt_neg = 4 [(buf.validate.field).int64.gt = -5444333222];
+  int64 lte_pos = 5 [(buf.validate.field).int64.lte = 5444333222];
+  int64 lte_neg = 6 [(buf.validate.field).int64.lte = -5444333222];
+  int64 gte_pos = 7 [(buf.validate.field).int64.gte = 5444333222];
+  int64 gte_neg = 8 [(buf.validate.field).int64.gte = -5444333222];
+  int64 constant_pos = 9 [(buf.validate.field).int64.const = 5444333222];
+  int64 constant_neg = 10 [(buf.validate.field).int64.const = -5444333222];
+  int64 in = 11 [(buf.validate.field).int64 = {
+    in: [
+      5444333222,
+      -5444333222
+    ]
+  }];
+  int64 notin = 12 [(buf.validate.field).int64 = {
+    not_in: [
+      5444333222,
+      -5444333222
+    ]
+  }];
+}
 
 message Int64IncorrectType {
   int64 val = 1 [(buf.validate.field).float.gt = 0];
