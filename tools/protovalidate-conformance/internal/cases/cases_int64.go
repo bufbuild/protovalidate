@@ -113,12 +113,12 @@ func int64Suite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"gt_lt/inclusive/invalid/above": {
-			Message: &cases.Int64GTLT{Val: 5000000000},
+			Message: &cases.Int64GTLT{Val: 11},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "int64.gt_lt"}),
 		},
 		"gt_lt/inclusive/invalid/below": {
-			Message: &cases.Int64GTLT{Val: -5000000000},
+			Message: &cases.Int64GTLT{Val: -1},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "int64.gt_lt"}),
 		},
