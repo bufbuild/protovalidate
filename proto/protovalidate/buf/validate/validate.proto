@@ -2711,7 +2711,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.email",
         message: "value must be a valid email address",
-        expression: "this.isEmail() || this == ''",
+        expression: "this == '' || this.isEmail()",
       },
       (priv.field).cel = {
         id: "string.email_empty",
@@ -2735,7 +2735,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.hostname",
         message: "value must be a valid hostname",
-        expression: "this.isHostname() || this == ''",
+        expression: "this == '' || this.isHostname()",
       },
       (priv.field).cel = {
         id: "string.hostname_empty",
@@ -2759,7 +2759,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ip",
         message: "value must be a valid IP address",
-        expression: "this.isIp() || this == ''",
+        expression: "this == '' || this.isIp()",
       },
       (priv.field).cel = {
         id: "string.ip_empty",
@@ -2782,7 +2782,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ipv4",
         message: "value must be a valid IPv4 address",
-        expression: "this.isIp(4) || this == ''",
+        expression: "this == '' || this.isIp(4)",
       },
       (priv.field).cel = {
         id: "string.ipv4_empty",
@@ -2805,7 +2805,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ipv6",
         message: "value must be a valid IPv6 address",
-        expression: "this.isIp(6) || this == ''",
+        expression: "this == '' || this.isIp(6)",
       },
       (priv.field).cel = {
         id: "string.ipv6_empty",
@@ -2828,7 +2828,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.uri",
         message: "value must be a valid URI",
-        expression: "this.isUri() || this == ''",
+        expression: "this == '' || this.isUri()",
       },
       (priv.field).cel = {
         id: "string.uri_empty",
@@ -2869,7 +2869,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.address",
         message: "value must be a valid hostname, or ip address",
-        expression: "this.isHostname() || this.isIp() || this == ''",
+        expression: "this == '' || this.isHostname() || this.isIp()",
       },
       (priv.field).cel = {
         id: "string.address_empty",
@@ -2892,7 +2892,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.uuid",
         message: "value must be a valid UUID",
-        expression: "this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$') || this == ''",
+        expression: "this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')",
       },
       (priv.field).cel = {
         id: "string.uuid_empty",
@@ -2916,7 +2916,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ip_with_prefixlen",
         message: "value must be a valid IP prefix",
-        expression: "this.isIpPrefix() || this == ''",
+        expression: "this == '' || this.isIpPrefix()",
       },
       (priv.field).cel = {
         id: "string.ip_with_prefixlen_empty",
@@ -2940,7 +2940,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ipv4_with_prefixlen",
         message: "value must be a valid IPv4 address with prefix length",
-        expression: "this.isIpPrefix(4) || this == ''"
+        expression: "this == '' || this.isIpPrefix(4)"
       },
       (priv.field).cel = {
         id: "string.ipv4_with_prefixlen_empty",
@@ -2964,7 +2964,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ipv6_with_prefixlen",
         message: "value must be a valid IPv6 address with prefix length",
-        expression: "this.isIpPrefix(6) || this == ''",
+        expression: "this == '' || this.isIpPrefix(6)",
       },
       (priv.field).cel = {
         id: "string.ipv6_with_prefixlen_empty",
@@ -2988,7 +2988,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ip_prefix",
         message: "value must be a valid IP prefix",
-        expression: "this.isIpPrefix(true) || this == ''",
+        expression: "this == '' || this.isIpPrefix(true)",
       },
       (priv.field).cel = {
         id: "string.ip_prefix_empty",
@@ -3012,7 +3012,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ipv4_prefix",
         message: "value must be a valid IPv4 prefix",
-        expression: "this.isIpPrefix(4, true) || this == ''"
+        expression: "this == '' || this.isIpPrefix(4, true)"
       },
       (priv.field).cel = {
         id: "string.ipv4_prefix_empty",
@@ -3036,7 +3036,7 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ipv6_prefix",
         message: "value must be a valid IPv6 prefix",
-        expression: "this.isIpPrefix(6, true) || this == ''",
+        expression: "this == '' || this.isIpPrefix(6, true)",
       },
       (priv.field).cel = {
         id: "string.ipv6_prefix_empty",
