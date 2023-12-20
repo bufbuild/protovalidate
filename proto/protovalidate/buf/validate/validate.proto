@@ -3286,7 +3286,7 @@ message BytesRules {
       (priv.field).cel = {
         id: "bytes.ip",
         message: "value must be a valid IP address",
-        expression: "this.size() == 4 || this.size() == 16 || this.size() == 0 ",
+        expression: "this.size() == 0 || this.size() == 4 || this.size() == 16",
       },
       (priv.field).cel = {
         id: "bytes.ip_empty",
@@ -3308,7 +3308,7 @@ message BytesRules {
       (priv.field).cel = {
         id: "bytes.ipv4",
         message: "value must be a valid IPv4 address",
-        expression: "this.size() == 4 || this.size() == 0",
+        expression: "this.size() == 0 || this.size() == 4",
       },
       (priv.field).cel = {
         id: "bytes.ipv4_empty",
@@ -3329,7 +3329,7 @@ message BytesRules {
       (priv.field).cel = {
         id: "bytes.ipv6",
         message: "value must be a valid IPv6 address",
-        expression: "this.size() == 16 || this.size() == 0"
+        expression: "this.size() == 0 || this.size() == 16"
       },
       (priv.field).cel = {
         id: "bytes.ipv6_empty",
