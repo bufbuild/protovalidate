@@ -21,12 +21,27 @@ import (
 )
 
 type PrinterVisitor struct {
+	*ast.SimpleVisitor
+
 	Config
 	HasPGV bool
 	HasPV  bool
 
 	file *ast.FileNode
 	w    io.Writer
+}
+
+func NewPrinterVisitor(cfg Config, file *ast.FileNode, w io.Writer) PrinterVisitor {
+	printer := PrinterVisitor{
+		SimpleVisitor: &ast.SimpleVisitor{},
+		Config:        cfg,
+		file:          file,
+		w:             w,
+	}
+	printer.DoVisitNode = func(node ast.Node) error {
+		return printer.PrintNodes(true, node)
+	}
+	return printer
 }
 
 func (v PrinterVisitor) PrintNodes(printComments bool, nodes ...ast.Node) error {
@@ -94,160 +109,4 @@ func (v PrinterVisitor) replaceNode(original ast.Node, replacement string) repla
 			Replacement: replacement,
 		},
 	}
-}
-
-func (v PrinterVisitor) VisitFileNode(node *ast.FileNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitSyntaxNode(node *ast.SyntaxNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitPackageNode(node *ast.PackageNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitImportNode(node *ast.ImportNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitOptionNode(node *ast.OptionNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitOptionNameNode(node *ast.OptionNameNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitFieldReferenceNode(node *ast.FieldReferenceNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitCompactOptionsNode(node *ast.CompactOptionsNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitMessageNode(node *ast.MessageNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitExtendNode(node *ast.ExtendNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitExtensionRangeNode(node *ast.ExtensionRangeNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitReservedNode(node *ast.ReservedNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitRangeNode(node *ast.RangeNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitFieldNode(node *ast.FieldNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitGroupNode(node *ast.GroupNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitMapFieldNode(node *ast.MapFieldNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitMapTypeNode(node *ast.MapTypeNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitOneofNode(node *ast.OneofNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitEnumNode(node *ast.EnumNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitEnumValueNode(node *ast.EnumValueNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitServiceNode(node *ast.ServiceNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitRPCNode(node *ast.RPCNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitRPCTypeNode(node *ast.RPCTypeNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitIdentNode(node *ast.IdentNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitCompoundIdentNode(node *ast.CompoundIdentNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitStringLiteralNode(node *ast.StringLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitCompoundStringLiteralNode(node *ast.CompoundStringLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitUintLiteralNode(node *ast.UintLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitPositiveUintLiteralNode(node *ast.PositiveUintLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitNegativeIntLiteralNode(node *ast.NegativeIntLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitFloatLiteralNode(node *ast.FloatLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitSpecialFloatLiteralNode(node *ast.SpecialFloatLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitSignedFloatLiteralNode(node *ast.SignedFloatLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitArrayLiteralNode(node *ast.ArrayLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitMessageLiteralNode(node *ast.MessageLiteralNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitMessageFieldNode(node *ast.MessageFieldNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitKeywordNode(node *ast.KeywordNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitRuneNode(node *ast.RuneNode) error {
-	return v.PrintNodes(true, node)
-}
-
-func (v PrinterVisitor) VisitEmptyDeclNode(node *ast.EmptyDeclNode) error {
-	return v.PrintNodes(true, node)
 }
