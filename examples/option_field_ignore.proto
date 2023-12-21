@@ -1,0 +1,51 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service ProfileService {
+  rpc CreateProfile(CreateProfileRequest) returns (CreateProfileResponse);
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+}
+
+message CreateProfileRequest {
+  string name = 1 [(buf.validate.field).required = true];
+  string email = 2 [
+    (buf.validate.field).string.email = true,
+    // If email field is left empty, it's not validated.
+    (buf.validate.field).ignore = IGNORE_EMPTY
+  ];
+  string description = 3;
+}
+
+message UpdateProfileRequest {
+  uint64 id = 1;
+  // The following fields are optional as this is an update request.
+  optional string name = 2;
+  optional string email = 3 [
+    (buf.validate.field).string.email = true,
+    // `IGNORE_DEFAULT` is used here:
+    // If this field is unpopulated, we don't validate it as an email.
+    // If this field is populated and is set to the empty string (the default
+    // value), it is also ignored. This is to allow users to unset their emails.
+    (buf.validate.field).ignore = IGNORE_DEFAULT
+  ];
+  optional string description = 4;
+}
+
+message CreateProfileResponse {}
+
+message UpdateProfileResponse {}

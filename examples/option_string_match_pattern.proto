@@ -29,7 +29,7 @@ message UserProfile {
       // must match it.
       pattern: "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$",
     },
-    ignore_empty: true,
+    ignore: IGNORE_EMPTY,
   }];
   // `hostname` specifies that the field value must be a valid hostname as defined
   // by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5).
@@ -43,7 +43,7 @@ message UserProfile {
     // defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3).
     // (buf.validate.field).string.uri_ref = true,
     (buf.validate.field).string.uri = true,
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_EMPTY
   ];
   // `ip` specifies that a string field must be a valid ip address, in either v4 or v6.
   string last_login_at = 6 [(buf.validate.field).string.ip = true];
