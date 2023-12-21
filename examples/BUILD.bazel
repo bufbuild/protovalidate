@@ -72,7 +72,7 @@ proto_library(
         "option_duration_range.proto",
         "option_enum_allow_values.proto",
         "option_enum_disallow_values.proto",
-        "option_field_ignore_empty.proto",
+        "option_field_ignore.proto",
         "option_field_presence.proto",
         "option_field_skip_validation.proto",
         "option_map.proto",
