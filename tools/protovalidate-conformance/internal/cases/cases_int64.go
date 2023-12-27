@@ -211,6 +211,23 @@ func int64Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "int64.gte_lte"}),
 		},
+		"big_constraints/valid": {
+			Message: &cases.Int64BigConstraints{
+				LtPos:       -5666777888,
+				LtNeg:       -5666777888,
+				GtPos:       5666777888,
+				GtNeg:       5666777888,
+				LtePos:      -5666777888,
+				LteNeg:      -5666777888,
+				GtePos:      5666777888,
+				GteNeg:      5666777888,
+				ConstantPos: 5444333222,
+				ConstantNeg: -5444333222,
+				In:          5444333222,
+				Notin:       5666777888,
+			},
+			Expected: results.Success(true),
+		},
 		"compilation/wrong_type": {
 			Message:  &cases.Int64IncorrectType{Val: 123},
 			Expected: results.CompilationError("double constraints on float field"),
