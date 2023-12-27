@@ -1,14 +1,10 @@
-# [![](.github/buf-logo.svg)][buf] protovalidate
+![The Buf logo](./.github/buf-logo.svg)
+
+# protovalidate
 
 [![CI](https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml/badge.svg?branch=main)][ci]
 [![Slack](https://img.shields.io/badge/Slack-Buf-%23e01563)][slack]
 [![BSR](https://img.shields.io/badge/BSR-Module-0C65EC)][buf-mod]
-
-**_Update: The next generation of `protoc-gen-validate`, now called
-`protovalidate`, is available in beta for Golang, Python, Java, and C++! 
-We're hard at work on a TypeScript implementations as well. To learn more, check out
-our [blog post][announce]. We value your input in refining our products, so
-don't hesitate to share your feedback on `protovalidate`._**
 
 `protovalidate` is a series of libraries designed to validate Protobuf messages at
 runtime based on user-defined validation rules. Powered by Google's Common
@@ -17,8 +13,13 @@ flexible and efficient foundation for defining and evaluating custom validation
 rules. The primary goal of `protovalidate` is to help developers ensure data
 consistency and integrity across the network without requiring generated code.
 
-> ❓ `protovalidate` is the spiritual successor to `protoc-gen-validate`. Looking
- for `protoc-gen-validate`? Checkout the original [repository][pgv].
+> [!NOTE]
+> `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv].
+>
+> We recommend that new and existing projects transition to using `protovalidate` instead of `protoc-gen-validate`.
+>
+> Read [our blog post][announce] if you want to learn more about the limitations of `protoc-gen-validate` and
+> how we have designed `protovalidate` to be better.
 
 ## What is this repository?
 
