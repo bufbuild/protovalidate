@@ -25,7 +25,7 @@ message UpdateUsernameRequest {
   // new_username is the username to update to.
   string new_username = 1 [(buf.validate.field).cel = {
     id: "username_format",
-    message: "username must be 3 - 16 characters long and only conatain letters and digits",
+    message: "username must be 3 - 16 characters long and only contain letters and digits",
     // `this.matches` match the string against a regex pattern, and evaluates to a bool.
     expression: "this.matches('^[A-Za-z0-9]{3,16}$')"
   }];

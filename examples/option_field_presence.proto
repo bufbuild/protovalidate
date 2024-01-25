@@ -23,9 +23,9 @@ service FridgeControlService {
 }
 
 message SetTemperatureRequest {
-  // temperature is the target temperature in degree celcius.
+  // temperature is the target temperature in degree Celsius.
   // Validate that the field is set. There is a difference between
-  // not setting the value and setting it to 0 degree celsius.
+  // not setting the value and setting it to 0 degree Celsius.
   google.protobuf.FloatValue temperature_celsius = 3 [(buf.validate.field).required = true];
 }
 

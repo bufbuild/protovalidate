@@ -32,7 +32,7 @@ message CustomerReviews {
   map<fixed64, ProductReview> customer_id_to_review = 1;
   // highest_rating is the highest rating this product receives.
   float highest_rating = 2;
-  // This validates that there is at least one review from customer_id_to_reivew
+  // This validates that there is at least one review from customer_id_to_review
   // such that its rating is the same as highest_rating.
   option (buf.validate.message).cel = {
     id: "highest_rating_exists",

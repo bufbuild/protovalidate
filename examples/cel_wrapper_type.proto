@@ -36,7 +36,7 @@ message SearchStoreRequest {
   }];
   // category_id is the id of the category that the search results should be in.
   google.protobuf.UInt64Value category_id = 2 [(buf.validate.field).cel = {
-    id: "categorty_id_not_123",
+    id: "category_id_not_123",
     message: "category id should not be 123"
     // This validates that _if_ category_id is specified, it must not be 123.
     // This rule is only evaluated when this field is specified, because

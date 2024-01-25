@@ -23,6 +23,6 @@ message Polygon {
   uint32 number_of_sides = 1 [(buf.validate.field).uint32.const = 3];
   // area is the area of the polygon
   // `gt` validates that the area greater than a particular value. In this
-  // case, it validaters that the area is positive.
+  // case, it validates that the area is positive.
   double area = 2 [(buf.validate.field).double.gt = 0.0];
 }

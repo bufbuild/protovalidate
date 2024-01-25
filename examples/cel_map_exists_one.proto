@@ -23,7 +23,7 @@ message TeamRoles {
   option (buf.validate.message).cel = {
     id: "exactly_one_captain",
     message: "there must be exactly one captain",
-    // `exists_one` validates that exactly one key in the map satifies the predicate.
+    // `exists_one` validates that exactly one key in the map satisfies the predicate.
     // In this case, it validates that exactly one player in the team has the
     // captain role.
     expression: "this.name_to_role.exists_one(name, this.name_to_role[name] == 1)"

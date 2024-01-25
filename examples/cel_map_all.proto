@@ -17,7 +17,7 @@ syntax = "proto3";
 import "buf/validate/validate.proto";
 
 message ShoppingCart {
-  // product_id_to_quantity maps from a product id to its quantiy in the shopping cart
+  // product_id_to_quantity maps from a product id to its quantity in the shopping cart
   map<uint64, uint32> product_id_to_quantity = 1;
   option (buf.validate.message).cel = {
     id: "quantity_positive",

@@ -24,5 +24,4 @@ To get started, checkout the following examples:
 - [`cel_conditional_operator.proto`](cel_conditional_operator.proto)
 - [`cel_field_presence.proto`](cel_field_presence.proto)
 
-The langugage specification can be found [here](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
-
+The language specification can be found [here](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
