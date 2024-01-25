@@ -33,7 +33,7 @@ message AddStarRequest {
     finite: true
   }];
   // mystery_index is how mysterious the star is.
-  // `gte = +inf` validates that the number must be greater than positve infinity.
+  // `gte = +inf` validates that the number must be greater than positive infinity.
   // This means mystery_index must be +inf.
   // protoc fails to compile this line but Buf compiles it successfully:
   // float mystery_index = 3 [(buf.validate.field).float.gte = +inf];

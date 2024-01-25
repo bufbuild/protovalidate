@@ -26,7 +26,7 @@ message UpdateHealthInfoRequest {
   // `skipped` skips evaluating validation rules for a certain field. This
   // includes skipping validation rules defined within that message's definition
   // if the field is a message.
-  // In this case, when the validator validats a `UpdateHealthInfoRequest`
+  // In this case, when the validator validates a `UpdateHealthInfoRequest`
   // message, it will not validate field `health_info`. i.e. it will not validate
   // that health_info.height > 0 and health_info.weight > 0.
   HealthInfo health_info = 2 [(buf.validate.field).skipped = true];

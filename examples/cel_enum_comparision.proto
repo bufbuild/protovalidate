@@ -26,7 +26,7 @@ message UploadFileRequest {
   CompressionScheme compression_scheme = 2 [(buf.validate.field).cel = {
     id: "compression_specified",
     message: "compression scheme must be specified",
-    // Validate that compression_schem is specified.
+    // Validate that compression_scheme is specified.
     // Note that `this`, as a enum, can be directly compared with an int.
     // In this case, 0 is the variant COMPRESSION_SCHEME_UNSPECIFIED from the
     // definition below.

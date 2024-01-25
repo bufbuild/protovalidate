@@ -26,10 +26,10 @@ message LocationForIpRequest {
     id: "valid_address",
     message: ".",
     // `some_string.isIp()` returns whether the string is a valid ip address.
-    // `isIp(4)` returns whehter a strign is an ipv4 address.
-    // `isIp(6)` returns whehter a strign is an ipv6 address.
+    // `isIp(4)` returns whether a string is an ipv4 address.
+    // `isIp(6)` returns whether a string is an ipv6 address.
     // In this case, it validates that field `ip_address` must be a valid ip
-    // adress, either ipv4 or ipv6.
+    // address, either ipv4 or ipv6.
     expression: "this.isIp()"
   }];
 }

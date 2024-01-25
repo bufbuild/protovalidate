@@ -39,7 +39,7 @@ message UserProfile {
     // `uri` validates that a string field must be an absolute uri, as defined by
     // [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3).
     //
-    // Or use `uri_ref` to validate that it must be a relative or aboslute URI, as
+    // Or use `uri_ref` to validate that it must be a relative or absolute URI, as
     // defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3).
     // (buf.validate.field).string.uri_ref = true,
     (buf.validate.field).string.uri = true,

@@ -20,7 +20,7 @@ import "google/protobuf/timestamp.proto";
 message EventFromTheTwentiethCentury {
   // name is the name of the event
   string name = 1;
-  // description is the desciprition of the event
+  // description is the description of the event
   string description = 2;
   // timestamp is the timestamp when this event happened.
   google.protobuf.Timestamp timestamp = 3 [(buf.validate.field).timestamp = {
