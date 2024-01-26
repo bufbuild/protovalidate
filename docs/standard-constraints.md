@@ -59,7 +59,7 @@ message Example {
 
 ### Required constraint
 
-Currently, only one constraint is availabe on oneofs: `required`. This 
+Currently, only one constraint is available on oneofs: `required`. This 
 constraint requires that exactly one field in the oneof must be set.
 
 ```protobuf

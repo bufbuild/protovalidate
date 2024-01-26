@@ -4471,7 +4471,7 @@ type StringRules_Ipv4WithPrefixlen struct {
 	// ```proto
 	//
 	//	message MyString {
-	//	  // value must be a valid IPv4 address with prefix lentgh
+	//	  // value must be a valid IPv4 address with prefix length
 	//	   string value = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
 	//	}
 	//
