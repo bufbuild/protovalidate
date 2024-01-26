@@ -17,7 +17,7 @@ syntax = "proto3";
 import "buf/validate/validate.proto";
 import "google/protobuf/wrappers.proto";
 
-service AparmentService {
+service ApartmentService {
   // SearchApartment searches for apartments.
   rpc SearchApartment(SearchApartmentRequest) returns (SearchApartmentResponse);
 }

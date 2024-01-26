@@ -26,7 +26,7 @@ message PlaceWholeSaleOrderRequest {
   uint64 item_id = 1;
   // quantity is the quantity of the item to purchase.
   uint32 quantity = 2 [(buf.validate.field).cel = {
-    id: "minium_whole_sale_quantity",
+    id: "minimum_whole_sale_quantity",
     message: "order quantity must be 100 or greater",
     // `this` refers to this field and the expression evaluates to a boolean result.
     // If the result is false, validation will fail with the above error message.
