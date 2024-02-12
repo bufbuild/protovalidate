@@ -4555,9 +4555,9 @@ type StringRules_Ipv6Prefix struct {
 }
 
 type StringRules_HostAndPort struct {
-	// `host_and_port`  specifies the field value must be a valid host and port
+	// `host_and_port` specifies the field value must be a valid host and port
 	// pair. The host must be a valid hostname or IP address while the port
-	// must be in the range of 0-65535, inclusive. IPv6 hosts must be delimited
+	// must be in the range of 0-65535, inclusive. IPv6 addresses must be delimited
 	// with square brackets (e.g., `[::1]:1234`).
 	HostAndPort bool `protobuf:"varint,32,opt,name=host_and_port,json=hostAndPort,proto3,oneof"`
 }
