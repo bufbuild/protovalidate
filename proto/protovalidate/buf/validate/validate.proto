@@ -209,8 +209,7 @@ message FieldConstraints {
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
 // FieldConstraints.required for definitions of "populated" and "nullable".
 enum Ignore {
-  // Validation is never skipped on the field unless it's an unpopulated
-  // nullable field.
+  // Validation is only skipped if it's an unpopulated nullable fields.
   IGNORE_UNSPECIFIED = 0;
   // Validation is skipped if the field is unpopulated.
   IGNORE_EMPTY = 1;
@@ -3045,6 +3044,23 @@ message StringRules {
       }
     ];
 
+    // `host_and_port`  specifies the field value must be a valid host and port
+    // pair. The host must be a valid hostname or IP address while the port
+    // must be in the range of 0-65535, inclusive. IPv6 hosts must be delimited
+    // with square brackets (e.g., `[::1]:1234`).
+    bool host_and_port = 32 [
+      (priv.field).cel = {
+        id: "string.host_and_port",
+        message: "value must be a valid host (hostname or IP address) and port pair",
+        expression: "this == '' || this.isHostAndPort(true)",
+      },
+      (priv.field).cel = {
+        id: "string.host_and_port_empty",
+        message: "value is empty, which is not a valid host and port pair",
+        expression: "this != ''",
+      }
+    ];
+
     // `well_known_regex` specifies a common well-known pattern
     // defined as a regex. If the field value doesn't match the well-known
     // regex, an error message will be generated.
@@ -3052,7 +3068,7 @@ message StringRules {
     // ```proto
     // message MyString {
     //   // value must be a valid HTTP header value
-    //   string value = 1 [(buf.validate.field).string.well_known_regex = 2];
+    //   string value = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_VALUE];
     // }
     // ```
     //
