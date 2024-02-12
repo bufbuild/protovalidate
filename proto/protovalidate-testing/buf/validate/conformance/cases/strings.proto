@@ -180,15 +180,3 @@ message StringInOneof {
     }];
   }
 }
-
-message StringHostAndPort {
-  string val = 1 [(buf.validate.field).string.host_and_port = true];
-}
-
-message StringHostAndOptionalPort {
-  string val = 1 [(field).cel = {
-    id: "string.host_and_port.optional_port",
-    message: "value must be a host and (optional) port pair",
-    expression: "this.isHostAndPort(false)",
-  }];
-}
