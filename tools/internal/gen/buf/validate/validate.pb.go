@@ -48,7 +48,9 @@ const (
 	// Validation is skipped if the field is unpopulated.
 	Ignore_IGNORE_EMPTY Ignore = 1
 	// Validation is skipped if the field is unpopulated or if it is a nullable
-	// field populated with its default value.
+	// field populated with its default value. This is typically the zero or
+	// empty value, but proto2 scalars support custom defaults. For messages, the
+	// default is a non-null message with all its fields unpopulated.
 	Ignore_IGNORE_DEFAULT Ignore = 2
 )
 

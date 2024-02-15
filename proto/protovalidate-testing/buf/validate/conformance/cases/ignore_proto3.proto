@@ -1,0 +1,247 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases;
+
+import "buf/validate/validate.proto";
+
+message Proto3ScalarOptionalIgnoreUnspecified {
+  optional int32 val = 1 [(buf.validate.field).int32.gt = 0];
+}
+
+message Proto3ScalarOptionalIgnoreEmpty {
+  optional int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_EMPTY,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message Proto3ScalarOptionalIgnoreDefault {
+  optional int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_DEFAULT,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message Proto3ScalarIgnoreUnspecified {
+  int32 val = 1 [(buf.validate.field).int32.gt = 0];
+}
+
+message Proto3ScalarIgnoreEmpty {
+  int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_EMPTY,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message Proto3ScalarIgnoreDefault {
+  int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_DEFAULT,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message Proto3MessageOptionalIgnoreUnspecified {
+  optional Msg val = 1 [(buf.validate.field).cel = {
+    id: "proto3.message.ignore.empty",
+    message: "foobar",
+    expression: "this.val == 'foo'",
+  }];
+  message Msg {
+    optional string val = 1;
+  }
+}
+
+message Proto3MessageOptionalIgnoreEmpty {
+  optional Msg val = 1 [
+    (buf.validate.field).ignore = IGNORE_EMPTY,
+    (buf.validate.field).cel = {
+      id: "proto3.message.ignore.empty",
+      message: "foobar",
+      expression: "this.val == 'foo'",
+    }
+  ];
+  message Msg {
+    optional string val = 1;
+  }
+}
+
+message Proto3MessageOptionalIgnoreDefault {
+  optional Msg val = 1 [
+    (buf.validate.field).ignore = IGNORE_DEFAULT,
+    (buf.validate.field).cel = {
+      id: "proto3.message.ignore.empty",
+      message: "foobar",
+      expression: "this.val == 'foo'",
+    }
+  ];
+  message Msg {
+    optional string val = 1;
+  }
+}
+
+message Proto3MessageIgnoreUnspecified {
+  Msg val = 1 [(buf.validate.field).cel = {
+    id: "proto3.message.ignore.empty",
+    message: "foobar",
+    expression: "this.val == 'foo'",
+  }];
+  message Msg {
+    optional string val = 1;
+  }
+}
+
+message Proto3MessageIgnoreEmpty {
+  Msg val = 1 [
+    (buf.validate.field).ignore = IGNORE_EMPTY,
+    (buf.validate.field).cel = {
+      id: "proto3.message.ignore.empty",
+      message: "foobar",
+      expression: "this.val == 'foo'",
+    }
+  ];
+  message Msg {
+    optional string val = 1;
+  }
+}
+
+message Proto3MessageIgnoreDefault {
+  Msg val = 1 [
+    (buf.validate.field).ignore = IGNORE_DEFAULT,
+    (buf.validate.field).cel = {
+      id: "proto3.message.ignore.empty",
+      message: "foobar",
+      expression: "this.val == 'foo'",
+    }
+  ];
+  message Msg {
+    optional string val = 1;
+  }
+}
+
+message Proto3OneofIgnoreUnspecified {
+  oneof o {
+    int32 val = 1 [(buf.validate.field).int32.gt = 0];
+  }
+}
+
+message Proto3OneofIgnoreEmpty {
+  oneof o {
+    int32 val = 1 [
+      (buf.validate.field).ignore = IGNORE_EMPTY,
+      (buf.validate.field).int32.gt = 0
+    ];
+  }
+}
+
+message Proto3OneofIgnoreDefault {
+  oneof o {
+    int32 val = 1 [
+      (buf.validate.field).ignore = IGNORE_DEFAULT,
+      (buf.validate.field).int32.gt = 0
+    ];
+  }
+}
+
+message Proto3RepeatedIgnoreUnspecified {
+  repeated int32 val = 1 [(buf.validate.field).repeated.min_items = 3];
+}
+
+message Proto3RepeatedIgnoreEmpty {
+  repeated int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_EMPTY,
+    (buf.validate.field).repeated.min_items = 3
+  ];
+}
+
+message Proto3RepeatedIgnoreDefault {
+  repeated int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_DEFAULT,
+    (buf.validate.field).repeated.min_items = 3
+  ];
+}
+
+message Proto3MapIgnoreUnspecified {
+  map<int32, int32> val = 1 [(buf.validate.field).map.min_pairs = 3];
+}
+
+message Proto3MapIgnoreEmpty {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).ignore = IGNORE_EMPTY,
+    (buf.validate.field).map.min_pairs = 3
+  ];
+}
+
+message Proto3MapIgnoreDefault {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).ignore = IGNORE_DEFAULT,
+    (buf.validate.field).map.min_pairs = 3
+  ];
+}
+
+message Proto3RepeatedItemIgnoreUnspecified {
+  repeated int32 val = 1 [(buf.validate.field).repeated.items.int32.gt = 0];
+}
+
+message Proto3RepeatedItemIgnoreEmpty {
+  repeated int32 val = 1 [
+    (buf.validate.field).repeated.items.ignore = IGNORE_EMPTY,
+    (buf.validate.field).repeated.items.int32.gt = 0
+  ];
+}
+
+message Proto3RepeatedItemIgnoreDefault {
+  repeated int32 val = 1 [
+    (buf.validate.field).repeated.items.ignore = IGNORE_DEFAULT,
+    (buf.validate.field).repeated.items.int32.gt = 0
+  ];
+}
+
+message Proto3MapKeyIgnoreUnspecified {
+  map<int32, int32> val = 1 [(buf.validate.field).map.keys.int32.gt = 0];
+}
+
+message Proto3MapKeyIgnoreEmpty {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).map.keys.ignore = IGNORE_EMPTY,
+    (buf.validate.field).map.keys.int32.gt = 0
+  ];
+}
+
+message Proto3MapKeyIgnoreDefault {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).map.keys.ignore = IGNORE_DEFAULT,
+    (buf.validate.field).map.keys.int32.gt = 0
+  ];
+}
+
+message Proto3MapValueIgnoreUnspecified {
+  map<int32, int32> val = 1 [(buf.validate.field).map.values.int32.gt = 0];
+}
+
+message Proto3MapValueIgnoreEmpty {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).map.values.ignore = IGNORE_EMPTY,
+    (buf.validate.field).map.values.int32.gt = 0
+  ];
+}
+
+message Proto3MapValueIgnoreDefault {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).map.values.ignore = IGNORE_DEFAULT,
+    (buf.validate.field).map.values.int32.gt = 0
+  ];
+}
