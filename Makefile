@@ -34,15 +34,15 @@ test: generate ## Run all unit tests
 lint: lint-proto lint-go  ## Lint code and protos
 
 .PHONY: lint-go
-lint-go: $(BIN)/golangci-lint
+lint-go: | $(BIN)/golangci-lint
 	$(BIN)/golangci-lint run --modules-download-mode=readonly --timeout=3m0s ./tools/...
 
 .PHONY: lint-go-fix
-lint-go-fix: $(BIN)/golangci-lint
+lint-go-fix: | $(BIN)/golangci-lint
 	$(BIN)/golangci-lint run --fix --modules-download-mode=readonly --timeout=3m0s ./tools/...
 
 .PHONY: lint-proto
-lint-proto: $(BIN)/buf
+lint-proto: | $(BIN)/buf
 	$(BIN)/buf lint
 	$(BIN)/buf breaking --against '.git#branch=main'
 
@@ -51,7 +51,10 @@ conformance: ## Build conformance harness
 	$(GO) build -o $(BIN)/protovalidate-conformance ./tools/protovalidate-conformance
 
 .PHONY: generate
-generate: generate-bazel generate-proto generate-license ## Regenerate code and license headers
+generate: ## Regenerate code and license headers
+	$(MAKE) generate-bazel
+	$(MAKE) generate-proto
+	$(MAKE) generate-license
 
 .PHONY: bazel
 bazel: generate-bazel
@@ -62,12 +65,12 @@ generate-bazel:
 	bazel run //:gazelle
 
 .PHONY: generate-proto
-generate-proto: $(BIN)/buf
+generate-proto: | $(BIN)/buf
 	rm -rf tools/internal/gen/*/
 	$(BIN)/buf generate
 
 .PHONY: generate-license
-generate-license: $(BIN)/license-header
+generate-license: | $(BIN)/license-header
 	@# We want to operate on a list of modified and new files, excluding
 	@# deleted and ignored files. git-ls-files can't do this alone. comm -23 takes
 	@# two files and prints the union, dropping lines common to both (-3) and

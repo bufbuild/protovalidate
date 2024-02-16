@@ -40,6 +40,7 @@ func GlobalSuites() suites.Suites {
 		"standard_constraints/oneof":                      oneofSuite(),
 		"standard_constraints/repeated":                   repeatedSuite(),
 		"standard_constraints/required":                   requiredSuite(),
+		"standard_constraints/ignore":                     ignoreSuite(),
 		"standard_constraints/ignore_empty":               ignoreEmptySuite(),
 		"standard_constraints/sfixed32":                   sfixed32Suite(),
 		"standard_constraints/sfixed64":                   sfixed64Suite(),

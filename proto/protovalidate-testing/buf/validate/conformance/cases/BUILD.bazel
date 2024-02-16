@@ -24,6 +24,8 @@ proto_library(
         "filename-with-dash.proto",
         "ignore_empty_proto2.proto",
         "ignore_empty_proto3.proto",
+        "ignore_proto2.proto",
+        "ignore_proto3.proto",
         "kitchen_sink.proto",
         "maps.proto",
         "messages.proto",
