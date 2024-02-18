@@ -53,6 +53,5 @@ func GlobalSuites() suites.Suites {
 		"standard_constraints/well_known_types/duration":  durationSuite(),
 		"standard_constraints/well_known_types/timestamp": timestampSuite(),
 		"standard_constraints/well_known_types/wrapper":   wrapperSuite(),
-		"standard_constraints/email":                      emailSuite(),
 	}
 }

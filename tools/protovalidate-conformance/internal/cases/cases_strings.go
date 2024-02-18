@@ -326,6 +326,26 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.email"}),
 		},
+		"email/invalid/white_spaces": {
+			Message: &cases.StringEmail{Val: " foo@example.com "},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.email"}),
+		},
+		"email/invalid/trailing_white_space": {
+			Message: &cases.StringEmail{Val: "foo@example.com "},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.email"}),
+		},
+		"email/invalid/leading_white_space": {
+			Message: &cases.StringEmail{Val: " foo@example.com"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.email"}),
+		},
+		"email/invalid/angled_brackets": {
+			Message: &cases.StringEmail{Val: "<foo@example.com>"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.email"}),
+		},
 		"hostname/invalid/empty": {
 			Message: &cases.StringHostname{Val: ""},
 			Expected: results.Violations(
