@@ -9,3 +9,4 @@ lint:
   ignore_only:
     PACKAGE_VERSION_SUFFIX:
       - buf/validate
+  allow_comment_ignores: true
