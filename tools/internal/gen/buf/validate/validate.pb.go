@@ -44,13 +44,130 @@ type Ignore int32
 
 const (
 	// Validation is only skipped if it's an unpopulated nullable fields.
+	//
+	// ```proto
+	// syntax="proto3";
+	//
+	//	message Request {
+	//	  // The uri rule applies to any value, including the empty string.
+	//	  string foo = 1 [
+	//	    (buf.validate.field).string.uri = true
+	//	  ];
+	//
+	//	  // The uri rule only applies if the field is set, including if it's
+	//	  // set to the empty string.
+	//	  optional string bar = 2 [
+	//	    (buf.validate.field).string.uri = true
+	//	  ];
+	//
+	//	  // The min_items rule always applies, even if the list is empty.
+	//	  repeated string baz = 3 [
+	//	    (buf.validate.field).repeated.min_items = 3
+	//	  ];
+	//
+	//	  // The custom CEL rule applies only if the field is set, including if
+	//	  // it's the "zero" value of that message.
+	//	  SomeMessage quux = 4 [
+	//	    (buf.validate.field).cel = {/* ... */}
+	//	  ];
+	//	}
+	//
+	// ```
 	Ignore_IGNORE_UNSPECIFIED Ignore = 0
-	// Validation is skipped if the field is unpopulated.
+	// Validation is skipped if the field is unpopulated. This rule is redundant
+	// if the field is already nullable. This value is equivalent behavior to the
+	// deprecated ignore_empty rule.
+	//
+	// ```proto
+	// syntax="proto3
+	//
+	//	message Request {
+	//	  // The uri rule applies only if the value is not the empty string.
+	//	  string foo = 1 [
+	//	    (buf.validate.field).string.uri = true,
+	//	    (buf.validate.field).ignore = IGNORE_EMPTY
+	//	  ];
+	//
+	//	  // IGNORE_EMPTY is equivalent to IGNORE_UNSPECIFIED in this case: the
+	//	  // uri rule only applies if the field is set, including if it's set
+	//	  // to the empty string.
+	//	  optional string bar = 2 [
+	//	    (buf.validate.field).string.uri = true,
+	//	    (buf.validate.field).ignore = IGNORE_EMPTY
+	//	  ];
+	//
+	//	  // The min_items rule only applies if the list has at least one item.
+	//	  repeated string baz = 3 [
+	//	    (buf.validate.field).repeated.min_items = 3,
+	//	    (buf.validate.field).ignore = IGNORE_EMPTY
+	//	  ];
+	//
+	//	  // IGNORE_EMPTY is equivalent to IGNORE_UNSPECIFIED in this case: the
+	//	  // custom CEL rule applies only if the field is set, including if it's
+	//	  // the "zero" value of that message.
+	//	  SomeMessage quux = 4 [
+	//	    (buf.validate.field).cel = {/* ... */},
+	//	    (buf.validate.field).ignore = IGNORE_EMPTY
+	//	  ];
+	//	}
+	//
+	// ```
 	Ignore_IGNORE_EMPTY Ignore = 1
 	// Validation is skipped if the field is unpopulated or if it is a nullable
 	// field populated with its default value. This is typically the zero or
 	// empty value, but proto2 scalars support custom defaults. For messages, the
 	// default is a non-null message with all its fields unpopulated.
+	//
+	// ```proto
+	// syntax="proto3
+	//
+	//	message Request {
+	//	  // IGNORE_DEFAULT is equivalent to IGNORE_EMPTY in this case; the uri
+	//	  // rule applies only if the value is not the empty string.
+	//	  string foo = 1 [
+	//	    (buf.validate.field).string.uri = true,
+	//	    (buf.validate.field).ignore = IGNORE_DEFAULT
+	//	  ];
+	//
+	//	  // The uri rule only applies if the field is set to a value other than
+	//	  // the empty string.
+	//	  optional string bar = 2 [
+	//	    (buf.validate.field).string.uri = true,
+	//	    (buf.validate.field).ignore = IGNORE_DEFAULT
+	//	  ];
+	//
+	//	  // IGNORE_DEFAULT is equivalent to IGNORE_EMPTY in this case; the
+	//	  // min_items rule only applies if the list has at least one item.
+	//	  repeated string baz = 3 [
+	//	    (buf.validate.field).repeated.min_items = 3,
+	//	    (buf.validate.field).ignore = IGNORE_DEFAULT
+	//	  ];
+	//
+	//	  // The custom CEL rule only applies if the field is set to a value other
+	//	  // than an empty message (i.e., fields are unpopulated).
+	//	  SomeMessage quux = 4 [
+	//	    (buf.validate.field).cel = {/* ... */},
+	//	    (buf.validate.field).ignore = IGNORE_DEFAULT
+	//	  ];
+	//	}
+	//
+	// ```
+	//
+	// This rule is affected by proto2 custom default values:
+	//
+	// ```proto
+	// syntax="proto2";
+	//
+	//	message Request {
+	//	  // The gt rule only applies if the field is set and it's value is not
+	//	  the default (i.e., not -42). The rule even applies if the field is set
+	//	  to zero since the default value differs.
+	//	  optional int32 value = 1 [
+	//	    default = -42,
+	//	    (buf.validate.field).int32.gt = 0,
+	//	    (buf.validate.field).ignore = IGNORE_DEFAULT
+	//	  ];
+	//	}
 	Ignore_IGNORE_DEFAULT Ignore = 2
 )
 
