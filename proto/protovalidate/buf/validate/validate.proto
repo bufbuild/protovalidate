@@ -151,7 +151,7 @@ message FieldConstraints {
   // }
   // ```
   bool required = 25;
-  // DEPRECATED: use ignore=IGNORE_IF_EMPTY_VALUE instead.
+  // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead.
   bool ignore_empty = 26 [deprecated = true];
   // Skip validation on the field if its value matches the specified criteria.
   // See Ignore enum for details.
@@ -245,34 +245,34 @@ enum Ignore {
   //   // The uri rule applies only if the value is not the empty string.
   //   string foo = 1 [
   //     (buf.validate.field).string.uri = true,
-  //     (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   //
-  //   // IGNORE_IF_EMPTY_VALUE is equivalent to IGNORE_UNSPECIFIED in this
+  //   // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
   //   // case: the uri rule only applies if the field is set, including if
   //   // it's set to the empty string.
   //   optional string bar = 2 [
   //     (buf.validate.field).string.uri = true,
-  //     (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   //
   //   // The min_items rule only applies if the list has at least one item.
   //   repeated string baz = 3 [
   //     (buf.validate.field).repeated.min_items = 3,
-  //     (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   //
-  //   // IGNORE_IF_EMPTY_VALUE is equivalent to IGNORE_UNSPECIFIED in this
+  //   // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
   //   // case: the custom CEL rule applies only if the field is set, including
   //   // if it's the "zero" value of that message.
   //   SomeMessage quux = 4 [
   //     (buf.validate.field).cel = {/* ... */},
-  //     (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   // }
   // ```
-  IGNORE_IF_EMPTY_VALUE = 1;
-  // Deprecated: Use IGNORE_IF_EMPTY_VALUE
+  IGNORE_IF_UNPOPULATED = 1;
+  // Deprecated: Use IGNORE_IF_UNPOPULATED
   IGNORE_EMPTY = 1 [deprecated = true];
 
   // Validation is skipped if the field is unpopulated or if it is a nullable
@@ -284,7 +284,7 @@ enum Ignore {
   // syntax="proto3
   //
   // message Request {
-  //   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_EMPTY_VALUE in
+  //   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
   //   // this case; the uri rule applies only if the value is not the empty
   //   // string.
   //   string foo = 1 [
@@ -299,7 +299,7 @@ enum Ignore {
   //     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
   //   ];
   //
-  //   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_EMPTY_VALUE in
+  //   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
   //   // this case; the min_items rule only applies if the list has at least
   //   // one item.
   //   repeated string baz = 3 [

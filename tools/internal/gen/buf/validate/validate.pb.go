@@ -85,35 +85,35 @@ const (
 	//	  // The uri rule applies only if the value is not the empty string.
 	//	  string foo = 1 [
 	//	    (buf.validate.field).string.uri = true,
-	//	    (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
 	//	  ];
 	//
-	//	  // IGNORE_IF_EMPTY_VALUE is equivalent to IGNORE_UNSPECIFIED in this
+	//	  // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
 	//	  // case: the uri rule only applies if the field is set, including if
 	//	  // it's set to the empty string.
 	//	  optional string bar = 2 [
 	//	    (buf.validate.field).string.uri = true,
-	//	    (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
 	//	  ];
 	//
 	//	  // The min_items rule only applies if the list has at least one item.
 	//	  repeated string baz = 3 [
 	//	    (buf.validate.field).repeated.min_items = 3,
-	//	    (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
 	//	  ];
 	//
-	//	  // IGNORE_IF_EMPTY_VALUE is equivalent to IGNORE_UNSPECIFIED in this
+	//	  // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
 	//	  // case: the custom CEL rule applies only if the field is set, including
 	//	  // if it's the "zero" value of that message.
 	//	  SomeMessage quux = 4 [
 	//	    (buf.validate.field).cel = {/* ... */},
-	//	    (buf.validate.field).ignore = IGNORE_IF_EMPTY_VALUE
+	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
 	//	  ];
 	//	}
 	//
 	// ```
-	Ignore_IGNORE_IF_EMPTY_VALUE Ignore = 1
-	// Deprecated: Use IGNORE_IF_EMPTY_VALUE
+	Ignore_IGNORE_IF_UNPOPULATED Ignore = 1
+	// Deprecated: Use IGNORE_IF_UNPOPULATED
 	//
 	// Deprecated: Marked as deprecated in buf/validate/validate.proto.
 	Ignore_IGNORE_EMPTY Ignore = 1
@@ -126,7 +126,7 @@ const (
 	// syntax="proto3
 	//
 	//	message Request {
-	//	  // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_EMPTY_VALUE in
+	//	  // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
 	//	  // this case; the uri rule applies only if the value is not the empty
 	//	  // string.
 	//	  string foo = 1 [
@@ -141,7 +141,7 @@ const (
 	//	    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
 	//	  ];
 	//
-	//	  // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_EMPTY_VALUE in
+	//	  // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
 	//	  // this case; the min_items rule only applies if the list has at least
 	//	  // one item.
 	//	  repeated string baz = 3 [
@@ -198,7 +198,7 @@ const (
 var (
 	Ignore_name = map[int32]string{
 		0: "IGNORE_UNSPECIFIED",
-		1: "IGNORE_IF_EMPTY_VALUE",
+		1: "IGNORE_IF_UNPOPULATED",
 		// Duplicate value: 1: "IGNORE_EMPTY",
 		2: "IGNORE_IF_DEFAULT_VALUE",
 		// Duplicate value: 2: "IGNORE_DEFAULT",
@@ -206,7 +206,7 @@ var (
 	}
 	Ignore_value = map[string]int32{
 		"IGNORE_UNSPECIFIED":      0,
-		"IGNORE_IF_EMPTY_VALUE":   1,
+		"IGNORE_IF_UNPOPULATED":   1,
 		"IGNORE_EMPTY":            1,
 		"IGNORE_IF_DEFAULT_VALUE": 2,
 		"IGNORE_DEFAULT":          2,
@@ -495,7 +495,7 @@ type FieldConstraints struct {
 	//
 	// ```
 	Required bool `protobuf:"varint,25,opt,name=required,proto3" json:"required,omitempty"`
-	// DEPRECATED: use ignore=IGNORE_IF_EMPTY_VALUE instead.
+	// DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead.
 	//
 	// Deprecated: Marked as deprecated in buf/validate/validate.proto.
 	IgnoreEmpty bool `protobuf:"varint,26,opt,name=ignore_empty,json=ignoreEmpty,proto3" json:"ignore_empty,omitempty"`
@@ -9332,8 +9332,8 @@ var file_buf_validate_validate_proto_rawDesc = []byte{
 	0x42, 0x09, 0x0a, 0x07, 0x5f, 0x77, 0x69, 0x74, 0x68, 0x69, 0x6e, 0x2a, 0x9d, 0x01, 0x0a, 0x06,
 	0x49, 0x67, 0x6e, 0x6f, 0x72, 0x65, 0x12, 0x16, 0x0a, 0x12, 0x49, 0x47, 0x4e, 0x4f, 0x52, 0x45,
 	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x19,
-	0x0a, 0x15, 0x49, 0x47, 0x4e, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x46, 0x5f, 0x45, 0x4d, 0x50, 0x54,
-	0x59, 0x5f, 0x56, 0x41, 0x4c, 0x55, 0x45, 0x10, 0x01, 0x12, 0x14, 0x0a, 0x0c, 0x49, 0x47, 0x4e,
+	0x0a, 0x15, 0x49, 0x47, 0x4e, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x46, 0x5f, 0x55, 0x4e, 0x50, 0x4f,
+	0x50, 0x55, 0x4c, 0x41, 0x54, 0x45, 0x44, 0x10, 0x01, 0x12, 0x14, 0x0a, 0x0c, 0x49, 0x47, 0x4e,
 	0x4f, 0x52, 0x45, 0x5f, 0x45, 0x4d, 0x50, 0x54, 0x59, 0x10, 0x01, 0x1a, 0x02, 0x08, 0x01, 0x12,
 	0x1b, 0x0a, 0x17, 0x49, 0x47, 0x4e, 0x4f, 0x52, 0x45, 0x5f, 0x49, 0x46, 0x5f, 0x44, 0x45, 0x46,
 	0x41, 0x55, 0x4c, 0x54, 0x5f, 0x56, 0x41, 0x4c, 0x55, 0x45, 0x10, 0x02, 0x12, 0x16, 0x0a, 0x0e,
