@@ -187,11 +187,11 @@ const (
 	//
 	// ```
 	Ignore_IGNORE_ALWAYS Ignore = 3
-	// Deprecated: Use IGNORE_IF_UNPOPULATED
+	// Deprecated: Use IGNORE_IF_UNPOPULATED instead. TODO: Remove this value pre-v1.
 	//
 	// Deprecated: Marked as deprecated in buf/validate/validate.proto.
 	Ignore_IGNORE_EMPTY Ignore = 1
-	// Deprecated: Use IGNORE_IF_DEFAULT_VALUE
+	// Deprecated: Use IGNORE_IF_DEFAULT_VALUE. TODO: Remove this value pre-v1.
 	//
 	// Deprecated: Marked as deprecated in buf/validate/validate.proto.
 	Ignore_IGNORE_DEFAULT Ignore = 2
@@ -534,11 +534,11 @@ type FieldConstraints struct {
 	//	*FieldConstraints_Duration
 	//	*FieldConstraints_Timestamp
 	Type isFieldConstraints_Type `protobuf_oneof:"type"`
-	// DEPRECATED: use ignore=IGNORE_ALWAYS instead.
+	// DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
 	//
 	// Deprecated: Marked as deprecated in buf/validate/validate.proto.
 	Skipped bool `protobuf:"varint,24,opt,name=skipped,proto3" json:"skipped,omitempty"`
-	// DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead.
+	// DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
 	//
 	// Deprecated: Marked as deprecated in buf/validate/validate.proto.
 	IgnoreEmpty bool `protobuf:"varint,26,opt,name=ignore_empty,json=ignoreEmpty,proto3" json:"ignore_empty,omitempty"`
