@@ -193,16 +193,16 @@ message FieldConstraints {
     TimestampRules timestamp = 22;
   }
 
-  // DEPRECATED: use ignore=IGNORE_ALWAYS instead.
+  // DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
   bool skipped = 24 [deprecated = true];
-  // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead.
+  // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
   bool ignore_empty = 26 [deprecated = true];
 }
 
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
 // FieldConstraints.required for definitions of "populated" and "nullable".
 enum Ignore {
-  // buf:lint:ignore ENUM_NO_ALLOW_ALIAS
+  // buf:lint:ignore ENUM_NO_ALLOW_ALIAS // allowance for deprecations. TODO: remove pre-v1.
   option allow_alias = true;
   // Validation is only skipped if it's an unpopulated nullable fields.
   //
@@ -347,9 +347,9 @@ enum Ignore {
   // ```
   IGNORE_ALWAYS = 3;
 
-  // Deprecated: Use IGNORE_IF_UNPOPULATED
+  // Deprecated: Use IGNORE_IF_UNPOPULATED instead. TODO: Remove this value pre-v1.
   IGNORE_EMPTY = 1 [deprecated = true];
-  // Deprecated: Use IGNORE_IF_DEFAULT_VALUE
+  // Deprecated: Use IGNORE_IF_DEFAULT_VALUE. TODO: Remove this value pre-v1.
   IGNORE_DEFAULT = 2 [deprecated = true];
 }
 
