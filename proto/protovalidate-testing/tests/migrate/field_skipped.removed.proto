@@ -19,14 +19,14 @@ package tests.migrate;
 import "buf/validate/validate.proto";
 
 message FieldSkipped {
-  FieldSkipped x = 1 [(buf.validate.field).skipped = true];
+  FieldSkipped x = 1 [(buf.validate.field).ignore = IGNORE_ALWAYS];
   FieldSkipped y = 2 [
-    (buf.validate.field) = { skipped: false }
+    (buf.validate.field) = { }
   ];
   repeated FieldSkipped z = 3 [
     (buf.validate.field).repeated.items = {
         required: true;
-        skipped: true,
+        ignore: IGNORE_ALWAYS,
     }
   ];
 }

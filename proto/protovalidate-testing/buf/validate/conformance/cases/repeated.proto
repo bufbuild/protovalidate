@@ -71,7 +71,7 @@ message RepeatedItemPattern {
   repeated string val = 1 [(buf.validate.field).repeated.items.string.pattern = "(?i)^[a-z0-9]+$"];
 }
 message RepeatedEmbedSkip {
-  repeated Embed val = 1 [(buf.validate.field).repeated.items.skipped = true];
+  repeated Embed val = 1 [(buf.validate.field).repeated.items.ignore = IGNORE_ALWAYS];
 }
 message RepeatedItemIn {
   repeated string val = 1 [(buf.validate.field).repeated.items.string = {

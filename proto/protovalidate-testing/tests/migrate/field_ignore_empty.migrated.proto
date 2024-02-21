@@ -21,11 +21,10 @@ import "validate/validate.proto";
 import "buf/validate/validate.proto";
 
 message FieldIgnoreEmpty {
-  int32 x = 1 [(validate.rules).int32.ignore_empty = true,(buf.validate.field).ignore_empty = true];
+  int32 x = 1 [(validate.rules).int32.ignore_empty = true,(buf.validate.field).ignore = IGNORE_IF_UNPOPULATED];
   string y = 2 [
     (validate.rules).int32 = { ignore_empty: false },
     (buf.validate.field).int32 = { }
-    , (buf.validate.field).ignore_empty = false
   ];
   repeated int32 z = 3 [
     (validate.rules).repeated.items = {
@@ -33,7 +32,7 @@ message FieldIgnoreEmpty {
     },
     (buf.validate.field).repeated.items = {
       int32: { gt: 10 }
-      , ignore_empty: true;
+      , ignore: IGNORE_IF_UNPOPULATED;
     }
   ];
 }
