@@ -131,27 +131,16 @@ message FieldConstraints {
   // }
   // ```
   repeated Constraint cel = 23;
-  // `skipped` is an optional boolean attribute that specifies that the
-  // validation rules of this field should not be evaluated. If skipped is set to
-  // true, any validation rules set for the field will be ignored.
+  // If `required` is true, the field must be populated. A populated field can be
+  // described as "serialized in the wire format," which includes:
   //
-  // ```proto
-  // message MyMessage {
-  //   // The field `value` must not be set.
-  //   optional MyOtherMessage value = 1 [(buf.validate.field).skipped = true];
-  // }
-  // ```
-  bool skipped = 24;
-  // If `required` is true, the field must be populated. Field presence can be
-  // described as "serialized in the wire format," which follows the following rules:
-  //
-  // - the following "nullable" fields must be explicitly set to be considered present:
+  // - the following "nullable" fields must be explicitly set to be considered populated:
   //   - singular message fields (whose fields may be unpopulated/default values)
   //   - member fields of a oneof (may be their default value)
   //   - proto3 optional fields (may be their default value)
-  //   - proto2 scalar fields
-  // - proto3 scalar fields must be non-zero to be considered present
-  // - repeated and map fields must be non-empty to be considered present
+  //   - proto2 scalar fields (both optional and required)
+  // - proto3 scalar fields must be non-zero to be considered populated
+  // - repeated and map fields must be non-empty to be considered populated
   //
   // ```proto
   // message MyMessage {
@@ -160,16 +149,15 @@ message FieldConstraints {
   // }
   // ```
   bool required = 25;
-  // DEPRECATED: use ignore=IGNORE_EMPTY instead.
-  bool ignore_empty = 26 [deprecated = true];
-  // Skip validation on the field if its value matches the specified rule.
+  // Skip validation on the field if its value matches the specified criteria.
+  // See Ignore enum for details.
   //
   // ```proto
   // message UpdateRequest {
   //   // The uri rule only applies if the field is populated and not an empty
   //   // string.
   //   optional string url = 1 [
-  //     (buf.validate.field).ignore = IGNORE_DEFAULT,
+  //     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
   //     (buf.validate.field).string.uri = true,
   //   ];
   // }
@@ -204,11 +192,18 @@ message FieldConstraints {
     DurationRules duration = 21;
     TimestampRules timestamp = 22;
   }
+
+  // DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
+  bool skipped = 24 [deprecated = true];
+  // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
+  bool ignore_empty = 26 [deprecated = true];
 }
 
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
 // FieldConstraints.required for definitions of "populated" and "nullable".
 enum Ignore {
+  // buf:lint:ignore ENUM_NO_ALLOW_ALIAS // allowance for deprecations. TODO: remove pre-v1.
+  option allow_alias = true;
   // Validation is only skipped if it's an unpopulated nullable fields.
   //
   // ```proto
@@ -251,33 +246,33 @@ enum Ignore {
   //   // The uri rule applies only if the value is not the empty string.
   //   string foo = 1 [
   //     (buf.validate.field).string.uri = true,
-  //     (buf.validate.field).ignore = IGNORE_EMPTY
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   //
-  //   // IGNORE_EMPTY is equivalent to IGNORE_UNSPECIFIED in this case: the
-  //   // uri rule only applies if the field is set, including if it's set
-  //   // to the empty string.
+  //   // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
+  //   // case: the uri rule only applies if the field is set, including if
+  //   // it's set to the empty string.
   //   optional string bar = 2 [
   //     (buf.validate.field).string.uri = true,
-  //     (buf.validate.field).ignore = IGNORE_EMPTY
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   //
   //   // The min_items rule only applies if the list has at least one item.
   //   repeated string baz = 3 [
   //     (buf.validate.field).repeated.min_items = 3,
-  //     (buf.validate.field).ignore = IGNORE_EMPTY
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   //
-  //   // IGNORE_EMPTY is equivalent to IGNORE_UNSPECIFIED in this case: the
-  //   // custom CEL rule applies only if the field is set, including if it's
-  //   // the "zero" value of that message.
+  //   // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
+  //   // case: the custom CEL rule applies only if the field is set, including
+  //   // if it's the "zero" value of that message.
   //   SomeMessage quux = 4 [
   //     (buf.validate.field).cel = {/* ... */},
-  //     (buf.validate.field).ignore = IGNORE_EMPTY
+  //     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   //   ];
   // }
   // ```
-  IGNORE_EMPTY = 1;
+  IGNORE_IF_UNPOPULATED = 1;
 
   // Validation is skipped if the field is unpopulated or if it is a nullable
   // field populated with its default value. This is typically the zero or
@@ -288,32 +283,34 @@ enum Ignore {
   // syntax="proto3
   //
   // message Request {
-  //   // IGNORE_DEFAULT is equivalent to IGNORE_EMPTY in this case; the uri
-  //   // rule applies only if the value is not the empty string.
+  //   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
+  //   // this case; the uri rule applies only if the value is not the empty
+  //   // string.
   //   string foo = 1 [
   //     (buf.validate.field).string.uri = true,
-  //     (buf.validate.field).ignore = IGNORE_DEFAULT
+  //     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
   //   ];
   //
   //   // The uri rule only applies if the field is set to a value other than
   //   // the empty string.
   //   optional string bar = 2 [
   //     (buf.validate.field).string.uri = true,
-  //     (buf.validate.field).ignore = IGNORE_DEFAULT
+  //     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
   //   ];
   //
-  //   // IGNORE_DEFAULT is equivalent to IGNORE_EMPTY in this case; the
-  //   // min_items rule only applies if the list has at least one item.
+  //   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
+  //   // this case; the min_items rule only applies if the list has at least
+  //   // one item.
   //   repeated string baz = 3 [
   //     (buf.validate.field).repeated.min_items = 3,
-  //     (buf.validate.field).ignore = IGNORE_DEFAULT
+  //     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
   //   ];
   //
   //   // The custom CEL rule only applies if the field is set to a value other
   //   // than an empty message (i.e., fields are unpopulated).
   //   SomeMessage quux = 4 [
   //     (buf.validate.field).cel = {/* ... */},
-  //     (buf.validate.field).ignore = IGNORE_DEFAULT
+  //     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
   //   ];
   // }
   // ```
@@ -330,10 +327,30 @@ enum Ignore {
   //   optional int32 value = 1 [
   //     default = -42,
   //     (buf.validate.field).int32.gt = 0,
-  //     (buf.validate.field).ignore = IGNORE_DEFAULT
+  //     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
   //   ];
   // }
-  IGNORE_DEFAULT = 2;
+  IGNORE_IF_DEFAULT_VALUE = 2;
+
+  // The validation rules of this field will be skipped and not evaluated. This
+  // is useful for situations that necessitate turning off the rules of a field
+  // containing a message that may not make sense in the current context, or to
+  // temporarily disable constraints during development.
+  //
+  // ```proto
+  // message MyMessage {
+  //   // The field's rules will always be ignored, including any validation's
+  //   // on value's fields.
+  //   MyOtherMessage value = 1 [
+  //     (buf.validate.field).ignore = IGNORE_ALWAYS];
+  // }
+  // ```
+  IGNORE_ALWAYS = 3;
+
+  // Deprecated: Use IGNORE_IF_UNPOPULATED instead. TODO: Remove this value pre-v1.
+  IGNORE_EMPTY = 1 [deprecated = true];
+  // Deprecated: Use IGNORE_IF_DEFAULT_VALUE. TODO: Remove this value pre-v1.
+  IGNORE_DEFAULT = 2 [deprecated = true];
 }
 
 // FloatRules describes the constraints applied to `float` values. These

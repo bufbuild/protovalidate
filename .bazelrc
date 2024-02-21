@@ -1,0 +1,1 @@
+build --experimental_proto_descriptor_sets_include_source_info
