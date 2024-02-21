@@ -131,8 +131,6 @@ message FieldConstraints {
   // }
   // ```
   repeated Constraint cel = 23;
-  // DEPRECATED: use ignore=IGNORE_ALWAYS instead.
-  bool skipped = 24 [deprecated = true];
   // If `required` is true, the field must be populated. A populated field can be
   // described as "serialized in the wire format," which includes:
   //
@@ -151,8 +149,6 @@ message FieldConstraints {
   // }
   // ```
   bool required = 25;
-  // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead.
-  bool ignore_empty = 26 [deprecated = true];
   // Skip validation on the field if its value matches the specified criteria.
   // See Ignore enum for details.
   //
@@ -196,6 +192,11 @@ message FieldConstraints {
     DurationRules duration = 21;
     TimestampRules timestamp = 22;
   }
+
+  // DEPRECATED: use ignore=IGNORE_ALWAYS instead.
+  bool skipped = 24 [deprecated = true];
+  // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead.
+  bool ignore_empty = 26 [deprecated = true];
 }
 
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
@@ -272,8 +273,6 @@ enum Ignore {
   // }
   // ```
   IGNORE_IF_UNPOPULATED = 1;
-  // Deprecated: Use IGNORE_IF_UNPOPULATED
-  IGNORE_EMPTY = 1 [deprecated = true];
 
   // Validation is skipped if the field is unpopulated or if it is a nullable
   // field populated with its default value. This is typically the zero or
@@ -332,10 +331,11 @@ enum Ignore {
   //   ];
   // }
   IGNORE_IF_DEFAULT_VALUE = 2;
-  // Deprecated: Use IGNORE_IF_DEFAULT_VALUE
-  IGNORE_DEFAULT = 2 [deprecated = true];
 
-  // The validation rules of this field will not be evaluated.
+  // The validation rules of this field will be skipped and not evaluated. This
+  // is useful for situations that necessitate turning off the rules of a field
+  // containing a message that may not make sense in the current context, or to
+  // temporarily disable constraints during development.
   //
   // ```proto
   // message MyMessage {
@@ -346,6 +346,11 @@ enum Ignore {
   // }
   // ```
   IGNORE_ALWAYS = 3;
+
+  // Deprecated: Use IGNORE_IF_UNPOPULATED
+  IGNORE_EMPTY = 1 [deprecated = true];
+  // Deprecated: Use IGNORE_IF_DEFAULT_VALUE
+  IGNORE_DEFAULT = 2 [deprecated = true];
 }
 
 // FloatRules describes the constraints applied to `float` values. These
