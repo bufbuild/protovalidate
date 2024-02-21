@@ -41,7 +41,7 @@ message MessageCrossPackage {
   other_package.Embed val = 1;
 }
 message MessageSkip {
-  TestMsg val = 1 [(buf.validate.field).skipped = true];
+  TestMsg val = 1 [(buf.validate.field).ignore = IGNORE_ALWAYS];
 }
 message MessageRequired {
   TestMsg val = 1 [(buf.validate.field).required = true];

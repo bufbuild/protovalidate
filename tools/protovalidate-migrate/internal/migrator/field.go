@@ -16,8 +16,11 @@ package migrator
 
 import (
 	"bytes"
+	"fmt"
+	"strings"
 
 	"github.com/bufbuild/protocompile/ast"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 )
 
 type FieldVisitor struct {
@@ -96,7 +99,7 @@ func (v *FieldVisitor) HandleOption(
 		return wrote, nil
 	}
 
-	nameParts, done := v.buildNameParts(node)
+	nameParts, val, done := v.buildNameParts(node)
 	if done {
 		return wrote, nil
 	}
@@ -112,7 +115,7 @@ func (v *FieldVisitor) HandleOption(
 		return wrote, err
 	}
 
-	if valMsg, ok := node.Val.(*ast.MessageLiteralNode); ok {
+	if valMsg, ok := val.(*ast.MessageLiteralNode); ok {
 		return wrote, HandleMessageLiteral(
 			v.PrinterVisitor,
 			v.file.NodeInfo(nameParts[len(nameParts)-1]).RawText(),
@@ -123,7 +126,7 @@ func (v *FieldVisitor) HandleOption(
 		)
 	}
 
-	return wrote, v.PrintNodes(!needsComma, node.Val)
+	return wrote, v.PrintNodes(!needsComma, val)
 }
 
 func (v *FieldVisitor) printComma(printComments bool, commas ...ast.Node) error {
@@ -136,7 +139,8 @@ func (v *FieldVisitor) printComma(printComments bool, commas ...ast.Node) error 
 	return err
 }
 
-func (v *FieldVisitor) buildNameParts(node *ast.OptionNode) (nameParts []ast.Node, done bool) {
+func (v *FieldVisitor) buildNameParts(node *ast.OptionNode) (nameParts []ast.Node, value ast.Node, done bool) {
+	value = node.Val
 	nameParts = make([]ast.Node, 1, len(node.Name.Parts)*2+1)
 	nameParts[0] = v.replaceNode(node.Name.Parts[0], "(buf.validate.field)")
 	for i := 0; i < len(node.Name.Dots); i++ {
@@ -145,13 +149,14 @@ func (v *FieldVisitor) buildNameParts(node *ast.OptionNode) (nameParts []ast.Nod
 		switch part.Value() {
 		case "no_sparse":
 			// no_sparse has been removed
-			return nil, true
+			return nil, nil, true
 		case "message":
 			// ignore message element
 			continue
 		case "ignore_empty":
-			// moved up, drop the parent element from the path
-			nameParts = append(nameParts[:len(nameParts)-2], dot, part)
+			// moved up & renamed, drop the parent element from the path
+			nameParts = append(nameParts[:len(nameParts)-2], dot, v.replaceNode(part, "ignore"))
+			value = v.replaceNode(value, validate.Ignore_IGNORE_IF_UNPOPULATED.String())
 		case "required":
 			switch node.Name.Parts[i].Value() {
 			case "any", "timestamp", "duration":
@@ -160,19 +165,21 @@ func (v *FieldVisitor) buildNameParts(node *ast.OptionNode) (nameParts []ast.Nod
 			}
 			nameParts = append(nameParts, dot, part)
 		case "skip":
-			nameParts = append(nameParts, dot, v.replaceNode(part, "skipped"))
+			// merged with ignore
+			nameParts = append(nameParts, dot, v.replaceNode(part, "ignore"))
+			value = v.replaceNode(value, validate.Ignore_IGNORE_ALWAYS.String())
 		default:
 			nameParts = append(nameParts, dot, part)
 		}
 	}
-	return nameParts, false
+	return nameParts, value, false
 }
 
 type MessageLiteralVisitor struct {
-	parent            string
-	wroteItem         bool
-	requiredNeeded    ast.ValueNode
-	ignoreEmptyNeeded ast.ValueNode
+	parent         string
+	wroteItem      bool
+	requiredNeeded ast.ValueNode
+	ignoreNeeded   ast.Node
 	PrinterVisitor
 }
 
@@ -183,15 +190,15 @@ func HandleMessageLiteral(
 	prefixed bool,
 	valMsg *ast.MessageLiteralNode,
 ) error {
-	msgLitVistor := &MessageLiteralVisitor{
+	msgLitVisitor := &MessageLiteralVisitor{
 		parent:         parent,
 		PrinterVisitor: printer,
 	}
-	if err := ast.VisitChildren(valMsg, msgLitVistor); err != nil {
+	if err := ast.VisitChildren(valMsg, msgLitVisitor); err != nil {
 		return err
 	}
 
-	if msgLitVistor.requiredNeeded != nil {
+	if msgLitVisitor.requiredNeeded != nil {
 		nodeName := ", required"
 		if prefixed {
 			nodeName = ", (buf.validate.field).required"
@@ -200,22 +207,26 @@ func HandleMessageLiteral(
 		if err := printer.PrintNodes(false,
 			printer.replaceNode(name, nodeName),
 			equals,
-			msgLitVistor.requiredNeeded,
+			msgLitVisitor.requiredNeeded,
 		); err != nil {
 			return err
 		}
 	}
 
-	if msgLitVistor.ignoreEmptyNeeded != nil {
-		nodeName := ", ignore_empty"
+	if msgLitVisitor.ignoreNeeded != nil {
 		if prefixed {
-			nodeName = ", (buf.validate.field).ignore_empty"
+			newName := printer.file.NodeInfo(name).RawText()
+			newName = strings.Replace(newName, "(validate.rules)", "(buf.validate.field)", 1)
+			newName = fmt.Sprintf(", %s.ignore", newName)
+			name = printer.replaceNode(name, newName)
+		} else {
+			name = printer.replaceNode(name, ", ignore")
 		}
 
 		if err := printer.PrintNodes(false,
-			printer.replaceNode(name, nodeName),
+			name,
 			equals,
-			msgLitVistor.ignoreEmptyNeeded,
+			msgLitVisitor.ignoreNeeded,
 		); err != nil {
 			return err
 		}
@@ -226,20 +237,35 @@ func HandleMessageLiteral(
 
 func (v *MessageLiteralVisitor) VisitMessageFieldNode(node *ast.MessageFieldNode) error {
 	v.wroteItem = true
+	var (
+		name  ast.Node = node.Name
+		value ast.Node = node.Val
+	)
 	switch node.Name.Value() {
 	case "message":
+		// flatten message field into parent
 		if msg, ok := node.Val.(*ast.MessageLiteralNode); ok {
 			return ast.VisitChildren(&unwrappedMessageLiteral{MessageLiteralNode: msg}, v)
 		}
 		v.wroteItem = false
 		return nil
 	case "skip":
-		return v.PrintNodes(false,
-			v.replaceNode(node.Name, "skipped"),
-			node.Sep,
-			node.Val)
+		if val, ok := node.Val.Value().(ast.Identifier); ok && val != "true" {
+			v.wroteItem = false
+			return nil
+		}
+		value = v.replaceNode(node.Val, validate.Ignore_IGNORE_ALWAYS.String())
+		if v.parent != "items" && v.parent != "keys" && v.parent != "values" {
+			// need to lift if it's not an element rule
+			v.wroteItem = false
+			v.ignoreNeeded = value
+			return nil
+		}
+		name = v.replaceNode(name, "ignore")
 	case "ignore_empty":
-		v.ignoreEmptyNeeded = node.Val
+		if val, ok := node.Val.Value().(ast.Identifier); ok && val == "true" {
+			v.ignoreNeeded = v.replaceNode(node.Val, validate.Ignore_IGNORE_IF_UNPOPULATED.String())
+		}
 		v.wroteItem = false
 		return nil
 	case "required":
@@ -252,28 +278,28 @@ func (v *MessageLiteralVisitor) VisitMessageFieldNode(node *ast.MessageFieldNode
 	case "no_sparse":
 		v.wroteItem = false
 		return nil
-	default:
-		nodes := []ast.Node{node.Name}
-		if node.Sep != nil {
-			nodes = append(nodes, node.Sep)
-		}
-		if err := v.PrintNodes(false, nodes...); err != nil {
-			return err
-		}
-
-		if msg, ok := node.Val.(*ast.MessageLiteralNode); ok {
-			return HandleMessageLiteral(
-				v.PrinterVisitor,
-				node.Name.Value(),
-				node.Name,
-				node.Sep,
-				false,
-				msg,
-			)
-		}
-
-		return v.PrintNodes(false, node.Val)
 	}
+
+	nodes := []ast.Node{name}
+	if node.Sep != nil {
+		nodes = append(nodes, node.Sep)
+	}
+	if err := v.PrintNodes(false, nodes...); err != nil {
+		return err
+	}
+
+	if msg, ok := value.(*ast.MessageLiteralNode); ok {
+		return HandleMessageLiteral(
+			v.PrinterVisitor,
+			node.Name.Value(),
+			node.Name,
+			node.Sep,
+			false,
+			msg,
+		)
+	}
+
+	return v.PrintNodes(false, value)
 }
 
 func (v *MessageLiteralVisitor) VisitRuneNode(node *ast.RuneNode) error {

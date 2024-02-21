@@ -21,10 +21,10 @@ import "validate/validate.proto";
 import "buf/validate/validate.proto";
 
 message FieldSkipped {
-  FieldSkipped x = 1 [(validate.rules).message.skip = true,(buf.validate.field).skipped = true];
+  FieldSkipped x = 1 [(validate.rules).message.skip = true,(buf.validate.field).ignore = IGNORE_ALWAYS];
   FieldSkipped y = 2 [
     (validate.rules).message = { skip: false },
-    (buf.validate.field) = { skipped: false }
+    (buf.validate.field) = { }
   ];
   repeated FieldSkipped z = 3 [
     (validate.rules).repeated.items = {
@@ -35,7 +35,7 @@ message FieldSkipped {
     },
     (buf.validate.field).repeated.items = {
         required: true;
-        skipped: true,
+        ignore: IGNORE_ALWAYS,
     }
   ];
 }
