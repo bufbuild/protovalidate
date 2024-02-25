@@ -3,3 +3,4 @@
 *.svg
 cover.out
 /bazel-*
+MODULE.bazel.lock
