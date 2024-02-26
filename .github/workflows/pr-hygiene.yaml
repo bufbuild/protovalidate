@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Lint title
-        uses: morrisoncole/pr-lint-action@v1.7.0
+        uses: morrisoncole/pr-lint-action@v1.7.1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           # https://regex101.com/r/I6oK5v/1
