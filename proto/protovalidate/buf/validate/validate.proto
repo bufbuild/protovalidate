@@ -113,8 +113,8 @@ message OneofConstraints {
   optional bool required = 1;
 }
 
-// FieldRules encapsulates the rules for each type of field. Depending on the
-// field, the correct set should be used to ensure proper validations.
+// FieldConstraints encapsulates the rules for each type of field. Depending on
+// the field, the correct set should be used to ensure proper validations.
 message FieldConstraints {
   // `cel` is a repeated field used to represent a textual expression
   // in the Common Expression Language (CEL) syntax. For more information on
