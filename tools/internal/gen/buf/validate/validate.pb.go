@@ -449,8 +449,8 @@ func (x *OneofConstraints) GetRequired() bool {
 	return false
 }
 
-// FieldRules encapsulates the rules for each type of field. Depending on the
-// field, the correct set should be used to ensure proper validations.
+// FieldConstraints encapsulates the rules for each type of field. Depending on
+// the field, the correct set should be used to ensure proper validations.
 type FieldConstraints struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
