@@ -23,8 +23,8 @@ service CarService {
 
 message SearchCarRequest {
   optional fixed32 number_of_seats = 1 [(buf.validate.field) = {
-    // `ignore_empty` skips validation if the field isn't set.
-    ignore_empty: true,
+    // `IGNORE_EMPTY` skips validation if the field isn't set.
+    ignore: IGNORE_EMPTY,
     fixed32: {
       // `in` requires that the value must be one of the specified values.
       // In this case, it validates that the number of seats is either 5 or 7.
