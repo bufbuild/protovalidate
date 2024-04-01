@@ -717,6 +717,85 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.uuid"}),
 		},
+		"uuid/invalid/dashless/uppercase": {
+			Message: &cases.StringUUID{Val: "8B20830500E84460A4405E0DCD83BB0A"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.uuid"}),
+		},
+		"uuid/invalid/dashless/lowercase": {
+			Message: &cases.StringUUID{Val: "8b20830500e84460a4405e0dcd83bb0a"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.uuid"}),
+		},
+		"tuuid/valid/nil": {
+			Message:  &cases.StringTUUID{Val: "00000000000000000000000000000000"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v1/lowercase": {
+			Message:  &cases.StringTUUID{Val: "b45c0c80888011e9a5b1000000000000"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v1/uppercase": {
+			Message:  &cases.StringTUUID{Val: "B45C0C80888011E9A5B1000000000000"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v2/lowercase": {
+			Message:  &cases.StringTUUID{Val: "b45c0c80888021e9a5b1000000000000"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v2/uppercase": {
+			Message:  &cases.StringTUUID{Val: "B45C0C80888021E9A5B1000000000000"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v3/lowercase": {
+			Message:  &cases.StringTUUID{Val: "a3bb189e8bf938889912ace4e6543002"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v3/uppercase": {
+			Message:  &cases.StringTUUID{Val: "A3BB189E8BF938889912ACE4E6543002"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v4/lowercase": {
+			Message:  &cases.StringTUUID{Val: "8b20830500e84460a4405e0dcd83bb0a"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v4/uppercase": {
+			Message:  &cases.StringTUUID{Val: "8B20830500E84460A4405E0DCD83BB0A"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v5/lowercase": {
+			Message:  &cases.StringTUUID{Val: "a6edc9062f9f5fb2a373efac406f0ef2"},
+			Expected: results.Success(true),
+		},
+		"tuuid/valid/v5/uppercase": {
+			Message:  &cases.StringTUUID{Val: "A6EDC9062F9F5FB2A373EFAC406F0EF2"},
+			Expected: results.Success(true),
+		},
+		"tuuid/invalid/empty": {
+			Message: &cases.StringTUUID{Val: ""},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid_empty"}),
+		},
+		"tuuid/invalid/malformed": {
+			Message: &cases.StringTUUID{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid"}),
+		},
+		"tuuid/invalid/erroneous": {
+			Message: &cases.StringTUUID{Val: "fffffffffffffffffffffffffffffffff"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid"}),
+		},
+		"tuuid/invalid/dashful/uppercase": {
+			Message: &cases.StringTUUID{Val: "8B208305-00E8-4460-A440-5E0DCD83BB0A"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid"}),
+		},
+		"tuuid/invalid/dashful/lowercase": {
+			Message: &cases.StringTUUID{Val: "8b208305-00e8-4460-a440-5e0dcd83bb0a"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid"}),
+		},
 		"well_known_regex/header_name/strict/valid/header": {
 			Message:  &cases.StringHttpHeaderName{Val: "clustername"},
 			Expected: results.Success(true),
