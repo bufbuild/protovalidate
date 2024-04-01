@@ -717,8 +717,13 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.uuid"}),
 		},
-		"uuid/invalid/dashless": {
+		"uuid/invalid/dashless/uppercase": {
 			Message: &cases.StringUUID{Val: "8B20830500E84460A4405E0DCD83BB0A"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.uuid"}),
+		},
+		"uuid/invalid/dashless/lowercase": {
+			Message: &cases.StringUUID{Val: "8b20830500e84460a4405e0dcd83bb0a"},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.uuid"}),
 		},
@@ -781,8 +786,13 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid"}),
 		},
-		"tuuid/invalid/dashful": {
+		"tuuid/invalid/dashful/uppercase": {
 			Message: &cases.StringTUUID{Val: "8B208305-00E8-4460-A440-5E0DCD83BB0A"},
+			Expected: results.Violations(
+				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid"}),
+		},
+		"tuuid/invalid/dashful/lowercase": {
+			Message: &cases.StringTUUID{Val: "8b208305-00e8-4460-a440-5e0dcd83bb0a"},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid"}),
 		},
