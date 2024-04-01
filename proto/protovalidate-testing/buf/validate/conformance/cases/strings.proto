@@ -145,6 +145,9 @@ message StringURIRef {
 message StringUUID {
   string val = 1 [(buf.validate.field).string.uuid = true];
 }
+message StringTUUID {
+  string val = 1 [(buf.validate.field).string.tuuid = true];
+}
 message StringHttpHeaderName {
   string val = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_NAME];
 }
