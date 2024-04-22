@@ -3,11 +3,11 @@ module github.com/bufbuild/protovalidate/tools
 go 1.21
 
 require (
-	github.com/bufbuild/protocompile v0.10.0
+	github.com/bufbuild/protocompile v0.11.0
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/sync v0.7.0
-	google.golang.org/protobuf v1.33.1-0.20240319125436-3039476726e4
+	google.golang.org/protobuf v1.33.1-0.20240408130810-98873a205002
 	gopkg.in/yaml.v3 v3.0.1
 )
 
