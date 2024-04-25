@@ -115,7 +115,7 @@ func (m *Migrator) InPlaceMigrate(src os.FileInfo, srcPath string) error {
 	}
 	defer srcFile.Close()
 
-	dstFile, err := os.CreateTemp("", src.Name())
+	dstFile, err := os.CreateTemp(filepath.Dir(srcFile.Name()), src.Name())
 	if err != nil {
 		return fmt.Errorf("failed to create tmp output file: %w", err)
 	}
