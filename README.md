@@ -1,4 +1,4 @@
-![The Buf logo](./.github/buf-logo.svg)
+![The Buf logo](https://github.com/bufbuild/protovalidate/blob/main/.github/buf-logo.svg)
 
 # protovalidate
 
@@ -13,8 +13,7 @@ flexible and efficient foundation for defining and evaluating custom validation
 rules. The primary goal of `protovalidate` is to help developers ensure data
 consistency and integrity across the network without requiring generated code.
 
-> [!NOTE]
-> `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv].
+> [!NOTE] > `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv].
 >
 > We recommend that new and existing projects transition to using `protovalidate` instead of `protoc-gen-validate`.
 >
@@ -25,22 +24,22 @@ consistency and integrity across the network without requiring generated code.
 
 This repository is the core of the `protovalidate` project. It contains:
 
-- [The API definition](proto/protovalidate/buf/validate/validate.proto): used to describe validation constraints
-- [Documentation](docs): how to apply `protovalidate` effectively
-- [Migration tooling](docs/migrate.md): incrementally migrate from `protoc-gen-validate`
-- [Examples](examples): example `.proto` files using `protovalidate`
-- [Conformance testing utilities](docs/conformance.md): for acceptance testing of `protovalidate` implementations
+- [The API definition][validate-proto]: used to describe validation constraints
+- [Documentation][docs]: how to apply `protovalidate` effectively
+- [Migration tooling][migrate]: incrementally migrate from `protoc-gen-validate`
+- [Examples][examples]: example `.proto` files using `protovalidate`
+- [Conformance testing utilities][conformance]: for acceptance testing of `protovalidate` implementations
 
 Runtime implementations of `protovalidate` can be found in their own repositories:
 
- - Go: [`protovalidate-go`][pv-go] (beta release)
- - C++: [`protovalidate-cc`][pv-cc] (beta release)
- - Java: [`protovalidate-java`][pv-java] (beta release)
- - Python: [`protovalidate-python`][pv-python] (beta release)
- - TypeScript: `protovalidate-ts` (coming soon)
+- Go: [`protovalidate-go`][pv-go] (beta release)
+- C++: [`protovalidate-cc`][pv-cc] (beta release)
+- Java: [`protovalidate-java`][pv-java] (beta release)
+- Python: [`protovalidate-python`][pv-python] (beta release)
+- TypeScript: `protovalidate-ts` (coming soon)
 
 Interested in adding support for another language? Check out our
-[Contributing Guidelines](https://github.com/bufbuild/protovalidate/blob/main/.github/CONTRIBUTING.md).
+[Contributing Guidelines][contributing].
 
 ## Usage
 
@@ -183,7 +182,7 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
    }
    ```
 
-Check out [`examples`](examples) for examples on both standard constraints and custom CEL constraints.
+Check out [`examples`][examples] for examples on both standard constraints and custom CEL constraints.
 
 ### Validate Messages
 
@@ -224,7 +223,7 @@ for custom code generation, and the new ability to describe complex constraints 
 `protovalidate`'s constraints very closely emulate those
 in `protoc-gen-validate` to ensure an easy transition for developers. To
 migrate from `protoc-gen-validate` to `protovalidate`, use the
-provided [migration tool](https://github.com/bufbuild/protovalidate/blob/main/tools/protovalidate-migrate) to
+provided [migration tool][migration-tool] to
 incrementally upgrade your `.proto` files.
 
 ## Ecosystem
@@ -242,12 +241,19 @@ Offered under the [Apache 2 license][license].
 [buf]: https://buf.build
 [cel-spec]: https://github.com/google/cel-spec
 [ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
+[conformance]: https://github.com/bufbuild/protovalidate/blob/main/docs/conformance.md
+[contributing]: https://github.com/bufbuild/protovalidate/blob/main/.github/CONTRIBUTING.md
+[docs]: https://github.com/bufbuild/protovalidate/blob/main/docs
+[examples]: https://github.com/bufbuild/protovalidate/tree/main/examples
 [file-bug]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Bug&template=bug_report.md&title=%5BBUG%5D
 [file-feature-request]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Feature&template=feature_request.md&title=%5BFeature+Request%5D
 [license]: https://github.com/bufbuild/protovalidate/blob/main/LICENSE
+[migrate]: https://github.com/bufbuild/protovalidate/blob/main/docs/migrate.md
+[migration-tool]: https://github.com/bufbuild/protovalidate/blob/main/tools/protovalidate-migrate
 [pgv]: https://github.com/bufbuild/protoc-gen-validate
 [pv-go]: https://github.com/bufbuild/protovalidate-go
 [pv-cc]: https://github.com/bufbuild/protovalidate-cc
 [pv-java]: https://github.com/bufbuild/protovalidate-java
 [pv-python]: https://github.com/bufbuild/protovalidate-python
 [slack]: https://buf.build/links/slack
+[validate-proto]: https://github.com/bufbuild/protovalidate/blob/main/proto/protovalidate/buf/validate/validate.proto
