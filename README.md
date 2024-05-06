@@ -13,7 +13,8 @@ flexible and efficient foundation for defining and evaluating custom validation
 rules. The primary goal of `protovalidate` is to help developers ensure data
 consistency and integrity across the network without requiring generated code.
 
-> [!NOTE] > `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv].
+> [!NOTE]
+> `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv].
 >
 > We recommend that new and existing projects transition to using `protovalidate` instead of `protoc-gen-validate`.
 >
