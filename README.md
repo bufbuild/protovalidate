@@ -30,6 +30,8 @@ This repository is the core of the `protovalidate` project. It contains:
 - [Examples][examples]: example `.proto` files using `protovalidate`
 - [Conformance testing utilities][conformance]: for acceptance testing of `protovalidate` implementations
 
+### Implementations
+
 Runtime implementations of `protovalidate` can be found in their own repositories:
 
 - Go: [`protovalidate-go`][pv-go] (beta release)
@@ -186,7 +188,7 @@ Check out [`examples`][examples] for examples on both standard constraints and c
 
 ### Validate Messages
 
-Once the messages are annotated with constraints, use one of the [supported language libraries](#language-support) to validate; no additional code generation necessary.
+Once the messages are annotated with constraints, use one of the [supported language libraries](#implementations) to validate; no additional code generation necessary.
 
 ## Documentation
 
