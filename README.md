@@ -1,4 +1,4 @@
-![The Buf logo](https://github.com/bufbuild/protovalidate/blob/main/.github/buf-logo.svg)
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
 
 # protovalidate
 
