@@ -259,4 +259,4 @@ Offered under the [Apache 2 license][license].
 [pv-java]: https://github.com/bufbuild/protovalidate-java
 [pv-python]: https://github.com/bufbuild/protovalidate-python
 [slack]: https://buf.build/links/slack
-[validate-proto]: https://github.com/bufbuild/protovalidate/blob/main/proto/protovalidate/buf/validate/validate.proto
+[validate-proto]: https://buf.build/bufbuild/protovalidate/docs/main:buf.validate
