@@ -16,8 +16,6 @@ package migrator
 
 import (
 	"bytes"
-	"fmt"
-	"strings"
 
 	"github.com/bufbuild/protocompile/ast"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
@@ -214,14 +212,11 @@ func HandleMessageLiteral(
 	}
 
 	if msgLitVisitor.ignoreNeeded != nil {
+		newName := ", ignore"
 		if prefixed {
-			newName := printer.file.NodeInfo(name).RawText()
-			newName = strings.Replace(newName, "(validate.rules)", "(buf.validate.field)", 1)
-			newName = fmt.Sprintf(", %s.ignore", newName)
-			name = printer.replaceNode(name, newName)
-		} else {
-			name = printer.replaceNode(name, ", ignore")
+			newName = ", (buf.validate.field).ignore"
 		}
+		name = printer.replaceNode(name, newName)
 
 		if err := printer.PrintNodes(false,
 			name,

@@ -132,6 +132,10 @@ func TestMigrator(t *testing.T) {
 			dstPath: "field_ignore_empty.migrated.proto",
 		},
 		{
+			srcPath: "field_ignore_skip.source.proto",
+			dstPath: "field_ignore_skip.migrated.proto",
+		},
+		{
 			srcPath: "no_separator.source.proto",
 			dstPath: "no_separator.migrated.proto",
 		},
