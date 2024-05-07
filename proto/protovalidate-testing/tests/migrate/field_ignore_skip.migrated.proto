@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package tests.migrate;
+
+import "validate/validate.proto";
+
+import "buf/validate/validate.proto";
+
+message IgnoreAndSkips {
+  string x = 1 [
+    (validate.rules).string = {
+      ignore_empty: true,
+      pattern: '^a+$',
+    },
+    (buf.validate.field).string = {
+      pattern: '^a+$',
+    }
+    , (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+  ];
+  repeated string y = 2 [
+    (validate.rules).repeated = {
+      ignore_empty: true,
+      unique: true,
+      items: { string: { in: ['a', 'b'] } }
+    },
+    (buf.validate.field).repeated = {
+      unique: true,
+      items: { string: { in: ['a', 'b'] } }
+    }
+    , (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+  ];
+  IgnoreAndSkips z = 3 [
+    (validate.rules).message = { skip: true },
+    (buf.validate.field) = { }
+    , (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
