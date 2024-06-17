@@ -102,9 +102,9 @@ message Proto2ScalarRequiredIgnoreDefaultWithDefault {
 
 message Proto2MessageOptionalIgnoreUnspecified {
   optional Msg val = 1 [(buf.validate.field).cel = {
-    id: "proto2.message.ignore.empty",
-    message: "foobar",
-    expression: "this.val == 'foo'",
+    id: "proto2.message.ignore.empty"
+    message: "foobar"
+    expression: "this.val == 'foo'"
   }];
   message Msg {
     optional string val = 1;
@@ -115,9 +115,9 @@ message Proto2MessageOptionalIgnoreEmpty {
   optional Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).cel = {
-      id: "proto2.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto2.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -129,9 +129,9 @@ message Proto2MessageOptionalIgnoreDefault {
   optional Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).cel = {
-      id: "proto2.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto2.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -141,9 +141,9 @@ message Proto2MessageOptionalIgnoreDefault {
 
 message Proto2MessageRequiredIgnoreUnspecified {
   required Msg val = 1 [(buf.validate.field).cel = {
-    id: "proto2.message.ignore.empty",
-    message: "foobar",
-    expression: "this.val == 'foo'",
+    id: "proto2.message.ignore.empty"
+    message: "foobar"
+    expression: "this.val == 'foo'"
   }];
   message Msg {
     optional string val = 1;
@@ -154,9 +154,9 @@ message Proto2MessageRequiredIgnoreEmpty {
   required Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).cel = {
-      id: "proto2.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto2.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -168,9 +168,9 @@ message Proto2MessageRequiredIgnoreDefault {
   required Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).cel = {
-      id: "proto2.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto2.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {

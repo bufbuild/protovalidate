@@ -35,18 +35,18 @@ message NoExpressions {
 // A message with message-level custom expressions
 message MessageExpressions {
   option (message).cel = {
-    id: "message_expression_scalar",
-    message: "a must be less than b",
+    id: "message_expression_scalar"
+    message: "a must be less than b"
     expression: "this.a < this.b"
   };
   option (message).cel = {
-    id: "message_expression_enum",
-    message: "c must not equal d",
-    expression: "this.c != this.d",
+    id: "message_expression_enum"
+    message: "c must not equal d"
+    expression: "this.c != this.d"
   };
   option (message).cel = {
-    id: "message_expression_embed",
-    message: "e.a must equal f.a",
+    id: "message_expression_embed"
+    message: "e.a must equal f.a"
     expression: "this.e.a == this.f.a"
   };
 
@@ -59,7 +59,7 @@ message MessageExpressions {
 
   message Nested {
     option (message).cel = {
-      id: "message_expression_nested",
+      id: "message_expression_nested"
       expression:
         "this.a > this.b ? ''"
         ": 'a must be greater than b'"
@@ -72,20 +72,20 @@ message MessageExpressions {
 
 message FieldExpressions {
   int32 a = 1 [(field).cel = {
-    id: "field_expression_scalar",
+    id: "field_expression_scalar"
     expression:
       "this > 42 ? ''"
-      ": 'a must be greater than 42'",
+      ": 'a must be greater than 42'"
   }];
   Enum b = 2 [(field).cel = {
-    id: "field_expression_enum",
-    message: "b must be ~ONE",
-    expression: "this == 1",
+    id: "field_expression_enum"
+    message: "b must be ~ONE"
+    expression: "this == 1"
   }];
   Nested c = 3 [(field).cel = {
-    id: "field_expression_embed",
-    message: "c.a must be a multiple of 4",
-    expression: "this.a % 4 == 0",
+    id: "field_expression_embed"
+    message: "c.a must be a multiple of 4"
+    expression: "this.a % 4 == 0"
   }];
 
   message Nested {
@@ -93,16 +93,16 @@ message FieldExpressions {
       id: "field_expression_nested"
       expression:
         "this > 0 ? ''"
-        ": 'a must be positive'",
+        ": 'a must be positive'"
     }];
   }
 }
 
 message MissingField {
   option (message).cel = {
-    id: "missing_field",
-    message: "b must be positive",
-    expression: "this.b > 0",
+    id: "missing_field"
+    message: "b must be positive"
+    expression: "this.b > 0"
   };
 
   int32 a = 1;
@@ -110,9 +110,9 @@ message MissingField {
 
 message IncorrectType {
   option (message).cel = {
-    id: "incorrect_type",
-    message: "a must start with 'foo'",
-    expression: "this.a.startsWith('foo')",
+    id: "incorrect_type"
+    message: "a must start with 'foo'"
+    expression: "this.a.startsWith('foo')"
   };
 
   int32 a = 1;
@@ -120,9 +120,9 @@ message IncorrectType {
 
 message DynRuntimeError {
   option (message).cel = {
-    id: "dyn_runtime_err",
-    message: "dynamic type tries to use a non-existent field",
-    expression: "dyn(this).b == 'foo'",
+    id: "dyn_runtime_err"
+    message: "dynamic type tries to use a non-existent field"
+    expression: "dyn(this).b == 'foo'"
   };
 
   int32 a = 1;
@@ -130,8 +130,8 @@ message DynRuntimeError {
 
 message NowEqualsNow {
   option (message).cel = {
-    id: "now_equals_now",
-    message: "now should equal now within an expression",
-    expression: "now == now",
+    id: "now_equals_now"
+    message: "now should equal now within an expression"
+    expression: "now == now"
   };
 }

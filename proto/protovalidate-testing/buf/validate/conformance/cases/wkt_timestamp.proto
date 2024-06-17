@@ -43,25 +43,25 @@ message TimestampGTE {
 }
 message TimestampGTLT {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp = {
-    gt: {},
+    gt: {}
     lt: {seconds: 1}
   }];
 }
 message TimestampExLTGT {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp = {
-    lt: {},
+    lt: {}
     gt: {seconds: 1}
   }];
 }
 message TimestampGTELTE {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp = {
-    gte: {seconds: 60},
+    gte: {seconds: 60}
     lte: {seconds: 3600}
   }];
 }
 message TimestampExGTELTE {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp = {
-    lte: {seconds: 60},
+    lte: {seconds: 60}
     gte: {seconds: 3600}
   }];
 }
@@ -79,13 +79,13 @@ message TimestampWithin {
 
 message TimestampLTNowWithin {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp = {
-    lt_now: true,
+    lt_now: true
     within: {seconds: 3600}
   }];
 }
 message TimestampGTNowWithin {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp = {
-    gt_now: true,
+    gt_now: true
     within: {seconds: 3600}
   }];
 }

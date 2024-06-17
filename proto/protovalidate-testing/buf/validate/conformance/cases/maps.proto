@@ -30,13 +30,13 @@ message MapMax {
 }
 message MapMinMax {
   map<string, bool> val = 1 [(buf.validate.field).map = {
-    min_pairs: 2,
+    min_pairs: 2
     max_pairs: 4
   }];
 }
 message MapExact {
   map<uint64, string> val = 1 [(buf.validate.field).map = {
-    min_pairs: 3,
+    min_pairs: 3
     max_pairs: 3
   }];
 }
@@ -65,8 +65,8 @@ message MapRecursive {
 message MapExactIgnore {
   map<uint64, string> val = 1 [
     (buf.validate.field).map = {
-      min_pairs: 3,
-      max_pairs: 3,
+      min_pairs: 3
+      max_pairs: 3
     },
     (buf.validate.field).ignore_empty = true
   ];

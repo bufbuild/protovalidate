@@ -51,13 +51,13 @@ message StringMaxLen {
 }
 message StringMinMaxLen {
   string val = 1 [(buf.validate.field).string = {
-    min_len: 3,
+    min_len: 3
     max_len: 5
   }];
 }
 message StringEqualMinMaxLen {
   string val = 1 [(buf.validate.field).string = {
-    min_len: 5,
+    min_len: 5
     max_len: 5
   }];
 }
@@ -72,14 +72,14 @@ message StringMaxBytes {
 }
 message StringMinMaxBytes {
   string val = 1 [(buf.validate.field).string = {
-    min_bytes: 4,
+    min_bytes: 4
     max_bytes: 8
   }];
 }
 message StringEqualMinMaxBytes {
   string val = 1 [(buf.validate.field).string = {
-    min_bytes: 4,
-    max_bytes: 4,
+    min_bytes: 4
+    max_bytes: 4
   }];
 }
 message StringPattern {
@@ -158,13 +158,13 @@ message StringHttpHeaderValue {
 message StringHttpHeaderNameLoose {
   string val = 1 [(buf.validate.field).string = {
     well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
-    strict: false,
+    strict: false
   }];
 }
 
 message StringHttpHeaderValueLoose {
   string val = 1 [(buf.validate.field).string = {
-    well_known_regex: KNOWN_REGEX_HTTP_HEADER_VALUE,
+    well_known_regex: KNOWN_REGEX_HTTP_HEADER_VALUE
     strict: false
   }];
 }
@@ -190,8 +190,8 @@ message StringHostAndPort {
 
 message StringHostAndOptionalPort {
   string val = 1 [(field).cel = {
-    id: "string.host_and_port.optional_port",
-    message: "value must be a host and (optional) port pair",
-    expression: "this.isHostAndPort(false)",
+    id: "string.host_and_port.optional_port"
+    message: "value must be a host and (optional) port pair"
+    expression: "this.isHostAndPort(false)"
   }];
 }

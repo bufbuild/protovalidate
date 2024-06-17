@@ -44,9 +44,9 @@ message IgnoreEmptyProto2Message {
   optional Msg val = 1 [
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).cel = {
-      id: "ignore_empty.proto2.message",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "ignore_empty.proto2.message"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
