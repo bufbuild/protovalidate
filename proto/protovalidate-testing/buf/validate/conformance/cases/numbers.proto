@@ -51,25 +51,25 @@ message FloatGTE {
 }
 message FloatGTLT {
   float val = 1 [(buf.validate.field).float = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message FloatExLTGT {
   float val = 1 [(buf.validate.field).float = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message FloatGTELTE {
   float val = 1 [(buf.validate.field).float = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message FloatExGTELTE {
   float val = 1 [(buf.validate.field).float = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
@@ -79,7 +79,7 @@ message FloatFinite {
 message FloatIgnore {
   float val = 1 [
     (buf.validate.field).float = {
-      gte: 128,
+      gte: 128
       lte: 256
     },
     (buf.validate.field).ignore_empty = true
@@ -123,25 +123,25 @@ message DoubleGTE {
 }
 message DoubleGTLT {
   double val = 1 [(buf.validate.field).double = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message DoubleExLTGT {
   double val = 1 [(buf.validate.field).double = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message DoubleGTELTE {
   double val = 1 [(buf.validate.field).double = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message DoubleExGTELTE {
   double val = 1 [(buf.validate.field).double = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
@@ -151,8 +151,8 @@ message DoubleFinite {
 message DoubleIgnore {
   double val = 1 [
     (buf.validate.field).double = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -195,33 +195,33 @@ message Int32GTE {
 }
 message Int32GTLT {
   int32 val = 1 [(buf.validate.field).int32 = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message Int32ExLTGT {
   int32 val = 1 [(buf.validate.field).int32 = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message Int32GTELTE {
   int32 val = 1 [(buf.validate.field).int32 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message Int32ExGTELTE {
   int32 val = 1 [(buf.validate.field).int32 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message Int32Ignore {
   int32 val = 1 [
     (buf.validate.field).int32 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -264,33 +264,33 @@ message Int64GTE {
 }
 message Int64GTLT {
   int64 val = 1 [(buf.validate.field).int64 = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message Int64ExLTGT {
   int64 val = 1 [(buf.validate.field).int64 = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message Int64GTELTE {
   int64 val = 1 [(buf.validate.field).int64 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message Int64ExGTELTE {
   int64 val = 1 [(buf.validate.field).int64 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message Int64Ignore {
   int64 val = 1 [
     (buf.validate.field).int64 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -358,33 +358,33 @@ message UInt32GTE {
 }
 message UInt32GTLT {
   uint32 val = 1 [(buf.validate.field).uint32 = {
-    gt: 5,
+    gt: 5
     lt: 10
   }];
 }
 message UInt32ExLTGT {
   uint32 val = 1 [(buf.validate.field).uint32 = {
-    lt: 5,
+    lt: 5
     gt: 10
   }];
 }
 message UInt32GTELTE {
   uint32 val = 1 [(buf.validate.field).uint32 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message UInt32ExGTELTE {
   uint32 val = 1 [(buf.validate.field).uint32 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message UInt32Ignore {
   uint32 val = 1 [
     (buf.validate.field).uint32 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -427,33 +427,33 @@ message UInt64GTE {
 }
 message UInt64GTLT {
   uint64 val = 1 [(buf.validate.field).uint64 = {
-    gt: 5,
+    gt: 5
     lt: 10
   }];
 }
 message UInt64ExLTGT {
   uint64 val = 1 [(buf.validate.field).uint64 = {
-    lt: 5,
+    lt: 5
     gt: 10
   }];
 }
 message UInt64GTELTE {
   uint64 val = 1 [(buf.validate.field).uint64 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message UInt64ExGTELTE {
   uint64 val = 1 [(buf.validate.field).uint64 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message UInt64Ignore {
   uint64 val = 1 [
     (buf.validate.field).uint64 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -496,33 +496,33 @@ message SInt32GTE {
 }
 message SInt32GTLT {
   sint32 val = 1 [(buf.validate.field).sint32 = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message SInt32ExLTGT {
   sint32 val = 1 [(buf.validate.field).sint32 = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message SInt32GTELTE {
   sint32 val = 1 [(buf.validate.field).sint32 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message SInt32ExGTELTE {
   sint32 val = 1 [(buf.validate.field).sint32 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message SInt32Ignore {
   sint32 val = 1 [
     (buf.validate.field).sint32 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -565,33 +565,33 @@ message SInt64GTE {
 }
 message SInt64GTLT {
   sint64 val = 1 [(buf.validate.field).sint64 = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message SInt64ExLTGT {
   sint64 val = 1 [(buf.validate.field).sint64 = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message SInt64GTELTE {
   sint64 val = 1 [(buf.validate.field).sint64 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message SInt64ExGTELTE {
   sint64 val = 1 [(buf.validate.field).sint64 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message SInt64Ignore {
   sint64 val = 1 [
     (buf.validate.field).sint64 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -633,33 +633,33 @@ message Fixed32GTE {
 }
 message Fixed32GTLT {
   fixed32 val = 1 [(buf.validate.field).fixed32 = {
-    gt: 5,
+    gt: 5
     lt: 10
   }];
 }
 message Fixed32ExLTGT {
   fixed32 val = 1 [(buf.validate.field).fixed32 = {
-    lt: 5,
+    lt: 5
     gt: 10
   }];
 }
 message Fixed32GTELTE {
   fixed32 val = 1 [(buf.validate.field).fixed32 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message Fixed32ExGTELTE {
   fixed32 val = 1 [(buf.validate.field).fixed32 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message Fixed32Ignore {
   fixed32 val = 1 [
     (buf.validate.field).fixed32 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -702,33 +702,33 @@ message Fixed64GTE {
 }
 message Fixed64GTLT {
   fixed64 val = 1 [(buf.validate.field).fixed64 = {
-    gt: 5,
+    gt: 5
     lt: 10
   }];
 }
 message Fixed64ExLTGT {
   fixed64 val = 1 [(buf.validate.field).fixed64 = {
-    lt: 5,
+    lt: 5
     gt: 10
   }];
 }
 message Fixed64GTELTE {
   fixed64 val = 1 [(buf.validate.field).fixed64 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message Fixed64ExGTELTE {
   fixed64 val = 1 [(buf.validate.field).fixed64 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message Fixed64Ignore {
   fixed64 val = 1 [
     (buf.validate.field).fixed64 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -771,33 +771,33 @@ message SFixed32GTE {
 }
 message SFixed32GTLT {
   sfixed32 val = 1 [(buf.validate.field).sfixed32 = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message SFixed32ExLTGT {
   sfixed32 val = 1 [(buf.validate.field).sfixed32 = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message SFixed32GTELTE {
   sfixed32 val = 1 [(buf.validate.field).sfixed32 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message SFixed32ExGTELTE {
   sfixed32 val = 1 [(buf.validate.field).sfixed32 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message SFixed32Ignore {
   sfixed32 val = 1 [
     (buf.validate.field).sfixed32 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];
@@ -840,33 +840,33 @@ message SFixed64GTE {
 }
 message SFixed64GTLT {
   sfixed64 val = 1 [(buf.validate.field).sfixed64 = {
-    gt: 0,
+    gt: 0
     lt: 10
   }];
 }
 message SFixed64ExLTGT {
   sfixed64 val = 1 [(buf.validate.field).sfixed64 = {
-    lt: 0,
+    lt: 0
     gt: 10
   }];
 }
 message SFixed64GTELTE {
   sfixed64 val = 1 [(buf.validate.field).sfixed64 = {
-    gte: 128,
+    gte: 128
     lte: 256
   }];
 }
 message SFixed64ExGTELTE {
   sfixed64 val = 1 [(buf.validate.field).sfixed64 = {
-    lte: 128,
+    lte: 128
     gte: 256
   }];
 }
 message SFixed64Ignore {
   sfixed64 val = 1 [
     (buf.validate.field).sfixed64 = {
-      gte: 128,
-      lte: 256,
+      gte: 128
+      lte: 256
     },
     (buf.validate.field).ignore_empty = true
   ];

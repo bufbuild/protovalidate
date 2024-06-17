@@ -56,9 +56,9 @@ message Proto3ScalarIgnoreDefault {
 
 message Proto3MessageOptionalIgnoreUnspecified {
   optional Msg val = 1 [(buf.validate.field).cel = {
-    id: "proto3.message.ignore.empty",
-    message: "foobar",
-    expression: "this.val == 'foo'",
+    id: "proto3.message.ignore.empty"
+    message: "foobar"
+    expression: "this.val == 'foo'"
   }];
   message Msg {
     optional string val = 1;
@@ -69,9 +69,9 @@ message Proto3MessageOptionalIgnoreEmpty {
   optional Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_EMPTY,
     (buf.validate.field).cel = {
-      id: "proto3.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto3.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -83,9 +83,9 @@ message Proto3MessageOptionalIgnoreDefault {
   optional Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_DEFAULT,
     (buf.validate.field).cel = {
-      id: "proto3.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto3.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -95,9 +95,9 @@ message Proto3MessageOptionalIgnoreDefault {
 
 message Proto3MessageIgnoreUnspecified {
   Msg val = 1 [(buf.validate.field).cel = {
-    id: "proto3.message.ignore.empty",
-    message: "foobar",
-    expression: "this.val == 'foo'",
+    id: "proto3.message.ignore.empty"
+    message: "foobar"
+    expression: "this.val == 'foo'"
   }];
   message Msg {
     optional string val = 1;
@@ -108,9 +108,9 @@ message Proto3MessageIgnoreEmpty {
   Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_EMPTY,
     (buf.validate.field).cel = {
-      id: "proto3.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto3.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -122,9 +122,9 @@ message Proto3MessageIgnoreDefault {
   Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_DEFAULT,
     (buf.validate.field).cel = {
-      id: "proto3.message.ignore.empty",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "proto3.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {

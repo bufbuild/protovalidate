@@ -60,25 +60,25 @@ message DurationGTE {
 }
 message DurationGTLT {
   google.protobuf.Duration val = 1 [(buf.validate.field).duration = {
-    gt: {},
+    gt: {}
     lt: {seconds: 1}
   }];
 }
 message DurationExLTGT {
   google.protobuf.Duration val = 1 [(buf.validate.field).duration = {
-    lt: {},
+    lt: {}
     gt: {seconds: 1}
   }];
 }
 message DurationGTELTE {
   google.protobuf.Duration val = 1 [(buf.validate.field).duration = {
-    gte: {seconds: 60},
+    gte: {seconds: 60}
     lte: {seconds: 3600}
   }];
 }
 message DurationExGTELTE {
   google.protobuf.Duration val = 1 [(buf.validate.field).duration = {
-    lte: {seconds: 60},
+    lte: {seconds: 60}
     gte: {seconds: 3600}
   }];
 }

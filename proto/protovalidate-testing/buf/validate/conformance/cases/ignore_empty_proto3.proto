@@ -36,9 +36,9 @@ message IgnoreEmptyProto3Message {
   optional Msg val = 1 [
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).cel = {
-      id: "ignore_empty.proto3.message",
-      message: "foobar",
-      expression: "this.val == 'foo'",
+      id: "ignore_empty.proto3.message"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -71,20 +71,20 @@ message IgnoreEmptyProto3Map {
 
 message IgnoreEmptyRepeatedItems {
   repeated int32 val = 1 [(buf.validate.field).repeated.items = {
-    ignore_empty: true,
-    int32: {gt: 0},
+    ignore_empty: true
+    int32: {gt: 0}
   }];
 }
 
 message IgnoreEmptyMapPairs {
   map<string, int32> val = 1 [
     (buf.validate.field).map.keys = {
-      ignore_empty: true,
-      string: {min_len: 3},
+      ignore_empty: true
+      string: {min_len: 3}
     },
     (buf.validate.field).map.values = {
-      ignore_empty: true,
-      int32: {gt: 0},
+      ignore_empty: true
+      int32: {gt: 0}
     }
   ];
 }

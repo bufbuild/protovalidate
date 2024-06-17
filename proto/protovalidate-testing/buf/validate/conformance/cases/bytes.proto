@@ -51,13 +51,13 @@ message BytesMaxLen {
 }
 message BytesMinMaxLen {
   bytes val = 1 [(buf.validate.field).bytes = {
-    min_len: 3,
+    min_len: 3
     max_len: 5
   }];
 }
 message BytesEqualMinMaxLen {
   bytes val = 1 [(buf.validate.field).bytes = {
-    min_len: 5,
+    min_len: 5
     max_len: 5
   }];
 }
