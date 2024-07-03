@@ -1,0 +1,104 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+edition = "2023";
+
+package buf.validate.conformance.cases;
+
+import "buf/validate/validate.proto";
+
+message RequiredEditionsScalarExplicitPresence {
+  string val = 1 [(buf.validate.field).required = true];
+}
+
+message RequiredEditionsScalarExplicitPresenceDefault {
+  string val = 1 [
+    (buf.validate.field).required = true,
+    default = "foo"
+  ];
+}
+
+message RequiredEditionsScalarImplicitPresence {
+  string val = 1 [
+    features.field_presence = IMPLICIT,
+    (buf.validate.field).required = true
+  ];
+}
+
+message RequiredEditionsScalarLegacyRequired {
+  string val = 1 [
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).required = true
+  ];
+}
+
+message RequiredEditionsMessageExplicitPresence {
+  Msg val = 1 [(buf.validate.field).required = true];
+  message Msg {
+    string val = 1;
+  }
+}
+
+message RequiredEditionsMessageExplicitPresenceDelimited {
+  Msg val = 1 [
+    features.message_encoding = DELIMITED,
+    (buf.validate.field).required = true
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+
+message RequiredEditionsMessageLegacyRequired {
+  Msg val = 1 [
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).required = true
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+
+message RequiredEditionsMessageLegacyRequiredDelimited {
+  Msg val = 1 [
+    features.message_encoding = DELIMITED,
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).required = true
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+
+message RequiredEditionsOneof {
+  oneof val {
+    string a = 1 [(buf.validate.field).required = true];
+    string b = 2;
+  }
+}
+
+message RequiredEditionsRepeated {
+  repeated string val = 1 [(buf.validate.field).required = true];
+}
+
+message RequiredEditionsRepeatedExpanded {
+  repeated string val = 1 [
+    features.repeated_field_encoding = EXPANDED,
+    (buf.validate.field).required = true
+  ];
+}
+
+message RequiredEditionsMap {
+  map<string, string> val = 1 [(buf.validate.field).required = true];
+}
