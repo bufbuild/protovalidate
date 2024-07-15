@@ -228,5 +228,149 @@ func ignoreEmptySuite() suites.Suite {
 			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": -1}},
 			Expected: results.Violations(&validate.Violation{FieldPath: `val["foo"]`, ConstraintId: "int32.gt"}),
 		},
+		"proto/2023/scalar/explicit_presence/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(42)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/explicit_presence/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/explicit_presence/unset": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(1)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/default": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(42)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/unset": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/implicit_presence/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarImplicitPresence{Val: 42},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/implicit_presence/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarImplicitPresence{Val: -42},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/implicit_presence/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarImplicitPresence{Val: 0},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/legacy_required/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequired{Val: proto.Int32(42)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/legacy_required/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequired{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/legacy_required/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequired{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/legacy_required_with_default/nonzero/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(42)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/legacy_required_with_default/nonzero/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/scalar/legacy_required_with_default/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/nonzero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresence_Msg{Val: proto.String("foo")}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresence_Msg{}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "ignore_empty.proto2.message"}),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/unset": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/nonzero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited_Msg{Val: proto.String("foo")}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited_Msg{}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "ignore_empty.proto2.message"}),
+		},
+		"proto/2023/message/explicit_presence/delimited/unset": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/nonzero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsOneof{O: &cases.IgnoreEmptyEditionsOneof_Val{Val: 42}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/zero": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsOneof{O: &cases.IgnoreEmptyEditionsOneof_Val{}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "int32.gt"}),
+		},
+		"proto/2023/oneof/unset": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsOneof{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/compact/nonempty/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsRepeated{Val: []int32{1, 2, 3}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/compact/noempty/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsRepeated{Val: []int32{1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "repeated.min_items"}),
+		},
+		"proto/2023/repeated/compact/empty": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsRepeated{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/nonempty/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsRepeatedExpanded{Val: []int32{1, 2, 3}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/noempty/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsRepeatedExpanded{Val: []int32{1}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "repeated.min_items"}),
+		},
+		"proto/2023/repeated/expanded/empty": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsRepeatedExpanded{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/nonempty/valid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMap{Val: map[int32]int32{1: 2, 3: 4, 5: 6}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/nonempty/invalid": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMap{Val: map[int32]int32{0: 0}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "map.min_pairs"}),
+		},
+		"proto/2023/map/empty": suites.Case{
+			Message:  &cases.IgnoreEmptyEditionsMap{},
+			Expected: results.Success(true),
+		},
 	}
 }
