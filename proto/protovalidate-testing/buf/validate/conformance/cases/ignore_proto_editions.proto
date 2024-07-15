@@ -132,13 +132,11 @@ message EditionsScalarLegacyRequiredIgnoreDefaultWithDefault {
 }
 
 message EditionsMessageExplicitPresenceIgnoreUnspecified {
-  Msg val = 1 [
-    (buf.validate.field).cel = {
-        id: "proto.editions.message.ignore.empty"
-        message: "foobar"
-        expression: "this.val == 'foo'"
-    }
-  ];
+  Msg val = 1 [(buf.validate.field).cel = {
+    id: "proto.editions.message.ignore.empty"
+    message: "foobar"
+    expression: "this.val == 'foo'"
+  }];
   message Msg {
     string val = 1;
   }
@@ -148,9 +146,9 @@ message EditionsMessageExplicitPresenceDelimitedIgnoreUnspecified {
   Msg val = 1 [
     features.message_encoding = DELIMITED,
     (buf.validate.field).cel = {
-        id: "proto.editions.message.ignore.empty"
-        message: "foobar"
-        expression: "this.val == 'foo'"
+      id: "proto.editions.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -220,9 +218,9 @@ message EditionsMessageLegacyRequiredIgnoreUnspecified {
   Msg val = 1 [
     features.field_presence = LEGACY_REQUIRED,
     (buf.validate.field).cel = {
-        id: "proto.editions.message.ignore.empty"
-        message: "foobar"
-        expression: "this.val == 'foo'"
+      id: "proto.editions.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
@@ -235,9 +233,9 @@ message EditionsMessageLegacyRequiredDelimitedIgnoreUnspecified {
     features.message_encoding = DELIMITED,
     features.field_presence = LEGACY_REQUIRED,
     (buf.validate.field).cel = {
-        id: "proto.editions.message.ignore.empty"
-        message: "foobar"
-        expression: "this.val == 'foo'"
+      id: "proto.editions.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
     }
   ];
   message Msg {
