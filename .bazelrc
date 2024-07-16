@@ -1,1 +1,3 @@
 build --experimental_proto_descriptor_sets_include_source_info
+build --proto_compiler=@com_google_protobuf//:protoc
+build --proto_toolchain_for_cc=@com_google_protobuf//:cc_toolchain

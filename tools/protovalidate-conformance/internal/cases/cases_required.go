@@ -168,5 +168,129 @@ func requiredSuite() suites.Suite {
 			Message:  &cases.RequiredProto3Map{},
 			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
 		},
+		"proto/2023/scalar/explicit_presence/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresence{Val: proto.String("foo")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence/zero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresence{Val: proto.String("")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence/unset": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresence{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresenceDefault{Val: proto.String("bar")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/zero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresenceDefault{Val: proto.String("")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/default": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresenceDefault{Val: proto.String("foo")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/unset": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresenceDefault{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
+		"proto/2023/scalar/implicit_presence/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarImplicitPresence{Val: "foo"},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/implicit_presence/zero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarImplicitPresence{Val: ""},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
+		"proto/2023/scalar/legacy_required/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarLegacyRequired{Val: proto.String("foo")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/legacy_required/zero": suites.Case{
+			Message:  &cases.RequiredEditionsScalarLegacyRequired{Val: proto.String("")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresence{Val: &cases.RequiredEditionsMessageExplicitPresence_Msg{Val: proto.String("foo")}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/zero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresence{Val: &cases.RequiredEditionsMessageExplicitPresence_Msg{}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/unset": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresence{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
+		"proto/2023/message/explicit_presence/delimited/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresenceDelimited{Val: &cases.RequiredEditionsMessageExplicitPresenceDelimited_Msg{Val: proto.String("foo")}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/zero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresenceDelimited{Val: &cases.RequiredEditionsMessageExplicitPresenceDelimited_Msg{}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/unset": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresenceDelimited{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
+		"proto/2023/message/legacy_required/length_prefixed/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageLegacyRequired{Val: &cases.RequiredEditionsMessageLegacyRequired_Msg{Val: proto.String("foo")}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/length_prefixed/zero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageLegacyRequired{Val: &cases.RequiredEditionsMessageLegacyRequired_Msg{}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/delimited/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageLegacyRequiredDelimited{Val: &cases.RequiredEditionsMessageLegacyRequiredDelimited_Msg{Val: proto.String("foo")}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/delimited/zero": suites.Case{
+			Message:  &cases.RequiredEditionsMessageLegacyRequiredDelimited{Val: &cases.RequiredEditionsMessageLegacyRequiredDelimited_Msg{}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/nonzero": suites.Case{
+			Message:  &cases.RequiredEditionsOneof{Val: &cases.RequiredEditionsOneof_A{A: "foo"}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/zero": suites.Case{
+			Message:  &cases.RequiredEditionsOneof{Val: &cases.RequiredEditionsOneof_A{A: ""}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/other_member": suites.Case{
+			Message:  &cases.RequiredEditionsOneof{Val: &cases.RequiredEditionsOneof_B{B: "foo"}},
+			Expected: results.Violations(&validate.Violation{FieldPath: "a", ConstraintId: "required"}),
+		},
+		"proto/2023/oneof/unset": suites.Case{
+			Message:  &cases.RequiredEditionsOneof{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "a", ConstraintId: "required"}),
+		},
+		"proto/2023/repeated/compact/nonempty": suites.Case{
+			Message:  &cases.RequiredEditionsRepeated{Val: []string{"foo"}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/compact/empty": suites.Case{
+			Message:  &cases.RequiredEditionsRepeated{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
+		"proto/2023/repeated/expanded/nonempty": suites.Case{
+			Message:  &cases.RequiredEditionsRepeatedExpanded{Val: []string{"foo"}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/empty": suites.Case{
+			Message:  &cases.RequiredEditionsRepeatedExpanded{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
+		"proto/2023/map/nonempty": suites.Case{
+			Message:  &cases.RequiredEditionsMap{Val: map[string]string{"foo": "bar"}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/empty": suites.Case{
+			Message:  &cases.RequiredEditionsMap{},
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+		},
 	}
 }
