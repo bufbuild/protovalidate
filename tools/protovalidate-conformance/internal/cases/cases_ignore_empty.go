@@ -306,7 +306,7 @@ func ignoreEmptySuite() suites.Suite {
 		},
 		"proto/2023/message/explicit_presence/length_prefixed/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresence_Msg{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "ignore_empty.proto2.message"}),
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "ignore_empty.editions.message"}),
 		},
 		"proto/2023/message/explicit_presence/length_prefixed/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{},
@@ -318,7 +318,7 @@ func ignoreEmptySuite() suites.Suite {
 		},
 		"proto/2023/message/explicit_presence/delimited/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited_Msg{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "ignore_empty.proto2.message"}),
+			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "ignore_empty.editions.message"}),
 		},
 		"proto/2023/message/explicit_presence/delimited/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{},
