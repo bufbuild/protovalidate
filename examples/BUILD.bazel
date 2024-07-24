@@ -43,7 +43,7 @@ proto_library(
         "cel_repeated_field_all.proto",
         "cel_repeated_field_exists_one.proto",
         "cel_repeated_field_filter_and_count.proto",
-        "cel_repeated_field_unique.proto",
+        "cel_repeated_field_transform_and_unique.proto",
         "cel_string_concatenation.proto",
         "cel_string_contains.proto",
         "cel_string_is_email.proto",
