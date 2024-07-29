@@ -99,13 +99,17 @@ standard constraints between `protoc-gen-validate` and `protovalidate`:
 - All field-level constraints have moved into a single
   option: `(buf.validate.field)`.
 
-- **`(validate.rules).<TYPE>.required`**: moved
-  to `(buf.validate.field).required`.
+- **`(validate.rules).<TYPE>.required`**: moved to 
+  `(buf.validate.field).required`. The semantics of required have changed and
+  been clarified. Please consult the [documentation][validate] to ensure they 
+  match expectations compared to its behavior in PGV.
 
 - **`(validate.rules).message.skip`**: moved to `(buf.validate.field).skipped`.
 
 - **`(validate.rules).<TYPE>.ignore_empty`**: moved
-  to `(buf.validate.field).ignore_empty`.
+  to `(buf.validate.field).ignore_empty`. `ignore_empty` has also been 
+  deprecated in favor of the new, more powerful `ignore` enum. Please consult 
+  the [documentation][ignore] to see which semantics match expectations.
 
 - **`(validate.rules).map.no_sparse`**: removed. The original rule accommodated
   for a situation that was only possible in the Go code generation exclusively.
@@ -153,3 +157,5 @@ manual migration:
 
 [go-legacy]: https://github.com/bufbuild/protovalidate-go/README.md#support-legacy-protoc-gen-validate-constraints
 [format]: https://buf.build/docs/format/style/
+[validate]: https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.FieldConstraints
+[ignore]: https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.Ignore
