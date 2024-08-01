@@ -32,4 +32,7 @@ gazelle(
     gazelle = ":gazelle-buf",
 )
 
-exports_files(["buf.yaml", "buf.lock"])
+exports_files([
+    "buf.yaml",
+    "buf.lock",
+])
