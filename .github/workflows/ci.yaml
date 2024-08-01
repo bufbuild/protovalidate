@@ -29,17 +29,10 @@ jobs:
           go-version: stable
           cache-dependency-path: go.work.sum
       - name: Install buf
-        uses: bufbuild/buf-setup-action@v1.35.1
+        uses: bufbuild/buf-action@v1
         with:
           github_token: ${{ github.token }}
-      - name: Buf format
-        run: buf format -d --exit-code
-      - name: Buf lint
-        uses: bufbuild/buf-lint-action@v1
-      - name: Buf breaking change detection
-        uses: bufbuild/buf-breaking-action@v1
-        with:
-          against: https://github.com/bufbuild/protovalidate.git#branch=main
+          setup_only: true
       - name: Buf generate
         run: |
           mkdir -p .tmp/bin
