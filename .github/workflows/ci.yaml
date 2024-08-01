@@ -32,7 +32,11 @@ jobs:
         uses: bufbuild/buf-action@v1
         with:
           github_token: ${{ github.token }}
-          setup_only: true
+          format: true
+          lint: true
+          breaking: true
+          push: false
+          archive: false
       - name: Buf generate
         run: |
           mkdir -p .tmp/bin
