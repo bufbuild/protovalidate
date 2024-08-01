@@ -1,25 +1,5 @@
 version: v2
 modules:
-  - path: examples
-    lint:
-      use:
-        - DEFAULT
-      except:
-        - DIRECTORY_SAME_PACKAGE
-        - FIELD_NOT_REQUIRED
-        - PACKAGE_DEFINED
-        - PACKAGE_DIRECTORY_MATCH
-        - PACKAGE_NO_IMPORT_CYCLE
-        - PACKAGE_SAME_DIRECTORY
-      enum_zero_value_suffix: _UNSPECIFIED
-      service_suffix: Service
-      disallow_comment_ignores: true
-    breaking:
-      use:
-        - FILE
-      except:
-        - EXTENSION_NO_DELETE
-        - FIELD_SAME_DEFAULT
   - path: proto/protovalidate
     name: buf.build/bufbuild/protovalidate
     lint:
@@ -67,5 +47,3 @@ modules:
         - FIELD_SAME_DEFAULT
       ignore:
         - proto/protovalidate-testing/buf/validate/conformance
-deps:
-  - buf.build/googleapis/googleapis
