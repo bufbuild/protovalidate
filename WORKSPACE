@@ -2,21 +2,23 @@ workspace(name = "com_github_bufbuild_protovalidate")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-# This is needed due to an unresolved issue with protobuf v27+.
-# https://github.com/protocolbuffers/protobuf/issues/17200
 http_archive(
     name = "rules_python",
-    sha256 = "0a8003b044294d7840ac7d9d73eef05d6ceb682d7516781a4ec62eeb34702578",
-    strip_prefix = "rules_python-0.24.0",
-    url = "https://github.com/bazelbuild/rules_python/releases/download/0.24.0/rules_python-0.24.0.tar.gz",
+    integrity = "sha256-d4quqz5s/VbWgcifXBDXrWv40vGnLeneVbIwgbLTFhg=",
+    strip_prefix = "rules_python-0.34.0",
+    url = "https://github.com/bazelbuild/rules_python/releases/download/0.34.0/rules_python-0.34.0.tar.gz",
 )
+
+load("@rules_python//python:repositories.bzl", "py_repositories")
+
+py_repositories()
 
 # Use a newer protobuf toolchain for editions support.
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "e4ff2aeb767da6f4f52485c2e72468960ddfe5262483879ef6ad552e52757a77",
-    strip_prefix = "protobuf-27.2",
-    urls = ["https://github.com/protocolbuffers/protobuf/archive/v27.2.tar.gz"],
+    integrity = "sha256-FTUVHvvHiT84sFeOg8rFhPKBmXTwZWmJdpiexxwa+Eo=",
+    strip_prefix = "protobuf-27.3",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v27.3.tar.gz"],
 )
 
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
