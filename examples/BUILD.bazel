@@ -113,7 +113,7 @@ proto_library(
 
 buf_lint_test(
     name = "examples_proto_lint",
-    config = "//:buf.yaml",
+    config = "//examples:buf.yaml",
     module = "examples",
     targets = [":examples_proto"],
 )
