@@ -25,7 +25,7 @@ service AddressService {
 message UpdateAddressInfoRequest {
   // If a secondary residence is set, the primary one must also be set.
   option (buf.validate.message).cel = {
-    id: "secondary_residence_depends_on_primary",
+    id: "secondary_residence_depends_on_primary"
     // `has(this.field)` evaluates to true if a field is present.
     expression:
       "has(this.new_secondary_residence) && !has(this.new_primary_residence)"

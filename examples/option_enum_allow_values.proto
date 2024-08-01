@@ -27,7 +27,7 @@ message SetOnlineStatusRequest {
     // `defined_only` validates that this enum value must be a defined value.
     // In this case, the enum's value must be one of 0, 1, 2, 5 and 10.
     // Note that unspecified value `ONLINE_STATUS_UNSPECIFIED = 0;` is considered defined.
-    defined_only: true,
+    defined_only: true
     // `in` validates that this enum must be a value from the list provided.
     // In this case, it validates this enum must be one of 1, 2, 5 and 10.
     in: [

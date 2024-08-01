@@ -21,8 +21,8 @@ message PenInventory {
   // color_to_count maps from a color id to the amount of pens of the color.
   map<uint32, uint32> color_to_count = 1;
   option (buf.validate.message).cel = {
-    id: "at_most_30_colors",
-    message: "there must not be more than 30 colors",
+    id: "at_most_30_colors"
+    message: "there must not be more than 30 colors"
     // `size(some_map)` returns the number of keys in this map.
     // In this case, it validates that the map has at most 30 keys.
     expression: "size(this.color_to_count) <= 30"

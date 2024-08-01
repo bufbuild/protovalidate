@@ -19,15 +19,15 @@ import "buf/validate/validate.proto";
 message User {
   string username = 1 [(buf.validate.field).string = {
     // `min_len` validates that username must have at least 3 characters.
-    min_len: 3;
+    min_len: 3
     // `max_len` validates that username must have at most 16 characters.
-    max_len: 16;
+    max_len: 16
   }];
   string description = 2 [(buf.validate.field).string = {
     // `min_bytes` specifies that a string field must have a least this many bytes.
     // In this case, it validates that description must have a least 0 byte,
     // which is a no-op.
-    min_bytes: 0,
+    min_bytes: 0
     // `max_bytes` specifies that a string field must have at most this many bytes.
     // In this case, it validates that description can have at most 500 bytes.
     max_bytes: 500

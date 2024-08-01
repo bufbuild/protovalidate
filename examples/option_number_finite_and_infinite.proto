@@ -27,7 +27,7 @@ message AddStarRequest {
   // distance_ly is its distance from the Sun in light years.
   double distance_ly = 2 [(buf.validate.field).double = {
     // `gt` validates that the distance is positive.
-    gt: 0,
+    gt: 0
     // `finite` validates a double or float is not infinity.
     // In this case, it validates that the distance is not positive infinity.
     finite: true

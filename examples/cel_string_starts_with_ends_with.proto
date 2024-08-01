@@ -26,8 +26,8 @@ message AnswerJeopardyQuestionRequest {
   uint64 question_id = 1;
   // answer is an answer in the form of a question, such as "What is xyz?" and "Who is xyz?".
   string answer = 2 [(buf.validate.field).cel = {
-    id: "correct_answer_format",
-    message: "answer must start with 'wh' and end with '?'",
+    id: "correct_answer_format"
+    message: "answer must start with 'wh' and end with '?'"
     // `startsWith` evaluates to true when the string operand starts with the prefix argument.
     // `endsWith` evaluates to true when the string operand ends with the suffix argument.
     expression: "this.startsWith('wh') && this.endsWith('?')"

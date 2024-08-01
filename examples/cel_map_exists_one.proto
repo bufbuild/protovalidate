@@ -21,8 +21,8 @@ message TeamRoles {
   // name_to_role maps from a team member's name to role.
   map<string, TeamRole> name_to_role = 1;
   option (buf.validate.message).cel = {
-    id: "exactly_one_captain",
-    message: "there must be exactly one captain",
+    id: "exactly_one_captain"
+    message: "there must be exactly one captain"
     // `exists_one` validates that exactly one key in the map satisfies the predicate.
     // In this case, it validates that exactly one player in the team has the
     // captain role.

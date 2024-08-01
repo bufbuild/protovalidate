@@ -18,8 +18,8 @@ import "buf/validate/validate.proto";
 
 message CompactDocument {
   option (buf.validate.message).cel = {
-    id: "header_footer_size_limit",
-    message: "header and footer should be less than 500 bytes in total",
+    id: "header_footer_size_limit"
+    message: "header and footer should be less than 500 bytes in total"
     // the `+` operator concatenates two `bytes` together and `size` returns
     // the length of a `bytes`.
     // This validates that the combined size of header and footer should be < 500.

@@ -19,8 +19,8 @@ import "buf/validate/validate.proto";
 // FiveTruthsThreeLies is a new game based on the classic Two Truths One Lie.
 message FiveTruthsThreeLies {
   option (buf.validate.message).cel = {
-    id: "exactly_three_lies",
-    message: "there must be exactly three lies",
+    id: "exactly_three_lies"
+    message: "there must be exactly three lies"
     // `this.statement.filter` evaluates to a new list, whose elements are those
     // from the original one that satisfies the predicate. In this case, the filter
     // evaluates to the list of statements that are true.
@@ -29,8 +29,8 @@ message FiveTruthsThreeLies {
     expression: "size(this.statement.filter(s, !s.is_truth)) == 3"
   };
   option (buf.validate.message).cel = {
-    id: "exactly_five_truths",
-    message: "there must be exactly five truths",
+    id: "exactly_five_truths"
+    message: "there must be exactly five truths"
     // Similarly, validate that exactly five truths
     expression: "size(this.statement.filter(s, s.is_truth)) == 5"
   };

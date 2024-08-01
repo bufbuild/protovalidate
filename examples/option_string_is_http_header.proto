@@ -19,11 +19,11 @@ import "buf/validate/validate.proto";
 message HttpHeader {
   string name = 1 [(buf.validate.field).string = {
     // This validates that name is a valid http header name.
-    well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME,
+    well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
   }];
   string value = 2 [(buf.validate.field).string = {
     // This validates that value is a valid http header value.
-    well_known_regex: KNOWN_REGEX_HTTP_HEADER_VALUE,
+    well_known_regex: KNOWN_REGEX_HTTP_HEADER_VALUE
     // `strict` applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
     // enable strict header validation. By default this value is true and
     // validations are [RFC-compliant](https://tools.ietf.org/html/rfc7230#section-3).

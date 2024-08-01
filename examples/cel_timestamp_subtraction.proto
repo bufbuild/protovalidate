@@ -24,8 +24,8 @@ service ReservationService {
 
 message BookReservationRequest {
   google.protobuf.Timestamp start_time = 1 [(buf.validate.field).cel = {
-    id: "book_24_hrs_ahead",
-    message: "must book at least 24 hours ahead",
+    id: "book_24_hrs_ahead"
+    message: "must book at least 24 hours ahead"
     // `now` evaluates to a timestamp at the current time.
     // Subtracting two timestamps evaluates to a duration. In this case,
     // `this - now` evaluates to the time between now and time of the

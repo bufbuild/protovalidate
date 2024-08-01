@@ -22,8 +22,8 @@ message BeverageMenu {
   string daily_special = 3;
 
   option (buf.validate.message).cel = {
-    id: "daily_special_either_hot_or_cold",
-    message: "the daily special must be in either the hot menu or the cold menu",
+    id: "daily_special_either_hot_or_cold"
+    message: "the daily special must be in either the hot menu or the cold menu"
     // The `+` is loaded for lists (repeated fields) and it concatenates two lists.
     // In this case `this.hot_beverages` + `this.cold_beverages` evaluates to a list
     // containing beverages from both lists.

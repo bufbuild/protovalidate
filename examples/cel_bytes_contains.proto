@@ -20,8 +20,8 @@ import "buf/validate/validate.proto";
 message Application {
   // binary is the application's binary
   bytes binary = 1 [(buf.validate.field).cel = {
-    id: "without_malicious_code",
-    message: "binary should not contain malicious code",
+    id: "without_malicious_code"
+    message: "binary should not contain malicious code"
     // `contains` returns if the receiver `bytes` contains the argument `bytes`.
     // This validates that the application binary should not contain bytes for
     // `'malicious code'`.

@@ -28,7 +28,7 @@ message CreateReviewRequest {
   string comment = 2;
   uint32 rating = 3 [(buf.validate.field).uint32 = {
     // validates a rating is greater than 0
-    gt: 0,
+    gt: 0
     // validates a rating is at most 10
     lte: 10
   }];
@@ -46,7 +46,7 @@ message AggregatedReview {
   // average_rating is the average of individual ratings
   float average_rating = 2 [(buf.validate.field).float = {
     // validates the average rating is at least 1.0
-    gte: 1.0,
+    gte: 1.0
     // validates the average rating is at most 10.0
     lte: 10.0
   }];
