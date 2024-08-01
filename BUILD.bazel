@@ -31,3 +31,5 @@ gazelle(
     name = "gazelle",
     gazelle = ":gazelle-buf",
 )
+
+exports_files(["buf.yaml", "buf.lock"])
