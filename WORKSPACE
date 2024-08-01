@@ -25,10 +25,10 @@ protobuf_deps()
 
 http_archive(
     name = "rules_buf",
-    sha256 = "523a4e06f0746661e092d083757263a249fedca535bd6dd819a8c50de074731a",
-    strip_prefix = "rules_buf-0.1.1",
+    integrity = "sha256-Hr64Q/CaYr0E3ptAjEOgdZd1yc+cBjp7OG1wzuf3DIs=",
+    strip_prefix = "rules_buf-0.3.0",
     urls = [
-        "https://github.com/bufbuild/rules_buf/archive/refs/tags/v0.1.1.zip",
+        "https://github.com/bufbuild/rules_buf/archive/refs/tags/v0.3.0.zip",
     ],
 )
 

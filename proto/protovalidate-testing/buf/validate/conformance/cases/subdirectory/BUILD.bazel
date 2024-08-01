@@ -25,7 +25,8 @@ proto_library(
 
 buf_lint_test(
     name = "buf_validate_conformance_cases_subdirectory_proto_lint",
-    config = "//proto/protovalidate-testing:buf.yaml",
+    config = "//:buf.yaml",
+    module = "proto/protovalidate-testing",
     targets = [":buf_validate_conformance_cases_subdirectory_proto"],
 )
 
