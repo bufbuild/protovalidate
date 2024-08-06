@@ -7,10 +7,10 @@ assignees: ''
 ---
 
 **Feature description:** 
-<!-- A clear and concise description of the feature you would like to see implemented in protoc-gen-validate.-->
+<!-- A clear and concise description of the feature you would like to see implemented in protovalidate.-->
 
 **Problem it solves or use case:** 
-<!-- Explain the problem this feature would solve or the use case it addresses, and how it would benefit users of protoc-gen-validate.-->
+<!-- Explain the problem this feature would solve or the use case it addresses, and how it would benefit users of protovalidate.-->
 
 **Proposed implementation or solution:** 
 <!-- If you have a suggestion on how this feature can be implemented or any ideas on the solution, please describe them here.-->
