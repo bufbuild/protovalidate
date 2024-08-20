@@ -27,3 +27,6 @@ message BoolConstTrue {
 message BoolConstFalse {
   bool val = 1 [(buf.validate.field).bool.const = false];
 }
+message BoolExample {
+  bool val = 1 [(buf.validate.field).bool.example = true];
+}

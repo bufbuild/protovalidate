@@ -546,6 +546,23 @@ message FloatRules {
     id: "float.finite"
     expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyFloat {
+  //   float value = 1 [
+  //     (buf.validate.field).float.example = 1.0,
+  //     (buf.validate.field).float.example = "Infinity"
+  //   ];
+  // }
+  // ```
+  repeated float example = 9 [(priv.field).cel = {
+    id: "float.example"
+    expression: "true"
+  }];
 }
 
 // DoubleRules describes the constraints applied to `double` values. These
@@ -738,6 +755,23 @@ message DoubleRules {
     id: "double.finite"
     expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyDouble {
+  //   double value = 1 [
+  //     (buf.validate.field).double.example = 1.0,
+  //     (buf.validate.field).double.example = "Infinity"
+  //   ];
+  // }
+  // ```
+  repeated double example = 9 [(priv.field).cel = {
+    id: "double.example"
+    expression: "true"
+  }];
 }
 
 // Int32Rules describes the constraints applied to `int32` values. These
@@ -923,6 +957,23 @@ message Int32Rules {
   repeated int32 not_in = 7 [(priv.field).cel = {
     id: "int32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
+  }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyInt32 {
+  //   int32 value = 1 [
+  //     (buf.validate.field).int32.example = 1,
+  //     (buf.validate.field).int32.example = -10
+  //   ];
+  // }
+  // ```
+  repeated int32 example = 8 [(priv.field).cel = {
+    id: "int32.example"
+    expression: "true"
   }];
 }
 
@@ -1110,6 +1161,23 @@ message Int64Rules {
     id: "int64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyInt64 {
+  //   int64 value = 1 [
+  //     (buf.validate.field).int64.example = 1,
+  //     (buf.validate.field).int64.example = -10
+  //   ];
+  // }
+  // ```
+  repeated int64 example = 9 [(priv.field).cel = {
+    id: "int64.example"
+    expression: "true"
+  }];
 }
 
 // UInt32Rules describes the constraints applied to `uint32` values. These
@@ -1296,6 +1364,23 @@ message UInt32Rules {
     id: "uint32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyUInt32 {
+  //   uint32 value = 1 [
+  //     (buf.validate.field).uint32.example = 1,
+  //     (buf.validate.field).uint32.example = 10
+  //   ];
+  // }
+  // ```
+  repeated uint32 example = 8 [(priv.field).cel = {
+    id: "uint32.example"
+    expression: "true"
+  }];
 }
 
 // UInt64Rules describes the constraints applied to `uint64` values. These
@@ -1480,6 +1565,23 @@ message UInt64Rules {
   repeated uint64 not_in = 7 [(priv.field).cel = {
     id: "uint64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
+  }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyUInt64 {
+  //   uint64 value = 1 [
+  //     (buf.validate.field).uint64.example = 1,
+  //     (buf.validate.field).uint64.example = -10
+  //   ];
+  // }
+  // ```
+  repeated uint64 example = 8 [(priv.field).cel = {
+    id: "uint64.example"
+    expression: "true"
   }];
 }
 
@@ -1666,6 +1768,23 @@ message SInt32Rules {
     id: "sint32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MySInt32 {
+  //   sint32 value = 1 [
+  //     (buf.validate.field).sint32.example = 1,
+  //     (buf.validate.field).sint32.example = -10
+  //   ];
+  // }
+  // ```
+  repeated sint32 example = 8 [(priv.field).cel = {
+    id: "sint32.example"
+    expression: "true"
+  }];
 }
 
 // SInt64Rules describes the constraints applied to `sint64` values.
@@ -1850,6 +1969,23 @@ message SInt64Rules {
   repeated sint64 not_in = 7 [(priv.field).cel = {
     id: "sint64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
+  }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MySInt64 {
+  //   sint64 value = 1 [
+  //     (buf.validate.field).sint64.example = 1,
+  //     (buf.validate.field).sint64.example = -10
+  //   ];
+  // }
+  // ```
+  repeated sint64 example = 8 [(priv.field).cel = {
+    id: "sint64.example"
+    expression: "true"
   }];
 }
 
@@ -2036,6 +2172,23 @@ message Fixed32Rules {
     id: "fixed32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyFixed32 {
+  //   fixed32 value = 1 [
+  //     (buf.validate.field).fixed32.example = 1,
+  //     (buf.validate.field).fixed32.example = 2
+  //   ];
+  // }
+  // ```
+  repeated fixed32 example = 8 [(priv.field).cel = {
+    id: "fixed32.example"
+    expression: "true"
+  }];
 }
 
 // Fixed64Rules describes the constraints applied to `fixed64` values.
@@ -2220,6 +2373,23 @@ message Fixed64Rules {
   repeated fixed64 not_in = 7 [(priv.field).cel = {
     id: "fixed64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
+  }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyFixed64 {
+  //   fixed64 value = 1 [
+  //     (buf.validate.field).fixed64.example = 1,
+  //     (buf.validate.field).fixed64.example = 2
+  //   ];
+  // }
+  // ```
+  repeated fixed64 example = 8 [(priv.field).cel = {
+    id: "fixed64.example"
+    expression: "true"
   }];
 }
 
@@ -2406,6 +2576,23 @@ message SFixed32Rules {
     id: "sfixed32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MySFixed32 {
+  //   sfixed32 value = 1 [
+  //     (buf.validate.field).sfixed32.example = 1,
+  //     (buf.validate.field).sfixed32.example = 2
+  //   ];
+  // }
+  // ```
+  repeated sfixed32 example = 8 [(priv.field).cel = {
+    id: "sfixed32.example"
+    expression: "true"
+  }];
 }
 
 // SFixed64Rules describes the constraints applied to `fixed64` values.
@@ -2591,6 +2778,23 @@ message SFixed64Rules {
     id: "sfixed64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MySFixed64 {
+  //   sfixed64 value = 1 [
+  //     (buf.validate.field).sfixed64.example = 1,
+  //     (buf.validate.field).sfixed64.example = 2
+  //   ];
+  // }
+  // ```
+  repeated sfixed64 example = 8 [(priv.field).cel = {
+    id: "sfixed64.example"
+    expression: "true"
+  }];
 }
 
 // BoolRules describes the constraints applied to `bool` values. These rules
@@ -2608,6 +2812,23 @@ message BoolRules {
   optional bool const = 1 [(priv.field).cel = {
     id: "bool.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+  }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyBool {
+  //   bool value = 1 [
+  //     (buf.validate.field).bool.example = 1,
+  //     (buf.validate.field).bool.example = 2
+  //   ];
+  // }
+  // ```
+  repeated bool example = 2 [(priv.field).cel = {
+    id: "bool.example"
+    expression: "true"
   }];
 }
 
@@ -3278,6 +3499,23 @@ message StringRules {
   // }
   // ```
   optional bool strict = 25;
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyString {
+  //   string value = 1 [
+  //     (buf.validate.field).string.example = 1,
+  //     (buf.validate.field).string.example = 2
+  //   ];
+  // }
+  // ```
+  repeated string example = 34 [(priv.field).cel = {
+    id: "string.example"
+    expression: "true"
+  }];
 }
 
 // WellKnownRegex contain some well-known patterns.
@@ -3513,6 +3751,23 @@ message BytesRules {
       }
     ];
   }
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyBytes {
+  //   bytes value = 1 [
+  //     (buf.validate.field).bytes.example = "\x01\x02",
+  //     (buf.validate.field).bytes.example = "\x02\x03"
+  //   ];
+  // }
+  // ```
+  repeated bytes example = 14 [(priv.field).cel = {
+    id: "bytes.example"
+    expression: "true"
+  }];
 }
 
 // EnumRules describe the constraints applied to `enum` values.
@@ -3594,6 +3849,27 @@ message EnumRules {
   repeated int32 not_in = 4 [(priv.field).cel = {
     id: "enum.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
+  }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // enum MyEnum {
+  //   MY_ENUM_UNSPECIFIED = 0;
+  //   MY_ENUM_VALUE1 = 1;
+  //   MY_ENUM_VALUE2 = 2;
+  // }
+  //
+  // message MyMessage {
+  //     (buf.validate.field).enum.example = 1,
+  //     (buf.validate.field).enum.example = 2
+  // }
+  // ```
+  repeated int32 example = 5 [(priv.field).cel = {
+    id: "enum.example"
+    expression: "true"
   }];
 }
 
@@ -3938,6 +4214,23 @@ message DurationRules {
     id: "duration.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyDuration {
+  //   google.protobuf.Duration value = 1 [
+  //     (buf.validate.field).duration.example = { seconds: 1 },
+  //     (buf.validate.field).duration.example = { seconds: 2 },
+  //   ];
+  // }
+  // ```
+  repeated google.protobuf.Duration example = 9 [(priv.field).cel = {
+    id: "duration.example"
+    expression: "true"
+  }];
 }
 
 // TimestampRules describe the constraints applied exclusively to the `google.protobuf.Timestamp` well-known type.
@@ -4126,5 +4419,23 @@ message TimestampRules {
   optional google.protobuf.Duration within = 9 [(priv.field).cel = {
     id: "timestamp.within"
     expression: "this < now-rules.within || this > now+rules.within ? 'value must be within %s of now'.format([rules.within]) : ''"
+  }];
+
+  // `example` specifies values that the field may have. These values SHOULD
+  // conform to other constraints. `example` values will not impact validation
+  // but may be used as helpful guidance on how to populate the given field.
+  //
+  // ```proto
+  // message MyTimestamp {
+  //   google.protobuf.Timestamp value = 1 [
+  //     (buf.validate.field).timestamp.example = { seconds: 1672444800 },
+  //     (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+  //   ];
+  // }
+  // ```
+
+  repeated google.protobuf.Timestamp example = 10 [(priv.field).cel = {
+    id: "timestamp.example"
+    expression: "true"
   }];
 }

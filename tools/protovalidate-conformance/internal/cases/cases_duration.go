@@ -445,5 +445,13 @@ func durationSuite() suites.Suite {
 				Message:      "value must be greater than 16",
 			}),
 		},
+		"example/valid": {
+			Message: &cases.DurationExample{
+				Val: &durationpb.Duration{
+					Seconds: 3,
+				},
+			},
+			Expected: results.Success(true),
+		},
 	}
 }

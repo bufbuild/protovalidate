@@ -297,5 +297,9 @@ func sfixed64Suite() suites.Suite {
 			Message:  &cases.SFixed64Ignore{Val: 0},
 			Expected: results.Success(true),
 		},
+		"example/valid": {
+			Message:  &cases.SFixed64Example{Val: 1},
+			Expected: results.Success(true),
+		},
 	}
 }

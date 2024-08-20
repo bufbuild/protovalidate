@@ -279,5 +279,9 @@ func bytesSuite() suites.Suite {
 			Message:  &cases.BytesIPv6Ignore{Val: nil},
 			Expected: results.Success(true),
 		},
+		"example/valid": {
+			Message:  &cases.BytesExample{Val: []byte("foo")},
+			Expected: results.Success(true),
+		},
 	}
 }

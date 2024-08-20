@@ -295,5 +295,9 @@ func doubleSuite() suites.Suite {
 			Message:  &cases.DoubleIncorrectType{Val: 123},
 			Expected: results.CompilationError("double constraints on float field"),
 		},
+		"example/valid": {
+			Message:  &cases.DoubleExample{Val: 1.23},
+			Expected: results.Success(true),
+		},
 	}
 }

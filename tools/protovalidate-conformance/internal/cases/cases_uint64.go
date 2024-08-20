@@ -215,5 +215,9 @@ func uint64Suite() suites.Suite {
 			Message:  &cases.UInt64IncorrectType{Val: 123},
 			Expected: results.CompilationError("double constraints on float field"),
 		},
+		"example/valid": {
+			Message:  &cases.UInt64Example{Val: 1},
+			Expected: results.Success(true),
+		},
 	}
 }

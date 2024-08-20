@@ -123,5 +123,9 @@ func enumSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "enum.defined_only"}),
 		},
+		"example/valid": {
+			Message:  &cases.EnumExample{Val: cases.TestEnum_TEST_ENUM_TWO},
+			Expected: results.Success(true),
+		},
 	}
 }

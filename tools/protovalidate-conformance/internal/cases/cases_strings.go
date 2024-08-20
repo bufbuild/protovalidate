@@ -1042,5 +1042,9 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.host_and_port.optional_port"}),
 		},
+		"example/valid": {
+			Message:  &cases.StringExample{Val: "foobar"},
+			Expected: results.Success(true),
+		},
 	}
 }

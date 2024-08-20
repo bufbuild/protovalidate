@@ -88,3 +88,6 @@ message BytesIPv6Ignore {
     (buf.validate.field).ignore_empty = true
   ];
 }
+message BytesExample {
+  bytes val = 1 [(buf.validate.field).bytes.example = "\x99"];
+}

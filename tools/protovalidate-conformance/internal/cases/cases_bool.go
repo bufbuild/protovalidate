@@ -45,5 +45,9 @@ func boolSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "bool.const"}),
 		},
+		"example/valid": {
+			Message:  &cases.BoolExample{Val: true},
+			Expected: results.Success(true),
+		},
 	}
 }
