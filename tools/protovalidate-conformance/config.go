@@ -15,6 +15,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -48,8 +49,9 @@ type config struct {
 }
 
 func parseFlags() (*config, error) {
+	const defaultSuiteTimeout = 5 * time.Second
 	cfg := &config{
-		suiteTimeout: 5 * time.Second,
+		suiteTimeout: defaultSuiteTimeout,
 	}
 	log.SetFlags(0)
 
@@ -76,7 +78,7 @@ func parseFlags() (*config, error) {
 	args := flag.Args()
 	if len(args) == 0 {
 		if !cfg.dump {
-			return nil, fmt.Errorf("a command must be specified")
+			return nil, errors.New("a command must be specified")
 		}
 	} else {
 		cfg.cmd = args[0]

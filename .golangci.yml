@@ -1,5 +1,3 @@
-run:
-  skip-dirs-use-default: false
 linters-settings:
   errcheck:
     check-type-assertions: true
@@ -47,6 +45,7 @@ linters:
     - wrapcheck         # don't _always_ need to wrap errors
     - wsl               # over-generous whitespace violates house style
 issues:
+  exclude-use-default: true
   exclude-rules:
     # Loosen requirements on test harness
     - path: go/v2/internal/cmd/
