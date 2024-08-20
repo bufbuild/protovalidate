@@ -141,7 +141,7 @@ func (v *FieldVisitor) buildNameParts(node *ast.OptionNode) (nameParts []ast.Nod
 	value = node.Val
 	nameParts = make([]ast.Node, 1, len(node.Name.Parts)*2+1)
 	nameParts[0] = v.replaceNode(node.Name.Parts[0], "(buf.validate.field)")
-	for i := 0; i < len(node.Name.Dots); i++ {
+	for i := range len(node.Name.Dots) {
 		dot := node.Name.Dots[i]
 		part := node.Name.Parts[i+1]
 		switch part.Value() {
