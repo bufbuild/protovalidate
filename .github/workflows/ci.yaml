@@ -38,6 +38,7 @@ jobs:
           breaking: true
           push: false
           archive: false
+          pr_comment: false
       - name: Buf generate
         run: |
           mkdir -p .tmp/bin
