@@ -86,7 +86,7 @@ func (s successResult) IsSuccessWith(other Result, options *harness.ResultOption
 	case successResult:
 		return s.inner.GetSuccess() == res.inner.GetSuccess()
 	default:
-		return !options.Strict && !s.inner.GetSuccess()
+		return !options.GetStrict() && !s.inner.GetSuccess()
 	}
 }
 
@@ -110,11 +110,11 @@ func (v violationsResult) String() string {
 	_, _ = fmt.Fprintf(bldr, "%d validation error(s)", len(errs))
 	for i, err := range errs {
 		forKey := ""
-		if err.ForKey {
+		if err.GetForKey() {
 			forKey = " (key)"
 		}
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s", resultPadding, i+1, err.FieldPath, forKey, err.ConstraintId)
-		_, _ = fmt.Fprintf(bldr, "\n%s      %s", resultPadding, err.Message)
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s", resultPadding, i+1, err.GetFieldPath(), forKey, err.GetConstraintId())
+		_, _ = fmt.Fprintf(bldr, "\n%s      %s", resultPadding, err.GetMessage())
 	}
 	return bldr.String()
 }
@@ -125,21 +125,21 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 		return res.IsSuccessWith(v, options)
 	case violationsResult:
 		got := res.inner.GetValidationError().GetViolations()
-		if !options.Strict {
+		if !options.GetStrict() {
 			return len(got) > 0
 		}
 		want := v.inner.GetValidationError().GetViolations()
 		if len(want) != len(got) {
 			return false
 		}
-		for i := 0; i < len(want); i++ {
-			matchingField := want[i].FieldPath == got[i].FieldPath && want[i].ForKey == got[i].ForKey
-			matchingConstraint := want[i].ConstraintId == got[i].ConstraintId
+		for i := range len(want) {
+			matchingField := want[i].GetFieldPath() == got[i].GetFieldPath() && want[i].GetForKey() == got[i].GetForKey()
+			matchingConstraint := want[i].GetConstraintId() == got[i].GetConstraintId()
 			if !matchingField || !matchingConstraint {
 				return false
 			}
-			if options.StrictMessage && len(want[i].Message) > 0 &&
-				want[i].Message != got[i].Message {
+			if options.GetStrictMessage() && len(want[i].GetMessage()) > 0 &&
+				want[i].GetMessage() != got[i].GetMessage() {
 				return false
 			}
 		}
@@ -171,7 +171,7 @@ func (c compilationErrorResult) IsSuccessWith(other Result, options *harness.Res
 	case compilationErrorResult:
 		return true
 	case runtimeErrorResult:
-		return !options.StrictError
+		return !options.GetStrictError()
 	default:
 		return false
 	}

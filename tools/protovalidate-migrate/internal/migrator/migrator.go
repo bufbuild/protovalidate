@@ -149,7 +149,8 @@ func (m *Migrator) OutputMigrate(src os.FileInfo, srcPath, dstPath string) error
 	}
 	defer srcFile.Close()
 
-	err = os.MkdirAll(filepath.Dir(dstPath), 0o755)
+	const filePerms = 0o755
+	err = os.MkdirAll(filepath.Dir(dstPath), filePerms)
 	if err != nil {
 		return fmt.Errorf("failed to create output directories for %s: %w", dstPath, err)
 	}

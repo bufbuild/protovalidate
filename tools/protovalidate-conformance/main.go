@@ -46,7 +46,7 @@ func main() {
 
 	exec := func(suiteName string, suite suites.Suite) error {
 		req, err := suite.ToRequestProto(cfg.caseFilter)
-		if err != nil || len(req.Cases) == 0 {
+		if err != nil || len(req.GetCases()) == 0 {
 			return err
 		}
 
@@ -64,7 +64,7 @@ func main() {
 			options,
 			cfg.expectedFailures[suiteName],
 		)
-		res.Fdset = req.Fdset
+		res.Fdset = req.GetFdset()
 		resultSet.AddSuite(res, cfg.verbose)
 		return nil
 	}

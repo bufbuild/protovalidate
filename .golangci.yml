@@ -1,5 +1,3 @@
-run:
-  skip-dirs-use-default: false
 linters-settings:
   errcheck:
     check-type-assertions: true
@@ -25,35 +23,29 @@ linters:
   enable-all: true
   disable:
     - cyclop            # covered by gocyclo
-    - deadcode          # abandoned
     - depguard          # we can manage dependencies strictly if the need arises in the future
-    - exhaustivestruct  # replaced by exhaustruct
+    - err113            # internal error causes may be dynamic
+    - execinquery       # deprecated
     - exhaustruct       # don't _always_ need to exhaustively create struct
+    - exportloopref     # deprecated
     - funlen            # rely on code review to limit function length
     - gocognit          # dubious "cognitive overhead" quantification
     - gofumpt           # prefer standard gofmt
-    - goerr113          # internal error causes may be dynamic
     - goimports         # rely on gci instead
-    - golint            # deprecated by Go team
     - gomnd             # some unnamed constants are okay
     - gomoddirectives   # we use go modules replacements intentionally
     - gomodguard        # not compatible with go workspaces
-    - ifshort           # deprecated by author
-    - interfacer        # deprecated by author
     - ireturn           # "accept interfaces, return structs" isn't ironclad
     - lll               # don't want hard limits for line length
     - maintidx          # covered by gocyclo
-    - maligned          # readability trumps efficient struct packing
+    - musttag           # incompatible with go workspaces
     - nlreturn          # generous whitespace violates house style
     - nonamedreturns    # usage of named returns should be selective
-    - nosnakecase       # deprecated in https://github.com/golangci/golangci-lint/pull/3065
-    - scopelint         # deprecated by author
-    - structcheck       # abandoned
     - testpackage       # internal tests are fine
-    - varcheck          # abandoned
     - wrapcheck         # don't _always_ need to wrap errors
     - wsl               # over-generous whitespace violates house style
 issues:
+  exclude-use-default: true
   exclude-rules:
     # Loosen requirements on test harness
     - path: go/v2/internal/cmd/
@@ -74,6 +66,7 @@ issues:
       linters:
         - funlen
         - maintidx
+        - mnd
         - dupl
         - gosmopolitan
     # Loosen requirements on tests

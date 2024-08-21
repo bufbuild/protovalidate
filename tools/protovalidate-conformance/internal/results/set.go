@@ -63,14 +63,14 @@ type SuiteResults harness.SuiteResults
 
 func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
 	switch {
-	case res.Success && !res.ExpectedFailure:
+	case res.GetSuccess() && !res.GetExpectedFailure():
 		suite.Successes++
-	case !res.Success && res.ExpectedFailure:
+	case !res.GetSuccess() && res.GetExpectedFailure():
 		suite.ExpectedFailures++
 	default:
 		suite.Failures++
 	}
-	if verbose || !res.Success {
+	if verbose || !res.GetSuccess() {
 		suite.Cases = append(suite.Cases, res)
 	}
 }
@@ -85,18 +85,18 @@ func (suite *SuiteResults) Print(w io.Writer) {
 }
 
 func (suite *SuiteResults) printCase(w io.Writer, testCase *harness.CaseResult) {
-	res := resultLabel(testCase.Success)
+	res := resultLabel(testCase.GetSuccess())
 	_, _ = fmt.Fprintf(w, "%s --- %s: %s\n",
-		casePadding, res, testCase.Name)
-	if testCase.Success {
+		casePadding, res, testCase.GetName())
+	if testCase.GetSuccess() {
 		return
 	}
 	_, _ = fmt.Fprintf(w, "%sinput: %v\n",
-		resultPadding, testCase.Input)
+		resultPadding, testCase.GetInput())
 	_, _ = fmt.Fprintf(w, "%s want: %v\n",
-		resultPadding, FromProto(testCase.Wanted))
+		resultPadding, FromProto(testCase.GetWanted()))
 	_, _ = fmt.Fprintf(w, "%s  got: %v\n",
-		resultPadding, FromProto(testCase.Got))
+		resultPadding, FromProto(testCase.GetGot()))
 }
 
 func resultLabel(success bool) string {
