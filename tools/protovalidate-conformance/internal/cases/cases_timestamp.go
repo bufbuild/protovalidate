@@ -286,5 +286,9 @@ func timestampSuite() suites.Suite {
 			Message:  &cases.TimestampGTNowWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
 			Expected: results.Violations(&validate.Violation{FieldPath: "val", ConstraintId: "timestamp.within"}),
 		},
+		"example/valid": {
+			Message:  &cases.TimestampExample{Val: &timestamppb.Timestamp{Seconds: 3, Nanos: 0}},
+			Expected: results.Success(true),
+		},
 	}
 }

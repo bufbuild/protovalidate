@@ -89,3 +89,7 @@ message TimestampGTNowWithin {
     within: {seconds: 3600}
   }];
 }
+
+message TimestampExample {
+  google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp.example = {seconds: 3}];
+}

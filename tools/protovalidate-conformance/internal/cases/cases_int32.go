@@ -215,5 +215,9 @@ func int32Suite() suites.Suite {
 			Message:  &cases.Int32IncorrectType{Val: 123},
 			Expected: results.CompilationError("double constraints on float field"),
 		},
+		"example/valid": {
+			Message:  &cases.Int32Example{Val: 1},
+			Expected: results.Success(true),
+		},
 	}
 }

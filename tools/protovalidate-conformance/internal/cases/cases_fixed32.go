@@ -215,5 +215,9 @@ func fixed32Suite() suites.Suite {
 			Message:  &cases.Fixed32IncorrectType{Val: 123},
 			Expected: results.CompilationError("double constraints on float field"),
 		},
+		"example/valid": {
+			Message:  &cases.Fixed32Example{Val: 1},
+			Expected: results.Success(true),
+		},
 	}
 }

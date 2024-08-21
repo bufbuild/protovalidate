@@ -195,3 +195,7 @@ message StringHostAndOptionalPort {
     expression: "this.isHostAndPort(false)"
   }];
 }
+
+message StringExample {
+  string val = 1 [(buf.validate.field).string.example = "foo"];
+}
