@@ -18,15 +18,15 @@ load("@rules_buf//buf:defs.bzl", "buf_lint_test")
 # gazelle:proto default
 
 proto_library(
-    name = "priv_proto",
-    srcs = ["private.proto"],
+    name = "shared_proto",
+    srcs = ["constraints.proto"],
     strip_import_prefix = "/proto/protovalidate",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:descriptor_proto"],
 )
 
 buf_lint_test(
-    name = "priv_proto_lint",
+    name = "shared_proto_lint",
     config = "//proto/protovalidate:buf.yaml",
-    targets = [":priv_proto"],
+    targets = [":shared_proto"],
 )

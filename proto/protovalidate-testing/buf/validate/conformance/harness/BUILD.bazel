@@ -24,7 +24,7 @@ proto_library(
     strip_import_prefix = "/proto/protovalidate-testing",
     visibility = ["//visibility:public"],
     deps = [
-        "//proto/protovalidate/buf/validate:expression_proto",
+        "//proto/protovalidate/buf/validate:violation_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:descriptor_proto",
     ],

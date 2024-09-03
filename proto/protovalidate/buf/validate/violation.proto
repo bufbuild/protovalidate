@@ -21,39 +21,6 @@ option java_multiple_files = true;
 option java_outer_classname = "ExpressionProto";
 option java_package = "build.buf.validate";
 
-// `Constraint` represents a validation rule written in the Common Expression
-// Language (CEL) syntax. Each Constraint includes a unique identifier, an
-// optional error message, and the CEL expression to evaluate. For more
-// information on CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
-//
-// ```proto
-// message Foo {
-//   option (buf.validate.message).cel = {
-//     id: "foo.bar"
-//     message: "bar must be greater than 0"
-//     expression: "this.bar > 0"
-//   };
-//   int32 bar = 1;
-// }
-// ```
-message Constraint {
-  // `id` is a string that serves as a machine-readable name for this Constraint.
-  // It should be unique within its scope, which could be either a message or a field.
-  string id = 1;
-
-  // `message` is an optional field that provides a human-readable error message
-  // for this Constraint when the CEL expression evaluates to false. If a
-  // non-empty message is provided, any strings resulting from the CEL
-  // expression evaluation are ignored.
-  string message = 2;
-
-  // `expression` is the actual CEL expression that will be evaluated for
-  // validation. This string must resolve to either a boolean or a string
-  // value. If the expression evaluates to false or a non-empty string, the
-  // validation is considered failed, and the message is rejected.
-  string expression = 3;
-}
-
 // `Violations` is a collection of `Violation` messages. This message type is returned by
 // protovalidate when a proto message fails to meet the requirements set by the `Constraint` validation rules.
 // Each individual violation is represented by a `Violation` message.
