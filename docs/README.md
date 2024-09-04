@@ -27,10 +27,10 @@ library.
       This guide will help you understand when and how to use these standard
       constraints effectively.
 
-    - [Shared Rules](shared-rules.md): This section discusses how to extend
-      `protovalidate` with your own custom reusable rules that behave similarly
-      to the pre-defined standard constraints. This can be useful when you need
-      similar custom validation logic across multiple fields or messages.
+    - [Shared Constraints](shared-constraints.md): This section discusses how to
+      extend `protovalidate` with custom reusable rules that behave similarly
+      to the pre-defined standard constraints. This can be useful in order to
+      share similar custom validation logic across multiple fields or messages.
 
 - [Errors](errors.md): This section explains the error system in `protovalidate`
   and provides guidance on how to handle them effectively.
