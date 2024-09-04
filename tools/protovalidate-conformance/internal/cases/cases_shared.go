@@ -294,6 +294,286 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto3/float/valid": {
+			Message:  &cases.SharedFloatRuleProto3{Val: 1.0},
+			Expected: results.Success(true),
+		},
+		"proto3/float/invalid": {
+			Message: &cases.SharedFloatRuleProto3{Val: -2.0},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "float.abs_range.proto2",
+					Message:      "float value is out of range",
+				},
+			),
+		},
+		"proto3/double/valid": {
+			Message:  &cases.SharedDoubleRuleProto3{Val: 1.0},
+			Expected: results.Success(true),
+		},
+		"proto3/double/invalid": {
+			Message: &cases.SharedDoubleRuleProto3{Val: -2.0},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "double.abs_range.proto2",
+					Message:      "double value is out of range",
+				},
+			),
+		},
+		"proto3/int32/valid": {
+			Message:  &cases.SharedInt32RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/int32/invalid": {
+			Message: &cases.SharedInt32RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "int32.even.proto2",
+					Message:      "int32 value is not even",
+				},
+			),
+		},
+		"proto3/int64/valid": {
+			Message:  &cases.SharedInt64RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/int64/invalid": {
+			Message: &cases.SharedInt64RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "int64.even.proto2",
+					Message:      "int64 value is not even",
+				},
+			),
+		},
+		"proto3/uint32/valid": {
+			Message:  &cases.SharedUInt32RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/uint32/invalid": {
+			Message: &cases.SharedUInt32RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "uint32.even.proto2",
+					Message:      "uint32 value is not even",
+				},
+			),
+		},
+		"proto3/uint64/valid": {
+			Message:  &cases.SharedUInt64RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/uint64/invalid": {
+			Message: &cases.SharedUInt64RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "uint64.even.proto2",
+					Message:      "uint64 value is not even",
+				},
+			),
+		},
+		"proto3/sint32/valid": {
+			Message:  &cases.SharedSInt32RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/sint32/invalid": {
+			Message: &cases.SharedSInt32RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "sint32.even.proto2",
+					Message:      "sint32 value is not even",
+				},
+			),
+		},
+		"proto3/sint64/valid": {
+			Message:  &cases.SharedSInt64RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/sint64/invalid": {
+			Message: &cases.SharedSInt64RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "sint64.even.proto2",
+					Message:      "sint64 value is not even",
+				},
+			),
+		},
+		"proto3/fixed32/valid": {
+			Message:  &cases.SharedFixed32RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/fixed32/invalid": {
+			Message: &cases.SharedFixed32RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "fixed32.even.proto2",
+					Message:      "fixed32 value is not even",
+				},
+			),
+		},
+		"proto3/fixed64/valid": {
+			Message:  &cases.SharedFixed64RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/fixed64/invalid": {
+			Message: &cases.SharedFixed64RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "fixed64.even.proto2",
+					Message:      "fixed64 value is not even",
+				},
+			),
+		},
+		"proto3/sfixed32/valid": {
+			Message:  &cases.SharedSFixed32RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/sfixed32/invalid": {
+			Message: &cases.SharedSFixed32RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "sfixed32.even.proto2",
+					Message:      "sfixed32 value is not even",
+				},
+			),
+		},
+		"proto3/sfixed64/valid": {
+			Message:  &cases.SharedSFixed64RuleProto3{Val: 2},
+			Expected: results.Success(true),
+		},
+		"proto3/sfixed64/invalid": {
+			Message: &cases.SharedSFixed64RuleProto3{Val: 3},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "sfixed64.even.proto2",
+					Message:      "sfixed64 value is not even",
+				},
+			),
+		},
+		"proto3/bool/valid": {
+			Message:  &cases.SharedBoolRuleProto3{Val: false},
+			Expected: results.Success(true),
+		},
+		"proto3/bool/invalid": {
+			Message: &cases.SharedBoolRuleProto3{Val: true},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "bool.false.proto2",
+					Message:      "bool value is not false",
+				},
+			),
+		},
+		"proto3/string/valid": {
+			Message:  &cases.SharedStringRuleProto3{Val: "valid/file.proto"},
+			Expected: results.Success(true),
+		},
+		"proto3/string/invalid": {
+			Message: &cases.SharedStringRuleProto3{Val: "../invalid/path"},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "string.valid_path.proto2",
+					Message:      "not a valid path: `../invalid/path`",
+				},
+			),
+		},
+		"proto3/bytes/valid": {
+			Message:  &cases.SharedBytesRuleProto3{Val: []byte("valid/file.proto")},
+			Expected: results.Success(true),
+		},
+		"proto3/bytes/invalid": {
+			Message: &cases.SharedBytesRuleProto3{Val: []byte("../invalid/path")},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "bytes.valid_path.proto2",
+					Message:      "not a valid path: `../invalid/path`",
+				},
+			),
+		},
+		"proto3/enum/valid": {
+			Message:  &cases.SharedEnumRuleProto3{Val: cases.SharedEnumRuleProto3_ENUM_PROTO3_ONE},
+			Expected: results.Success(true),
+		},
+		"proto3/enum/invalid": {
+			Message: &cases.SharedEnumRuleProto3{Val: cases.SharedEnumRuleProto3_ENUM_PROTO3_ZERO_UNSPECIFIED},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "enum.non_zero.proto2",
+					Message:      "enum value is not non-zero",
+				},
+			),
+		},
+		"proto3/repeated/valid": {
+			Message:  &cases.SharedRepeatedRuleProto3{Val: []uint64{1, 2, 3, 4, 5}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/invalid": {
+			Message: &cases.SharedRepeatedRuleProto3{Val: []uint64{1, 2, 3}},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "repeated.at_least_five.proto2",
+					Message:      "repeated field must have at least five values",
+				},
+			),
+		},
+		"proto3/map/valid": {
+			Message:  &cases.SharedMapRuleProto3{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3, 4: 4, 5: 5}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/invalid": {
+			Message: &cases.SharedMapRuleProto3{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3}},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "map.at_least_five.edition_2023",
+					Message:      "map must have at least five pairs",
+				},
+			),
+		},
+		"proto3/duration/valid": {
+			Message:  &cases.SharedDurationRuleProto3{Val: durationpb.New(time.Second)},
+			Expected: results.Success(true),
+		},
+		"proto3/duration/invalid": {
+			Message: &cases.SharedDurationRuleProto3{Val: durationpb.New(15 * time.Second)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "duration.too_long.proto2",
+					Message:      "duration can't be longer than 10 seconds",
+				},
+			),
+		},
+		"proto3/timestamp/valid": {
+			Message:  &cases.SharedTimestampRuleProto3{Val: timestamppb.New(time.Unix(1049587200, 0))},
+			Expected: results.Success(true),
+		},
+		"proto3/timestamp/invalid": {
+			Message: &cases.SharedTimestampRuleProto3{Val: timestamppb.New(time.Unix(1725415496, 0))},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "val",
+					ConstraintId: "timestamp.time_range.proto2",
+					Message:      "timestamp out of range",
+				},
+			),
+		},
 		"proto/2023/float/valid": {
 			Message:  &cases.SharedFloatRuleEdition2023{Val: proto.Float32(1.0)},
 			Expected: results.Success(true),
