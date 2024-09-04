@@ -16,16 +16,14 @@ edition = "2023";
 
 package buf.validate.conformance.cases;
 
-import "buf/validate/validate.proto";
 import "buf/validate/shared/constraints.proto";
+import "buf/validate/validate.proto";
 
 extend buf.validate.StringRules {
-  bool proto_edition_2023_valid_path = 1162 [
-    (buf.validate.shared.field).cel = {
-      id: "string.valid_path.edition_2023"
-      expression: "!this.matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
-    }
-  ];
+  bool proto_edition_2023_valid_path = 1162 [(buf.validate.shared.field).cel = {
+    id: "string.valid_path.edition_2023"
+    expression: "!this.matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
+  }];
 }
 
 message ProtoEdition2023File {

@@ -16,16 +16,14 @@ syntax = "proto2";
 
 package buf.validate.conformance.cases;
 
-import "buf/validate/validate.proto";
 import "buf/validate/shared/constraints.proto";
+import "buf/validate/validate.proto";
 
 extend buf.validate.StringRules {
-  optional bool proto2_valid_path = 1161 [
-    (buf.validate.shared.field).cel = {
-      id: "string.valid_path.proto2"
-      expression: "!this.matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
-    }
-  ];
+  optional bool proto2_valid_path = 1161 [(buf.validate.shared.field).cel = {
+    id: "string.valid_path.proto2"
+    expression: "!this.matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
+  }];
 }
 
 message Proto2File {
