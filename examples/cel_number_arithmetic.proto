@@ -18,14 +18,14 @@ import "buf/validate/validate.proto";
 
 message FiveDigitPrimeLookalike {
   int32 value = 1 [(buf.validate.field).cel = {
-    id: "prime_lookalike",
-    message: "value must have 5 digits and look like a prime",
+    id: "prime_lookalike"
+    message: "value must have 5 digits and look like a prime"
     // Arithmetic operators include `+`, `-`, `*`, `/`, `%`.
     expression:
       "this % 2 != 0"
       "&& this % 3 != 0"
       "&& this % 5 != 0"
       "&& (this - 10000) * (this - 99999) <= 0"
-      "&& -this != 77777",
+      "&& -this != 77777"
   }];
 }

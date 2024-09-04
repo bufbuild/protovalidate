@@ -22,7 +22,7 @@ service NewsLetterService {
 
 message JoinNewsLetterRequest {
   string email = 1 [(buf.validate.field).cel = {
-    id: "join_news_letter_request_valid_email",
+    id: "join_news_letter_request_valid_email"
     expression:
       "this.isEmail() ? ''"
       // The `+` operator is overloaded for strings and concatenates two strings.

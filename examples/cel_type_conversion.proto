@@ -18,7 +18,7 @@ import "buf/validate/validate.proto";
 
 message Sound {
   uint32 frequency_hz = 1 [(buf.validate.field).cel = {
-    id: "frequency_in_the_audible_range",
+    id: "frequency_in_the_audible_range"
     expression:
       // `string()` converts an `uint` (and other primitive types) to a `string`.
       // In this case, the frequency is first converted to a string before being
