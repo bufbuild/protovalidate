@@ -29,7 +29,6 @@ message Book {
     // In this case, the expression validates that genres are unique.
     expression: "this.unique()"
   }];
-
   repeated Author authors = 2 [(buf.validate.field).cel = {
     id: "book_unique_authors"
     message: "a name cannot appear twice in authors"

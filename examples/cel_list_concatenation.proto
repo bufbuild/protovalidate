@@ -17,16 +17,16 @@ syntax = "proto3";
 import "buf/validate/validate.proto";
 
 message BeverageMenu {
-  repeated string hot_beverages = 1;
-  repeated string cold_beverages = 2;
-  string daily_special = 3;
-
   option (buf.validate.message).cel = {
-    id: "daily_special_either_hot_or_cold",
-    message: "the daily special must be in either the hot menu or the cold menu",
+    id: "daily_special_either_hot_or_cold"
+    message: "the daily special must be in either the hot menu or the cold menu"
     // The `+` is loaded for lists (repeated fields) and it concatenates two lists.
     // In this case `this.hot_beverages` + `this.cold_beverages` evaluates to a list
     // containing beverages from both lists.
     expression: "this.daily_special in this.hot_beverages + this.cold_beverages"
   };
+
+  repeated string hot_beverages = 1;
+  repeated string cold_beverages = 2;
+  string daily_special = 3;
 }

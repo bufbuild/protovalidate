@@ -28,15 +28,11 @@ import "buf/validate/validate.proto";
 
 // CustomerReviews is customers' reviews for a product.
 message CustomerReviews {
-  // customer_id_to_review maps a customer id to a review.
-  map<fixed64, ProductReview> customer_id_to_review = 1;
-  // highest_rating is the highest rating this product receives.
-  float highest_rating = 2;
   // This validates that there is at least one review from customer_id_to_review
   // such that its rating is the same as highest_rating.
   option (buf.validate.message).cel = {
-    id: "highest_rating_exists",
-    message: "highest_rating must be the highest from reviews",
+    id: "highest_rating_exists"
+    message: "highest_rating must be the highest from reviews"
     expression:
       // `some_map.exists` validates that a predicate (condition) is true for some
       // key in this map. To validate that a predicate is true for some _value_ in
@@ -47,6 +43,11 @@ message CustomerReviews {
       "  this.customer_id_to_review[id].rating == this.highest_rating"
       ")"
   };
+
+  // customer_id_to_review maps a customer id to a review.
+  map<fixed64, ProductReview> customer_id_to_review = 1;
+  // highest_rating is the highest rating this product receives.
+  float highest_rating = 2;
 }
 
 message ProductReview {

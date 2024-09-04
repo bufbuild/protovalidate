@@ -18,16 +18,17 @@ import "buf/validate/validate.proto";
 
 // TeamRoles has role information for each player.
 message TeamRoles {
-  // name_to_role maps from a team member's name to role.
-  map<string, TeamRole> name_to_role = 1;
   option (buf.validate.message).cel = {
-    id: "exactly_one_captain",
-    message: "there must be exactly one captain",
+    id: "exactly_one_captain"
+    message: "there must be exactly one captain"
     // `exists_one` validates that exactly one key in the map satisfies the predicate.
     // In this case, it validates that exactly one player in the team has the
     // captain role.
     expression: "this.name_to_role.exists_one(name, this.name_to_role[name] == 1)"
   };
+
+  // name_to_role maps from a team member's name to role.
+  map<string, TeamRole> name_to_role = 1;
 }
 
 enum TeamRole {

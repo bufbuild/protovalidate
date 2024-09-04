@@ -25,12 +25,13 @@ service FlightInfoService {
 
 message UpdateFlightInfoRequest {
   option (buf.validate.message).cel = {
-    id: "correct_duration",
-    message: "duration must be the period of time between departure and arrival",
+    id: "correct_duration"
+    message: "duration must be the period of time between departure and arrival"
     // Adding a timestamp and a duration evaluates to a new timestamp.
     // Two timestamps can be compared with `==`, `!=`, `<`, `<=`, `>` and `>=`.
     expression: "this.new_departure_time + this.new_duration  == this.new_arrival_time"
   };
+
   uint64 flight_id = 1;
   // departure_time is the departure time.
   google.protobuf.Timestamp new_departure_time = 2;

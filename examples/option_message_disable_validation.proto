@@ -22,6 +22,7 @@ message DebugLog {
   // In this case, validation rules defined within `Payload`'s definition will
   // not be evaluated for `DebugLog.payload`.
   option (buf.validate.message).disabled = true;
+
   // payload is the payload.
   Payload payload = 1;
   // create_time is when the log is created.

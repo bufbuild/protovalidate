@@ -23,12 +23,13 @@ service ContactService {
 
 message CreateContactRequest {
   option (buf.validate.message).cel = {
-    id: "create_contact_with_first_name",
-    message: "the contact must have first name",
+    id: "create_contact_with_first_name"
+    message: "the contact must have first name"
     // This expression validates that all of `this.contact`, `this.contact.full_name`
     // and `this.contact.full_name.first_name` are set.
     expression: "has(this.contact.full_name.first_name)"
   };
+
   // contact is the contact to create.
   Contact contact = 1;
 }
