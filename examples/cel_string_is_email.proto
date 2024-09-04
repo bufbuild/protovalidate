@@ -22,8 +22,8 @@ service MailingListService {
 
 message AddEmailToMailingListRequest {
   string email = 1 [(buf.validate.field).cel = {
-    id: "valid_email",
-    message: "email must be a valid email",
+    id: "valid_email"
+    message: "email must be a valid email"
     expression: "this.isEmail()"
   }];
 }

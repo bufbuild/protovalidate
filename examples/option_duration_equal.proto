@@ -23,7 +23,7 @@ message ExpiredPacket {
     // `const` validates that a duration must be equal to this duration.
     // In this case, `time_to_live` must equal to 0.
     const: {
-      seconds: 0,
+      seconds: 0
       nanos: 0
     }
   }];

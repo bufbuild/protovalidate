@@ -22,8 +22,8 @@ service ResourceService {
 
 message UploadResourceRequest {
   string uri = 1 [(buf.validate.field).cel = {
-    id: "valid_uri",
-    message: "uri must be a valid URI",
+    id: "valid_uri"
+    message: "uri must be a valid URI"
     // `isUri` validates that a string is an absolute URI.
     // This expression validates that the uri field is an absolute URI.
     // Note: to allow relative URI, use `isUriRef`.

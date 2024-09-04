@@ -35,7 +35,7 @@ message UploadSoundTrackRequest {
       gt: {
         seconds: 1
         nanos: 100000000
-      },
+      }
       // Validates that duration is less than or equal to 10 hours.
       lte: {seconds: 36000}
     }

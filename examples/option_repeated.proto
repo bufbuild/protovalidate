@@ -25,17 +25,17 @@ message UpdateWaitlistRequest {
   // name is the names of people on the waitlist
   repeated string name = 1 [(buf.validate.field).repeated = {
     // Validate that no name can be in the list twice.
-    unique: true,
+    unique: true
     // At most 500 people can be on the waitlist. A lower bound can be set
     // similarly with `min_items`.
-    max_items: 500,
+    max_items: 500
     // `items` validate each value in this `repeated` field.
     items: {
       // `string` has string-specific rules for each value in the `repeated` field.
       // The set of rules allowed here is the same as that of a string field.
       string: {
         // Each name must not be empty
-        min_len: 1,
+        min_len: 1
         // Each name can contain at most 30 characters.
         max_len: 30
       }

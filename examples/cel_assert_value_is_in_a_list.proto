@@ -26,12 +26,12 @@ message IsDivisibleRequest {
   int32 dividend = 1;
   // divisor is the divisor in the division.
   int32 divisor = 2 [(buf.validate.field).cel = {
-    id: "divisor_must_be_a_small_prime",
-    message: "the divisor must be one of 2, 3 and 5",
+    id: "divisor_must_be_a_small_prime"
+    message: "the divisor must be one of 2, 3 and 5"
     // `in` evaluates list membership. The expression evaluates to
     // true when the value is in the list.
     // Validates that divisor must be one of 2, 3 and 5.
-    expression: "this in [2, 3, 5]",
+    expression: "this in [2, 3, 5]"
     // Similarly, you can assert that it's not in a list with `!(this in [2, 3, 5])`.
   }];
 }

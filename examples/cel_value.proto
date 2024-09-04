@@ -25,7 +25,7 @@ service DataStoreService {
 message WriteKeyValuePairRequest {
   // key is the key.
   google.protobuf.Value key = 1 [(buf.validate.field).cel = {
-    id: "write_key_value_pair_request_valid_key_type",
+    id: "write_key_value_pair_request_valid_key_type"
     message: "key must be one of int, uint, double, bool and string"
     expression: "type(this) in [int, uint, double, bool, string]"
   }];

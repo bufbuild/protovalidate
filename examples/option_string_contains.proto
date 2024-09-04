@@ -21,7 +21,7 @@ message GoodNews {
   string content = 1 [(buf.validate.field).string = {
     // `contains` validates that a string field contains this string.
     // In this example, it validates that content contains `up`.
-    contains: "up",
+    contains: "up"
     // `not_contains` validates that a string field doesn't contain this string.
     // In this example, it validates that content doesn't contain `down`.
     not_contains: "down"

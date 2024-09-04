@@ -23,8 +23,8 @@ service BalanceService {
 
 message SetBalanceRequest {
   double new_balance = 1 [(buf.validate.field).cel = {
-    id: "finite_balance",
-    message: "balance should be finite",
+    id: "finite_balance"
+    message: "balance should be finite"
     // `isInf()` works on float and double, and returns true if the value is
     // infinity.
     // This validates that the new balance is finite.

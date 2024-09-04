@@ -27,7 +27,7 @@ message EventFromTheTwentiethCentury {
     // `gte` validates that a timestamp is greater than or equal to a value.
     // In this case, it validates the event happens at or after 1900-01-01T00:00:00Z,
     // which is 2208988800 seconds before the Unix epoch.
-    gte: {seconds: -2208988800},
+    gte: {seconds: -2208988800}
     // `le` validates that a timestamp is less than a value.
     // In this case, it validates the event happens before 2000-01-01T00:00:00Z,
     // which is 946684800 seconds after the Unix epoch.

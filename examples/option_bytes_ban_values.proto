@@ -27,7 +27,7 @@ message UpdatePasswordRequest {
   // new_password is the new password.
   bytes new_password = 2 [(buf.validate.field).bytes = {
     // `min_len` validates that the password is at least 8 bytes
-    min_len: 8,
+    min_len: 8
     // `not_in` validates that the new password is not any password in the list:
     not_in: [
       "12345678",
