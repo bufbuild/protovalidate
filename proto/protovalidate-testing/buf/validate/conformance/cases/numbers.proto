@@ -338,7 +338,7 @@ message Int64IncorrectType {
 }
 
 message Int64Example {
-  int64 val = 1 [(buf.validate.field).float.example = 10];
+  int64 val = 1 [(buf.validate.field).int64.example = 10];
 }
 
 message UInt32None {
@@ -557,7 +557,7 @@ message SInt32IncorrectType {
 }
 
 message SInt32Example {
-  sint32 val = 1 [(buf.validate.field).int32.example = 0];
+  sint32 val = 1 [(buf.validate.field).sint32.example = 0];
 }
 
 message SInt64None {
