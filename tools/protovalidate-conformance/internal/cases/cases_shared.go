@@ -37,8 +37,8 @@ func sharedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    "val",
-					ConstraintId: "float.normal.proto2",
-					Message:      "float value is non-normal",
+					ConstraintId: "float.abs_range.proto2",
+					Message:      "float value is out of range",
 				},
 			),
 		},
@@ -51,8 +51,8 @@ func sharedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    "val",
-					ConstraintId: "double.normal.proto2",
-					Message:      "double value is non-normal",
+					ConstraintId: "double.abs_range.proto2",
+					Message:      "double value is out of range",
 				},
 			),
 		},
@@ -303,8 +303,8 @@ func sharedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    "val",
-					ConstraintId: "float.normal.edition_2023",
-					Message:      "float value is non-normal",
+					ConstraintId: "float.abs_range.edition_2023",
+					Message:      "float value is out of range",
 				},
 			),
 		},
@@ -317,8 +317,8 @@ func sharedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    "val",
-					ConstraintId: "double.normal.edition_2023",
-					Message:      "double value is non-normal",
+					ConstraintId: "double.abs_range.edition_2023",
+					Message:      "double value is out of range",
 				},
 			),
 		},

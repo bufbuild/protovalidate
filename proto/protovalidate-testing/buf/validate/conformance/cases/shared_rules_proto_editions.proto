@@ -22,18 +22,18 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 extend buf.validate.FloatRules {
-  bool float_normal_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
-    id: "float.normal.edition_2023"
-    expression: "this >= -1.0 && this <= 1.0"
-    message: "float value is non-normal"
+  float float_abs_range_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "float.abs_range.edition_2023"
+    expression: "this >= -rule && this <= rule"
+    message: "float value is out of range"
   }];
 }
 
 extend buf.validate.DoubleRules {
-  bool double_normal_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
-    id: "double.normal.edition_2023"
-    expression: "this >= -1.0 && this <= 1.0"
-    message: "double value is non-normal"
+  double double_abs_range_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "double.abs_range.edition_2023"
+    expression: "this >= -rule && this <= rule"
+    message: "double value is out of range"
   }];
 }
 
@@ -180,11 +180,11 @@ extend buf.validate.TimestampRules {
 }
 
 message SharedFloatRuleEdition2023 {
-  float val = 1 [(buf.validate.field).float.(float_normal_edition_2023) = true];
+  float val = 1 [(buf.validate.field).float.(float_abs_range_edition_2023) = 1.0];
 }
 
 message SharedDoubleRuleEdition2023 {
-  double val = 1 [(buf.validate.field).double.(double_normal_edition_2023) = true];
+  double val = 1 [(buf.validate.field).double.(double_abs_range_edition_2023) = 1.0];
 }
 
 message SharedInt32RuleEdition2023 {

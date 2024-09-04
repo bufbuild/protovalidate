@@ -22,18 +22,18 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 extend buf.validate.FloatRules {
-  optional bool float_normal_proto2 = 1161 [(buf.validate.shared.field).cel = {
-    id: "float.normal.proto2"
-    expression: "this >= -1.0 && this <= 1.0"
-    message: "float value is non-normal"
+  optional float float_abs_range_proto2 = 1161 [(buf.validate.shared.field).cel = {
+    id: "float.abs_range.proto2"
+    expression: "this >= -rule && this <= rule"
+    message: "float value is out of range"
   }];
 }
 
 extend buf.validate.DoubleRules {
-  optional bool double_normal_proto2 = 1161 [(buf.validate.shared.field).cel = {
-    id: "double.normal.proto2"
-    expression: "this >= -1.0 && this <= 1.0"
-    message: "double value is non-normal"
+  optional double double_abs_range_proto2 = 1161 [(buf.validate.shared.field).cel = {
+    id: "double.abs_range.proto2"
+    expression: "this >= -rule && this <= rule"
+    message: "double value is out of range"
   }];
 }
 
@@ -172,11 +172,11 @@ extend buf.validate.TimestampRules {
 }
 
 message SharedFloatRuleProto2 {
-  optional float val = 1 [(buf.validate.field).float.(float_normal_proto2) = true];
+  optional float val = 1 [(buf.validate.field).float.(float_abs_range_proto2) = 1.0];
 }
 
 message SharedDoubleRuleProto2 {
-  optional double val = 1 [(buf.validate.field).double.(double_normal_proto2) = true];
+  optional double val = 1 [(buf.validate.field).double.(double_abs_range_proto2) = 1.0];
 }
 
 message SharedInt32RuleProto2 {
