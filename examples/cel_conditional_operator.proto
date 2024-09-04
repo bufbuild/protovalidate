@@ -18,7 +18,7 @@ import "buf/validate/validate.proto";
 
 message Triangle {
   option (buf.validate.message).cel = {
-    id: "triangle.distinct_points",
+    id: "triangle.distinct_points"
     // This is a nested ternary expression. If the expression evaluates to a non-empty
     // string, validation will fail with that string as the error message.
     // The expression below is a nested ternary expression.
@@ -26,15 +26,16 @@ message Triangle {
       "this.point_a == this.point_b ? 'point A and point B cannot be the same'"
       ": this.point_b == this.point_c ? 'point B and point C cannot be the same'"
       ": this.point_a == this.point_c ? 'point A and point C cannot be the same'"
-      ": ''",
+      ": ''"
   };
   option (buf.validate.message).cel = {
-    id: "triangle.non_linear_points",
-    message: "three points must not be on the same line",
+    id: "triangle.non_linear_points"
+    message: "three points must not be on the same line"
     expression:
       "(this.point_a.y - this.point_b.y) * (this.point_a.x - this.point_c.x)"
-      "!= (this.point_a.y - this.point_c.y) * (this.point_a.x - this.point_b.x)";
+      "!= (this.point_a.y - this.point_c.y) * (this.point_a.x - this.point_b.x)"
   };
+
   Point point_a = 1;
   Point point_b = 2;
   Point point_c = 3;

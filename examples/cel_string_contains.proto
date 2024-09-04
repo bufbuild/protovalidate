@@ -23,12 +23,13 @@ service ArticleService {
 
 message PublishArticleRequest {
   option (buf.validate.message).cel = {
-    id: "article_contain_keyword",
-    message: "article must contain all the keywords it is tagged with",
+    id: "article_contain_keyword"
+    message: "article must contain all the keywords it is tagged with"
     // For each keyword `kw`, validate that it appears in the article.
     // `contains` checks whether a string contains another string.
     expression: "this.keyword.all(kw, this.article_content.contains(kw))"
   };
+
   string article_content = 1;
   // keyword is the keyword that this article is associated with.
   repeated string keyword = 2;
