@@ -1183,6 +1183,8 @@ message Int64Rules {
     id: "int64.example"
     expression: "true"
   }];
+
+  extensions 1000 to max;
 }
 
 // UInt32Rules describes the constraints applied to `uint32` values. These
@@ -3968,6 +3970,8 @@ message RepeatedRules {
   // }
   // ```
   optional FieldConstraints items = 4;
+
+  extensions 1000 to max;
 }
 
 // MapRules describe the constraints applied to `map` values.
@@ -4031,6 +4035,8 @@ message MapRules {
   // }
   // ```
   optional FieldConstraints values = 5;
+
+  extensions 1000 to max;
 }
 
 // AnyRules describe constraints applied exclusively to the `google.protobuf.Any` well-known type.
@@ -4056,8 +4062,6 @@ message AnyRules {
   // }
   // ```
   repeated string not_in = 3;
-
-  extensions 1000 to max;
 }
 
 // DurationRules describe the constraints applied exclusively to the `google.protobuf.Duration` well-known type.

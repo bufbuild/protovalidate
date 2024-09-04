@@ -18,14 +18,247 @@ package buf.validate.conformance.cases;
 
 import "buf/validate/shared/constraints.proto";
 import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+extend buf.validate.FloatRules {
+  bool float_normal_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "float.normal.edition_2023"
+    expression: "this >= -1.0 && this <= 1.0"
+    message: "float value is non-normal"
+  }];
+}
+
+extend buf.validate.DoubleRules {
+  bool double_normal_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "double.normal.edition_2023"
+    expression: "this >= -1.0 && this <= 1.0"
+    message: "double value is non-normal"
+  }];
+}
+
+extend buf.validate.Int32Rules {
+  bool int32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "int32.even.edition_2023"
+    expression: "this % 2 == 0"
+    message: "int32 value is not even"
+  }];
+}
+
+extend buf.validate.Int64Rules {
+  bool int64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "int64.even.edition_2023"
+    expression: "this % 2 == 0"
+    message: "int64 value is not even"
+  }];
+}
+
+extend buf.validate.UInt32Rules {
+  bool uint32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "uint32.even.edition_2023"
+    expression: "this % 2u == 0u"
+    message: "uint32 value is not even"
+  }];
+}
+
+extend buf.validate.UInt64Rules {
+  bool uint64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "uint64.even.edition_2023"
+    expression: "this % 2u == 0u"
+    message: "uint64 value is not even"
+  }];
+}
+
+extend buf.validate.SInt32Rules {
+  bool sint32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "sint32.even.edition_2023"
+    expression: "this % 2 == 0"
+    message: "sint32 value is not even"
+  }];
+}
+
+extend buf.validate.SInt64Rules {
+  bool sint64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "sint64.even.edition_2023"
+    expression: "this % 2 == 0"
+    message: "sint64 value is not even"
+  }];
+}
+
+extend buf.validate.Fixed32Rules {
+  bool fixed32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "fixed32.even.edition_2023"
+    expression: "this % 2u == 0u"
+    message: "fixed32 value is not even"
+  }];
+}
+
+extend buf.validate.Fixed64Rules {
+  bool fixed64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "fixed64.even.edition_2023"
+    expression: "this % 2u == 0u"
+    message: "fixed64 value is not even"
+  }];
+}
+
+extend buf.validate.SFixed32Rules {
+  bool sfixed32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "sfixed32.even.edition_2023"
+    expression: "this % 2 == 0"
+    message: "sfixed32 value is not even"
+  }];
+}
+
+extend buf.validate.SFixed64Rules {
+  bool sfixed64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "sfixed64.even.edition_2023"
+    expression: "this % 2 == 0"
+    message: "sfixed64 value is not even"
+  }];
+}
+
+extend buf.validate.BoolRules {
+  bool bool_false_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "bool.false.edition_2023"
+    expression: "this == false"
+    message: "bool value is not false"
+  }];
+}
 
 extend buf.validate.StringRules {
-  bool proto_edition_2023_valid_path = 1162 [(buf.validate.shared.field).cel = {
+  bool string_valid_path_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
     id: "string.valid_path.edition_2023"
     expression: "!this.matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
   }];
 }
 
-message ProtoEdition2023File {
-  string path = 1 [(buf.validate.field).string.(proto_edition_2023_valid_path) = true];
+extend buf.validate.BytesRules {
+  bool bytes_valid_path_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "bytes.valid_path.edition_2023"
+    expression: "!string(this).matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
+  }];
+}
+
+extend buf.validate.EnumRules {
+  bool enum_non_zero_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+    id: "enum.non_zero.edition_2023"
+    expression: "int(this) != 0"
+    message: "enum value is not non-zero"
+  }];
+}
+
+extend buf.validate.RepeatedRules {
+  bool repeated_at_least_five_edition_2023 = 1162 [(shared.field).cel = {
+    id: "repeated.at_least_five.edition_2023"
+    expression: "uint(this.size()) >= 5"
+    message: "repeated field must have at least five values"
+  }];
+}
+
+extend buf.validate.MapRules {
+  bool map_at_least_five_edition_2023 = 1162 [(shared.field).cel = {
+    id: "map.at_least_five.edition_2023"
+    expression: "uint(this.size()) >= 5"
+    message: "map must have at least five pairs"
+  }];
+}
+
+extend buf.validate.DurationRules {
+  bool duration_too_long_edition_2023 = 1162 [(shared.field).cel = {
+    id: "duration.too_long.edition_2023"
+    expression: "this <= duration('10s')"
+    message: "duration can't be longer than 10 seconds"
+  }];
+}
+
+extend buf.validate.TimestampRules {
+  bool timestamp_in_range_edition_2023 = 1162 [(shared.field).cel = {
+    id: "timestamp.time_range.edition_2023"
+    expression: "int(this) >= 1049587200 && int(this) <= 1080432000"
+    message: "timestamp out of range"
+  }];
+}
+
+message SharedFloatRuleEdition2023 {
+  float val = 1 [(buf.validate.field).float.(float_normal_edition_2023) = true];
+}
+
+message SharedDoubleRuleEdition2023 {
+  double val = 1 [(buf.validate.field).double.(double_normal_edition_2023) = true];
+}
+
+message SharedInt32RuleEdition2023 {
+  int32 val = 1 [(buf.validate.field).int32.(int32_even_edition_2023) = true];
+}
+
+message SharedInt64RuleEdition2023 {
+  int64 val = 1 [(buf.validate.field).int64.(int64_even_edition_2023) = true];
+}
+
+message SharedUInt32RuleEdition2023 {
+  uint32 val = 1 [(buf.validate.field).uint32.(uint32_even_edition_2023) = true];
+}
+
+message SharedUInt64RuleEdition2023 {
+  uint64 val = 1 [(buf.validate.field).uint64.(uint64_even_edition_2023) = true];
+}
+
+message SharedSInt32RuleEdition2023 {
+  sint32 val = 1 [(buf.validate.field).sint32.(sint32_even_edition_2023) = true];
+}
+
+message SharedSInt64RuleEdition2023 {
+  sint64 val = 1 [(buf.validate.field).sint64.(sint64_even_edition_2023) = true];
+}
+
+message SharedFixed32RuleEdition2023 {
+  fixed32 val = 1 [(buf.validate.field).fixed32.(fixed32_even_edition_2023) = true];
+}
+
+message SharedFixed64RuleEdition2023 {
+  fixed64 val = 1 [(buf.validate.field).fixed64.(fixed64_even_edition_2023) = true];
+}
+
+message SharedSFixed32RuleEdition2023 {
+  sfixed32 val = 1 [(buf.validate.field).sfixed32.(sfixed32_even_edition_2023) = true];
+}
+
+message SharedSFixed64RuleEdition2023 {
+  sfixed64 val = 1 [(buf.validate.field).sfixed64.(sfixed64_even_edition_2023) = true];
+}
+
+message SharedBoolRuleEdition2023 {
+  bool val = 1 [(buf.validate.field).bool.(bool_false_edition_2023) = true];
+}
+
+message SharedStringRuleEdition2023 {
+  string val = 1 [(buf.validate.field).string.(string_valid_path_edition_2023) = true];
+}
+
+message SharedBytesRuleEdition2023 {
+  bytes val = 1 [(buf.validate.field).bytes.(bytes_valid_path_edition_2023) = true];
+}
+
+message SharedEnumRuleEdition2023 {
+  enum EnumEdition2023 {
+    ENUM_EDITION2023_ZERO_UNSPECIFIED = 0;
+    ENUM_EDITION2023_ONE = 1;
+  }
+  EnumEdition2023 val = 1 [(buf.validate.field).enum.(enum_non_zero_edition_2023) = true];
+}
+
+message SharedRepeatedRuleEdition2023 {
+  repeated uint64 val = 1 [(buf.validate.field).repeated.(repeated_at_least_five_edition_2023) = true];
+}
+
+message SharedMapRuleEdition2023 {
+  map<uint64, uint64> val = 1 [(buf.validate.field).map.(map_at_least_five_edition_2023) = true];
+}
+
+message SharedDurationRuleEdition2023 {
+  google.protobuf.Duration val = 1 [(buf.validate.field).duration.(duration_too_long_edition_2023) = true];
+}
+
+message SharedTimestampRuleEdition2023 {
+  google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp.(timestamp_in_range_edition_2023) = true];
 }
