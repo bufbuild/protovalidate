@@ -35,7 +35,7 @@ jobs:
           github_token: ${{ github.token }}
           format: true
           lint: true
-          breaking: true
+          breaking: ${{ github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'buf skip breaking') }}
           push: false
           archive: false
       - name: Buf generate
