@@ -338,6 +338,48 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto2/standard_shared_custom/valid": {
+			Message: &cases.StandardSharedAndCustomRuleProto2{
+				A: proto.Int32(26),
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/standard_shared_custom/standard/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleProto2{
+				A: proto.Int32(28),
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.lt",
+					Message:      "value must be less than 28",
+				},
+			),
+		},
+		"proto2/standard_shared_custom/shared/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleProto2{
+				A: proto.Int32(27),
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.even.proto2",
+					Message:      "int32 value is not even",
+				},
+			),
+		},
+		"proto2/standard_shared_custom/custom/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleProto2{
+				A: proto.Int32(24),
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "standard_shared_and_custom_rule_scalar_proto2",
+					Message:      "a must be greater than 24",
+				},
+			),
+		},
 		"proto3/float/valid": {
 			Message:  &cases.SharedFloatRuleProto3{Val: 1.0},
 			Expected: results.Success(true),
@@ -662,6 +704,48 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto3/standard_shared_custom/valid": {
+			Message: &cases.StandardSharedAndCustomRuleProto3{
+				A: 26,
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/standard_shared_custom/standard/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleProto3{
+				A: 28,
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.lt",
+					Message:      "value must be less than 28",
+				},
+			),
+		},
+		"proto3/standard_shared_custom/shared/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleProto3{
+				A: 27,
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.even.proto2",
+					Message:      "int32 value is not even",
+				},
+			),
+		},
+		"proto3/standard_shared_custom/custom/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleProto3{
+				A: 24,
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "standard_shared_and_custom_rule_scalar_proto3",
+					Message:      "a must be greater than 24",
+				},
+			),
+		},
 		"proto/2023/float/valid": {
 			Message:  &cases.SharedFloatRuleEdition2023{Val: proto.Float32(1.0)},
 			Expected: results.Success(true),
@@ -982,6 +1066,48 @@ func sharedSuite() suites.Suite {
 				&validate.Violation{
 					FieldPath:    "a",
 					ConstraintId: "shared_and_custom_rule_scalar_edition_2023",
+					Message:      "a must be greater than 24",
+				},
+			),
+		},
+		"proto/2023/standard_shared_custom/valid": {
+			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+				A: proto.Int32(26),
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/standard_shared_custom/standard/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+				A: proto.Int32(28),
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.lt",
+					Message:      "value must be less than 28",
+				},
+			),
+		},
+		"proto/2023/standard_shared_custom/shared/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+				A: proto.Int32(27),
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.even.edition_2023",
+					Message:      "int32 value is not even",
+				},
+			),
+		},
+		"proto/2023/standard_shared_custom/custom/invalid": {
+			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+				A: proto.Int32(24),
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "standard_shared_and_custom_rule_scalar_edition_2023",
 					Message:      "a must be greater than 24",
 				},
 			),

@@ -288,3 +288,14 @@ message SharedAndCustomRuleEdition2023 {
     ];
   }
 }
+
+message StandardSharedAndCustomRuleEdition2023 {
+  int32 a = 1 [
+    (field).int32.lt = 28,
+    (field).int32.(int32_even_edition_2023) = true,
+    (field).cel = {
+      id: "standard_shared_and_custom_rule_scalar_edition_2023"
+      expression: "this > 24 ? '' : 'a must be greater than 24'"
+    }
+  ];
+}

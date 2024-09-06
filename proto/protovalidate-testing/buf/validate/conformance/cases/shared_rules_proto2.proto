@@ -276,3 +276,14 @@ message SharedAndCustomRuleProto2 {
     ];
   }
 }
+
+message StandardSharedAndCustomRuleProto2 {
+  optional int32 a = 1 [
+    (field).int32.lt = 28,
+    (field).int32.(int32_even_proto2) = true,
+    (field).cel = {
+      id: "standard_shared_and_custom_rule_scalar_proto2"
+      expression: "this > 24 ? '' : 'a must be greater than 24'"
+    }
+  ];
+}

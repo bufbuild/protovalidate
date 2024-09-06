@@ -1078,6 +1078,53 @@ func (x *SharedAndCustomRuleProto3) GetB() *SharedAndCustomRuleProto3_Nested {
 	return nil
 }
 
+type StandardSharedAndCustomRuleProto3 struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	A int32 `protobuf:"varint,1,opt,name=a,proto3" json:"a,omitempty"`
+}
+
+func (x *StandardSharedAndCustomRuleProto3) Reset() {
+	*x = StandardSharedAndCustomRuleProto3{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StandardSharedAndCustomRuleProto3) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StandardSharedAndCustomRuleProto3) ProtoMessage() {}
+
+func (x *StandardSharedAndCustomRuleProto3) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StandardSharedAndCustomRuleProto3.ProtoReflect.Descriptor instead.
+func (*StandardSharedAndCustomRuleProto3) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_shared_rules_proto3_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *StandardSharedAndCustomRuleProto3) GetA() int32 {
+	if x != nil {
+		return x.A
+	}
+	return 0
+}
+
 type SharedAndCustomRuleProto3_Nested struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1089,7 +1136,7 @@ type SharedAndCustomRuleProto3_Nested struct {
 func (x *SharedAndCustomRuleProto3_Nested) Reset() {
 	*x = SharedAndCustomRuleProto3_Nested{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[22]
+		mi := &file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1102,7 +1149,7 @@ func (x *SharedAndCustomRuleProto3_Nested) String() string {
 func (*SharedAndCustomRuleProto3_Nested) ProtoMessage() {}
 
 func (x *SharedAndCustomRuleProto3_Nested) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[22]
+	mi := &file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1262,7 +1309,17 @@ var file_buf_validate_conformance_cases_shared_rules_proto3_proto_rawDesc = []by
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33, 0x1a, 0x24, 0x74, 0x68, 0x69, 0x73, 0x20, 0x3e, 0x20, 0x30,
 	0x20, 0x3f, 0x20, 0x27, 0x27, 0x20, 0x3a, 0x20, 0x27, 0x63, 0x20, 0x6d, 0x75, 0x73, 0x74, 0x20,
 	0x62, 0x65, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x76, 0x65, 0x27, 0x1a, 0x03, 0xd0, 0x48,
-	0x01, 0x52, 0x01, 0x63, 0x42, 0x04, 0x0a, 0x02, 0x5f, 0x62, 0x42, 0xad, 0x02, 0x0a, 0x22, 0x63,
+	0x01, 0x52, 0x01, 0x63, 0x42, 0x04, 0x0a, 0x02, 0x5f, 0x62, 0x22, 0x9d, 0x01, 0x0a, 0x21, 0x53,
+	0x74, 0x61, 0x6e, 0x64, 0x61, 0x72, 0x64, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x41, 0x6e, 0x64,
+	0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x78, 0x0a, 0x01, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x42, 0x6a, 0xba, 0x48, 0x67,
+	0xba, 0x01, 0x5d, 0x0a, 0x2d, 0x73, 0x74, 0x61, 0x6e, 0x64, 0x61, 0x72, 0x64, 0x5f, 0x73, 0x68,
+	0x61, 0x72, 0x65, 0x64, 0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x5f,
+	0x72, 0x75, 0x6c, 0x65, 0x5f, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33, 0x1a, 0x2c, 0x74, 0x68, 0x69, 0x73, 0x20, 0x3e, 0x20, 0x32, 0x34, 0x20, 0x3f, 0x20,
+	0x27, 0x27, 0x20, 0x3a, 0x20, 0x27, 0x61, 0x20, 0x6d, 0x75, 0x73, 0x74, 0x20, 0x62, 0x65, 0x20,
+	0x67, 0x72, 0x65, 0x61, 0x74, 0x65, 0x72, 0x20, 0x74, 0x68, 0x61, 0x6e, 0x20, 0x32, 0x34, 0x27,
+	0x1a, 0x05, 0xc8, 0x48, 0x01, 0x10, 0x1c, 0x52, 0x01, 0x61, 0x42, 0xad, 0x02, 0x0a, 0x22, 0x63,
 	0x6f, 0x6d, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e,
 	0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x63, 0x61, 0x73, 0x65,
 	0x73, 0x42, 0x16, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x50, 0x72,
@@ -1298,41 +1355,42 @@ func file_buf_validate_conformance_cases_shared_rules_proto3_proto_rawDescGZIP()
 }
 
 var file_buf_validate_conformance_cases_shared_rules_proto3_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_buf_validate_conformance_cases_shared_rules_proto3_proto_goTypes = []any{
-	(SharedEnumRuleProto3_EnumProto3)(0),     // 0: buf.validate.conformance.cases.SharedEnumRuleProto3.EnumProto3
-	(*SharedFloatRuleProto3)(nil),            // 1: buf.validate.conformance.cases.SharedFloatRuleProto3
-	(*SharedDoubleRuleProto3)(nil),           // 2: buf.validate.conformance.cases.SharedDoubleRuleProto3
-	(*SharedInt32RuleProto3)(nil),            // 3: buf.validate.conformance.cases.SharedInt32RuleProto3
-	(*SharedInt64RuleProto3)(nil),            // 4: buf.validate.conformance.cases.SharedInt64RuleProto3
-	(*SharedUInt32RuleProto3)(nil),           // 5: buf.validate.conformance.cases.SharedUInt32RuleProto3
-	(*SharedUInt64RuleProto3)(nil),           // 6: buf.validate.conformance.cases.SharedUInt64RuleProto3
-	(*SharedSInt32RuleProto3)(nil),           // 7: buf.validate.conformance.cases.SharedSInt32RuleProto3
-	(*SharedSInt64RuleProto3)(nil),           // 8: buf.validate.conformance.cases.SharedSInt64RuleProto3
-	(*SharedFixed32RuleProto3)(nil),          // 9: buf.validate.conformance.cases.SharedFixed32RuleProto3
-	(*SharedFixed64RuleProto3)(nil),          // 10: buf.validate.conformance.cases.SharedFixed64RuleProto3
-	(*SharedSFixed32RuleProto3)(nil),         // 11: buf.validate.conformance.cases.SharedSFixed32RuleProto3
-	(*SharedSFixed64RuleProto3)(nil),         // 12: buf.validate.conformance.cases.SharedSFixed64RuleProto3
-	(*SharedBoolRuleProto3)(nil),             // 13: buf.validate.conformance.cases.SharedBoolRuleProto3
-	(*SharedStringRuleProto3)(nil),           // 14: buf.validate.conformance.cases.SharedStringRuleProto3
-	(*SharedBytesRuleProto3)(nil),            // 15: buf.validate.conformance.cases.SharedBytesRuleProto3
-	(*SharedEnumRuleProto3)(nil),             // 16: buf.validate.conformance.cases.SharedEnumRuleProto3
-	(*SharedMapRuleProto3)(nil),              // 17: buf.validate.conformance.cases.SharedMapRuleProto3
-	(*SharedRepeatedRuleProto3)(nil),         // 18: buf.validate.conformance.cases.SharedRepeatedRuleProto3
-	(*SharedDurationRuleProto3)(nil),         // 19: buf.validate.conformance.cases.SharedDurationRuleProto3
-	(*SharedTimestampRuleProto3)(nil),        // 20: buf.validate.conformance.cases.SharedTimestampRuleProto3
-	(*SharedAndCustomRuleProto3)(nil),        // 21: buf.validate.conformance.cases.SharedAndCustomRuleProto3
-	nil,                                      // 22: buf.validate.conformance.cases.SharedMapRuleProto3.ValEntry
-	(*SharedAndCustomRuleProto3_Nested)(nil), // 23: buf.validate.conformance.cases.SharedAndCustomRuleProto3.Nested
-	(*durationpb.Duration)(nil),              // 24: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),            // 25: google.protobuf.Timestamp
+	(SharedEnumRuleProto3_EnumProto3)(0),      // 0: buf.validate.conformance.cases.SharedEnumRuleProto3.EnumProto3
+	(*SharedFloatRuleProto3)(nil),             // 1: buf.validate.conformance.cases.SharedFloatRuleProto3
+	(*SharedDoubleRuleProto3)(nil),            // 2: buf.validate.conformance.cases.SharedDoubleRuleProto3
+	(*SharedInt32RuleProto3)(nil),             // 3: buf.validate.conformance.cases.SharedInt32RuleProto3
+	(*SharedInt64RuleProto3)(nil),             // 4: buf.validate.conformance.cases.SharedInt64RuleProto3
+	(*SharedUInt32RuleProto3)(nil),            // 5: buf.validate.conformance.cases.SharedUInt32RuleProto3
+	(*SharedUInt64RuleProto3)(nil),            // 6: buf.validate.conformance.cases.SharedUInt64RuleProto3
+	(*SharedSInt32RuleProto3)(nil),            // 7: buf.validate.conformance.cases.SharedSInt32RuleProto3
+	(*SharedSInt64RuleProto3)(nil),            // 8: buf.validate.conformance.cases.SharedSInt64RuleProto3
+	(*SharedFixed32RuleProto3)(nil),           // 9: buf.validate.conformance.cases.SharedFixed32RuleProto3
+	(*SharedFixed64RuleProto3)(nil),           // 10: buf.validate.conformance.cases.SharedFixed64RuleProto3
+	(*SharedSFixed32RuleProto3)(nil),          // 11: buf.validate.conformance.cases.SharedSFixed32RuleProto3
+	(*SharedSFixed64RuleProto3)(nil),          // 12: buf.validate.conformance.cases.SharedSFixed64RuleProto3
+	(*SharedBoolRuleProto3)(nil),              // 13: buf.validate.conformance.cases.SharedBoolRuleProto3
+	(*SharedStringRuleProto3)(nil),            // 14: buf.validate.conformance.cases.SharedStringRuleProto3
+	(*SharedBytesRuleProto3)(nil),             // 15: buf.validate.conformance.cases.SharedBytesRuleProto3
+	(*SharedEnumRuleProto3)(nil),              // 16: buf.validate.conformance.cases.SharedEnumRuleProto3
+	(*SharedMapRuleProto3)(nil),               // 17: buf.validate.conformance.cases.SharedMapRuleProto3
+	(*SharedRepeatedRuleProto3)(nil),          // 18: buf.validate.conformance.cases.SharedRepeatedRuleProto3
+	(*SharedDurationRuleProto3)(nil),          // 19: buf.validate.conformance.cases.SharedDurationRuleProto3
+	(*SharedTimestampRuleProto3)(nil),         // 20: buf.validate.conformance.cases.SharedTimestampRuleProto3
+	(*SharedAndCustomRuleProto3)(nil),         // 21: buf.validate.conformance.cases.SharedAndCustomRuleProto3
+	(*StandardSharedAndCustomRuleProto3)(nil), // 22: buf.validate.conformance.cases.StandardSharedAndCustomRuleProto3
+	nil,                                      // 23: buf.validate.conformance.cases.SharedMapRuleProto3.ValEntry
+	(*SharedAndCustomRuleProto3_Nested)(nil), // 24: buf.validate.conformance.cases.SharedAndCustomRuleProto3.Nested
+	(*durationpb.Duration)(nil),              // 25: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),            // 26: google.protobuf.Timestamp
 }
 var file_buf_validate_conformance_cases_shared_rules_proto3_proto_depIdxs = []int32{
 	0,  // 0: buf.validate.conformance.cases.SharedEnumRuleProto3.val:type_name -> buf.validate.conformance.cases.SharedEnumRuleProto3.EnumProto3
-	22, // 1: buf.validate.conformance.cases.SharedMapRuleProto3.val:type_name -> buf.validate.conformance.cases.SharedMapRuleProto3.ValEntry
-	24, // 2: buf.validate.conformance.cases.SharedDurationRuleProto3.val:type_name -> google.protobuf.Duration
-	25, // 3: buf.validate.conformance.cases.SharedTimestampRuleProto3.val:type_name -> google.protobuf.Timestamp
-	23, // 4: buf.validate.conformance.cases.SharedAndCustomRuleProto3.b:type_name -> buf.validate.conformance.cases.SharedAndCustomRuleProto3.Nested
+	23, // 1: buf.validate.conformance.cases.SharedMapRuleProto3.val:type_name -> buf.validate.conformance.cases.SharedMapRuleProto3.ValEntry
+	25, // 2: buf.validate.conformance.cases.SharedDurationRuleProto3.val:type_name -> google.protobuf.Duration
+	26, // 3: buf.validate.conformance.cases.SharedTimestampRuleProto3.val:type_name -> google.protobuf.Timestamp
+	24, // 4: buf.validate.conformance.cases.SharedAndCustomRuleProto3.b:type_name -> buf.validate.conformance.cases.SharedAndCustomRuleProto3.Nested
 	5,  // [5:5] is the sub-list for method output_type
 	5,  // [5:5] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
@@ -1600,7 +1658,19 @@ func file_buf_validate_conformance_cases_shared_rules_proto3_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[22].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[21].Exporter = func(v any, i int) any {
+			switch v := v.(*StandardSharedAndCustomRuleProto3); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_buf_validate_conformance_cases_shared_rules_proto3_proto_msgTypes[23].Exporter = func(v any, i int) any {
 			switch v := v.(*SharedAndCustomRuleProto3_Nested); i {
 			case 0:
 				return &v.state
@@ -1620,7 +1690,7 @@ func file_buf_validate_conformance_cases_shared_rules_proto3_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_buf_validate_conformance_cases_shared_rules_proto3_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   23,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
