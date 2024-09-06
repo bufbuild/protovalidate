@@ -18,14 +18,13 @@ load("@rules_buf//buf:defs.bzl", "buf_lint_test")
 proto_library(
     name = "buf_validate_conformance_cases_other_package_proto",
     srcs = ["embed.proto"],
-    strip_import_prefix = "/proto/protovalidate-testing",
     visibility = ["//visibility:public"],
-    deps = ["//proto/protovalidate/buf/validate:validate_proto"],
+    deps = ["@buf_deps//buf/validate:validate_proto"],
 )
 
 buf_lint_test(
     name = "buf_validate_conformance_cases_other_package_proto_lint",
-    config = "//proto/protovalidate-testing:buf.yaml",
+    config = "//:buf.yaml",
     targets = [":buf_validate_conformance_cases_other_package_proto"],
 )
 

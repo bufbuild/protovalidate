@@ -44,12 +44,11 @@ proto_library(
         "wkt_timestamp.proto",
         "wkt_wrappers.proto",
     ],
-    strip_import_prefix = "/proto/protovalidate-testing",
     visibility = ["//visibility:public"],
     deps = [
-        "//proto/protovalidate-testing/buf/validate/conformance/cases/other_package:buf_validate_conformance_cases_other_package_proto",
-        "//proto/protovalidate-testing/buf/validate/conformance/cases/yet_another_package:buf_validate_conformance_cases_yet_another_package_proto",
-        "//proto/protovalidate/buf/validate:validate_proto",
+        "@buf_deps//buf/validate:validate_proto",
+        "@buf_deps//buf/validate/conformance/cases/other_package:other_package_proto",
+        "@buf_deps//buf/validate/conformance/cases/yet_another_package:yet_another_package_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -59,7 +58,7 @@ proto_library(
 
 buf_lint_test(
     name = "buf_validate_conformance_cases_proto_lint",
-    config = "//proto/protovalidate-testing:buf.yaml",
+    config = "//:buf.yaml",
     targets = [":buf_validate_conformance_cases_proto"],
 )
 

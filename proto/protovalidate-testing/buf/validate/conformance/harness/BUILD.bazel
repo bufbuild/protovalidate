@@ -21,10 +21,10 @@ proto_library(
         "harness.proto",
         "results.proto",
     ],
-    strip_import_prefix = "/proto/protovalidate-testing",
     visibility = ["//visibility:public"],
     deps = [
-        "//proto/protovalidate/buf/validate:expression_proto",
+        "@buf_deps//buf/validate:validate_proto",
+        "@buf_deps//buf/validate/conformance/harness:harness_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:descriptor_proto",
     ],
@@ -32,7 +32,7 @@ proto_library(
 
 buf_lint_test(
     name = "buf_validate_conformance_harness_proto_lint",
-    config = "//proto/protovalidate-testing:buf.yaml",
+    config = "//:buf.yaml",
     targets = [":buf_validate_conformance_harness_proto"],
 )
 

@@ -20,13 +20,12 @@ load("@rules_buf//buf:defs.bzl", "buf_lint_test")
 proto_library(
     name = "priv_proto",
     srcs = ["private.proto"],
-    strip_import_prefix = "/proto/protovalidate",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:descriptor_proto"],
 )
 
 buf_lint_test(
     name = "priv_proto_lint",
-    config = "//proto/protovalidate:buf.yaml",
+    config = "//:buf.yaml",
     targets = [":priv_proto"],
 )

@@ -4,7 +4,7 @@ modules:
     name: buf.build/bufbuild/protovalidate
     lint:
       use:
-        - DEFAULT
+        - STANDARD
       except:
         - FIELD_NOT_REQUIRED
         - PACKAGE_NO_IMPORT_CYCLE
@@ -23,7 +23,7 @@ modules:
       - proto/protovalidate-testing/tests
     lint:
       use:
-        - DEFAULT
+        - STANDARD
       except:
         - FIELD_NOT_REQUIRED
         - PACKAGE_NO_IMPORT_CYCLE
@@ -50,7 +50,7 @@ modules:
   - path: examples
     lint:
       use:
-        - DEFAULT
+        - STANDARD
       except:
         - DIRECTORY_SAME_PACKAGE
         - FIELD_NOT_REQUIRED

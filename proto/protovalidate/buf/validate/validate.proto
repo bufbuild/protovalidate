@@ -202,7 +202,8 @@ message FieldConstraints {
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
 // FieldConstraints.required for definitions of "populated" and "nullable".
 enum Ignore {
-  // buf:lint:ignore ENUM_NO_ALLOW_ALIAS // allowance for deprecations. TODO: remove pre-v1.
+  // buf:lint:ignore ENUM_NO_ALLOW_ALIAS
+  // allowance for deprecations. TODO: remove pre-v1.
   option allow_alias = true;
   // Validation is only skipped if it's an unpopulated nullable fields.
   //

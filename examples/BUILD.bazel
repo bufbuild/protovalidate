@@ -97,10 +97,9 @@ proto_library(
         "option_timestamp_range.proto",
         "option_timestamp_relative_to_now.proto",
     ],
-    strip_import_prefix = "/examples",
     visibility = ["//visibility:public"],
     deps = [
-        "//proto/protovalidate/buf/validate:validate_proto",
+        "@buf_deps//buf/validate:validate_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:field_mask_proto",
@@ -113,6 +112,6 @@ proto_library(
 
 buf_lint_test(
     name = "examples_proto_lint",
-    config = "//examples:buf.yaml",
+    config = "//:buf.yaml",
     targets = [":examples_proto"],
 )
