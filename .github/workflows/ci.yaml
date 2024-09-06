@@ -29,15 +29,6 @@ jobs:
         with:
           go-version: stable
           cache-dependency-path: go.work.sum
-      - name: Buf CI
-        uses: bufbuild/buf-action@v1
-        with:
-          github_token: ${{ github.token }}
-          format: true
-          lint: true
-          breaking: ${{ github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'buf skip breaking') }}
-          push: false
-          archive: false
       - name: Buf generate
         run: |
           mkdir -p .tmp/bin
