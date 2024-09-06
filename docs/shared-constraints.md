@@ -41,7 +41,7 @@ extend buf.validate.FloatRules {
 > of rules.
 >
 > Extension numbers may be from 1000 to 536870911, inclusive. Values from 1000
-> to 50000 are reserved for [Protobuf Global Extension Registry][1] entries, and
+> to 49999 are reserved for [Protobuf Global Extension Registry][1] entries, and
 > values from 50000 to 536870911 are reserved for randomly-generated integers.
 > If using a randomly-generated integer as a tag number, please use an
 > appropriate source of randomness. [This link to random.org][2] can be used to

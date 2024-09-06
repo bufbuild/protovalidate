@@ -563,7 +563,23 @@ message FloatRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // DoubleRules describes the constraints applied to `double` values. These
@@ -774,7 +790,23 @@ message DoubleRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // Int32Rules describes the constraints applied to `int32` values. These
@@ -979,7 +1011,23 @@ message Int32Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // Int64Rules describes the constraints applied to `int64` values. These
@@ -1184,7 +1232,23 @@ message Int64Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // UInt32Rules describes the constraints applied to `uint32` values. These
@@ -1389,7 +1453,23 @@ message UInt32Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // UInt64Rules describes the constraints applied to `uint64` values. These
@@ -1593,7 +1673,23 @@ message UInt64Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // SInt32Rules describes the constraints applied to `sint32` values.
@@ -1797,7 +1893,23 @@ message SInt32Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // SInt64Rules describes the constraints applied to `sint64` values.
@@ -2001,7 +2113,23 @@ message SInt64Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // Fixed32Rules describes the constraints applied to `fixed32` values.
@@ -2205,7 +2333,23 @@ message Fixed32Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // Fixed64Rules describes the constraints applied to `fixed64` values.
@@ -2409,7 +2553,23 @@ message Fixed64Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // SFixed32Rules describes the constraints applied to `fixed32` values.
@@ -2613,7 +2773,23 @@ message SFixed32Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // SFixed64Rules describes the constraints applied to `fixed64` values.
@@ -2817,7 +2993,23 @@ message SFixed64Rules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // BoolRules describes the constraints applied to `bool` values. These rules
@@ -2854,7 +3046,23 @@ message BoolRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // StringRules describes the constraints applied to `string` values These
@@ -3542,7 +3750,23 @@ message StringRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // WellKnownRegex contain some well-known patterns.
@@ -3796,7 +4020,23 @@ message BytesRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // EnumRules describe the constraints applied to `enum` values.
@@ -3901,7 +4141,23 @@ message EnumRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // RepeatedRules describe the constraints applied to `repeated` values.
@@ -3971,7 +4227,23 @@ message RepeatedRules {
   // ```
   optional FieldConstraints items = 4;
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // MapRules describe the constraints applied to `map` values.
@@ -4036,7 +4308,23 @@ message MapRules {
   // ```
   optional FieldConstraints values = 5;
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // AnyRules describe constraints applied exclusively to the `google.protobuf.Any` well-known type.
@@ -4267,7 +4555,23 @@ message DurationRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
 
 // TimestampRules describe the constraints applied exclusively to the `google.protobuf.Timestamp` well-known type.
@@ -4476,5 +4780,21 @@ message TimestampRules {
     expression: "true"
   }];
 
-  extensions 1000 to max;
+  // Reserved for shared rules using extension numbers defined within the
+  // [Protobuf Global Extension Registry][1]. Extension fields in this range
+  // that have the (buf.validate.shared.field) option set will be treated as
+  // shared field constraints that can then be set on field options of other
+  // messages to apply reusable field constraints.
+  //
+  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  extensions 1000 to 49999;
+
+  // Reserved for shared rules using extension numbers defined using a random
+  // number between 50000 and 536870911. Extensions in this range that have the
+  // (shared.field) option set will be treated as shared field constraints that
+  // can then be set on field options of other messages to apply reusable field
+  // constraints.
+  //
+  // It is recommended to use a random number generator, such as random.org.
+  extensions 50000 to max;
 }
