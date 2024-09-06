@@ -24,8 +24,8 @@ service ApartmentService {
 
 message SearchApartmentRequest {
   option (buf.validate.message).cel = {
-    id: "secondary_address_after_primary_address",
-    message: "the minimum number of bedrooms cannot be higher than the maximum number",
+    id: "secondary_address_after_primary_address"
+    message: "the minimum number of bedrooms cannot be higher than the maximum number"
     // In a message-level constraint, `this` refers to the message itself, the `SearchApartmentRequest`.
     // You can access a field with `this.field_name`.
     // The following expression is broken down into three string literals.
@@ -37,6 +37,7 @@ message SearchApartmentRequest {
       // If both the maximum and minimum number of bedrooms are specified, validate that minimum <= maximum.
       ": this.min_bedroom_count <= this.max_bedroom_count"
   };
+
   // only looking for apartments with at most this many bedrooms
   google.protobuf.UInt32Value max_bedroom_count = 1;
   // only looking for apartments with at least this many bedrooms

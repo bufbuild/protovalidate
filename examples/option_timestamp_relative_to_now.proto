@@ -26,9 +26,9 @@ message BreakingNews {
     within: {seconds: 3600}
     // `lt_now` validates that a timestamp is before the current time when validation
     // takes place.
-    lt_now: true,
+    lt_now: true
     // Similarly, you can set `gt_now` to validate a timestamp in the future. Although
     // it is not necessary in this case.
-    gt_now: false,
+    gt_now: false
   }];
 }

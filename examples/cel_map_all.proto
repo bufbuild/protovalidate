@@ -17,14 +17,15 @@ syntax = "proto3";
 import "buf/validate/validate.proto";
 
 message ShoppingCart {
-  // product_id_to_quantity maps from a product id to its quantity in the shopping cart
-  map<uint64, uint32> product_id_to_quantity = 1;
   option (buf.validate.message).cel = {
-    id: "quantity_positive",
-    message: "each product in the shopping cart must have positive quantity",
+    id: "quantity_positive"
+    message: "each product in the shopping cart must have positive quantity"
     // `all` checks whether a predicate holds true for all keys in a map. In this
     // case, each key of the map binds to a `pid` and the predicate is evaluated.
     // `this[pid]` looks up this product id in the map and evaluates to its amount.
     expression: "this.product_id_to_quantity.all(pid, this.product_id_to_quantity[pid] > 0)"
   };
+
+  // product_id_to_quantity maps from a product id to its quantity in the shopping cart
+  map<uint64, uint32> product_id_to_quantity = 1;
 }

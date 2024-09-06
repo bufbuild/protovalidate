@@ -18,7 +18,7 @@ import "buf/validate/validate.proto";
 
 message ScriptFile {
   bytes content = 1 [(buf.validate.field).cel = {
-    id: "script_start_with_shabang_end_with_line_feed",
+    id: "script_start_with_shabang_end_with_line_feed"
     expression:
       // this is a ternary expression in the form of a ? b : c, if the the
       // script file doesn't start with '#!', the expression evaluates to the

@@ -19,8 +19,8 @@ import "buf/validate/validate.proto";
 message DeviceInfo {
   // hostname is the device's hostname on the network.
   string hostname = 1 [(buf.validate.field).cel = {
-    id: "device_info_valid_hostname",
-    message: "hostname must be valid",
+    id: "device_info_valid_hostname"
+    message: "hostname must be valid"
     // this validates that field `hostname` is a valid hostname.
     expression: "this.isHostname()"
   }];

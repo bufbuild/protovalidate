@@ -19,8 +19,8 @@ import "google/protobuf/timestamp.proto";
 
 message EventFromTheNineteenthCentury {
   google.protobuf.Timestamp time = 1 [(buf.validate.field).cel = {
-    id: "timestamp_in_the_1800s",
-    message: "the event must be from the nineteenth century",
+    id: "timestamp_in_the_1800s"
+    message: "the event must be from the nineteenth century"
     expression:
       // `timestamp()` converts a string to a timestamp according to [rtf3339]
       // (https://datatracker.ietf.org/doc/html/rfc3339#section-5.8).

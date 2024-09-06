@@ -19,8 +19,8 @@ import "google/protobuf/duration.proto";
 
 message IndirectFlight {
   option (buf.validate.message).cel = {
-    id: "total_length_limit",
-    message: "the entire trip should be less than 48 hours",
+    id: "total_length_limit"
+    message: "the entire trip should be less than 48 hours"
     expression:
       // This validates that the total duration of an indirect flight should be
       // less than 48 hours.
@@ -31,6 +31,7 @@ message IndirectFlight {
       // Durations can be compared with `<`, `<=`, `>=`, `>`, `==` and `!=`.
       "+ this.layover_duration < duration('48h')"
   };
+
   google.protobuf.Duration first_flight_duration = 1;
   google.protobuf.Duration layover_duration = 2;
   google.protobuf.Duration second_flight_duration = 3;

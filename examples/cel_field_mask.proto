@@ -28,12 +28,12 @@ message UpdateSongRequest {
   Song song = 1;
   // field_mask masks the fields to update.
   google.protobuf.FieldMask field_mask = 2 [(buf.validate.field).cel = {
-    id: "valid_field_mask",
-    message: "a field mask path must be one of name, duration and artist.name",
+    id: "valid_field_mask"
+    message: "a field mask path must be one of name, duration and artist.name"
     // `some_list.all()` validates that a predicate is true for all elements
     // from that list.
     // In this case, `this.paths` is the field paths from.
-    expression: "this.paths.all(path, path in ['name', 'duration', 'artist.name'])",
+    expression: "this.paths.all(path, path in ['name', 'duration', 'artist.name'])"
   }];
 }
 
