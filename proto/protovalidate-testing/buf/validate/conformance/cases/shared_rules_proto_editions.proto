@@ -150,7 +150,7 @@ extend buf.validate.EnumRules {
 extend buf.validate.RepeatedRules {
   bool repeated_at_least_five_edition_2023 = 1162 [(shared.field).cel = {
     id: "repeated.at_least_five.edition_2023"
-    expression: "uint(this.size()) >= 5"
+    expression: "uint(this.size()) >= 5u"
     message: "repeated field must have at least five values"
   }];
 }
@@ -158,7 +158,7 @@ extend buf.validate.RepeatedRules {
 extend buf.validate.MapRules {
   bool map_at_least_five_edition_2023 = 1162 [(shared.field).cel = {
     id: "map.at_least_five.edition_2023"
-    expression: "uint(this.size()) >= 5"
+    expression: "uint(this.size()) >= 5u"
     message: "map must have at least five pairs"
   }];
 }

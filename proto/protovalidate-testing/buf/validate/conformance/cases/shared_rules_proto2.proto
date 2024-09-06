@@ -150,7 +150,7 @@ extend buf.validate.EnumRules {
 extend buf.validate.RepeatedRules {
   optional bool repeated_at_least_five_proto2 = 1161 [(shared.field).cel = {
     id: "repeated.at_least_five.proto2"
-    expression: "uint(this.size()) >= 5"
+    expression: "uint(this.size()) >= 5u"
     message: "repeated field must have at least five values"
   }];
 }
