@@ -1,0 +1,71 @@
+version: v2
+modules:
+  - path: proto/protovalidate
+    name: buf.build/bufbuild/protovalidate
+    lint:
+      use:
+        - DEFAULT
+      except:
+        - FIELD_NOT_REQUIRED
+        - PACKAGE_NO_IMPORT_CYCLE
+      ignore_only:
+        PACKAGE_VERSION_SUFFIX:
+          - proto/protovalidate/buf/validate
+    breaking:
+      use:
+        - FILE
+      except:
+        - EXTENSION_NO_DELETE
+        - FIELD_SAME_DEFAULT
+  - path: proto/protovalidate-testing
+    name: buf.build/bufbuild/protovalidate-testing
+    excludes:
+      - proto/protovalidate-testing/tests
+    lint:
+      use:
+        - DEFAULT
+      except:
+        - FIELD_NOT_REQUIRED
+        - PACKAGE_NO_IMPORT_CYCLE
+        - PROTOVALIDATE
+      ignore_only:
+        ENUM_NO_ALLOW_ALIAS:
+          - proto/protovalidate-testing/buf/validate/conformance/cases/enums.proto
+        FILE_LOWER_SNAKE_CASE:
+          - proto/protovalidate-testing/buf/validate/conformance/cases/filename-with-dash.proto
+        IMPORT_USED:
+          - proto/protovalidate-testing/buf/validate/conformance/cases/filename-with-dash.proto
+          - proto/protovalidate-testing/buf/validate/conformance/cases/subdirectory/in_subdirectory.proto
+        PACKAGE_VERSION_SUFFIX:
+          - proto/protovalidate-testing/buf/validate/conformance
+      disallow_comment_ignores: true
+    breaking:
+      use:
+        - FILE
+      except:
+        - EXTENSION_NO_DELETE
+        - FIELD_SAME_DEFAULT
+      ignore:
+        - proto/protovalidate-testing/buf/validate/conformance
+  - path: examples
+    lint:
+      use:
+        - DEFAULT
+      except:
+        - DIRECTORY_SAME_PACKAGE
+        - FIELD_NOT_REQUIRED
+        - PACKAGE_DEFINED
+        - PACKAGE_DIRECTORY_MATCH
+        - PACKAGE_NO_IMPORT_CYCLE
+        - PACKAGE_SAME_DIRECTORY
+      enum_zero_value_suffix: _UNSPECIFIED
+      service_suffix: Service
+      disallow_comment_ignores: true
+    breaking:
+      use:
+        - FILE
+      except:
+        - EXTENSION_NO_DELETE
+        - FIELD_SAME_DEFAULT
+deps:
+  - buf.build/googleapis/googleapis
