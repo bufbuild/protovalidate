@@ -44,7 +44,9 @@ lint-go-fix: | $(BIN)/golangci-lint
 .PHONY: lint-proto
 lint-proto: | $(BIN)/buf
 	$(BIN)/buf lint
-	$(BIN)/buf breaking --against '.git#branch=main'
+	# TODO: Remove after v1 to v2 buf config migration is complete, this is due to an image mismatch
+	# problem that doesn't actually indicate a breaking change
+	#$(BIN)/buf breaking --against '.git#branch=main'
 
 .PHONY: conformance
 conformance: ## Build conformance harness
