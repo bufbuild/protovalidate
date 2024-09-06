@@ -294,6 +294,50 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto2/shared_and_custom/valid": {
+			Message: &cases.SharedAndCustomRuleProto2{
+				A: proto.Int32(26),
+				B: &cases.SharedAndCustomRuleProto2_Nested{
+					C: proto.Int32(12),
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/shared_and_custom/invalid": {
+			Message: &cases.SharedAndCustomRuleProto2{
+				A: proto.Int32(-1),
+				B: &cases.SharedAndCustomRuleProto2_Nested{
+					C: proto.Int32(-1),
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.even.proto2",
+					Message:      "int32 value is not even",
+				},
+				&validate.Violation{
+					FieldPath:    "b.c",
+					ConstraintId: "int32.even.proto2",
+					Message:      "int32 value is not even",
+				},
+				&validate.Violation{
+					FieldPath:    "b",
+					ConstraintId: "shared_and_custom_rule_embedded_proto2",
+					Message:      "b.c must be a multiple of 3",
+				},
+				&validate.Violation{
+					FieldPath:    "b.c",
+					ConstraintId: "shared_and_custom_rule_nested_proto2",
+					Message:      "c must be positive",
+				},
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "shared_and_custom_rule_scalar_proto2",
+					Message:      "a must be greater than 24",
+				},
+			),
+		},
 		"proto3/float/valid": {
 			Message:  &cases.SharedFloatRuleProto3{Val: 1.0},
 			Expected: results.Success(true),
@@ -574,6 +618,50 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto3/shared_and_custom/valid": {
+			Message: &cases.SharedAndCustomRuleProto3{
+				A: 26,
+				B: &cases.SharedAndCustomRuleProto3_Nested{
+					C: 12,
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/shared_and_custom/invalid": {
+			Message: &cases.SharedAndCustomRuleProto3{
+				A: -1,
+				B: &cases.SharedAndCustomRuleProto3_Nested{
+					C: -1,
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.even.edition_2023",
+					Message:      "int32 value is not even",
+				},
+				&validate.Violation{
+					FieldPath:    "b.c",
+					ConstraintId: "int32.even.edition_2023",
+					Message:      "int32 value is not even",
+				},
+				&validate.Violation{
+					FieldPath:    "b",
+					ConstraintId: "shared_and_custom_rule_embedded_proto3",
+					Message:      "b.c must be a multiple of 3",
+				},
+				&validate.Violation{
+					FieldPath:    "b.c",
+					ConstraintId: "shared_and_custom_rule_nested_proto3",
+					Message:      "c must be positive",
+				},
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "shared_and_custom_rule_scalar_proto3",
+					Message:      "a must be greater than 24",
+				},
+			),
+		},
 		"proto/2023/float/valid": {
 			Message:  &cases.SharedFloatRuleEdition2023{Val: proto.Float32(1.0)},
 			Expected: results.Success(true),
@@ -851,6 +939,50 @@ func sharedSuite() suites.Suite {
 					FieldPath:    "val",
 					ConstraintId: "timestamp.time_range.edition_2023",
 					Message:      "timestamp out of range",
+				},
+			),
+		},
+		"proto/2023/shared_and_custom/valid": {
+			Message: &cases.SharedAndCustomRuleEdition2023{
+				A: proto.Int32(26),
+				B: &cases.SharedAndCustomRuleEdition2023_Nested{
+					C: proto.Int32(12),
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/shared_and_custom/invalid": {
+			Message: &cases.SharedAndCustomRuleEdition2023{
+				A: proto.Int32(-1),
+				B: &cases.SharedAndCustomRuleEdition2023_Nested{
+					C: proto.Int32(-1),
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "int32.even.edition_2023",
+					Message:      "int32 value is not even",
+				},
+				&validate.Violation{
+					FieldPath:    "b.c",
+					ConstraintId: "int32.even.edition_2023",
+					Message:      "int32 value is not even",
+				},
+				&validate.Violation{
+					FieldPath:    "b",
+					ConstraintId: "shared_and_custom_rule_embedded_edition_2023",
+					Message:      "b.c must be a multiple of 3",
+				},
+				&validate.Violation{
+					FieldPath:    "b.c",
+					ConstraintId: "shared_and_custom_rule_nested_edition_2023",
+					Message:      "c must be positive",
+				},
+				&validate.Violation{
+					FieldPath:    "a",
+					ConstraintId: "shared_and_custom_rule_scalar_edition_2023",
+					Message:      "a must be greater than 24",
 				},
 			),
 		},

@@ -105,3 +105,29 @@ message SharedDurationRuleProto3 {
 message SharedTimestampRuleProto3 {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp.(timestamp_in_range_proto2) = true];
 }
+
+message SharedAndCustomRuleProto3 {
+  int32 a = 1 [
+    (field).cel = {
+      id: "shared_and_custom_rule_scalar_proto3"
+      expression: "this > 24 ? '' : 'a must be greater than 24'"
+    },
+    (field).int32.(int32_even_edition_2023) = true
+  ];
+
+  optional Nested b = 2 [(field).cel = {
+    id: "shared_and_custom_rule_embedded_proto3"
+    message: "b.c must be a multiple of 3"
+    expression: "this.c % 3 == 0"
+  }];
+
+  message Nested {
+    int32 c = 1 [
+      (field).cel = {
+        id: "shared_and_custom_rule_nested_proto3"
+        expression: "this > 0 ? '' : 'c must be positive'"
+      },
+      (field).int32.(int32_even_edition_2023) = true
+    ];
+  }
+}
