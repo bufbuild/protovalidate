@@ -29,6 +29,10 @@ jobs:
         with:
           go-version: stable
           cache-dependency-path: go.work.sum
+      - name: Install buf
+        uses: bufbuild/buf-action@v1
+        with:
+          setup_only: true
       - name: Buf generate
         run: |
           mkdir -p .tmp/bin
