@@ -29,15 +29,10 @@ jobs:
         with:
           go-version: stable
           cache-dependency-path: go.work.sum
-      - name: Buf CI
+      - name: Install buf
         uses: bufbuild/buf-action@v1
         with:
-          github_token: ${{ github.token }}
-          format: true
-          lint: true
-          breaking: true
-          push: false
-          archive: false
+          setup_only: true
       - name: Buf generate
         run: |
           mkdir -p .tmp/bin
