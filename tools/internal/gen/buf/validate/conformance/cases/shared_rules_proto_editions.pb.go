@@ -22,7 +22,7 @@ package cases
 
 import (
 	validate "github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
-	_ "github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/shared"
+	shared "github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/shared"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
@@ -1126,6 +1126,55 @@ func (x *StandardSharedAndCustomRuleEdition2023) GetA() int32 {
 	return 0
 }
 
+// This is a workaround for https://github.com/bufbuild/buf/issues/3306.
+// TODO(jchadwick-buf): Remove this when bufbuild/buf#3306 is fixed.
+type SharedRulesEdition2023UnusedImportBugWorkaround struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Dummy *shared.FieldConstraints `protobuf:"bytes,1,opt,name=dummy" json:"dummy,omitempty"`
+}
+
+func (x *SharedRulesEdition2023UnusedImportBugWorkaround) Reset() {
+	*x = SharedRulesEdition2023UnusedImportBugWorkaround{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SharedRulesEdition2023UnusedImportBugWorkaround) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SharedRulesEdition2023UnusedImportBugWorkaround) ProtoMessage() {}
+
+func (x *SharedRulesEdition2023UnusedImportBugWorkaround) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SharedRulesEdition2023UnusedImportBugWorkaround.ProtoReflect.Descriptor instead.
+func (*SharedRulesEdition2023UnusedImportBugWorkaround) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *SharedRulesEdition2023UnusedImportBugWorkaround) GetDummy() *shared.FieldConstraints {
+	if x != nil {
+		return x.Dummy
+	}
+	return nil
+}
+
 type SharedAndCustomRuleEdition2023_Nested struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1137,7 +1186,7 @@ type SharedAndCustomRuleEdition2023_Nested struct {
 func (x *SharedAndCustomRuleEdition2023_Nested) Reset() {
 	*x = SharedAndCustomRuleEdition2023_Nested{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[23]
+		mi := &file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1150,7 +1199,7 @@ func (x *SharedAndCustomRuleEdition2023_Nested) String() string {
 func (*SharedAndCustomRuleEdition2023_Nested) ProtoMessage() {}
 
 func (x *SharedAndCustomRuleEdition2023_Nested) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[23]
+	mi := &file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1608,7 +1657,14 @@ var file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_rawDes
 	0x30, 0x32, 0x33, 0x1a, 0x2c, 0x74, 0x68, 0x69, 0x73, 0x20, 0x3e, 0x20, 0x32, 0x34, 0x20, 0x3f,
 	0x20, 0x27, 0x27, 0x20, 0x3a, 0x20, 0x27, 0x61, 0x20, 0x6d, 0x75, 0x73, 0x74, 0x20, 0x62, 0x65,
 	0x20, 0x67, 0x72, 0x65, 0x61, 0x74, 0x65, 0x72, 0x20, 0x74, 0x68, 0x61, 0x6e, 0x20, 0x32, 0x34,
-	0x27, 0x1a, 0x05, 0xd0, 0x48, 0x01, 0x10, 0x1c, 0x52, 0x01, 0x61, 0x3a, 0xba, 0x01, 0x0a, 0x1c,
+	0x27, 0x1a, 0x05, 0xd0, 0x48, 0x01, 0x10, 0x1c, 0x52, 0x01, 0x61, 0x22, 0x6e, 0x0a, 0x2f, 0x53,
+	0x68, 0x61, 0x72, 0x65, 0x64, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x45, 0x64, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x32, 0x30, 0x32, 0x33, 0x55, 0x6e, 0x75, 0x73, 0x65, 0x64, 0x49, 0x6d, 0x70, 0x6f, 0x72,
+	0x74, 0x42, 0x75, 0x67, 0x57, 0x6f, 0x72, 0x6b, 0x61, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x12, 0x3b,
+	0x0a, 0x05, 0x64, 0x75, 0x6d, 0x6d, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e,
+	0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x73, 0x68, 0x61,
+	0x72, 0x65, 0x64, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x74, 0x72, 0x61,
+	0x69, 0x6e, 0x74, 0x73, 0x52, 0x05, 0x64, 0x75, 0x6d, 0x6d, 0x79, 0x3a, 0xba, 0x01, 0x0a, 0x1c,
 	0x66, 0x6c, 0x6f, 0x61, 0x74, 0x5f, 0x61, 0x62, 0x73, 0x5f, 0x72, 0x61, 0x6e, 0x67, 0x65, 0x5f,
 	0x65, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x32, 0x30, 0x32, 0x33, 0x12, 0x18, 0x2e, 0x62,
 	0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x46, 0x6c, 0x6f, 0x61,
@@ -1877,87 +1933,90 @@ func file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_rawDe
 }
 
 var file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_goTypes = []any{
-	(SharedEnumRuleEdition2023_EnumEdition2023)(0), // 0: buf.validate.conformance.cases.SharedEnumRuleEdition2023.EnumEdition2023
-	(*SharedFloatRuleEdition2023)(nil),             // 1: buf.validate.conformance.cases.SharedFloatRuleEdition2023
-	(*SharedDoubleRuleEdition2023)(nil),            // 2: buf.validate.conformance.cases.SharedDoubleRuleEdition2023
-	(*SharedInt32RuleEdition2023)(nil),             // 3: buf.validate.conformance.cases.SharedInt32RuleEdition2023
-	(*SharedInt64RuleEdition2023)(nil),             // 4: buf.validate.conformance.cases.SharedInt64RuleEdition2023
-	(*SharedUInt32RuleEdition2023)(nil),            // 5: buf.validate.conformance.cases.SharedUInt32RuleEdition2023
-	(*SharedUInt64RuleEdition2023)(nil),            // 6: buf.validate.conformance.cases.SharedUInt64RuleEdition2023
-	(*SharedSInt32RuleEdition2023)(nil),            // 7: buf.validate.conformance.cases.SharedSInt32RuleEdition2023
-	(*SharedSInt64RuleEdition2023)(nil),            // 8: buf.validate.conformance.cases.SharedSInt64RuleEdition2023
-	(*SharedFixed32RuleEdition2023)(nil),           // 9: buf.validate.conformance.cases.SharedFixed32RuleEdition2023
-	(*SharedFixed64RuleEdition2023)(nil),           // 10: buf.validate.conformance.cases.SharedFixed64RuleEdition2023
-	(*SharedSFixed32RuleEdition2023)(nil),          // 11: buf.validate.conformance.cases.SharedSFixed32RuleEdition2023
-	(*SharedSFixed64RuleEdition2023)(nil),          // 12: buf.validate.conformance.cases.SharedSFixed64RuleEdition2023
-	(*SharedBoolRuleEdition2023)(nil),              // 13: buf.validate.conformance.cases.SharedBoolRuleEdition2023
-	(*SharedStringRuleEdition2023)(nil),            // 14: buf.validate.conformance.cases.SharedStringRuleEdition2023
-	(*SharedBytesRuleEdition2023)(nil),             // 15: buf.validate.conformance.cases.SharedBytesRuleEdition2023
-	(*SharedEnumRuleEdition2023)(nil),              // 16: buf.validate.conformance.cases.SharedEnumRuleEdition2023
-	(*SharedRepeatedRuleEdition2023)(nil),          // 17: buf.validate.conformance.cases.SharedRepeatedRuleEdition2023
-	(*SharedMapRuleEdition2023)(nil),               // 18: buf.validate.conformance.cases.SharedMapRuleEdition2023
-	(*SharedDurationRuleEdition2023)(nil),          // 19: buf.validate.conformance.cases.SharedDurationRuleEdition2023
-	(*SharedTimestampRuleEdition2023)(nil),         // 20: buf.validate.conformance.cases.SharedTimestampRuleEdition2023
-	(*SharedAndCustomRuleEdition2023)(nil),         // 21: buf.validate.conformance.cases.SharedAndCustomRuleEdition2023
-	(*StandardSharedAndCustomRuleEdition2023)(nil), // 22: buf.validate.conformance.cases.StandardSharedAndCustomRuleEdition2023
-	nil, // 23: buf.validate.conformance.cases.SharedMapRuleEdition2023.ValEntry
-	(*SharedAndCustomRuleEdition2023_Nested)(nil), // 24: buf.validate.conformance.cases.SharedAndCustomRuleEdition2023.Nested
-	(*durationpb.Duration)(nil),                   // 25: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),                 // 26: google.protobuf.Timestamp
-	(*validate.FloatRules)(nil),                   // 27: buf.validate.FloatRules
-	(*validate.DoubleRules)(nil),                  // 28: buf.validate.DoubleRules
-	(*validate.Int32Rules)(nil),                   // 29: buf.validate.Int32Rules
-	(*validate.Int64Rules)(nil),                   // 30: buf.validate.Int64Rules
-	(*validate.UInt32Rules)(nil),                  // 31: buf.validate.UInt32Rules
-	(*validate.UInt64Rules)(nil),                  // 32: buf.validate.UInt64Rules
-	(*validate.SInt32Rules)(nil),                  // 33: buf.validate.SInt32Rules
-	(*validate.SInt64Rules)(nil),                  // 34: buf.validate.SInt64Rules
-	(*validate.Fixed32Rules)(nil),                 // 35: buf.validate.Fixed32Rules
-	(*validate.Fixed64Rules)(nil),                 // 36: buf.validate.Fixed64Rules
-	(*validate.SFixed32Rules)(nil),                // 37: buf.validate.SFixed32Rules
-	(*validate.SFixed64Rules)(nil),                // 38: buf.validate.SFixed64Rules
-	(*validate.BoolRules)(nil),                    // 39: buf.validate.BoolRules
-	(*validate.StringRules)(nil),                  // 40: buf.validate.StringRules
-	(*validate.BytesRules)(nil),                   // 41: buf.validate.BytesRules
-	(*validate.EnumRules)(nil),                    // 42: buf.validate.EnumRules
-	(*validate.RepeatedRules)(nil),                // 43: buf.validate.RepeatedRules
-	(*validate.MapRules)(nil),                     // 44: buf.validate.MapRules
-	(*validate.DurationRules)(nil),                // 45: buf.validate.DurationRules
-	(*validate.TimestampRules)(nil),               // 46: buf.validate.TimestampRules
+	(SharedEnumRuleEdition2023_EnumEdition2023)(0),          // 0: buf.validate.conformance.cases.SharedEnumRuleEdition2023.EnumEdition2023
+	(*SharedFloatRuleEdition2023)(nil),                      // 1: buf.validate.conformance.cases.SharedFloatRuleEdition2023
+	(*SharedDoubleRuleEdition2023)(nil),                     // 2: buf.validate.conformance.cases.SharedDoubleRuleEdition2023
+	(*SharedInt32RuleEdition2023)(nil),                      // 3: buf.validate.conformance.cases.SharedInt32RuleEdition2023
+	(*SharedInt64RuleEdition2023)(nil),                      // 4: buf.validate.conformance.cases.SharedInt64RuleEdition2023
+	(*SharedUInt32RuleEdition2023)(nil),                     // 5: buf.validate.conformance.cases.SharedUInt32RuleEdition2023
+	(*SharedUInt64RuleEdition2023)(nil),                     // 6: buf.validate.conformance.cases.SharedUInt64RuleEdition2023
+	(*SharedSInt32RuleEdition2023)(nil),                     // 7: buf.validate.conformance.cases.SharedSInt32RuleEdition2023
+	(*SharedSInt64RuleEdition2023)(nil),                     // 8: buf.validate.conformance.cases.SharedSInt64RuleEdition2023
+	(*SharedFixed32RuleEdition2023)(nil),                    // 9: buf.validate.conformance.cases.SharedFixed32RuleEdition2023
+	(*SharedFixed64RuleEdition2023)(nil),                    // 10: buf.validate.conformance.cases.SharedFixed64RuleEdition2023
+	(*SharedSFixed32RuleEdition2023)(nil),                   // 11: buf.validate.conformance.cases.SharedSFixed32RuleEdition2023
+	(*SharedSFixed64RuleEdition2023)(nil),                   // 12: buf.validate.conformance.cases.SharedSFixed64RuleEdition2023
+	(*SharedBoolRuleEdition2023)(nil),                       // 13: buf.validate.conformance.cases.SharedBoolRuleEdition2023
+	(*SharedStringRuleEdition2023)(nil),                     // 14: buf.validate.conformance.cases.SharedStringRuleEdition2023
+	(*SharedBytesRuleEdition2023)(nil),                      // 15: buf.validate.conformance.cases.SharedBytesRuleEdition2023
+	(*SharedEnumRuleEdition2023)(nil),                       // 16: buf.validate.conformance.cases.SharedEnumRuleEdition2023
+	(*SharedRepeatedRuleEdition2023)(nil),                   // 17: buf.validate.conformance.cases.SharedRepeatedRuleEdition2023
+	(*SharedMapRuleEdition2023)(nil),                        // 18: buf.validate.conformance.cases.SharedMapRuleEdition2023
+	(*SharedDurationRuleEdition2023)(nil),                   // 19: buf.validate.conformance.cases.SharedDurationRuleEdition2023
+	(*SharedTimestampRuleEdition2023)(nil),                  // 20: buf.validate.conformance.cases.SharedTimestampRuleEdition2023
+	(*SharedAndCustomRuleEdition2023)(nil),                  // 21: buf.validate.conformance.cases.SharedAndCustomRuleEdition2023
+	(*StandardSharedAndCustomRuleEdition2023)(nil),          // 22: buf.validate.conformance.cases.StandardSharedAndCustomRuleEdition2023
+	(*SharedRulesEdition2023UnusedImportBugWorkaround)(nil), // 23: buf.validate.conformance.cases.SharedRulesEdition2023UnusedImportBugWorkaround
+	nil, // 24: buf.validate.conformance.cases.SharedMapRuleEdition2023.ValEntry
+	(*SharedAndCustomRuleEdition2023_Nested)(nil), // 25: buf.validate.conformance.cases.SharedAndCustomRuleEdition2023.Nested
+	(*durationpb.Duration)(nil),                   // 26: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),                 // 27: google.protobuf.Timestamp
+	(*shared.FieldConstraints)(nil),               // 28: buf.validate.shared.FieldConstraints
+	(*validate.FloatRules)(nil),                   // 29: buf.validate.FloatRules
+	(*validate.DoubleRules)(nil),                  // 30: buf.validate.DoubleRules
+	(*validate.Int32Rules)(nil),                   // 31: buf.validate.Int32Rules
+	(*validate.Int64Rules)(nil),                   // 32: buf.validate.Int64Rules
+	(*validate.UInt32Rules)(nil),                  // 33: buf.validate.UInt32Rules
+	(*validate.UInt64Rules)(nil),                  // 34: buf.validate.UInt64Rules
+	(*validate.SInt32Rules)(nil),                  // 35: buf.validate.SInt32Rules
+	(*validate.SInt64Rules)(nil),                  // 36: buf.validate.SInt64Rules
+	(*validate.Fixed32Rules)(nil),                 // 37: buf.validate.Fixed32Rules
+	(*validate.Fixed64Rules)(nil),                 // 38: buf.validate.Fixed64Rules
+	(*validate.SFixed32Rules)(nil),                // 39: buf.validate.SFixed32Rules
+	(*validate.SFixed64Rules)(nil),                // 40: buf.validate.SFixed64Rules
+	(*validate.BoolRules)(nil),                    // 41: buf.validate.BoolRules
+	(*validate.StringRules)(nil),                  // 42: buf.validate.StringRules
+	(*validate.BytesRules)(nil),                   // 43: buf.validate.BytesRules
+	(*validate.EnumRules)(nil),                    // 44: buf.validate.EnumRules
+	(*validate.RepeatedRules)(nil),                // 45: buf.validate.RepeatedRules
+	(*validate.MapRules)(nil),                     // 46: buf.validate.MapRules
+	(*validate.DurationRules)(nil),                // 47: buf.validate.DurationRules
+	(*validate.TimestampRules)(nil),               // 48: buf.validate.TimestampRules
 }
 var file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_depIdxs = []int32{
 	0,  // 0: buf.validate.conformance.cases.SharedEnumRuleEdition2023.val:type_name -> buf.validate.conformance.cases.SharedEnumRuleEdition2023.EnumEdition2023
-	23, // 1: buf.validate.conformance.cases.SharedMapRuleEdition2023.val:type_name -> buf.validate.conformance.cases.SharedMapRuleEdition2023.ValEntry
-	25, // 2: buf.validate.conformance.cases.SharedDurationRuleEdition2023.val:type_name -> google.protobuf.Duration
-	26, // 3: buf.validate.conformance.cases.SharedTimestampRuleEdition2023.val:type_name -> google.protobuf.Timestamp
-	24, // 4: buf.validate.conformance.cases.SharedAndCustomRuleEdition2023.b:type_name -> buf.validate.conformance.cases.SharedAndCustomRuleEdition2023.Nested
-	27, // 5: buf.validate.conformance.cases.float_abs_range_edition_2023:extendee -> buf.validate.FloatRules
-	28, // 6: buf.validate.conformance.cases.double_abs_range_edition_2023:extendee -> buf.validate.DoubleRules
-	29, // 7: buf.validate.conformance.cases.int32_even_edition_2023:extendee -> buf.validate.Int32Rules
-	30, // 8: buf.validate.conformance.cases.int64_even_edition_2023:extendee -> buf.validate.Int64Rules
-	31, // 9: buf.validate.conformance.cases.uint32_even_edition_2023:extendee -> buf.validate.UInt32Rules
-	32, // 10: buf.validate.conformance.cases.uint64_even_edition_2023:extendee -> buf.validate.UInt64Rules
-	33, // 11: buf.validate.conformance.cases.sint32_even_edition_2023:extendee -> buf.validate.SInt32Rules
-	34, // 12: buf.validate.conformance.cases.sint64_even_edition_2023:extendee -> buf.validate.SInt64Rules
-	35, // 13: buf.validate.conformance.cases.fixed32_even_edition_2023:extendee -> buf.validate.Fixed32Rules
-	36, // 14: buf.validate.conformance.cases.fixed64_even_edition_2023:extendee -> buf.validate.Fixed64Rules
-	37, // 15: buf.validate.conformance.cases.sfixed32_even_edition_2023:extendee -> buf.validate.SFixed32Rules
-	38, // 16: buf.validate.conformance.cases.sfixed64_even_edition_2023:extendee -> buf.validate.SFixed64Rules
-	39, // 17: buf.validate.conformance.cases.bool_false_edition_2023:extendee -> buf.validate.BoolRules
-	40, // 18: buf.validate.conformance.cases.string_valid_path_edition_2023:extendee -> buf.validate.StringRules
-	41, // 19: buf.validate.conformance.cases.bytes_valid_path_edition_2023:extendee -> buf.validate.BytesRules
-	42, // 20: buf.validate.conformance.cases.enum_non_zero_edition_2023:extendee -> buf.validate.EnumRules
-	43, // 21: buf.validate.conformance.cases.repeated_at_least_five_edition_2023:extendee -> buf.validate.RepeatedRules
-	44, // 22: buf.validate.conformance.cases.map_at_least_five_edition_2023:extendee -> buf.validate.MapRules
-	45, // 23: buf.validate.conformance.cases.duration_too_long_edition_2023:extendee -> buf.validate.DurationRules
-	46, // 24: buf.validate.conformance.cases.timestamp_in_range_edition_2023:extendee -> buf.validate.TimestampRules
-	25, // [25:25] is the sub-list for method output_type
-	25, // [25:25] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	5,  // [5:25] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	24, // 1: buf.validate.conformance.cases.SharedMapRuleEdition2023.val:type_name -> buf.validate.conformance.cases.SharedMapRuleEdition2023.ValEntry
+	26, // 2: buf.validate.conformance.cases.SharedDurationRuleEdition2023.val:type_name -> google.protobuf.Duration
+	27, // 3: buf.validate.conformance.cases.SharedTimestampRuleEdition2023.val:type_name -> google.protobuf.Timestamp
+	25, // 4: buf.validate.conformance.cases.SharedAndCustomRuleEdition2023.b:type_name -> buf.validate.conformance.cases.SharedAndCustomRuleEdition2023.Nested
+	28, // 5: buf.validate.conformance.cases.SharedRulesEdition2023UnusedImportBugWorkaround.dummy:type_name -> buf.validate.shared.FieldConstraints
+	29, // 6: buf.validate.conformance.cases.float_abs_range_edition_2023:extendee -> buf.validate.FloatRules
+	30, // 7: buf.validate.conformance.cases.double_abs_range_edition_2023:extendee -> buf.validate.DoubleRules
+	31, // 8: buf.validate.conformance.cases.int32_even_edition_2023:extendee -> buf.validate.Int32Rules
+	32, // 9: buf.validate.conformance.cases.int64_even_edition_2023:extendee -> buf.validate.Int64Rules
+	33, // 10: buf.validate.conformance.cases.uint32_even_edition_2023:extendee -> buf.validate.UInt32Rules
+	34, // 11: buf.validate.conformance.cases.uint64_even_edition_2023:extendee -> buf.validate.UInt64Rules
+	35, // 12: buf.validate.conformance.cases.sint32_even_edition_2023:extendee -> buf.validate.SInt32Rules
+	36, // 13: buf.validate.conformance.cases.sint64_even_edition_2023:extendee -> buf.validate.SInt64Rules
+	37, // 14: buf.validate.conformance.cases.fixed32_even_edition_2023:extendee -> buf.validate.Fixed32Rules
+	38, // 15: buf.validate.conformance.cases.fixed64_even_edition_2023:extendee -> buf.validate.Fixed64Rules
+	39, // 16: buf.validate.conformance.cases.sfixed32_even_edition_2023:extendee -> buf.validate.SFixed32Rules
+	40, // 17: buf.validate.conformance.cases.sfixed64_even_edition_2023:extendee -> buf.validate.SFixed64Rules
+	41, // 18: buf.validate.conformance.cases.bool_false_edition_2023:extendee -> buf.validate.BoolRules
+	42, // 19: buf.validate.conformance.cases.string_valid_path_edition_2023:extendee -> buf.validate.StringRules
+	43, // 20: buf.validate.conformance.cases.bytes_valid_path_edition_2023:extendee -> buf.validate.BytesRules
+	44, // 21: buf.validate.conformance.cases.enum_non_zero_edition_2023:extendee -> buf.validate.EnumRules
+	45, // 22: buf.validate.conformance.cases.repeated_at_least_five_edition_2023:extendee -> buf.validate.RepeatedRules
+	46, // 23: buf.validate.conformance.cases.map_at_least_five_edition_2023:extendee -> buf.validate.MapRules
+	47, // 24: buf.validate.conformance.cases.duration_too_long_edition_2023:extendee -> buf.validate.DurationRules
+	48, // 25: buf.validate.conformance.cases.timestamp_in_range_edition_2023:extendee -> buf.validate.TimestampRules
+	26, // [26:26] is the sub-list for method output_type
+	26, // [26:26] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	6,  // [6:26] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_init() }
@@ -2230,7 +2289,19 @@ func file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_init(
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[23].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[22].Exporter = func(v any, i int) any {
+			switch v := v.(*SharedRulesEdition2023UnusedImportBugWorkaround); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_msgTypes[24].Exporter = func(v any, i int) any {
 			switch v := v.(*SharedAndCustomRuleEdition2023_Nested); i {
 			case 0:
 				return &v.state
@@ -2249,7 +2320,7 @@ func file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_init(
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_buf_validate_conformance_cases_shared_rules_proto_editions_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   24,
+			NumMessages:   25,
 			NumExtensions: 20,
 			NumServices:   0,
 		},
