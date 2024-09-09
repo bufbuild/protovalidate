@@ -146,6 +146,6 @@ message StandardSharedAndCustomRuleProto3 {
 // This is a workaround for https://github.com/bufbuild/buf/issues/3306.
 // TODO(jchadwick-buf): Remove this when bufbuild/buf#3306 is fixed.
 message SharedRulesProto3UnusedImportBugWorkaround {
-    SharedRulesEdition2023UnusedImportBugWorkaround dummy_1 = 1;
-    SharedRulesProto2UnusedImportBugWorkaround dummy_2 = 2;
+  SharedRulesEdition2023UnusedImportBugWorkaround dummy_1 = 1;
+  SharedRulesProto2UnusedImportBugWorkaround dummy_2 = 2;
 }

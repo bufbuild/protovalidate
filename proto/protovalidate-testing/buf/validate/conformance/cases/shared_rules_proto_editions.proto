@@ -303,5 +303,5 @@ message StandardSharedAndCustomRuleEdition2023 {
 // This is a workaround for https://github.com/bufbuild/buf/issues/3306.
 // TODO(jchadwick-buf): Remove this when bufbuild/buf#3306 is fixed.
 message SharedRulesEdition2023UnusedImportBugWorkaround {
-    buf.validate.shared.FieldConstraints dummy = 1;
+  buf.validate.shared.FieldConstraints dummy = 1;
 }
