@@ -53,7 +53,6 @@ proto_library(
         "//proto/protovalidate-testing/buf/validate/conformance/cases/other_package:buf_validate_conformance_cases_other_package_proto",
         "//proto/protovalidate-testing/buf/validate/conformance/cases/yet_another_package:buf_validate_conformance_cases_yet_another_package_proto",
         "//proto/protovalidate/buf/validate:validate_proto",
-        "//proto/protovalidate/buf/validate/shared:shared_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",

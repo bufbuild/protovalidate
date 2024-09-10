@@ -36,9 +36,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFloatRuleProto2{Val: proto.Float32(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "float.abs_range.proto2",
-					Message:      "float value is out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("float.abs_range.proto2"),
+					Message:      proto.String("float value is out of range"),
 				},
 			),
 		},
@@ -50,9 +50,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedDoubleRuleProto2{Val: proto.Float64(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "double.abs_range.proto2",
-					Message:      "double value is out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("double.abs_range.proto2"),
+					Message:      proto.String("double value is out of range"),
 				},
 			),
 		},
@@ -64,9 +64,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedInt32RuleProto2{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "int32.even.proto2",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int32.even.proto2"),
+					Message:      proto.String("int32 value is not even"),
 				},
 			),
 		},
@@ -78,9 +78,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedInt64RuleProto2{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "int64.even.proto2",
-					Message:      "int64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int64.even.proto2"),
+					Message:      proto.String("int64 value is not even"),
 				},
 			),
 		},
@@ -92,9 +92,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedUInt32RuleProto2{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "uint32.even.proto2",
-					Message:      "uint32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint32.even.proto2"),
+					Message:      proto.String("uint32 value is not even"),
 				},
 			),
 		},
@@ -106,9 +106,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedUInt64RuleProto2{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "uint64.even.proto2",
-					Message:      "uint64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint64.even.proto2"),
+					Message:      proto.String("uint64 value is not even"),
 				},
 			),
 		},
@@ -120,9 +120,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSInt32RuleProto2{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sint32.even.proto2",
-					Message:      "sint32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sint32.even.proto2"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 			),
 		},
@@ -134,9 +134,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSInt64RuleProto2{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sint64.even.proto2",
-					Message:      "sint64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sint64.even.proto2"),
+					Message:      proto.String("sint64 value is not even"),
 				},
 			),
 		},
@@ -148,9 +148,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFixed32RuleProto2{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "fixed32.even.proto2",
-					Message:      "fixed32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("fixed32.even.proto2"),
+					Message:      proto.String("fixed32 value is not even"),
 				},
 			),
 		},
@@ -162,9 +162,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFixed64RuleProto2{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "fixed64.even.proto2",
-					Message:      "fixed64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("fixed64.even.proto2"),
+					Message:      proto.String("fixed64 value is not even"),
 				},
 			),
 		},
@@ -176,9 +176,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSFixed32RuleProto2{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sfixed32.even.proto2",
-					Message:      "sfixed32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sfixed32.even.proto2"),
+					Message:      proto.String("sfixed32 value is not even"),
 				},
 			),
 		},
@@ -190,9 +190,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSFixed64RuleProto2{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sfixed64.even.proto2",
-					Message:      "sfixed64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sfixed64.even.proto2"),
+					Message:      proto.String("sfixed64 value is not even"),
 				},
 			),
 		},
@@ -204,9 +204,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedBoolRuleProto2{Val: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "bool.false.proto2",
-					Message:      "bool value is not false",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bool.false.proto2"),
+					Message:      proto.String("bool value is not false"),
 				},
 			),
 		},
@@ -218,9 +218,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedStringRuleProto2{Val: proto.String("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "string.valid_path.proto2",
-					Message:      "not a valid path: `../invalid/path`",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("string.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
 				},
 			),
 		},
@@ -232,9 +232,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedBytesRuleProto2{Val: []byte("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "bytes.valid_path.proto2",
-					Message:      "not a valid path: `../invalid/path`",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bytes.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
 				},
 			),
 		},
@@ -246,9 +246,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedEnumRuleProto2{Val: toPointer(cases.SharedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "enum.non_zero.proto2",
-					Message:      "enum value is not non-zero",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("enum.non_zero.proto2"),
+					Message:      proto.String("enum value is not non-zero"),
 				},
 			),
 		},
@@ -260,9 +260,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedRepeatedRuleProto2{Val: []uint64{1, 2, 3}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "repeated.at_least_five.proto2",
-					Message:      "repeated field must have at least five values",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("repeated.at_least_five.proto2"),
+					Message:      proto.String("repeated field must have at least five values"),
 				},
 			),
 		},
@@ -274,9 +274,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedDurationRuleProto2{Val: durationpb.New(15 * time.Second)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "duration.too_long.proto2",
-					Message:      "duration can't be longer than 10 seconds",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("duration.too_long.proto2"),
+					Message:      proto.String("duration can't be longer than 10 seconds"),
 				},
 			),
 		},
@@ -288,9 +288,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedTimestampRuleProto2{Val: timestamppb.New(time.Unix(1725415496, 0))},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "timestamp.time_range.proto2",
-					Message:      "timestamp out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("timestamp.time_range.proto2"),
+					Message:      proto.String("timestamp out of range"),
 				},
 			),
 		},
@@ -312,29 +312,29 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.even.proto2",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.even.proto2"),
+					Message:      proto.String("int32 value is not even"),
 				},
 				&validate.Violation{
-					FieldPath:    "b.c",
-					ConstraintId: "int32.even.proto2",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("b.c"),
+					ConstraintId: proto.String("int32.even.proto2"),
+					Message:      proto.String("int32 value is not even"),
 				},
 				&validate.Violation{
-					FieldPath:    "b",
-					ConstraintId: "shared_and_custom_rule_embedded_proto2",
-					Message:      "b.c must be a multiple of 3",
+					FieldPath:    proto.String("b"),
+					ConstraintId: proto.String("shared_and_custom_rule_embedded_proto2"),
+					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
-					FieldPath:    "b.c",
-					ConstraintId: "shared_and_custom_rule_nested_proto2",
-					Message:      "c must be positive",
+					FieldPath:    proto.String("b.c"),
+					ConstraintId: proto.String("shared_and_custom_rule_nested_proto2"),
+					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "shared_and_custom_rule_scalar_proto2",
-					Message:      "a must be greater than 24",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("shared_and_custom_rule_scalar_proto2"),
+					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
@@ -350,9 +350,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.lt",
-					Message:      "value must be less than 28",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.lt"),
+					Message:      proto.String("value must be less than 28"),
 				},
 			),
 		},
@@ -362,9 +362,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.even.proto2",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.even.proto2"),
+					Message:      proto.String("int32 value is not even"),
 				},
 			),
 		},
@@ -374,9 +374,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "standard_shared_and_custom_rule_scalar_proto2",
-					Message:      "a must be greater than 24",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("standard_shared_and_custom_rule_scalar_proto2"),
+					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
@@ -388,9 +388,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFloatRuleProto3{Val: -2.0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "float.abs_range.proto2",
-					Message:      "float value is out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("float.abs_range.proto2"),
+					Message:      proto.String("float value is out of range"),
 				},
 			),
 		},
@@ -402,9 +402,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedDoubleRuleProto3{Val: -2.0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "double.abs_range.proto2",
-					Message:      "double value is out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("double.abs_range.proto2"),
+					Message:      proto.String("double value is out of range"),
 				},
 			),
 		},
@@ -416,9 +416,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedInt32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "int32.even.proto2",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int32.even.proto2"),
+					Message:      proto.String("int32 value is not even"),
 				},
 			),
 		},
@@ -430,9 +430,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedInt64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "int64.even.proto2",
-					Message:      "int64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int64.even.proto2"),
+					Message:      proto.String("int64 value is not even"),
 				},
 			),
 		},
@@ -444,9 +444,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedUInt32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "uint32.even.proto2",
-					Message:      "uint32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint32.even.proto2"),
+					Message:      proto.String("uint32 value is not even"),
 				},
 			),
 		},
@@ -458,9 +458,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedUInt64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "uint64.even.proto2",
-					Message:      "uint64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint64.even.proto2"),
+					Message:      proto.String("uint64 value is not even"),
 				},
 			),
 		},
@@ -472,9 +472,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSInt32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sint32.even.proto2",
-					Message:      "sint32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sint32.even.proto2"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 			),
 		},
@@ -486,9 +486,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSInt64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sint64.even.proto2",
-					Message:      "sint64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sint64.even.proto2"),
+					Message:      proto.String("sint64 value is not even"),
 				},
 			),
 		},
@@ -500,9 +500,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFixed32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "fixed32.even.proto2",
-					Message:      "fixed32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("fixed32.even.proto2"),
+					Message:      proto.String("fixed32 value is not even"),
 				},
 			),
 		},
@@ -514,9 +514,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFixed64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "fixed64.even.proto2",
-					Message:      "fixed64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("fixed64.even.proto2"),
+					Message:      proto.String("fixed64 value is not even"),
 				},
 			),
 		},
@@ -528,9 +528,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSFixed32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sfixed32.even.proto2",
-					Message:      "sfixed32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sfixed32.even.proto2"),
+					Message:      proto.String("sfixed32 value is not even"),
 				},
 			),
 		},
@@ -542,9 +542,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSFixed64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sfixed64.even.proto2",
-					Message:      "sfixed64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sfixed64.even.proto2"),
+					Message:      proto.String("sfixed64 value is not even"),
 				},
 			),
 		},
@@ -556,9 +556,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedBoolRuleProto3{Val: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "bool.false.proto2",
-					Message:      "bool value is not false",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bool.false.proto2"),
+					Message:      proto.String("bool value is not false"),
 				},
 			),
 		},
@@ -570,9 +570,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedStringRuleProto3{Val: "../invalid/path"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "string.valid_path.proto2",
-					Message:      "not a valid path: `../invalid/path`",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("string.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
 				},
 			),
 		},
@@ -584,9 +584,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedBytesRuleProto3{Val: []byte("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "bytes.valid_path.proto2",
-					Message:      "not a valid path: `../invalid/path`",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bytes.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
 				},
 			),
 		},
@@ -598,9 +598,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedEnumRuleProto3{Val: cases.SharedEnumRuleProto3_ENUM_PROTO3_ZERO_UNSPECIFIED},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "enum.non_zero.proto2",
-					Message:      "enum value is not non-zero",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("enum.non_zero.proto2"),
+					Message:      proto.String("enum value is not non-zero"),
 				},
 			),
 		},
@@ -612,9 +612,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedRepeatedRuleProto3{Val: []uint64{1, 2, 3}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "repeated.at_least_five.proto2",
-					Message:      "repeated field must have at least five values",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("repeated.at_least_five.proto2"),
+					Message:      proto.String("repeated field must have at least five values"),
 				},
 			),
 		},
@@ -626,9 +626,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedMapRuleProto3{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.at_least_five.edition_2023",
-					Message:      "map must have at least five pairs",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.at_least_five.edition_2023"),
+					Message:      proto.String("map must have at least five pairs"),
 				},
 			),
 		},
@@ -640,9 +640,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedDurationRuleProto3{Val: durationpb.New(15 * time.Second)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "duration.too_long.proto2",
-					Message:      "duration can't be longer than 10 seconds",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("duration.too_long.proto2"),
+					Message:      proto.String("duration can't be longer than 10 seconds"),
 				},
 			),
 		},
@@ -654,9 +654,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedTimestampRuleProto3{Val: timestamppb.New(time.Unix(1725415496, 0))},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "timestamp.time_range.proto2",
-					Message:      "timestamp out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("timestamp.time_range.proto2"),
+					Message:      proto.String("timestamp out of range"),
 				},
 			),
 		},
@@ -678,29 +678,29 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.even.edition_2023",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.even.edition_2023"),
+					Message:      proto.String("int32 value is not even"),
 				},
 				&validate.Violation{
-					FieldPath:    "b.c",
-					ConstraintId: "int32.even.edition_2023",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("b.c"),
+					ConstraintId: proto.String("int32.even.edition_2023"),
+					Message:      proto.String("int32 value is not even"),
 				},
 				&validate.Violation{
-					FieldPath:    "b",
-					ConstraintId: "shared_and_custom_rule_embedded_proto3",
-					Message:      "b.c must be a multiple of 3",
+					FieldPath:    proto.String("b"),
+					ConstraintId: proto.String("shared_and_custom_rule_embedded_proto3"),
+					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
-					FieldPath:    "b.c",
-					ConstraintId: "shared_and_custom_rule_nested_proto3",
-					Message:      "c must be positive",
+					FieldPath:    proto.String("b.c"),
+					ConstraintId: proto.String("shared_and_custom_rule_nested_proto3"),
+					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "shared_and_custom_rule_scalar_proto3",
-					Message:      "a must be greater than 24",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("shared_and_custom_rule_scalar_proto3"),
+					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
@@ -716,9 +716,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.lt",
-					Message:      "value must be less than 28",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.lt"),
+					Message:      proto.String("value must be less than 28"),
 				},
 			),
 		},
@@ -728,9 +728,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.even.proto2",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.even.proto2"),
+					Message:      proto.String("int32 value is not even"),
 				},
 			),
 		},
@@ -740,9 +740,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "standard_shared_and_custom_rule_scalar_proto3",
-					Message:      "a must be greater than 24",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("standard_shared_and_custom_rule_scalar_proto3"),
+					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
@@ -754,9 +754,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFloatRuleEdition2023{Val: proto.Float32(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "float.abs_range.edition_2023",
-					Message:      "float value is out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("float.abs_range.edition_2023"),
+					Message:      proto.String("float value is out of range"),
 				},
 			),
 		},
@@ -768,9 +768,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedDoubleRuleEdition2023{Val: proto.Float64(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "double.abs_range.edition_2023",
-					Message:      "double value is out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("double.abs_range.edition_2023"),
+					Message:      proto.String("double value is out of range"),
 				},
 			),
 		},
@@ -782,9 +782,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedInt32RuleEdition2023{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "int32.even.edition_2023",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int32.even.edition_2023"),
+					Message:      proto.String("int32 value is not even"),
 				},
 			),
 		},
@@ -796,9 +796,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedInt64RuleEdition2023{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "int64.even.edition_2023",
-					Message:      "int64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int64.even.edition_2023"),
+					Message:      proto.String("int64 value is not even"),
 				},
 			),
 		},
@@ -810,9 +810,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedUInt32RuleEdition2023{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "uint32.even.edition_2023",
-					Message:      "uint32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint32.even.edition_2023"),
+					Message:      proto.String("uint32 value is not even"),
 				},
 			),
 		},
@@ -824,9 +824,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedUInt64RuleEdition2023{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "uint64.even.edition_2023",
-					Message:      "uint64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint64.even.edition_2023"),
+					Message:      proto.String("uint64 value is not even"),
 				},
 			),
 		},
@@ -838,9 +838,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSInt32RuleEdition2023{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sint32.even.edition_2023",
-					Message:      "sint32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sint32.even.edition_2023"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 			),
 		},
@@ -852,9 +852,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSInt64RuleEdition2023{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sint64.even.edition_2023",
-					Message:      "sint64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sint64.even.edition_2023"),
+					Message:      proto.String("sint64 value is not even"),
 				},
 			),
 		},
@@ -866,9 +866,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFixed32RuleEdition2023{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "fixed32.even.edition_2023",
-					Message:      "fixed32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("fixed32.even.edition_2023"),
+					Message:      proto.String("fixed32 value is not even"),
 				},
 			),
 		},
@@ -880,9 +880,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedFixed64RuleEdition2023{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "fixed64.even.edition_2023",
-					Message:      "fixed64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("fixed64.even.edition_2023"),
+					Message:      proto.String("fixed64 value is not even"),
 				},
 			),
 		},
@@ -894,9 +894,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSFixed32RuleEdition2023{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sfixed32.even.edition_2023",
-					Message:      "sfixed32 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sfixed32.even.edition_2023"),
+					Message:      proto.String("sfixed32 value is not even"),
 				},
 			),
 		},
@@ -908,9 +908,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedSFixed64RuleEdition2023{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "sfixed64.even.edition_2023",
-					Message:      "sfixed64 value is not even",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("sfixed64.even.edition_2023"),
+					Message:      proto.String("sfixed64 value is not even"),
 				},
 			),
 		},
@@ -922,9 +922,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedBoolRuleEdition2023{Val: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "bool.false.edition_2023",
-					Message:      "bool value is not false",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bool.false.edition_2023"),
+					Message:      proto.String("bool value is not false"),
 				},
 			),
 		},
@@ -936,9 +936,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedStringRuleEdition2023{Val: proto.String("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "string.valid_path.edition_2023",
-					Message:      "not a valid path: `../invalid/path`",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("string.valid_path.edition_2023"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
 				},
 			),
 		},
@@ -950,9 +950,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedBytesRuleEdition2023{Val: []byte("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "bytes.valid_path.edition_2023",
-					Message:      "not a valid path: `../invalid/path`",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bytes.valid_path.edition_2023"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
 				},
 			),
 		},
@@ -964,9 +964,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedEnumRuleEdition2023{Val: toPointer(cases.SharedEnumRuleEdition2023_ENUM_EDITION2023_ZERO_UNSPECIFIED)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "enum.non_zero.edition_2023",
-					Message:      "enum value is not non-zero",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("enum.non_zero.edition_2023"),
+					Message:      proto.String("enum value is not non-zero"),
 				},
 			),
 		},
@@ -978,9 +978,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedRepeatedRuleEdition2023{Val: []uint64{1, 2, 3}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "repeated.at_least_five.edition_2023",
-					Message:      "repeated field must have at least five values",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("repeated.at_least_five.edition_2023"),
+					Message:      proto.String("repeated field must have at least five values"),
 				},
 			),
 		},
@@ -992,9 +992,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedMapRuleEdition2023{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.at_least_five.edition_2023",
-					Message:      "map must have at least five pairs",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.at_least_five.edition_2023"),
+					Message:      proto.String("map must have at least five pairs"),
 				},
 			),
 		},
@@ -1006,9 +1006,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedDurationRuleEdition2023{Val: durationpb.New(15 * time.Second)},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "duration.too_long.edition_2023",
-					Message:      "duration can't be longer than 10 seconds",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("duration.too_long.edition_2023"),
+					Message:      proto.String("duration can't be longer than 10 seconds"),
 				},
 			),
 		},
@@ -1020,9 +1020,9 @@ func sharedSuite() suites.Suite {
 			Message: &cases.SharedTimestampRuleEdition2023{Val: timestamppb.New(time.Unix(1725415496, 0))},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "timestamp.time_range.edition_2023",
-					Message:      "timestamp out of range",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("timestamp.time_range.edition_2023"),
+					Message:      proto.String("timestamp out of range"),
 				},
 			),
 		},
@@ -1044,29 +1044,29 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.even.edition_2023",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.even.edition_2023"),
+					Message:      proto.String("int32 value is not even"),
 				},
 				&validate.Violation{
-					FieldPath:    "b.c",
-					ConstraintId: "int32.even.edition_2023",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("b.c"),
+					ConstraintId: proto.String("int32.even.edition_2023"),
+					Message:      proto.String("int32 value is not even"),
 				},
 				&validate.Violation{
-					FieldPath:    "b",
-					ConstraintId: "shared_and_custom_rule_embedded_edition_2023",
-					Message:      "b.c must be a multiple of 3",
+					FieldPath:    proto.String("b"),
+					ConstraintId: proto.String("shared_and_custom_rule_embedded_edition_2023"),
+					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
-					FieldPath:    "b.c",
-					ConstraintId: "shared_and_custom_rule_nested_edition_2023",
-					Message:      "c must be positive",
+					FieldPath:    proto.String("b.c"),
+					ConstraintId: proto.String("shared_and_custom_rule_nested_edition_2023"),
+					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "shared_and_custom_rule_scalar_edition_2023",
-					Message:      "a must be greater than 24",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("shared_and_custom_rule_scalar_edition_2023"),
+					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
@@ -1082,9 +1082,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.lt",
-					Message:      "value must be less than 28",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.lt"),
+					Message:      proto.String("value must be less than 28"),
 				},
 			),
 		},
@@ -1094,9 +1094,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "int32.even.edition_2023",
-					Message:      "int32 value is not even",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("int32.even.edition_2023"),
+					Message:      proto.String("int32 value is not even"),
 				},
 			),
 		},
@@ -1106,9 +1106,9 @@ func sharedSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "standard_shared_and_custom_rule_scalar_edition_2023",
-					Message:      "a must be greater than 24",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("standard_shared_and_custom_rule_scalar_edition_2023"),
+					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},

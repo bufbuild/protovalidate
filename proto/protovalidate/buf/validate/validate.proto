@@ -16,7 +16,6 @@ syntax = "proto2";
 
 package buf.validate;
 
-import "buf/validate/shared/constraints.proto";
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
@@ -54,6 +53,81 @@ extend google.protobuf.FieldOptions {
   // Rules specify the validations to be performed on this field. By default,
   // no validation is performed against a field.
   optional FieldConstraints field = 1159;
+
+  // Specifies a shared field constraint rule. This option can be specified on
+  // fields that extend protovalidate Rules messages to add additional custom
+  // shared rules that can be re-used.
+  optional FieldConstraints shared_field = 1160;
+}
+
+// `Constraint` represents a validation rule written in the Common Expression
+// Language (CEL) syntax. Each Constraint includes a unique identifier, an
+// optional error message, and the CEL expression to evaluate. For more
+// information on CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+//
+// ```proto
+// message Foo {
+//   option (buf.validate.message).cel = {
+//     id: "foo.bar"
+//     message: "bar must be greater than 0"
+//     expression: "this.bar > 0"
+//   };
+//   int32 bar = 1;
+// }
+// ```
+message Constraint {
+  // `id` is a string that serves as a machine-readable name for this Constraint.
+  // It should be unique within its scope, which could be either a message or a field.
+  optional string id = 1;
+
+  // `message` is an optional field that provides a human-readable error message
+  // for this Constraint when the CEL expression evaluates to false. If a
+  // non-empty message is provided, any strings resulting from the CEL
+  // expression evaluation are ignored.
+  optional string message = 2;
+
+  // `expression` is the actual CEL expression that will be evaluated for
+  // validation. This string must resolve to either a boolean or a string
+  // value. If the expression evaluates to false or a non-empty string, the
+  // validation is considered failed, and the message is rejected.
+  optional string expression = 3;
+}
+
+// `Violations` is a collection of `Violation` messages. This message type is returned by
+// protovalidate when a proto message fails to meet the requirements set by the `Constraint` validation rules.
+// Each individual violation is represented by a `Violation` message.
+message Violations {
+  // `violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.
+  repeated Violation violations = 1;
+}
+
+// `Violation` represents a single instance where a validation rule, expressed
+// as a `Constraint`, was not met. It provides information about the field that
+// caused the violation, the specific constraint that wasn't fulfilled, and a
+// human-readable error message.
+//
+// ```json
+// {
+//   "fieldPath": "bar",
+//   "constraintId": "foo.bar",
+//   "message": "bar must be greater than 0"
+// }
+// ```
+message Violation {
+  // `field_path` is a machine-readable identifier that points to the specific field that failed the validation.
+  // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
+  optional string field_path = 1;
+
+  // `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
+  // This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
+  optional string constraint_id = 2;
+
+  // `message` is a human-readable error message that describes the nature of the violation.
+  // This can be the default error message from the violated `Constraint`, or it can be a custom message that gives more context about the violation.
+  optional string message = 3;
+
+  // `for_key` indicates whether the violation was caused by a map key, rather than a value.
+  optional bool for_key = 4;
 }
 
 // MessageConstraints represents validation rules that are applied to the entire message.
@@ -86,7 +160,7 @@ message MessageConstraints {
   //   optional int32 foo = 1;
   // }
   // ```
-  repeated shared.Constraint cel = 3;
+  repeated Constraint cel = 3;
 }
 
 // The `OneofConstraints` message type enables you to manage constraints for
@@ -129,7 +203,7 @@ message FieldConstraints {
   //   }];
   // }
   // ```
-  repeated shared.Constraint cel = 23;
+  repeated Constraint cel = 23;
   // If `required` is true, the field must be populated. A populated field can be
   // described as "serialized in the wire format," which includes:
   //
@@ -196,6 +270,26 @@ message FieldConstraints {
   optional bool skipped = 24 [deprecated = true];
   // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
   optional bool ignore_empty = 26 [deprecated = true];
+}
+
+// SharedFieldConstraints are custom constraints that can be re-used with
+// multiple fields.
+message SharedFieldConstraints {
+  // `cel` is a repeated field used to represent a textual expression
+  // in the Common Expression Language (CEL) syntax. For more information on
+  // CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+  //
+  // ```proto
+  // message MyMessage {
+  //   // The field `value` must be greater than 42.
+  //   optional int32 value = 1 [(buf.validate.shared_field).cel = {
+  //     id: "my_message.value",
+  //     message: "value must be greater than 42",
+  //     expression: "this > 42",
+  //   }];
+  // }
+  // ```
+  repeated Constraint cel = 1;
 }
 
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
@@ -364,7 +458,7 @@ message FloatRules {
   //   float value = 1 [(buf.validate.field).float.const = 42.0];
   // }
   // ```
-  optional float const = 1 [(shared.field).cel = {
+  optional float const = 1 [(shared_field).cel = {
     id: "float.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -380,7 +474,7 @@ message FloatRules {
     //   float value = 1 [(buf.validate.field).float.lt = 10.0];
     // }
     // ```
-    float lt = 2 [(shared.field).cel = {
+    float lt = 2 [(shared_field).cel = {
       id: "float.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)"
@@ -397,7 +491,7 @@ message FloatRules {
     //   float value = 1 [(buf.validate.field).float.lte = 10.0];
     // }
     // ```
-    float lte = 3 [(shared.field).cel = {
+    float lte = 3 [(shared_field).cel = {
       id: "float.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this > rules.lte)"
@@ -425,31 +519,31 @@ message FloatRules {
     // }
     // ```
     float gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this <= rules.gt)"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this.isNan() || this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (this.isNan() || (rules.lt <= this && this <= rules.gt))"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this.isNan() || this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))"
@@ -476,31 +570,31 @@ message FloatRules {
     // }
     // ```
     float gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this < rules.gte)"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (this.isNan() || (rules.lt <= this && this < rules.gte))"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "float.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))"
@@ -519,7 +613,7 @@ message FloatRules {
   //   repeated float value = 1 (buf.validate.field).float = { in: [1.0, 2.0, 3.0] };
   // }
   // ```
-  repeated float in = 6 [(shared.field).cel = {
+  repeated float in = 6 [(shared_field).cel = {
     id: "float.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -534,14 +628,14 @@ message FloatRules {
   //   repeated float value = 1 (buf.validate.field).float = { not_in: [1.0, 2.0, 3.0] };
   // }
   // ```
-  repeated float not_in = 7 [(shared.field).cel = {
+  repeated float not_in = 7 [(shared_field).cel = {
     id: "float.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
 
   // `finite` requires the field value to be finite. If the field value is
   // infinite or NaN, an error message is generated.
-  optional bool finite = 8 [(shared.field).cel = {
+  optional bool finite = 8 [(shared_field).cel = {
     id: "float.finite"
     expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''"
   }];
@@ -558,14 +652,14 @@ message FloatRules {
   //   ];
   // }
   // ```
-  repeated float example = 9 [(shared.field).cel = {
+  repeated float example = 9 [(shared_field).cel = {
     id: "float.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -574,7 +668,7 @@ message FloatRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -594,7 +688,7 @@ message DoubleRules {
   //   double value = 1 [(buf.validate.field).double.const = 42.0];
   // }
   // ```
-  optional double const = 1 [(shared.field).cel = {
+  optional double const = 1 [(shared_field).cel = {
     id: "double.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -609,7 +703,7 @@ message DoubleRules {
     //   double value = 1 [(buf.validate.field).double.lt = 10.0];
     // }
     // ```
-    double lt = 2 [(shared.field).cel = {
+    double lt = 2 [(shared_field).cel = {
       id: "double.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)"
@@ -626,7 +720,7 @@ message DoubleRules {
     //   double value = 1 [(buf.validate.field).double.lte = 10.0];
     // }
     // ```
-    double lte = 3 [(shared.field).cel = {
+    double lte = 3 [(shared_field).cel = {
       id: "double.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && (this.isNan() || this > rules.lte)"
@@ -653,31 +747,31 @@ message DoubleRules {
     // }
     // ```
     double gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this <= rules.gt)"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this.isNan() || this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (this.isNan() || (rules.lt <= this && this <= rules.gt))"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this.isNan() || this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))"
@@ -704,31 +798,31 @@ message DoubleRules {
     // }
     // ```
     double gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && (this.isNan() || this < rules.gte)"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (this.isNan() || (rules.lt <= this && this < rules.gte))"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "double.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))"
@@ -746,7 +840,7 @@ message DoubleRules {
   //   repeated double value = 1 (buf.validate.field).double = { in: [1.0, 2.0, 3.0] };
   // }
   // ```
-  repeated double in = 6 [(shared.field).cel = {
+  repeated double in = 6 [(shared_field).cel = {
     id: "double.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -761,14 +855,14 @@ message DoubleRules {
   //   repeated double value = 1 (buf.validate.field).double = { not_in: [1.0, 2.0, 3.0] };
   // }
   // ```
-  repeated double not_in = 7 [(shared.field).cel = {
+  repeated double not_in = 7 [(shared_field).cel = {
     id: "double.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
 
   // `finite` requires the field value to be finite. If the field value is
   // infinite or NaN, an error message is generated.
-  optional bool finite = 8 [(shared.field).cel = {
+  optional bool finite = 8 [(shared_field).cel = {
     id: "double.finite"
     expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''"
   }];
@@ -785,14 +879,14 @@ message DoubleRules {
   //   ];
   // }
   // ```
-  repeated double example = 9 [(shared.field).cel = {
+  repeated double example = 9 [(shared_field).cel = {
     id: "double.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -801,7 +895,7 @@ message DoubleRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -821,7 +915,7 @@ message Int32Rules {
   //   int32 value = 1 [(buf.validate.field).int32.const = 42];
   // }
   // ```
-  optional int32 const = 1 [(shared.field).cel = {
+  optional int32 const = 1 [(shared_field).cel = {
     id: "int32.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -836,7 +930,7 @@ message Int32Rules {
     //   int32 value = 1 [(buf.validate.field).int32.lt = 10];
     // }
     // ```
-    int32 lt = 2 [(shared.field).cel = {
+    int32 lt = 2 [(shared_field).cel = {
       id: "int32.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -853,7 +947,7 @@ message Int32Rules {
     //   int32 value = 1 [(buf.validate.field).int32.lte = 10];
     // }
     // ```
-    int32 lte = 3 [(shared.field).cel = {
+    int32 lte = 3 [(shared_field).cel = {
       id: "int32.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -880,31 +974,31 @@ message Int32Rules {
     // }
     // ```
     int32 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -931,31 +1025,31 @@ message Int32Rules {
     // }
     // ```
     int32 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int32.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -974,7 +1068,7 @@ message Int32Rules {
   //   repeated int32 value = 1 (buf.validate.field).int32 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated int32 in = 6 [(shared.field).cel = {
+  repeated int32 in = 6 [(shared_field).cel = {
     id: "int32.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -989,7 +1083,7 @@ message Int32Rules {
   //   repeated int32 value = 1 (buf.validate.field).int32 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated int32 not_in = 7 [(shared.field).cel = {
+  repeated int32 not_in = 7 [(shared_field).cel = {
     id: "int32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -1006,14 +1100,14 @@ message Int32Rules {
   //   ];
   // }
   // ```
-  repeated int32 example = 8 [(shared.field).cel = {
+  repeated int32 example = 8 [(shared_field).cel = {
     id: "int32.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -1022,7 +1116,7 @@ message Int32Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -1042,7 +1136,7 @@ message Int64Rules {
   //   int64 value = 1 [(buf.validate.field).int64.const = 42];
   // }
   // ```
-  optional int64 const = 1 [(shared.field).cel = {
+  optional int64 const = 1 [(shared_field).cel = {
     id: "int64.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -1057,7 +1151,7 @@ message Int64Rules {
     //   int64 value = 1 [(buf.validate.field).int64.lt = 10];
     // }
     // ```
-    int64 lt = 2 [(shared.field).cel = {
+    int64 lt = 2 [(shared_field).cel = {
       id: "int64.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -1074,7 +1168,7 @@ message Int64Rules {
     //   int64 value = 1 [(buf.validate.field).int64.lte = 10];
     // }
     // ```
-    int64 lte = 3 [(shared.field).cel = {
+    int64 lte = 3 [(shared_field).cel = {
       id: "int64.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -1101,31 +1195,31 @@ message Int64Rules {
     // }
     // ```
     int64 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -1152,31 +1246,31 @@ message Int64Rules {
     // }
     // ```
     int64 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "int64.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -1195,7 +1289,7 @@ message Int64Rules {
   //   repeated int64 value = 1 (buf.validate.field).int64 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated int64 in = 6 [(shared.field).cel = {
+  repeated int64 in = 6 [(shared_field).cel = {
     id: "int64.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -1210,7 +1304,7 @@ message Int64Rules {
   //   repeated int64 value = 1 (buf.validate.field).int64 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated int64 not_in = 7 [(shared.field).cel = {
+  repeated int64 not_in = 7 [(shared_field).cel = {
     id: "int64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -1227,14 +1321,14 @@ message Int64Rules {
   //   ];
   // }
   // ```
-  repeated int64 example = 9 [(shared.field).cel = {
+  repeated int64 example = 9 [(shared_field).cel = {
     id: "int64.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -1243,7 +1337,7 @@ message Int64Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -1263,7 +1357,7 @@ message UInt32Rules {
   //   uint32 value = 1 [(buf.validate.field).uint32.const = 42];
   // }
   // ```
-  optional uint32 const = 1 [(shared.field).cel = {
+  optional uint32 const = 1 [(shared_field).cel = {
     id: "uint32.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -1278,7 +1372,7 @@ message UInt32Rules {
     //   uint32 value = 1 [(buf.validate.field).uint32.lt = 10];
     // }
     // ```
-    uint32 lt = 2 [(shared.field).cel = {
+    uint32 lt = 2 [(shared_field).cel = {
       id: "uint32.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -1295,7 +1389,7 @@ message UInt32Rules {
     //   uint32 value = 1 [(buf.validate.field).uint32.lte = 10];
     // }
     // ```
-    uint32 lte = 3 [(shared.field).cel = {
+    uint32 lte = 3 [(shared_field).cel = {
       id: "uint32.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -1322,31 +1416,31 @@ message UInt32Rules {
     // }
     // ```
     uint32 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -1373,31 +1467,31 @@ message UInt32Rules {
     // }
     // ```
     uint32 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint32.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -1416,7 +1510,7 @@ message UInt32Rules {
   //   repeated uint32 value = 1 (buf.validate.field).uint32 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated uint32 in = 6 [(shared.field).cel = {
+  repeated uint32 in = 6 [(shared_field).cel = {
     id: "uint32.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -1431,7 +1525,7 @@ message UInt32Rules {
   //   repeated uint32 value = 1 (buf.validate.field).uint32 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated uint32 not_in = 7 [(shared.field).cel = {
+  repeated uint32 not_in = 7 [(shared_field).cel = {
     id: "uint32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -1448,14 +1542,14 @@ message UInt32Rules {
   //   ];
   // }
   // ```
-  repeated uint32 example = 8 [(shared.field).cel = {
+  repeated uint32 example = 8 [(shared_field).cel = {
     id: "uint32.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -1464,7 +1558,7 @@ message UInt32Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -1484,7 +1578,7 @@ message UInt64Rules {
   //   uint64 value = 1 [(buf.validate.field).uint64.const = 42];
   // }
   // ```
-  optional uint64 const = 1 [(shared.field).cel = {
+  optional uint64 const = 1 [(shared_field).cel = {
     id: "uint64.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -1499,7 +1593,7 @@ message UInt64Rules {
     //   uint64 value = 1 [(buf.validate.field).uint64.lt = 10];
     // }
     // ```
-    uint64 lt = 2 [(shared.field).cel = {
+    uint64 lt = 2 [(shared_field).cel = {
       id: "uint64.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -1516,7 +1610,7 @@ message UInt64Rules {
     //   uint64 value = 1 [(buf.validate.field).uint64.lte = 10];
     // }
     // ```
-    uint64 lte = 3 [(shared.field).cel = {
+    uint64 lte = 3 [(shared_field).cel = {
       id: "uint64.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -1543,31 +1637,31 @@ message UInt64Rules {
     // }
     // ```
     uint64 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -1594,31 +1688,31 @@ message UInt64Rules {
     // }
     // ```
     uint64 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "uint64.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -1636,7 +1730,7 @@ message UInt64Rules {
   //   repeated uint64 value = 1 (buf.validate.field).uint64 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated uint64 in = 6 [(shared.field).cel = {
+  repeated uint64 in = 6 [(shared_field).cel = {
     id: "uint64.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -1651,7 +1745,7 @@ message UInt64Rules {
   //   repeated uint64 value = 1 (buf.validate.field).uint64 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated uint64 not_in = 7 [(shared.field).cel = {
+  repeated uint64 not_in = 7 [(shared_field).cel = {
     id: "uint64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -1668,14 +1762,14 @@ message UInt64Rules {
   //   ];
   // }
   // ```
-  repeated uint64 example = 8 [(shared.field).cel = {
+  repeated uint64 example = 8 [(shared_field).cel = {
     id: "uint64.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -1684,7 +1778,7 @@ message UInt64Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -1703,7 +1797,7 @@ message SInt32Rules {
   //   sint32 value = 1 [(buf.validate.field).sint32.const = 42];
   // }
   // ```
-  optional sint32 const = 1 [(shared.field).cel = {
+  optional sint32 const = 1 [(shared_field).cel = {
     id: "sint32.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -1718,7 +1812,7 @@ message SInt32Rules {
     //   sint32 value = 1 [(buf.validate.field).sint32.lt = 10];
     // }
     // ```
-    sint32 lt = 2 [(shared.field).cel = {
+    sint32 lt = 2 [(shared_field).cel = {
       id: "sint32.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -1735,7 +1829,7 @@ message SInt32Rules {
     //   sint32 value = 1 [(buf.validate.field).sint32.lte = 10];
     // }
     // ```
-    sint32 lte = 3 [(shared.field).cel = {
+    sint32 lte = 3 [(shared_field).cel = {
       id: "sint32.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -1762,31 +1856,31 @@ message SInt32Rules {
     // }
     // ```
     sint32 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -1813,31 +1907,31 @@ message SInt32Rules {
     // }
     // ```
     sint32 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint32.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -1856,7 +1950,7 @@ message SInt32Rules {
   //   repeated sint32 value = 1 (buf.validate.field).sint32 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated sint32 in = 6 [(shared.field).cel = {
+  repeated sint32 in = 6 [(shared_field).cel = {
     id: "sint32.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -1871,7 +1965,7 @@ message SInt32Rules {
   //   repeated sint32 value = 1 (buf.validate.field).sint32 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated sint32 not_in = 7 [(shared.field).cel = {
+  repeated sint32 not_in = 7 [(shared_field).cel = {
     id: "sint32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -1888,14 +1982,14 @@ message SInt32Rules {
   //   ];
   // }
   // ```
-  repeated sint32 example = 8 [(shared.field).cel = {
+  repeated sint32 example = 8 [(shared_field).cel = {
     id: "sint32.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -1904,7 +1998,7 @@ message SInt32Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -1923,7 +2017,7 @@ message SInt64Rules {
   //   sint64 value = 1 [(buf.validate.field).sint64.const = 42];
   // }
   // ```
-  optional sint64 const = 1 [(shared.field).cel = {
+  optional sint64 const = 1 [(shared_field).cel = {
     id: "sint64.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -1938,7 +2032,7 @@ message SInt64Rules {
     //   sint64 value = 1 [(buf.validate.field).sint64.lt = 10];
     // }
     // ```
-    sint64 lt = 2 [(shared.field).cel = {
+    sint64 lt = 2 [(shared_field).cel = {
       id: "sint64.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -1955,7 +2049,7 @@ message SInt64Rules {
     //   sint64 value = 1 [(buf.validate.field).sint64.lte = 10];
     // }
     // ```
-    sint64 lte = 3 [(shared.field).cel = {
+    sint64 lte = 3 [(shared_field).cel = {
       id: "sint64.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -1982,31 +2076,31 @@ message SInt64Rules {
     // }
     // ```
     sint64 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -2033,31 +2127,31 @@ message SInt64Rules {
     // }
     // ```
     sint64 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sint64.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -2076,7 +2170,7 @@ message SInt64Rules {
   //   repeated sint64 value = 1 (buf.validate.field).sint64 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated sint64 in = 6 [(shared.field).cel = {
+  repeated sint64 in = 6 [(shared_field).cel = {
     id: "sint64.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -2091,7 +2185,7 @@ message SInt64Rules {
   //   repeated sint64 value = 1 (buf.validate.field).sint64 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated sint64 not_in = 7 [(shared.field).cel = {
+  repeated sint64 not_in = 7 [(shared_field).cel = {
     id: "sint64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -2108,14 +2202,14 @@ message SInt64Rules {
   //   ];
   // }
   // ```
-  repeated sint64 example = 8 [(shared.field).cel = {
+  repeated sint64 example = 8 [(shared_field).cel = {
     id: "sint64.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -2124,7 +2218,7 @@ message SInt64Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -2143,7 +2237,7 @@ message Fixed32Rules {
   //   fixed32 value = 1 [(buf.validate.field).fixed32.const = 42];
   // }
   // ```
-  optional fixed32 const = 1 [(shared.field).cel = {
+  optional fixed32 const = 1 [(shared_field).cel = {
     id: "fixed32.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -2158,7 +2252,7 @@ message Fixed32Rules {
     //   fixed32 value = 1 [(buf.validate.field).fixed32.lt = 10];
     // }
     // ```
-    fixed32 lt = 2 [(shared.field).cel = {
+    fixed32 lt = 2 [(shared_field).cel = {
       id: "fixed32.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -2175,7 +2269,7 @@ message Fixed32Rules {
     //   fixed32 value = 1 [(buf.validate.field).fixed32.lte = 10];
     // }
     // ```
-    fixed32 lte = 3 [(shared.field).cel = {
+    fixed32 lte = 3 [(shared_field).cel = {
       id: "fixed32.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -2202,31 +2296,31 @@ message Fixed32Rules {
     // }
     // ```
     fixed32 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -2253,31 +2347,31 @@ message Fixed32Rules {
     // }
     // ```
     fixed32 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed32.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -2296,7 +2390,7 @@ message Fixed32Rules {
   //   repeated fixed32 value = 1 (buf.validate.field).fixed32 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated fixed32 in = 6 [(shared.field).cel = {
+  repeated fixed32 in = 6 [(shared_field).cel = {
     id: "fixed32.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -2311,7 +2405,7 @@ message Fixed32Rules {
   //   repeated fixed32 value = 1 (buf.validate.field).fixed32 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated fixed32 not_in = 7 [(shared.field).cel = {
+  repeated fixed32 not_in = 7 [(shared_field).cel = {
     id: "fixed32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -2328,14 +2422,14 @@ message Fixed32Rules {
   //   ];
   // }
   // ```
-  repeated fixed32 example = 8 [(shared.field).cel = {
+  repeated fixed32 example = 8 [(shared_field).cel = {
     id: "fixed32.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -2344,7 +2438,7 @@ message Fixed32Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -2363,7 +2457,7 @@ message Fixed64Rules {
   //   fixed64 value = 1 [(buf.validate.field).fixed64.const = 42];
   // }
   // ```
-  optional fixed64 const = 1 [(shared.field).cel = {
+  optional fixed64 const = 1 [(shared_field).cel = {
     id: "fixed64.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -2378,7 +2472,7 @@ message Fixed64Rules {
     //   fixed64 value = 1 [(buf.validate.field).fixed64.lt = 10];
     // }
     // ```
-    fixed64 lt = 2 [(shared.field).cel = {
+    fixed64 lt = 2 [(shared_field).cel = {
       id: "fixed64.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -2395,7 +2489,7 @@ message Fixed64Rules {
     //   fixed64 value = 1 [(buf.validate.field).fixed64.lte = 10];
     // }
     // ```
-    fixed64 lte = 3 [(shared.field).cel = {
+    fixed64 lte = 3 [(shared_field).cel = {
       id: "fixed64.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -2422,31 +2516,31 @@ message Fixed64Rules {
     // }
     // ```
     fixed64 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -2473,31 +2567,31 @@ message Fixed64Rules {
     // }
     // ```
     fixed64 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "fixed64.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -2516,7 +2610,7 @@ message Fixed64Rules {
   //   repeated fixed64 value = 1 (buf.validate.field).fixed64 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated fixed64 in = 6 [(shared.field).cel = {
+  repeated fixed64 in = 6 [(shared_field).cel = {
     id: "fixed64.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -2531,7 +2625,7 @@ message Fixed64Rules {
   //   repeated fixed64 value = 1 (buf.validate.field).fixed64 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated fixed64 not_in = 7 [(shared.field).cel = {
+  repeated fixed64 not_in = 7 [(shared_field).cel = {
     id: "fixed64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -2548,14 +2642,14 @@ message Fixed64Rules {
   //   ];
   // }
   // ```
-  repeated fixed64 example = 8 [(shared.field).cel = {
+  repeated fixed64 example = 8 [(shared_field).cel = {
     id: "fixed64.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -2564,7 +2658,7 @@ message Fixed64Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -2583,7 +2677,7 @@ message SFixed32Rules {
   //   sfixed32 value = 1 [(buf.validate.field).sfixed32.const = 42];
   // }
   // ```
-  optional sfixed32 const = 1 [(shared.field).cel = {
+  optional sfixed32 const = 1 [(shared_field).cel = {
     id: "sfixed32.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -2598,7 +2692,7 @@ message SFixed32Rules {
     //   sfixed32 value = 1 [(buf.validate.field).sfixed32.lt = 10];
     // }
     // ```
-    sfixed32 lt = 2 [(shared.field).cel = {
+    sfixed32 lt = 2 [(shared_field).cel = {
       id: "sfixed32.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -2615,7 +2709,7 @@ message SFixed32Rules {
     //   sfixed32 value = 1 [(buf.validate.field).sfixed32.lte = 10];
     // }
     // ```
-    sfixed32 lte = 3 [(shared.field).cel = {
+    sfixed32 lte = 3 [(shared_field).cel = {
       id: "sfixed32.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -2642,31 +2736,31 @@ message SFixed32Rules {
     // }
     // ```
     sfixed32 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -2693,31 +2787,31 @@ message SFixed32Rules {
     // }
     // ```
     sfixed32 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed32.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -2736,7 +2830,7 @@ message SFixed32Rules {
   //   repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated sfixed32 in = 6 [(shared.field).cel = {
+  repeated sfixed32 in = 6 [(shared_field).cel = {
     id: "sfixed32.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -2751,7 +2845,7 @@ message SFixed32Rules {
   //   repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated sfixed32 not_in = 7 [(shared.field).cel = {
+  repeated sfixed32 not_in = 7 [(shared_field).cel = {
     id: "sfixed32.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -2768,14 +2862,14 @@ message SFixed32Rules {
   //   ];
   // }
   // ```
-  repeated sfixed32 example = 8 [(shared.field).cel = {
+  repeated sfixed32 example = 8 [(shared_field).cel = {
     id: "sfixed32.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -2784,7 +2878,7 @@ message SFixed32Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -2803,7 +2897,7 @@ message SFixed64Rules {
   //   sfixed64 value = 1 [(buf.validate.field).sfixed64.const = 42];
   // }
   // ```
-  optional sfixed64 const = 1 [(shared.field).cel = {
+  optional sfixed64 const = 1 [(shared_field).cel = {
     id: "sfixed64.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -2818,7 +2912,7 @@ message SFixed64Rules {
     //   sfixed64 value = 1 [(buf.validate.field).sfixed64.lt = 10];
     // }
     // ```
-    sfixed64 lt = 2 [(shared.field).cel = {
+    sfixed64 lt = 2 [(shared_field).cel = {
       id: "sfixed64.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -2835,7 +2929,7 @@ message SFixed64Rules {
     //   sfixed64 value = 1 [(buf.validate.field).sfixed64.lte = 10];
     // }
     // ```
-    sfixed64 lte = 3 [(shared.field).cel = {
+    sfixed64 lte = 3 [(shared_field).cel = {
       id: "sfixed64.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -2862,31 +2956,31 @@ message SFixed64Rules {
     // }
     // ```
     sfixed64 gt = 4 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -2913,31 +3007,31 @@ message SFixed64Rules {
     // }
     // ```
     sfixed64 gte = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "sfixed64.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -2956,7 +3050,7 @@ message SFixed64Rules {
   //   repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
   // }
   // ```
-  repeated sfixed64 in = 6 [(shared.field).cel = {
+  repeated sfixed64 in = 6 [(shared_field).cel = {
     id: "sfixed64.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -2971,7 +3065,7 @@ message SFixed64Rules {
   //   repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
   // }
   // ```
-  repeated sfixed64 not_in = 7 [(shared.field).cel = {
+  repeated sfixed64 not_in = 7 [(shared_field).cel = {
     id: "sfixed64.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -2988,14 +3082,14 @@ message SFixed64Rules {
   //   ];
   // }
   // ```
-  repeated sfixed64 example = 8 [(shared.field).cel = {
+  repeated sfixed64 example = 8 [(shared_field).cel = {
     id: "sfixed64.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -3004,7 +3098,7 @@ message SFixed64Rules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -3024,7 +3118,7 @@ message BoolRules {
   //   bool value = 1 [(buf.validate.field).bool.const = true];
   // }
   // ```
-  optional bool const = 1 [(shared.field).cel = {
+  optional bool const = 1 [(shared_field).cel = {
     id: "bool.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -3041,14 +3135,14 @@ message BoolRules {
   //   ];
   // }
   // ```
-  repeated bool example = 2 [(shared.field).cel = {
+  repeated bool example = 2 [(shared_field).cel = {
     id: "bool.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -3057,7 +3151,7 @@ message BoolRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -3077,7 +3171,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.const = "hello"];
   // }
   // ```
-  optional string const = 1 [(shared.field).cel = {
+  optional string const = 1 [(shared_field).cel = {
     id: "string.const"
     expression: "this != rules.const ? 'value must equal `%s`'.format([rules.const]) : ''"
   }];
@@ -3093,7 +3187,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.len = 5];
   // }
   // ```
-  optional uint64 len = 19 [(shared.field).cel = {
+  optional uint64 len = 19 [(shared_field).cel = {
     id: "string.len"
     expression: "uint(this.size()) != rules.len ? 'value length must be %s characters'.format([rules.len]) : ''"
   }];
@@ -3109,7 +3203,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.min_len = 3];
   // }
   // ```
-  optional uint64 min_len = 2 [(shared.field).cel = {
+  optional uint64 min_len = 2 [(shared_field).cel = {
     id: "string.min_len"
     expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %s characters'.format([rules.min_len]) : ''"
   }];
@@ -3125,7 +3219,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.max_len = 10];
   // }
   // ```
-  optional uint64 max_len = 3 [(shared.field).cel = {
+  optional uint64 max_len = 3 [(shared_field).cel = {
     id: "string.max_len"
     expression: "uint(this.size()) > rules.max_len ? 'value length must be at most %s characters'.format([rules.max_len]) : ''"
   }];
@@ -3140,7 +3234,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.len_bytes = 6];
   // }
   // ```
-  optional uint64 len_bytes = 20 [(shared.field).cel = {
+  optional uint64 len_bytes = 20 [(shared_field).cel = {
     id: "string.len_bytes"
     expression: "uint(bytes(this).size()) != rules.len_bytes ? 'value length must be %s bytes'.format([rules.len_bytes]) : ''"
   }];
@@ -3156,7 +3250,7 @@ message StringRules {
   // }
   //
   // ```
-  optional uint64 min_bytes = 4 [(shared.field).cel = {
+  optional uint64 min_bytes = 4 [(shared_field).cel = {
     id: "string.min_bytes"
     expression: "uint(bytes(this).size()) < rules.min_bytes ? 'value length must be at least %s bytes'.format([rules.min_bytes]) : ''"
   }];
@@ -3171,7 +3265,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.max_bytes = 8];
   // }
   // ```
-  optional uint64 max_bytes = 5 [(shared.field).cel = {
+  optional uint64 max_bytes = 5 [(shared_field).cel = {
     id: "string.max_bytes"
     expression: "uint(bytes(this).size()) > rules.max_bytes ? 'value length must be at most %s bytes'.format([rules.max_bytes]) : ''"
   }];
@@ -3187,7 +3281,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.pattern = "^[a-zA-Z]//$"];
   // }
   // ```
-  optional string pattern = 6 [(shared.field).cel = {
+  optional string pattern = 6 [(shared_field).cel = {
     id: "string.pattern"
     expression: "!this.matches(rules.pattern) ? 'value does not match regex pattern `%s`'.format([rules.pattern]) : ''"
   }];
@@ -3203,7 +3297,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.prefix = "pre"];
   // }
   // ```
-  optional string prefix = 7 [(shared.field).cel = {
+  optional string prefix = 7 [(shared_field).cel = {
     id: "string.prefix"
     expression: "!this.startsWith(rules.prefix) ? 'value does not have prefix `%s`'.format([rules.prefix]) : ''"
   }];
@@ -3218,7 +3312,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.suffix = "post"];
   // }
   // ```
-  optional string suffix = 8 [(shared.field).cel = {
+  optional string suffix = 8 [(shared_field).cel = {
     id: "string.suffix"
     expression: "!this.endsWith(rules.suffix) ? 'value does not have suffix `%s`'.format([rules.suffix]) : ''"
   }];
@@ -3233,7 +3327,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.contains = "inside"];
   // }
   // ```
-  optional string contains = 9 [(shared.field).cel = {
+  optional string contains = 9 [(shared_field).cel = {
     id: "string.contains"
     expression: "!this.contains(rules.contains) ? 'value does not contain substring `%s`'.format([rules.contains]) : ''"
   }];
@@ -3248,7 +3342,7 @@ message StringRules {
   //   string value = 1 [(buf.validate.field).string.not_contains = "inside"];
   // }
   // ```
-  optional string not_contains = 23 [(shared.field).cel = {
+  optional string not_contains = 23 [(shared_field).cel = {
     id: "string.not_contains"
     expression: "this.contains(rules.not_contains) ? 'value contains substring `%s`'.format([rules.not_contains]) : ''"
   }];
@@ -3263,7 +3357,7 @@ message StringRules {
   //   repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
   // }
   // ```
-  repeated string in = 10 [(shared.field).cel = {
+  repeated string in = 10 [(shared_field).cel = {
     id: "string.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -3277,7 +3371,7 @@ message StringRules {
   //   repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
   // }
   // ```
-  repeated string not_in = 11 [(shared.field).cel = {
+  repeated string not_in = 11 [(shared_field).cel = {
     id: "string.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -3296,12 +3390,12 @@ message StringRules {
     // }
     // ```
     bool email = 12 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.email"
         message: "value must be a valid email address"
         expression: "this == '' || this.isEmail()"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.email_empty"
         message: "value is empty, which is not a valid email address"
         expression: "this != ''"
@@ -3320,12 +3414,12 @@ message StringRules {
     // }
     // ```
     bool hostname = 13 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.hostname"
         message: "value must be a valid hostname"
         expression: "this == '' || this.isHostname()"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.hostname_empty"
         message: "value is empty, which is not a valid hostname"
         expression: "this != ''"
@@ -3344,12 +3438,12 @@ message StringRules {
     // }
     // ```
     bool ip = 14 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ip"
         message: "value must be a valid IP address"
         expression: "this == '' || this.isIp()"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ip_empty"
         message: "value is empty, which is not a valid IP address"
         expression: "this != ''"
@@ -3367,12 +3461,12 @@ message StringRules {
     // }
     // ```
     bool ipv4 = 15 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv4"
         message: "value must be a valid IPv4 address"
         expression: "this == '' || this.isIp(4)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv4_empty"
         message: "value is empty, which is not a valid IPv4 address"
         expression: "this != ''"
@@ -3390,12 +3484,12 @@ message StringRules {
     // }
     // ```
     bool ipv6 = 16 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv6"
         message: "value must be a valid IPv6 address"
         expression: "this == '' || this.isIp(6)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv6_empty"
         message: "value is empty, which is not a valid IPv6 address"
         expression: "this != ''"
@@ -3413,12 +3507,12 @@ message StringRules {
     // }
     // ```
     bool uri = 17 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.uri"
         message: "value must be a valid URI"
         expression: "this == '' || this.isUri()"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.uri_empty"
         message: "value is empty, which is not a valid URI"
         expression: "this != ''"
@@ -3435,7 +3529,7 @@ message StringRules {
     //   string value = 1 [(buf.validate.field).string.uri_ref = true];
     // }
     // ```
-    bool uri_ref = 18 [(shared.field).cel = {
+    bool uri_ref = 18 [(shared_field).cel = {
       id: "string.uri_ref"
       message: "value must be a valid URI"
       expression: "this.isUriRef()"
@@ -3454,12 +3548,12 @@ message StringRules {
     // }
     // ```
     bool address = 21 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.address"
         message: "value must be a valid hostname, or ip address"
         expression: "this == '' || this.isHostname() || this.isIp()"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.address_empty"
         message: "value is empty, which is not a valid hostname, or ip address"
         expression: "this != ''"
@@ -3477,12 +3571,12 @@ message StringRules {
     // }
     // ```
     bool uuid = 22 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.uuid"
         message: "value must be a valid UUID"
         expression: "this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.uuid_empty"
         message: "value is empty, which is not a valid UUID"
         expression: "this != ''"
@@ -3501,12 +3595,12 @@ message StringRules {
     // }
     // ```
     bool tuuid = 33 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.tuuid"
         message: "value must be a valid trimmed UUID"
         expression: "this == '' || this.matches('^[0-9a-fA-F]{32}$')"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.tuuid_empty"
         message: "value is empty, which is not a valid trimmed UUID"
         expression: "this != ''"
@@ -3525,12 +3619,12 @@ message StringRules {
     // }
     // ```
     bool ip_with_prefixlen = 26 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ip_with_prefixlen"
         message: "value must be a valid IP prefix"
         expression: "this == '' || this.isIpPrefix()"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ip_with_prefixlen_empty"
         message: "value is empty, which is not a valid IP prefix"
         expression: "this != ''"
@@ -3549,12 +3643,12 @@ message StringRules {
     // }
     // ```
     bool ipv4_with_prefixlen = 27 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv4_with_prefixlen"
         message: "value must be a valid IPv4 address with prefix length"
         expression: "this == '' || this.isIpPrefix(4)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv4_with_prefixlen_empty"
         message: "value is empty, which is not a valid IPv4 address with prefix length"
         expression: "this != ''"
@@ -3573,12 +3667,12 @@ message StringRules {
     // }
     // ```
     bool ipv6_with_prefixlen = 28 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv6_with_prefixlen"
         message: "value must be a valid IPv6 address with prefix length"
         expression: "this == '' || this.isIpPrefix(6)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv6_with_prefixlen_empty"
         message: "value is empty, which is not a valid IPv6 address with prefix length"
         expression: "this != ''"
@@ -3597,12 +3691,12 @@ message StringRules {
     // }
     // ```
     bool ip_prefix = 29 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ip_prefix"
         message: "value must be a valid IP prefix"
         expression: "this == '' || this.isIpPrefix(true)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ip_prefix_empty"
         message: "value is empty, which is not a valid IP prefix"
         expression: "this != ''"
@@ -3621,12 +3715,12 @@ message StringRules {
     // }
     // ```
     bool ipv4_prefix = 30 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv4_prefix"
         message: "value must be a valid IPv4 prefix"
         expression: "this == '' || this.isIpPrefix(4, true)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv4_prefix_empty"
         message: "value is empty, which is not a valid IPv4 prefix"
         expression: "this != ''"
@@ -3645,12 +3739,12 @@ message StringRules {
     // }
     // ```
     bool ipv6_prefix = 31 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv6_prefix"
         message: "value must be a valid IPv6 prefix"
         expression: "this == '' || this.isIpPrefix(6, true)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.ipv6_prefix_empty"
         message: "value is empty, which is not a valid IPv6 prefix"
         expression: "this != ''"
@@ -3662,12 +3756,12 @@ message StringRules {
     // must be in the range of 0-65535, inclusive. IPv6 addresses must be delimited
     // with square brackets (e.g., `[::1]:1234`).
     bool host_and_port = 32 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.host_and_port"
         message: "value must be a valid host (hostname or IP address) and port pair"
         expression: "this == '' || this.isHostAndPort(true)"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.host_and_port_empty"
         message: "value is empty, which is not a valid host and port pair"
         expression: "this != ''"
@@ -3695,7 +3789,7 @@ message StringRules {
     // | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2)  |
     // | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4) |
     KnownRegex well_known_regex = 24 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.well_known_regex.header_name"
         message: "value must be a valid HTTP header name"
         expression:
@@ -3703,12 +3797,12 @@ message StringRules {
           "'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :"
           "'^[^\\u0000\\u000A\\u000D]+$')"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.well_known_regex.header_name_empty"
         message: "value is empty, which is not a valid HTTP header name"
         expression: "rules.well_known_regex != 1 || this != ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "string.well_known_regex.header_value"
         message: "value must be a valid HTTP header value"
         expression:
@@ -3745,14 +3839,14 @@ message StringRules {
   //   ];
   // }
   // ```
-  repeated string example = 34 [(shared.field).cel = {
+  repeated string example = 34 [(shared_field).cel = {
     id: "string.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -3761,7 +3855,7 @@ message StringRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -3792,7 +3886,7 @@ message BytesRules {
   //   bytes value = 1 [(buf.validate.field).bytes.const = "\x01\x02\x03\x04"];
   // }
   // ```
-  optional bytes const = 1 [(shared.field).cel = {
+  optional bytes const = 1 [(shared_field).cel = {
     id: "bytes.const"
     expression: "this != rules.const ? 'value must be %x'.format([rules.const]) : ''"
   }];
@@ -3806,7 +3900,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.len = 4];
   // }
   // ```
-  optional uint64 len = 13 [(shared.field).cel = {
+  optional uint64 len = 13 [(shared_field).cel = {
     id: "bytes.len"
     expression: "uint(this.size()) != rules.len ? 'value length must be %s bytes'.format([rules.len]) : ''"
   }];
@@ -3821,7 +3915,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.min_len = 2];
   // }
   // ```
-  optional uint64 min_len = 2 [(shared.field).cel = {
+  optional uint64 min_len = 2 [(shared_field).cel = {
     id: "bytes.min_len"
     expression: "uint(this.size()) < rules.min_len ? 'value length must be at least %s bytes'.format([rules.min_len]) : ''"
   }];
@@ -3836,7 +3930,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.max_len = 6];
   // }
   // ```
-  optional uint64 max_len = 3 [(shared.field).cel = {
+  optional uint64 max_len = 3 [(shared_field).cel = {
     id: "bytes.max_len"
     expression: "uint(this.size()) > rules.max_len ? 'value must be at most %s bytes'.format([rules.max_len]) : ''"
   }];
@@ -3853,7 +3947,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.pattern = "^[a-zA-Z0-9]+$"];
   // }
   // ```
-  optional string pattern = 4 [(shared.field).cel = {
+  optional string pattern = 4 [(shared_field).cel = {
     id: "bytes.pattern"
     expression: "!string(this).matches(rules.pattern) ? 'value must match regex pattern `%s`'.format([rules.pattern]) : ''"
   }];
@@ -3868,7 +3962,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.prefix = "\x01\x02"];
   // }
   // ```
-  optional bytes prefix = 5 [(shared.field).cel = {
+  optional bytes prefix = 5 [(shared_field).cel = {
     id: "bytes.prefix"
     expression: "!this.startsWith(rules.prefix) ? 'value does not have prefix %x'.format([rules.prefix]) : ''"
   }];
@@ -3883,7 +3977,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.suffix = "\x03\x04"];
   // }
   // ```
-  optional bytes suffix = 6 [(shared.field).cel = {
+  optional bytes suffix = 6 [(shared_field).cel = {
     id: "bytes.suffix"
     expression: "!this.endsWith(rules.suffix) ? 'value does not have suffix %x'.format([rules.suffix]) : ''"
   }];
@@ -3898,7 +3992,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.contains = "\x02\x03"];
   // }
   // ```
-  optional bytes contains = 7 [(shared.field).cel = {
+  optional bytes contains = 7 [(shared_field).cel = {
     id: "bytes.contains"
     expression: "!this.contains(rules.contains) ? 'value does not contain %x'.format([rules.contains]) : ''"
   }];
@@ -3913,7 +4007,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
   // }
   // ```
-  repeated bytes in = 8 [(shared.field).cel = {
+  repeated bytes in = 8 [(shared_field).cel = {
     id: "bytes.in"
     expression: "dyn(rules)['in'].size() > 0 && !(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -3929,7 +4023,7 @@ message BytesRules {
   //   optional bytes value = 1 [(buf.validate.field).bytes.not_in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
   // }
   // ```
-  repeated bytes not_in = 9 [(shared.field).cel = {
+  repeated bytes not_in = 9 [(shared_field).cel = {
     id: "bytes.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -3947,12 +4041,12 @@ message BytesRules {
     // }
     // ```
     bool ip = 10 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "bytes.ip"
         message: "value must be a valid IP address"
         expression: "this.size() == 0 || this.size() == 4 || this.size() == 16"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "bytes.ip_empty"
         message: "value is empty, which is not a valid IP address"
         expression: "this.size() != 0"
@@ -3969,12 +4063,12 @@ message BytesRules {
     // }
     // ```
     bool ipv4 = 11 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "bytes.ipv4"
         message: "value must be a valid IPv4 address"
         expression: "this.size() == 0 || this.size() == 4"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "bytes.ipv4_empty"
         message: "value is empty, which is not a valid IPv4 address"
         expression: "this.size() != 0"
@@ -3990,12 +4084,12 @@ message BytesRules {
     // }
     // ```
     bool ipv6 = 12 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "bytes.ipv6"
         message: "value must be a valid IPv6 address"
         expression: "this.size() == 0 || this.size() == 16"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "bytes.ipv6_empty"
         message: "value is empty, which is not a valid IPv6 address"
         expression: "this.size() != 0"
@@ -4015,14 +4109,14 @@ message BytesRules {
   //   ];
   // }
   // ```
-  repeated bytes example = 14 [(shared.field).cel = {
+  repeated bytes example = 14 [(shared_field).cel = {
     id: "bytes.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -4031,7 +4125,7 @@ message BytesRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -4056,7 +4150,7 @@ message EnumRules {
   //   MyEnum value = 1 [(buf.validate.field).enum.const = 1];
   // }
   // ```
-  optional int32 const = 1 [(shared.field).cel = {
+  optional int32 const = 1 [(shared_field).cel = {
     id: "enum.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -4094,7 +4188,7 @@ message EnumRules {
   //   MyEnum value = 1 [(buf.validate.field).enum = { in: [1, 2]}];
   // }
   // ```
-  repeated int32 in = 3 [(shared.field).cel = {
+  repeated int32 in = 3 [(shared_field).cel = {
     id: "enum.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -4115,7 +4209,7 @@ message EnumRules {
   //   MyEnum value = 1 [(buf.validate.field).enum = { not_in: [1, 2]}];
   // }
   // ```
-  repeated int32 not_in = 4 [(shared.field).cel = {
+  repeated int32 not_in = 4 [(shared_field).cel = {
     id: "enum.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -4136,14 +4230,14 @@ message EnumRules {
   //     (buf.validate.field).enum.example = 2
   // }
   // ```
-  repeated int32 example = 5 [(shared.field).cel = {
+  repeated int32 example = 5 [(shared_field).cel = {
     id: "enum.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -4152,7 +4246,7 @@ message EnumRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -4173,7 +4267,7 @@ message RepeatedRules {
   //   repeated string value = 1 [(buf.validate.field).repeated.min_items = 2];
   // }
   // ```
-  optional uint64 min_items = 1 [(shared.field).cel = {
+  optional uint64 min_items = 1 [(shared_field).cel = {
     id: "repeated.min_items"
     expression: "uint(this.size()) < rules.min_items ? 'value must contain at least %d item(s)'.format([rules.min_items]) : ''"
   }];
@@ -4189,7 +4283,7 @@ message RepeatedRules {
   //   repeated string value = 1 [(buf.validate.field).repeated.max_items = 3];
   // }
   // ```
-  optional uint64 max_items = 2 [(shared.field).cel = {
+  optional uint64 max_items = 2 [(shared_field).cel = {
     id: "repeated.max_items"
     expression: "uint(this.size()) > rules.max_items ? 'value must contain no more than %s item(s)'.format([rules.max_items]) : ''"
   }];
@@ -4204,7 +4298,7 @@ message RepeatedRules {
   //   repeated string value = 1 [(buf.validate.field).repeated.unique = true];
   // }
   // ```
-  optional bool unique = 3 [(shared.field).cel = {
+  optional bool unique = 3 [(shared_field).cel = {
     id: "repeated.unique"
     message: "repeated value must contain unique items"
     expression: "this.unique()"
@@ -4229,7 +4323,7 @@ message RepeatedRules {
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -4238,7 +4332,7 @@ message RepeatedRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -4257,7 +4351,7 @@ message MapRules {
   //   map<string, string> value = 1 [(buf.validate.field).map.min_pairs = 2];
   // }
   // ```
-  optional uint64 min_pairs = 1 [(shared.field).cel = {
+  optional uint64 min_pairs = 1 [(shared_field).cel = {
     id: "map.min_pairs"
     expression: "uint(this.size()) < rules.min_pairs ? 'map must be at least %d entries'.format([rules.min_pairs]) : ''"
   }];
@@ -4271,7 +4365,7 @@ message MapRules {
   //   map<string, string> value = 1 [(buf.validate.field).map.max_pairs = 3];
   // }
   // ```
-  optional uint64 max_pairs = 2 [(shared.field).cel = {
+  optional uint64 max_pairs = 2 [(shared_field).cel = {
     id: "map.max_pairs"
     expression: "uint(this.size()) > rules.max_pairs ? 'map must be at most %d entries'.format([rules.max_pairs]) : ''"
   }];
@@ -4310,7 +4404,7 @@ message MapRules {
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -4319,7 +4413,7 @@ message MapRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -4364,7 +4458,7 @@ message DurationRules {
   //   google.protobuf.Duration value = 1 [(buf.validate.field).duration.const = "5s"];
   // }
   // ```
-  optional google.protobuf.Duration const = 2 [(shared.field).cel = {
+  optional google.protobuf.Duration const = 2 [(shared_field).cel = {
     id: "duration.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -4379,7 +4473,7 @@ message DurationRules {
     //   google.protobuf.Duration value = 1 [(buf.validate.field).duration.lt = "5s"];
     // }
     // ```
-    google.protobuf.Duration lt = 3 [(shared.field).cel = {
+    google.protobuf.Duration lt = 3 [(shared_field).cel = {
       id: "duration.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -4396,7 +4490,7 @@ message DurationRules {
     //   google.protobuf.Duration value = 1 [(buf.validate.field).duration.lte = "10s"];
     // }
     // ```
-    google.protobuf.Duration lte = 4 [(shared.field).cel = {
+    google.protobuf.Duration lte = 4 [(shared_field).cel = {
       id: "duration.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -4423,31 +4517,31 @@ message DurationRules {
     // }
     // ```
     google.protobuf.Duration gt = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -4474,31 +4568,31 @@ message DurationRules {
     // }
     // ```
     google.protobuf.Duration gte = 6 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "duration.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -4517,7 +4611,7 @@ message DurationRules {
   //   google.protobuf.Duration value = 1 [(buf.validate.field).duration.in = ["1s", "2s", "3s"]];
   // }
   // ```
-  repeated google.protobuf.Duration in = 7 [(shared.field).cel = {
+  repeated google.protobuf.Duration in = 7 [(shared_field).cel = {
     id: "duration.in"
     expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
   }];
@@ -4533,7 +4627,7 @@ message DurationRules {
   //   google.protobuf.Duration value = 1 [(buf.validate.field).duration.not_in = ["1s", "2s", "3s"]];
   // }
   // ```
-  repeated google.protobuf.Duration not_in = 8 [(shared.field).cel = {
+  repeated google.protobuf.Duration not_in = 8 [(shared_field).cel = {
     id: "duration.not_in"
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
@@ -4550,14 +4644,14 @@ message DurationRules {
   //   ];
   // }
   // ```
-  repeated google.protobuf.Duration example = 9 [(shared.field).cel = {
+  repeated google.protobuf.Duration example = 9 [(shared_field).cel = {
     id: "duration.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -4566,7 +4660,7 @@ message DurationRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //
@@ -4584,7 +4678,7 @@ message TimestampRules {
   //   google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.const = {seconds: 1727998800}];
   // }
   // ```
-  optional google.protobuf.Timestamp const = 2 [(shared.field).cel = {
+  optional google.protobuf.Timestamp const = 2 [(shared_field).cel = {
     id: "timestamp.const"
     expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
   }];
@@ -4597,7 +4691,7 @@ message TimestampRules {
     //   google.protobuf.Duration value = 1 [(buf.validate.field).duration.lt = { seconds: 259200 }];
     // }
     // ```
-    google.protobuf.Timestamp lt = 3 [(shared.field).cel = {
+    google.protobuf.Timestamp lt = 3 [(shared_field).cel = {
       id: "timestamp.lt"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this >= rules.lt"
@@ -4612,7 +4706,7 @@ message TimestampRules {
     //   google.protobuf.Timestamp value = 1 [(buf.validate.field).timestamp.lte = { seconds: 1678867200 }];
     // }
     // ```
-    google.protobuf.Timestamp lte = 4 [(shared.field).cel = {
+    google.protobuf.Timestamp lte = 4 [(shared_field).cel = {
       id: "timestamp.lte"
       expression:
         "!has(rules.gte) && !has(rules.gt) && this > rules.lte"
@@ -4627,7 +4721,7 @@ message TimestampRules {
     //   google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.lt_now = true];
     // }
     // ```
-    bool lt_now = 7 [(shared.field).cel = {
+    bool lt_now = 7 [(shared_field).cel = {
       id: "timestamp.lt_now"
       expression: "this > now ? 'value must be less than now' : ''"
     }];
@@ -4652,31 +4746,31 @@ message TimestampRules {
     // }
     // ```
     google.protobuf.Timestamp gt = 5 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gt"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this <= rules.gt"
           "? 'value must be greater than %s'.format([rules.gt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gt_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gt && (this >= rules.lt || this <= rules.gt)"
           "? 'value must be greater than %s and less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gt_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gt && (rules.lt <= this && this <= rules.gt)"
           "? 'value must be greater than %s or less than %s'.format([rules.gt, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gt_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gt && (this > rules.lte || this <= rules.gt)"
           "? 'value must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gt_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gt && (rules.lte < this && this <= rules.gt)"
@@ -4703,31 +4797,31 @@ message TimestampRules {
     // }
     // ```
     google.protobuf.Timestamp gte = 6 [
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gte"
         expression:
           "!has(rules.lt) && !has(rules.lte) && this < rules.gte"
           "? 'value must be greater than or equal to %s'.format([rules.gte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gte_lt"
         expression:
           "has(rules.lt) && rules.lt >= rules.gte && (this >= rules.lt || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gte_lt_exclusive"
         expression:
           "has(rules.lt) && rules.lt < rules.gte && (rules.lt <= this && this < rules.gte)"
           "? 'value must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gte_lte"
         expression:
           "has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)"
           "? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''"
       },
-      (shared.field).cel = {
+      (shared_field).cel = {
         id: "timestamp.gte_lte_exclusive"
         expression:
           "has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)"
@@ -4743,7 +4837,7 @@ message TimestampRules {
     //   google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.gt_now = true];
     // }
     // ```
-    bool gt_now = 8 [(shared.field).cel = {
+    bool gt_now = 8 [(shared_field).cel = {
       id: "timestamp.gt_now"
       expression: "this < now ? 'value must be greater than now' : ''"
     }];
@@ -4757,7 +4851,7 @@ message TimestampRules {
   //   google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.within = {seconds: 3600}];
   // }
   // ```
-  optional google.protobuf.Duration within = 9 [(shared.field).cel = {
+  optional google.protobuf.Duration within = 9 [(shared_field).cel = {
     id: "timestamp.within"
     expression: "this < now-rules.within || this > now+rules.within ? 'value must be within %s of now'.format([rules.within]) : ''"
   }];
@@ -4775,14 +4869,14 @@ message TimestampRules {
   // }
   // ```
 
-  repeated google.protobuf.Timestamp example = 10 [(shared.field).cel = {
+  repeated google.protobuf.Timestamp example = 10 [(shared_field).cel = {
     id: "timestamp.example"
     expression: "true"
   }];
 
   // Reserved for shared rules using extension numbers defined within the
   // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.shared.field) option set will be treated as
+  // that have the (buf.validate.shared_field) option set will be treated as
   // shared field constraints that can then be set on field options of other
   // messages to apply reusable field constraints.
   //
@@ -4791,7 +4885,7 @@ message TimestampRules {
 
   // Reserved for shared rules using extension numbers defined using a random
   // number between 50000 and 536870911. Extensions in this range that have the
-  // (shared.field) option set will be treated as shared field constraints that
+  // (shared_field) option set will be treated as shared field constraints that
   // can then be set on field options of other messages to apply reusable field
   // constraints.
   //

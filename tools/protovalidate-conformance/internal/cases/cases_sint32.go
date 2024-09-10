@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func sint32Suite() suites.Suite {
@@ -34,7 +35,7 @@ func sint32Suite() suites.Suite {
 		"const/invalid": {
 			Message: &cases.SInt32Const{Val: 2},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.const"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.const")}),
 		},
 		"in/valid": {
 			Message:  &cases.SInt32In{Val: 3},
@@ -43,7 +44,7 @@ func sint32Suite() suites.Suite {
 		"in/invalid": {
 			Message: &cases.SInt32In{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.in")}),
 		},
 		"not_in/valid": {
 			Message:  &cases.SInt32NotIn{Val: 1},
@@ -52,7 +53,7 @@ func sint32Suite() suites.Suite {
 		"not_in/invalid": {
 			Message: &cases.SInt32NotIn{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.not_in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.not_in")}),
 		},
 		"lt/valid/less": {
 			Message:  &cases.SInt32LT{Val: -1},
@@ -61,12 +62,12 @@ func sint32Suite() suites.Suite {
 		"lt/invalid/equal": {
 			Message: &cases.SInt32LT{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.lt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.lt")}),
 		},
 		"lt/invalid/greater": {
 			Message: &cases.SInt32LT{Val: 1},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.lt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.lt")}),
 		},
 		"lte/valid/less": {
 			Message:  &cases.SInt32LTE{Val: 63},
@@ -79,7 +80,7 @@ func sint32Suite() suites.Suite {
 		"lte/invalid/greater": {
 			Message: &cases.SInt32LTE{Val: 65},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.lte"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.lte")}),
 		},
 		"gt/valid/greater": {
 			Message:  &cases.SInt32GT{Val: 17},
@@ -88,12 +89,12 @@ func sint32Suite() suites.Suite {
 		"gt/invalid/equal": {
 			Message: &cases.SInt32GT{Val: 16},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt")}),
 		},
 		"gt/invalid/less": {
 			Message: &cases.SInt32GT{Val: 15},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt")}),
 		},
 		"gte/valid/greater": {
 			Message:  &cases.SInt32GTE{Val: 9},
@@ -106,7 +107,7 @@ func sint32Suite() suites.Suite {
 		"gte/invalid/less": {
 			Message: &cases.SInt32GTE{Val: 7},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gte"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gte")}),
 		},
 		"gt_lt/inclusive/valid/within": {
 			Message:  &cases.SInt32GTLT{Val: 5},
@@ -115,22 +116,22 @@ func sint32Suite() suites.Suite {
 		"gt_lt/inclusive/invalid/above": {
 			Message: &cases.SInt32GTLT{Val: 11},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt_lt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt_lt")}),
 		},
 		"gt_lt/inclusive/invalid/below": {
 			Message: &cases.SInt32GTLT{Val: -1},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt_lt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt_lt")}),
 		},
 		"gt_lt/inclusive/invalid/max": {
 			Message: &cases.SInt32GTLT{Val: 10},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt_lt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt_lt")}),
 		},
 		"gt_lt/inclusive/invalid/min": {
 			Message: &cases.SInt32GTLT{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt_lt"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt_lt")}),
 		},
 		"gt_lt/exclusive/valid/above": {
 			Message:  &cases.SInt32ExLTGT{Val: 11},
@@ -143,17 +144,17 @@ func sint32Suite() suites.Suite {
 		"gt_lt/exclusive/invalid/within": {
 			Message: &cases.SInt32ExLTGT{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt_lt_exclusive"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt_lt_exclusive")}),
 		},
 		"gt_lt/exclusive/invalid/max": {
 			Message: &cases.SInt32ExLTGT{Val: 10},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt_lt_exclusive"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt_lt_exclusive")}),
 		},
 		"gt_lt/exclusive/invalid/min": {
 			Message: &cases.SInt32ExLTGT{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gt_lt_exclusive"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gt_lt_exclusive")}),
 		},
 		"gte_lte/inclusive/valid/within": {
 			Message:  &cases.SInt32GTELTE{Val: 200},
@@ -170,12 +171,12 @@ func sint32Suite() suites.Suite {
 		"gte_lte/inclusive/invalid/above": {
 			Message: &cases.SInt32GTELTE{Val: 300},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gte_lte"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gte_lte")}),
 		},
 		"gte_lte/inclusive/invalid/below": {
 			Message: &cases.SInt32GTELTE{Val: 100},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gte_lte"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gte_lte")}),
 		},
 		"gte_lte/exclusive/valid/above": {
 			Message:  &cases.SInt32ExGTELTE{Val: 300},
@@ -196,7 +197,7 @@ func sint32Suite() suites.Suite {
 		"gte_lte/exclusive/invalid/within": {
 			Message: &cases.SInt32ExGTELTE{Val: 200},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gte_lte_exclusive"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gte_lte_exclusive")}),
 		},
 		"ignore_empty/valid/empty": {
 			Message:  &cases.SInt32Ignore{Val: 0},
@@ -209,7 +210,7 @@ func sint32Suite() suites.Suite {
 		"ignore_empty/invalid/above": {
 			Message: &cases.SInt32Ignore{Val: 300},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "sint32.gte_lte"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("sint32.gte_lte")}),
 		},
 		"compilation/wrong_type": {
 			Message:  &cases.SInt32IncorrectType{Val: 123},

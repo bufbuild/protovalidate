@@ -21,6 +21,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -59,12 +60,12 @@ func anySuite() suites.Suite {
 		"in/invalid/known": {
 			Message: &cases.AnyIn{Val: tsAny},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "any.in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("any.in")}),
 		},
 		"in/invalid/unknown": {
 			Message: &cases.AnyIn{Val: fooAny},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "any.in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("any.in")}),
 		},
 		"not_in/valid/known": {
 			Message:  &cases.AnyNotIn{Val: durAny},
@@ -81,7 +82,7 @@ func anySuite() suites.Suite {
 		"not_in/invalid/known": {
 			Message: &cases.AnyNotIn{Val: tsAny},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "any.not_in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("any.not_in")}),
 		},
 		"required/valid/known": {
 			Message:  &cases.AnyRequired{Val: tsAny},
@@ -94,7 +95,7 @@ func anySuite() suites.Suite {
 		"require/invalid": {
 			Message: &cases.AnyRequired{},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "required"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("required")}),
 		},
 	}
 }

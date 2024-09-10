@@ -23,7 +23,6 @@ proto_library(
     strip_import_prefix = "/proto/protovalidate",
     visibility = ["//visibility:public"],
     deps = [
-        "//proto/protovalidate/buf/validate/shared:shared_proto",
         "@com_google_protobuf//:descriptor_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -40,23 +39,4 @@ cc_proto_library(
     name = "validate_proto_cc",
     visibility = ["//visibility:public"],
     deps = [":validate_proto"],
-)
-
-proto_library(
-    name = "violation_proto",
-    srcs = ["violation.proto"],
-    strip_import_prefix = "/proto/protovalidate",
-    visibility = ["//visibility:public"],
-)
-
-buf_lint_test(
-    name = "violation_proto_lint",
-    config = "//proto/protovalidate:buf.yaml",
-    targets = [":violation_proto"],
-)
-
-cc_proto_library(
-    name = "violation_proto_cc",
-    visibility = ["//visibility:public"],
-    deps = [":violation_proto"],
 )

@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func boolSuite() suites.Suite {
@@ -34,7 +35,7 @@ func boolSuite() suites.Suite {
 		"const/true/invalid": {
 			Message: &cases.BoolConstTrue{Val: false},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "bool.const"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("bool.const")}),
 		},
 		"const/false/valid": {
 			Message:  &cases.BoolConstFalse{Val: false},
@@ -43,7 +44,7 @@ func boolSuite() suites.Suite {
 		"const/false/invalid": {
 			Message: &cases.BoolConstFalse{Val: true},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "bool.const"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("bool.const")}),
 		},
 		"example/valid": {
 			Message:  &cases.BoolExample{Val: true},

@@ -16,13 +16,12 @@ edition = "2023";
 
 package buf.validate.conformance.cases;
 
-import "buf/validate/shared/constraints.proto";
 import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 extend buf.validate.FloatRules {
-  float float_abs_range_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  float float_abs_range_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "float.abs_range.edition_2023"
     expression: "this >= -rule && this <= rule"
     message: "float value is out of range"
@@ -30,7 +29,7 @@ extend buf.validate.FloatRules {
 }
 
 extend buf.validate.DoubleRules {
-  double double_abs_range_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  double double_abs_range_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "double.abs_range.edition_2023"
     expression: "this >= -rule && this <= rule"
     message: "double value is out of range"
@@ -38,7 +37,7 @@ extend buf.validate.DoubleRules {
 }
 
 extend buf.validate.Int32Rules {
-  bool int32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool int32_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "int32.even.edition_2023"
     expression: "this % 2 == 0"
     message: "int32 value is not even"
@@ -46,7 +45,7 @@ extend buf.validate.Int32Rules {
 }
 
 extend buf.validate.Int64Rules {
-  bool int64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool int64_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "int64.even.edition_2023"
     expression: "this % 2 == 0"
     message: "int64 value is not even"
@@ -54,7 +53,7 @@ extend buf.validate.Int64Rules {
 }
 
 extend buf.validate.UInt32Rules {
-  bool uint32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool uint32_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "uint32.even.edition_2023"
     expression: "this % 2u == 0u"
     message: "uint32 value is not even"
@@ -62,7 +61,7 @@ extend buf.validate.UInt32Rules {
 }
 
 extend buf.validate.UInt64Rules {
-  bool uint64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool uint64_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "uint64.even.edition_2023"
     expression: "this % 2u == 0u"
     message: "uint64 value is not even"
@@ -70,7 +69,7 @@ extend buf.validate.UInt64Rules {
 }
 
 extend buf.validate.SInt32Rules {
-  bool sint32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool sint32_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "sint32.even.edition_2023"
     expression: "this % 2 == 0"
     message: "sint32 value is not even"
@@ -78,7 +77,7 @@ extend buf.validate.SInt32Rules {
 }
 
 extend buf.validate.SInt64Rules {
-  bool sint64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool sint64_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "sint64.even.edition_2023"
     expression: "this % 2 == 0"
     message: "sint64 value is not even"
@@ -86,7 +85,7 @@ extend buf.validate.SInt64Rules {
 }
 
 extend buf.validate.Fixed32Rules {
-  bool fixed32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool fixed32_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "fixed32.even.edition_2023"
     expression: "this % 2u == 0u"
     message: "fixed32 value is not even"
@@ -94,7 +93,7 @@ extend buf.validate.Fixed32Rules {
 }
 
 extend buf.validate.Fixed64Rules {
-  bool fixed64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool fixed64_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "fixed64.even.edition_2023"
     expression: "this % 2u == 0u"
     message: "fixed64 value is not even"
@@ -102,7 +101,7 @@ extend buf.validate.Fixed64Rules {
 }
 
 extend buf.validate.SFixed32Rules {
-  bool sfixed32_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool sfixed32_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "sfixed32.even.edition_2023"
     expression: "this % 2 == 0"
     message: "sfixed32 value is not even"
@@ -110,7 +109,7 @@ extend buf.validate.SFixed32Rules {
 }
 
 extend buf.validate.SFixed64Rules {
-  bool sfixed64_even_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool sfixed64_even_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "sfixed64.even.edition_2023"
     expression: "this % 2 == 0"
     message: "sfixed64 value is not even"
@@ -118,7 +117,7 @@ extend buf.validate.SFixed64Rules {
 }
 
 extend buf.validate.BoolRules {
-  bool bool_false_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool bool_false_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "bool.false.edition_2023"
     expression: "this == false"
     message: "bool value is not false"
@@ -126,21 +125,21 @@ extend buf.validate.BoolRules {
 }
 
 extend buf.validate.StringRules {
-  bool string_valid_path_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool string_valid_path_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "string.valid_path.edition_2023"
     expression: "!this.matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
   }];
 }
 
 extend buf.validate.BytesRules {
-  bool bytes_valid_path_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool bytes_valid_path_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "bytes.valid_path.edition_2023"
     expression: "!string(this).matches('^([^/.][^/]?|[^/][^/.]|[^/]{3,})(/([^/.][^/]?|[^/][^/.]|[^/]{3,}))*$') ? 'not a valid path: `%s`'.format([this]) : ''"
   }];
 }
 
 extend buf.validate.EnumRules {
-  bool enum_non_zero_edition_2023 = 1162 [(buf.validate.shared.field).cel = {
+  bool enum_non_zero_edition_2023 = 1162 [(buf.validate.shared_field).cel = {
     id: "enum.non_zero.edition_2023"
     expression: "int(this) != 0"
     message: "enum value is not non-zero"
@@ -148,7 +147,7 @@ extend buf.validate.EnumRules {
 }
 
 extend buf.validate.RepeatedRules {
-  bool repeated_at_least_five_edition_2023 = 1162 [(shared.field).cel = {
+  bool repeated_at_least_five_edition_2023 = 1162 [(shared_field).cel = {
     id: "repeated.at_least_five.edition_2023"
     expression: "uint(this.size()) >= 5u"
     message: "repeated field must have at least five values"
@@ -156,7 +155,7 @@ extend buf.validate.RepeatedRules {
 }
 
 extend buf.validate.MapRules {
-  bool map_at_least_five_edition_2023 = 1162 [(shared.field).cel = {
+  bool map_at_least_five_edition_2023 = 1162 [(shared_field).cel = {
     id: "map.at_least_five.edition_2023"
     expression: "uint(this.size()) >= 5u"
     message: "map must have at least five pairs"
@@ -164,7 +163,7 @@ extend buf.validate.MapRules {
 }
 
 extend buf.validate.DurationRules {
-  bool duration_too_long_edition_2023 = 1162 [(shared.field).cel = {
+  bool duration_too_long_edition_2023 = 1162 [(shared_field).cel = {
     id: "duration.too_long.edition_2023"
     expression: "this <= duration('10s')"
     message: "duration can't be longer than 10 seconds"
@@ -172,7 +171,7 @@ extend buf.validate.DurationRules {
 }
 
 extend buf.validate.TimestampRules {
-  bool timestamp_in_range_edition_2023 = 1162 [(shared.field).cel = {
+  bool timestamp_in_range_edition_2023 = 1162 [(shared_field).cel = {
     id: "timestamp.time_range.edition_2023"
     expression: "int(this) >= 1049587200 && int(this) <= 1080432000"
     message: "timestamp out of range"
@@ -298,10 +297,4 @@ message StandardSharedAndCustomRuleEdition2023 {
       expression: "this > 24 ? '' : 'a must be greater than 24'"
     }
   ];
-}
-
-// This is a workaround for https://github.com/bufbuild/buf/issues/3306.
-// TODO(jchadwick-buf): Remove this when bufbuild/buf#3306 is fixed.
-message SharedRulesEdition2023UnusedImportBugWorkaround {
-  buf.validate.shared.FieldConstraints dummy = 1;
 }
