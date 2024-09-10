@@ -54,10 +54,23 @@ extend google.protobuf.FieldOptions {
   // no validation is performed against a field.
   optional FieldConstraints field = 1159;
 
-  // Specifies a shared field constraint rule. This option can be specified on
-  // fields that extend protovalidate Rules messages to add additional custom
-  // shared rules that can be re-used.
-  optional FieldConstraints shared_field = 1160;
+  // Specifies shared rules. When extending a standard constraint message, this
+  // adds additional CEL expressions that apply when the extension is used.
+  //
+  // ```proto
+  // extend buf.validate.Int32Rules {
+  //   bool is_zero [(buf.validate.shared_field).cel = {
+  //     id: "int32.is_zero",
+  //     message: "value must be zero",
+  //     expression: "rule ? this == 0 : ''",
+  //   }];
+  // }
+  //
+  // message Foo {
+  //   int32 reserved = 1 [(buf.validate.field).int32.(is_zero) = true];
+  // }
+  // ```
+  optional SharedFieldConstraints shared_field = 1160;
 }
 
 // `Constraint` represents a validation rule written in the Common Expression
