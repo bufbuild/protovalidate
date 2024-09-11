@@ -275,6 +275,10 @@ func floatSuite() suites.Suite {
 					ConstraintId: "float.finite",
 					Message:      "value must be finite"}),
 		},
+		"finite/inf/not_checked": {
+			Message:  &cases.FloatNotFinite{Val: float32(math.Inf(1))},
+			Expected: results.Success(true),
+		},
 		"finite/neginf": {
 			Message: &cases.FloatFinite{Val: float32(math.Inf(-1))},
 			Expected: results.Violations(

@@ -236,6 +236,10 @@ func bytesSuite() suites.Suite {
 				Message:      "value must be a valid IP address",
 			}),
 		},
+		"IP/invalid/not_checked": {
+			Message:  &cases.BytesNotIP{Val: []byte("foobar")},
+			Expected: results.Success(true),
+		},
 		"IPv4/valid": {
 			Message:  &cases.BytesIPv4{Val: []byte{0xC0, 0xA8, 0x00, 0x01}},
 			Expected: results.Success(true),
@@ -247,6 +251,10 @@ func bytesSuite() suites.Suite {
 				ConstraintId: "bytes.ipv4",
 				Message:      "value must be a valid IPv4 address",
 			}),
+		},
+		"IPv4/invalid/not_checked": {
+			Message:  &cases.BytesNotIPv4{Val: []byte("foobar")},
+			Expected: results.Success(true),
 		},
 		"IPv4/invalid/v6": {
 			Message: &cases.BytesIPv4{Val: []byte("\x20\x01\x0D\xB8\x85\xA3\x00\x00\x00\x00\x8A\x2E\x03\x70\x73\x34")},
@@ -267,6 +275,10 @@ func bytesSuite() suites.Suite {
 				ConstraintId: "bytes.ipv6",
 				Message:      "value must be a valid IPv6 address",
 			}),
+		},
+		"IPv6/invalid/not_checked": {
+			Message:  &cases.BytesNotIPv6{Val: []byte("fooar")},
+			Expected: results.Success(true),
 		},
 		"IPv6/invalid/v4": {
 			Message: &cases.BytesIPv6{Val: []byte{0xC0, 0xA8, 0x00, 0x01}},

@@ -103,50 +103,98 @@ message StringSuffix {
 message StringEmail {
   string val = 1 [(buf.validate.field).string.email = true];
 }
+message StringNotEmail {
+  string val = 1 [(buf.validate.field).string.email = false];
+}
 message StringAddress {
   string val = 1 [(buf.validate.field).string.address = true];
+}
+message StringNotAddress {
+  string val = 1 [(buf.validate.field).string.address = false];
 }
 message StringHostname {
   string val = 1 [(buf.validate.field).string.hostname = true];
 }
+message StringNotHostname {
+  string val = 1 [(buf.validate.field).string.hostname = false];
+}
 message StringIP {
   string val = 1 [(buf.validate.field).string.ip = true];
+}
+message StringNotIP {
+  string val = 1 [(buf.validate.field).string.ip = false];
 }
 message StringIPv4 {
   string val = 1 [(buf.validate.field).string.ipv4 = true];
 }
+message StringNotIPv4 {
+  string val = 1 [(buf.validate.field).string.ipv4 = false];
+}
 message StringIPv6 {
   string val = 1 [(buf.validate.field).string.ipv6 = true];
+}
+message StringNotIPv6 {
+  string val = 1 [(buf.validate.field).string.ipv6 = false];
 }
 message StringIPWithPrefixLen {
   string val = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
 }
+message StringNotIPWithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ip_with_prefixlen = false];
+}
 message StringIPv4WithPrefixLen {
   string val = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
+}
+message StringNotIPv4WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv4_with_prefixlen = false];
 }
 message StringIPv6WithPrefixLen {
   string val = 1 [(buf.validate.field).string.ipv6_with_prefixlen = true];
 }
+message StringNotIPv6WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv6_with_prefixlen = false];
+}
 message StringIPPrefix {
   string val = 1 [(buf.validate.field).string.ip_prefix = true];
+}
+message StringNotIPPrefix {
+  string val = 1 [(buf.validate.field).string.ip_prefix = false];
 }
 message StringIPv4Prefix {
   string val = 1 [(buf.validate.field).string.ipv4_prefix = true];
 }
+message StringNotIPv4Prefix {
+  string val = 1 [(buf.validate.field).string.ipv4_prefix = false];
+}
 message StringIPv6Prefix {
   string val = 1 [(buf.validate.field).string.ipv6_prefix = true];
+}
+message StringNotIPv6Prefix {
+  string val = 1 [(buf.validate.field).string.ipv6_prefix = false];
 }
 message StringURI {
   string val = 1 [(buf.validate.field).string.uri = true];
 }
+message StringNotURI {
+  string val = 1 [(buf.validate.field).string.uri = false];
+}
 message StringURIRef {
   string val = 1 [(buf.validate.field).string.uri_ref = true];
+}
+message StringNotURIRef {
+  string val = 1 [(buf.validate.field).string.uri_ref = false];
 }
 message StringUUID {
   string val = 1 [(buf.validate.field).string.uuid = true];
 }
+message StringNotUUID {
+  string val = 1 [(buf.validate.field).string.uuid = false];
+}
 message StringTUUID {
   string val = 1 [(buf.validate.field).string.tuuid = true];
+}
+message StringNotTUUID {
+  string val = 1 [(buf.validate.field).string.tuuid = false];
 }
 message StringHttpHeaderName {
   string val = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_NAME];

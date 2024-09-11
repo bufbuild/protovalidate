@@ -76,6 +76,9 @@ message FloatExGTELTE {
 message FloatFinite {
   float val = 1 [(buf.validate.field).float.finite = true];
 }
+message FloatNotFinite {
+  float val = 1 [(buf.validate.field).float.finite = false];
+}
 message FloatIgnore {
   float val = 1 [
     (buf.validate.field).float = {
@@ -151,6 +154,9 @@ message DoubleExGTELTE {
 }
 message DoubleFinite {
   double val = 1 [(buf.validate.field).double.finite = true];
+}
+message DoubleNotFinite {
+  double val = 1 [(buf.validate.field).double.finite = false];
 }
 message DoubleIgnore {
   double val = 1 [
