@@ -3367,12 +3367,12 @@ message StringRules {
       (priv.field).cel = {
         id: "string.ip_prefix"
         message: "value must be a valid IP prefix"
-        expression: "!rules.ip_prefix || ip_prefix || cthis == '' || this.isIpPrefix(true)"
+        expression: "!rules.ip_prefix || this == '' || this.isIpPrefix(true)"
       },
       (priv.field).cel = {
         id: "string.ip_prefix_empty"
         message: "value is empty, which is not a valid IP prefix"
-        expression: "!rules.ip_prefic || this != ''"
+        expression: "!rules.ip_prefix || this != ''"
       }
     ];
 
