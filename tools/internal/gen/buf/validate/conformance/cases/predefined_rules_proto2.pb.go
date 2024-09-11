@@ -16,7 +16,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        (unknown)
-// source: buf/validate/conformance/cases/shared_rules_proto2.proto
+// source: buf/validate/conformance/cases/predefined_rules_proto2.proto
 
 package cases
 
@@ -37,63 +37,63 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type SharedEnumRuleProto2_EnumProto2 int32
+type PredefinedEnumRuleProto2_EnumProto2 int32
 
 const (
-	SharedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED SharedEnumRuleProto2_EnumProto2 = 0
-	SharedEnumRuleProto2_ENUM_PROTO2_ONE              SharedEnumRuleProto2_EnumProto2 = 1
+	PredefinedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED PredefinedEnumRuleProto2_EnumProto2 = 0
+	PredefinedEnumRuleProto2_ENUM_PROTO2_ONE              PredefinedEnumRuleProto2_EnumProto2 = 1
 )
 
-// Enum value maps for SharedEnumRuleProto2_EnumProto2.
+// Enum value maps for PredefinedEnumRuleProto2_EnumProto2.
 var (
-	SharedEnumRuleProto2_EnumProto2_name = map[int32]string{
+	PredefinedEnumRuleProto2_EnumProto2_name = map[int32]string{
 		0: "ENUM_PROTO2_ZERO_UNSPECIFIED",
 		1: "ENUM_PROTO2_ONE",
 	}
-	SharedEnumRuleProto2_EnumProto2_value = map[string]int32{
+	PredefinedEnumRuleProto2_EnumProto2_value = map[string]int32{
 		"ENUM_PROTO2_ZERO_UNSPECIFIED": 0,
 		"ENUM_PROTO2_ONE":              1,
 	}
 )
 
-func (x SharedEnumRuleProto2_EnumProto2) Enum() *SharedEnumRuleProto2_EnumProto2 {
-	p := new(SharedEnumRuleProto2_EnumProto2)
+func (x PredefinedEnumRuleProto2_EnumProto2) Enum() *PredefinedEnumRuleProto2_EnumProto2 {
+	p := new(PredefinedEnumRuleProto2_EnumProto2)
 	*p = x
 	return p
 }
 
-func (x SharedEnumRuleProto2_EnumProto2) String() string {
+func (x PredefinedEnumRuleProto2_EnumProto2) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (SharedEnumRuleProto2_EnumProto2) Descriptor() protoreflect.EnumDescriptor {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_enumTypes[0].Descriptor()
+func (PredefinedEnumRuleProto2_EnumProto2) Descriptor() protoreflect.EnumDescriptor {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_enumTypes[0].Descriptor()
 }
 
-func (SharedEnumRuleProto2_EnumProto2) Type() protoreflect.EnumType {
-	return &file_buf_validate_conformance_cases_shared_rules_proto2_proto_enumTypes[0]
+func (PredefinedEnumRuleProto2_EnumProto2) Type() protoreflect.EnumType {
+	return &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_enumTypes[0]
 }
 
-func (x SharedEnumRuleProto2_EnumProto2) Number() protoreflect.EnumNumber {
+func (x PredefinedEnumRuleProto2_EnumProto2) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
 // Deprecated: Do not use.
-func (x *SharedEnumRuleProto2_EnumProto2) UnmarshalJSON(b []byte) error {
+func (x *PredefinedEnumRuleProto2_EnumProto2) UnmarshalJSON(b []byte) error {
 	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
 	if err != nil {
 		return err
 	}
-	*x = SharedEnumRuleProto2_EnumProto2(num)
+	*x = PredefinedEnumRuleProto2_EnumProto2(num)
 	return nil
 }
 
-// Deprecated: Use SharedEnumRuleProto2_EnumProto2.Descriptor instead.
-func (SharedEnumRuleProto2_EnumProto2) EnumDescriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{15, 0}
+// Deprecated: Use PredefinedEnumRuleProto2_EnumProto2.Descriptor instead.
+func (PredefinedEnumRuleProto2_EnumProto2) EnumDescriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{15, 0}
 }
 
-type SharedFloatRuleProto2 struct {
+type PredefinedFloatRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -101,23 +101,23 @@ type SharedFloatRuleProto2 struct {
 	Val *float32 `protobuf:"fixed32,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedFloatRuleProto2) Reset() {
-	*x = SharedFloatRuleProto2{}
+func (x *PredefinedFloatRuleProto2) Reset() {
+	*x = PredefinedFloatRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[0]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedFloatRuleProto2) String() string {
+func (x *PredefinedFloatRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedFloatRuleProto2) ProtoMessage() {}
+func (*PredefinedFloatRuleProto2) ProtoMessage() {}
 
-func (x *SharedFloatRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[0]
+func (x *PredefinedFloatRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -128,19 +128,19 @@ func (x *SharedFloatRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedFloatRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedFloatRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use PredefinedFloatRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedFloatRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SharedFloatRuleProto2) GetVal() float32 {
+func (x *PredefinedFloatRuleProto2) GetVal() float32 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedDoubleRuleProto2 struct {
+type PredefinedDoubleRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -148,23 +148,23 @@ type SharedDoubleRuleProto2 struct {
 	Val *float64 `protobuf:"fixed64,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedDoubleRuleProto2) Reset() {
-	*x = SharedDoubleRuleProto2{}
+func (x *PredefinedDoubleRuleProto2) Reset() {
+	*x = PredefinedDoubleRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[1]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedDoubleRuleProto2) String() string {
+func (x *PredefinedDoubleRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedDoubleRuleProto2) ProtoMessage() {}
+func (*PredefinedDoubleRuleProto2) ProtoMessage() {}
 
-func (x *SharedDoubleRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[1]
+func (x *PredefinedDoubleRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -175,19 +175,19 @@ func (x *SharedDoubleRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedDoubleRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedDoubleRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use PredefinedDoubleRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedDoubleRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *SharedDoubleRuleProto2) GetVal() float64 {
+func (x *PredefinedDoubleRuleProto2) GetVal() float64 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedInt32RuleProto2 struct {
+type PredefinedInt32RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -195,23 +195,23 @@ type SharedInt32RuleProto2 struct {
 	Val *int32 `protobuf:"varint,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedInt32RuleProto2) Reset() {
-	*x = SharedInt32RuleProto2{}
+func (x *PredefinedInt32RuleProto2) Reset() {
+	*x = PredefinedInt32RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[2]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedInt32RuleProto2) String() string {
+func (x *PredefinedInt32RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedInt32RuleProto2) ProtoMessage() {}
+func (*PredefinedInt32RuleProto2) ProtoMessage() {}
 
-func (x *SharedInt32RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[2]
+func (x *PredefinedInt32RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -222,19 +222,19 @@ func (x *SharedInt32RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedInt32RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedInt32RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use PredefinedInt32RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedInt32RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *SharedInt32RuleProto2) GetVal() int32 {
+func (x *PredefinedInt32RuleProto2) GetVal() int32 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedInt64RuleProto2 struct {
+type PredefinedInt64RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -242,23 +242,23 @@ type SharedInt64RuleProto2 struct {
 	Val *int64 `protobuf:"varint,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedInt64RuleProto2) Reset() {
-	*x = SharedInt64RuleProto2{}
+func (x *PredefinedInt64RuleProto2) Reset() {
+	*x = PredefinedInt64RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[3]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedInt64RuleProto2) String() string {
+func (x *PredefinedInt64RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedInt64RuleProto2) ProtoMessage() {}
+func (*PredefinedInt64RuleProto2) ProtoMessage() {}
 
-func (x *SharedInt64RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[3]
+func (x *PredefinedInt64RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,19 +269,19 @@ func (x *SharedInt64RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedInt64RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedInt64RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{3}
+// Deprecated: Use PredefinedInt64RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedInt64RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *SharedInt64RuleProto2) GetVal() int64 {
+func (x *PredefinedInt64RuleProto2) GetVal() int64 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedUInt32RuleProto2 struct {
+type PredefinedUInt32RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -289,23 +289,23 @@ type SharedUInt32RuleProto2 struct {
 	Val *uint32 `protobuf:"varint,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedUInt32RuleProto2) Reset() {
-	*x = SharedUInt32RuleProto2{}
+func (x *PredefinedUInt32RuleProto2) Reset() {
+	*x = PredefinedUInt32RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[4]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedUInt32RuleProto2) String() string {
+func (x *PredefinedUInt32RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedUInt32RuleProto2) ProtoMessage() {}
+func (*PredefinedUInt32RuleProto2) ProtoMessage() {}
 
-func (x *SharedUInt32RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[4]
+func (x *PredefinedUInt32RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -316,19 +316,19 @@ func (x *SharedUInt32RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedUInt32RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedUInt32RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use PredefinedUInt32RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedUInt32RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *SharedUInt32RuleProto2) GetVal() uint32 {
+func (x *PredefinedUInt32RuleProto2) GetVal() uint32 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedUInt64RuleProto2 struct {
+type PredefinedUInt64RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -336,23 +336,23 @@ type SharedUInt64RuleProto2 struct {
 	Val *uint64 `protobuf:"varint,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedUInt64RuleProto2) Reset() {
-	*x = SharedUInt64RuleProto2{}
+func (x *PredefinedUInt64RuleProto2) Reset() {
+	*x = PredefinedUInt64RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[5]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedUInt64RuleProto2) String() string {
+func (x *PredefinedUInt64RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedUInt64RuleProto2) ProtoMessage() {}
+func (*PredefinedUInt64RuleProto2) ProtoMessage() {}
 
-func (x *SharedUInt64RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[5]
+func (x *PredefinedUInt64RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -363,19 +363,19 @@ func (x *SharedUInt64RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedUInt64RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedUInt64RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{5}
+// Deprecated: Use PredefinedUInt64RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedUInt64RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *SharedUInt64RuleProto2) GetVal() uint64 {
+func (x *PredefinedUInt64RuleProto2) GetVal() uint64 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedSInt32RuleProto2 struct {
+type PredefinedSInt32RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -383,23 +383,23 @@ type SharedSInt32RuleProto2 struct {
 	Val *int32 `protobuf:"zigzag32,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedSInt32RuleProto2) Reset() {
-	*x = SharedSInt32RuleProto2{}
+func (x *PredefinedSInt32RuleProto2) Reset() {
+	*x = PredefinedSInt32RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[6]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedSInt32RuleProto2) String() string {
+func (x *PredefinedSInt32RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedSInt32RuleProto2) ProtoMessage() {}
+func (*PredefinedSInt32RuleProto2) ProtoMessage() {}
 
-func (x *SharedSInt32RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[6]
+func (x *PredefinedSInt32RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -410,19 +410,19 @@ func (x *SharedSInt32RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedSInt32RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedSInt32RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{6}
+// Deprecated: Use PredefinedSInt32RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedSInt32RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *SharedSInt32RuleProto2) GetVal() int32 {
+func (x *PredefinedSInt32RuleProto2) GetVal() int32 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedSInt64RuleProto2 struct {
+type PredefinedSInt64RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -430,23 +430,23 @@ type SharedSInt64RuleProto2 struct {
 	Val *int64 `protobuf:"zigzag64,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedSInt64RuleProto2) Reset() {
-	*x = SharedSInt64RuleProto2{}
+func (x *PredefinedSInt64RuleProto2) Reset() {
+	*x = PredefinedSInt64RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[7]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedSInt64RuleProto2) String() string {
+func (x *PredefinedSInt64RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedSInt64RuleProto2) ProtoMessage() {}
+func (*PredefinedSInt64RuleProto2) ProtoMessage() {}
 
-func (x *SharedSInt64RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[7]
+func (x *PredefinedSInt64RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -457,19 +457,19 @@ func (x *SharedSInt64RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedSInt64RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedSInt64RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use PredefinedSInt64RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedSInt64RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *SharedSInt64RuleProto2) GetVal() int64 {
+func (x *PredefinedSInt64RuleProto2) GetVal() int64 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedFixed32RuleProto2 struct {
+type PredefinedFixed32RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -477,23 +477,23 @@ type SharedFixed32RuleProto2 struct {
 	Val *uint32 `protobuf:"fixed32,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedFixed32RuleProto2) Reset() {
-	*x = SharedFixed32RuleProto2{}
+func (x *PredefinedFixed32RuleProto2) Reset() {
+	*x = PredefinedFixed32RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[8]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedFixed32RuleProto2) String() string {
+func (x *PredefinedFixed32RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedFixed32RuleProto2) ProtoMessage() {}
+func (*PredefinedFixed32RuleProto2) ProtoMessage() {}
 
-func (x *SharedFixed32RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[8]
+func (x *PredefinedFixed32RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -504,19 +504,19 @@ func (x *SharedFixed32RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedFixed32RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedFixed32RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{8}
+// Deprecated: Use PredefinedFixed32RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedFixed32RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *SharedFixed32RuleProto2) GetVal() uint32 {
+func (x *PredefinedFixed32RuleProto2) GetVal() uint32 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedFixed64RuleProto2 struct {
+type PredefinedFixed64RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -524,23 +524,23 @@ type SharedFixed64RuleProto2 struct {
 	Val *uint64 `protobuf:"fixed64,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedFixed64RuleProto2) Reset() {
-	*x = SharedFixed64RuleProto2{}
+func (x *PredefinedFixed64RuleProto2) Reset() {
+	*x = PredefinedFixed64RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[9]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedFixed64RuleProto2) String() string {
+func (x *PredefinedFixed64RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedFixed64RuleProto2) ProtoMessage() {}
+func (*PredefinedFixed64RuleProto2) ProtoMessage() {}
 
-func (x *SharedFixed64RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[9]
+func (x *PredefinedFixed64RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -551,19 +551,19 @@ func (x *SharedFixed64RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedFixed64RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedFixed64RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{9}
+// Deprecated: Use PredefinedFixed64RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedFixed64RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *SharedFixed64RuleProto2) GetVal() uint64 {
+func (x *PredefinedFixed64RuleProto2) GetVal() uint64 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedSFixed32RuleProto2 struct {
+type PredefinedSFixed32RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -571,23 +571,23 @@ type SharedSFixed32RuleProto2 struct {
 	Val *int32 `protobuf:"fixed32,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedSFixed32RuleProto2) Reset() {
-	*x = SharedSFixed32RuleProto2{}
+func (x *PredefinedSFixed32RuleProto2) Reset() {
+	*x = PredefinedSFixed32RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[10]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedSFixed32RuleProto2) String() string {
+func (x *PredefinedSFixed32RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedSFixed32RuleProto2) ProtoMessage() {}
+func (*PredefinedSFixed32RuleProto2) ProtoMessage() {}
 
-func (x *SharedSFixed32RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[10]
+func (x *PredefinedSFixed32RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -598,19 +598,19 @@ func (x *SharedSFixed32RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedSFixed32RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedSFixed32RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{10}
+// Deprecated: Use PredefinedSFixed32RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedSFixed32RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *SharedSFixed32RuleProto2) GetVal() int32 {
+func (x *PredefinedSFixed32RuleProto2) GetVal() int32 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedSFixed64RuleProto2 struct {
+type PredefinedSFixed64RuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -618,23 +618,23 @@ type SharedSFixed64RuleProto2 struct {
 	Val *int64 `protobuf:"fixed64,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedSFixed64RuleProto2) Reset() {
-	*x = SharedSFixed64RuleProto2{}
+func (x *PredefinedSFixed64RuleProto2) Reset() {
+	*x = PredefinedSFixed64RuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[11]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedSFixed64RuleProto2) String() string {
+func (x *PredefinedSFixed64RuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedSFixed64RuleProto2) ProtoMessage() {}
+func (*PredefinedSFixed64RuleProto2) ProtoMessage() {}
 
-func (x *SharedSFixed64RuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[11]
+func (x *PredefinedSFixed64RuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -645,19 +645,19 @@ func (x *SharedSFixed64RuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedSFixed64RuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedSFixed64RuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{11}
+// Deprecated: Use PredefinedSFixed64RuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedSFixed64RuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *SharedSFixed64RuleProto2) GetVal() int64 {
+func (x *PredefinedSFixed64RuleProto2) GetVal() int64 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return 0
 }
 
-type SharedBoolRuleProto2 struct {
+type PredefinedBoolRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -665,23 +665,23 @@ type SharedBoolRuleProto2 struct {
 	Val *bool `protobuf:"varint,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedBoolRuleProto2) Reset() {
-	*x = SharedBoolRuleProto2{}
+func (x *PredefinedBoolRuleProto2) Reset() {
+	*x = PredefinedBoolRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[12]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedBoolRuleProto2) String() string {
+func (x *PredefinedBoolRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedBoolRuleProto2) ProtoMessage() {}
+func (*PredefinedBoolRuleProto2) ProtoMessage() {}
 
-func (x *SharedBoolRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[12]
+func (x *PredefinedBoolRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -692,19 +692,19 @@ func (x *SharedBoolRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedBoolRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedBoolRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{12}
+// Deprecated: Use PredefinedBoolRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedBoolRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *SharedBoolRuleProto2) GetVal() bool {
+func (x *PredefinedBoolRuleProto2) GetVal() bool {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return false
 }
 
-type SharedStringRuleProto2 struct {
+type PredefinedStringRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -712,23 +712,23 @@ type SharedStringRuleProto2 struct {
 	Val *string `protobuf:"bytes,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedStringRuleProto2) Reset() {
-	*x = SharedStringRuleProto2{}
+func (x *PredefinedStringRuleProto2) Reset() {
+	*x = PredefinedStringRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[13]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedStringRuleProto2) String() string {
+func (x *PredefinedStringRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedStringRuleProto2) ProtoMessage() {}
+func (*PredefinedStringRuleProto2) ProtoMessage() {}
 
-func (x *SharedStringRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[13]
+func (x *PredefinedStringRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -739,19 +739,19 @@ func (x *SharedStringRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedStringRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedStringRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{13}
+// Deprecated: Use PredefinedStringRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedStringRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *SharedStringRuleProto2) GetVal() string {
+func (x *PredefinedStringRuleProto2) GetVal() string {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
 	return ""
 }
 
-type SharedBytesRuleProto2 struct {
+type PredefinedBytesRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -759,23 +759,23 @@ type SharedBytesRuleProto2 struct {
 	Val []byte `protobuf:"bytes,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedBytesRuleProto2) Reset() {
-	*x = SharedBytesRuleProto2{}
+func (x *PredefinedBytesRuleProto2) Reset() {
+	*x = PredefinedBytesRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[14]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedBytesRuleProto2) String() string {
+func (x *PredefinedBytesRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedBytesRuleProto2) ProtoMessage() {}
+func (*PredefinedBytesRuleProto2) ProtoMessage() {}
 
-func (x *SharedBytesRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[14]
+func (x *PredefinedBytesRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -786,43 +786,43 @@ func (x *SharedBytesRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedBytesRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedBytesRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{14}
+// Deprecated: Use PredefinedBytesRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedBytesRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *SharedBytesRuleProto2) GetVal() []byte {
+func (x *PredefinedBytesRuleProto2) GetVal() []byte {
 	if x != nil {
 		return x.Val
 	}
 	return nil
 }
 
-type SharedEnumRuleProto2 struct {
+type PredefinedEnumRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Val *SharedEnumRuleProto2_EnumProto2 `protobuf:"varint,1,opt,name=val,enum=buf.validate.conformance.cases.SharedEnumRuleProto2_EnumProto2" json:"val,omitempty"`
+	Val *PredefinedEnumRuleProto2_EnumProto2 `protobuf:"varint,1,opt,name=val,enum=buf.validate.conformance.cases.PredefinedEnumRuleProto2_EnumProto2" json:"val,omitempty"`
 }
 
-func (x *SharedEnumRuleProto2) Reset() {
-	*x = SharedEnumRuleProto2{}
+func (x *PredefinedEnumRuleProto2) Reset() {
+	*x = PredefinedEnumRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[15]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedEnumRuleProto2) String() string {
+func (x *PredefinedEnumRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedEnumRuleProto2) ProtoMessage() {}
+func (*PredefinedEnumRuleProto2) ProtoMessage() {}
 
-func (x *SharedEnumRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[15]
+func (x *PredefinedEnumRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -833,19 +833,19 @@ func (x *SharedEnumRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedEnumRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedEnumRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{15}
+// Deprecated: Use PredefinedEnumRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedEnumRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *SharedEnumRuleProto2) GetVal() SharedEnumRuleProto2_EnumProto2 {
+func (x *PredefinedEnumRuleProto2) GetVal() PredefinedEnumRuleProto2_EnumProto2 {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
-	return SharedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED
+	return PredefinedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED
 }
 
-type SharedRepeatedRuleProto2 struct {
+type PredefinedRepeatedRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -853,23 +853,23 @@ type SharedRepeatedRuleProto2 struct {
 	Val []uint64 `protobuf:"varint,1,rep,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedRepeatedRuleProto2) Reset() {
-	*x = SharedRepeatedRuleProto2{}
+func (x *PredefinedRepeatedRuleProto2) Reset() {
+	*x = PredefinedRepeatedRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[16]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedRepeatedRuleProto2) String() string {
+func (x *PredefinedRepeatedRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedRepeatedRuleProto2) ProtoMessage() {}
+func (*PredefinedRepeatedRuleProto2) ProtoMessage() {}
 
-func (x *SharedRepeatedRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[16]
+func (x *PredefinedRepeatedRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -880,19 +880,19 @@ func (x *SharedRepeatedRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedRepeatedRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedRepeatedRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{16}
+// Deprecated: Use PredefinedRepeatedRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedRepeatedRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *SharedRepeatedRuleProto2) GetVal() []uint64 {
+func (x *PredefinedRepeatedRuleProto2) GetVal() []uint64 {
 	if x != nil {
 		return x.Val
 	}
 	return nil
 }
 
-type SharedDurationRuleProto2 struct {
+type PredefinedDurationRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -900,23 +900,23 @@ type SharedDurationRuleProto2 struct {
 	Val *durationpb.Duration `protobuf:"bytes,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedDurationRuleProto2) Reset() {
-	*x = SharedDurationRuleProto2{}
+func (x *PredefinedDurationRuleProto2) Reset() {
+	*x = PredefinedDurationRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[17]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedDurationRuleProto2) String() string {
+func (x *PredefinedDurationRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedDurationRuleProto2) ProtoMessage() {}
+func (*PredefinedDurationRuleProto2) ProtoMessage() {}
 
-func (x *SharedDurationRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[17]
+func (x *PredefinedDurationRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -927,19 +927,19 @@ func (x *SharedDurationRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedDurationRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedDurationRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{17}
+// Deprecated: Use PredefinedDurationRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedDurationRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *SharedDurationRuleProto2) GetVal() *durationpb.Duration {
+func (x *PredefinedDurationRuleProto2) GetVal() *durationpb.Duration {
 	if x != nil {
 		return x.Val
 	}
 	return nil
 }
 
-type SharedTimestampRuleProto2 struct {
+type PredefinedTimestampRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -947,23 +947,23 @@ type SharedTimestampRuleProto2 struct {
 	Val *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=val" json:"val,omitempty"`
 }
 
-func (x *SharedTimestampRuleProto2) Reset() {
-	*x = SharedTimestampRuleProto2{}
+func (x *PredefinedTimestampRuleProto2) Reset() {
+	*x = PredefinedTimestampRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[18]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedTimestampRuleProto2) String() string {
+func (x *PredefinedTimestampRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedTimestampRuleProto2) ProtoMessage() {}
+func (*PredefinedTimestampRuleProto2) ProtoMessage() {}
 
-func (x *SharedTimestampRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[18]
+func (x *PredefinedTimestampRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -974,44 +974,44 @@ func (x *SharedTimestampRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedTimestampRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedTimestampRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{18}
+// Deprecated: Use PredefinedTimestampRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedTimestampRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *SharedTimestampRuleProto2) GetVal() *timestamppb.Timestamp {
+func (x *PredefinedTimestampRuleProto2) GetVal() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Val
 	}
 	return nil
 }
 
-type SharedAndCustomRuleProto2 struct {
+type PredefinedAndCustomRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	A *int32                            `protobuf:"varint,1,opt,name=a" json:"a,omitempty"`
-	B *SharedAndCustomRuleProto2_Nested `protobuf:"bytes,2,opt,name=b" json:"b,omitempty"`
+	A *int32                                `protobuf:"varint,1,opt,name=a" json:"a,omitempty"`
+	B *PredefinedAndCustomRuleProto2_Nested `protobuf:"bytes,2,opt,name=b" json:"b,omitempty"`
 }
 
-func (x *SharedAndCustomRuleProto2) Reset() {
-	*x = SharedAndCustomRuleProto2{}
+func (x *PredefinedAndCustomRuleProto2) Reset() {
+	*x = PredefinedAndCustomRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[19]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedAndCustomRuleProto2) String() string {
+func (x *PredefinedAndCustomRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedAndCustomRuleProto2) ProtoMessage() {}
+func (*PredefinedAndCustomRuleProto2) ProtoMessage() {}
 
-func (x *SharedAndCustomRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[19]
+func (x *PredefinedAndCustomRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1022,26 +1022,26 @@ func (x *SharedAndCustomRuleProto2) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedAndCustomRuleProto2.ProtoReflect.Descriptor instead.
-func (*SharedAndCustomRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{19}
+// Deprecated: Use PredefinedAndCustomRuleProto2.ProtoReflect.Descriptor instead.
+func (*PredefinedAndCustomRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *SharedAndCustomRuleProto2) GetA() int32 {
+func (x *PredefinedAndCustomRuleProto2) GetA() int32 {
 	if x != nil && x.A != nil {
 		return *x.A
 	}
 	return 0
 }
 
-func (x *SharedAndCustomRuleProto2) GetB() *SharedAndCustomRuleProto2_Nested {
+func (x *PredefinedAndCustomRuleProto2) GetB() *PredefinedAndCustomRuleProto2_Nested {
 	if x != nil {
 		return x.B
 	}
 	return nil
 }
 
-type StandardSharedAndCustomRuleProto2 struct {
+type StandardPredefinedAndCustomRuleProto2 struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1049,23 +1049,23 @@ type StandardSharedAndCustomRuleProto2 struct {
 	A *int32 `protobuf:"varint,1,opt,name=a" json:"a,omitempty"`
 }
 
-func (x *StandardSharedAndCustomRuleProto2) Reset() {
-	*x = StandardSharedAndCustomRuleProto2{}
+func (x *StandardPredefinedAndCustomRuleProto2) Reset() {
+	*x = StandardPredefinedAndCustomRuleProto2{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[20]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *StandardSharedAndCustomRuleProto2) String() string {
+func (x *StandardPredefinedAndCustomRuleProto2) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StandardSharedAndCustomRuleProto2) ProtoMessage() {}
+func (*StandardPredefinedAndCustomRuleProto2) ProtoMessage() {}
 
-func (x *StandardSharedAndCustomRuleProto2) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[20]
+func (x *StandardPredefinedAndCustomRuleProto2) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1076,19 +1076,19 @@ func (x *StandardSharedAndCustomRuleProto2) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StandardSharedAndCustomRuleProto2.ProtoReflect.Descriptor instead.
-func (*StandardSharedAndCustomRuleProto2) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{20}
+// Deprecated: Use StandardPredefinedAndCustomRuleProto2.ProtoReflect.Descriptor instead.
+func (*StandardPredefinedAndCustomRuleProto2) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *StandardSharedAndCustomRuleProto2) GetA() int32 {
+func (x *StandardPredefinedAndCustomRuleProto2) GetA() int32 {
 	if x != nil && x.A != nil {
 		return *x.A
 	}
 	return 0
 }
 
-type SharedAndCustomRuleProto2_Nested struct {
+type PredefinedAndCustomRuleProto2_Nested struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1096,23 +1096,23 @@ type SharedAndCustomRuleProto2_Nested struct {
 	C *int32 `protobuf:"varint,1,opt,name=c" json:"c,omitempty"`
 }
 
-func (x *SharedAndCustomRuleProto2_Nested) Reset() {
-	*x = SharedAndCustomRuleProto2_Nested{}
+func (x *PredefinedAndCustomRuleProto2_Nested) Reset() {
+	*x = PredefinedAndCustomRuleProto2_Nested{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[21]
+		mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *SharedAndCustomRuleProto2_Nested) String() string {
+func (x *PredefinedAndCustomRuleProto2_Nested) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SharedAndCustomRuleProto2_Nested) ProtoMessage() {}
+func (*PredefinedAndCustomRuleProto2_Nested) ProtoMessage() {}
 
-func (x *SharedAndCustomRuleProto2_Nested) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[21]
+func (x *PredefinedAndCustomRuleProto2_Nested) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1123,26 +1123,26 @@ func (x *SharedAndCustomRuleProto2_Nested) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SharedAndCustomRuleProto2_Nested.ProtoReflect.Descriptor instead.
-func (*SharedAndCustomRuleProto2_Nested) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP(), []int{19, 0}
+// Deprecated: Use PredefinedAndCustomRuleProto2_Nested.ProtoReflect.Descriptor instead.
+func (*PredefinedAndCustomRuleProto2_Nested) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP(), []int{19, 0}
 }
 
-func (x *SharedAndCustomRuleProto2_Nested) GetC() int32 {
+func (x *PredefinedAndCustomRuleProto2_Nested) GetC() int32 {
 	if x != nil && x.C != nil {
 		return *x.C
 	}
 	return 0
 }
 
-var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []protoimpl.ExtensionInfo{
+var file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes = []protoimpl.ExtensionInfo{
 	{
 		ExtendedType:  (*validate.FloatRules)(nil),
 		ExtensionType: (*float32)(nil),
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.float_abs_range_proto2",
 		Tag:           "fixed32,1161,opt,name=float_abs_range_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.DoubleRules)(nil),
@@ -1150,7 +1150,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.double_abs_range_proto2",
 		Tag:           "fixed64,1161,opt,name=double_abs_range_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.Int32Rules)(nil),
@@ -1158,7 +1158,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.int32_even_proto2",
 		Tag:           "varint,1161,opt,name=int32_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.Int64Rules)(nil),
@@ -1166,7 +1166,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.int64_even_proto2",
 		Tag:           "varint,1161,opt,name=int64_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.UInt32Rules)(nil),
@@ -1174,7 +1174,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.uint32_even_proto2",
 		Tag:           "varint,1161,opt,name=uint32_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.UInt64Rules)(nil),
@@ -1182,7 +1182,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.uint64_even_proto2",
 		Tag:           "varint,1161,opt,name=uint64_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.SInt32Rules)(nil),
@@ -1190,7 +1190,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.sint32_even_proto2",
 		Tag:           "varint,1161,opt,name=sint32_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.SInt64Rules)(nil),
@@ -1198,7 +1198,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.sint64_even_proto2",
 		Tag:           "varint,1161,opt,name=sint64_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.Fixed32Rules)(nil),
@@ -1206,7 +1206,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.fixed32_even_proto2",
 		Tag:           "varint,1161,opt,name=fixed32_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.Fixed64Rules)(nil),
@@ -1214,7 +1214,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.fixed64_even_proto2",
 		Tag:           "varint,1161,opt,name=fixed64_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.SFixed32Rules)(nil),
@@ -1222,7 +1222,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.sfixed32_even_proto2",
 		Tag:           "varint,1161,opt,name=sfixed32_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.SFixed64Rules)(nil),
@@ -1230,7 +1230,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.sfixed64_even_proto2",
 		Tag:           "varint,1161,opt,name=sfixed64_even_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.BoolRules)(nil),
@@ -1238,7 +1238,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.bool_false_proto2",
 		Tag:           "varint,1161,opt,name=bool_false_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.StringRules)(nil),
@@ -1246,7 +1246,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.string_valid_path_proto2",
 		Tag:           "varint,1161,opt,name=string_valid_path_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.BytesRules)(nil),
@@ -1254,7 +1254,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.bytes_valid_path_proto2",
 		Tag:           "varint,1161,opt,name=bytes_valid_path_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.EnumRules)(nil),
@@ -1262,7 +1262,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.enum_non_zero_proto2",
 		Tag:           "varint,1161,opt,name=enum_non_zero_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.RepeatedRules)(nil),
@@ -1270,7 +1270,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.repeated_at_least_five_proto2",
 		Tag:           "varint,1161,opt,name=repeated_at_least_five_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.DurationRules)(nil),
@@ -1278,7 +1278,7 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.duration_too_long_proto2",
 		Tag:           "varint,1161,opt,name=duration_too_long_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 	{
 		ExtendedType:  (*validate.TimestampRules)(nil),
@@ -1286,247 +1286,254 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes = []p
 		Field:         1161,
 		Name:          "buf.validate.conformance.cases.timestamp_in_range_proto2",
 		Tag:           "varint,1161,opt,name=timestamp_in_range_proto2",
-		Filename:      "buf/validate/conformance/cases/shared_rules_proto2.proto",
+		Filename:      "buf/validate/conformance/cases/predefined_rules_proto2.proto",
 	},
 }
 
 // Extension fields to validate.FloatRules.
 var (
 	// optional float float_abs_range_proto2 = 1161;
-	E_FloatAbsRangeProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[0]
+	E_FloatAbsRangeProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[0]
 )
 
 // Extension fields to validate.DoubleRules.
 var (
 	// optional double double_abs_range_proto2 = 1161;
-	E_DoubleAbsRangeProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[1]
+	E_DoubleAbsRangeProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[1]
 )
 
 // Extension fields to validate.Int32Rules.
 var (
 	// optional bool int32_even_proto2 = 1161;
-	E_Int32EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[2]
+	E_Int32EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[2]
 )
 
 // Extension fields to validate.Int64Rules.
 var (
 	// optional bool int64_even_proto2 = 1161;
-	E_Int64EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[3]
+	E_Int64EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[3]
 )
 
 // Extension fields to validate.UInt32Rules.
 var (
 	// optional bool uint32_even_proto2 = 1161;
-	E_Uint32EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[4]
+	E_Uint32EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[4]
 )
 
 // Extension fields to validate.UInt64Rules.
 var (
 	// optional bool uint64_even_proto2 = 1161;
-	E_Uint64EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[5]
+	E_Uint64EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[5]
 )
 
 // Extension fields to validate.SInt32Rules.
 var (
 	// optional bool sint32_even_proto2 = 1161;
-	E_Sint32EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[6]
+	E_Sint32EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[6]
 )
 
 // Extension fields to validate.SInt64Rules.
 var (
 	// optional bool sint64_even_proto2 = 1161;
-	E_Sint64EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[7]
+	E_Sint64EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[7]
 )
 
 // Extension fields to validate.Fixed32Rules.
 var (
 	// optional bool fixed32_even_proto2 = 1161;
-	E_Fixed32EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[8]
+	E_Fixed32EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[8]
 )
 
 // Extension fields to validate.Fixed64Rules.
 var (
 	// optional bool fixed64_even_proto2 = 1161;
-	E_Fixed64EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[9]
+	E_Fixed64EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[9]
 )
 
 // Extension fields to validate.SFixed32Rules.
 var (
 	// optional bool sfixed32_even_proto2 = 1161;
-	E_Sfixed32EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[10]
+	E_Sfixed32EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[10]
 )
 
 // Extension fields to validate.SFixed64Rules.
 var (
 	// optional bool sfixed64_even_proto2 = 1161;
-	E_Sfixed64EvenProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[11]
+	E_Sfixed64EvenProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[11]
 )
 
 // Extension fields to validate.BoolRules.
 var (
 	// optional bool bool_false_proto2 = 1161;
-	E_BoolFalseProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[12]
+	E_BoolFalseProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[12]
 )
 
 // Extension fields to validate.StringRules.
 var (
 	// optional bool string_valid_path_proto2 = 1161;
-	E_StringValidPathProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[13]
+	E_StringValidPathProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[13]
 )
 
 // Extension fields to validate.BytesRules.
 var (
 	// optional bool bytes_valid_path_proto2 = 1161;
-	E_BytesValidPathProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[14]
+	E_BytesValidPathProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[14]
 )
 
 // Extension fields to validate.EnumRules.
 var (
 	// optional bool enum_non_zero_proto2 = 1161;
-	E_EnumNonZeroProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[15]
+	E_EnumNonZeroProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[15]
 )
 
 // Extension fields to validate.RepeatedRules.
 var (
 	// optional bool repeated_at_least_five_proto2 = 1161;
-	E_RepeatedAtLeastFiveProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[16]
+	E_RepeatedAtLeastFiveProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[16]
 )
 
 // Extension fields to validate.DurationRules.
 var (
 	// optional bool duration_too_long_proto2 = 1161;
-	E_DurationTooLongProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[17]
+	E_DurationTooLongProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[17]
 )
 
 // Extension fields to validate.TimestampRules.
 var (
 	// optional bool timestamp_in_range_proto2 = 1161;
-	E_TimestampInRangeProto2 = &file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes[18]
+	E_TimestampInRangeProto2 = &file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes[18]
 )
 
-var File_buf_validate_conformance_cases_shared_rules_proto2_proto protoreflect.FileDescriptor
+var File_buf_validate_conformance_cases_predefined_rules_proto2_proto protoreflect.FileDescriptor
 
-var file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDesc = []byte{
-	0x0a, 0x38, 0x62, 0x75, 0x66, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x63,
+var file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDesc = []byte{
+	0x0a, 0x3c, 0x62, 0x75, 0x66, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x63,
 	0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2f, 0x63, 0x61, 0x73, 0x65, 0x73,
-	0x2f, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x73, 0x5f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x32, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x1e, 0x62, 0x75, 0x66, 0x2e,
-	0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d,
-	0x61, 0x6e, 0x63, 0x65, 0x2e, 0x63, 0x61, 0x73, 0x65, 0x73, 0x1a, 0x1b, 0x62, 0x75, 0x66, 0x2f,
-	0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
-	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
-	0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x36, 0x0a, 0x15, 0x53, 0x68, 0x61, 0x72,
-	0x65, 0x64, 0x46, 0x6c, 0x6f, 0x61, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0x12, 0x1d, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x02, 0x42, 0x0b,
-	0xba, 0x48, 0x08, 0x0a, 0x06, 0xcd, 0x48, 0x00, 0x00, 0x80, 0x3f, 0x52, 0x03, 0x76, 0x61, 0x6c,
-	0x22, 0x3b, 0x0a, 0x16, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x44, 0x6f, 0x75, 0x62, 0x6c, 0x65,
-	0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x21, 0x0a, 0x03, 0x76, 0x61,
-	0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x01, 0x42, 0x0f, 0xba, 0x48, 0x0c, 0x12, 0x0a, 0xc9, 0x48,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x3f, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x33, 0x0a,
-	0x15, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x52, 0x75, 0x6c, 0x65,
+	0x2f, 0x70, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x5f, 0x72, 0x75, 0x6c, 0x65,
+	0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x1e,
+	0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x63, 0x6f, 0x6e,
+	0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x63, 0x61, 0x73, 0x65, 0x73, 0x1a, 0x1b,
+	0x62, 0x75, 0x66, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x76, 0x61, 0x6c,
+	0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x75, 0x72,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d,
+	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x3a, 0x0a, 0x19,
+	0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x46, 0x6c, 0x6f, 0x61, 0x74, 0x52,
+	0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1d, 0x0a, 0x03, 0x76, 0x61, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x02, 0x42, 0x0b, 0xba, 0x48, 0x08, 0x0a, 0x06, 0xcd, 0x48, 0x00,
+	0x00, 0x80, 0x3f, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x3f, 0x0a, 0x1a, 0x50, 0x72, 0x65, 0x64,
+	0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x44, 0x6f, 0x75, 0x62, 0x6c, 0x65, 0x52, 0x75, 0x6c, 0x65,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x21, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x01, 0x42, 0x0f, 0xba, 0x48, 0x0c, 0x12, 0x0a, 0xc9, 0x48, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0xf0, 0x3f, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x37, 0x0a, 0x19, 0x50, 0x72, 0x65,
+	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x52, 0x75, 0x6c, 0x65,
 	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x05, 0x42, 0x08, 0xba, 0x48, 0x05, 0x1a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76,
-	0x61, 0x6c, 0x22, 0x33, 0x0a, 0x15, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x49, 0x6e, 0x74, 0x36,
-	0x34, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76,
-	0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x42, 0x08, 0xba, 0x48, 0x05, 0x22, 0x03, 0xc8,
-	0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x34, 0x0a, 0x16, 0x53, 0x68, 0x61, 0x72, 0x65,
-	0x64, 0x55, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x42, 0x08,
-	0xba, 0x48, 0x05, 0x2a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x34, 0x0a,
-	0x16, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x55, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x52, 0x75, 0x6c,
-	0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x04, 0x42, 0x08, 0xba, 0x48, 0x05, 0x32, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03,
-	0x76, 0x61, 0x6c, 0x22, 0x34, 0x0a, 0x16, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x53, 0x49, 0x6e,
+	0x61, 0x6c, 0x22, 0x37, 0x0a, 0x19, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64,
+	0x49, 0x6e, 0x74, 0x36, 0x34, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12,
+	0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x42, 0x08, 0xba, 0x48,
+	0x05, 0x22, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x38, 0x0a, 0x1a, 0x50,
+	0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x55, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x52,
+	0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x42, 0x08, 0xba, 0x48, 0x05, 0x2a, 0x03, 0xc8, 0x48, 0x01,
+	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x38, 0x0a, 0x1a, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69,
+	0x6e, 0x65, 0x64, 0x55, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f,
+	0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04,
+	0x42, 0x08, 0xba, 0x48, 0x05, 0x32, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22,
+	0x38, 0x0a, 0x1a, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x53, 0x49, 0x6e,
 	0x74, 0x33, 0x32, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a,
 	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x11, 0x42, 0x08, 0xba, 0x48, 0x05, 0x3a,
-	0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x34, 0x0a, 0x16, 0x53, 0x68, 0x61,
-	0x72, 0x65, 0x64, 0x53, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f,
-	0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x12,
-	0x42, 0x08, 0xba, 0x48, 0x05, 0x42, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22,
-	0x35, 0x0a, 0x17, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32,
-	0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61,
-	0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x42, 0x08, 0xba, 0x48, 0x05, 0x4a, 0x03, 0xc8, 0x48,
-	0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x35, 0x0a, 0x17, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64,
-	0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x06, 0x42, 0x08,
-	0xba, 0x48, 0x05, 0x52, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x36, 0x0a,
-	0x18, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x53, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x52,
+	0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x38, 0x0a, 0x1a, 0x50, 0x72, 0x65,
+	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x53, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x52, 0x75, 0x6c,
+	0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x12, 0x42, 0x08, 0xba, 0x48, 0x05, 0x42, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03,
+	0x76, 0x61, 0x6c, 0x22, 0x39, 0x0a, 0x1b, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65,
+	0x64, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x07, 0x42,
+	0x08, 0xba, 0x48, 0x05, 0x4a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x39,
+	0x0a, 0x1b, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x46, 0x69, 0x78, 0x65,
+	0x64, 0x36, 0x34, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a,
+	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x06, 0x42, 0x08, 0xba, 0x48, 0x05, 0x52,
+	0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x3a, 0x0a, 0x1c, 0x50, 0x72, 0x65,
+	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x53, 0x46, 0x69, 0x78, 0x65, 0x64, 0x33, 0x32, 0x52,
 	0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x0f, 0x42, 0x08, 0xba, 0x48, 0x05, 0x5a, 0x03, 0xc8, 0x48, 0x01,
-	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x36, 0x0a, 0x18, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x53,
-	0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x10, 0x42, 0x08,
-	0xba, 0x48, 0x05, 0x62, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x32, 0x0a,
-	0x14, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x42, 0x6f, 0x6f, 0x6c, 0x52, 0x75, 0x6c, 0x65, 0x50,
+	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x3a, 0x0a, 0x1c, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69,
+	0x6e, 0x65, 0x64, 0x53, 0x46, 0x69, 0x78, 0x65, 0x64, 0x36, 0x34, 0x52, 0x75, 0x6c, 0x65, 0x50,
 	0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x08, 0x42, 0x08, 0xba, 0x48, 0x05, 0x6a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61,
-	0x6c, 0x22, 0x34, 0x0a, 0x16, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76,
-	0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xc8,
-	0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x33, 0x0a, 0x15, 0x53, 0x68, 0x61, 0x72, 0x65,
+	0x28, 0x10, 0x42, 0x08, 0xba, 0x48, 0x05, 0x62, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61,
+	0x6c, 0x22, 0x36, 0x0a, 0x18, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x42,
+	0x6f, 0x6f, 0x6c, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a,
+	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x42, 0x08, 0xba, 0x48, 0x05, 0x6a,
+	0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x38, 0x0a, 0x1a, 0x50, 0x72, 0x65,
+	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x75, 0x6c,
+	0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03,
+	0x76, 0x61, 0x6c, 0x22, 0x37, 0x0a, 0x19, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65,
 	0x64, 0x42, 0x79, 0x74, 0x65, 0x73, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32,
 	0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x42, 0x08, 0xba,
-	0x48, 0x05, 0x7a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0xb9, 0x01, 0x0a,
-	0x14, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x75, 0x6c, 0x65, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x5c, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0e, 0x32, 0x3f, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
-	0x65, 0x2e, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x63, 0x61,
-	0x73, 0x65, 0x73, 0x2e, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x75,
-	0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x50, 0x72, 0x6f,
-	0x74, 0x6f, 0x32, 0x42, 0x09, 0xba, 0x48, 0x06, 0x82, 0x01, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03,
-	0x76, 0x61, 0x6c, 0x22, 0x43, 0x0a, 0x0a, 0x45, 0x6e, 0x75, 0x6d, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0x12, 0x20, 0x0a, 0x1c, 0x45, 0x4e, 0x55, 0x4d, 0x5f, 0x50, 0x52, 0x4f, 0x54, 0x4f, 0x32,
-	0x5f, 0x5a, 0x45, 0x52, 0x4f, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45,
-	0x44, 0x10, 0x00, 0x12, 0x13, 0x0a, 0x0f, 0x45, 0x4e, 0x55, 0x4d, 0x5f, 0x50, 0x52, 0x4f, 0x54,
-	0x4f, 0x32, 0x5f, 0x4f, 0x4e, 0x45, 0x10, 0x01, 0x22, 0x37, 0x0a, 0x18, 0x53, 0x68, 0x61, 0x72,
-	0x65, 0x64, 0x52, 0x65, 0x70, 0x65, 0x61, 0x74, 0x65, 0x64, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1b, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x04, 0x42, 0x09, 0xba, 0x48, 0x06, 0x92, 0x01, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61,
-	0x6c, 0x22, 0x52, 0x0a, 0x18, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x44, 0x75, 0x72, 0x61, 0x74,
+	0x48, 0x05, 0x7a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0xc1, 0x01, 0x0a,
+	0x18, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x45, 0x6e, 0x75, 0x6d, 0x52,
+	0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x60, 0x0a, 0x03, 0x76, 0x61, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x43, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c,
+	0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63,
+	0x65, 0x2e, 0x63, 0x61, 0x73, 0x65, 0x73, 0x2e, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e,
+	0x65, 0x64, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32,
+	0x2e, 0x45, 0x6e, 0x75, 0x6d, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x42, 0x09, 0xba, 0x48, 0x06,
+	0x82, 0x01, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x43, 0x0a, 0x0a, 0x45,
+	0x6e, 0x75, 0x6d, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x20, 0x0a, 0x1c, 0x45, 0x4e, 0x55,
+	0x4d, 0x5f, 0x50, 0x52, 0x4f, 0x54, 0x4f, 0x32, 0x5f, 0x5a, 0x45, 0x52, 0x4f, 0x5f, 0x55, 0x4e,
+	0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x13, 0x0a, 0x0f, 0x45,
+	0x4e, 0x55, 0x4d, 0x5f, 0x50, 0x52, 0x4f, 0x54, 0x4f, 0x32, 0x5f, 0x4f, 0x4e, 0x45, 0x10, 0x01,
+	0x22, 0x3b, 0x0a, 0x1c, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x52, 0x65,
+	0x70, 0x65, 0x61, 0x74, 0x65, 0x64, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32,
+	0x12, 0x1b, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x03, 0x28, 0x04, 0x42, 0x09, 0xba,
+	0x48, 0x06, 0x92, 0x01, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x56, 0x0a,
+	0x1c, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x44, 0x75, 0x72, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x36, 0x0a,
 	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72,
 	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x09, 0xba, 0x48, 0x06, 0xaa, 0x01, 0x03, 0xc8, 0x48, 0x01,
-	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x54, 0x0a, 0x19, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x54,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x32, 0x12, 0x37, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x09, 0xba, 0x48, 0x06,
-	0xb2, 0x01, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0xaa, 0x03, 0x0a, 0x19,
-	0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x41, 0x6e, 0x64, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x52,
-	0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x6d, 0x0a, 0x01, 0x61, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x05, 0x42, 0x5f, 0xba, 0x48, 0x5c, 0xba, 0x01, 0x54, 0x0a, 0x24, 0x73, 0x68,
-	0x61, 0x72, 0x65, 0x64, 0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x5f,
-	0x72, 0x75, 0x6c, 0x65, 0x5f, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x32, 0x1a, 0x2c, 0x74, 0x68, 0x69, 0x73, 0x20, 0x3e, 0x20, 0x32, 0x34, 0x20, 0x3f, 0x20,
-	0x27, 0x27, 0x20, 0x3a, 0x20, 0x27, 0x61, 0x20, 0x6d, 0x75, 0x73, 0x74, 0x20, 0x62, 0x65, 0x20,
-	0x67, 0x72, 0x65, 0x61, 0x74, 0x65, 0x72, 0x20, 0x74, 0x68, 0x61, 0x6e, 0x20, 0x32, 0x34, 0x27,
-	0x1a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x01, 0x61, 0x12, 0xac, 0x01, 0x0a, 0x01, 0x62, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x40, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64,
-	0x61, 0x74, 0x65, 0x2e, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e,
-	0x63, 0x61, 0x73, 0x65, 0x73, 0x2e, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x41, 0x6e, 0x64, 0x43,
+	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x58, 0x0a, 0x1d, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69,
+	0x6e, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x75, 0x6c, 0x65,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x37, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42,
+	0x09, 0xba, 0x48, 0x06, 0xb2, 0x01, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22,
+	0xbe, 0x03, 0x0a, 0x1d, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x41, 0x6e,
+	0x64, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f,
+	0x32, 0x12, 0x71, 0x0a, 0x01, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x42, 0x63, 0xba, 0x48,
+	0x60, 0xba, 0x01, 0x58, 0x0a, 0x28, 0x70, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64,
+	0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x5f, 0x72, 0x75, 0x6c, 0x65,
+	0x5f, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x1a, 0x2c,
+	0x74, 0x68, 0x69, 0x73, 0x20, 0x3e, 0x20, 0x32, 0x34, 0x20, 0x3f, 0x20, 0x27, 0x27, 0x20, 0x3a,
+	0x20, 0x27, 0x61, 0x20, 0x6d, 0x75, 0x73, 0x74, 0x20, 0x62, 0x65, 0x20, 0x67, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x72, 0x20, 0x74, 0x68, 0x61, 0x6e, 0x20, 0x32, 0x34, 0x27, 0x1a, 0x03, 0xc8, 0x48,
+	0x01, 0x52, 0x01, 0x61, 0x12, 0xb4, 0x01, 0x0a, 0x01, 0x62, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x44, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e,
+	0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x63, 0x61, 0x73, 0x65,
+	0x73, 0x2e, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x41, 0x6e, 0x64, 0x43,
 	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x2e,
-	0x4e, 0x65, 0x73, 0x74, 0x65, 0x64, 0x42, 0x5c, 0xba, 0x48, 0x59, 0xba, 0x01, 0x56, 0x0a, 0x26,
-	0x73, 0x68, 0x61, 0x72, 0x65, 0x64, 0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f,
-	0x6d, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x65, 0x6d, 0x62, 0x65, 0x64, 0x64, 0x65, 0x64, 0x5f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1b, 0x62, 0x2e, 0x63, 0x20, 0x6d, 0x75, 0x73, 0x74,
-	0x20, 0x62, 0x65, 0x20, 0x61, 0x20, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x70, 0x6c, 0x65, 0x20, 0x6f,
-	0x66, 0x20, 0x33, 0x1a, 0x0f, 0x74, 0x68, 0x69, 0x73, 0x2e, 0x63, 0x20, 0x25, 0x20, 0x33, 0x20,
-	0x3d, 0x3d, 0x20, 0x30, 0x52, 0x01, 0x62, 0x1a, 0x6f, 0x0a, 0x06, 0x4e, 0x65, 0x73, 0x74, 0x65,
-	0x64, 0x12, 0x65, 0x0a, 0x01, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x42, 0x57, 0xba, 0x48,
-	0x54, 0xba, 0x01, 0x4c, 0x0a, 0x24, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64, 0x5f, 0x61, 0x6e, 0x64,
-	0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x6e, 0x65, 0x73,
-	0x74, 0x65, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x1a, 0x24, 0x74, 0x68, 0x69, 0x73,
-	0x20, 0x3e, 0x20, 0x30, 0x20, 0x3f, 0x20, 0x27, 0x27, 0x20, 0x3a, 0x20, 0x27, 0x63, 0x20, 0x6d,
-	0x75, 0x73, 0x74, 0x20, 0x62, 0x65, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x76, 0x65, 0x27,
-	0x1a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x01, 0x63, 0x22, 0x9d, 0x01, 0x0a, 0x21, 0x53, 0x74, 0x61,
-	0x6e, 0x64, 0x61, 0x72, 0x64, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64, 0x41, 0x6e, 0x64, 0x43, 0x75,
-	0x73, 0x74, 0x6f, 0x6d, 0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x78,
-	0x0a, 0x01, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x42, 0x6a, 0xba, 0x48, 0x67, 0xba, 0x01,
-	0x5d, 0x0a, 0x2d, 0x73, 0x74, 0x61, 0x6e, 0x64, 0x61, 0x72, 0x64, 0x5f, 0x73, 0x68, 0x61, 0x72,
+	0x4e, 0x65, 0x73, 0x74, 0x65, 0x64, 0x42, 0x60, 0xba, 0x48, 0x5d, 0xba, 0x01, 0x5a, 0x0a, 0x2a,
+	0x70, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x63,
+	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x5f, 0x72, 0x75, 0x6c, 0x65, 0x5f, 0x65, 0x6d, 0x62, 0x65, 0x64,
+	0x64, 0x65, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x1b, 0x62, 0x2e, 0x63, 0x20,
+	0x6d, 0x75, 0x73, 0x74, 0x20, 0x62, 0x65, 0x20, 0x61, 0x20, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x70,
+	0x6c, 0x65, 0x20, 0x6f, 0x66, 0x20, 0x33, 0x1a, 0x0f, 0x74, 0x68, 0x69, 0x73, 0x2e, 0x63, 0x20,
+	0x25, 0x20, 0x33, 0x20, 0x3d, 0x3d, 0x20, 0x30, 0x52, 0x01, 0x62, 0x1a, 0x73, 0x0a, 0x06, 0x4e,
+	0x65, 0x73, 0x74, 0x65, 0x64, 0x12, 0x69, 0x0a, 0x01, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
+	0x42, 0x5b, 0xba, 0x48, 0x58, 0xba, 0x01, 0x50, 0x0a, 0x28, 0x70, 0x72, 0x65, 0x64, 0x65, 0x66,
+	0x69, 0x6e, 0x65, 0x64, 0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x5f,
+	0x72, 0x75, 0x6c, 0x65, 0x5f, 0x6e, 0x65, 0x73, 0x74, 0x65, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x32, 0x1a, 0x24, 0x74, 0x68, 0x69, 0x73, 0x20, 0x3e, 0x20, 0x30, 0x20, 0x3f, 0x20, 0x27,
+	0x27, 0x20, 0x3a, 0x20, 0x27, 0x63, 0x20, 0x6d, 0x75, 0x73, 0x74, 0x20, 0x62, 0x65, 0x20, 0x70,
+	0x6f, 0x73, 0x69, 0x74, 0x69, 0x76, 0x65, 0x27, 0x1a, 0x03, 0xc8, 0x48, 0x01, 0x52, 0x01, 0x63,
+	0x22, 0xa5, 0x01, 0x0a, 0x25, 0x53, 0x74, 0x61, 0x6e, 0x64, 0x61, 0x72, 0x64, 0x50, 0x72, 0x65,
+	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x64, 0x41, 0x6e, 0x64, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d,
+	0x52, 0x75, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x12, 0x7c, 0x0a, 0x01, 0x61, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x42, 0x6e, 0xba, 0x48, 0x6b, 0xba, 0x01, 0x61, 0x0a, 0x31, 0x73,
+	0x74, 0x61, 0x6e, 0x64, 0x61, 0x72, 0x64, 0x5f, 0x70, 0x72, 0x65, 0x64, 0x65, 0x66, 0x69, 0x6e,
 	0x65, 0x64, 0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x5f, 0x72, 0x75,
 	0x6c, 0x65, 0x5f, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32,
 	0x1a, 0x2c, 0x74, 0x68, 0x69, 0x73, 0x20, 0x3e, 0x20, 0x32, 0x34, 0x20, 0x3f, 0x20, 0x27, 0x27,
@@ -1733,93 +1740,93 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDesc = []by
 	0x26, 0x20, 0x69, 0x6e, 0x74, 0x28, 0x74, 0x68, 0x69, 0x73, 0x29, 0x20, 0x3c, 0x3d, 0x20, 0x31,
 	0x30, 0x38, 0x30, 0x34, 0x33, 0x32, 0x30, 0x30, 0x30, 0x52, 0x16, 0x74, 0x69, 0x6d, 0x65, 0x73,
 	0x74, 0x61, 0x6d, 0x70, 0x49, 0x6e, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0x42, 0xad, 0x02, 0x0a, 0x22, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61,
+	0x32, 0x42, 0xb1, 0x02, 0x0a, 0x22, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61,
 	0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e,
-	0x63, 0x65, 0x2e, 0x63, 0x61, 0x73, 0x65, 0x73, 0x42, 0x16, 0x53, 0x68, 0x61, 0x72, 0x65, 0x64,
-	0x52, 0x75, 0x6c, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x53, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x62,
-	0x75, 0x66, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x76, 0x61, 0x6c,
-	0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2f, 0x69, 0x6e, 0x74, 0x65,
-	0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x62, 0x75, 0x66, 0x2f, 0x76, 0x61, 0x6c,
-	0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63,
-	0x65, 0x2f, 0x63, 0x61, 0x73, 0x65, 0x73, 0xa2, 0x02, 0x04, 0x42, 0x56, 0x43, 0x43, 0xaa, 0x02,
-	0x1e, 0x42, 0x75, 0x66, 0x2e, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x43, 0x6f,
-	0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x43, 0x61, 0x73, 0x65, 0x73, 0xca,
-	0x02, 0x1e, 0x42, 0x75, 0x66, 0x5c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x5c, 0x43,
-	0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x5c, 0x43, 0x61, 0x73, 0x65, 0x73,
-	0xe2, 0x02, 0x2a, 0x42, 0x75, 0x66, 0x5c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x5c,
-	0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x5c, 0x43, 0x61, 0x73, 0x65,
-	0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x21,
-	0x42, 0x75, 0x66, 0x3a, 0x3a, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x3a, 0x43,
-	0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x3a, 0x3a, 0x43, 0x61, 0x73, 0x65,
-	0x73,
+	0x63, 0x65, 0x2e, 0x63, 0x61, 0x73, 0x65, 0x73, 0x42, 0x1a, 0x50, 0x72, 0x65, 0x64, 0x65, 0x66,
+	0x69, 0x6e, 0x65, 0x64, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x53, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x62, 0x75, 0x66, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2f,
+	0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x62, 0x75, 0x66,
+	0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72,
+	0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2f, 0x63, 0x61, 0x73, 0x65, 0x73, 0xa2, 0x02, 0x04, 0x42, 0x56,
+	0x43, 0x43, 0xaa, 0x02, 0x1e, 0x42, 0x75, 0x66, 0x2e, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
+	0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x43, 0x61,
+	0x73, 0x65, 0x73, 0xca, 0x02, 0x1e, 0x42, 0x75, 0x66, 0x5c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61,
+	0x74, 0x65, 0x5c, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x5c, 0x43,
+	0x61, 0x73, 0x65, 0x73, 0xe2, 0x02, 0x2a, 0x42, 0x75, 0x66, 0x5c, 0x56, 0x61, 0x6c, 0x69, 0x64,
+	0x61, 0x74, 0x65, 0x5c, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x5c,
+	0x43, 0x61, 0x73, 0x65, 0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0xea, 0x02, 0x21, 0x42, 0x75, 0x66, 0x3a, 0x3a, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
+	0x65, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x3a, 0x3a,
+	0x43, 0x61, 0x73, 0x65, 0x73,
 }
 
 var (
-	file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescOnce sync.Once
-	file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescData = file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDesc
+	file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescOnce sync.Once
+	file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescData = file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDesc
 )
 
-func file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescGZIP() []byte {
-	file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescOnce.Do(func() {
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescData = protoimpl.X.CompressGZIP(file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescData)
+func file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescGZIP() []byte {
+	file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescOnce.Do(func() {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescData = protoimpl.X.CompressGZIP(file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescData)
 	})
-	return file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDescData
+	return file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_shared_rules_proto2_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
-var file_buf_validate_conformance_cases_shared_rules_proto2_proto_goTypes = []any{
-	(SharedEnumRuleProto2_EnumProto2)(0),      // 0: buf.validate.conformance.cases.SharedEnumRuleProto2.EnumProto2
-	(*SharedFloatRuleProto2)(nil),             // 1: buf.validate.conformance.cases.SharedFloatRuleProto2
-	(*SharedDoubleRuleProto2)(nil),            // 2: buf.validate.conformance.cases.SharedDoubleRuleProto2
-	(*SharedInt32RuleProto2)(nil),             // 3: buf.validate.conformance.cases.SharedInt32RuleProto2
-	(*SharedInt64RuleProto2)(nil),             // 4: buf.validate.conformance.cases.SharedInt64RuleProto2
-	(*SharedUInt32RuleProto2)(nil),            // 5: buf.validate.conformance.cases.SharedUInt32RuleProto2
-	(*SharedUInt64RuleProto2)(nil),            // 6: buf.validate.conformance.cases.SharedUInt64RuleProto2
-	(*SharedSInt32RuleProto2)(nil),            // 7: buf.validate.conformance.cases.SharedSInt32RuleProto2
-	(*SharedSInt64RuleProto2)(nil),            // 8: buf.validate.conformance.cases.SharedSInt64RuleProto2
-	(*SharedFixed32RuleProto2)(nil),           // 9: buf.validate.conformance.cases.SharedFixed32RuleProto2
-	(*SharedFixed64RuleProto2)(nil),           // 10: buf.validate.conformance.cases.SharedFixed64RuleProto2
-	(*SharedSFixed32RuleProto2)(nil),          // 11: buf.validate.conformance.cases.SharedSFixed32RuleProto2
-	(*SharedSFixed64RuleProto2)(nil),          // 12: buf.validate.conformance.cases.SharedSFixed64RuleProto2
-	(*SharedBoolRuleProto2)(nil),              // 13: buf.validate.conformance.cases.SharedBoolRuleProto2
-	(*SharedStringRuleProto2)(nil),            // 14: buf.validate.conformance.cases.SharedStringRuleProto2
-	(*SharedBytesRuleProto2)(nil),             // 15: buf.validate.conformance.cases.SharedBytesRuleProto2
-	(*SharedEnumRuleProto2)(nil),              // 16: buf.validate.conformance.cases.SharedEnumRuleProto2
-	(*SharedRepeatedRuleProto2)(nil),          // 17: buf.validate.conformance.cases.SharedRepeatedRuleProto2
-	(*SharedDurationRuleProto2)(nil),          // 18: buf.validate.conformance.cases.SharedDurationRuleProto2
-	(*SharedTimestampRuleProto2)(nil),         // 19: buf.validate.conformance.cases.SharedTimestampRuleProto2
-	(*SharedAndCustomRuleProto2)(nil),         // 20: buf.validate.conformance.cases.SharedAndCustomRuleProto2
-	(*StandardSharedAndCustomRuleProto2)(nil), // 21: buf.validate.conformance.cases.StandardSharedAndCustomRuleProto2
-	(*SharedAndCustomRuleProto2_Nested)(nil),  // 22: buf.validate.conformance.cases.SharedAndCustomRuleProto2.Nested
-	(*durationpb.Duration)(nil),               // 23: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),             // 24: google.protobuf.Timestamp
-	(*validate.FloatRules)(nil),               // 25: buf.validate.FloatRules
-	(*validate.DoubleRules)(nil),              // 26: buf.validate.DoubleRules
-	(*validate.Int32Rules)(nil),               // 27: buf.validate.Int32Rules
-	(*validate.Int64Rules)(nil),               // 28: buf.validate.Int64Rules
-	(*validate.UInt32Rules)(nil),              // 29: buf.validate.UInt32Rules
-	(*validate.UInt64Rules)(nil),              // 30: buf.validate.UInt64Rules
-	(*validate.SInt32Rules)(nil),              // 31: buf.validate.SInt32Rules
-	(*validate.SInt64Rules)(nil),              // 32: buf.validate.SInt64Rules
-	(*validate.Fixed32Rules)(nil),             // 33: buf.validate.Fixed32Rules
-	(*validate.Fixed64Rules)(nil),             // 34: buf.validate.Fixed64Rules
-	(*validate.SFixed32Rules)(nil),            // 35: buf.validate.SFixed32Rules
-	(*validate.SFixed64Rules)(nil),            // 36: buf.validate.SFixed64Rules
-	(*validate.BoolRules)(nil),                // 37: buf.validate.BoolRules
-	(*validate.StringRules)(nil),              // 38: buf.validate.StringRules
-	(*validate.BytesRules)(nil),               // 39: buf.validate.BytesRules
-	(*validate.EnumRules)(nil),                // 40: buf.validate.EnumRules
-	(*validate.RepeatedRules)(nil),            // 41: buf.validate.RepeatedRules
-	(*validate.DurationRules)(nil),            // 42: buf.validate.DurationRules
-	(*validate.TimestampRules)(nil),           // 43: buf.validate.TimestampRules
+var file_buf_validate_conformance_cases_predefined_rules_proto2_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_buf_validate_conformance_cases_predefined_rules_proto2_proto_goTypes = []any{
+	(PredefinedEnumRuleProto2_EnumProto2)(0),      // 0: buf.validate.conformance.cases.PredefinedEnumRuleProto2.EnumProto2
+	(*PredefinedFloatRuleProto2)(nil),             // 1: buf.validate.conformance.cases.PredefinedFloatRuleProto2
+	(*PredefinedDoubleRuleProto2)(nil),            // 2: buf.validate.conformance.cases.PredefinedDoubleRuleProto2
+	(*PredefinedInt32RuleProto2)(nil),             // 3: buf.validate.conformance.cases.PredefinedInt32RuleProto2
+	(*PredefinedInt64RuleProto2)(nil),             // 4: buf.validate.conformance.cases.PredefinedInt64RuleProto2
+	(*PredefinedUInt32RuleProto2)(nil),            // 5: buf.validate.conformance.cases.PredefinedUInt32RuleProto2
+	(*PredefinedUInt64RuleProto2)(nil),            // 6: buf.validate.conformance.cases.PredefinedUInt64RuleProto2
+	(*PredefinedSInt32RuleProto2)(nil),            // 7: buf.validate.conformance.cases.PredefinedSInt32RuleProto2
+	(*PredefinedSInt64RuleProto2)(nil),            // 8: buf.validate.conformance.cases.PredefinedSInt64RuleProto2
+	(*PredefinedFixed32RuleProto2)(nil),           // 9: buf.validate.conformance.cases.PredefinedFixed32RuleProto2
+	(*PredefinedFixed64RuleProto2)(nil),           // 10: buf.validate.conformance.cases.PredefinedFixed64RuleProto2
+	(*PredefinedSFixed32RuleProto2)(nil),          // 11: buf.validate.conformance.cases.PredefinedSFixed32RuleProto2
+	(*PredefinedSFixed64RuleProto2)(nil),          // 12: buf.validate.conformance.cases.PredefinedSFixed64RuleProto2
+	(*PredefinedBoolRuleProto2)(nil),              // 13: buf.validate.conformance.cases.PredefinedBoolRuleProto2
+	(*PredefinedStringRuleProto2)(nil),            // 14: buf.validate.conformance.cases.PredefinedStringRuleProto2
+	(*PredefinedBytesRuleProto2)(nil),             // 15: buf.validate.conformance.cases.PredefinedBytesRuleProto2
+	(*PredefinedEnumRuleProto2)(nil),              // 16: buf.validate.conformance.cases.PredefinedEnumRuleProto2
+	(*PredefinedRepeatedRuleProto2)(nil),          // 17: buf.validate.conformance.cases.PredefinedRepeatedRuleProto2
+	(*PredefinedDurationRuleProto2)(nil),          // 18: buf.validate.conformance.cases.PredefinedDurationRuleProto2
+	(*PredefinedTimestampRuleProto2)(nil),         // 19: buf.validate.conformance.cases.PredefinedTimestampRuleProto2
+	(*PredefinedAndCustomRuleProto2)(nil),         // 20: buf.validate.conformance.cases.PredefinedAndCustomRuleProto2
+	(*StandardPredefinedAndCustomRuleProto2)(nil), // 21: buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto2
+	(*PredefinedAndCustomRuleProto2_Nested)(nil),  // 22: buf.validate.conformance.cases.PredefinedAndCustomRuleProto2.Nested
+	(*durationpb.Duration)(nil),                   // 23: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),                 // 24: google.protobuf.Timestamp
+	(*validate.FloatRules)(nil),                   // 25: buf.validate.FloatRules
+	(*validate.DoubleRules)(nil),                  // 26: buf.validate.DoubleRules
+	(*validate.Int32Rules)(nil),                   // 27: buf.validate.Int32Rules
+	(*validate.Int64Rules)(nil),                   // 28: buf.validate.Int64Rules
+	(*validate.UInt32Rules)(nil),                  // 29: buf.validate.UInt32Rules
+	(*validate.UInt64Rules)(nil),                  // 30: buf.validate.UInt64Rules
+	(*validate.SInt32Rules)(nil),                  // 31: buf.validate.SInt32Rules
+	(*validate.SInt64Rules)(nil),                  // 32: buf.validate.SInt64Rules
+	(*validate.Fixed32Rules)(nil),                 // 33: buf.validate.Fixed32Rules
+	(*validate.Fixed64Rules)(nil),                 // 34: buf.validate.Fixed64Rules
+	(*validate.SFixed32Rules)(nil),                // 35: buf.validate.SFixed32Rules
+	(*validate.SFixed64Rules)(nil),                // 36: buf.validate.SFixed64Rules
+	(*validate.BoolRules)(nil),                    // 37: buf.validate.BoolRules
+	(*validate.StringRules)(nil),                  // 38: buf.validate.StringRules
+	(*validate.BytesRules)(nil),                   // 39: buf.validate.BytesRules
+	(*validate.EnumRules)(nil),                    // 40: buf.validate.EnumRules
+	(*validate.RepeatedRules)(nil),                // 41: buf.validate.RepeatedRules
+	(*validate.DurationRules)(nil),                // 42: buf.validate.DurationRules
+	(*validate.TimestampRules)(nil),               // 43: buf.validate.TimestampRules
 }
-var file_buf_validate_conformance_cases_shared_rules_proto2_proto_depIdxs = []int32{
-	0,  // 0: buf.validate.conformance.cases.SharedEnumRuleProto2.val:type_name -> buf.validate.conformance.cases.SharedEnumRuleProto2.EnumProto2
-	23, // 1: buf.validate.conformance.cases.SharedDurationRuleProto2.val:type_name -> google.protobuf.Duration
-	24, // 2: buf.validate.conformance.cases.SharedTimestampRuleProto2.val:type_name -> google.protobuf.Timestamp
-	22, // 3: buf.validate.conformance.cases.SharedAndCustomRuleProto2.b:type_name -> buf.validate.conformance.cases.SharedAndCustomRuleProto2.Nested
+var file_buf_validate_conformance_cases_predefined_rules_proto2_proto_depIdxs = []int32{
+	0,  // 0: buf.validate.conformance.cases.PredefinedEnumRuleProto2.val:type_name -> buf.validate.conformance.cases.PredefinedEnumRuleProto2.EnumProto2
+	23, // 1: buf.validate.conformance.cases.PredefinedDurationRuleProto2.val:type_name -> google.protobuf.Duration
+	24, // 2: buf.validate.conformance.cases.PredefinedTimestampRuleProto2.val:type_name -> google.protobuf.Timestamp
+	22, // 3: buf.validate.conformance.cases.PredefinedAndCustomRuleProto2.b:type_name -> buf.validate.conformance.cases.PredefinedAndCustomRuleProto2.Nested
 	25, // 4: buf.validate.conformance.cases.float_abs_range_proto2:extendee -> buf.validate.FloatRules
 	26, // 5: buf.validate.conformance.cases.double_abs_range_proto2:extendee -> buf.validate.DoubleRules
 	27, // 6: buf.validate.conformance.cases.int32_even_proto2:extendee -> buf.validate.Int32Rules
@@ -1846,14 +1853,14 @@ var file_buf_validate_conformance_cases_shared_rules_proto2_proto_depIdxs = []in
 	0,  // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() }
-func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
-	if File_buf_validate_conformance_cases_shared_rules_proto2_proto != nil {
+func init() { file_buf_validate_conformance_cases_predefined_rules_proto2_proto_init() }
+func file_buf_validate_conformance_cases_predefined_rules_proto2_proto_init() {
+	if File_buf_validate_conformance_cases_predefined_rules_proto2_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[0].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedFloatRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[0].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedFloatRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1864,8 +1871,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[1].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedDoubleRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[1].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedDoubleRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1876,8 +1883,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[2].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedInt32RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[2].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedInt32RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1888,8 +1895,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[3].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedInt64RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[3].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedInt64RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1900,8 +1907,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[4].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedUInt32RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[4].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedUInt32RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1912,8 +1919,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[5].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedUInt64RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[5].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedUInt64RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1924,8 +1931,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[6].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedSInt32RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[6].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedSInt32RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1936,8 +1943,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[7].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedSInt64RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[7].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedSInt64RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1948,8 +1955,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[8].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedFixed32RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[8].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedFixed32RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1960,8 +1967,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[9].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedFixed64RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[9].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedFixed64RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1972,8 +1979,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[10].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedSFixed32RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[10].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedSFixed32RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1984,8 +1991,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[11].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedSFixed64RuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedSFixed64RuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1996,8 +2003,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[12].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedBoolRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[12].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedBoolRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2008,8 +2015,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[13].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedStringRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[13].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedStringRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2020,8 +2027,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[14].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedBytesRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[14].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedBytesRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2032,8 +2039,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[15].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedEnumRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[15].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedEnumRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2044,8 +2051,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[16].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedRepeatedRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[16].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedRepeatedRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2056,8 +2063,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[17].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedDurationRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[17].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedDurationRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2068,8 +2075,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[18].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedTimestampRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[18].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedTimestampRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2080,8 +2087,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[19].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedAndCustomRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[19].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedAndCustomRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2092,8 +2099,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[20].Exporter = func(v any, i int) any {
-			switch v := v.(*StandardSharedAndCustomRuleProto2); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[20].Exporter = func(v any, i int) any {
+			switch v := v.(*StandardPredefinedAndCustomRuleProto2); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2104,8 +2111,8 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes[21].Exporter = func(v any, i int) any {
-			switch v := v.(*SharedAndCustomRuleProto2_Nested); i {
+		file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes[21].Exporter = func(v any, i int) any {
+			switch v := v.(*PredefinedAndCustomRuleProto2_Nested); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2121,20 +2128,20 @@ func file_buf_validate_conformance_cases_shared_rules_proto2_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDesc,
+			RawDescriptor: file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDesc,
 			NumEnums:      1,
 			NumMessages:   22,
 			NumExtensions: 19,
 			NumServices:   0,
 		},
-		GoTypes:           file_buf_validate_conformance_cases_shared_rules_proto2_proto_goTypes,
-		DependencyIndexes: file_buf_validate_conformance_cases_shared_rules_proto2_proto_depIdxs,
-		EnumInfos:         file_buf_validate_conformance_cases_shared_rules_proto2_proto_enumTypes,
-		MessageInfos:      file_buf_validate_conformance_cases_shared_rules_proto2_proto_msgTypes,
-		ExtensionInfos:    file_buf_validate_conformance_cases_shared_rules_proto2_proto_extTypes,
+		GoTypes:           file_buf_validate_conformance_cases_predefined_rules_proto2_proto_goTypes,
+		DependencyIndexes: file_buf_validate_conformance_cases_predefined_rules_proto2_proto_depIdxs,
+		EnumInfos:         file_buf_validate_conformance_cases_predefined_rules_proto2_proto_enumTypes,
+		MessageInfos:      file_buf_validate_conformance_cases_predefined_rules_proto2_proto_msgTypes,
+		ExtensionInfos:    file_buf_validate_conformance_cases_predefined_rules_proto2_proto_extTypes,
 	}.Build()
-	File_buf_validate_conformance_cases_shared_rules_proto2_proto = out.File
-	file_buf_validate_conformance_cases_shared_rules_proto2_proto_rawDesc = nil
-	file_buf_validate_conformance_cases_shared_rules_proto2_proto_goTypes = nil
-	file_buf_validate_conformance_cases_shared_rules_proto2_proto_depIdxs = nil
+	File_buf_validate_conformance_cases_predefined_rules_proto2_proto = out.File
+	file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDesc = nil
+	file_buf_validate_conformance_cases_predefined_rules_proto2_proto_goTypes = nil
+	file_buf_validate_conformance_cases_predefined_rules_proto2_proto_depIdxs = nil
 }

@@ -26,14 +26,14 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func sharedSuite() suites.Suite {
+func predefinedSuite() suites.Suite {
 	return suites.Suite{
 		"proto2/float/valid": {
-			Message:  &cases.SharedFloatRuleProto2{Val: proto.Float32(1.0)},
+			Message:  &cases.PredefinedFloatRuleProto2{Val: proto.Float32(1.0)},
 			Expected: results.Success(true),
 		},
 		"proto2/float/invalid": {
-			Message: &cases.SharedFloatRuleProto2{Val: proto.Float32(-2.0)},
+			Message: &cases.PredefinedFloatRuleProto2{Val: proto.Float32(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -43,11 +43,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/double/valid": {
-			Message:  &cases.SharedDoubleRuleProto2{Val: proto.Float64(1.0)},
+			Message:  &cases.PredefinedDoubleRuleProto2{Val: proto.Float64(1.0)},
 			Expected: results.Success(true),
 		},
 		"proto2/double/invalid": {
-			Message: &cases.SharedDoubleRuleProto2{Val: proto.Float64(-2.0)},
+			Message: &cases.PredefinedDoubleRuleProto2{Val: proto.Float64(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -57,11 +57,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/int32/valid": {
-			Message:  &cases.SharedInt32RuleProto2{Val: proto.Int32(2)},
+			Message:  &cases.PredefinedInt32RuleProto2{Val: proto.Int32(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/int32/invalid": {
-			Message: &cases.SharedInt32RuleProto2{Val: proto.Int32(3)},
+			Message: &cases.PredefinedInt32RuleProto2{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -71,11 +71,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/int64/valid": {
-			Message:  &cases.SharedInt64RuleProto2{Val: proto.Int64(2)},
+			Message:  &cases.PredefinedInt64RuleProto2{Val: proto.Int64(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/int64/invalid": {
-			Message: &cases.SharedInt64RuleProto2{Val: proto.Int64(3)},
+			Message: &cases.PredefinedInt64RuleProto2{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -85,11 +85,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/uint32/valid": {
-			Message:  &cases.SharedUInt32RuleProto2{Val: proto.Uint32(2)},
+			Message:  &cases.PredefinedUInt32RuleProto2{Val: proto.Uint32(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/uint32/invalid": {
-			Message: &cases.SharedUInt32RuleProto2{Val: proto.Uint32(3)},
+			Message: &cases.PredefinedUInt32RuleProto2{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -99,11 +99,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/uint64/valid": {
-			Message:  &cases.SharedUInt64RuleProto2{Val: proto.Uint64(2)},
+			Message:  &cases.PredefinedUInt64RuleProto2{Val: proto.Uint64(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/uint64/invalid": {
-			Message: &cases.SharedUInt64RuleProto2{Val: proto.Uint64(3)},
+			Message: &cases.PredefinedUInt64RuleProto2{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -113,11 +113,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/sint32/valid": {
-			Message:  &cases.SharedSInt32RuleProto2{Val: proto.Int32(2)},
+			Message:  &cases.PredefinedSInt32RuleProto2{Val: proto.Int32(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/sint32/invalid": {
-			Message: &cases.SharedSInt32RuleProto2{Val: proto.Int32(3)},
+			Message: &cases.PredefinedSInt32RuleProto2{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -127,11 +127,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/sint64/valid": {
-			Message:  &cases.SharedSInt64RuleProto2{Val: proto.Int64(2)},
+			Message:  &cases.PredefinedSInt64RuleProto2{Val: proto.Int64(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/sint64/invalid": {
-			Message: &cases.SharedSInt64RuleProto2{Val: proto.Int64(3)},
+			Message: &cases.PredefinedSInt64RuleProto2{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -141,11 +141,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/fixed32/valid": {
-			Message:  &cases.SharedFixed32RuleProto2{Val: proto.Uint32(2)},
+			Message:  &cases.PredefinedFixed32RuleProto2{Val: proto.Uint32(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/fixed32/invalid": {
-			Message: &cases.SharedFixed32RuleProto2{Val: proto.Uint32(3)},
+			Message: &cases.PredefinedFixed32RuleProto2{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -155,11 +155,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/fixed64/valid": {
-			Message:  &cases.SharedFixed64RuleProto2{Val: proto.Uint64(2)},
+			Message:  &cases.PredefinedFixed64RuleProto2{Val: proto.Uint64(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/fixed64/invalid": {
-			Message: &cases.SharedFixed64RuleProto2{Val: proto.Uint64(3)},
+			Message: &cases.PredefinedFixed64RuleProto2{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -169,11 +169,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/sfixed32/valid": {
-			Message:  &cases.SharedSFixed32RuleProto2{Val: proto.Int32(2)},
+			Message:  &cases.PredefinedSFixed32RuleProto2{Val: proto.Int32(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/sfixed32/invalid": {
-			Message: &cases.SharedSFixed32RuleProto2{Val: proto.Int32(3)},
+			Message: &cases.PredefinedSFixed32RuleProto2{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -183,11 +183,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/sfixed64/valid": {
-			Message:  &cases.SharedSFixed64RuleProto2{Val: proto.Int64(2)},
+			Message:  &cases.PredefinedSFixed64RuleProto2{Val: proto.Int64(2)},
 			Expected: results.Success(true),
 		},
 		"proto2/sfixed64/invalid": {
-			Message: &cases.SharedSFixed64RuleProto2{Val: proto.Int64(3)},
+			Message: &cases.PredefinedSFixed64RuleProto2{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -197,11 +197,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/bool/valid": {
-			Message:  &cases.SharedBoolRuleProto2{Val: proto.Bool(false)},
+			Message:  &cases.PredefinedBoolRuleProto2{Val: proto.Bool(false)},
 			Expected: results.Success(true),
 		},
 		"proto2/bool/invalid": {
-			Message: &cases.SharedBoolRuleProto2{Val: proto.Bool(true)},
+			Message: &cases.PredefinedBoolRuleProto2{Val: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -211,11 +211,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/string/valid": {
-			Message:  &cases.SharedStringRuleProto2{Val: proto.String("valid/file.proto")},
+			Message:  &cases.PredefinedStringRuleProto2{Val: proto.String("valid/file.proto")},
 			Expected: results.Success(true),
 		},
 		"proto2/string/invalid": {
-			Message: &cases.SharedStringRuleProto2{Val: proto.String("../invalid/path")},
+			Message: &cases.PredefinedStringRuleProto2{Val: proto.String("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -225,11 +225,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/bytes/valid": {
-			Message:  &cases.SharedBytesRuleProto2{Val: []byte("valid/file.proto")},
+			Message:  &cases.PredefinedBytesRuleProto2{Val: []byte("valid/file.proto")},
 			Expected: results.Success(true),
 		},
 		"proto2/bytes/invalid": {
-			Message: &cases.SharedBytesRuleProto2{Val: []byte("../invalid/path")},
+			Message: &cases.PredefinedBytesRuleProto2{Val: []byte("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -239,11 +239,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/enum/valid": {
-			Message:  &cases.SharedEnumRuleProto2{Val: toPointer(cases.SharedEnumRuleProto2_ENUM_PROTO2_ONE)},
+			Message:  &cases.PredefinedEnumRuleProto2{Val: toPointer(cases.PredefinedEnumRuleProto2_ENUM_PROTO2_ONE)},
 			Expected: results.Success(true),
 		},
 		"proto2/enum/invalid": {
-			Message: &cases.SharedEnumRuleProto2{Val: toPointer(cases.SharedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED)},
+			Message: &cases.PredefinedEnumRuleProto2{Val: toPointer(cases.PredefinedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -253,11 +253,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/repeated/valid": {
-			Message:  &cases.SharedRepeatedRuleProto2{Val: []uint64{1, 2, 3, 4, 5}},
+			Message:  &cases.PredefinedRepeatedRuleProto2{Val: []uint64{1, 2, 3, 4, 5}},
 			Expected: results.Success(true),
 		},
 		"proto2/repeated/invalid": {
-			Message: &cases.SharedRepeatedRuleProto2{Val: []uint64{1, 2, 3}},
+			Message: &cases.PredefinedRepeatedRuleProto2{Val: []uint64{1, 2, 3}},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -267,11 +267,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/duration/valid": {
-			Message:  &cases.SharedDurationRuleProto2{Val: durationpb.New(time.Second)},
+			Message:  &cases.PredefinedDurationRuleProto2{Val: durationpb.New(time.Second)},
 			Expected: results.Success(true),
 		},
 		"proto2/duration/invalid": {
-			Message: &cases.SharedDurationRuleProto2{Val: durationpb.New(15 * time.Second)},
+			Message: &cases.PredefinedDurationRuleProto2{Val: durationpb.New(15 * time.Second)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -281,11 +281,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto2/timestamp/valid": {
-			Message:  &cases.SharedTimestampRuleProto2{Val: timestamppb.New(time.Unix(1049587200, 0))},
+			Message:  &cases.PredefinedTimestampRuleProto2{Val: timestamppb.New(time.Unix(1049587200, 0))},
 			Expected: results.Success(true),
 		},
 		"proto2/timestamp/invalid": {
-			Message: &cases.SharedTimestampRuleProto2{Val: timestamppb.New(time.Unix(1725415496, 0))},
+			Message: &cases.PredefinedTimestampRuleProto2{Val: timestamppb.New(time.Unix(1725415496, 0))},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -294,19 +294,19 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto2/shared_and_custom/valid": {
-			Message: &cases.SharedAndCustomRuleProto2{
+		"proto2/predefined_and_custom/valid": {
+			Message: &cases.PredefinedAndCustomRuleProto2{
 				A: proto.Int32(26),
-				B: &cases.SharedAndCustomRuleProto2_Nested{
+				B: &cases.PredefinedAndCustomRuleProto2_Nested{
 					C: proto.Int32(12),
 				},
 			},
 			Expected: results.Success(true),
 		},
-		"proto2/shared_and_custom/invalid": {
-			Message: &cases.SharedAndCustomRuleProto2{
+		"proto2/predefined_and_custom/invalid": {
+			Message: &cases.PredefinedAndCustomRuleProto2{
 				A: proto.Int32(-1),
-				B: &cases.SharedAndCustomRuleProto2_Nested{
+				B: &cases.PredefinedAndCustomRuleProto2_Nested{
 					C: proto.Int32(-1),
 				},
 			},
@@ -323,29 +323,29 @@ func sharedSuite() suites.Suite {
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b"),
-					ConstraintId: proto.String("shared_and_custom_rule_embedded_proto2"),
+					ConstraintId: proto.String("predefined_and_custom_rule_embedded_proto2"),
 					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b.c"),
-					ConstraintId: proto.String("shared_and_custom_rule_nested_proto2"),
+					ConstraintId: proto.String("predefined_and_custom_rule_nested_proto2"),
 					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("shared_and_custom_rule_scalar_proto2"),
+					ConstraintId: proto.String("predefined_and_custom_rule_scalar_proto2"),
 					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
-		"proto2/standard_shared_custom/valid": {
-			Message: &cases.StandardSharedAndCustomRuleProto2{
+		"proto2/standard_predefined_custom/valid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto2{
 				A: proto.Int32(26),
 			},
 			Expected: results.Success(true),
 		},
-		"proto2/standard_shared_custom/standard/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleProto2{
+		"proto2/standard_predefined_custom/standard/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto2{
 				A: proto.Int32(28),
 			},
 			Expected: results.Violations(
@@ -356,8 +356,8 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto2/standard_shared_custom/shared/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleProto2{
+		"proto2/standard_predefined_custom/predefined/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto2{
 				A: proto.Int32(27),
 			},
 			Expected: results.Violations(
@@ -368,24 +368,24 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto2/standard_shared_custom/custom/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleProto2{
+		"proto2/standard_predefined_custom/custom/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto2{
 				A: proto.Int32(24),
 			},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("standard_shared_and_custom_rule_scalar_proto2"),
+					ConstraintId: proto.String("standard_predefined_and_custom_rule_scalar_proto2"),
 					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
 		"proto3/float/valid": {
-			Message:  &cases.SharedFloatRuleProto3{Val: 1.0},
+			Message:  &cases.PredefinedFloatRuleProto3{Val: 1.0},
 			Expected: results.Success(true),
 		},
 		"proto3/float/invalid": {
-			Message: &cases.SharedFloatRuleProto3{Val: -2.0},
+			Message: &cases.PredefinedFloatRuleProto3{Val: -2.0},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -395,11 +395,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/double/valid": {
-			Message:  &cases.SharedDoubleRuleProto3{Val: 1.0},
+			Message:  &cases.PredefinedDoubleRuleProto3{Val: 1.0},
 			Expected: results.Success(true),
 		},
 		"proto3/double/invalid": {
-			Message: &cases.SharedDoubleRuleProto3{Val: -2.0},
+			Message: &cases.PredefinedDoubleRuleProto3{Val: -2.0},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -409,11 +409,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/int32/valid": {
-			Message:  &cases.SharedInt32RuleProto3{Val: 2},
+			Message:  &cases.PredefinedInt32RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/int32/invalid": {
-			Message: &cases.SharedInt32RuleProto3{Val: 3},
+			Message: &cases.PredefinedInt32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -423,11 +423,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/int64/valid": {
-			Message:  &cases.SharedInt64RuleProto3{Val: 2},
+			Message:  &cases.PredefinedInt64RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/int64/invalid": {
-			Message: &cases.SharedInt64RuleProto3{Val: 3},
+			Message: &cases.PredefinedInt64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -437,11 +437,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/uint32/valid": {
-			Message:  &cases.SharedUInt32RuleProto3{Val: 2},
+			Message:  &cases.PredefinedUInt32RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/uint32/invalid": {
-			Message: &cases.SharedUInt32RuleProto3{Val: 3},
+			Message: &cases.PredefinedUInt32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -451,11 +451,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/uint64/valid": {
-			Message:  &cases.SharedUInt64RuleProto3{Val: 2},
+			Message:  &cases.PredefinedUInt64RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/uint64/invalid": {
-			Message: &cases.SharedUInt64RuleProto3{Val: 3},
+			Message: &cases.PredefinedUInt64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -465,11 +465,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/sint32/valid": {
-			Message:  &cases.SharedSInt32RuleProto3{Val: 2},
+			Message:  &cases.PredefinedSInt32RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/sint32/invalid": {
-			Message: &cases.SharedSInt32RuleProto3{Val: 3},
+			Message: &cases.PredefinedSInt32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -479,11 +479,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/sint64/valid": {
-			Message:  &cases.SharedSInt64RuleProto3{Val: 2},
+			Message:  &cases.PredefinedSInt64RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/sint64/invalid": {
-			Message: &cases.SharedSInt64RuleProto3{Val: 3},
+			Message: &cases.PredefinedSInt64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -493,11 +493,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/fixed32/valid": {
-			Message:  &cases.SharedFixed32RuleProto3{Val: 2},
+			Message:  &cases.PredefinedFixed32RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/fixed32/invalid": {
-			Message: &cases.SharedFixed32RuleProto3{Val: 3},
+			Message: &cases.PredefinedFixed32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -507,11 +507,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/fixed64/valid": {
-			Message:  &cases.SharedFixed64RuleProto3{Val: 2},
+			Message:  &cases.PredefinedFixed64RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/fixed64/invalid": {
-			Message: &cases.SharedFixed64RuleProto3{Val: 3},
+			Message: &cases.PredefinedFixed64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -521,11 +521,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/sfixed32/valid": {
-			Message:  &cases.SharedSFixed32RuleProto3{Val: 2},
+			Message:  &cases.PredefinedSFixed32RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/sfixed32/invalid": {
-			Message: &cases.SharedSFixed32RuleProto3{Val: 3},
+			Message: &cases.PredefinedSFixed32RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -535,11 +535,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/sfixed64/valid": {
-			Message:  &cases.SharedSFixed64RuleProto3{Val: 2},
+			Message:  &cases.PredefinedSFixed64RuleProto3{Val: 2},
 			Expected: results.Success(true),
 		},
 		"proto3/sfixed64/invalid": {
-			Message: &cases.SharedSFixed64RuleProto3{Val: 3},
+			Message: &cases.PredefinedSFixed64RuleProto3{Val: 3},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -549,11 +549,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/bool/valid": {
-			Message:  &cases.SharedBoolRuleProto3{Val: false},
+			Message:  &cases.PredefinedBoolRuleProto3{Val: false},
 			Expected: results.Success(true),
 		},
 		"proto3/bool/invalid": {
-			Message: &cases.SharedBoolRuleProto3{Val: true},
+			Message: &cases.PredefinedBoolRuleProto3{Val: true},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -563,11 +563,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/string/valid": {
-			Message:  &cases.SharedStringRuleProto3{Val: "valid/file.proto"},
+			Message:  &cases.PredefinedStringRuleProto3{Val: "valid/file.proto"},
 			Expected: results.Success(true),
 		},
 		"proto3/string/invalid": {
-			Message: &cases.SharedStringRuleProto3{Val: "../invalid/path"},
+			Message: &cases.PredefinedStringRuleProto3{Val: "../invalid/path"},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -577,11 +577,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/bytes/valid": {
-			Message:  &cases.SharedBytesRuleProto3{Val: []byte("valid/file.proto")},
+			Message:  &cases.PredefinedBytesRuleProto3{Val: []byte("valid/file.proto")},
 			Expected: results.Success(true),
 		},
 		"proto3/bytes/invalid": {
-			Message: &cases.SharedBytesRuleProto3{Val: []byte("../invalid/path")},
+			Message: &cases.PredefinedBytesRuleProto3{Val: []byte("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -591,11 +591,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/enum/valid": {
-			Message:  &cases.SharedEnumRuleProto3{Val: cases.SharedEnumRuleProto3_ENUM_PROTO3_ONE},
+			Message:  &cases.PredefinedEnumRuleProto3{Val: cases.PredefinedEnumRuleProto3_ENUM_PROTO3_ONE},
 			Expected: results.Success(true),
 		},
 		"proto3/enum/invalid": {
-			Message: &cases.SharedEnumRuleProto3{Val: cases.SharedEnumRuleProto3_ENUM_PROTO3_ZERO_UNSPECIFIED},
+			Message: &cases.PredefinedEnumRuleProto3{Val: cases.PredefinedEnumRuleProto3_ENUM_PROTO3_ZERO_UNSPECIFIED},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -605,11 +605,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/repeated/valid": {
-			Message:  &cases.SharedRepeatedRuleProto3{Val: []uint64{1, 2, 3, 4, 5}},
+			Message:  &cases.PredefinedRepeatedRuleProto3{Val: []uint64{1, 2, 3, 4, 5}},
 			Expected: results.Success(true),
 		},
 		"proto3/repeated/invalid": {
-			Message: &cases.SharedRepeatedRuleProto3{Val: []uint64{1, 2, 3}},
+			Message: &cases.PredefinedRepeatedRuleProto3{Val: []uint64{1, 2, 3}},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -619,11 +619,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/map/valid": {
-			Message:  &cases.SharedMapRuleProto3{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3, 4: 4, 5: 5}},
+			Message:  &cases.PredefinedMapRuleProto3{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3, 4: 4, 5: 5}},
 			Expected: results.Success(true),
 		},
 		"proto3/map/invalid": {
-			Message: &cases.SharedMapRuleProto3{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3}},
+			Message: &cases.PredefinedMapRuleProto3{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3}},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -633,11 +633,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/duration/valid": {
-			Message:  &cases.SharedDurationRuleProto3{Val: durationpb.New(time.Second)},
+			Message:  &cases.PredefinedDurationRuleProto3{Val: durationpb.New(time.Second)},
 			Expected: results.Success(true),
 		},
 		"proto3/duration/invalid": {
-			Message: &cases.SharedDurationRuleProto3{Val: durationpb.New(15 * time.Second)},
+			Message: &cases.PredefinedDurationRuleProto3{Val: durationpb.New(15 * time.Second)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -647,11 +647,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto3/timestamp/valid": {
-			Message:  &cases.SharedTimestampRuleProto3{Val: timestamppb.New(time.Unix(1049587200, 0))},
+			Message:  &cases.PredefinedTimestampRuleProto3{Val: timestamppb.New(time.Unix(1049587200, 0))},
 			Expected: results.Success(true),
 		},
 		"proto3/timestamp/invalid": {
-			Message: &cases.SharedTimestampRuleProto3{Val: timestamppb.New(time.Unix(1725415496, 0))},
+			Message: &cases.PredefinedTimestampRuleProto3{Val: timestamppb.New(time.Unix(1725415496, 0))},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -660,19 +660,19 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto3/shared_and_custom/valid": {
-			Message: &cases.SharedAndCustomRuleProto3{
+		"proto3/predefined_and_custom/valid": {
+			Message: &cases.PredefinedAndCustomRuleProto3{
 				A: 26,
-				B: &cases.SharedAndCustomRuleProto3_Nested{
+				B: &cases.PredefinedAndCustomRuleProto3_Nested{
 					C: 12,
 				},
 			},
 			Expected: results.Success(true),
 		},
-		"proto3/shared_and_custom/invalid": {
-			Message: &cases.SharedAndCustomRuleProto3{
+		"proto3/predefined_and_custom/invalid": {
+			Message: &cases.PredefinedAndCustomRuleProto3{
 				A: -1,
-				B: &cases.SharedAndCustomRuleProto3_Nested{
+				B: &cases.PredefinedAndCustomRuleProto3_Nested{
 					C: -1,
 				},
 			},
@@ -689,29 +689,29 @@ func sharedSuite() suites.Suite {
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b"),
-					ConstraintId: proto.String("shared_and_custom_rule_embedded_proto3"),
+					ConstraintId: proto.String("predefined_and_custom_rule_embedded_proto3"),
 					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b.c"),
-					ConstraintId: proto.String("shared_and_custom_rule_nested_proto3"),
+					ConstraintId: proto.String("predefined_and_custom_rule_nested_proto3"),
 					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("shared_and_custom_rule_scalar_proto3"),
+					ConstraintId: proto.String("predefined_and_custom_rule_scalar_proto3"),
 					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
-		"proto3/standard_shared_custom/valid": {
-			Message: &cases.StandardSharedAndCustomRuleProto3{
+		"proto3/standard_predefined_custom/valid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto3{
 				A: 26,
 			},
 			Expected: results.Success(true),
 		},
-		"proto3/standard_shared_custom/standard/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleProto3{
+		"proto3/standard_predefined_custom/standard/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto3{
 				A: 28,
 			},
 			Expected: results.Violations(
@@ -722,8 +722,8 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto3/standard_shared_custom/shared/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleProto3{
+		"proto3/standard_predefined_custom/predefined/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto3{
 				A: 27,
 			},
 			Expected: results.Violations(
@@ -734,24 +734,24 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto3/standard_shared_custom/custom/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleProto3{
+		"proto3/standard_predefined_custom/custom/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleProto3{
 				A: 24,
 			},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("standard_shared_and_custom_rule_scalar_proto3"),
+					ConstraintId: proto.String("standard_predefined_and_custom_rule_scalar_proto3"),
 					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
 		"proto/2023/float/valid": {
-			Message:  &cases.SharedFloatRuleEdition2023{Val: proto.Float32(1.0)},
+			Message:  &cases.PredefinedFloatRuleEdition2023{Val: proto.Float32(1.0)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/float/invalid": {
-			Message: &cases.SharedFloatRuleEdition2023{Val: proto.Float32(-2.0)},
+			Message: &cases.PredefinedFloatRuleEdition2023{Val: proto.Float32(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -761,11 +761,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/double/valid": {
-			Message:  &cases.SharedDoubleRuleEdition2023{Val: proto.Float64(1.0)},
+			Message:  &cases.PredefinedDoubleRuleEdition2023{Val: proto.Float64(1.0)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/double/invalid": {
-			Message: &cases.SharedDoubleRuleEdition2023{Val: proto.Float64(-2.0)},
+			Message: &cases.PredefinedDoubleRuleEdition2023{Val: proto.Float64(-2.0)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -775,11 +775,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/int32/valid": {
-			Message:  &cases.SharedInt32RuleEdition2023{Val: proto.Int32(2)},
+			Message:  &cases.PredefinedInt32RuleEdition2023{Val: proto.Int32(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/int32/invalid": {
-			Message: &cases.SharedInt32RuleEdition2023{Val: proto.Int32(3)},
+			Message: &cases.PredefinedInt32RuleEdition2023{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -789,11 +789,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/int64/valid": {
-			Message:  &cases.SharedInt64RuleEdition2023{Val: proto.Int64(2)},
+			Message:  &cases.PredefinedInt64RuleEdition2023{Val: proto.Int64(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/int64/invalid": {
-			Message: &cases.SharedInt64RuleEdition2023{Val: proto.Int64(3)},
+			Message: &cases.PredefinedInt64RuleEdition2023{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -803,11 +803,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/uint32/valid": {
-			Message:  &cases.SharedUInt32RuleEdition2023{Val: proto.Uint32(2)},
+			Message:  &cases.PredefinedUInt32RuleEdition2023{Val: proto.Uint32(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/uint32/invalid": {
-			Message: &cases.SharedUInt32RuleEdition2023{Val: proto.Uint32(3)},
+			Message: &cases.PredefinedUInt32RuleEdition2023{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -817,11 +817,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/uint64/valid": {
-			Message:  &cases.SharedUInt64RuleEdition2023{Val: proto.Uint64(2)},
+			Message:  &cases.PredefinedUInt64RuleEdition2023{Val: proto.Uint64(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/uint64/invalid": {
-			Message: &cases.SharedUInt64RuleEdition2023{Val: proto.Uint64(3)},
+			Message: &cases.PredefinedUInt64RuleEdition2023{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -831,11 +831,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/sint32/valid": {
-			Message:  &cases.SharedSInt32RuleEdition2023{Val: proto.Int32(2)},
+			Message:  &cases.PredefinedSInt32RuleEdition2023{Val: proto.Int32(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/sint32/invalid": {
-			Message: &cases.SharedSInt32RuleEdition2023{Val: proto.Int32(3)},
+			Message: &cases.PredefinedSInt32RuleEdition2023{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -845,11 +845,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/sint64/valid": {
-			Message:  &cases.SharedSInt64RuleEdition2023{Val: proto.Int64(2)},
+			Message:  &cases.PredefinedSInt64RuleEdition2023{Val: proto.Int64(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/sint64/invalid": {
-			Message: &cases.SharedSInt64RuleEdition2023{Val: proto.Int64(3)},
+			Message: &cases.PredefinedSInt64RuleEdition2023{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -859,11 +859,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/fixed32/valid": {
-			Message:  &cases.SharedFixed32RuleEdition2023{Val: proto.Uint32(2)},
+			Message:  &cases.PredefinedFixed32RuleEdition2023{Val: proto.Uint32(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/fixed32/invalid": {
-			Message: &cases.SharedFixed32RuleEdition2023{Val: proto.Uint32(3)},
+			Message: &cases.PredefinedFixed32RuleEdition2023{Val: proto.Uint32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -873,11 +873,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/fixed64/valid": {
-			Message:  &cases.SharedFixed64RuleEdition2023{Val: proto.Uint64(2)},
+			Message:  &cases.PredefinedFixed64RuleEdition2023{Val: proto.Uint64(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/fixed64/invalid": {
-			Message: &cases.SharedFixed64RuleEdition2023{Val: proto.Uint64(3)},
+			Message: &cases.PredefinedFixed64RuleEdition2023{Val: proto.Uint64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -887,11 +887,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/sfixed32/valid": {
-			Message:  &cases.SharedSFixed32RuleEdition2023{Val: proto.Int32(2)},
+			Message:  &cases.PredefinedSFixed32RuleEdition2023{Val: proto.Int32(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/sfixed32/invalid": {
-			Message: &cases.SharedSFixed32RuleEdition2023{Val: proto.Int32(3)},
+			Message: &cases.PredefinedSFixed32RuleEdition2023{Val: proto.Int32(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -901,11 +901,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/sfixed64/valid": {
-			Message:  &cases.SharedSFixed64RuleEdition2023{Val: proto.Int64(2)},
+			Message:  &cases.PredefinedSFixed64RuleEdition2023{Val: proto.Int64(2)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/sfixed64/invalid": {
-			Message: &cases.SharedSFixed64RuleEdition2023{Val: proto.Int64(3)},
+			Message: &cases.PredefinedSFixed64RuleEdition2023{Val: proto.Int64(3)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -915,11 +915,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/bool/valid": {
-			Message:  &cases.SharedBoolRuleEdition2023{Val: proto.Bool(false)},
+			Message:  &cases.PredefinedBoolRuleEdition2023{Val: proto.Bool(false)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/bool/invalid": {
-			Message: &cases.SharedBoolRuleEdition2023{Val: proto.Bool(true)},
+			Message: &cases.PredefinedBoolRuleEdition2023{Val: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -929,11 +929,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/string/valid": {
-			Message:  &cases.SharedStringRuleEdition2023{Val: proto.String("valid/file.proto")},
+			Message:  &cases.PredefinedStringRuleEdition2023{Val: proto.String("valid/file.proto")},
 			Expected: results.Success(true),
 		},
 		"proto/2023/string/invalid": {
-			Message: &cases.SharedStringRuleEdition2023{Val: proto.String("../invalid/path")},
+			Message: &cases.PredefinedStringRuleEdition2023{Val: proto.String("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -943,11 +943,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/bytes/valid": {
-			Message:  &cases.SharedBytesRuleEdition2023{Val: []byte("valid/file.proto")},
+			Message:  &cases.PredefinedBytesRuleEdition2023{Val: []byte("valid/file.proto")},
 			Expected: results.Success(true),
 		},
 		"proto/2023/bytes/invalid": {
-			Message: &cases.SharedBytesRuleEdition2023{Val: []byte("../invalid/path")},
+			Message: &cases.PredefinedBytesRuleEdition2023{Val: []byte("../invalid/path")},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -957,11 +957,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/enum/valid": {
-			Message:  &cases.SharedEnumRuleEdition2023{Val: toPointer(cases.SharedEnumRuleEdition2023_ENUM_EDITION2023_ONE)},
+			Message:  &cases.PredefinedEnumRuleEdition2023{Val: toPointer(cases.PredefinedEnumRuleEdition2023_ENUM_EDITION2023_ONE)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/enum/invalid": {
-			Message: &cases.SharedEnumRuleEdition2023{Val: toPointer(cases.SharedEnumRuleEdition2023_ENUM_EDITION2023_ZERO_UNSPECIFIED)},
+			Message: &cases.PredefinedEnumRuleEdition2023{Val: toPointer(cases.PredefinedEnumRuleEdition2023_ENUM_EDITION2023_ZERO_UNSPECIFIED)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -971,11 +971,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/repeated/valid": {
-			Message:  &cases.SharedRepeatedRuleEdition2023{Val: []uint64{1, 2, 3, 4, 5}},
+			Message:  &cases.PredefinedRepeatedRuleEdition2023{Val: []uint64{1, 2, 3, 4, 5}},
 			Expected: results.Success(true),
 		},
 		"proto/2023/repeated/invalid": {
-			Message: &cases.SharedRepeatedRuleEdition2023{Val: []uint64{1, 2, 3}},
+			Message: &cases.PredefinedRepeatedRuleEdition2023{Val: []uint64{1, 2, 3}},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -985,11 +985,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/map/valid": {
-			Message:  &cases.SharedMapRuleEdition2023{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3, 4: 4, 5: 5}},
+			Message:  &cases.PredefinedMapRuleEdition2023{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3, 4: 4, 5: 5}},
 			Expected: results.Success(true),
 		},
 		"proto/2023/map/invalid": {
-			Message: &cases.SharedMapRuleEdition2023{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3}},
+			Message: &cases.PredefinedMapRuleEdition2023{Val: map[uint64]uint64{1: 1, 2: 2, 3: 3}},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -999,11 +999,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/duration/valid": {
-			Message:  &cases.SharedDurationRuleEdition2023{Val: durationpb.New(time.Second)},
+			Message:  &cases.PredefinedDurationRuleEdition2023{Val: durationpb.New(time.Second)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/duration/invalid": {
-			Message: &cases.SharedDurationRuleEdition2023{Val: durationpb.New(15 * time.Second)},
+			Message: &cases.PredefinedDurationRuleEdition2023{Val: durationpb.New(15 * time.Second)},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -1013,11 +1013,11 @@ func sharedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/timestamp/valid": {
-			Message:  &cases.SharedTimestampRuleEdition2023{Val: timestamppb.New(time.Unix(1049587200, 0))},
+			Message:  &cases.PredefinedTimestampRuleEdition2023{Val: timestamppb.New(time.Unix(1049587200, 0))},
 			Expected: results.Success(true),
 		},
 		"proto/2023/timestamp/invalid": {
-			Message: &cases.SharedTimestampRuleEdition2023{Val: timestamppb.New(time.Unix(1725415496, 0))},
+			Message: &cases.PredefinedTimestampRuleEdition2023{Val: timestamppb.New(time.Unix(1725415496, 0))},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -1026,19 +1026,19 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto/2023/shared_and_custom/valid": {
-			Message: &cases.SharedAndCustomRuleEdition2023{
+		"proto/2023/predefined_and_custom/valid": {
+			Message: &cases.PredefinedAndCustomRuleEdition2023{
 				A: proto.Int32(26),
-				B: &cases.SharedAndCustomRuleEdition2023_Nested{
+				B: &cases.PredefinedAndCustomRuleEdition2023_Nested{
 					C: proto.Int32(12),
 				},
 			},
 			Expected: results.Success(true),
 		},
-		"proto/2023/shared_and_custom/invalid": {
-			Message: &cases.SharedAndCustomRuleEdition2023{
+		"proto/2023/predefined_and_custom/invalid": {
+			Message: &cases.PredefinedAndCustomRuleEdition2023{
 				A: proto.Int32(-1),
-				B: &cases.SharedAndCustomRuleEdition2023_Nested{
+				B: &cases.PredefinedAndCustomRuleEdition2023_Nested{
 					C: proto.Int32(-1),
 				},
 			},
@@ -1055,29 +1055,29 @@ func sharedSuite() suites.Suite {
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b"),
-					ConstraintId: proto.String("shared_and_custom_rule_embedded_edition_2023"),
+					ConstraintId: proto.String("predefined_and_custom_rule_embedded_edition_2023"),
 					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b.c"),
-					ConstraintId: proto.String("shared_and_custom_rule_nested_edition_2023"),
+					ConstraintId: proto.String("predefined_and_custom_rule_nested_edition_2023"),
 					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("shared_and_custom_rule_scalar_edition_2023"),
+					ConstraintId: proto.String("predefined_and_custom_rule_scalar_edition_2023"),
 					Message:      proto.String("a must be greater than 24"),
 				},
 			),
 		},
-		"proto/2023/standard_shared_custom/valid": {
-			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+		"proto/2023/standard_predefined_custom/valid": {
+			Message: &cases.StandardPredefinedAndCustomRuleEdition2023{
 				A: proto.Int32(26),
 			},
 			Expected: results.Success(true),
 		},
-		"proto/2023/standard_shared_custom/standard/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+		"proto/2023/standard_predefined_custom/standard/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleEdition2023{
 				A: proto.Int32(28),
 			},
 			Expected: results.Violations(
@@ -1088,8 +1088,8 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto/2023/standard_shared_custom/shared/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+		"proto/2023/standard_predefined_custom/predefined/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleEdition2023{
 				A: proto.Int32(27),
 			},
 			Expected: results.Violations(
@@ -1100,14 +1100,14 @@ func sharedSuite() suites.Suite {
 				},
 			),
 		},
-		"proto/2023/standard_shared_custom/custom/invalid": {
-			Message: &cases.StandardSharedAndCustomRuleEdition2023{
+		"proto/2023/standard_predefined_custom/custom/invalid": {
+			Message: &cases.StandardPredefinedAndCustomRuleEdition2023{
 				A: proto.Int32(24),
 			},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("standard_shared_and_custom_rule_scalar_edition_2023"),
+					ConstraintId: proto.String("standard_predefined_and_custom_rule_scalar_edition_2023"),
 					Message:      proto.String("a must be greater than 24"),
 				},
 			),
