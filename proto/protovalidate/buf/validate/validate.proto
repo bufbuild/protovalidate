@@ -3726,7 +3726,7 @@ message BytesRules {
       (priv.field).cel = {
         id: "bytes.ipv4_empty"
         message: "value is empty, which is not a valid IPv4 address"
-        expression: "!this.ipv4 || this.size() != 0"
+        expression: "!rules.ipv4 || this.size() != 0"
       }
     ];
 
@@ -3742,12 +3742,12 @@ message BytesRules {
       (priv.field).cel = {
         id: "bytes.ipv6"
         message: "value must be a valid IPv6 address"
-        expression: "!this.ipv6 || this.size() == 0 || this.size() == 16"
+        expression: "!rules.ipv6 || this.size() == 0 || this.size() == 16"
       },
       (priv.field).cel = {
         id: "bytes.ipv6_empty"
         message: "value is empty, which is not a valid IPv6 address"
-        expression: "!this.ipv6 || this.size() != 0"
+        expression: "!rules.ipv6 || this.size() != 0"
       }
     ];
   }
