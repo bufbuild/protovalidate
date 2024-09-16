@@ -270,6 +270,10 @@ func doubleSuite() suites.Suite {
 					ConstraintId: "double.finite",
 					Message:      "value must be finite"}),
 		},
+		"finite/inf/not_checked": {
+			Message:  &cases.DoubleNotFinite{Val: math.Inf(1)},
+			Expected: results.Success(true),
+		},
 		"finite/neginf": {
 			Message: &cases.DoubleFinite{Val: math.Inf(-1)},
 			Expected: results.Violations(

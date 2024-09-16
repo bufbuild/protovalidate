@@ -294,6 +294,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.email_empty"}),
 		},
+		"email/invalid/not_checked/empty": {
+			Message:  &cases.StringNotEmail{Val: ""},
+			Expected: results.Success(true),
+		},
+		"email/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotEmail{Val: "foobar"},
+			Expected: results.Success(true),
+		},
 		"email/invalid/malformed": {
 			Message: &cases.StringEmail{Val: "foobar"},
 			Expected: results.Violations(
@@ -372,6 +380,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.hostname"}),
 		},
+		"hostname/invalid/not_checked/empty": {
+			Message:  &cases.StringNotHostname{Val: ""},
+			Expected: results.Success(true),
+		},
+		"hostname/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotHostname{Val: "@!#$%^&*&^%$#"},
+			Expected: results.Success(true),
+		},
 		"hostname/invalid/underscore": {
 			Message: &cases.StringHostname{Val: "foo_bar.com"},
 			Expected: results.Violations(
@@ -420,6 +436,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ip"}),
 		},
+		"ip/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIP{Val: "foobar"},
+			Expected: results.Success(true),
+		},
+		"ip/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIP{Val: "foobar"},
+			Expected: results.Success(true),
+		},
 		"ip/invalid/empty": {
 			Message: &cases.StringIP{Val: ""},
 			Expected: results.Violations(
@@ -433,6 +457,14 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_empty"}),
+		},
+		"ipv4/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPv4{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ipv4/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPv4{Val: "foobar"},
+			Expected: results.Success(true),
 		},
 		"ipv4/invalid/malformed": {
 			Message: &cases.StringIPv4{Val: "foobar"},
@@ -462,6 +494,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_empty"}),
 		},
+		"ipv6/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPv6{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ipv6/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPv6{Val: "foobar"},
+			Expected: results.Success(true),
+		},
 		"ipv6/invalid/malformed": {
 			Message: &cases.StringIPv6{Val: "foobar"},
 			Expected: results.Violations(
@@ -490,6 +530,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ip_with_prefixlen"}),
 		},
+		"ip_with_prefixlen/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPWithPrefixLen{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ip_with_prefixlen/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPWithPrefixLen{Val: "foobar"},
+			Expected: results.Success(true),
+		},
 		"ip_with_prefixlen/invalid/empty": {
 			Message: &cases.StringIPWithPrefixLen{Val: ""},
 			Expected: results.Violations(
@@ -503,6 +551,14 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4WithPrefixLen{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_with_prefixlen_empty"}),
+		},
+		"ipv4_with_prefixlen/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPv4WithPrefixLen{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ipv4_with_prefixlen/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPv4WithPrefixLen{Val: "foobar"},
+			Expected: results.Success(true),
 		},
 		"ipv4_with_prefixlen/invalid/malformed": {
 			Message: &cases.StringIPv4WithPrefixLen{Val: "foobar"},
@@ -522,6 +578,14 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6WithPrefixLen{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_with_prefixlen_empty"}),
+		},
+		"ipv6_with_prefixlen/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPv6WithPrefixLen{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ipv6_with_prefixlen/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPv6WithPrefixLen{Val: "foobar"},
+			Expected: results.Success(true),
 		},
 		"ipv6_with_prefixlen/invalid/malformed": {
 			Message: &cases.StringIPv6WithPrefixLen{Val: "foobar"},
@@ -546,6 +610,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ip_prefix_empty"}),
 		},
+		"ip_prefix/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPPrefix{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ip_prefix/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPPrefix{Val: "foobar"},
+			Expected: results.Success(true),
+		},
 		"ip_prefix/invalid/malformed": {
 			Message: &cases.StringIPPrefix{Val: "foobar"},
 			Expected: results.Violations(
@@ -559,6 +631,14 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4Prefix{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv4_prefix_empty"}),
+		},
+		"ipv4_prefix/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPv4Prefix{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ipv4_prefix/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPv4Prefix{Val: "foobar"},
+			Expected: results.Success(true),
 		},
 		"ipv4_prefix/invalid/not_network_address": {
 			Message: &cases.StringIPv4Prefix{Val: "192.168.0.1/24"},
@@ -584,6 +664,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.ipv6_prefix_empty"}),
 		},
+		"ipv6_prefix/invalid/not_checked/empty": {
+			Message:  &cases.StringNotIPv6Prefix{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ipv6_prefix/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotIPv6Prefix{Val: "foobar"},
+			Expected: results.Success(true),
+		},
 		"ipv6_prefix/invalid/not_network_address": {
 			Message: &cases.StringIPv6Prefix{Val: "2001:db8:1::1/48"},
 			Expected: results.Violations(
@@ -608,6 +696,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.uri_empty"}),
 		},
+		"uri/invalid/not_checked/empty": {
+			Message:  &cases.StringNotURI{Val: ""},
+			Expected: results.Success(true),
+		},
+		"uri/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotURI{Val: "!@#$%^&*"},
+			Expected: results.Success(true),
+		},
 		"uri/invalid/malformed": {
 			Message: &cases.StringURI{Val: "!@#$%^&*"},
 			Expected: results.Violations(
@@ -631,6 +727,14 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.uri_ref"}),
 		},
+		"uri_ref/invalid/not_checked/empty": {
+			Message:  &cases.StringNotURIRef{Val: ""},
+			Expected: results.Success(true),
+		},
+		"uri_ref/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotURIRef{Val: "!@#$%^&*"},
+			Expected: results.Success(true),
+		},
 		"address/valid/hostname": {
 			Message:  &cases.StringAddress{Val: "foo.bar.com"},
 			Expected: results.Success(true),
@@ -647,6 +751,14 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringAddress{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.address_empty"}),
+		},
+		"address/invalid/not_checked/empty": {
+			Message:  &cases.StringNotAddress{Val: ""},
+			Expected: results.Success(true),
+		},
+		"address/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotAddress{Val: "-foo.bar"},
+			Expected: results.Success(true),
 		},
 		"address/invalid/hostname": {
 			Message: &cases.StringAddress{Val: "-foo.bar"},
@@ -706,6 +818,14 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringUUID{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.uuid_empty"}),
+		},
+		"uuid/invalid/not_checked/empty": {
+			Message:  &cases.StringNotUUID{Val: ""},
+			Expected: results.Success(true),
+		},
+		"uuid/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotUUID{Val: "foobar"},
+			Expected: results.Success(true),
 		},
 		"uuid/invalid/malformed": {
 			Message: &cases.StringUUID{Val: "foobar"},
@@ -775,6 +895,14 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringTUUID{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{FieldPath: "val", ConstraintId: "string.tuuid_empty"}),
+		},
+		"tuuid/invalid/not_checked/empty": {
+			Message:  &cases.StringNotTUUID{Val: ""},
+			Expected: results.Success(true),
+		},
+		"tuuid/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotTUUID{Val: "foobar"},
+			Expected: results.Success(true),
 		},
 		"tuuid/invalid/malformed": {
 			Message: &cases.StringTUUID{Val: "foobar"},
