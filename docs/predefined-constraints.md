@@ -46,13 +46,9 @@ extend buf.validate.FloatRules {
 > to 99999 are reserved for [Protobuf Global Extension Registry][1] entries, and
 > values from 100000 to 536870911 are reserved for integers that are not
 > explicitly assigned. It is discouraged to use the latter range for rules that
-> are defined in public schemas due to the risk of conflicts. If using a
-> randomly-generated integer as a tag number, please use an appropriate source
-> of randomness. [This link to random.org][2] can be used if you wish to do
-> this, but be aware that it is not recommended.
+> are defined in public schemas due to the risk of conflicts. 
 
 [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md "Protobuf Global Extension Registry"
-[2]: https://www.random.org/integers/?num=1&min=100000&max=536870911&format=html&col=1&base=10 "RANDOM.ORG - Integer Generator"
 
 Similarly to the standard constraints, a rule will take effect when it is set on
 the options of a field. Here is how one might use a predefined constraint:

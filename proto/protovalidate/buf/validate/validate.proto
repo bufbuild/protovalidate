@@ -633,25 +633,17 @@ message FloatRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // DoubleRules describes the constraints applied to `double` values. These
@@ -862,25 +854,17 @@ message DoubleRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // Int32Rules describes the constraints applied to `int32` values. These
@@ -1085,25 +1069,17 @@ message Int32Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // Int64Rules describes the constraints applied to `int64` values. These
@@ -1308,25 +1284,17 @@ message Int64Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // UInt32Rules describes the constraints applied to `uint32` values. These
@@ -1531,25 +1499,17 @@ message UInt32Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // UInt64Rules describes the constraints applied to `uint64` values. These
@@ -1753,25 +1713,17 @@ message UInt64Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // SInt32Rules describes the constraints applied to `sint32` values.
@@ -1975,25 +1927,17 @@ message SInt32Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // SInt64Rules describes the constraints applied to `sint64` values.
@@ -2197,25 +2141,17 @@ message SInt64Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // Fixed32Rules describes the constraints applied to `fixed32` values.
@@ -2419,25 +2355,17 @@ message Fixed32Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // Fixed64Rules describes the constraints applied to `fixed64` values.
@@ -2641,25 +2569,17 @@ message Fixed64Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // SFixed32Rules describes the constraints applied to `fixed32` values.
@@ -2863,25 +2783,17 @@ message SFixed32Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // SFixed64Rules describes the constraints applied to `fixed64` values.
@@ -3085,25 +2997,17 @@ message SFixed64Rules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // BoolRules describes the constraints applied to `bool` values. These rules
@@ -3140,25 +3044,17 @@ message BoolRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // StringRules describes the constraints applied to `string` values These
@@ -3846,25 +3742,17 @@ message StringRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // WellKnownRegex contain some well-known patterns.
@@ -4118,25 +4006,17 @@ message BytesRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // EnumRules describe the constraints applied to `enum` values.
@@ -4241,25 +4121,17 @@ message EnumRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // RepeatedRules describe the constraints applied to `repeated` values.
@@ -4329,25 +4201,17 @@ message RepeatedRules {
   // ```
   optional FieldConstraints items = 4;
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // MapRules describe the constraints applied to `map` values.
@@ -4412,25 +4276,17 @@ message MapRules {
   // ```
   optional FieldConstraints values = 5;
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // AnyRules describe constraints applied exclusively to the `google.protobuf.Any` well-known type.
@@ -4661,25 +4517,17 @@ message DurationRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // TimestampRules describe the constraints applied exclusively to the `google.protobuf.Timestamp` well-known type.
@@ -4888,25 +4736,17 @@ message TimestampRules {
     expression: "true"
   }];
 
-  // Reserved for predefined rules using extension numbers defined within the
-  // [Protobuf Global Extension Registry][1]. Extension fields in this range
-  // that have the (buf.validate.predefined) option set will be treated as
-  // predefined field constraints that can then be set on field options of other
-  // messages to apply reusable field constraints.
+  // Extension fields in this range that have the (buf.validate.predefined)
+  // option set will be treated as predefined field constraints that can then be
+  // set on the field options of other fields to apply field constraints.
+  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
+  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
+  // above this range are reserved for extension numbers that are not explicitly
+  // assigned. For rules defined in publicly-consumed schemas, use of extensions
+  // above 99999 is discouraged due to the risk of conflicts.
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
-  extensions 1000 to 99999;
-
-  // Reserved for predefined rules using extension numbers that are not
-  // explicitly assigned. Extensions in this range that have the
-  // (buf.validate.predefined) option set will be treated as predefined field
-  // constraints that can then/ be set on field options of other messages to
-  // apply reusable field constraints.
-  //
-  // When using randomly generated numbers, please use a high-quality source of
-  // randomly generated numbers. For rules defined in publicly-consumed schemas,
-  // use of this range is discouraged due to risk of conflicts.
-  extensions 100000 to max;
+  extensions 1000 to max;
 }
 
 // `Violations` is a collection of `Violation` messages. This message type is returned by
