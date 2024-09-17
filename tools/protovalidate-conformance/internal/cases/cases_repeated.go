@@ -198,6 +198,10 @@ func repeatedSuite() suites.Suite {
 				},
 			),
 		},
+		"unique/invalid/invalid": {
+			Message:  &cases.RepeatedNotUnique{Val: []string{"foo", "bar", "foo", "baz"}},
+			Expected: results.Success(true),
+		},
 		"unique/multiple/valid": {
 			Message:  &cases.RepeatedMultipleUnique{A: []string{"foo", "bar"}, B: []int32{1, 2}},
 			Expected: results.Success(true),

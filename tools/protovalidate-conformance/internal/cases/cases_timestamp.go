@@ -223,6 +223,10 @@ func timestampSuite() suites.Suite {
 			Message:  &cases.TimestampLTNow{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
 			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt_now")}),
 		},
+		"lt_now/invalid/not_checked": {
+			Message:  &cases.TimestampNotLTNow{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
+			Expected: results.Success(true),
+		},
 		"gt_now/valid": {
 			Message:  &cases.TimestampGTNow{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
 			Expected: results.Success(true),
@@ -234,6 +238,10 @@ func timestampSuite() suites.Suite {
 		"gt_now/invalid": {
 			Message:  &cases.TimestampGTNow{Val: &timestamppb.Timestamp{}},
 			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_now")}),
+		},
+		"gt_now/invalid/not_checked": {
+			Message:  &cases.TimestampNotGTNow{Val: &timestamppb.Timestamp{}},
+			Expected: results.Success(true),
 		},
 		"within/valid": {
 			Message:  &cases.TimestampWithin{Val: timestamppb.Now()},

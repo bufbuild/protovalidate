@@ -613,7 +613,7 @@ message FloatRules {
   // infinite or NaN, an error message is generated.
   optional bool finite = 8 [(predefined).cel = {
     id: "float.finite"
-    expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''"
+    expression: "rules.finite ? (this.isNan() || this.isInf() ? 'value must be finite' : '') : ''"
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
@@ -834,7 +834,7 @@ message DoubleRules {
   // infinite or NaN, an error message is generated.
   optional bool finite = 8 [(predefined).cel = {
     id: "double.finite"
-    expression: "this.isNan() || this.isInf() ? 'value must be finite' : ''"
+    expression: "rules.finite ? (this.isNan() || this.isInf() ? 'value must be finite' : '') : ''"
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
@@ -3291,12 +3291,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.email"
         message: "value must be a valid email address"
-        expression: "this == '' || this.isEmail()"
+        expression: "!rules.email || this == '' || this.isEmail()"
       },
       (predefined).cel = {
         id: "string.email_empty"
         message: "value is empty, which is not a valid email address"
-        expression: "this != ''"
+        expression: "!rules.email || this != ''"
       }
     ];
 
@@ -3315,12 +3315,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.hostname"
         message: "value must be a valid hostname"
-        expression: "this == '' || this.isHostname()"
+        expression: "!rules.hostname || this == '' || this.isHostname()"
       },
       (predefined).cel = {
         id: "string.hostname_empty"
         message: "value is empty, which is not a valid hostname"
-        expression: "this != ''"
+        expression: "!rules.hostname || this != ''"
       }
     ];
 
@@ -3339,12 +3339,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ip"
         message: "value must be a valid IP address"
-        expression: "this == '' || this.isIp()"
+        expression: "!rules.ip || this == '' || this.isIp()"
       },
       (predefined).cel = {
         id: "string.ip_empty"
         message: "value is empty, which is not a valid IP address"
-        expression: "this != ''"
+        expression: "!rules.ip || this != ''"
       }
     ];
 
@@ -3362,12 +3362,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ipv4"
         message: "value must be a valid IPv4 address"
-        expression: "this == '' || this.isIp(4)"
+        expression: "!rules.ipv4 || this == '' || this.isIp(4)"
       },
       (predefined).cel = {
         id: "string.ipv4_empty"
         message: "value is empty, which is not a valid IPv4 address"
-        expression: "this != ''"
+        expression: "!rules.ipv4 || this != ''"
       }
     ];
 
@@ -3385,12 +3385,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ipv6"
         message: "value must be a valid IPv6 address"
-        expression: "this == '' || this.isIp(6)"
+        expression: "!rules.ipv6 || this == '' || this.isIp(6)"
       },
       (predefined).cel = {
         id: "string.ipv6_empty"
         message: "value is empty, which is not a valid IPv6 address"
-        expression: "this != ''"
+        expression: "!rules.ipv6 || this != ''"
       }
     ];
 
@@ -3408,12 +3408,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.uri"
         message: "value must be a valid URI"
-        expression: "this == '' || this.isUri()"
+        expression: "!rules.uri || this == '' || this.isUri()"
       },
       (predefined).cel = {
         id: "string.uri_empty"
         message: "value is empty, which is not a valid URI"
-        expression: "this != ''"
+        expression: "!rules.uri || this != ''"
       }
     ];
 
@@ -3430,7 +3430,7 @@ message StringRules {
     bool uri_ref = 18 [(predefined).cel = {
       id: "string.uri_ref"
       message: "value must be a valid URI"
-      expression: "this.isUriRef()"
+      expression: "!rules.uri_ref || this.isUriRef()"
     }];
 
     // `address` specifies that the field value must be either a valid hostname
@@ -3449,12 +3449,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.address"
         message: "value must be a valid hostname, or ip address"
-        expression: "this == '' || this.isHostname() || this.isIp()"
+        expression: "!rules.address || this == '' || this.isHostname() || this.isIp()"
       },
       (predefined).cel = {
         id: "string.address_empty"
         message: "value is empty, which is not a valid hostname, or ip address"
-        expression: "this != ''"
+        expression: "!rules.address || this != ''"
       }
     ];
 
@@ -3472,12 +3472,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.uuid"
         message: "value must be a valid UUID"
-        expression: "this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')"
+        expression: "!rules.uuid || this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')"
       },
       (predefined).cel = {
         id: "string.uuid_empty"
         message: "value is empty, which is not a valid UUID"
-        expression: "this != ''"
+        expression: "!rules.uuid || this != ''"
       }
     ];
 
@@ -3496,12 +3496,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.tuuid"
         message: "value must be a valid trimmed UUID"
-        expression: "this == '' || this.matches('^[0-9a-fA-F]{32}$')"
+        expression: "!rules.tuuid || this == '' || this.matches('^[0-9a-fA-F]{32}$')"
       },
       (predefined).cel = {
         id: "string.tuuid_empty"
         message: "value is empty, which is not a valid trimmed UUID"
-        expression: "this != ''"
+        expression: "!rules.tuuid || this != ''"
       }
     ];
 
@@ -3520,12 +3520,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ip_with_prefixlen"
         message: "value must be a valid IP prefix"
-        expression: "this == '' || this.isIpPrefix()"
+        expression: "!rules.ip_with_prefixlen || this == '' || this.isIpPrefix()"
       },
       (predefined).cel = {
         id: "string.ip_with_prefixlen_empty"
         message: "value is empty, which is not a valid IP prefix"
-        expression: "this != ''"
+        expression: "!rules.ip_with_prefixlen || this != ''"
       }
     ];
 
@@ -3544,12 +3544,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ipv4_with_prefixlen"
         message: "value must be a valid IPv4 address with prefix length"
-        expression: "this == '' || this.isIpPrefix(4)"
+        expression: "!rules.ipv4_with_prefixlen || this == '' || this.isIpPrefix(4)"
       },
       (predefined).cel = {
         id: "string.ipv4_with_prefixlen_empty"
         message: "value is empty, which is not a valid IPv4 address with prefix length"
-        expression: "this != ''"
+        expression: "!rules.ipv4_with_prefixlen || this != ''"
       }
     ];
 
@@ -3568,12 +3568,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ipv6_with_prefixlen"
         message: "value must be a valid IPv6 address with prefix length"
-        expression: "this == '' || this.isIpPrefix(6)"
+        expression: "!rules.ipv6_with_prefixlen || this == '' || this.isIpPrefix(6)"
       },
       (predefined).cel = {
         id: "string.ipv6_with_prefixlen_empty"
         message: "value is empty, which is not a valid IPv6 address with prefix length"
-        expression: "this != ''"
+        expression: "!rules.ipv6_with_prefixlen || this != ''"
       }
     ];
 
@@ -3592,12 +3592,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ip_prefix"
         message: "value must be a valid IP prefix"
-        expression: "this == '' || this.isIpPrefix(true)"
+        expression: "!rules.ip_prefix || this == '' || this.isIpPrefix(true)"
       },
       (predefined).cel = {
         id: "string.ip_prefix_empty"
         message: "value is empty, which is not a valid IP prefix"
-        expression: "this != ''"
+        expression: "!rules.ip_prefix || this != ''"
       }
     ];
 
@@ -3616,12 +3616,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ipv4_prefix"
         message: "value must be a valid IPv4 prefix"
-        expression: "this == '' || this.isIpPrefix(4, true)"
+        expression: "!rules.ipv4_prefix || this == '' || this.isIpPrefix(4, true)"
       },
       (predefined).cel = {
         id: "string.ipv4_prefix_empty"
         message: "value is empty, which is not a valid IPv4 prefix"
-        expression: "this != ''"
+        expression: "!rules.ipv4_prefix || this != ''"
       }
     ];
 
@@ -3640,12 +3640,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.ipv6_prefix"
         message: "value must be a valid IPv6 prefix"
-        expression: "this == '' || this.isIpPrefix(6, true)"
+        expression: "!rules.ipv6_prefix || this == '' || this.isIpPrefix(6, true)"
       },
       (predefined).cel = {
         id: "string.ipv6_prefix_empty"
         message: "value is empty, which is not a valid IPv6 prefix"
-        expression: "this != ''"
+        expression: "!rules.ipv6_prefix || this != ''"
       }
     ];
 
@@ -3657,12 +3657,12 @@ message StringRules {
       (predefined).cel = {
         id: "string.host_and_port"
         message: "value must be a valid host (hostname or IP address) and port pair"
-        expression: "this == '' || this.isHostAndPort(true)"
+        expression: "!rules.host_and_port || this == '' || this.isHostAndPort(true)"
       },
       (predefined).cel = {
         id: "string.host_and_port_empty"
         message: "value is empty, which is not a valid host and port pair"
-        expression: "this != ''"
+        expression: "!rules.host_and_port || this != ''"
       }
     ];
 
@@ -3936,12 +3936,12 @@ message BytesRules {
       (predefined).cel = {
         id: "bytes.ip"
         message: "value must be a valid IP address"
-        expression: "this.size() == 0 || this.size() == 4 || this.size() == 16"
+        expression: "!rules.ip || this.size() == 0 || this.size() == 4 || this.size() == 16"
       },
       (predefined).cel = {
         id: "bytes.ip_empty"
         message: "value is empty, which is not a valid IP address"
-        expression: "this.size() != 0"
+        expression: "!rules.ip || this.size() != 0"
       }
     ];
 
@@ -3958,12 +3958,12 @@ message BytesRules {
       (predefined).cel = {
         id: "bytes.ipv4"
         message: "value must be a valid IPv4 address"
-        expression: "this.size() == 0 || this.size() == 4"
+        expression: "!rules.ipv4 || this.size() == 0 || this.size() == 4"
       },
       (predefined).cel = {
         id: "bytes.ipv4_empty"
         message: "value is empty, which is not a valid IPv4 address"
-        expression: "this.size() != 0"
+        expression: "!rules.ipv4 || this.size() != 0"
       }
     ];
 
@@ -3979,12 +3979,12 @@ message BytesRules {
       (predefined).cel = {
         id: "bytes.ipv6"
         message: "value must be a valid IPv6 address"
-        expression: "this.size() == 0 || this.size() == 16"
+        expression: "!rules.ipv6 || this.size() == 0 || this.size() == 16"
       },
       (predefined).cel = {
         id: "bytes.ipv6_empty"
         message: "value is empty, which is not a valid IPv6 address"
-        expression: "this.size() != 0"
+        expression: "!rules.ipv6 || this.size() != 0"
       }
     ];
   }
@@ -4181,7 +4181,7 @@ message RepeatedRules {
   optional bool unique = 3 [(predefined).cel = {
     id: "repeated.unique"
     message: "repeated value must contain unique items"
-    expression: "this.unique()"
+    expression: "!rules.unique || this.unique()"
   }];
 
   // `items` details the constraints to be applied to each item
@@ -4585,7 +4585,7 @@ message TimestampRules {
     // ```
     bool lt_now = 7 [(predefined).cel = {
       id: "timestamp.lt_now"
-      expression: "this > now ? 'value must be less than now' : ''"
+      expression: "(rules.lt_now && this > now) ? 'value must be less than now' : ''"
     }];
   }
   oneof greater_than {
@@ -4701,7 +4701,7 @@ message TimestampRules {
     // ```
     bool gt_now = 8 [(predefined).cel = {
       id: "timestamp.gt_now"
-      expression: "this < now ? 'value must be greater than now' : ''"
+      expression: "(rules.gt_now && this < now) ? 'value must be greater than now' : ''"
     }];
   }
 
