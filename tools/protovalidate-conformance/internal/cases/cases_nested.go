@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func nestedSuite() suites.Suite {
@@ -42,8 +43,8 @@ func nestedSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "two.three.uuid",
-				ConstraintId: "string.uuid",
+				FieldPath:    proto.String("two.three.uuid"),
+				ConstraintId: proto.String("string.uuid"),
 			}),
 		},
 	}

@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func oneofSuite() suites.Suite {
@@ -49,15 +50,15 @@ func oneofSuite() suites.Suite {
 		},
 		"field/X/invalid": {
 			Message:  &cases.Oneof{O: &cases.Oneof_X{X: "fizzbuzz"}},
-			Expected: results.Violations(&validate.Violation{FieldPath: "x", ConstraintId: "string.prefix"}),
+			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("x"), ConstraintId: proto.String("string.prefix")}),
 		},
 		"field/Y/invalid": {
 			Message:  &cases.Oneof{O: &cases.Oneof_Y{Y: -1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: "y", ConstraintId: "int32.gt"}),
+			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("y"), ConstraintId: proto.String("int32.gt")}),
 		},
 		"filed/Z/invalid": {
 			Message:  &cases.Oneof{O: &cases.Oneof_Z{Z: &cases.TestOneofMsg{}}},
-			Expected: results.Violations(&validate.Violation{FieldPath: "z.val", ConstraintId: "bool.const"}),
+			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("z.val"), ConstraintId: proto.String("bool.const")}),
 		},
 		"required/valid/empty": {
 			Message:  &cases.OneofRequired{O: &cases.OneofRequired_X{X: ""}},
@@ -69,7 +70,7 @@ func oneofSuite() suites.Suite {
 		},
 		"required/invalid": {
 			Message:  &cases.OneofRequired{},
-			Expected: results.Violations(&validate.Violation{FieldPath: "o", ConstraintId: "required"}),
+			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("o"), ConstraintId: proto.String("required")}),
 		},
 		"required/required_field/valid/empty": {
 			Message: &cases.OneofRequiredWithRequiredField{
@@ -87,13 +88,13 @@ func oneofSuite() suites.Suite {
 			Message: &cases.OneofRequiredWithRequiredField{
 				O: &cases.OneofRequiredWithRequiredField_B{B: "foo"},
 			},
-			Expected: results.Violations(&validate.Violation{FieldPath: "a", ConstraintId: "required"}),
+			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("a"), ConstraintId: proto.String("required")}),
 		},
 		"required/required_field/invalid": {
 			Message: &cases.OneofRequiredWithRequiredField{},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "o", ConstraintId: "required"},
-				&validate.Violation{FieldPath: "a", ConstraintId: "required"}),
+				&validate.Violation{FieldPath: proto.String("o"), ConstraintId: proto.String("required")},
+				&validate.Violation{FieldPath: proto.String("a"), ConstraintId: proto.String("required")}),
 		},
 	}
 }

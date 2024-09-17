@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func mapSuite() suites.Suite {
@@ -39,9 +40,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapMin{Val: map[int32]float32{1: 2}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.min_pairs",
-					Message:      "map must be at least 2 entries",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.min_pairs"),
+					Message:      proto.String("map must be at least 2 entries"),
 				},
 			),
 		},
@@ -57,9 +58,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapMax{Val: map[int64]float64{1: 2, 3: 4, 5: 6, 7: 8}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.max_pairs",
-					Message:      "map must be at most 3 entries",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.max_pairs"),
+					Message:      proto.String("map must be at most 3 entries"),
 				},
 			),
 		},
@@ -79,9 +80,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapMinMax{Val: map[string]bool{}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.min_pairs",
-					Message:      "map must be at least 2 entries",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.min_pairs"),
+					Message:      proto.String("map must be at least 2 entries"),
 				},
 			),
 		},
@@ -89,9 +90,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapMinMax{Val: map[string]bool{"a": true, "b": false, "c": true, "d": false, "e": true}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.max_pairs",
-					Message:      "map must be at most 4 entries",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.max_pairs"),
+					Message:      proto.String("map must be at most 4 entries"),
 				},
 			),
 		},
@@ -103,9 +104,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapExact{Val: map[uint64]string{1: "a", 2: "b"}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.min_pairs",
-					Message:      "map must be at least 3 entries",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.min_pairs"),
+					Message:      proto.String("map must be at least 3 entries"),
 				},
 			),
 		},
@@ -113,9 +114,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapExact{Val: map[uint64]string{1: "a", 2: "b", 3: "c", 4: "d"}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "map.max_pairs",
-					Message:      "map must be at most 3 entries",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("map.max_pairs"),
+					Message:      proto.String("map must be at most 3 entries"),
 				},
 			),
 		},
@@ -135,10 +136,10 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapKeys{Val: map[int64]string{1: "a"}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[1]",
-					ConstraintId: "sint64.lt",
-					Message:      "value must be less than 0",
-					ForKey:       true,
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("sint64.lt"),
+					Message:      proto.String("value must be less than 0"),
+					ForKey:       proto.Bool(true),
 				},
 			),
 		},
@@ -146,10 +147,10 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapKeysPattern{Val: map[string]string{"A": "a", "!@#$%^&*()": "b"}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[\"!@#$%^&*()\"]",
-					ConstraintId: "string.pattern",
-					Message:      "value does not match regex pattern `(?i)^[a-z0-9]+$`",
-					ForKey:       true,
+					FieldPath:    proto.String("val[\"!@#$%^&*()\"]"),
+					ConstraintId: proto.String("string.pattern"),
+					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
+					ForKey:       proto.Bool(true),
 				},
 			),
 		},
@@ -169,14 +170,14 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapValues{Val: map[string]string{"a": "A", "b": "B"}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[\"a\"]",
-					ConstraintId: "string.min_len",
-					Message:      "value length must be at least 3 characters",
+					FieldPath:    proto.String("val[\"a\"]"),
+					ConstraintId: proto.String("string.min_len"),
+					Message:      proto.String("value length must be at least 3 characters"),
 				},
 				&validate.Violation{
-					FieldPath:    "val[\"b\"]",
-					ConstraintId: "string.min_len",
-					Message:      "value length must be at least 3 characters",
+					FieldPath:    proto.String("val[\"b\"]"),
+					ConstraintId: proto.String("string.min_len"),
+					Message:      proto.String("value length must be at least 3 characters"),
 				},
 			),
 		},
@@ -184,9 +185,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapValuesPattern{Val: map[string]string{"a": "A", "b": "!@#$%^&*()"}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[\"b\"]",
-					ConstraintId: "string.pattern",
-					Message:      "value does not match regex pattern `(?i)^[a-z0-9]+$`",
+					FieldPath:    proto.String("val[\"b\"]"),
+					ConstraintId: proto.String("string.pattern"),
+					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
 				},
 			),
 		},
@@ -198,9 +199,9 @@ func mapSuite() suites.Suite {
 			Message: &cases.MapRecursive{Val: map[uint32]*cases.MapRecursive_Msg{1: {}}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val[1].val",
-					ConstraintId: "string.min_len",
-					Message:      "value length must be at least 3 characters",
+					FieldPath:    proto.String("val[1].val"),
+					ConstraintId: proto.String("string.min_len"),
+					Message:      proto.String("value length must be at least 3 characters"),
 				},
 			),
 		},

@@ -22,6 +22,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/other_package"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func enumSuite() suites.Suite {
@@ -37,7 +38,7 @@ func enumSuite() suites.Suite {
 		"const/invalid": {
 			Message: &cases.EnumConst{Val: cases.TestEnum_TEST_ENUM_ONE},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.const"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.const")}),
 		},
 		"alias/const/valid": {
 			Message:  &cases.EnumAliasConst{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_B},
@@ -46,7 +47,7 @@ func enumSuite() suites.Suite {
 		"alias/const/invalid": {
 			Message: &cases.EnumAliasConst{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_GAMMA},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.const"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.const")}),
 		},
 		"defined_only/valid/unspecified": {
 			Message:  &cases.EnumDefined{Val: cases.TestEnum_TEST_ENUM_UNSPECIFIED},
@@ -59,7 +60,7 @@ func enumSuite() suites.Suite {
 		"defined_only/invalid/unknown": {
 			Message: &cases.EnumDefined{Val: math.MaxInt32},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.defined_only", Message: "value must be one of the defined enum values"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.defined_only"), Message: proto.String("value must be one of the defined enum values")}),
 		},
 		"alias/defined_only/valid/unspecified": {
 			Message:  &cases.EnumAliasDefined{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_UNSPECIFIED},
@@ -72,7 +73,7 @@ func enumSuite() suites.Suite {
 		"alias/defined_only/invalid/unknown": {
 			Message: &cases.EnumAliasDefined{Val: math.MaxInt32},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.defined_only"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.defined_only")}),
 		},
 		"in/valid": {
 			Message:  &cases.EnumIn{Val: cases.TestEnum_TEST_ENUM_TWO},
@@ -81,7 +82,7 @@ func enumSuite() suites.Suite {
 		"in/invalid": {
 			Message: &cases.EnumIn{Val: cases.TestEnum_TEST_ENUM_ONE},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.in")}),
 		},
 		"alias/in/valid": {
 			Message:  &cases.EnumAliasIn{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_BETA},
@@ -90,7 +91,7 @@ func enumSuite() suites.Suite {
 		"alias/in/invalid": {
 			Message: &cases.EnumAliasIn{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_A},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.in")}),
 		},
 		"not_in/valid": {
 			Message:  &cases.EnumNotIn{Val: cases.TestEnum_TEST_ENUM_UNSPECIFIED},
@@ -103,7 +104,7 @@ func enumSuite() suites.Suite {
 		"not_in/invalid": {
 			Message: &cases.EnumNotIn{Val: cases.TestEnum_TEST_ENUM_ONE},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.not_in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.not_in")}),
 		},
 		"alias/not_in/valid": {
 			Message:  &cases.EnumAliasNotIn{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_BETA},
@@ -112,7 +113,7 @@ func enumSuite() suites.Suite {
 		"alias/not_in/invalid": {
 			Message: &cases.EnumAliasNotIn{Val: cases.TestEnumAlias_TEST_ENUM_ALIAS_A},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.not_in"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.not_in")}),
 		},
 		"external/defined_only/valid": {
 			Message:  &cases.EnumExternal{Val: other_package.Embed_ENUMERATED_VALUE},
@@ -121,7 +122,7 @@ func enumSuite() suites.Suite {
 		"external/defined_only/invalid": {
 			Message: &cases.EnumExternal{Val: math.MaxInt32},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: "val", ConstraintId: "enum.defined_only"}),
+				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("enum.defined_only")}),
 		},
 		"example/valid": {
 			Message:  &cases.EnumExample{Val: cases.TestEnum_TEST_ENUM_TWO},

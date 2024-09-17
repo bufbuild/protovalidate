@@ -20,6 +20,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/other_package"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func messageSuite() suites.Suite {
@@ -52,9 +53,9 @@ func messageSuite() suites.Suite {
 			Message: &cases.Message{Val: &cases.TestMsg{}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val.const",
-					ConstraintId: "string.const",
-					Message:      "value must equal `foo`",
+					FieldPath:    proto.String("val.const"),
+					ConstraintId: proto.String("string.const"),
+					Message:      proto.String("value must equal `foo`"),
 				},
 			),
 		},
@@ -62,9 +63,9 @@ func messageSuite() suites.Suite {
 			Message: &cases.Message{Val: &cases.TestMsg{Const: "foo", Nested: &cases.TestMsg{}}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val.nested.const",
-					ConstraintId: "string.const",
-					Message:      "value must equal `foo`",
+					FieldPath:    proto.String("val.nested.const"),
+					ConstraintId: proto.String("string.const"),
+					Message:      proto.String("value must equal `foo`"),
 				},
 			),
 		},
@@ -84,9 +85,9 @@ func messageSuite() suites.Suite {
 			Message: &cases.MessageRequired{},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "required",
-					Message:      "value is required",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("required"),
+					Message:      proto.String("value is required"),
 				},
 			),
 		},
@@ -94,14 +95,14 @@ func messageSuite() suites.Suite {
 			Message: &cases.MessageRequiredOneof{},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "one",
-					ConstraintId: "required",
-					Message:      "exactly one field is required in oneof",
+					FieldPath:    proto.String("one"),
+					ConstraintId: proto.String("required"),
+					Message:      proto.String("exactly one field is required in oneof"),
 				},
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "required",
-					Message:      "value is required",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("required"),
+					Message:      proto.String("value is required"),
 				},
 			),
 		},
@@ -113,9 +114,9 @@ func messageSuite() suites.Suite {
 			Message: &cases.MessageRequiredButOptional{},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val",
-					ConstraintId: "required",
-					Message:      "value is required",
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("required"),
+					Message:      proto.String("value is required"),
 				},
 			),
 		},
@@ -131,9 +132,9 @@ func messageSuite() suites.Suite {
 			Message: &cases.MessageCrossPackage{Val: &other_package.Embed{}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val.val",
-					ConstraintId: "int64.gt",
-					Message:      "value must be greater than 0",
+					FieldPath:    proto.String("val.val"),
+					ConstraintId: proto.String("int64.gt"),
+					Message:      proto.String("value must be greater than 0"),
 				},
 			),
 		},
@@ -141,9 +142,9 @@ func messageSuite() suites.Suite {
 			Message: &cases.MessageCrossPackage{Val: &other_package.Embed{Val: -1}},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "val.val",
-					ConstraintId: "int64.gt",
-					Message:      "value must be greater than 0",
+					FieldPath:    proto.String("val.val"),
+					ConstraintId: proto.String("int64.gt"),
+					Message:      proto.String("value must be greater than 0"),
 				},
 			),
 		},

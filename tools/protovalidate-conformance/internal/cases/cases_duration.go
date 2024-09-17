@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/durationpb"
 )
 
@@ -43,9 +44,9 @@ func durationSuite() suites.Suite {
 				Val: nil,
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "required",
-				Message:      "value is required",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("required"),
+				Message:      proto.String("value is required"),
 			}),
 		},
 		"const/valid": {
@@ -66,9 +67,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.const",
-				Message:      "value must equal 3s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.const"),
+				Message:      proto.String("value must equal 3s"),
 			}),
 		},
 		"in/valid": {
@@ -87,9 +88,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.in",
-				Message:      `value must be in list [duration("1s"), duration("0.000001s")]`,
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.in"),
+				Message:      proto.String(`value must be in list [duration("1s"), duration("0.000001s")]`),
 			}),
 		},
 		"not in/valid": {
@@ -108,9 +109,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.not_in",
-				Message:      `value must not be in list [duration("0s")]`,
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.not_in"),
+				Message:      proto.String(`value must not be in list [duration("0s")]`),
 			}),
 		},
 		"lt/valid": {
@@ -129,9 +130,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.lt",
-				Message:      "value must be less than 0s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.lt"),
+				Message:      proto.String("value must be less than 0s"),
 			}),
 		},
 		"lt/invalid": {
@@ -141,9 +142,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.lt",
-				Message:      "value must be less than 0s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.lt"),
+				Message:      proto.String("value must be less than 0s"),
 			}),
 		},
 		"lte/valid": {
@@ -170,9 +171,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.lte",
-				Message:      "",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.lte"),
+				Message:      proto.String(""),
 			}),
 		},
 		"gt/valid": {
@@ -193,9 +194,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt",
-				Message:      "",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt"),
+				Message:      proto.String(""),
 			}),
 		},
 		"gt/invalid": {
@@ -203,9 +204,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt",
-				Message:      "value must be greater than 0.000001s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt"),
+				Message:      proto.String("value must be greater than 0.000001s"),
 			}),
 		},
 		"gte/valid": {
@@ -232,9 +233,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{Seconds: -1},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gte",
-				Message:      "value must be greater than or equal to 0.001s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gte"),
+				Message:      proto.String("value must be greater than or equal to 0.001s"),
 			}),
 		},
 		"gt_lt/valid": {
@@ -255,9 +256,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt_lt",
-				Message:      "value must be greater than 0s and less than 1s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt_lt"),
+				Message:      proto.String("value must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/invalid/below": {
@@ -266,9 +267,9 @@ func durationSuite() suites.Suite {
 					Nanos: -1000,
 				},
 			}, Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt_lt",
-				Message:      "value must be greater than 0s and less than 1s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt_lt"),
+				Message:      proto.String("value must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/invalid/max": {
@@ -278,9 +279,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt_lt",
-				Message:      "value must be greater than 0s and less than 1s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt_lt"),
+				Message:      proto.String("value must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/invalid/min": {
@@ -288,9 +289,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt_lt",
-				Message:      "value must be greater than 0s and less than 1s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt_lt"),
+				Message:      proto.String("value must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/exclusive/valid/empty": {
@@ -319,9 +320,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt_lt_exclusive",
-				Message:      "value must be greater than 1s or less than 0s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt_lt_exclusive"),
+				Message:      proto.String("value must be greater than 1s or less than 0s"),
 			}),
 		},
 		"gt_lt/exclusive/invalid/max": {
@@ -331,9 +332,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt_lt_exclusive",
-				Message:      "value must be greater than 1s or less than 0s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt_lt_exclusive"),
+				Message:      proto.String("value must be greater than 1s or less than 0s"),
 			}),
 		},
 		"gt_lt/exclusive/invalid/min": {
@@ -341,9 +342,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gt_lt_exclusive",
-				Message:      "value must be greater than 1s or less than 0s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gt_lt_exclusive"),
+				Message:      proto.String("value must be greater than 1s or less than 0s"),
 			}),
 		},
 		"gte_lte/valid": {
@@ -377,9 +378,9 @@ func durationSuite() suites.Suite {
 				Val: &durationpb.Duration{Seconds: 3600, Nanos: 1},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gte_lte",
-				Message:      "value must be greater than or equal to 60s and less than or equal to 3600s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gte_lte"),
+				Message:      proto.String("value must be greater than or equal to 60s and less than or equal to 3600s"),
 			}),
 		},
 		"gte_lte/invalid/below": {
@@ -389,9 +390,9 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gte_lte",
-				Message:      "value must be greater than or equal to 60s and less than or equal to 3600s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gte_lte"),
+				Message:      proto.String("value must be greater than or equal to 60s and less than or equal to 3600s"),
 			}),
 		},
 		"Ex gte_lte/valid/empty": {
@@ -432,17 +433,17 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "val",
-				ConstraintId: "duration.gte_lte_exclusive",
-				Message:      "value must be greater than or equal to 3600s or less than or equal to 60s",
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("duration.gte_lte_exclusive"),
+				Message:      proto.String("value must be greater than or equal to 3600s or less than or equal to 60s"),
 			}),
 		},
 		"fields_with_other_fields/invalid_other_field": {
 			Message: &cases.DurationFieldWithOtherFields{DurationVal: nil, IntVal: 12},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    "int_val",
-				ConstraintId: "int32.gt",
-				Message:      "value must be greater than 16",
+				FieldPath:    proto.String("int_val"),
+				ConstraintId: proto.String("int32.gt"),
+				Message:      proto.String("value must be greater than 16"),
 			}),
 		},
 		"example/valid": {

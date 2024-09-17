@@ -27,6 +27,12 @@ library.
       This guide will help you understand when and how to use these standard
       constraints effectively.
 
+    - [Predefined Constraints](predefined-constraints.md): This section
+      discusses how to extend `protovalidate` with custom reusable rules that
+      behave similarly to the standard constraints. This can be useful in order
+      to share similar custom validation logic across multiple fields or
+      messages.
+
 - [Errors](errors.md): This section explains the error system in `protovalidate`
   and provides guidance on how to handle them effectively.
 
@@ -38,7 +44,7 @@ designed to help you implement new language support and assist in migrating your
 existing projects to `protovalidate`.
 
 - [Conformance](conformance.md): This document is dedicated to explaining the
-  Conformance tool. Learn how to use this tool to ensure all implementations 
+  Conformance tool. Learn how to use this tool to ensure all implementations
   align with `protovalidate`'s rules and constraints effectively.
 
 - [Migrate](migrate.md): If you're planning to migrate your existing project to

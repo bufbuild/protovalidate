@@ -1,0 +1,151 @@
+// Copyright 2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases;
+
+import "buf/validate/conformance/cases/predefined_rules_proto2.proto";
+import "buf/validate/conformance/cases/predefined_rules_proto_editions.proto";
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+message PredefinedFloatRuleProto3 {
+  float val = 1 [(buf.validate.field).float.(float_abs_range_proto2) = 1.0];
+}
+
+message PredefinedDoubleRuleProto3 {
+  double val = 1 [(buf.validate.field).double.(double_abs_range_proto2) = 1.0];
+}
+
+message PredefinedInt32RuleProto3 {
+  int32 val = 1 [(buf.validate.field).int32.(int32_even_proto2) = true];
+}
+
+message PredefinedInt64RuleProto3 {
+  int64 val = 1 [(buf.validate.field).int64.(int64_even_proto2) = true];
+}
+
+message PredefinedUInt32RuleProto3 {
+  uint32 val = 1 [(buf.validate.field).uint32.(uint32_even_proto2) = true];
+}
+
+message PredefinedUInt64RuleProto3 {
+  uint64 val = 1 [(buf.validate.field).uint64.(uint64_even_proto2) = true];
+}
+
+message PredefinedSInt32RuleProto3 {
+  sint32 val = 1 [(buf.validate.field).sint32.(sint32_even_proto2) = true];
+}
+
+message PredefinedSInt64RuleProto3 {
+  sint64 val = 1 [(buf.validate.field).sint64.(sint64_even_proto2) = true];
+}
+
+message PredefinedFixed32RuleProto3 {
+  fixed32 val = 1 [(buf.validate.field).fixed32.(fixed32_even_proto2) = true];
+}
+
+message PredefinedFixed64RuleProto3 {
+  fixed64 val = 1 [(buf.validate.field).fixed64.(fixed64_even_proto2) = true];
+}
+
+message PredefinedSFixed32RuleProto3 {
+  sfixed32 val = 1 [(buf.validate.field).sfixed32.(sfixed32_even_proto2) = true];
+}
+
+message PredefinedSFixed64RuleProto3 {
+  sfixed64 val = 1 [(buf.validate.field).sfixed64.(sfixed64_even_proto2) = true];
+}
+
+message PredefinedBoolRuleProto3 {
+  bool val = 1 [(buf.validate.field).bool.(bool_false_proto2) = true];
+}
+
+message PredefinedStringRuleProto3 {
+  string val = 1 [(buf.validate.field).string.(string_valid_path_proto2) = true];
+}
+
+message PredefinedBytesRuleProto3 {
+  bytes val = 1 [(buf.validate.field).bytes.(bytes_valid_path_proto2) = true];
+}
+
+message PredefinedEnumRuleProto3 {
+  enum EnumProto3 {
+    ENUM_PROTO3_ZERO_UNSPECIFIED = 0;
+    ENUM_PROTO3_ONE = 1;
+  }
+  EnumProto3 val = 1 [(buf.validate.field).enum.(enum_non_zero_proto2) = true];
+}
+
+message PredefinedMapRuleProto3 {
+  map<uint64, uint64> val = 1 [(buf.validate.field).map.(map_at_least_five_edition_2023) = true];
+}
+
+message PredefinedRepeatedRuleProto3 {
+  repeated uint64 val = 1 [(buf.validate.field).repeated.(repeated_at_least_five_proto2) = true];
+}
+
+message PredefinedDurationRuleProto3 {
+  google.protobuf.Duration val = 1 [(buf.validate.field).duration.(duration_too_long_proto2) = true];
+}
+
+message PredefinedTimestampRuleProto3 {
+  google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp.(timestamp_in_range_proto2) = true];
+}
+
+message PredefinedAndCustomRuleProto3 {
+  int32 a = 1 [
+    (field).cel = {
+      id: "predefined_and_custom_rule_scalar_proto3"
+      expression: "this > 24 ? '' : 'a must be greater than 24'"
+    },
+    (field).int32.(int32_even_edition_2023) = true
+  ];
+
+  optional Nested b = 2 [(field).cel = {
+    id: "predefined_and_custom_rule_embedded_proto3"
+    message: "b.c must be a multiple of 3"
+    expression: "this.c % 3 == 0"
+  }];
+
+  message Nested {
+    int32 c = 1 [
+      (field).cel = {
+        id: "predefined_and_custom_rule_nested_proto3"
+        expression: "this > 0 ? '' : 'c must be positive'"
+      },
+      (field).int32.(int32_even_edition_2023) = true
+    ];
+  }
+}
+
+message StandardPredefinedAndCustomRuleProto3 {
+  int32 a = 1 [
+    (field).int32.lt = 28,
+    (field).int32.(int32_even_proto2) = true,
+    (field).cel = {
+      id: "standard_predefined_and_custom_rule_scalar_proto3"
+      expression: "this > 24 ? '' : 'a must be greater than 24'"
+    }
+  ];
+}
+
+// This is a workaround for https://github.com/bufbuild/buf/issues/3306.
+// TODO(jchadwick-buf): Remove this when bufbuild/buf#3306 is fixed.
+message PredefinedRulesProto3UnusedImportBugWorkaround {
+  StandardPredefinedAndCustomRuleProto2 dummy_1 = 1;
+  StandardPredefinedAndCustomRuleEdition2023 dummy_2 = 2;
+}

@@ -19,6 +19,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_constraints"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"google.golang.org/protobuf/proto"
 )
 
 func customSuite() suites.Suite {
@@ -38,8 +39,8 @@ func customSuite() suites.Suite {
 		"message_expressions/empty": {
 			Message: &custom_constraints.MessageExpressions{},
 			Expected: results.Violations(
-				&validate.Violation{ConstraintId: "message_expression_scalar"},
-				&validate.Violation{ConstraintId: "message_expression_enum"},
+				&validate.Violation{ConstraintId: proto.String("message_expression_scalar")},
+				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
 			),
 		},
 		"message_expression/valid": {
@@ -75,16 +76,16 @@ func customSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(
-				&validate.Violation{ConstraintId: "message_expression_scalar"},
-				&validate.Violation{ConstraintId: "message_expression_enum"},
-				&validate.Violation{ConstraintId: "message_expression_embed"},
+				&validate.Violation{ConstraintId: proto.String("message_expression_scalar")},
+				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
+				&validate.Violation{ConstraintId: proto.String("message_expression_embed")},
 				&validate.Violation{
-					FieldPath:    "e",
-					ConstraintId: "message_expression_nested",
+					FieldPath:    proto.String("e"),
+					ConstraintId: proto.String("message_expression_nested"),
 				},
 				&validate.Violation{
-					FieldPath:    "f",
-					ConstraintId: "message_expression_nested",
+					FieldPath:    proto.String("f"),
+					ConstraintId: proto.String("message_expression_nested"),
 				},
 			),
 		},
@@ -92,12 +93,12 @@ func customSuite() suites.Suite {
 			Message: &custom_constraints.FieldExpressions{},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "field_expression_scalar",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("field_expression_scalar"),
 				},
 				&validate.Violation{
-					FieldPath:    "b",
-					ConstraintId: "field_expression_enum",
+					FieldPath:    proto.String("b"),
+					ConstraintId: proto.String("field_expression_enum"),
 				},
 			),
 		},
@@ -121,20 +122,20 @@ func customSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    "a",
-					ConstraintId: "field_expression_scalar",
+					FieldPath:    proto.String("a"),
+					ConstraintId: proto.String("field_expression_scalar"),
 				},
 				&validate.Violation{
-					FieldPath:    "b",
-					ConstraintId: "field_expression_enum",
+					FieldPath:    proto.String("b"),
+					ConstraintId: proto.String("field_expression_enum"),
 				},
 				&validate.Violation{
-					FieldPath:    "c",
-					ConstraintId: "field_expression_embed",
+					FieldPath:    proto.String("c"),
+					ConstraintId: proto.String("field_expression_embed"),
 				},
 				&validate.Violation{
-					FieldPath:    "c.a",
-					ConstraintId: "field_expression_nested",
+					FieldPath:    proto.String("c.a"),
+					ConstraintId: proto.String("field_expression_nested"),
 				},
 			),
 		},
