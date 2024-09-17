@@ -239,11 +239,11 @@ func predefinedSuite() suites.Suite {
 			),
 		},
 		"proto2/enum/valid": {
-			Message:  &cases.PredefinedEnumRuleProto2{Val: toPointer(cases.PredefinedEnumRuleProto2_ENUM_PROTO2_ONE)},
+			Message:  &cases.PredefinedEnumRuleProto2{Val: cases.PredefinedEnumRuleProto2_ENUM_PROTO2_ONE.Enum()},
 			Expected: results.Success(true),
 		},
 		"proto2/enum/invalid": {
-			Message: &cases.PredefinedEnumRuleProto2{Val: toPointer(cases.PredefinedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED)},
+			Message: &cases.PredefinedEnumRuleProto2{Val: cases.PredefinedEnumRuleProto2_ENUM_PROTO2_ZERO_UNSPECIFIED.Enum()},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -957,11 +957,11 @@ func predefinedSuite() suites.Suite {
 			),
 		},
 		"proto/2023/enum/valid": {
-			Message:  &cases.PredefinedEnumRuleEdition2023{Val: toPointer(cases.PredefinedEnumRuleEdition2023_ENUM_EDITION2023_ONE)},
+			Message:  &cases.PredefinedEnumRuleEdition2023{Val: cases.PredefinedEnumRuleEdition2023_ENUM_EDITION2023_ONE.Enum()},
 			Expected: results.Success(true),
 		},
 		"proto/2023/enum/invalid": {
-			Message: &cases.PredefinedEnumRuleEdition2023{Val: toPointer(cases.PredefinedEnumRuleEdition2023_ENUM_EDITION2023_ZERO_UNSPECIFIED)},
+			Message: &cases.PredefinedEnumRuleEdition2023{Val: cases.PredefinedEnumRuleEdition2023_ENUM_EDITION2023_ZERO_UNSPECIFIED.Enum()},
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
@@ -1113,8 +1113,4 @@ func predefinedSuite() suites.Suite {
 			),
 		},
 	}
-}
-
-func toPointer[T any](value T) *T {
-	return &value
 }
