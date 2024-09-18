@@ -43,7 +43,7 @@ func (b *Benchmark) Range(filter *regexp.Regexp, exec func(suiteName string, sui
 		if filter != nil && !filter.MatchString(suiteName) {
 			continue
 		}
-		for i := range b.n {
+		for i := 0; i < b.n; i++ {
 			b.resetTimer()
 			b.startTimer()
 			if err := exec(suiteName, suite); err != nil {

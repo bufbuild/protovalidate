@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package buf.validate.conformance.harness;
 
-import "buf/validate/validate.proto";
+import "buf/validate/expression.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
 

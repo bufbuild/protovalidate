@@ -121,7 +121,3 @@ message EnumInsideOneof {
     }];
   }
 }
-
-message EnumExample {
-  TestEnum val = 1 [(buf.validate.field).enum.example = 2];
-}

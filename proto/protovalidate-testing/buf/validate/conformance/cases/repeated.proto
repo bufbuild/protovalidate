@@ -60,9 +60,6 @@ message RepeatedExact {
 message RepeatedUnique {
   repeated string val = 1 [(buf.validate.field).repeated.unique = true];
 }
-message RepeatedNotUnique {
-  repeated string val = 1 [(buf.validate.field).repeated.unique = false];
-}
 message RepeatedMultipleUnique {
   repeated string a = 1 [(buf.validate.field).repeated.unique = true];
   repeated int32 b = 2 [(buf.validate.field).repeated.unique = true];
