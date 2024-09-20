@@ -76,6 +76,9 @@ message FloatExGTELTE {
 message FloatFinite {
   float val = 1 [(buf.validate.field).float.finite = true];
 }
+message FloatNotFinite {
+  float val = 1 [(buf.validate.field).float.finite = false];
+}
 message FloatIgnore {
   float val = 1 [
     (buf.validate.field).float = {
@@ -88,6 +91,10 @@ message FloatIgnore {
 
 message FloatIncorrectType {
   float val = 1 [(buf.validate.field).double.gt = 0];
+}
+
+message FloatExample {
+  float val = 1 [(buf.validate.field).float.example = 8];
 }
 
 message DoubleNone {
@@ -148,6 +155,9 @@ message DoubleExGTELTE {
 message DoubleFinite {
   double val = 1 [(buf.validate.field).double.finite = true];
 }
+message DoubleNotFinite {
+  double val = 1 [(buf.validate.field).double.finite = false];
+}
 message DoubleIgnore {
   double val = 1 [
     (buf.validate.field).double = {
@@ -160,6 +170,10 @@ message DoubleIgnore {
 
 message DoubleIncorrectType {
   double val = 1 [(buf.validate.field).float.gt = 0];
+}
+
+message DoubleExample {
+  double val = 1 [(buf.validate.field).double.example = 0];
 }
 
 message Int32None {
@@ -229,6 +243,10 @@ message Int32Ignore {
 
 message Int32IncorrectType {
   int32 val = 1 [(buf.validate.field).float.gt = 0];
+}
+
+message Int32Example {
+  int32 val = 1 [(buf.validate.field).int32.example = 10];
 }
 
 message Int64None {
@@ -325,6 +343,10 @@ message Int64IncorrectType {
   int64 val = 1 [(buf.validate.field).float.gt = 0];
 }
 
+message Int64Example {
+  int64 val = 1 [(buf.validate.field).int64.example = 10];
+}
+
 message UInt32None {
   uint32 val = 1;
 }
@@ -392,6 +414,10 @@ message UInt32Ignore {
 
 message UInt32IncorrectType {
   uint32 val = 1 [(buf.validate.field).float.gt = 0];
+}
+
+message UInt32Example {
+  uint32 val = 1 [(buf.validate.field).uint32.example = 0];
 }
 
 message UInt64None {
@@ -463,6 +489,10 @@ message UInt64IncorrectType {
   uint64 val = 1 [(buf.validate.field).float.gt = 0];
 }
 
+message UInt64Example {
+  uint64 val = 1 [(buf.validate.field).uint64.example = 0];
+}
+
 message SInt32None {
   sint32 val = 1;
 }
@@ -532,6 +562,10 @@ message SInt32IncorrectType {
   sint32 val = 1 [(buf.validate.field).float.gt = 0];
 }
 
+message SInt32Example {
+  sint32 val = 1 [(buf.validate.field).sint32.example = 0];
+}
+
 message SInt64None {
   sint64 val = 1;
 }
@@ -598,6 +632,10 @@ message SInt64Ignore {
 }
 message SInt64IncorrectType {
   sint64 val = 1 [(buf.validate.field).float.gt = 0];
+}
+
+message SInt64Example {
+  sint64 val = 1 [(buf.validate.field).sint64.example = 0];
 }
 
 message Fixed32None {
@@ -669,6 +707,10 @@ message Fixed32IncorrectType {
   fixed32 val = 1 [(buf.validate.field).float.gt = 0];
 }
 
+message Fixed32Example {
+  fixed32 val = 1 [(buf.validate.field).fixed32.example = 0];
+}
+
 message Fixed64None {
   fixed64 val = 1;
 }
@@ -736,6 +778,10 @@ message Fixed64Ignore {
 
 message Fixed64IncorrectType {
   fixed64 val = 1 [(buf.validate.field).float.gt = 0];
+}
+
+message Fixed64Example {
+  fixed64 val = 1 [(buf.validate.field).fixed64.example = 0];
 }
 
 message SFixed32None {
@@ -807,6 +853,10 @@ message SFixed32IncorrectType {
   sfixed32 val = 1 [(buf.validate.field).float.gt = 0];
 }
 
+message SFixed32Example {
+  sfixed32 val = 1 [(buf.validate.field).sfixed32.example = 0];
+}
+
 message SFixed64None {
   sfixed64 val = 1;
 }
@@ -874,6 +924,10 @@ message SFixed64Ignore {
 
 message SFixed64IncorrectType {
   sfixed64 val = 1 [(buf.validate.field).float.gt = 0];
+}
+
+message SFixed64Example {
+  sfixed64 val = 1 [(buf.validate.field).sfixed64.example = 0];
 }
 
 message Int64LTEOptional {

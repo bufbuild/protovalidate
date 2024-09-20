@@ -89,3 +89,7 @@ message DurationFieldWithOtherFields {
   google.protobuf.Duration duration_val = 1 [(buf.validate.field).duration.lte = {seconds: 1}];
   int32 int_val = 2 [(buf.validate.field).int32.gt = 16];
 }
+
+message DurationExample {
+  google.protobuf.Duration val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
+}
