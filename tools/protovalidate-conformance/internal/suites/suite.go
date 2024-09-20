@@ -104,7 +104,7 @@ func (s Suite) ProcessResults(
 			Got:             actual.ToProto(),
 			Input:           anyInput,
 			ExpectedFailure: isSkipped(caseName, skippedCases),
-		}, options.Verbose)
+		}, options.GetVerbose())
 		return nil
 	})
 
