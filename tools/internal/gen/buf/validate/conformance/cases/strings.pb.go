@@ -1022,53 +1022,6 @@ func (x *StringEmail) GetVal() string {
 	return ""
 }
 
-type StringNotEmail struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotEmail) Reset() {
-	*x = StringNotEmail{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotEmail) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotEmail) ProtoMessage() {}
-
-func (x *StringNotEmail) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotEmail.ProtoReflect.Descriptor instead.
-func (*StringNotEmail) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *StringNotEmail) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
 type StringAddress struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1080,7 +1033,7 @@ type StringAddress struct {
 func (x *StringAddress) Reset() {
 	*x = StringAddress{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1093,7 +1046,7 @@ func (x *StringAddress) String() string {
 func (*StringAddress) ProtoMessage() {}
 
 func (x *StringAddress) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1106,57 +1059,10 @@ func (x *StringAddress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringAddress.ProtoReflect.Descriptor instead.
 func (*StringAddress) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{22}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *StringAddress) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotAddress struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotAddress) Reset() {
-	*x = StringNotAddress{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotAddress) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotAddress) ProtoMessage() {}
-
-func (x *StringNotAddress) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotAddress.ProtoReflect.Descriptor instead.
-func (*StringNotAddress) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *StringNotAddress) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1174,7 +1080,7 @@ type StringHostname struct {
 func (x *StringHostname) Reset() {
 	*x = StringHostname{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1187,7 +1093,7 @@ func (x *StringHostname) String() string {
 func (*StringHostname) ProtoMessage() {}
 
 func (x *StringHostname) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1200,57 +1106,10 @@ func (x *StringHostname) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHostname.ProtoReflect.Descriptor instead.
 func (*StringHostname) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{24}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *StringHostname) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotHostname struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotHostname) Reset() {
-	*x = StringNotHostname{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotHostname) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotHostname) ProtoMessage() {}
-
-func (x *StringNotHostname) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotHostname.ProtoReflect.Descriptor instead.
-func (*StringNotHostname) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *StringNotHostname) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1268,7 +1127,7 @@ type StringIP struct {
 func (x *StringIP) Reset() {
 	*x = StringIP{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1281,7 +1140,7 @@ func (x *StringIP) String() string {
 func (*StringIP) ProtoMessage() {}
 
 func (x *StringIP) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1294,57 +1153,10 @@ func (x *StringIP) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIP.ProtoReflect.Descriptor instead.
 func (*StringIP) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{26}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *StringIP) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIP struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIP) Reset() {
-	*x = StringNotIP{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIP) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIP) ProtoMessage() {}
-
-func (x *StringNotIP) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIP.ProtoReflect.Descriptor instead.
-func (*StringNotIP) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{27}
-}
-
-func (x *StringNotIP) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1362,7 +1174,7 @@ type StringIPv4 struct {
 func (x *StringIPv4) Reset() {
 	*x = StringIPv4{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1375,7 +1187,7 @@ func (x *StringIPv4) String() string {
 func (*StringIPv4) ProtoMessage() {}
 
 func (x *StringIPv4) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1388,57 +1200,10 @@ func (x *StringIPv4) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv4.ProtoReflect.Descriptor instead.
 func (*StringIPv4) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{28}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *StringIPv4) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPv4 struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPv4) Reset() {
-	*x = StringNotIPv4{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPv4) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPv4) ProtoMessage() {}
-
-func (x *StringNotIPv4) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPv4.ProtoReflect.Descriptor instead.
-func (*StringNotIPv4) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{29}
-}
-
-func (x *StringNotIPv4) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1456,7 +1221,7 @@ type StringIPv6 struct {
 func (x *StringIPv6) Reset() {
 	*x = StringIPv6{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1469,7 +1234,7 @@ func (x *StringIPv6) String() string {
 func (*StringIPv6) ProtoMessage() {}
 
 func (x *StringIPv6) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1482,57 +1247,10 @@ func (x *StringIPv6) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv6.ProtoReflect.Descriptor instead.
 func (*StringIPv6) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{30}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *StringIPv6) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPv6 struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPv6) Reset() {
-	*x = StringNotIPv6{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPv6) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPv6) ProtoMessage() {}
-
-func (x *StringNotIPv6) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPv6.ProtoReflect.Descriptor instead.
-func (*StringNotIPv6) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{31}
-}
-
-func (x *StringNotIPv6) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1550,7 +1268,7 @@ type StringIPWithPrefixLen struct {
 func (x *StringIPWithPrefixLen) Reset() {
 	*x = StringIPWithPrefixLen{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1563,7 +1281,7 @@ func (x *StringIPWithPrefixLen) String() string {
 func (*StringIPWithPrefixLen) ProtoMessage() {}
 
 func (x *StringIPWithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1576,57 +1294,10 @@ func (x *StringIPWithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPWithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringIPWithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{32}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *StringIPWithPrefixLen) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPWithPrefixLen struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPWithPrefixLen) Reset() {
-	*x = StringNotIPWithPrefixLen{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPWithPrefixLen) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPWithPrefixLen) ProtoMessage() {}
-
-func (x *StringNotIPWithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPWithPrefixLen.ProtoReflect.Descriptor instead.
-func (*StringNotIPWithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{33}
-}
-
-func (x *StringNotIPWithPrefixLen) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1644,7 +1315,7 @@ type StringIPv4WithPrefixLen struct {
 func (x *StringIPv4WithPrefixLen) Reset() {
 	*x = StringIPv4WithPrefixLen{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1657,7 +1328,7 @@ func (x *StringIPv4WithPrefixLen) String() string {
 func (*StringIPv4WithPrefixLen) ProtoMessage() {}
 
 func (x *StringIPv4WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1670,57 +1341,10 @@ func (x *StringIPv4WithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv4WithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringIPv4WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{34}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *StringIPv4WithPrefixLen) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPv4WithPrefixLen struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPv4WithPrefixLen) Reset() {
-	*x = StringNotIPv4WithPrefixLen{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPv4WithPrefixLen) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPv4WithPrefixLen) ProtoMessage() {}
-
-func (x *StringNotIPv4WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPv4WithPrefixLen.ProtoReflect.Descriptor instead.
-func (*StringNotIPv4WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{35}
-}
-
-func (x *StringNotIPv4WithPrefixLen) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1738,7 +1362,7 @@ type StringIPv6WithPrefixLen struct {
 func (x *StringIPv6WithPrefixLen) Reset() {
 	*x = StringIPv6WithPrefixLen{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1751,7 +1375,7 @@ func (x *StringIPv6WithPrefixLen) String() string {
 func (*StringIPv6WithPrefixLen) ProtoMessage() {}
 
 func (x *StringIPv6WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1764,57 +1388,10 @@ func (x *StringIPv6WithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv6WithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringIPv6WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{36}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *StringIPv6WithPrefixLen) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPv6WithPrefixLen struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPv6WithPrefixLen) Reset() {
-	*x = StringNotIPv6WithPrefixLen{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPv6WithPrefixLen) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPv6WithPrefixLen) ProtoMessage() {}
-
-func (x *StringNotIPv6WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPv6WithPrefixLen.ProtoReflect.Descriptor instead.
-func (*StringNotIPv6WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{37}
-}
-
-func (x *StringNotIPv6WithPrefixLen) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1832,7 +1409,7 @@ type StringIPPrefix struct {
 func (x *StringIPPrefix) Reset() {
 	*x = StringIPPrefix{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1845,7 +1422,7 @@ func (x *StringIPPrefix) String() string {
 func (*StringIPPrefix) ProtoMessage() {}
 
 func (x *StringIPPrefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1858,57 +1435,10 @@ func (x *StringIPPrefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPPrefix.ProtoReflect.Descriptor instead.
 func (*StringIPPrefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{38}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *StringIPPrefix) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPPrefix struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPPrefix) Reset() {
-	*x = StringNotIPPrefix{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPPrefix) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPPrefix) ProtoMessage() {}
-
-func (x *StringNotIPPrefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPPrefix.ProtoReflect.Descriptor instead.
-func (*StringNotIPPrefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{39}
-}
-
-func (x *StringNotIPPrefix) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -1926,7 +1456,7 @@ type StringIPv4Prefix struct {
 func (x *StringIPv4Prefix) Reset() {
 	*x = StringIPv4Prefix{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1939,7 +1469,7 @@ func (x *StringIPv4Prefix) String() string {
 func (*StringIPv4Prefix) ProtoMessage() {}
 
 func (x *StringIPv4Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1952,57 +1482,10 @@ func (x *StringIPv4Prefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv4Prefix.ProtoReflect.Descriptor instead.
 func (*StringIPv4Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{40}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *StringIPv4Prefix) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPv4Prefix struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPv4Prefix) Reset() {
-	*x = StringNotIPv4Prefix{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPv4Prefix) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPv4Prefix) ProtoMessage() {}
-
-func (x *StringNotIPv4Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPv4Prefix.ProtoReflect.Descriptor instead.
-func (*StringNotIPv4Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{41}
-}
-
-func (x *StringNotIPv4Prefix) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -2020,7 +1503,7 @@ type StringIPv6Prefix struct {
 func (x *StringIPv6Prefix) Reset() {
 	*x = StringIPv6Prefix{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2033,7 +1516,7 @@ func (x *StringIPv6Prefix) String() string {
 func (*StringIPv6Prefix) ProtoMessage() {}
 
 func (x *StringIPv6Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2046,57 +1529,10 @@ func (x *StringIPv6Prefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv6Prefix.ProtoReflect.Descriptor instead.
 func (*StringIPv6Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{42}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *StringIPv6Prefix) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotIPv6Prefix struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotIPv6Prefix) Reset() {
-	*x = StringNotIPv6Prefix{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotIPv6Prefix) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotIPv6Prefix) ProtoMessage() {}
-
-func (x *StringNotIPv6Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotIPv6Prefix.ProtoReflect.Descriptor instead.
-func (*StringNotIPv6Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{43}
-}
-
-func (x *StringNotIPv6Prefix) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -2114,7 +1550,7 @@ type StringURI struct {
 func (x *StringURI) Reset() {
 	*x = StringURI{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[44]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2127,7 +1563,7 @@ func (x *StringURI) String() string {
 func (*StringURI) ProtoMessage() {}
 
 func (x *StringURI) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[44]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2140,57 +1576,10 @@ func (x *StringURI) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringURI.ProtoReflect.Descriptor instead.
 func (*StringURI) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{44}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *StringURI) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotURI struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotURI) Reset() {
-	*x = StringNotURI{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[45]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotURI) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotURI) ProtoMessage() {}
-
-func (x *StringNotURI) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[45]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotURI.ProtoReflect.Descriptor instead.
-func (*StringNotURI) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{45}
-}
-
-func (x *StringNotURI) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -2208,7 +1597,7 @@ type StringURIRef struct {
 func (x *StringURIRef) Reset() {
 	*x = StringURIRef{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[46]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2221,7 +1610,7 @@ func (x *StringURIRef) String() string {
 func (*StringURIRef) ProtoMessage() {}
 
 func (x *StringURIRef) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[46]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2234,57 +1623,10 @@ func (x *StringURIRef) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringURIRef.ProtoReflect.Descriptor instead.
 func (*StringURIRef) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{46}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *StringURIRef) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotURIRef struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotURIRef) Reset() {
-	*x = StringNotURIRef{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[47]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotURIRef) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotURIRef) ProtoMessage() {}
-
-func (x *StringNotURIRef) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[47]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotURIRef.ProtoReflect.Descriptor instead.
-func (*StringNotURIRef) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{47}
-}
-
-func (x *StringNotURIRef) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -2302,7 +1644,7 @@ type StringUUID struct {
 func (x *StringUUID) Reset() {
 	*x = StringUUID{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[48]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2315,7 +1657,7 @@ func (x *StringUUID) String() string {
 func (*StringUUID) ProtoMessage() {}
 
 func (x *StringUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[48]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2328,57 +1670,10 @@ func (x *StringUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringUUID.ProtoReflect.Descriptor instead.
 func (*StringUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{48}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *StringUUID) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotUUID struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotUUID) Reset() {
-	*x = StringNotUUID{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[49]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotUUID) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotUUID) ProtoMessage() {}
-
-func (x *StringNotUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[49]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotUUID.ProtoReflect.Descriptor instead.
-func (*StringNotUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{49}
-}
-
-func (x *StringNotUUID) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -2396,7 +1691,7 @@ type StringTUUID struct {
 func (x *StringTUUID) Reset() {
 	*x = StringTUUID{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[50]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2409,7 +1704,7 @@ func (x *StringTUUID) String() string {
 func (*StringTUUID) ProtoMessage() {}
 
 func (x *StringTUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[50]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2422,57 +1717,10 @@ func (x *StringTUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringTUUID.ProtoReflect.Descriptor instead.
 func (*StringTUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{50}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *StringTUUID) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringNotTUUID struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringNotTUUID) Reset() {
-	*x = StringNotTUUID{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[51]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringNotTUUID) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringNotTUUID) ProtoMessage() {}
-
-func (x *StringNotTUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[51]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringNotTUUID.ProtoReflect.Descriptor instead.
-func (*StringNotTUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{51}
-}
-
-func (x *StringNotTUUID) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -2490,7 +1738,7 @@ type StringHttpHeaderName struct {
 func (x *StringHttpHeaderName) Reset() {
 	*x = StringHttpHeaderName{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[52]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2503,7 +1751,7 @@ func (x *StringHttpHeaderName) String() string {
 func (*StringHttpHeaderName) ProtoMessage() {}
 
 func (x *StringHttpHeaderName) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[52]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2516,7 +1764,7 @@ func (x *StringHttpHeaderName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderName.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderName) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{52}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *StringHttpHeaderName) GetVal() string {
@@ -2537,7 +1785,7 @@ type StringHttpHeaderValue struct {
 func (x *StringHttpHeaderValue) Reset() {
 	*x = StringHttpHeaderValue{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[53]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2550,7 +1798,7 @@ func (x *StringHttpHeaderValue) String() string {
 func (*StringHttpHeaderValue) ProtoMessage() {}
 
 func (x *StringHttpHeaderValue) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[53]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2563,7 +1811,7 @@ func (x *StringHttpHeaderValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderValue.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderValue) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{53}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *StringHttpHeaderValue) GetVal() string {
@@ -2584,7 +1832,7 @@ type StringHttpHeaderNameLoose struct {
 func (x *StringHttpHeaderNameLoose) Reset() {
 	*x = StringHttpHeaderNameLoose{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[54]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2597,7 +1845,7 @@ func (x *StringHttpHeaderNameLoose) String() string {
 func (*StringHttpHeaderNameLoose) ProtoMessage() {}
 
 func (x *StringHttpHeaderNameLoose) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[54]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2610,7 +1858,7 @@ func (x *StringHttpHeaderNameLoose) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderNameLoose.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderNameLoose) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{54}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *StringHttpHeaderNameLoose) GetVal() string {
@@ -2631,7 +1879,7 @@ type StringHttpHeaderValueLoose struct {
 func (x *StringHttpHeaderValueLoose) Reset() {
 	*x = StringHttpHeaderValueLoose{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[55]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2644,7 +1892,7 @@ func (x *StringHttpHeaderValueLoose) String() string {
 func (*StringHttpHeaderValueLoose) ProtoMessage() {}
 
 func (x *StringHttpHeaderValueLoose) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[55]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2657,7 +1905,7 @@ func (x *StringHttpHeaderValueLoose) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderValueLoose.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderValueLoose) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{55}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *StringHttpHeaderValueLoose) GetVal() string {
@@ -2678,7 +1926,7 @@ type StringUUIDIgnore struct {
 func (x *StringUUIDIgnore) Reset() {
 	*x = StringUUIDIgnore{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[56]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2691,7 +1939,7 @@ func (x *StringUUIDIgnore) String() string {
 func (*StringUUIDIgnore) ProtoMessage() {}
 
 func (x *StringUUIDIgnore) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[56]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2704,7 +1952,7 @@ func (x *StringUUIDIgnore) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringUUIDIgnore.ProtoReflect.Descriptor instead.
 func (*StringUUIDIgnore) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{56}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *StringUUIDIgnore) GetVal() string {
@@ -2728,7 +1976,7 @@ type StringInOneof struct {
 func (x *StringInOneof) Reset() {
 	*x = StringInOneof{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[57]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2741,7 +1989,7 @@ func (x *StringInOneof) String() string {
 func (*StringInOneof) ProtoMessage() {}
 
 func (x *StringInOneof) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[57]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2754,7 +2002,7 @@ func (x *StringInOneof) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringInOneof.ProtoReflect.Descriptor instead.
 func (*StringInOneof) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{57}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{41}
 }
 
 func (m *StringInOneof) GetFoo() isStringInOneof_Foo {
@@ -2792,7 +2040,7 @@ type StringHostAndPort struct {
 func (x *StringHostAndPort) Reset() {
 	*x = StringHostAndPort{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[58]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2805,7 +2053,7 @@ func (x *StringHostAndPort) String() string {
 func (*StringHostAndPort) ProtoMessage() {}
 
 func (x *StringHostAndPort) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[58]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2818,7 +2066,7 @@ func (x *StringHostAndPort) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHostAndPort.ProtoReflect.Descriptor instead.
 func (*StringHostAndPort) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{58}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *StringHostAndPort) GetVal() string {
@@ -2839,7 +2087,7 @@ type StringHostAndOptionalPort struct {
 func (x *StringHostAndOptionalPort) Reset() {
 	*x = StringHostAndOptionalPort{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[59]
+		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2852,7 +2100,7 @@ func (x *StringHostAndOptionalPort) String() string {
 func (*StringHostAndOptionalPort) ProtoMessage() {}
 
 func (x *StringHostAndOptionalPort) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[59]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2865,57 +2113,10 @@ func (x *StringHostAndOptionalPort) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHostAndOptionalPort.ProtoReflect.Descriptor instead.
 func (*StringHostAndOptionalPort) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{59}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *StringHostAndOptionalPort) GetVal() string {
-	if x != nil {
-		return x.Val
-	}
-	return ""
-}
-
-type StringExample struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Val string `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-}
-
-func (x *StringExample) Reset() {
-	*x = StringExample{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[60]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StringExample) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StringExample) ProtoMessage() {}
-
-func (x *StringExample) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[60]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StringExample.ProtoReflect.Descriptor instead.
-func (*StringExample) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{60}
-}
-
-func (x *StringExample) GetVal() string {
 	if x != nil {
 		return x.Val
 	}
@@ -2994,154 +2195,103 @@ var file_buf_validate_conformance_cases_strings_proto_rawDesc = []byte{
 	0x7a, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x28, 0x0a, 0x0b, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67,
 	0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x09, 0x42, 0x07, 0xba, 0x48, 0x04, 0x72, 0x02, 0x60, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c,
-	0x22, 0x2b, 0x0a, 0x0e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x45, 0x6d, 0x61,
-	0x69, 0x6c, 0x12, 0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
-	0x07, 0xba, 0x48, 0x04, 0x72, 0x02, 0x60, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2b, 0x0a,
-	0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1a,
-	0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05,
-	0x72, 0x03, 0xa8, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2e, 0x0a, 0x10, 0x53, 0x74,
-	0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1a,
-	0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05,
-	0x72, 0x03, 0xa8, 0x01, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2b, 0x0a, 0x0e, 0x53, 0x74,
-	0x72, 0x69, 0x6e, 0x67, 0x48, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x19, 0x0a, 0x03,
-	0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x07, 0xba, 0x48, 0x04, 0x72, 0x02,
-	0x68, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2e, 0x0a, 0x11, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x4e, 0x6f, 0x74, 0x48, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x19, 0x0a, 0x03,
-	0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x07, 0xba, 0x48, 0x04, 0x72, 0x02,
-	0x68, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x25, 0x0a, 0x08, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x49, 0x50, 0x12, 0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x07, 0xba, 0x48, 0x04, 0x72, 0x02, 0x70, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x28,
-	0x0a, 0x0b, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x49, 0x50, 0x12, 0x19, 0x0a,
-	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x07, 0xba, 0x48, 0x04, 0x72,
-	0x02, 0x70, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x27, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x69,
-	0x6e, 0x67, 0x49, 0x50, 0x76, 0x34, 0x12, 0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x07, 0xba, 0x48, 0x04, 0x72, 0x02, 0x78, 0x01, 0x52, 0x03, 0x76, 0x61,
-	0x6c, 0x22, 0x2a, 0x0a, 0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x49, 0x50,
-	0x76, 0x34, 0x12, 0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
-	0x07, 0xba, 0x48, 0x04, 0x72, 0x02, 0x78, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x28, 0x0a,
-	0x0a, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x36, 0x12, 0x1a, 0x0a, 0x03, 0x76,
-	0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x80,
-	0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2b, 0x0a, 0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x4e, 0x6f, 0x74, 0x49, 0x50, 0x76, 0x36, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x80, 0x01, 0x00, 0x52,
+	0x22, 0x2b, 0x0a, 0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x73, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08,
+	0xba, 0x48, 0x05, 0x72, 0x03, 0xa8, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2b, 0x0a,
+	0x0e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x07, 0xba, 0x48,
+	0x04, 0x72, 0x02, 0x68, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x25, 0x0a, 0x08, 0x53, 0x74,
+	0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x12, 0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x07, 0xba, 0x48, 0x04, 0x72, 0x02, 0x70, 0x01, 0x52, 0x03, 0x76, 0x61,
+	0x6c, 0x22, 0x27, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x34, 0x12,
+	0x19, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x07, 0xba, 0x48,
+	0x04, 0x72, 0x02, 0x78, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x28, 0x0a, 0x0a, 0x53, 0x74,
+	0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x36, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x80, 0x01, 0x01, 0x52,
 	0x03, 0x76, 0x61, 0x6c, 0x22, 0x33, 0x0a, 0x15, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50,
 	0x57, 0x69, 0x74, 0x68, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a,
 	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72,
-	0x03, 0xd0, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x36, 0x0a, 0x18, 0x53, 0x74, 0x72,
-	0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x49, 0x50, 0x57, 0x69, 0x74, 0x68, 0x50, 0x72, 0x65, 0x66,
-	0x69, 0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xd0, 0x01, 0x00, 0x52, 0x03, 0x76, 0x61,
-	0x6c, 0x22, 0x35, 0x0a, 0x17, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x34, 0x57,
-	0x69, 0x74, 0x68, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x03,
-	0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03,
-	0xd8, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x38, 0x0a, 0x1a, 0x53, 0x74, 0x72, 0x69,
-	0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x49, 0x50, 0x76, 0x34, 0x57, 0x69, 0x74, 0x68, 0x50, 0x72, 0x65,
-	0x66, 0x69, 0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xd8, 0x01, 0x00, 0x52, 0x03, 0x76,
-	0x61, 0x6c, 0x22, 0x35, 0x0a, 0x17, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x36,
-	0x57, 0x69, 0x74, 0x68, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a,
-	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72,
-	0x03, 0xe0, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x38, 0x0a, 0x1a, 0x53, 0x74, 0x72,
-	0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x49, 0x50, 0x76, 0x36, 0x57, 0x69, 0x74, 0x68, 0x50, 0x72,
-	0x65, 0x66, 0x69, 0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xe0, 0x01, 0x00, 0x52, 0x03,
-	0x76, 0x61, 0x6c, 0x22, 0x2c, 0x0a, 0x0e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x50,
-	0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xe8, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61,
-	0x6c, 0x22, 0x2f, 0x0a, 0x11, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x49, 0x50,
-	0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xe8, 0x01, 0x00, 0x52, 0x03, 0x76,
-	0x61, 0x6c, 0x22, 0x2e, 0x0a, 0x10, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x34,
-	0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xf0, 0x01, 0x01, 0x52, 0x03, 0x76,
-	0x61, 0x6c, 0x22, 0x31, 0x0a, 0x13, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x49,
+	0x03, 0xd0, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x35, 0x0a, 0x17, 0x53, 0x74, 0x72,
+	0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x34, 0x57, 0x69, 0x74, 0x68, 0x50, 0x72, 0x65, 0x66, 0x69,
+	0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xd8, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c,
+	0x22, 0x35, 0x0a, 0x17, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x50, 0x76, 0x36, 0x57, 0x69,
+	0x74, 0x68, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x4c, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x03, 0x76,
+	0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xe0,
+	0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2c, 0x0a, 0x0e, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x49, 0x50, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xe8, 0x01, 0x01,
+	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2e, 0x0a, 0x10, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49,
 	0x50, 0x76, 0x34, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xf0, 0x01, 0x00,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xf0, 0x01, 0x01,
 	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2e, 0x0a, 0x10, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49,
 	0x50, 0x76, 0x36, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xf8, 0x01, 0x01,
-	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x31, 0x0a, 0x13, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e,
-	0x6f, 0x74, 0x49, 0x50, 0x76, 0x36, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x1a, 0x0a, 0x03,
-	0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03,
-	0xf8, 0x01, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x27, 0x0a, 0x09, 0x53, 0x74, 0x72, 0x69,
-	0x6e, 0x67, 0x55, 0x52, 0x49, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x88, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61,
-	0x6c, 0x22, 0x2a, 0x0a, 0x0c, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x55, 0x52,
-	0x49, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08,
-	0xba, 0x48, 0x05, 0x72, 0x03, 0x88, 0x01, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2a, 0x0a,
-	0x0c, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x55, 0x52, 0x49, 0x52, 0x65, 0x66, 0x12, 0x1a, 0x0a,
-	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72,
-	0x03, 0x90, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2d, 0x0a, 0x0f, 0x53, 0x74, 0x72,
-	0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x55, 0x52, 0x49, 0x52, 0x65, 0x66, 0x12, 0x1a, 0x0a, 0x03,
-	0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03,
-	0x90, 0x01, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x28, 0x0a, 0x0a, 0x53, 0x74, 0x72, 0x69,
-	0x6e, 0x67, 0x55, 0x55, 0x49, 0x44, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xb0, 0x01, 0x01, 0x52, 0x03, 0x76,
-	0x61, 0x6c, 0x22, 0x2b, 0x0a, 0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x55,
-	0x55, 0x49, 0x44, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xb0, 0x01, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22,
-	0x29, 0x0a, 0x0b, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x55, 0x55, 0x49, 0x44, 0x12, 0x1a,
+	0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x27, 0x0a, 0x09, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x55,
+	0x52, 0x49, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x88, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2a,
+	0x0a, 0x0c, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x55, 0x52, 0x49, 0x52, 0x65, 0x66, 0x12, 0x1a,
 	0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05,
-	0x72, 0x03, 0x88, 0x02, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2c, 0x0a, 0x0e, 0x53, 0x74,
-	0x72, 0x69, 0x6e, 0x67, 0x4e, 0x6f, 0x74, 0x54, 0x55, 0x55, 0x49, 0x44, 0x12, 0x1a, 0x0a, 0x03,
+	0x72, 0x03, 0x90, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x28, 0x0a, 0x0a, 0x53, 0x74,
+	0x72, 0x69, 0x6e, 0x67, 0x55, 0x55, 0x49, 0x44, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xb0, 0x01, 0x01, 0x52,
+	0x03, 0x76, 0x61, 0x6c, 0x22, 0x29, 0x0a, 0x0b, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x55,
+	0x55, 0x49, 0x44, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x88, 0x02, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22,
+	0x32, 0x0a, 0x14, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x74, 0x74, 0x70, 0x48, 0x65, 0x61,
+	0x64, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xc0, 0x01, 0x01, 0x52, 0x03,
+	0x76, 0x61, 0x6c, 0x22, 0x33, 0x0a, 0x15, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x74, 0x74,
+	0x70, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x1a, 0x0a, 0x03,
 	0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03,
-	0x88, 0x02, 0x00, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x32, 0x0a, 0x14, 0x53, 0x74, 0x72, 0x69,
+	0xc0, 0x01, 0x02, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x3a, 0x0a, 0x19, 0x53, 0x74, 0x72, 0x69,
 	0x6e, 0x67, 0x48, 0x74, 0x74, 0x70, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65,
-	0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba,
-	0x48, 0x05, 0x72, 0x03, 0xc0, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x33, 0x0a, 0x15,
-	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x74, 0x74, 0x70, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72,
-	0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0xc0, 0x01, 0x02, 0x52, 0x03, 0x76, 0x61,
-	0x6c, 0x22, 0x3a, 0x0a, 0x19, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x74, 0x74, 0x70, 0x48,
-	0x65, 0x61, 0x64, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x4c, 0x6f, 0x6f, 0x73, 0x65, 0x12, 0x1d,
-	0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0b, 0xba, 0x48, 0x08,
-	0x72, 0x06, 0xc8, 0x01, 0x00, 0xc0, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x3b, 0x0a,
-	0x1a, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x74, 0x74, 0x70, 0x48, 0x65, 0x61, 0x64, 0x65,
-	0x72, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x4c, 0x6f, 0x6f, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x03, 0x76,
-	0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0b, 0xba, 0x48, 0x08, 0x72, 0x06, 0xc8,
-	0x01, 0x00, 0xc0, 0x01, 0x02, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x31, 0x0a, 0x10, 0x53, 0x74,
-	0x72, 0x69, 0x6e, 0x67, 0x55, 0x55, 0x49, 0x44, 0x49, 0x67, 0x6e, 0x6f, 0x72, 0x65, 0x12, 0x1d,
-	0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0b, 0xba, 0x48, 0x08,
-	0xd0, 0x01, 0x01, 0x72, 0x03, 0xb0, 0x01, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x37, 0x0a,
-	0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x6e, 0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x12, 0x1f,
-	0x0a, 0x03, 0x62, 0x61, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0b, 0xba, 0x48, 0x08,
-	0x72, 0x06, 0x52, 0x01, 0x61, 0x52, 0x01, 0x62, 0x48, 0x00, 0x52, 0x03, 0x62, 0x61, 0x72, 0x42,
-	0x05, 0x0a, 0x03, 0x66, 0x6f, 0x6f, 0x22, 0x2f, 0x0a, 0x11, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67,
-	0x48, 0x6f, 0x73, 0x74, 0x41, 0x6e, 0x64, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x1a, 0x0a, 0x03, 0x76,
-	0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x80,
-	0x02, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0xa4, 0x01, 0x0a, 0x19, 0x53, 0x74, 0x72, 0x69,
-	0x6e, 0x67, 0x48, 0x6f, 0x73, 0x74, 0x41, 0x6e, 0x64, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x61,
-	0x6c, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x86, 0x01, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x74, 0xba, 0x48, 0x71, 0xba, 0x01, 0x6e, 0x0a, 0x22, 0x73, 0x74, 0x72,
-	0x69, 0x6e, 0x67, 0x2e, 0x68, 0x6f, 0x73, 0x74, 0x5f, 0x61, 0x6e, 0x64, 0x5f, 0x70, 0x6f, 0x72,
-	0x74, 0x2e, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x70, 0x6f, 0x72, 0x74, 0x12,
-	0x2d, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x20, 0x6d, 0x75, 0x73, 0x74, 0x20, 0x62, 0x65, 0x20, 0x61,
-	0x20, 0x68, 0x6f, 0x73, 0x74, 0x20, 0x61, 0x6e, 0x64, 0x20, 0x28, 0x6f, 0x70, 0x74, 0x69, 0x6f,
-	0x6e, 0x61, 0x6c, 0x29, 0x20, 0x70, 0x6f, 0x72, 0x74, 0x20, 0x70, 0x61, 0x69, 0x72, 0x1a, 0x19,
-	0x74, 0x68, 0x69, 0x73, 0x2e, 0x69, 0x73, 0x48, 0x6f, 0x73, 0x74, 0x41, 0x6e, 0x64, 0x50, 0x6f,
-	0x72, 0x74, 0x28, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x29, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0x2e,
-	0x0a, 0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x45, 0x78, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12,
-	0x1d, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0b, 0xba, 0x48,
-	0x08, 0x72, 0x06, 0x92, 0x02, 0x03, 0x66, 0x6f, 0x6f, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x42, 0xa3,
-	0x02, 0x0a, 0x22, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64,
-	0x61, 0x74, 0x65, 0x2e, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e,
-	0x63, 0x61, 0x73, 0x65, 0x73, 0x42, 0x0c, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x53, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x62, 0x75, 0x66, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2f, 0x69,
-	0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x62, 0x75, 0x66, 0x2f,
-	0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f, 0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d,
-	0x61, 0x6e, 0x63, 0x65, 0x2f, 0x63, 0x61, 0x73, 0x65, 0x73, 0xa2, 0x02, 0x04, 0x42, 0x56, 0x43,
-	0x43, 0xaa, 0x02, 0x1e, 0x42, 0x75, 0x66, 0x2e, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65,
-	0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x43, 0x61, 0x73,
-	0x65, 0x73, 0xca, 0x02, 0x1e, 0x42, 0x75, 0x66, 0x5c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
-	0x65, 0x5c, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x5c, 0x43, 0x61,
-	0x73, 0x65, 0x73, 0xe2, 0x02, 0x2a, 0x42, 0x75, 0x66, 0x5c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61,
-	0x74, 0x65, 0x5c, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x5c, 0x43,
-	0x61, 0x73, 0x65, 0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
-	0xea, 0x02, 0x21, 0x42, 0x75, 0x66, 0x3a, 0x3a, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65,
-	0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x3a, 0x3a, 0x43,
-	0x61, 0x73, 0x65, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x4c, 0x6f, 0x6f, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x0b, 0xba, 0x48, 0x08, 0x72, 0x06, 0xc8, 0x01, 0x00, 0xc0, 0x01, 0x01, 0x52,
+	0x03, 0x76, 0x61, 0x6c, 0x22, 0x3b, 0x0a, 0x1a, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x74,
+	0x74, 0x70, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x4c, 0x6f, 0x6f,
+	0x73, 0x65, 0x12, 0x1d, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x0b, 0xba, 0x48, 0x08, 0x72, 0x06, 0xc8, 0x01, 0x00, 0xc0, 0x01, 0x02, 0x52, 0x03, 0x76, 0x61,
+	0x6c, 0x22, 0x31, 0x0a, 0x10, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x55, 0x55, 0x49, 0x44, 0x49,
+	0x67, 0x6e, 0x6f, 0x72, 0x65, 0x12, 0x1d, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x0b, 0xba, 0x48, 0x08, 0xd0, 0x01, 0x01, 0x72, 0x03, 0xb0, 0x01, 0x01, 0x52,
+	0x03, 0x76, 0x61, 0x6c, 0x22, 0x37, 0x0a, 0x0d, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x6e,
+	0x4f, 0x6e, 0x65, 0x6f, 0x66, 0x12, 0x1f, 0x0a, 0x03, 0x62, 0x61, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x0b, 0xba, 0x48, 0x08, 0x72, 0x06, 0x52, 0x01, 0x61, 0x52, 0x01, 0x62, 0x48,
+	0x00, 0x52, 0x03, 0x62, 0x61, 0x72, 0x42, 0x05, 0x0a, 0x03, 0x66, 0x6f, 0x6f, 0x22, 0x2f, 0x0a,
+	0x11, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x6f, 0x73, 0x74, 0x41, 0x6e, 0x64, 0x50, 0x6f,
+	0x72, 0x74, 0x12, 0x1a, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x08, 0xba, 0x48, 0x05, 0x72, 0x03, 0x80, 0x02, 0x01, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22, 0xa4,
+	0x01, 0x0a, 0x19, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x48, 0x6f, 0x73, 0x74, 0x41, 0x6e, 0x64,
+	0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x50, 0x6f, 0x72, 0x74, 0x12, 0x86, 0x01, 0x0a,
+	0x03, 0x76, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x74, 0xba, 0x48, 0x71, 0xba,
+	0x01, 0x6e, 0x0a, 0x22, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x68, 0x6f, 0x73, 0x74, 0x5f,
+	0x61, 0x6e, 0x64, 0x5f, 0x70, 0x6f, 0x72, 0x74, 0x2e, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x61,
+	0x6c, 0x5f, 0x70, 0x6f, 0x72, 0x74, 0x12, 0x2d, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x20, 0x6d, 0x75,
+	0x73, 0x74, 0x20, 0x62, 0x65, 0x20, 0x61, 0x20, 0x68, 0x6f, 0x73, 0x74, 0x20, 0x61, 0x6e, 0x64,
+	0x20, 0x28, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x29, 0x20, 0x70, 0x6f, 0x72, 0x74,
+	0x20, 0x70, 0x61, 0x69, 0x72, 0x1a, 0x19, 0x74, 0x68, 0x69, 0x73, 0x2e, 0x69, 0x73, 0x48, 0x6f,
+	0x73, 0x74, 0x41, 0x6e, 0x64, 0x50, 0x6f, 0x72, 0x74, 0x28, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x29,
+	0x52, 0x03, 0x76, 0x61, 0x6c, 0x42, 0xa3, 0x02, 0x0a, 0x22, 0x63, 0x6f, 0x6d, 0x2e, 0x62, 0x75,
+	0x66, 0x2e, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x63, 0x6f, 0x6e, 0x66, 0x6f,
+	0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x63, 0x61, 0x73, 0x65, 0x73, 0x42, 0x0c, 0x53, 0x74,
+	0x72, 0x69, 0x6e, 0x67, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x53, 0x67, 0x69,
+	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x62, 0x75, 0x66, 0x62, 0x75, 0x69, 0x6c,
+	0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f,
+	0x74, 0x6f, 0x6f, 0x6c, 0x73, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x67,
+	0x65, 0x6e, 0x2f, 0x62, 0x75, 0x66, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2f,
+	0x63, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x6e, 0x63, 0x65, 0x2f, 0x63, 0x61, 0x73, 0x65,
+	0x73, 0xa2, 0x02, 0x04, 0x42, 0x56, 0x43, 0x43, 0xaa, 0x02, 0x1e, 0x42, 0x75, 0x66, 0x2e, 0x56,
+	0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61,
+	0x6e, 0x63, 0x65, 0x2e, 0x43, 0x61, 0x73, 0x65, 0x73, 0xca, 0x02, 0x1e, 0x42, 0x75, 0x66, 0x5c,
+	0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x5c, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d,
+	0x61, 0x6e, 0x63, 0x65, 0x5c, 0x43, 0x61, 0x73, 0x65, 0x73, 0xe2, 0x02, 0x2a, 0x42, 0x75, 0x66,
+	0x5c, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x5c, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72,
+	0x6d, 0x61, 0x6e, 0x63, 0x65, 0x5c, 0x43, 0x61, 0x73, 0x65, 0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x21, 0x42, 0x75, 0x66, 0x3a, 0x3a, 0x56,
+	0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x66, 0x6f, 0x72, 0x6d,
+	0x61, 0x6e, 0x63, 0x65, 0x3a, 0x3a, 0x43, 0x61, 0x73, 0x65, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3156,7 +2306,7 @@ func file_buf_validate_conformance_cases_strings_proto_rawDescGZIP() []byte {
 	return file_buf_validate_conformance_cases_strings_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_strings_proto_msgTypes = make([]protoimpl.MessageInfo, 61)
+var file_buf_validate_conformance_cases_strings_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
 var file_buf_validate_conformance_cases_strings_proto_goTypes = []any{
 	(*StringNone)(nil),                 // 0: buf.validate.conformance.cases.StringNone
 	(*StringConst)(nil),                // 1: buf.validate.conformance.cases.StringConst
@@ -3179,46 +2329,29 @@ var file_buf_validate_conformance_cases_strings_proto_goTypes = []any{
 	(*StringNotContains)(nil),          // 18: buf.validate.conformance.cases.StringNotContains
 	(*StringSuffix)(nil),               // 19: buf.validate.conformance.cases.StringSuffix
 	(*StringEmail)(nil),                // 20: buf.validate.conformance.cases.StringEmail
-	(*StringNotEmail)(nil),             // 21: buf.validate.conformance.cases.StringNotEmail
-	(*StringAddress)(nil),              // 22: buf.validate.conformance.cases.StringAddress
-	(*StringNotAddress)(nil),           // 23: buf.validate.conformance.cases.StringNotAddress
-	(*StringHostname)(nil),             // 24: buf.validate.conformance.cases.StringHostname
-	(*StringNotHostname)(nil),          // 25: buf.validate.conformance.cases.StringNotHostname
-	(*StringIP)(nil),                   // 26: buf.validate.conformance.cases.StringIP
-	(*StringNotIP)(nil),                // 27: buf.validate.conformance.cases.StringNotIP
-	(*StringIPv4)(nil),                 // 28: buf.validate.conformance.cases.StringIPv4
-	(*StringNotIPv4)(nil),              // 29: buf.validate.conformance.cases.StringNotIPv4
-	(*StringIPv6)(nil),                 // 30: buf.validate.conformance.cases.StringIPv6
-	(*StringNotIPv6)(nil),              // 31: buf.validate.conformance.cases.StringNotIPv6
-	(*StringIPWithPrefixLen)(nil),      // 32: buf.validate.conformance.cases.StringIPWithPrefixLen
-	(*StringNotIPWithPrefixLen)(nil),   // 33: buf.validate.conformance.cases.StringNotIPWithPrefixLen
-	(*StringIPv4WithPrefixLen)(nil),    // 34: buf.validate.conformance.cases.StringIPv4WithPrefixLen
-	(*StringNotIPv4WithPrefixLen)(nil), // 35: buf.validate.conformance.cases.StringNotIPv4WithPrefixLen
-	(*StringIPv6WithPrefixLen)(nil),    // 36: buf.validate.conformance.cases.StringIPv6WithPrefixLen
-	(*StringNotIPv6WithPrefixLen)(nil), // 37: buf.validate.conformance.cases.StringNotIPv6WithPrefixLen
-	(*StringIPPrefix)(nil),             // 38: buf.validate.conformance.cases.StringIPPrefix
-	(*StringNotIPPrefix)(nil),          // 39: buf.validate.conformance.cases.StringNotIPPrefix
-	(*StringIPv4Prefix)(nil),           // 40: buf.validate.conformance.cases.StringIPv4Prefix
-	(*StringNotIPv4Prefix)(nil),        // 41: buf.validate.conformance.cases.StringNotIPv4Prefix
-	(*StringIPv6Prefix)(nil),           // 42: buf.validate.conformance.cases.StringIPv6Prefix
-	(*StringNotIPv6Prefix)(nil),        // 43: buf.validate.conformance.cases.StringNotIPv6Prefix
-	(*StringURI)(nil),                  // 44: buf.validate.conformance.cases.StringURI
-	(*StringNotURI)(nil),               // 45: buf.validate.conformance.cases.StringNotURI
-	(*StringURIRef)(nil),               // 46: buf.validate.conformance.cases.StringURIRef
-	(*StringNotURIRef)(nil),            // 47: buf.validate.conformance.cases.StringNotURIRef
-	(*StringUUID)(nil),                 // 48: buf.validate.conformance.cases.StringUUID
-	(*StringNotUUID)(nil),              // 49: buf.validate.conformance.cases.StringNotUUID
-	(*StringTUUID)(nil),                // 50: buf.validate.conformance.cases.StringTUUID
-	(*StringNotTUUID)(nil),             // 51: buf.validate.conformance.cases.StringNotTUUID
-	(*StringHttpHeaderName)(nil),       // 52: buf.validate.conformance.cases.StringHttpHeaderName
-	(*StringHttpHeaderValue)(nil),      // 53: buf.validate.conformance.cases.StringHttpHeaderValue
-	(*StringHttpHeaderNameLoose)(nil),  // 54: buf.validate.conformance.cases.StringHttpHeaderNameLoose
-	(*StringHttpHeaderValueLoose)(nil), // 55: buf.validate.conformance.cases.StringHttpHeaderValueLoose
-	(*StringUUIDIgnore)(nil),           // 56: buf.validate.conformance.cases.StringUUIDIgnore
-	(*StringInOneof)(nil),              // 57: buf.validate.conformance.cases.StringInOneof
-	(*StringHostAndPort)(nil),          // 58: buf.validate.conformance.cases.StringHostAndPort
-	(*StringHostAndOptionalPort)(nil),  // 59: buf.validate.conformance.cases.StringHostAndOptionalPort
-	(*StringExample)(nil),              // 60: buf.validate.conformance.cases.StringExample
+	(*StringAddress)(nil),              // 21: buf.validate.conformance.cases.StringAddress
+	(*StringHostname)(nil),             // 22: buf.validate.conformance.cases.StringHostname
+	(*StringIP)(nil),                   // 23: buf.validate.conformance.cases.StringIP
+	(*StringIPv4)(nil),                 // 24: buf.validate.conformance.cases.StringIPv4
+	(*StringIPv6)(nil),                 // 25: buf.validate.conformance.cases.StringIPv6
+	(*StringIPWithPrefixLen)(nil),      // 26: buf.validate.conformance.cases.StringIPWithPrefixLen
+	(*StringIPv4WithPrefixLen)(nil),    // 27: buf.validate.conformance.cases.StringIPv4WithPrefixLen
+	(*StringIPv6WithPrefixLen)(nil),    // 28: buf.validate.conformance.cases.StringIPv6WithPrefixLen
+	(*StringIPPrefix)(nil),             // 29: buf.validate.conformance.cases.StringIPPrefix
+	(*StringIPv4Prefix)(nil),           // 30: buf.validate.conformance.cases.StringIPv4Prefix
+	(*StringIPv6Prefix)(nil),           // 31: buf.validate.conformance.cases.StringIPv6Prefix
+	(*StringURI)(nil),                  // 32: buf.validate.conformance.cases.StringURI
+	(*StringURIRef)(nil),               // 33: buf.validate.conformance.cases.StringURIRef
+	(*StringUUID)(nil),                 // 34: buf.validate.conformance.cases.StringUUID
+	(*StringTUUID)(nil),                // 35: buf.validate.conformance.cases.StringTUUID
+	(*StringHttpHeaderName)(nil),       // 36: buf.validate.conformance.cases.StringHttpHeaderName
+	(*StringHttpHeaderValue)(nil),      // 37: buf.validate.conformance.cases.StringHttpHeaderValue
+	(*StringHttpHeaderNameLoose)(nil),  // 38: buf.validate.conformance.cases.StringHttpHeaderNameLoose
+	(*StringHttpHeaderValueLoose)(nil), // 39: buf.validate.conformance.cases.StringHttpHeaderValueLoose
+	(*StringUUIDIgnore)(nil),           // 40: buf.validate.conformance.cases.StringUUIDIgnore
+	(*StringInOneof)(nil),              // 41: buf.validate.conformance.cases.StringInOneof
+	(*StringHostAndPort)(nil),          // 42: buf.validate.conformance.cases.StringHostAndPort
+	(*StringHostAndOptionalPort)(nil),  // 43: buf.validate.conformance.cases.StringHostAndOptionalPort
 }
 var file_buf_validate_conformance_cases_strings_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -3487,18 +2620,6 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 			}
 		}
 		file_buf_validate_conformance_cases_strings_proto_msgTypes[21].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotEmail); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[22].Exporter = func(v any, i int) any {
 			switch v := v.(*StringAddress); i {
 			case 0:
 				return &v.state
@@ -3510,19 +2631,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[23].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotAddress); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[24].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[22].Exporter = func(v any, i int) any {
 			switch v := v.(*StringHostname); i {
 			case 0:
 				return &v.state
@@ -3534,19 +2643,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[25].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotHostname); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[26].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[23].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIP); i {
 			case 0:
 				return &v.state
@@ -3558,19 +2655,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[27].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIP); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[28].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[24].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPv4); i {
 			case 0:
 				return &v.state
@@ -3582,19 +2667,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[29].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPv4); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[30].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[25].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPv6); i {
 			case 0:
 				return &v.state
@@ -3606,19 +2679,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[31].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPv6); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[32].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[26].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPWithPrefixLen); i {
 			case 0:
 				return &v.state
@@ -3630,19 +2691,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[33].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPWithPrefixLen); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[34].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[27].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPv4WithPrefixLen); i {
 			case 0:
 				return &v.state
@@ -3654,19 +2703,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[35].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPv4WithPrefixLen); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[36].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[28].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPv6WithPrefixLen); i {
 			case 0:
 				return &v.state
@@ -3678,19 +2715,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[37].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPv6WithPrefixLen); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[38].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[29].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPPrefix); i {
 			case 0:
 				return &v.state
@@ -3702,19 +2727,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[39].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPPrefix); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[40].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[30].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPv4Prefix); i {
 			case 0:
 				return &v.state
@@ -3726,19 +2739,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[41].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPv4Prefix); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[42].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[31].Exporter = func(v any, i int) any {
 			switch v := v.(*StringIPv6Prefix); i {
 			case 0:
 				return &v.state
@@ -3750,19 +2751,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[43].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotIPv6Prefix); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[44].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[32].Exporter = func(v any, i int) any {
 			switch v := v.(*StringURI); i {
 			case 0:
 				return &v.state
@@ -3774,19 +2763,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[45].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotURI); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[46].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[33].Exporter = func(v any, i int) any {
 			switch v := v.(*StringURIRef); i {
 			case 0:
 				return &v.state
@@ -3798,19 +2775,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[47].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotURIRef); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[48].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[34].Exporter = func(v any, i int) any {
 			switch v := v.(*StringUUID); i {
 			case 0:
 				return &v.state
@@ -3822,19 +2787,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[49].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotUUID); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[50].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[35].Exporter = func(v any, i int) any {
 			switch v := v.(*StringTUUID); i {
 			case 0:
 				return &v.state
@@ -3846,19 +2799,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[51].Exporter = func(v any, i int) any {
-			switch v := v.(*StringNotTUUID); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[52].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[36].Exporter = func(v any, i int) any {
 			switch v := v.(*StringHttpHeaderName); i {
 			case 0:
 				return &v.state
@@ -3870,7 +2811,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[53].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[37].Exporter = func(v any, i int) any {
 			switch v := v.(*StringHttpHeaderValue); i {
 			case 0:
 				return &v.state
@@ -3882,7 +2823,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[54].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[38].Exporter = func(v any, i int) any {
 			switch v := v.(*StringHttpHeaderNameLoose); i {
 			case 0:
 				return &v.state
@@ -3894,7 +2835,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[55].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[39].Exporter = func(v any, i int) any {
 			switch v := v.(*StringHttpHeaderValueLoose); i {
 			case 0:
 				return &v.state
@@ -3906,7 +2847,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[56].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[40].Exporter = func(v any, i int) any {
 			switch v := v.(*StringUUIDIgnore); i {
 			case 0:
 				return &v.state
@@ -3918,7 +2859,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[57].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[41].Exporter = func(v any, i int) any {
 			switch v := v.(*StringInOneof); i {
 			case 0:
 				return &v.state
@@ -3930,7 +2871,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[58].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[42].Exporter = func(v any, i int) any {
 			switch v := v.(*StringHostAndPort); i {
 			case 0:
 				return &v.state
@@ -3942,7 +2883,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[59].Exporter = func(v any, i int) any {
+		file_buf_validate_conformance_cases_strings_proto_msgTypes[43].Exporter = func(v any, i int) any {
 			switch v := v.(*StringHostAndOptionalPort); i {
 			case 0:
 				return &v.state
@@ -3954,20 +2895,8 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 				return nil
 			}
 		}
-		file_buf_validate_conformance_cases_strings_proto_msgTypes[60].Exporter = func(v any, i int) any {
-			switch v := v.(*StringExample); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
-	file_buf_validate_conformance_cases_strings_proto_msgTypes[57].OneofWrappers = []any{
+	file_buf_validate_conformance_cases_strings_proto_msgTypes[41].OneofWrappers = []any{
 		(*StringInOneof_Bar)(nil),
 	}
 	type x struct{}
@@ -3976,7 +2905,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_buf_validate_conformance_cases_strings_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   61,
+			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

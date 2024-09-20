@@ -24,7 +24,6 @@ import (
 func GlobalSuites() suites.Suites {
 	return suites.Suites{
 		"custom_constraints":                              customSuite(),
-		"predefined_constraints":                          predefinedSuite(),
 		"kitchen_sink":                                    kitchenSinkSuite(),
 		"standard_constraints/bool":                       boolSuite(),
 		"standard_constraints/bytes":                      bytesSuite(),
