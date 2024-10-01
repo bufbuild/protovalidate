@@ -24,6 +24,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 func predefinedSuite() suites.Suite {
@@ -65,8 +66,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
-					ConstraintId: proto.String("int32.even.proto2"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("int32.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
 				},
 			),
 		},
@@ -79,8 +80,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
-					ConstraintId: proto.String("int64.even.proto2"),
-					Message:      proto.String("int64 value is not even"),
+					ConstraintId: proto.String("int64.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
 				},
 			),
 		},
@@ -294,6 +295,134 @@ func predefinedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto2/wrapped/float/valid": {
+			Message:  &cases.PredefinedWrappedFloatRuleProto2{Val: wrapperspb.Float(1.0)},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/float/invalid": {
+			Message: &cases.PredefinedWrappedFloatRuleProto2{Val: wrapperspb.Float(-2.0)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("float.abs_range.proto2"),
+					Message:      proto.String("float value is out of range"),
+				},
+			),
+		},
+		"proto2/wrapped/double/valid": {
+			Message: &cases.PredefinedWrappedDoubleRuleProto2{
+				Val: wrapperspb.Double(1.0),
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/double/invalid": {
+			Message: &cases.PredefinedWrappedDoubleRuleProto2{Val: wrapperspb.Double(-2.0)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("double.abs_range.proto2"),
+					Message:      proto.String("double value is out of range"),
+				},
+			),
+		},
+		"proto2/wrapped/int32/valid": {
+			Message:  &cases.PredefinedWrappedInt32RuleProto2{Val: wrapperspb.Int32(2)},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/int32/invalid": {
+			Message: &cases.PredefinedWrappedInt32RuleProto2{Val: wrapperspb.Int32(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int32.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto2/wrapped/int64/valid": {
+			Message:  &cases.PredefinedWrappedInt64RuleProto2{Val: wrapperspb.Int64(2)},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/int64/invalid": {
+			Message: &cases.PredefinedWrappedInt64RuleProto2{Val: wrapperspb.Int64(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int64.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto2/wrapped/uint32/valid": {
+			Message:  &cases.PredefinedWrappedUInt32RuleProto2{Val: wrapperspb.UInt32(2)},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/uint32/invalid": {
+			Message: &cases.PredefinedWrappedUInt32RuleProto2{Val: wrapperspb.UInt32(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint32.even.proto2"),
+					Message:      proto.String("uint32 value is not even"),
+				},
+			),
+		},
+		"proto2/wrapped/uint64/valid": {
+			Message:  &cases.PredefinedWrappedUInt64RuleProto2{Val: wrapperspb.UInt64(2)},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/uint64/invalid": {
+			Message: &cases.PredefinedWrappedUInt64RuleProto2{Val: wrapperspb.UInt64(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint64.even.proto2"),
+					Message:      proto.String("uint64 value is not even"),
+				},
+			),
+		},
+		"proto2/wrapped/bool/valid": {
+			Message:  &cases.PredefinedWrappedBoolRuleProto2{Val: wrapperspb.Bool(false)},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/bool/invalid": {
+			Message: &cases.PredefinedWrappedBoolRuleProto2{Val: wrapperspb.Bool(true)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bool.false.proto2"),
+					Message:      proto.String("bool value is not false"),
+				},
+			),
+		},
+		"proto2/wrapped/string/valid": {
+			Message:  &cases.PredefinedWrappedStringRuleProto2{Val: wrapperspb.String("valid/file.proto")},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/string/invalid": {
+			Message: &cases.PredefinedWrappedStringRuleProto2{Val: wrapperspb.String("../invalid/path")},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("string.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
+		"proto2/wrapped/bytes/valid": {
+			Message:  &cases.PredefinedWrappedBytesRuleProto2{Val: wrapperspb.Bytes([]byte("valid/file.proto"))},
+			Expected: results.Success(true),
+		},
+		"proto2/wrapped/bytes/invalid": {
+			Message: &cases.PredefinedWrappedBytesRuleProto2{Val: wrapperspb.Bytes([]byte("../invalid/path"))},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bytes.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
 		"proto2/predefined_and_custom/valid": {
 			Message: &cases.PredefinedAndCustomRuleProto2{
 				A: proto.Int32(26),
@@ -313,13 +442,13 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.even.proto2"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.proto2"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b.c"),
-					ConstraintId: proto.String("int32.even.proto2"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.proto2"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b"),
@@ -351,7 +480,7 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.lt"),
+					ConstraintId: proto.String("sint32.lt"),
 					Message:      proto.String("value must be less than 28"),
 				},
 			),
@@ -363,8 +492,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.even.proto2"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.proto2"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 			),
 		},
@@ -417,8 +546,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
-					ConstraintId: proto.String("int32.even.proto2"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("int32.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
 				},
 			),
 		},
@@ -431,8 +560,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
-					ConstraintId: proto.String("int64.even.proto2"),
-					Message:      proto.String("int64 value is not even"),
+					ConstraintId: proto.String("int64.abs_in.edition_2023"),
+					Message:      proto.String("value must be in absolute value of list"),
 				},
 			),
 		},
@@ -660,6 +789,134 @@ func predefinedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto3/wrapped/float/valid": {
+			Message:  &cases.PredefinedWrappedFloatRuleProto3{Val: wrapperspb.Float(1.0)},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/float/invalid": {
+			Message: &cases.PredefinedWrappedFloatRuleProto3{Val: wrapperspb.Float(-2.0)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("float.abs_range.proto2"),
+					Message:      proto.String("float value is out of range"),
+				},
+			),
+		},
+		"proto3/wrapped/double/valid": {
+			Message: &cases.PredefinedWrappedDoubleRuleProto3{
+				Val: wrapperspb.Double(1.0),
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/double/invalid": {
+			Message: &cases.PredefinedWrappedDoubleRuleProto3{Val: wrapperspb.Double(-2.0)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("double.abs_range.proto2"),
+					Message:      proto.String("double value is out of range"),
+				},
+			),
+		},
+		"proto3/wrapped/int32/valid": {
+			Message:  &cases.PredefinedWrappedInt32RuleProto3{Val: wrapperspb.Int32(2)},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/int32/invalid": {
+			Message: &cases.PredefinedWrappedInt32RuleProto3{Val: wrapperspb.Int32(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int32.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto3/wrapped/int64/valid": {
+			Message:  &cases.PredefinedWrappedInt64RuleProto3{Val: wrapperspb.Int64(2)},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/int64/invalid": {
+			Message: &cases.PredefinedWrappedInt64RuleProto3{Val: wrapperspb.Int64(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int64.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto3/wrapped/uint32/valid": {
+			Message:  &cases.PredefinedWrappedUInt32RuleProto3{Val: wrapperspb.UInt32(2)},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/uint32/invalid": {
+			Message: &cases.PredefinedWrappedUInt32RuleProto3{Val: wrapperspb.UInt32(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint32.even.proto2"),
+					Message:      proto.String("uint32 value is not even"),
+				},
+			),
+		},
+		"proto3/wrapped/uint64/valid": {
+			Message:  &cases.PredefinedWrappedUInt64RuleProto3{Val: wrapperspb.UInt64(2)},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/uint64/invalid": {
+			Message: &cases.PredefinedWrappedUInt64RuleProto3{Val: wrapperspb.UInt64(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint64.even.proto2"),
+					Message:      proto.String("uint64 value is not even"),
+				},
+			),
+		},
+		"proto3/wrapped/bool/valid": {
+			Message:  &cases.PredefinedWrappedBoolRuleProto3{Val: wrapperspb.Bool(false)},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/bool/invalid": {
+			Message: &cases.PredefinedWrappedBoolRuleProto3{Val: wrapperspb.Bool(true)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bool.false.proto2"),
+					Message:      proto.String("bool value is not false"),
+				},
+			),
+		},
+		"proto3/wrapped/string/valid": {
+			Message:  &cases.PredefinedWrappedStringRuleProto3{Val: wrapperspb.String("valid/file.proto")},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/string/invalid": {
+			Message: &cases.PredefinedWrappedStringRuleProto3{Val: wrapperspb.String("../invalid/path")},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("string.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
+		"proto3/wrapped/bytes/valid": {
+			Message:  &cases.PredefinedWrappedBytesRuleProto3{Val: wrapperspb.Bytes([]byte("valid/file.proto"))},
+			Expected: results.Success(true),
+		},
+		"proto3/wrapped/bytes/invalid": {
+			Message: &cases.PredefinedWrappedBytesRuleProto3{Val: wrapperspb.Bytes([]byte("../invalid/path"))},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bytes.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
 		"proto3/predefined_and_custom/valid": {
 			Message: &cases.PredefinedAndCustomRuleProto3{
 				A: 26,
@@ -679,13 +936,13 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.even.edition_2023"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.edition_2023"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b.c"),
-					ConstraintId: proto.String("int32.even.edition_2023"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.edition_2023"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b"),
@@ -717,7 +974,7 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.lt"),
+					ConstraintId: proto.String("sint32.lt"),
 					Message:      proto.String("value must be less than 28"),
 				},
 			),
@@ -729,8 +986,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.even.proto2"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.proto2"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 			),
 		},
@@ -783,8 +1040,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
-					ConstraintId: proto.String("int32.even.edition_2023"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("int32.abs_in.edition_2023"),
+					Message:      proto.String("value must be in absolute value of list"),
 				},
 			),
 		},
@@ -797,8 +1054,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
-					ConstraintId: proto.String("int64.even.edition_2023"),
-					Message:      proto.String("int64 value is not even"),
+					ConstraintId: proto.String("int64.abs_in.edition_2023"),
+					Message:      proto.String("value must be in absolute value of list"),
 				},
 			),
 		},
@@ -1026,6 +1283,134 @@ func predefinedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto/2023/wrapped/float/valid": {
+			Message:  &cases.PredefinedWrappedFloatRuleEdition2023{Val: wrapperspb.Float(1.0)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/float/invalid": {
+			Message: &cases.PredefinedWrappedFloatRuleEdition2023{Val: wrapperspb.Float(-2.0)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("float.abs_range.edition_2023"),
+					Message:      proto.String("float value is out of range"),
+				},
+			),
+		},
+		"proto/2023/wrapped/double/valid": {
+			Message: &cases.PredefinedWrappedDoubleRuleEdition2023{
+				Val: wrapperspb.Double(1.0),
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/double/invalid": {
+			Message: &cases.PredefinedWrappedDoubleRuleEdition2023{Val: wrapperspb.Double(-2.0)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("double.abs_range.edition_2023"),
+					Message:      proto.String("double value is out of range"),
+				},
+			),
+		},
+		"proto/2023/wrapped/int32/valid": {
+			Message:  &cases.PredefinedWrappedInt32RuleEdition2023{Val: wrapperspb.Int32(2)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/int32/invalid": {
+			Message: &cases.PredefinedWrappedInt32RuleEdition2023{Val: wrapperspb.Int32(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int32.abs_in.edition_2023"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto/2023/wrapped/int64/valid": {
+			Message:  &cases.PredefinedWrappedInt64RuleEdition2023{Val: wrapperspb.Int64(2)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/int64/invalid": {
+			Message: &cases.PredefinedWrappedInt64RuleEdition2023{Val: wrapperspb.Int64(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("int64.abs_in.edition_2023"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto/2023/wrapped/uint32/valid": {
+			Message:  &cases.PredefinedWrappedUInt32RuleEdition2023{Val: wrapperspb.UInt32(2)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/uint32/invalid": {
+			Message: &cases.PredefinedWrappedUInt32RuleEdition2023{Val: wrapperspb.UInt32(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint32.even.edition_2023"),
+					Message:      proto.String("uint32 value is not even"),
+				},
+			),
+		},
+		"proto/2023/wrapped/uint64/valid": {
+			Message:  &cases.PredefinedWrappedUInt64RuleEdition2023{Val: wrapperspb.UInt64(2)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/uint64/invalid": {
+			Message: &cases.PredefinedWrappedUInt64RuleEdition2023{Val: wrapperspb.UInt64(3)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("uint64.even.edition_2023"),
+					Message:      proto.String("uint64 value is not even"),
+				},
+			),
+		},
+		"proto/2023/wrapped/bool/valid": {
+			Message:  &cases.PredefinedWrappedBoolRuleEdition2023{Val: wrapperspb.Bool(false)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/bool/invalid": {
+			Message: &cases.PredefinedWrappedBoolRuleEdition2023{Val: wrapperspb.Bool(true)},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bool.false.edition_2023"),
+					Message:      proto.String("bool value is not false"),
+				},
+			),
+		},
+		"proto/2023/wrapped/string/valid": {
+			Message:  &cases.PredefinedWrappedStringRuleEdition2023{Val: wrapperspb.String("valid/file.proto")},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/string/invalid": {
+			Message: &cases.PredefinedWrappedStringRuleEdition2023{Val: wrapperspb.String("../invalid/path")},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("string.valid_path.edition_2023"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
+		"proto/2023/wrapped/bytes/valid": {
+			Message:  &cases.PredefinedWrappedBytesRuleEdition2023{Val: wrapperspb.Bytes([]byte("valid/file.proto"))},
+			Expected: results.Success(true),
+		},
+		"proto/2023/wrapped/bytes/invalid": {
+			Message: &cases.PredefinedWrappedBytesRuleEdition2023{Val: wrapperspb.Bytes([]byte("../invalid/path"))},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bytes.valid_path.edition_2023"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
 		"proto/2023/predefined_and_custom/valid": {
 			Message: &cases.PredefinedAndCustomRuleEdition2023{
 				A: proto.Int32(26),
@@ -1045,13 +1430,13 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.even.edition_2023"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.edition_2023"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b.c"),
-					ConstraintId: proto.String("int32.even.edition_2023"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.edition_2023"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("b"),
@@ -1083,7 +1468,7 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.lt"),
+					ConstraintId: proto.String("sint32.lt"),
 					Message:      proto.String("value must be less than 28"),
 				},
 			),
@@ -1095,8 +1480,8 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("a"),
-					ConstraintId: proto.String("int32.even.edition_2023"),
-					Message:      proto.String("int32 value is not even"),
+					ConstraintId: proto.String("sint32.even.edition_2023"),
+					Message:      proto.String("sint32 value is not even"),
 				},
 			),
 		},

@@ -19,6 +19,7 @@ package buf.validate.conformance.cases;
 import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 extend buf.validate.FloatRules {
   optional float float_abs_range_proto2 = 1161 [(buf.validate.predefined).cel = {
@@ -37,18 +38,18 @@ extend buf.validate.DoubleRules {
 }
 
 extend buf.validate.Int32Rules {
-  optional bool int32_even_proto2 = 1161 [(buf.validate.predefined).cel = {
-    id: "int32.even.proto2"
-    expression: "this % 2 == 0"
-    message: "int32 value is not even"
+  repeated int32 int32_abs_in_proto2 = 1161 [(buf.validate.predefined).cel = {
+    id: "int32.abs_in.proto2"
+    expression: "this in rule || this in rule.map(n, -n)"
+    message: "value must be in absolute value of list"
   }];
 }
 
 extend buf.validate.Int64Rules {
-  optional bool int64_even_proto2 = 1161 [(buf.validate.predefined).cel = {
-    id: "int64.even.proto2"
-    expression: "this % 2 == 0"
-    message: "int64 value is not even"
+  repeated google.protobuf.Int64Value int64_abs_in_proto2 = 1161 [(buf.validate.predefined).cel = {
+    id: "int64.abs_in.proto2"
+    expression: "this in rule || this in rule.map(n, -n)"
+    message: "value must be in absolute value of list"
   }];
 }
 
@@ -179,11 +180,11 @@ message PredefinedDoubleRuleProto2 {
 }
 
 message PredefinedInt32RuleProto2 {
-  optional int32 val = 1 [(buf.validate.field).int32.(int32_even_proto2) = true];
+  optional int32 val = 1 [(buf.validate.field).int32.(int32_abs_in_proto2) = -2];
 }
 
 message PredefinedInt64RuleProto2 {
-  optional int64 val = 1 [(buf.validate.field).int64.(int64_even_proto2) = true];
+  optional int64 val = 1 [(buf.validate.field).int64.(int64_abs_in_proto2) = {value: -2}];
 }
 
 message PredefinedUInt32RuleProto2 {
@@ -250,13 +251,49 @@ message PredefinedTimestampRuleProto2 {
   optional google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp.(timestamp_in_range_proto2) = true];
 }
 
+message PredefinedWrappedFloatRuleProto2 {
+  optional google.protobuf.FloatValue val = 1 [(buf.validate.field).float.(float_abs_range_proto2) = 1.0];
+}
+
+message PredefinedWrappedDoubleRuleProto2 {
+  optional google.protobuf.DoubleValue val = 1 [(buf.validate.field).double.(double_abs_range_proto2) = 1.0];
+}
+
+message PredefinedWrappedInt32RuleProto2 {
+  optional google.protobuf.Int32Value val = 1 [(buf.validate.field).int32.(int32_abs_in_proto2) = -2];
+}
+
+message PredefinedWrappedInt64RuleProto2 {
+  optional google.protobuf.Int64Value val = 1 [(buf.validate.field).int64.(int64_abs_in_proto2) = {value: -2}];
+}
+
+message PredefinedWrappedUInt32RuleProto2 {
+  optional google.protobuf.UInt32Value val = 1 [(buf.validate.field).uint32.(uint32_even_proto2) = true];
+}
+
+message PredefinedWrappedUInt64RuleProto2 {
+  optional google.protobuf.UInt64Value val = 1 [(buf.validate.field).uint64.(uint64_even_proto2) = true];
+}
+
+message PredefinedWrappedBoolRuleProto2 {
+  optional google.protobuf.BoolValue val = 1 [(buf.validate.field).bool.(bool_false_proto2) = true];
+}
+
+message PredefinedWrappedStringRuleProto2 {
+  optional google.protobuf.StringValue val = 1 [(buf.validate.field).string.(string_valid_path_proto2) = true];
+}
+
+message PredefinedWrappedBytesRuleProto2 {
+  optional google.protobuf.BytesValue val = 1 [(buf.validate.field).bytes.(bytes_valid_path_proto2) = true];
+}
+
 message PredefinedAndCustomRuleProto2 {
-  optional int32 a = 1 [
+  optional sint32 a = 1 [
     (field).cel = {
       id: "predefined_and_custom_rule_scalar_proto2"
       expression: "this > 24 ? '' : 'a must be greater than 24'"
     },
-    (field).int32.(int32_even_proto2) = true
+    (field).sint32.(sint32_even_proto2) = true
   ];
 
   optional Nested b = 2 [(field).cel = {
@@ -266,20 +303,20 @@ message PredefinedAndCustomRuleProto2 {
   }];
 
   message Nested {
-    optional int32 c = 1 [
+    optional sint32 c = 1 [
       (field).cel = {
         id: "predefined_and_custom_rule_nested_proto2"
         expression: "this > 0 ? '' : 'c must be positive'"
       },
-      (field).int32.(int32_even_proto2) = true
+      (field).sint32.(sint32_even_proto2) = true
     ];
   }
 }
 
 message StandardPredefinedAndCustomRuleProto2 {
-  optional int32 a = 1 [
-    (field).int32.lt = 28,
-    (field).int32.(int32_even_proto2) = true,
+  optional sint32 a = 1 [
+    (field).sint32.lt = 28,
+    (field).sint32.(sint32_even_proto2) = true,
     (field).cel = {
       id: "standard_predefined_and_custom_rule_scalar_proto2"
       expression: "this > 24 ? '' : 'a must be greater than 24'"
