@@ -423,6 +423,168 @@ func predefinedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto2/repeated/wrapped/float/valid": {
+			Message: &cases.PredefinedRepeatedWrappedFloatRuleProto2{
+				Val: []*wrapperspb.FloatValue{wrapperspb.Float(1.0)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/float/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedFloatRuleProto2{
+				Val: []*wrapperspb.FloatValue{wrapperspb.Float(1.0), wrapperspb.Float(-2.0)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("float.abs_range.proto2"),
+					Message:      proto.String("float value is out of range"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/double/valid": {
+			Message: &cases.PredefinedRepeatedWrappedDoubleRuleProto2{
+				Val: []*wrapperspb.DoubleValue{wrapperspb.Double(1.0)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/double/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedDoubleRuleProto2{
+				Val: []*wrapperspb.DoubleValue{wrapperspb.Double(1.0), wrapperspb.Double(-2.0)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("double.abs_range.proto2"),
+					Message:      proto.String("double value is out of range"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/int32/valid": {
+			Message: &cases.PredefinedRepeatedWrappedInt32RuleProto2{
+				Val: []*wrapperspb.Int32Value{wrapperspb.Int32(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/int32/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedInt32RuleProto2{
+				Val: []*wrapperspb.Int32Value{wrapperspb.Int32(2), wrapperspb.Int32(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("int32.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/int64/valid": {
+			Message: &cases.PredefinedRepeatedWrappedInt64RuleProto2{
+				Val: []*wrapperspb.Int64Value{wrapperspb.Int64(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/int64/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedInt64RuleProto2{
+				Val: []*wrapperspb.Int64Value{wrapperspb.Int64(2), wrapperspb.Int64(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("int64.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/uint32/valid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt32RuleProto2{
+				Val: []*wrapperspb.UInt32Value{wrapperspb.UInt32(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/uint32/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt32RuleProto2{
+				Val: []*wrapperspb.UInt32Value{wrapperspb.UInt32(2), wrapperspb.UInt32(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("uint32.even.proto2"),
+					Message:      proto.String("uint32 value is not even"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/uint64/valid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt64RuleProto2{
+				Val: []*wrapperspb.UInt64Value{wrapperspb.UInt64(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/uint64/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt64RuleProto2{
+				Val: []*wrapperspb.UInt64Value{wrapperspb.UInt64(2), wrapperspb.UInt64(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("uint64.even.proto2"),
+					Message:      proto.String("uint64 value is not even"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/bool/valid": {
+			Message: &cases.PredefinedRepeatedWrappedBoolRuleProto2{
+				Val: []*wrapperspb.BoolValue{wrapperspb.Bool(false)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/bool/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedBoolRuleProto2{
+				Val: []*wrapperspb.BoolValue{wrapperspb.Bool(false), wrapperspb.Bool(true)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("bool.false.proto2"),
+					Message:      proto.String("bool value is not false"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/string/valid": {
+			Message: &cases.PredefinedRepeatedWrappedStringRuleProto2{
+				Val: []*wrapperspb.StringValue{wrapperspb.String("valid/file.proto")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/string/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedStringRuleProto2{
+				Val: []*wrapperspb.StringValue{wrapperspb.String("valid/file.proto"), wrapperspb.String("../invalid/path")},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("string.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
+		"proto2/repeated/wrapped/bytes/valid": {
+			Message: &cases.PredefinedRepeatedWrappedBytesRuleProto2{
+				Val: []*wrapperspb.BytesValue{wrapperspb.Bytes([]byte("valid/file.proto"))},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/wrapped/bytes/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedBytesRuleProto2{
+				Val: []*wrapperspb.BytesValue{wrapperspb.Bytes([]byte("valid/file.proto")), wrapperspb.Bytes([]byte("../invalid/path"))},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("bytes.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
 		"proto2/predefined_and_custom/valid": {
 			Message: &cases.PredefinedAndCustomRuleProto2{
 				A: proto.Int32(26),
@@ -917,6 +1079,168 @@ func predefinedSuite() suites.Suite {
 				},
 			),
 		},
+		"proto3/repeated/wrapped/float/valid": {
+			Message: &cases.PredefinedRepeatedWrappedFloatRuleProto3{
+				Val: []*wrapperspb.FloatValue{wrapperspb.Float(1.0)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/float/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedFloatRuleProto3{
+				Val: []*wrapperspb.FloatValue{wrapperspb.Float(1.0), wrapperspb.Float(-2.0)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("float.abs_range.proto2"),
+					Message:      proto.String("float value is out of range"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/double/valid": {
+			Message: &cases.PredefinedRepeatedWrappedDoubleRuleProto3{
+				Val: []*wrapperspb.DoubleValue{wrapperspb.Double(1.0)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/double/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedDoubleRuleProto3{
+				Val: []*wrapperspb.DoubleValue{wrapperspb.Double(1.0), wrapperspb.Double(-2.0)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("double.abs_range.proto2"),
+					Message:      proto.String("double value is out of range"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/int32/valid": {
+			Message: &cases.PredefinedRepeatedWrappedInt32RuleProto3{
+				Val: []*wrapperspb.Int32Value{wrapperspb.Int32(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/int32/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedInt32RuleProto3{
+				Val: []*wrapperspb.Int32Value{wrapperspb.Int32(2), wrapperspb.Int32(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("int32.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/int64/valid": {
+			Message: &cases.PredefinedRepeatedWrappedInt64RuleProto3{
+				Val: []*wrapperspb.Int64Value{wrapperspb.Int64(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/int64/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedInt64RuleProto3{
+				Val: []*wrapperspb.Int64Value{wrapperspb.Int64(2), wrapperspb.Int64(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("int64.abs_in.proto2"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/uint32/valid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt32RuleProto3{
+				Val: []*wrapperspb.UInt32Value{wrapperspb.UInt32(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/uint32/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt32RuleProto3{
+				Val: []*wrapperspb.UInt32Value{wrapperspb.UInt32(2), wrapperspb.UInt32(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("uint32.even.proto2"),
+					Message:      proto.String("uint32 value is not even"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/uint64/valid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt64RuleProto3{
+				Val: []*wrapperspb.UInt64Value{wrapperspb.UInt64(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/uint64/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt64RuleProto3{
+				Val: []*wrapperspb.UInt64Value{wrapperspb.UInt64(2), wrapperspb.UInt64(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("uint64.even.proto2"),
+					Message:      proto.String("uint64 value is not even"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/bool/valid": {
+			Message: &cases.PredefinedRepeatedWrappedBoolRuleProto3{
+				Val: []*wrapperspb.BoolValue{wrapperspb.Bool(false)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/bool/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedBoolRuleProto3{
+				Val: []*wrapperspb.BoolValue{wrapperspb.Bool(false), wrapperspb.Bool(true)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("bool.false.proto2"),
+					Message:      proto.String("bool value is not false"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/string/valid": {
+			Message: &cases.PredefinedRepeatedWrappedStringRuleProto3{
+				Val: []*wrapperspb.StringValue{wrapperspb.String("valid/file.proto")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/string/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedStringRuleProto3{
+				Val: []*wrapperspb.StringValue{wrapperspb.String("valid/file.proto"), wrapperspb.String("../invalid/path")},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("string.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
+		"proto3/repeated/wrapped/bytes/valid": {
+			Message: &cases.PredefinedRepeatedWrappedBytesRuleProto3{
+				Val: []*wrapperspb.BytesValue{wrapperspb.Bytes([]byte("valid/file.proto"))},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/wrapped/bytes/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedBytesRuleProto3{
+				Val: []*wrapperspb.BytesValue{wrapperspb.Bytes([]byte("valid/file.proto")), wrapperspb.Bytes([]byte("../invalid/path"))},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("bytes.valid_path.proto2"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
 		"proto3/predefined_and_custom/valid": {
 			Message: &cases.PredefinedAndCustomRuleProto3{
 				A: 26,
@@ -1406,6 +1730,168 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					ConstraintId: proto.String("bytes.valid_path.edition_2023"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/float/valid": {
+			Message: &cases.PredefinedRepeatedWrappedFloatRuleEdition2023{
+				Val: []*wrapperspb.FloatValue{wrapperspb.Float(1.0)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/float/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedFloatRuleEdition2023{
+				Val: []*wrapperspb.FloatValue{wrapperspb.Float(1.0), wrapperspb.Float(-2.0)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("float.abs_range.edition_2023"),
+					Message:      proto.String("float value is out of range"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/double/valid": {
+			Message: &cases.PredefinedRepeatedWrappedDoubleRuleEdition2023{
+				Val: []*wrapperspb.DoubleValue{wrapperspb.Double(1.0)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/double/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedDoubleRuleEdition2023{
+				Val: []*wrapperspb.DoubleValue{wrapperspb.Double(1.0), wrapperspb.Double(-2.0)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("double.abs_range.edition_2023"),
+					Message:      proto.String("double value is out of range"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/int32/valid": {
+			Message: &cases.PredefinedRepeatedWrappedInt32RuleEdition2023{
+				Val: []*wrapperspb.Int32Value{wrapperspb.Int32(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/int32/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedInt32RuleEdition2023{
+				Val: []*wrapperspb.Int32Value{wrapperspb.Int32(2), wrapperspb.Int32(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("int32.abs_in.edition_2023"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/int64/valid": {
+			Message: &cases.PredefinedRepeatedWrappedInt64RuleEdition2023{
+				Val: []*wrapperspb.Int64Value{wrapperspb.Int64(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/int64/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedInt64RuleEdition2023{
+				Val: []*wrapperspb.Int64Value{wrapperspb.Int64(2), wrapperspb.Int64(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("int64.abs_in.edition_2023"),
+					Message:      proto.String("value must be in absolute value of list"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/uint32/valid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt32RuleEdition2023{
+				Val: []*wrapperspb.UInt32Value{wrapperspb.UInt32(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/uint32/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt32RuleEdition2023{
+				Val: []*wrapperspb.UInt32Value{wrapperspb.UInt32(2), wrapperspb.UInt32(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("uint32.even.edition_2023"),
+					Message:      proto.String("uint32 value is not even"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/uint64/valid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt64RuleEdition2023{
+				Val: []*wrapperspb.UInt64Value{wrapperspb.UInt64(2)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/uint64/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedUInt64RuleEdition2023{
+				Val: []*wrapperspb.UInt64Value{wrapperspb.UInt64(2), wrapperspb.UInt64(3)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("uint64.even.edition_2023"),
+					Message:      proto.String("uint64 value is not even"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/bool/valid": {
+			Message: &cases.PredefinedRepeatedWrappedBoolRuleEdition2023{
+				Val: []*wrapperspb.BoolValue{wrapperspb.Bool(false)},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/bool/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedBoolRuleEdition2023{
+				Val: []*wrapperspb.BoolValue{wrapperspb.Bool(false), wrapperspb.Bool(true)},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("bool.false.edition_2023"),
+					Message:      proto.String("bool value is not false"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/string/valid": {
+			Message: &cases.PredefinedRepeatedWrappedStringRuleEdition2023{
+				Val: []*wrapperspb.StringValue{wrapperspb.String("valid/file.proto")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/string/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedStringRuleEdition2023{
+				Val: []*wrapperspb.StringValue{wrapperspb.String("valid/file.proto"), wrapperspb.String("../invalid/path")},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
+					ConstraintId: proto.String("string.valid_path.edition_2023"),
+					Message:      proto.String("not a valid path: `../invalid/path`"),
+				},
+			),
+		},
+		"proto/2023/repeated/wrapped/bytes/valid": {
+			Message: &cases.PredefinedRepeatedWrappedBytesRuleEdition2023{
+				Val: []*wrapperspb.BytesValue{wrapperspb.Bytes([]byte("valid/file.proto"))},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/wrapped/bytes/invalid": {
+			Message: &cases.PredefinedRepeatedWrappedBytesRuleEdition2023{
+				Val: []*wrapperspb.BytesValue{wrapperspb.Bytes([]byte("valid/file.proto")), wrapperspb.Bytes([]byte("../invalid/path"))},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					FieldPath:    proto.String("val[1]"),
 					ConstraintId: proto.String("bytes.valid_path.edition_2023"),
 					Message:      proto.String("not a valid path: `../invalid/path`"),
 				},

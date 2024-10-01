@@ -299,6 +299,42 @@ message PredefinedWrappedBytesRuleEdition2023 {
   google.protobuf.BytesValue val = 1 [(buf.validate.field).bytes.(bytes_valid_path_edition_2023) = true];
 }
 
+message PredefinedRepeatedWrappedFloatRuleEdition2023 {
+  repeated google.protobuf.FloatValue val = 1 [(buf.validate.field).repeated.items.float.(float_abs_range_edition_2023) = 1.0];
+}
+
+message PredefinedRepeatedWrappedDoubleRuleEdition2023 {
+  repeated google.protobuf.DoubleValue val = 1 [(buf.validate.field).repeated.items.double.(double_abs_range_edition_2023) = 1.0];
+}
+
+message PredefinedRepeatedWrappedInt32RuleEdition2023 {
+  repeated google.protobuf.Int32Value val = 1 [(buf.validate.field).repeated.items.int32.(int32_abs_in_edition_2023) = -2];
+}
+
+message PredefinedRepeatedWrappedInt64RuleEdition2023 {
+  repeated google.protobuf.Int64Value val = 1 [(buf.validate.field).repeated.items.int64.(int64_abs_in_edition_2023) = {value: -2}];
+}
+
+message PredefinedRepeatedWrappedUInt32RuleEdition2023 {
+  repeated google.protobuf.UInt32Value val = 1 [(buf.validate.field).repeated.items.uint32.(uint32_even_edition_2023) = true];
+}
+
+message PredefinedRepeatedWrappedUInt64RuleEdition2023 {
+  repeated google.protobuf.UInt64Value val = 1 [(buf.validate.field).repeated.items.uint64.(uint64_even_edition_2023) = true];
+}
+
+message PredefinedRepeatedWrappedBoolRuleEdition2023 {
+  repeated google.protobuf.BoolValue val = 1 [(buf.validate.field).repeated.items.bool.(bool_false_edition_2023) = true];
+}
+
+message PredefinedRepeatedWrappedStringRuleEdition2023 {
+  repeated google.protobuf.StringValue val = 1 [(buf.validate.field).repeated.items.string.(string_valid_path_edition_2023) = true];
+}
+
+message PredefinedRepeatedWrappedBytesRuleEdition2023 {
+  repeated google.protobuf.BytesValue val = 1 [(buf.validate.field).repeated.items.bytes.(bytes_valid_path_edition_2023) = true];
+}
+
 message PredefinedAndCustomRuleEdition2023 {
   sint32 a = 1 [
     (field).cel = {

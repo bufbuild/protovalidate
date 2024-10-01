@@ -143,6 +143,42 @@ message PredefinedWrappedBytesRuleProto3 {
   google.protobuf.BytesValue val = 1 [(buf.validate.field).bytes.(bytes_valid_path_proto2) = true];
 }
 
+message PredefinedRepeatedWrappedFloatRuleProto3 {
+  repeated google.protobuf.FloatValue val = 1 [(buf.validate.field).repeated.items.float.(float_abs_range_proto2) = 1.0];
+}
+
+message PredefinedRepeatedWrappedDoubleRuleProto3 {
+  repeated google.protobuf.DoubleValue val = 1 [(buf.validate.field).repeated.items.double.(double_abs_range_proto2) = 1.0];
+}
+
+message PredefinedRepeatedWrappedInt32RuleProto3 {
+  repeated google.protobuf.Int32Value val = 1 [(buf.validate.field).repeated.items.int32.(int32_abs_in_proto2) = -2];
+}
+
+message PredefinedRepeatedWrappedInt64RuleProto3 {
+  repeated google.protobuf.Int64Value val = 1 [(buf.validate.field).repeated.items.int64.(int64_abs_in_proto2) = {value: -2}];
+}
+
+message PredefinedRepeatedWrappedUInt32RuleProto3 {
+  repeated google.protobuf.UInt32Value val = 1 [(buf.validate.field).repeated.items.uint32.(uint32_even_proto2) = true];
+}
+
+message PredefinedRepeatedWrappedUInt64RuleProto3 {
+  repeated google.protobuf.UInt64Value val = 1 [(buf.validate.field).repeated.items.uint64.(uint64_even_proto2) = true];
+}
+
+message PredefinedRepeatedWrappedBoolRuleProto3 {
+  repeated google.protobuf.BoolValue val = 1 [(buf.validate.field).repeated.items.bool.(bool_false_proto2) = true];
+}
+
+message PredefinedRepeatedWrappedStringRuleProto3 {
+  repeated google.protobuf.StringValue val = 1 [(buf.validate.field).repeated.items.string.(string_valid_path_proto2) = true];
+}
+
+message PredefinedRepeatedWrappedBytesRuleProto3 {
+  repeated google.protobuf.BytesValue val = 1 [(buf.validate.field).repeated.items.bytes.(bytes_valid_path_proto2) = true];
+}
+
 message PredefinedAndCustomRuleProto3 {
   sint32 a = 1 [
     (field).cel = {
