@@ -4749,14 +4749,6 @@ message TimestampRules {
   extensions 1000 to max;
 }
 
-// `Violations` is a collection of `Violation` messages. This message type is returned by
-// protovalidate when a proto message fails to meet the requirements set by the `Constraint` validation rules.
-// Each individual violation is represented by a `Violation` message.
-message Violations {
-  // `violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.
-  repeated Violation violations = 1;
-}
-
 // `Violation` represents a single instance where a validation rule, expressed
 // as a `Constraint`, was not met. It provides information about the field that
 // caused the violation, the specific constraint that wasn't fulfilled, and a

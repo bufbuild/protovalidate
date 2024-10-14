@@ -19,7 +19,7 @@ The `Constraint` message is used to define validation rules for messages or
 fields in a message. The constraints are then evaluated using
 the `protovalidate` tool to ensure that the data conforms to the specified
 rules. If any violations occur during validation, they are reported using
-the `Violations` message. The `Violation` message provides detailed information
+the `Violation` message. The `Violation` message provides detailed information
 about the violated constraint, including the field path, the constraint ID, and
 the error message.
 

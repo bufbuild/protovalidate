@@ -9,16 +9,14 @@ three fields:
 - `constraint_id`: the id of the constraint that failed validation.
 - `message`: a human-readable error message for this violation.
 
-### Violations
+### Violation
 
-The `Violations` message is used to collect all violations that occur during
-constraint validation. It has one field:
+The `Violation` message is used to collect all violations that occur during
+constraint validation. One or more `Violation` messages are returned by
+`protovalidate` when a message fails to fulfill the requirements of the
+constraint validation.
 
-- `violations`: a repeated field of `Violation` messages. `Violations` are
-  returned by `protovalidate` when a message fails to fulfill the requirements
-  of the constraint validation.
-
-In summary, the `Constraints` and `Violations` messages provide a way to define
+In summary, the `Constraints` and `Violation` messages provide a way to define
 and enforce validation constraints using the Common Expression Language (CEL)
 syntax. Standard constraints are defined using the `Constraints` message and
 provide a set of predefined validation rules that can be applied to various.
