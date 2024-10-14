@@ -34,13 +34,19 @@ message TestConformanceResponse {
   map<string, TestResult> results = 1;
 }
 
+// ValidationError is the result if the test failed due to validation errors.
+message ValidationError {
+  // `violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.
+  repeated Violation violations = 1;
+}
+
 // TestResult is the result of a single test. Only one of the fields will be set.
 message TestResult {
   oneof result {
     // success is true if the test succeeded.
     bool success = 1;
     // validation_error is the error if the test failed due to validation errors.
-    Violations validation_error = 2;
+    ValidationError validation_error = 2;
     // compilation_error is the error if the test failed due to compilation errors.
     string compilation_error = 3;
     // runtime_error is the error if the test failed due to runtime errors.

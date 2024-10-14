@@ -98,7 +98,7 @@ func Violations(violations ...*validate.Violation) Result {
 	SortViolations(violations)
 	wrapper := wrapResult(&harness.TestResult{
 		Result: &harness.TestResult_ValidationError{
-			ValidationError: &validate.Violations{Violations: violations},
+			ValidationError: &harness.ValidationError{Violations: violations},
 		},
 	})
 	return violationsResult{wrapper: wrapper}
