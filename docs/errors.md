@@ -1,27 +1,11 @@
 # Errors
 
-## Violation Errors
+## Validation Errors
 
-The `Violation` message represents a single violation of a constraint. It has
-three fields:
-
-- `field_path`: a machine-readable path to the field that failed validation.
-- `constraint_id`: the id of the constraint that failed validation.
-- `message`: a human-readable error message for this violation.
-
-### Violation
-
-The `Violation` message is used to collect all violations that occur during
-constraint validation. One or more `Violation` messages are returned by
-`protovalidate` when a message fails to fulfill the requirements of the
-constraint validation.
-
-In summary, the `Constraints` and `Violation` messages provide a way to define
-and enforce validation constraints using the Common Expression Language (CEL)
-syntax. Standard constraints are defined using the `Constraints` message and
-provide a set of predefined validation rules that can be applied to various.
-These messages can be used to ensure that the data conforms to the
-specified rules and to report any violations that occur during validation.
+A validation error collects constraint violations encountered during validation.
+A violation represents a single violation of a constraint. It contains a machine
+readable field path, the constraint ID and a human-readable error diagostic for
+the violation. A validation error contains one or more violations.
 
 ## Compilation Errors
 
