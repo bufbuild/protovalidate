@@ -34,12 +34,6 @@ message TestConformanceResponse {
   map<string, TestResult> results = 1;
 }
 
-// ValidationError is the result if the test failed due to validation errors.
-message ValidationError {
-  // `violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.
-  repeated Violation violations = 1;
-}
-
 // TestResult is the result of a single test. Only one of the fields will be set.
 message TestResult {
   oneof result {
@@ -54,4 +48,39 @@ message TestResult {
     // unexpected_error is any other error that may have occurred.
     string unexpected_error = 5;
   }
+}
+
+// ValidationError is the result if the test failed due to validation errors.
+message ValidationError {
+  // `violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.
+  repeated Violation violations = 1;
+}
+
+// `Violation` represents a single instance where a validation rule, expressed
+// as a `Constraint`, was not met. It provides information about the field that
+// caused the violation, the specific constraint that wasn't fulfilled, and a
+// human-readable error message.
+//
+// ```json
+// {
+//   "fieldPath": "bar",
+//   "constraintId": "foo.bar",
+//   "message": "bar must be greater than 0"
+// }
+// ```
+message Violation {
+  // `field_path` is a machine-readable identifier that points to the specific field that failed the validation.
+  // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
+  optional string field_path = 1;
+
+  // `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
+  // This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
+  optional string constraint_id = 2;
+
+  // `message` is a human-readable error message that describes the nature of the violation.
+  // This can be the default error message from the violated `Constraint`, or it can be a custom message that gives more context about the violation.
+  optional string message = 3;
+
+  // `for_key` indicates whether the violation was caused by a map key, rather than a value.
+  optional bool for_key = 4;
 }
