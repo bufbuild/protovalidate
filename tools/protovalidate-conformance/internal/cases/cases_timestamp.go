@@ -17,8 +17,8 @@ package cases
 import (
 	"time"
 
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -37,7 +37,7 @@ func timestampSuite() suites.Suite {
 		},
 		"required/invalid": {
 			Message:  &cases.TimestampRequired{Val: nil},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("required")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("required")}),
 		},
 		"const/valid": {
 			Message:  &cases.TimestampConst{Val: &timestamppb.Timestamp{Seconds: 3, Nanos: 0}},
@@ -49,7 +49,7 @@ func timestampSuite() suites.Suite {
 		},
 		"const/invalid": {
 			Message:  &cases.TimestampConst{Val: &timestamppb.Timestamp{Nanos: 3}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.const")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.const")}),
 		},
 		"lt/valid": {
 			Message:  &cases.TimestampLT{Val: &timestamppb.Timestamp{Seconds: -1}},
@@ -61,11 +61,11 @@ func timestampSuite() suites.Suite {
 		},
 		"lt/invalid/equal": {
 			Message:  &cases.TimestampLT{Val: &timestamppb.Timestamp{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt")}),
 		},
 		"lt/invalid": {
 			Message:  &cases.TimestampLT{Val: &timestamppb.Timestamp{Seconds: 1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt")}),
 		},
 		"lte/valid": {
 			Message:  &cases.TimestampLTE{Val: &timestamppb.Timestamp{}},
@@ -81,7 +81,7 @@ func timestampSuite() suites.Suite {
 		},
 		"lte/invalid": {
 			Message:  &cases.TimestampLTE{Val: &timestamppb.Timestamp{Seconds: 1, Nanos: 1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lte")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lte")}),
 		},
 		"gt/valid": {
 			Message:  &cases.TimestampGT{Val: &timestamppb.Timestamp{Seconds: 1}},
@@ -93,11 +93,11 @@ func timestampSuite() suites.Suite {
 		},
 		"gt/invalid/equal": {
 			Message:  &cases.TimestampGT{Val: &timestamppb.Timestamp{Nanos: 1000}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt")}),
 		},
 		"gt/invalid": {
 			Message:  &cases.TimestampGT{Val: &timestamppb.Timestamp{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt")}),
 		},
 		"gte/valid": {
 			Message:  &cases.TimestampGTE{Val: &timestamppb.Timestamp{Seconds: 3}},
@@ -113,7 +113,7 @@ func timestampSuite() suites.Suite {
 		},
 		"gte/invalid": {
 			Message:  &cases.TimestampGTE{Val: &timestamppb.Timestamp{Seconds: -1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte")}),
 		},
 		"gt_lt/valid": {
 			Message:  &cases.TimestampGTLT{Val: &timestamppb.Timestamp{Nanos: 1000}},
@@ -125,19 +125,19 @@ func timestampSuite() suites.Suite {
 		},
 		"gt_lt/invalid/above": {
 			Message:  &cases.TimestampGTLT{Val: &timestamppb.Timestamp{Seconds: 1000}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
 		},
 		"gt_lt/invalid/below": {
 			Message:  &cases.TimestampGTLT{Val: &timestamppb.Timestamp{Seconds: -1000}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
 		},
 		"gt_lt/invalid/max": {
 			Message:  &cases.TimestampGTLT{Val: &timestamppb.Timestamp{Seconds: 1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
 		},
 		"gt_lt/invalid/min": {
 			Message:  &cases.TimestampGTLT{Val: &timestamppb.Timestamp{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt")}),
 		},
 		"exclusive/gt_lt/valid/empty": {
 			Message:  &cases.TimestampExLTGT{},
@@ -153,15 +153,15 @@ func timestampSuite() suites.Suite {
 		},
 		"exclusive/gt_lt/invalid": {
 			Message:  &cases.TimestampExLTGT{Val: &timestamppb.Timestamp{Nanos: 1000}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt_exclusive")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt_exclusive")}),
 		},
 		"exclusive/gt_lt/invalid/max": {
 			Message:  &cases.TimestampExLTGT{Val: &timestamppb.Timestamp{Seconds: 1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt_exclusive")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt_exclusive")}),
 		},
 		"exclusive/gt_lt/invalid/min": {
 			Message:  &cases.TimestampExLTGT{Val: &timestamppb.Timestamp{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt_exclusive")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_lt_exclusive")}),
 		},
 		"gte_lte/valid": {
 			Message:  &cases.TimestampGTELTE{Val: &timestamppb.Timestamp{Seconds: 60, Nanos: 1}},
@@ -181,11 +181,11 @@ func timestampSuite() suites.Suite {
 		},
 		"gte_lte/invalid/above": {
 			Message:  &cases.TimestampGTELTE{Val: &timestamppb.Timestamp{Seconds: 3600, Nanos: 1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte_lte")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte_lte")}),
 		},
 		"gte_lte/invalid/below": {
 			Message:  &cases.TimestampGTELTE{Val: &timestamppb.Timestamp{Seconds: 59}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte_lte")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte_lte")}),
 		},
 		"exclusive/gte_lte/valid/empty": {
 			Message:  &cases.TimestampExGTELTE{},
@@ -209,7 +209,7 @@ func timestampSuite() suites.Suite {
 		},
 		"exclusive/gte_lte/invalid": {
 			Message:  &cases.TimestampExGTELTE{Val: &timestamppb.Timestamp{Seconds: 61}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte_lte_exclusive")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gte_lte_exclusive")}),
 		},
 		"lt_now/valid": {
 			Message:  &cases.TimestampLTNow{Val: &timestamppb.Timestamp{}},
@@ -221,7 +221,7 @@ func timestampSuite() suites.Suite {
 		},
 		"lt_now/invalid": {
 			Message:  &cases.TimestampLTNow{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt_now")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt_now")}),
 		},
 		"lt_now/invalid/not_checked": {
 			Message:  &cases.TimestampNotLTNow{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
@@ -237,7 +237,7 @@ func timestampSuite() suites.Suite {
 		},
 		"gt_now/invalid": {
 			Message:  &cases.TimestampGTNow{Val: &timestamppb.Timestamp{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_now")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_now")}),
 		},
 		"gt_now/invalid/not_checked": {
 			Message:  &cases.TimestampNotGTNow{Val: &timestamppb.Timestamp{}},
@@ -253,11 +253,11 @@ func timestampSuite() suites.Suite {
 		},
 		"within/invalid/below": {
 			Message:  &cases.TimestampWithin{Val: &timestamppb.Timestamp{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
 		},
 		"within/invalid/above": {
 			Message:  &cases.TimestampWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
 		},
 		"lt_now/within/valid": {
 			Message:  &cases.TimestampLTNowWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() - 1800}},
@@ -270,11 +270,11 @@ func timestampSuite() suites.Suite {
 		"lt_now/within/invalid/lt": {
 			Message: &cases.TimestampLTNowWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 1800}},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt_now")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.lt_now")}),
 		},
 		"lt_now/within/invalid/within": {
 			Message:  &cases.TimestampLTNowWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() / 7200}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
 		},
 		"gt_now/within/valid": {
 			Message:  &cases.TimestampGTNowWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 1800}},
@@ -287,13 +287,13 @@ func timestampSuite() suites.Suite {
 		"gt_now/within/invalid/gt": {
 			Message: &cases.TimestampGTNowWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() / 1800}},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_now")},
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")},
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.gt_now")},
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")},
 			),
 		},
 		"gt_now/within/invalid/within": {
 			Message:  &cases.TimestampGTNowWithin{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix() + 7200}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
+			Expected: results.Violations(&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("timestamp.within")}),
 		},
 		"example/valid": {
 			Message:  &cases.TimestampExample{Val: &timestamppb.Timestamp{Seconds: 3, Nanos: 0}},

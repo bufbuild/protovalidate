@@ -15,8 +15,8 @@
 package cases
 
 import (
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -35,7 +35,7 @@ func uint64Suite() suites.Suite {
 		"const/invalid": {
 			Message: &cases.UInt64Const{Val: 2},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.const")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.const")}),
 		},
 		"in/valid": {
 			Message:  &cases.UInt64In{Val: 3},
@@ -44,7 +44,7 @@ func uint64Suite() suites.Suite {
 		"in/invalid": {
 			Message: &cases.UInt64In{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.in")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.in")}),
 		},
 		"not_in/valid": {
 			Message:  &cases.UInt64NotIn{Val: 1},
@@ -53,7 +53,7 @@ func uint64Suite() suites.Suite {
 		"not_in/invalid": {
 			Message: &cases.UInt64NotIn{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.not_in")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.not_in")}),
 		},
 		"lt/valid/less": {
 			Message:  &cases.UInt64LT{Val: 4},
@@ -62,12 +62,12 @@ func uint64Suite() suites.Suite {
 		"lt/invalid/equal": {
 			Message: &cases.UInt64LT{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.lt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.lt")}),
 		},
 		"lt/invalid/greater": {
 			Message: &cases.UInt64LT{Val: 6},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.lt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.lt")}),
 		},
 		"lte/valid/less": {
 			Message:  &cases.UInt64LTE{Val: 63},
@@ -80,7 +80,7 @@ func uint64Suite() suites.Suite {
 		"lte/invalid/greater": {
 			Message: &cases.UInt64LTE{Val: 65},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.lte")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.lte")}),
 		},
 		"gt/valid/greater": {
 			Message:  &cases.UInt64GT{Val: 17},
@@ -89,12 +89,12 @@ func uint64Suite() suites.Suite {
 		"gt/invalid/equal": {
 			Message: &cases.UInt64GT{Val: 16},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt")}),
 		},
 		"gt/invalid/less": {
 			Message: &cases.UInt64GT{Val: 15},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt")}),
 		},
 		"gte/valid/greater": {
 			Message:  &cases.UInt64GTE{Val: 9},
@@ -107,7 +107,7 @@ func uint64Suite() suites.Suite {
 		"gte/invalid/less": {
 			Message: &cases.UInt64GTE{Val: 7},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte")}),
 		},
 		"gt_lt/inclusive/valid/within": {
 			Message:  &cases.UInt64GTLT{Val: 6},
@@ -116,22 +116,22 @@ func uint64Suite() suites.Suite {
 		"gt_lt/inclusive/invalid/above": {
 			Message: &cases.UInt64GTLT{Val: 11},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
 		},
 		"gt_lt/inclusive/invalid/below": {
 			Message: &cases.UInt64GTLT{Val: 4},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
 		},
 		"gt_lt/inclusive/invalid/max": {
 			Message: &cases.UInt64GTLT{Val: 10},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
 		},
 		"gt_lt/inclusive/invalid/min": {
 			Message: &cases.UInt64GTLT{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt")}),
 		},
 		"gt_lt/exclusive/valid/above": {
 			Message:  &cases.UInt64ExLTGT{Val: 11},
@@ -144,17 +144,17 @@ func uint64Suite() suites.Suite {
 		"gt_lt/exclusive/invalid/within": {
 			Message: &cases.UInt64ExLTGT{Val: 6},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt_exclusive")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt_exclusive")}),
 		},
 		"gt_lt/exclusive/invalid/max": {
 			Message: &cases.UInt64ExLTGT{Val: 10},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt_exclusive")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt_exclusive")}),
 		},
 		"gt_lt/exclusive/invalid/min": {
 			Message: &cases.UInt64ExLTGT{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt_exclusive")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gt_lt_exclusive")}),
 		},
 		"gte_lte/inclusive/valid/within": {
 			Message:  &cases.UInt64GTELTE{Val: 200},
@@ -171,12 +171,12 @@ func uint64Suite() suites.Suite {
 		"gte_lte/inclusive/invalid/above": {
 			Message: &cases.UInt64GTELTE{Val: 300},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte")}),
 		},
 		"gte_lte/inclusive/invalid/below": {
 			Message: &cases.UInt64GTELTE{Val: 100},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte")}),
 		},
 		"gte_lte/exclusive/valid/above": {
 			Message:  &cases.UInt64ExGTELTE{Val: 300},
@@ -197,7 +197,7 @@ func uint64Suite() suites.Suite {
 		"gte_lte/exclusive/invalid/within": {
 			Message: &cases.UInt64ExGTELTE{Val: 200},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte_exclusive")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte_exclusive")}),
 		},
 		"ignore_empty/valid/empty": {
 			Message:  &cases.UInt64Ignore{Val: 0},
@@ -210,7 +210,7 @@ func uint64Suite() suites.Suite {
 		"ignore_empty/invalid/above": {
 			Message: &cases.UInt64Ignore{Val: 300},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte")}),
+				&harness.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("uint64.gte_lte")}),
 		},
 		"compilation/wrong_type": {
 			Message:  &cases.UInt64IncorrectType{Val: 123},

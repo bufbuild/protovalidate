@@ -15,8 +15,8 @@
 package cases
 
 import (
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -42,7 +42,7 @@ func nestedSuite() suites.Suite {
 					},
 				},
 			},
-			Expected: results.Violations(&validate.Violation{
+			Expected: results.Violations(&harness.Violation{
 				FieldPath:    proto.String("two.three.uuid"),
 				ConstraintId: proto.String("string.uuid"),
 			}),

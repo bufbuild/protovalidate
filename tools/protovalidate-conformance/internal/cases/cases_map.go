@@ -15,8 +15,8 @@
 package cases
 
 import (
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -39,7 +39,7 @@ func mapSuite() suites.Suite {
 		"min_pairs/invalid": {
 			Message: &cases.MapMin{Val: map[int32]float32{1: 2}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 2 entries"),
@@ -57,7 +57,7 @@ func mapSuite() suites.Suite {
 		"max_pairs/invalid": {
 			Message: &cases.MapMax{Val: map[int64]float64{1: 2, 3: 4, 5: 6, 7: 8}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 3 entries"),
@@ -79,7 +79,7 @@ func mapSuite() suites.Suite {
 		"min/max/below/invalid": {
 			Message: &cases.MapMinMax{Val: map[string]bool{}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 2 entries"),
@@ -89,7 +89,7 @@ func mapSuite() suites.Suite {
 		"min/max/above/invalid": {
 			Message: &cases.MapMinMax{Val: map[string]bool{"a": true, "b": false, "c": true, "d": false, "e": true}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 4 entries"),
@@ -103,7 +103,7 @@ func mapSuite() suites.Suite {
 		"exact/below/invalid": {
 			Message: &cases.MapExact{Val: map[uint64]string{1: "a", 2: "b"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 3 entries"),
@@ -113,7 +113,7 @@ func mapSuite() suites.Suite {
 		"exact/above/invalid": {
 			Message: &cases.MapExact{Val: map[uint64]string{1: "a", 2: "b", 3: "c", 4: "d"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 3 entries"),
@@ -135,7 +135,7 @@ func mapSuite() suites.Suite {
 		"keys/invalid": {
 			Message: &cases.MapKeys{Val: map[int64]string{1: "a"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[1]"),
 					ConstraintId: proto.String("sint64.lt"),
 					Message:      proto.String("value must be less than 0"),
@@ -146,7 +146,7 @@ func mapSuite() suites.Suite {
 		"keys/pattern/invalid": {
 			Message: &cases.MapKeysPattern{Val: map[string]string{"A": "a", "!@#$%^&*()": "b"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[\"!@#$%^&*()\"]"),
 					ConstraintId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
@@ -169,12 +169,12 @@ func mapSuite() suites.Suite {
 		"values/invalid": {
 			Message: &cases.MapValues{Val: map[string]string{"a": "A", "b": "B"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[\"a\"]"),
 					ConstraintId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
 				},
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[\"b\"]"),
 					ConstraintId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
@@ -184,7 +184,7 @@ func mapSuite() suites.Suite {
 		"values/pattern/invalid": {
 			Message: &cases.MapValuesPattern{Val: map[string]string{"a": "A", "b": "!@#$%^&*()"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[\"b\"]"),
 					ConstraintId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
@@ -198,7 +198,7 @@ func mapSuite() suites.Suite {
 		"recursive/invalid": {
 			Message: &cases.MapRecursive{Val: map[uint32]*cases.MapRecursive_Msg{1: {}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[1].val"),
 					ConstraintId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
