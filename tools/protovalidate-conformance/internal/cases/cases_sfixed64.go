@@ -15,8 +15,8 @@
 package cases
 
 import (
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -35,7 +35,7 @@ func sfixed64Suite() suites.Suite {
 		"const/invalid": {
 			Message: &cases.SFixed64Const{Val: 2},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.const"),
 					Message:      proto.String("value must equal 1"),
@@ -49,7 +49,7 @@ func sfixed64Suite() suites.Suite {
 		"in/invalid": {
 			Message: &cases.SFixed64In{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.in"),
 					Message:      proto.String("value must be in list [2, 3]"),
@@ -63,7 +63,7 @@ func sfixed64Suite() suites.Suite {
 		"not in/invalid": {
 			Message: &cases.SFixed64NotIn{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.not_in"),
 					Message:      proto.String("value must not be in list [0]"),
@@ -77,7 +77,7 @@ func sfixed64Suite() suites.Suite {
 		"lt/equal/invalid": {
 			Message: &cases.SFixed64LT{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.lt"),
 					Message:      proto.String("value must be less than 0"),
@@ -87,7 +87,7 @@ func sfixed64Suite() suites.Suite {
 		"lt/invalid": {
 			Message: &cases.SFixed64LT{Val: 1},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.lt"),
 					Message:      proto.String("value must be less than 0"),
@@ -105,7 +105,7 @@ func sfixed64Suite() suites.Suite {
 		"lte/invalid": {
 			Message: &cases.SFixed64LTE{Val: 65},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.lte"),
 					Message:      proto.String("value must be less than or equal to 64"),
@@ -119,7 +119,7 @@ func sfixed64Suite() suites.Suite {
 		"gt/equal/invalid": {
 			Message: &cases.SFixed64GT{Val: 16},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt"),
 					Message:      proto.String("value must be greater than 16"),
@@ -129,7 +129,7 @@ func sfixed64Suite() suites.Suite {
 		"gt/invalid": {
 			Message: &cases.SFixed64GT{Val: 15},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt"),
 					Message:      proto.String("value must be greater than 16"),
@@ -147,7 +147,7 @@ func sfixed64Suite() suites.Suite {
 		"gte/invalid": {
 			Message: &cases.SFixed64GTE{Val: 7},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gte"),
 					Message:      proto.String("value must be greater than or equal to 8"),
@@ -161,7 +161,7 @@ func sfixed64Suite() suites.Suite {
 		"gt_lt/above/invalid": {
 			Message: &cases.SFixed64GTLT{Val: 11},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
@@ -171,7 +171,7 @@ func sfixed64Suite() suites.Suite {
 		"gt_lt/below/invalid": {
 			Message: &cases.SFixed64GTLT{Val: -1},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
@@ -181,7 +181,7 @@ func sfixed64Suite() suites.Suite {
 		"gt_lt/max/invalid": {
 			Message: &cases.SFixed64GTLT{Val: 10},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
@@ -191,7 +191,7 @@ func sfixed64Suite() suites.Suite {
 		"gt_lt/min/invalid": {
 			Message: &cases.SFixed64GTLT{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
@@ -209,7 +209,7 @@ func sfixed64Suite() suites.Suite {
 		"exclusive/gt_lt/invalid": {
 			Message: &cases.SFixed64ExLTGT{Val: 5},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
@@ -219,7 +219,7 @@ func sfixed64Suite() suites.Suite {
 		"exclusive/gt_lt/max/invalid": {
 			Message: &cases.SFixed64ExLTGT{Val: 10},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
@@ -229,7 +229,7 @@ func sfixed64Suite() suites.Suite {
 		"exclusive/gt_lt/min/invalid": {
 			Message: &cases.SFixed64ExLTGT{Val: 0},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
@@ -251,7 +251,7 @@ func sfixed64Suite() suites.Suite {
 		"gte_lte/above/invalid": {
 			Message: &cases.SFixed64GTELTE{Val: 300},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gte_lte"),
 					Message:      proto.String("value must be greater than or equal to 128 and less than or equal to 256"),
@@ -261,7 +261,7 @@ func sfixed64Suite() suites.Suite {
 		"gte_lte/below/invalid": {
 			Message: &cases.SFixed64GTELTE{Val: 100},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gte_lte"),
 					Message:      proto.String("value must be greater than or equal to 128 and less than or equal to 256"),
@@ -287,7 +287,7 @@ func sfixed64Suite() suites.Suite {
 		"exclusive/gte_lte/invalid": {
 			Message: &cases.SFixed64ExGTELTE{Val: 200},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("sfixed64.gte_lte_exclusive"),
 					Message:      proto.String("value must be greater than or equal to 256 or less than or equal to 128"),

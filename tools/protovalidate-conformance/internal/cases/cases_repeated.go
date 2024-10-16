@@ -15,9 +15,9 @@
 package cases
 
 import (
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/other_package"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -46,7 +46,7 @@ func repeatedSuite() suites.Suite {
 		"embed-none/invalid": {
 			Message: &cases.RepeatedEmbedNone{Val: []*cases.Embed{{Val: -1}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0].val"),
 					ConstraintId: proto.String("int64.gt"),
 					Message:      proto.String("value must be greater than 0"),
@@ -68,7 +68,7 @@ func repeatedSuite() suites.Suite {
 		"cross-package/embed-none/invalid": {
 			Message: &cases.RepeatedEmbedCrossPackageNone{Val: []*other_package.Embed{{Val: -1}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0].val"),
 					ConstraintId: proto.String("int64.gt"),
 					Message:      proto.String("value must be greater than 0"),
@@ -86,7 +86,7 @@ func repeatedSuite() suites.Suite {
 		"min/invalid": {
 			Message: &cases.RepeatedMin{Val: []*cases.Embed{{Val: 1}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 2 item(s)"),
@@ -96,7 +96,7 @@ func repeatedSuite() suites.Suite {
 		"min/element/invalid": {
 			Message: &cases.RepeatedMin{Val: []*cases.Embed{{Val: 1}, {Val: -1}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[1].val"),
 					ConstraintId: proto.String("int64.gt"),
 					Message:      proto.String("value must be greater than 0"),
@@ -114,7 +114,7 @@ func repeatedSuite() suites.Suite {
 		"max/invalid": {
 			Message: &cases.RepeatedMax{Val: []float64{1, 2, 3, 4}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 3 item(s)"),
@@ -136,7 +136,7 @@ func repeatedSuite() suites.Suite {
 		"min/max/below/invalid": {
 			Message: &cases.RepeatedMinMax{Val: []int32{}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 2 item(s)"),
@@ -146,7 +146,7 @@ func repeatedSuite() suites.Suite {
 		"min/max/above/invalid": {
 			Message: &cases.RepeatedMinMax{Val: []int32{1, 2, 3, 4, 5}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 4 item(s)"),
@@ -160,7 +160,7 @@ func repeatedSuite() suites.Suite {
 		"exact/below/invalid": {
 			Message: &cases.RepeatedExact{Val: []uint32{1, 2}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 3 item(s)"),
@@ -170,7 +170,7 @@ func repeatedSuite() suites.Suite {
 		"exact/above/invalid": {
 			Message: &cases.RepeatedExact{Val: []uint32{1, 2, 3, 4}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 3 item(s)"),
@@ -192,7 +192,7 @@ func repeatedSuite() suites.Suite {
 		"unique/invalid": {
 			Message: &cases.RepeatedUnique{Val: []string{"foo", "bar", "foo", "baz"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.unique"),
 				},
@@ -209,12 +209,12 @@ func repeatedSuite() suites.Suite {
 		"unique/multiple/invalid": {
 			Message: &cases.RepeatedMultipleUnique{A: []string{"foo", "foo"}, B: []int32{1, 1}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("a"),
 					ConstraintId: proto.String("repeated.unique"),
 					Message:      proto.String("repeated value must contain unique items"),
 				},
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("b"),
 					ConstraintId: proto.String("repeated.unique"),
 					Message:      proto.String("repeated value must contain unique items"),
@@ -235,7 +235,7 @@ func repeatedSuite() suites.Suite {
 		"items/invalid": {
 			Message: &cases.RepeatedItemRule{Val: []float32{1, -2, 3}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[1]"),
 					ConstraintId: proto.String("float.gt"),
 					Message:      proto.String("value must be greater than 0"),
@@ -245,7 +245,7 @@ func repeatedSuite() suites.Suite {
 		"items/pattern/invalid": {
 			Message: &cases.RepeatedItemPattern{Val: []string{"Alpha", "!@#$%^&*()"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[1]"),
 					ConstraintId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
@@ -255,7 +255,7 @@ func repeatedSuite() suites.Suite {
 		"items/in/invalid": {
 			Message: &cases.RepeatedItemIn{Val: []string{"baz"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("string.in"),
 					Message:      proto.String(`value must be in list ["foo", "bar"]`),
@@ -269,7 +269,7 @@ func repeatedSuite() suites.Suite {
 		"items/not_in/invalid": {
 			Message: &cases.RepeatedItemNotIn{Val: []string{"foo"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("string.not_in"),
 					Message:      proto.String("value must not be in list [\"foo\", \"bar\"]"),
@@ -283,7 +283,7 @@ func repeatedSuite() suites.Suite {
 		"items/enum/in/invalid": {
 			Message: &cases.RepeatedEnumIn{Val: []cases.AnEnum{1}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("enum.in"),
 					Message:      proto.String("value must be in list [0]"),
@@ -297,7 +297,7 @@ func repeatedSuite() suites.Suite {
 		"items/enum/not_in/invalid": {
 			Message: &cases.RepeatedEnumNotIn{Val: []cases.AnEnum{0}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("enum.not_in"),
 					Message:      proto.String("value must not be in list [0]"),
@@ -311,7 +311,7 @@ func repeatedSuite() suites.Suite {
 		"items/embedded/enum/in/invalid": {
 			Message: &cases.RepeatedEmbeddedEnumIn{Val: []cases.RepeatedEmbeddedEnumIn_AnotherInEnum{1}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("enum.in"),
 					Message:      proto.String("value must be in list [0]"),
@@ -325,7 +325,7 @@ func repeatedSuite() suites.Suite {
 		"items/embedded/enum/not_in/invalid": {
 			Message: &cases.RepeatedEmbeddedEnumNotIn{Val: []cases.RepeatedEmbeddedEnumNotIn_AnotherNotInEnum{0}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("enum.not_in"),
 					Message:      proto.String("value must not be in list [0]"),
@@ -339,7 +339,7 @@ func repeatedSuite() suites.Suite {
 		"items/any/in/invalid": {
 			Message: &cases.RepeatedAnyIn{Val: []*anypb.Any{{TypeUrl: "type.googleapis.com/google.protobuf.Timestamp"}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("any.in"),
 					Message:      proto.String("type URL must be in the allow list"),
@@ -353,7 +353,7 @@ func repeatedSuite() suites.Suite {
 		"items/any/not_in/invalid": {
 			Message: &cases.RepeatedAnyNotIn{Val: []*anypb.Any{{TypeUrl: "type.googleapis.com/google.protobuf.Timestamp"}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("any.not_in"),
 					Message:      proto.String("type URL must not be in the block list"),
@@ -379,7 +379,7 @@ func repeatedSuite() suites.Suite {
 		"min-and-items/len/min/invalid": {
 			Message: &cases.RepeatedMinAndItemLen{Val: []string{}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 1 item(s)"),
@@ -389,7 +389,7 @@ func repeatedSuite() suites.Suite {
 		"min-and-items/len/len/invalid": {
 			Message: &cases.RepeatedMinAndItemLen{Val: []string{"x"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("string.len"),
 					Message:      proto.String("value length must be 3 characters"),
@@ -403,7 +403,7 @@ func repeatedSuite() suites.Suite {
 		"min-and-max-items/len/min_len/invalid": {
 			Message: &cases.RepeatedMinAndMaxItemLen{},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 1 item(s)"),
@@ -413,7 +413,7 @@ func repeatedSuite() suites.Suite {
 		"min-and-max-items/len/max_len/invalid": {
 			Message: &cases.RepeatedMinAndMaxItemLen{Val: []string{"aaa", "bbb", "ccc", "ddd"}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val"),
 					ConstraintId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 3 item(s)"),
@@ -435,7 +435,7 @@ func repeatedSuite() suites.Suite {
 		"duration/gte/invalid": {
 			Message: &cases.RepeatedDuration{Val: []*durationpb.Duration{{Seconds: -1}}},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("val[0]"),
 					ConstraintId: proto.String("duration.gte"),
 					Message:      proto.String("value must be greater than or equal to 0.001s"),

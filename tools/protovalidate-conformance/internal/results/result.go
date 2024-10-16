@@ -20,7 +20,6 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 )
 
@@ -94,7 +93,7 @@ type violationsResult struct {
 	wrapper
 }
 
-func Violations(violations ...*validate.Violation) Result {
+func Violations(violations ...*harness.Violation) Result {
 	SortViolations(violations)
 	wrapper := wrapResult(&harness.TestResult{
 		Result: &harness.TestResult_ValidationError{
@@ -223,8 +222,8 @@ func (u unexpectedErrorResult) IsSuccessWith(_ Result, _ *harness.ResultOptions)
 	return false
 }
 
-func SortViolations(violations []*validate.Violation) {
-	slices.SortFunc(violations, func(a, b *validate.Violation) int {
+func SortViolations(violations []*harness.Violation) {
+	slices.SortFunc(violations, func(a, b *harness.Violation) int {
 		if a.GetConstraintId() == b.GetConstraintId() {
 			return cmp.Compare(a.GetFieldPath(), b.GetFieldPath())
 		}

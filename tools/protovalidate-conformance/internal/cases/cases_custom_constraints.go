@@ -15,8 +15,8 @@
 package cases
 
 import (
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_constraints"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -39,8 +39,8 @@ func customSuite() suites.Suite {
 		"message_expressions/empty": {
 			Message: &custom_constraints.MessageExpressions{},
 			Expected: results.Violations(
-				&validate.Violation{ConstraintId: proto.String("message_expression_scalar")},
-				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
+				&harness.Violation{ConstraintId: proto.String("message_expression_scalar")},
+				&harness.Violation{ConstraintId: proto.String("message_expression_enum")},
 			),
 		},
 		"message_expression/valid": {
@@ -76,14 +76,14 @@ func customSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(
-				&validate.Violation{ConstraintId: proto.String("message_expression_scalar")},
-				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
-				&validate.Violation{ConstraintId: proto.String("message_expression_embed")},
-				&validate.Violation{
+				&harness.Violation{ConstraintId: proto.String("message_expression_scalar")},
+				&harness.Violation{ConstraintId: proto.String("message_expression_enum")},
+				&harness.Violation{ConstraintId: proto.String("message_expression_embed")},
+				&harness.Violation{
 					FieldPath:    proto.String("e"),
 					ConstraintId: proto.String("message_expression_nested"),
 				},
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("f"),
 					ConstraintId: proto.String("message_expression_nested"),
 				},
@@ -92,11 +92,11 @@ func customSuite() suites.Suite {
 		"field_expressions/empty": {
 			Message: &custom_constraints.FieldExpressions{},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("a"),
 					ConstraintId: proto.String("field_expression_scalar"),
 				},
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("b"),
 					ConstraintId: proto.String("field_expression_enum"),
 				},
@@ -121,19 +121,19 @@ func customSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("a"),
 					ConstraintId: proto.String("field_expression_scalar"),
 				},
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("b"),
 					ConstraintId: proto.String("field_expression_enum"),
 				},
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("c"),
 					ConstraintId: proto.String("field_expression_embed"),
 				},
-				&validate.Violation{
+				&harness.Violation{
 					FieldPath:    proto.String("c.a"),
 					ConstraintId: proto.String("field_expression_nested"),
 				},
