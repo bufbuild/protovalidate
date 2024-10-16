@@ -4774,6 +4774,11 @@ message Violation {
   // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
   optional string field_path = 1;
 
+  // `rule_path` is a machine-readable identifier that points to the specific constraint rule that failed validation.
+  // This will be a nested field starting from the options of the field that failed validation.
+  // This value is only present for standard or predefined rules on fields.
+  optional string rule_path = 5;
+
   // `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
   // This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
   optional string constraint_id = 2;
