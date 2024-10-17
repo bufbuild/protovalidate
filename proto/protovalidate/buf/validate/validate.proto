@@ -3829,14 +3829,15 @@ message BytesRules {
 
   // `pattern` requires the field value to match the specified regular
   // expression ([RE2 syntax](https://github.com/google/re2/wiki/Syntax)).
-  // The value of the field must be valid UTF-8 or validation will fail with a
-  // runtime error.
+  // The pattern must be valid UTF-8 or validation will fail with a runtime 
+  // error. Use escape sequences to specify non-UTF-8 octets.
+  //
   // If the field value doesn't match the pattern, an error message is generated.
   //
   // ```proto
   // message MyBytes {
-  //   // value must match regex pattern "^[a-zA-Z0-9]+$".
-  //   optional bytes value = 1 [(buf.validate.field).bytes.pattern = "^[a-zA-Z0-9]+$"];
+  //   // value must match regex pattern "^[^\\x00-\\x08\\x0A-\\x1F\\x7F]*$".
+  //   optional bytes value = 1 [(buf.validate.field).bytes.pattern = "^[^\\x00-\\x08\\x0A-\\x1F\\x7F]*$"];
   // }
   // ```
   optional string pattern = 4 [(predefined).cel = {
