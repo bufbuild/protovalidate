@@ -3829,7 +3829,7 @@ message BytesRules {
 
   // `pattern` requires the field value to match the specified regular
   // expression ([RE2 syntax](https://github.com/google/re2/wiki/Syntax)).
-  // The pattern must be valid UTF-8 or validation will fail with a runtime 
+  // The pattern must be valid UTF-8 or validation will fail with a runtime
   // error. Use escape sequences to specify non-UTF-8 octets.
   //
   // If the field value doesn't match the pattern, an error message is generated.
