@@ -29,12 +29,20 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto2/scalar/optional/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2ScalarOptional{Val: proto.Int32(-42)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto2ScalarOptional{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto2/scalar/optional/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2ScalarOptional{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto2ScalarOptional{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto2/scalar/optional/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarOptional{},
@@ -45,12 +53,20 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto2/scalar/optional_with_default/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(-42)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto2/scalar/optional_with_default/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto2/scalar/optional_with_default/default": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2ScalarOptionalWithDefault{Val: proto.Int32(42)},
@@ -65,20 +81,31 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto2/scalar/required/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2ScalarRequired{Val: proto.Int32(-42)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto2ScalarRequired{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto2/scalar/required/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2ScalarRequired{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto2ScalarRequired{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto2/message/nonzero": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2Message{Val: &cases.IgnoreEmptyProto2Message_Msg{Val: proto.String("foo")}},
 			Expected: results.Success(true),
 		},
 		"proto2/message/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2Message{Val: &cases.IgnoreEmptyProto2Message_Msg{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("ignore_empty.proto2.message")}),
+			Message: &cases.IgnoreEmptyProto2Message{Val: &cases.IgnoreEmptyProto2Message_Msg{}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("ignore_empty.proto2.message"),
+			}),
 		},
 		"proto2/message/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2Message{},
@@ -89,8 +116,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto2/oneof/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2Oneof{O: &cases.IgnoreEmptyProto2Oneof_Val{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto2Oneof{O: &cases.IgnoreEmptyProto2Oneof_Val{}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto2/oneof/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2Oneof{},
@@ -101,8 +132,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto2/repeated/noempty/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2Repeated{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("repeated.min_items")}),
+			Message: &cases.IgnoreEmptyProto2Repeated{Val: []int32{1}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("repeated.min_items"),
+				ConstraintId: proto.String("repeated.min_items"),
+			}),
 		},
 		"proto2/repeated/empty": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2Repeated{},
@@ -113,8 +148,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto2/map/nonempty/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto2Map{Val: map[int32]int32{0: 0}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("map.min_pairs")}),
+			Message: &cases.IgnoreEmptyProto2Map{Val: map[int32]int32{0: 0}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("map.min_pairs"),
+				ConstraintId: proto.String("map.min_pairs"),
+			}),
 		},
 		"proto2/map/empty": suites.Case{
 			Message:  &cases.IgnoreEmptyProto2Map{},
@@ -125,8 +164,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/scalar/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto3Scalar{Val: -42},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto3Scalar{Val: -42},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto3/scalar/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyProto3Scalar{Val: 0},
@@ -137,8 +180,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/scalar/optional/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto3OptionalScalar{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto3OptionalScalar{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto3/scalar/optional/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyProto3OptionalScalar{},
@@ -149,8 +196,11 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/message/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto3Message{Val: &cases.IgnoreEmptyProto3Message_Msg{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("ignore_empty.proto3.message")}),
+			Message: &cases.IgnoreEmptyProto3Message{Val: &cases.IgnoreEmptyProto3Message_Msg{}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("ignore_empty.proto3.message"),
+			}),
 		},
 		"proto3/message/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyProto3Message{},
@@ -161,8 +211,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/oneof/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyProto3Oneof{O: &cases.IgnoreEmptyProto3Oneof_Val{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyProto3Oneof{O: &cases.IgnoreEmptyProto3Oneof_Val{}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto3/oneof/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyProto3Oneof{},
@@ -173,8 +227,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/repeated/noempty/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto3Repeated{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("repeated.min_items")}),
+			Message: &cases.IgnoreEmptyProto3Repeated{Val: []int32{1}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("repeated.min_items"),
+				ConstraintId: proto.String("repeated.min_items"),
+			}),
 		},
 		"proto3/repeated/empty": suites.Case{
 			Message:  &cases.IgnoreEmptyProto3Repeated{},
@@ -185,8 +243,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/map/nonempty/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyProto3Map{Val: map[int32]int32{0: 0}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("map.min_pairs")}),
+			Message: &cases.IgnoreEmptyProto3Map{Val: map[int32]int32{0: 0}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("map.min_pairs"),
+				ConstraintId: proto.String("map.min_pairs"),
+			}),
 		},
 		"proto3/map/empty": suites.Case{
 			Message:  &cases.IgnoreEmptyProto3Map{},
@@ -201,8 +263,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/repeated/items/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyRepeatedItems{Val: []int32{-1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val[0]"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyRepeatedItems{Val: []int32{-1}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val[0]"),
+				RulePath:     proto.String("repeated.items.int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto3/map/keys/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"": 42}},
@@ -213,8 +279,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/map/keys/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"x": 42}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String(`val["x"]`), ForKey: proto.Bool(true), ConstraintId: proto.String("string.min_len")}),
+			Message: &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"x": 42}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath: proto.String(`val["x"]`), ForKey: proto.Bool(true),
+				RulePath:     proto.String("map.keys.string.min_len"),
+				ConstraintId: proto.String("string.min_len"),
+			}),
 		},
 		"proto3/map/values/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": 0}},
@@ -225,20 +295,32 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto3/map/values/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": -1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String(`val["foo"]`), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyMapPairs{Val: map[string]int32{"foo": -1}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String(`val["foo"]`),
+				RulePath:     proto.String("map.values.int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/explicit_presence/nonzero/valid": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(42)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/explicit_presence/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(-42)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/explicit_presence/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarExplicitPresence{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/explicit_presence/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresence{},
@@ -249,12 +331,20 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/explicit_presence_with_default/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(-42)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/explicit_presence_with_default/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/explicit_presence_with_default/default": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsScalarExplicitPresenceWithDefault{Val: proto.Int32(42)},
@@ -269,8 +359,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/implicit_presence/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarImplicitPresence{Val: -42},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarImplicitPresence{Val: -42},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/implicit_presence/zero": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsScalarImplicitPresence{Val: 0},
@@ -281,32 +375,51 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/legacy_required/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequired{Val: proto.Int32(-42)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarLegacyRequired{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/legacy_required/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequired{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarLegacyRequired{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/legacy_required_with_default/nonzero/valid": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(42)},
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/legacy_required_with_default/nonzero/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(-42)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/scalar/legacy_required_with_default/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsScalarLegacyRequiredWithDefault{Val: proto.Int32(0)},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/message/explicit_presence/length_prefixed/nonzero": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresence_Msg{Val: proto.String("foo")}},
 			Expected: results.Success(true),
 		},
 		"proto/2023/message/explicit_presence/length_prefixed/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresence_Msg{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("ignore_empty.editions.message")}),
+			Message: &cases.IgnoreEmptyEditionsMessageExplicitPresence{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresence_Msg{}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("ignore_empty.editions.message"),
+			}),
 		},
 		"proto/2023/message/explicit_presence/length_prefixed/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresence{},
@@ -317,8 +430,11 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/message/explicit_presence/delimited/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited_Msg{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("ignore_empty.editions.message")}),
+			Message: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited_Msg{}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				ConstraintId: proto.String("ignore_empty.editions.message"),
+			}),
 		},
 		"proto/2023/message/explicit_presence/delimited/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{},
@@ -329,8 +445,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/oneof/zero": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsOneof{O: &cases.IgnoreEmptyEditionsOneof_Val{}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.IgnoreEmptyEditionsOneof{O: &cases.IgnoreEmptyEditionsOneof_Val{}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"proto/2023/oneof/unset": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsOneof{},
@@ -341,8 +461,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/repeated/compact/noempty/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsRepeated{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("repeated.min_items")}),
+			Message: &cases.IgnoreEmptyEditionsRepeated{Val: []int32{1}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("repeated.min_items"),
+				ConstraintId: proto.String("repeated.min_items"),
+			}),
 		},
 		"proto/2023/repeated/compact/empty": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsRepeated{},
@@ -353,8 +477,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/repeated/expanded/noempty/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsRepeatedExpanded{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("repeated.min_items")}),
+			Message: &cases.IgnoreEmptyEditionsRepeatedExpanded{Val: []int32{1}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("repeated.min_items"),
+				ConstraintId: proto.String("repeated.min_items"),
+			}),
 		},
 		"proto/2023/repeated/expanded/empty": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsRepeatedExpanded{},
@@ -365,8 +493,12 @@ func ignoreEmptySuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"proto/2023/map/nonempty/invalid": suites.Case{
-			Message:  &cases.IgnoreEmptyEditionsMap{Val: map[int32]int32{0: 0}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("map.min_pairs")}),
+			Message: &cases.IgnoreEmptyEditionsMap{Val: map[int32]int32{0: 0}},
+			Expected: results.Violations(&validate.Violation{
+				FieldPath:    proto.String("val"),
+				RulePath:     proto.String("map.min_pairs"),
+				ConstraintId: proto.String("map.min_pairs"),
+			}),
 		},
 		"proto/2023/map/empty": suites.Case{
 			Message:  &cases.IgnoreEmptyEditionsMap{},

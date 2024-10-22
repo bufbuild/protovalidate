@@ -41,6 +41,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("map.min_pairs"),
 					ConstraintId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 2 entries"),
 				},
@@ -59,6 +60,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("map.max_pairs"),
 					ConstraintId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 3 entries"),
 				},
@@ -81,6 +83,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("map.min_pairs"),
 					ConstraintId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 2 entries"),
 				},
@@ -91,6 +94,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("map.max_pairs"),
 					ConstraintId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 4 entries"),
 				},
@@ -105,6 +109,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("map.min_pairs"),
 					ConstraintId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 3 entries"),
 				},
@@ -115,6 +120,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("map.max_pairs"),
 					ConstraintId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 3 entries"),
 				},
@@ -137,6 +143,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val[1]"),
+					RulePath:     proto.String("map.keys.sint64.lt"),
 					ConstraintId: proto.String("sint64.lt"),
 					Message:      proto.String("value must be less than 0"),
 					ForKey:       proto.Bool(true),
@@ -148,6 +155,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val[\"!@#$%^&*()\"]"),
+					RulePath:     proto.String("map.keys.string.pattern"),
 					ConstraintId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
 					ForKey:       proto.Bool(true),
@@ -171,11 +179,13 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val[\"a\"]"),
+					RulePath:     proto.String("map.values.string.min_len"),
 					ConstraintId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
 				},
 				&validate.Violation{
 					FieldPath:    proto.String("val[\"b\"]"),
+					RulePath:     proto.String("map.values.string.min_len"),
 					ConstraintId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
 				},
@@ -186,6 +196,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val[\"b\"]"),
+					RulePath:     proto.String("map.values.string.pattern"),
 					ConstraintId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
 				},
@@ -200,6 +211,7 @@ func mapSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val[1].val"),
+					RulePath:     proto.String("string.min_len"),
 					ConstraintId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
 				},

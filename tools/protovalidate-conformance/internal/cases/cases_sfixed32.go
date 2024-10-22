@@ -37,6 +37,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.const"),
 					ConstraintId: proto.String("sfixed32.const"),
 					Message:      proto.String("value must equal 1"),
 				},
@@ -51,6 +52,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.in"),
 					ConstraintId: proto.String("sfixed32.in"),
 					Message:      proto.String("value must be in list [2, 3]"),
 				},
@@ -65,6 +67,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.not_in"),
 					ConstraintId: proto.String("sfixed32.not_in"),
 					Message:      proto.String("value must not be in list [0]"),
 				},
@@ -79,6 +82,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.lt"),
 					ConstraintId: proto.String("sfixed32.lt"),
 					Message:      proto.String("value must be less than 0"),
 				},
@@ -89,6 +93,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.lt"),
 					ConstraintId: proto.String("sfixed32.lt"),
 					Message:      proto.String("value must be less than 0"),
 				},
@@ -107,6 +112,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.lte"),
 					ConstraintId: proto.String("sfixed32.lte"),
 					Message:      proto.String("value must be less than or equal to 64"),
 				},
@@ -121,6 +127,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt"),
 					Message:      proto.String("value must be greater than 16"),
 				},
@@ -131,6 +138,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt"),
 					Message:      proto.String("value must be greater than 16"),
 				},
@@ -149,6 +157,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gte"),
 					ConstraintId: proto.String("sfixed32.gte"),
 					Message:      proto.String("value must be greater than or equal to 8"),
 				},
@@ -163,6 +172,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
@@ -173,6 +183,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
@@ -183,6 +194,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
@@ -193,6 +205,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
@@ -211,6 +224,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
 				},
@@ -221,6 +235,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
 				},
@@ -231,6 +246,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gt"),
 					ConstraintId: proto.String("sfixed32.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
 				},
@@ -253,6 +269,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gte"),
 					ConstraintId: proto.String("sfixed32.gte_lte"),
 					Message:      proto.String("value must be greater than or equal to 128 and less than or equal to 256"),
 				},
@@ -263,6 +280,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gte"),
 					ConstraintId: proto.String("sfixed32.gte_lte"),
 					Message:      proto.String("value must be greater than or equal to 128 and less than or equal to 256"),
 				},
@@ -289,6 +307,7 @@ func sfixed32Suite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					FieldPath:    proto.String("val"),
+					RulePath:     proto.String("sfixed32.gte"),
 					ConstraintId: proto.String("sfixed32.gte_lte_exclusive"),
 					Message:      proto.String("value must be greater than or equal to 256 or less than or equal to 128"),
 				},
