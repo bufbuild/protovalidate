@@ -6770,8 +6770,8 @@ type Violation struct {
 	// This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
 	FieldPath *string `protobuf:"bytes,1,opt,name=field_path,json=fieldPath" json:"field_path,omitempty"`
 	// `rule_path` is a machine-readable identifier that points to the specific constraint rule that failed validation.
-	// This will be a nested field starting from the options of the field that failed validation.
-	// This value is only present for standard or predefined rules on fields.
+	// This will be a nested field starting from the FieldConstraints of the field that failed validation.
+	// This value is not present when there is no corresponding rule field, e.g. for custom constraints.
 	RulePath *string `protobuf:"bytes,5,opt,name=rule_path,json=rulePath" json:"rule_path,omitempty"`
 	// `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
 	// This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
