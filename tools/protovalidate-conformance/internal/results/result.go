@@ -113,7 +113,11 @@ func (v violationsResult) String() string {
 		if err.GetForKey() {
 			forKey = " (key)"
 		}
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s", resultPadding, i+1, err.GetFieldPath(), forKey, err.GetConstraintId())
+		rulePath := ""
+		if err.GetRulePath() != "" {
+			rulePath = " (" + err.GetRulePath() + ")"
+		}
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s%s", resultPadding, i+1, err.GetFieldPath(), forKey, err.GetConstraintId(), rulePath)
 		_, _ = fmt.Fprintf(bldr, "\n%s      %s", resultPadding, err.GetMessage())
 	}
 	return bldr.String()
@@ -134,8 +138,9 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 		}
 		for i := range len(want) {
 			matchingField := want[i].GetFieldPath() == got[i].GetFieldPath() && want[i].GetForKey() == got[i].GetForKey()
+			matchingRule := want[i].GetRulePath() == got[i].GetRulePath()
 			matchingConstraint := want[i].GetConstraintId() == got[i].GetConstraintId()
-			if !matchingField || !matchingConstraint {
+			if !matchingField || !matchingRule || !matchingConstraint {
 				return false
 			}
 			if options.GetStrictMessage() && len(want[i].GetMessage()) > 0 &&
