@@ -36,8 +36,8 @@ func boolSuite() suites.Suite {
 			Message: &cases.BoolConstTrue{Val: false},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("bool.const"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("bool.const"),
 					ConstraintId: proto.String("bool.const"),
 				},
 			),
@@ -50,8 +50,8 @@ func boolSuite() suites.Suite {
 			Message: &cases.BoolConstFalse{Val: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("bool.const"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("bool.const"),
 					ConstraintId: proto.String("bool.const"),
 				},
 			),

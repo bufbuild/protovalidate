@@ -36,8 +36,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32Const{Val: 2},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.const"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.const"),
 					ConstraintId: proto.String("int32.const"),
 				},
 			),
@@ -50,8 +50,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32In{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.in"),
 					ConstraintId: proto.String("int32.in"),
 				},
 			),
@@ -64,8 +64,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32NotIn{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.not_in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.not_in"),
 					ConstraintId: proto.String("int32.not_in"),
 				},
 			),
@@ -78,8 +78,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32LT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.lt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.lt"),
 					ConstraintId: proto.String("int32.lt"),
 				},
 			),
@@ -88,8 +88,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32LT{Val: 1},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.lt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.lt"),
 					ConstraintId: proto.String("int32.lt"),
 				},
 			),
@@ -106,8 +106,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32LTE{Val: 65},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.lte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.lte"),
 					ConstraintId: proto.String("int32.lte"),
 				},
 			),
@@ -120,8 +120,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GT{Val: 16},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt"),
 				},
 			),
@@ -130,8 +130,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GT{Val: 15},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt"),
 				},
 			),
@@ -148,8 +148,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GTE{Val: 7},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gte"),
 					ConstraintId: proto.String("int32.gte"),
 				},
 			),
@@ -162,8 +162,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GTLT{Val: 11},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt_lt"),
 				},
 			),
@@ -172,8 +172,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GTLT{Val: -1},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt_lt"),
 				},
 			),
@@ -182,8 +182,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GTLT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt_lt"),
 				},
 			),
@@ -192,8 +192,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GTLT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt_lt"),
 				},
 			),
@@ -210,8 +210,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32ExLTGT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt_lt_exclusive"),
 				},
 			),
@@ -220,8 +220,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32ExLTGT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt_lt_exclusive"),
 				},
 			),
@@ -230,8 +230,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32ExLTGT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gt"),
 					ConstraintId: proto.String("int32.gt_lt_exclusive"),
 				},
 			),
@@ -252,8 +252,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GTELTE{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gte"),
 					ConstraintId: proto.String("int32.gte_lte"),
 				},
 			),
@@ -262,8 +262,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32GTELTE{Val: 100},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gte"),
 					ConstraintId: proto.String("int32.gte_lte"),
 				},
 			),
@@ -288,8 +288,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32ExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gte"),
 					ConstraintId: proto.String("int32.gte_lte_exclusive"),
 				},
 			),
@@ -306,8 +306,8 @@ func int32Suite() suites.Suite {
 			Message: &cases.Int32Ignore{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("int32.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("int32.gte"),
 					ConstraintId: proto.String("int32.gte_lte"),
 				},
 			),

@@ -80,11 +80,11 @@ func customSuite() suites.Suite {
 				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
 				&validate.Violation{ConstraintId: proto.String("message_expression_embed")},
 				&validate.Violation{
-					FieldPath:    proto.String("e"),
+					Field:        results.FieldPath("e"),
 					ConstraintId: proto.String("message_expression_nested"),
 				},
 				&validate.Violation{
-					FieldPath:    proto.String("f"),
+					Field:        results.FieldPath("f"),
 					ConstraintId: proto.String("message_expression_nested"),
 				},
 			),
@@ -93,11 +93,11 @@ func customSuite() suites.Suite {
 			Message: &custom_constraints.FieldExpressions{},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("a"),
+					Field:        results.FieldPath("a"),
 					ConstraintId: proto.String("field_expression_scalar"),
 				},
 				&validate.Violation{
-					FieldPath:    proto.String("b"),
+					Field:        results.FieldPath("b"),
 					ConstraintId: proto.String("field_expression_enum"),
 				},
 			),
@@ -122,19 +122,19 @@ func customSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("a"),
+					Field:        results.FieldPath("a"),
 					ConstraintId: proto.String("field_expression_scalar"),
 				},
 				&validate.Violation{
-					FieldPath:    proto.String("b"),
+					Field:        results.FieldPath("b"),
 					ConstraintId: proto.String("field_expression_enum"),
 				},
 				&validate.Violation{
-					FieldPath:    proto.String("c"),
+					Field:        results.FieldPath("c"),
 					ConstraintId: proto.String("field_expression_embed"),
 				},
 				&validate.Violation{
-					FieldPath:    proto.String("c.a"),
+					Field:        results.FieldPath("c.a"),
 					ConstraintId: proto.String("field_expression_nested"),
 				},
 			),

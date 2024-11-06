@@ -4770,14 +4770,20 @@ message Violations {
 // }
 // ```
 message Violation {
-  // `field_path` is a machine-readable identifier that points to the specific field that failed the validation.
+  // `field` is a machine-readable path to the field that failed validation.
   // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
-  optional string field_path = 1;
+  optional FieldPath field = 5;
 
-  // `rule_path` is a machine-readable identifier that points to the specific constraint rule that failed validation.
+  // `rule` is a machine-readable path that points to the specific constraint rule that failed validation.
   // This will be a nested field starting from the FieldConstraints of the field that failed validation.
-  // This value is not present when there is no corresponding rule field, e.g. for custom constraints.
-  optional string rule_path = 5;
+  // This field is not present when there is no corresponding rule field, e.g. for custom constraints.
+  optional FieldPath rule = 6;
+
+  // `field_path` is a human-readable identifier that points to the specific field that failed the validation.
+  // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
+  //
+  // Deprecated: use the `field` instead.
+  optional string field_path = 1;
 
   // `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
   // This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
@@ -4789,4 +4795,54 @@ message Violation {
 
   // `for_key` indicates whether the violation was caused by a map key, rather than a value.
   optional bool for_key = 4;
+}
+
+// `FieldPath` provides a path to a nested protobuf field.
+//
+// This message provides enough information to render a dotted field path even without protobuf descriptors.
+// It also provides enough information to resolve a nested field through unknown wire data.
+message FieldPath {
+  // `elements` contains each element of the path, starting from the root and recursing downward.
+  repeated FieldPathElement elements = 1;
+}
+
+// `FieldPathElement` provides enough information to nest through a single protobuf field.
+//
+// If the selected field is a map or repeated field, the `subscript` value selects a specific element from it.
+// A path that refers to a map or repeated field and not an element under it will not have a `subscript` value.
+// The `field_type` field allows unambiguous resolution of a field even if descriptors are not available.
+message FieldPathElement {
+  // `field_number` is the field number this path element refers to.
+  optional int32 field_number = 1;
+
+  // `field_name` contains the field name this path element refers to.
+  // This can be used to display a human-readable path even if the field number is unknown.
+  optional string field_name = 2;
+
+  // `field_type` specifies the type of this field. When using reflection, this value is not needed.
+  //
+  // This value is provided to make it possible to traverse unknown fields through wire data.
+  // When traversing wire data, be mindful of both packed and delimited encoding schemes.
+  optional google.protobuf.FieldDescriptorProto.Type field_type = 3;
+
+  // `subscript` contains a repeated index or map key, if this path element nests into a repeated or map field.
+  oneof subscript {
+    // `index` specifies a 0-based index into a repeated field.
+    uint64 index = 4;
+
+    // `bool_key` specifies a map key of type bool.
+    bool bool_key = 5;
+
+    // `int_key` specifies a map key of type int32, int64, sfixed32 or sfixed64.
+    int64 int_key = 6;
+
+    // `sint_key` specifies a map key of type sint32 or sint64.
+    sint64 sint_key = 7;
+
+    // `uint_key` specifies a map key of type uint32, uint64, fixed32 or fixed64.
+    uint64 uint_key = 8;
+
+    // `string_key` specifies a map key of type string.
+    string string_key = 9;
+  }
 }

@@ -36,8 +36,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringConst{Val: "bar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.const"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.const"),
 					ConstraintId: proto.String("string.const"),
 				},
 			),
@@ -50,8 +50,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIn{Val: "foo"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.in"),
 					ConstraintId: proto.String("string.in"),
 				},
 			),
@@ -64,8 +64,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringNotIn{Val: "fizz"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.not_in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.not_in"),
 					ConstraintId: proto.String("string.not_in"),
 				},
 			),
@@ -86,8 +86,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringLen{Val: "fizz"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.len"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.len"),
 					ConstraintId: proto.String("string.len"),
 				},
 			),
@@ -96,8 +96,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringLen{Val: "👩🏽‍💻🧑🏾‍💻👨🏼‍💻"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.len"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.len"),
 					ConstraintId: proto.String("string.len"),
 					Message:      proto.String("value length must be 3 characters"),
 				}),
@@ -114,8 +114,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMinLen{Val: "pb"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.min_len"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.min_len"),
 					ConstraintId: proto.String("string.min_len"),
 				},
 			),
@@ -132,8 +132,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMaxLen{Val: "validate"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.max_len"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.max_len"),
 					ConstraintId: proto.String("string.max_len"),
 				},
 			),
@@ -154,8 +154,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMinMaxLen{Val: "pb"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.min_len"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.min_len"),
 					ConstraintId: proto.String("string.min_len"),
 				},
 			),
@@ -164,8 +164,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMinMaxLen{Val: "validate"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.max_len"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.max_len"),
 					ConstraintId: proto.String("string.max_len"),
 				},
 			),
@@ -178,8 +178,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEqualMinMaxLen{Val: "validate"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.max_len"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.max_len"),
 					ConstraintId: proto.String("string.max_len"),
 				},
 			),
@@ -200,8 +200,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringLenBytes{Val: "foo"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.len_bytes"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.len_bytes"),
 					ConstraintId: proto.String("string.len_bytes"),
 				},
 			),
@@ -218,8 +218,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMinBytes{Val: "foo"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.min_bytes"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.min_bytes"),
 					ConstraintId: proto.String("string.min_bytes"),
 				},
 			),
@@ -236,8 +236,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMaxBytes{Val: "validation"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.max_bytes"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.max_bytes"),
 					ConstraintId: proto.String("string.max_bytes"),
 				},
 			),
@@ -258,8 +258,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMinMaxBytes{Val: "pb"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.min_bytes"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.min_bytes"),
 					ConstraintId: proto.String("string.min_bytes"),
 				},
 			),
@@ -268,8 +268,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringMinMaxBytes{Val: "validation"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.max_bytes"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.max_bytes"),
 					ConstraintId: proto.String("string.max_bytes"),
 				},
 			),
@@ -282,8 +282,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEqualMinMaxBytes{Val: "foo"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.min_bytes"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.min_bytes"),
 					ConstraintId: proto.String("string.min_bytes"),
 				},
 			),
@@ -296,8 +296,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringPattern{Val: "!#@$#$%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.pattern"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.pattern"),
 					ConstraintId: proto.String("string.pattern"),
 				},
 			),
@@ -310,8 +310,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringPatternEscapes{Val: "invalid"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.pattern"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.pattern"),
 					ConstraintId: proto.String("string.pattern"),
 				},
 			),
@@ -328,8 +328,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringPrefix{Val: "fizz"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.prefix"),
 					ConstraintId: proto.String("string.prefix"),
 				},
 			),
@@ -354,8 +354,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringContains{Val: "fizzbuzz"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.contains"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.contains"),
 					ConstraintId: proto.String("string.contains"),
 				},
 			),
@@ -368,8 +368,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringNotContains{Val: "foobarbaz"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.not_contains"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.not_contains"),
 					ConstraintId: proto.String("string.not_contains"),
 				},
 			),
@@ -386,8 +386,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringSuffix{Val: "bazbarfoo"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.suffix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.suffix"),
 					ConstraintId: proto.String("string.suffix"),
 				},
 			),
@@ -400,8 +400,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email_empty"),
 				},
 			),
@@ -418,8 +418,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -428,8 +428,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: "x0123456789012345678901234567890123456789012345678901234567890123456789@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -438,8 +438,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: "foo@x0123456789012345678901234567890123456789012345678901234567890123456789.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -450,8 +450,8 @@ func stringSuite() suites.Suite {
 			},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -460,8 +460,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: "foo@-bar.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -470,8 +470,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: "foo@."},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -480,8 +480,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: " foo@example.com "},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -490,8 +490,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: "foo@example.com "},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -500,8 +500,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: " foo@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -510,8 +510,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringEmail{Val: "<foo@example.com>"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.email"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.email"),
 					ConstraintId: proto.String("string.email"),
 				},
 			),
@@ -520,8 +520,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname_empty"),
 				},
 			),
@@ -546,8 +546,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "@!#$%^&*&^%$#"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -564,8 +564,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "foo_bar.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -574,8 +574,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "x0123456789012345678901234567890123456789012345678901234567890123456789.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -584,8 +584,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "foo-bar-.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -594,8 +594,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "-foo-bar.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -604,8 +604,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "foo..bar.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -614,8 +614,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "你好.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -624,8 +624,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostname{Val: "."},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.hostname"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.hostname"),
 					ConstraintId: proto.String("string.hostname"),
 				},
 			),
@@ -642,8 +642,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIP{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ip"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ip"),
 					ConstraintId: proto.String("string.ip"),
 				},
 			),
@@ -660,8 +660,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIP{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ip"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ip"),
 					ConstraintId: proto.String("string.ip_empty"),
 				},
 			),
@@ -674,8 +674,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4"),
 					ConstraintId: proto.String("string.ipv4_empty"),
 				},
 			),
@@ -692,8 +692,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4"),
 					ConstraintId: proto.String("string.ipv4"),
 				},
 			),
@@ -702,8 +702,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4{Val: "256.0.0.0"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4"),
 					ConstraintId: proto.String("string.ipv4"),
 				},
 			),
@@ -712,8 +712,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4{Val: "3e::99"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4"),
 					ConstraintId: proto.String("string.ipv4"),
 				},
 			),
@@ -730,8 +730,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6"),
 					ConstraintId: proto.String("string.ipv6_empty"),
 				},
 			),
@@ -748,8 +748,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6"),
 					ConstraintId: proto.String("string.ipv6"),
 				},
 			),
@@ -758,8 +758,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6{Val: "ff::fff::0b"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6"),
 					ConstraintId: proto.String("string.ipv6"),
 				},
 			),
@@ -768,8 +768,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6{Val: "192.168.0.1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6"),
 					ConstraintId: proto.String("string.ipv6"),
 				},
 			),
@@ -786,8 +786,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPWithPrefixLen{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ip_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ip_with_prefixlen"),
 					ConstraintId: proto.String("string.ip_with_prefixlen"),
 				},
 			),
@@ -804,8 +804,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPWithPrefixLen{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ip_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ip_with_prefixlen"),
 					ConstraintId: proto.String("string.ip_with_prefixlen_empty"),
 				},
 			),
@@ -818,8 +818,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4WithPrefixLen{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4_with_prefixlen"),
 					ConstraintId: proto.String("string.ipv4_with_prefixlen_empty"),
 				},
 			),
@@ -836,8 +836,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4WithPrefixLen{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4_with_prefixlen"),
 					ConstraintId: proto.String("string.ipv4_with_prefixlen"),
 				},
 			),
@@ -846,8 +846,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4WithPrefixLen{Val: "2001:db8:1::1/64"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4_with_prefixlen"),
 					ConstraintId: proto.String("string.ipv4_with_prefixlen"),
 				},
 			),
@@ -860,8 +860,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6WithPrefixLen{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6_with_prefixlen"),
 					ConstraintId: proto.String("string.ipv6_with_prefixlen_empty"),
 				},
 			),
@@ -878,8 +878,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6WithPrefixLen{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6_with_prefixlen"),
 					ConstraintId: proto.String("string.ipv6_with_prefixlen"),
 				},
 			),
@@ -888,8 +888,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6WithPrefixLen{Val: "192.168.0.1/24"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6_with_prefixlen"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6_with_prefixlen"),
 					ConstraintId: proto.String("string.ipv6_with_prefixlen"),
 				},
 			),
@@ -906,8 +906,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPPrefix{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ip_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ip_prefix"),
 					ConstraintId: proto.String("string.ip_prefix_empty"),
 				},
 			),
@@ -924,8 +924,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPPrefix{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ip_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ip_prefix"),
 					ConstraintId: proto.String("string.ip_prefix"),
 				},
 			),
@@ -938,8 +938,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4Prefix{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4_prefix"),
 					ConstraintId: proto.String("string.ipv4_prefix_empty"),
 				},
 			),
@@ -956,8 +956,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4Prefix{Val: "192.168.0.1/24"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4_prefix"),
 					ConstraintId: proto.String("string.ipv4_prefix"),
 				},
 			),
@@ -966,8 +966,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4Prefix{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4_prefix"),
 					ConstraintId: proto.String("string.ipv4_prefix"),
 				},
 			),
@@ -976,8 +976,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv4Prefix{Val: "2001:db8:1::/48"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv4_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv4_prefix"),
 					ConstraintId: proto.String("string.ipv4_prefix"),
 				},
 			),
@@ -990,8 +990,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6Prefix{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6_prefix"),
 					ConstraintId: proto.String("string.ipv6_prefix_empty"),
 				},
 			),
@@ -1008,8 +1008,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6Prefix{Val: "2001:db8:1::1/48"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6_prefix"),
 					ConstraintId: proto.String("string.ipv6_prefix"),
 				},
 			),
@@ -1018,8 +1018,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6Prefix{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6_prefix"),
 					ConstraintId: proto.String("string.ipv6_prefix"),
 				},
 			),
@@ -1028,8 +1028,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringIPv6Prefix{Val: "192.168.0.0/24"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.ipv6_prefix"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.ipv6_prefix"),
 					ConstraintId: proto.String("string.ipv6_prefix"),
 				},
 			),
@@ -1042,8 +1042,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringURI{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uri"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
 					ConstraintId: proto.String("string.uri_empty"),
 				},
 			),
@@ -1060,8 +1060,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringURI{Val: "!@#$%^&*"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uri"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
 					ConstraintId: proto.String("string.uri"),
 				},
 			),
@@ -1070,8 +1070,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringURI{Val: "/foo/bar?baz=quux"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uri"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
 					ConstraintId: proto.String("string.uri"),
 				},
 			),
@@ -1088,8 +1088,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringURIRef{Val: "!@#$%^&*"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uri_ref"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri_ref"),
 					ConstraintId: proto.String("string.uri_ref"),
 				},
 			),
@@ -1118,8 +1118,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringAddress{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.address"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.address"),
 					ConstraintId: proto.String("string.address_empty"),
 				},
 			),
@@ -1136,8 +1136,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringAddress{Val: "-foo.bar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.address"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.address"),
 					ConstraintId: proto.String("string.address"),
 				},
 			),
@@ -1146,8 +1146,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringAddress{Val: "ff::fff::0b"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.address"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.address"),
 					ConstraintId: proto.String("string.address"),
 				},
 			),
@@ -1200,8 +1200,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringUUID{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uuid"),
 					ConstraintId: proto.String("string.uuid_empty"),
 				},
 			),
@@ -1218,8 +1218,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringUUID{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uuid"),
 					ConstraintId: proto.String("string.uuid"),
 				},
 			),
@@ -1228,8 +1228,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringUUID{Val: "ffffffff-ffff-ffff-ffff-fffffffffffff"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uuid"),
 					ConstraintId: proto.String("string.uuid"),
 				},
 			),
@@ -1238,8 +1238,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringUUID{Val: "8B20830500E84460A4405E0DCD83BB0A"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uuid"),
 					ConstraintId: proto.String("string.uuid"),
 				},
 			),
@@ -1248,8 +1248,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringUUID{Val: "8b20830500e84460a4405e0dcd83bb0a"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.uuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uuid"),
 					ConstraintId: proto.String("string.uuid"),
 				},
 			),
@@ -1302,8 +1302,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringTUUID{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.tuuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.tuuid"),
 					ConstraintId: proto.String("string.tuuid_empty"),
 				},
 			),
@@ -1320,8 +1320,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringTUUID{Val: "foobar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.tuuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.tuuid"),
 					ConstraintId: proto.String("string.tuuid"),
 				},
 			),
@@ -1330,8 +1330,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringTUUID{Val: "fffffffffffffffffffffffffffffffff"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.tuuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.tuuid"),
 					ConstraintId: proto.String("string.tuuid"),
 				},
 			),
@@ -1340,8 +1340,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringTUUID{Val: "8B208305-00E8-4460-A440-5E0DCD83BB0A"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.tuuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.tuuid"),
 					ConstraintId: proto.String("string.tuuid"),
 				},
 			),
@@ -1350,8 +1350,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringTUUID{Val: "8b208305-00e8-4460-a440-5e0dcd83bb0a"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.tuuid"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.tuuid"),
 					ConstraintId: proto.String("string.tuuid"),
 				},
 			),
@@ -1380,8 +1380,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name_empty"),
 				},
 			),
@@ -1390,8 +1390,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: ":"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1400,8 +1400,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: ":foo:"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1410,8 +1410,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: "foo bar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1420,8 +1420,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: "foo\rbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1430,8 +1430,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: "foo\nbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1440,8 +1440,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: "foo\tbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1450,8 +1450,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: "foo\000bar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1460,8 +1460,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderName{Val: "foo/bar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1482,8 +1482,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderNameLoose{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name_empty"),
 				},
 			),
@@ -1492,8 +1492,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderNameLoose{Val: "foo\rbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1502,8 +1502,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderNameLoose{Val: "foo\nbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_name"),
 				},
 			),
@@ -1536,8 +1536,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderValue{Val: "foo\000bar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_value"),
 				},
 			),
@@ -1546,8 +1546,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderValue{Val: "foo\007bar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_value"),
 				},
 			),
@@ -1556,8 +1556,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderValue{Val: "foo\rbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_value"),
 				},
 			),
@@ -1566,8 +1566,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderValue{Val: "foo\nbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_value"),
 				},
 			),
@@ -1580,8 +1580,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderValueLoose{Val: "\000"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_value"),
 				},
 			),
@@ -1590,8 +1590,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderValueLoose{Val: "foo\rbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_value"),
 				},
 			),
@@ -1600,8 +1600,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHttpHeaderValueLoose{Val: "foo\nbar"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.well_known_regex"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.well_known_regex"),
 					ConstraintId: proto.String("string.well_known_regex.header_value"),
 				},
 			),
@@ -1622,8 +1622,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port_empty"),
 				},
 			),
@@ -1632,8 +1632,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: "localhost"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port"),
 				},
 			),
@@ -1642,8 +1642,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: " localhost:8080 "},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port"),
 				},
 			),
@@ -1652,8 +1652,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: "abc#123:456"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port"),
 				},
 			),
@@ -1662,8 +1662,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: "123.456.789.100:8080"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port"),
 				},
 			),
@@ -1672,8 +1672,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: "[1::jk::3]:8080"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port"),
 				},
 			),
@@ -1682,8 +1682,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: "::1:8080"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port"),
 				},
 			),
@@ -1692,8 +1692,8 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndPort{Val: "localhost:99999"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("string.host_and_port"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.host_and_port"),
 					ConstraintId: proto.String("string.host_and_port"),
 				},
 			),
@@ -1726,7 +1726,7 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndOptionalPort{Val: "abc#123"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
+					Field:        results.FieldPath("val"),
 					ConstraintId: proto.String("string.host_and_port.optional_port"),
 				},
 			),
@@ -1735,7 +1735,7 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndOptionalPort{Val: "123.456.789.100"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
+					Field:        results.FieldPath("val"),
 					ConstraintId: proto.String("string.host_and_port.optional_port"),
 				},
 			),
@@ -1744,7 +1744,7 @@ func stringSuite() suites.Suite {
 			Message: &cases.StringHostAndOptionalPort{Val: "[1::jk::3]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
+					Field:        results.FieldPath("val"),
 					ConstraintId: proto.String("string.host_and_port.optional_port"),
 				},
 			),

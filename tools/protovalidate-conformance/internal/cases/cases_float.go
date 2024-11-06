@@ -38,8 +38,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatConst{Val: 4.56},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.const"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.const"),
 					ConstraintId: proto.String("float.const"),
 				},
 			),
@@ -48,8 +48,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatConst{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.const"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.const"),
 					ConstraintId: proto.String("float.const"),
 				},
 			),
@@ -62,8 +62,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatIn{Val: 10.11},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.in"),
 					ConstraintId: proto.String("float.in"),
 				},
 			),
@@ -72,8 +72,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatIn{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.in"),
 					ConstraintId: proto.String("float.in"),
 				},
 			),
@@ -86,8 +86,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatNotIn{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.not_in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.not_in"),
 					ConstraintId: proto.String("float.not_in"),
 				},
 			),
@@ -104,8 +104,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatLT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.lt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.lt"),
 					ConstraintId: proto.String("float.lt"),
 				},
 			),
@@ -114,8 +114,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatLT{Val: 1},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.lt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.lt"),
 					ConstraintId: proto.String("float.lt"),
 				},
 			),
@@ -124,8 +124,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatLT{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.lt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.lt"),
 					ConstraintId: proto.String("float.lt"),
 				},
 			),
@@ -142,8 +142,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatLTE{Val: 65},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.lte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.lte"),
 					ConstraintId: proto.String("float.lte"),
 				},
 			),
@@ -152,8 +152,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatLTE{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.lte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.lte"),
 					ConstraintId: proto.String("float.lte"),
 				},
 			),
@@ -166,8 +166,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGT{Val: 16},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt"),
 				},
 			),
@@ -176,8 +176,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGT{Val: 15},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt"),
 				},
 			),
@@ -186,8 +186,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGT{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt"),
 				},
 			),
@@ -204,8 +204,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTE{Val: 7},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte"),
 				},
 			),
@@ -214,8 +214,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTE{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte"),
 				},
 			),
@@ -228,8 +228,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTLT{Val: 11},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt"),
 				},
 			),
@@ -238,8 +238,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTLT{Val: -1},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt"),
 				},
 			),
@@ -248,8 +248,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTLT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt"),
 				},
 			),
@@ -258,8 +258,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTLT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt"),
 				},
 			),
@@ -268,8 +268,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTLT{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt"),
 				},
 			),
@@ -286,8 +286,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatExLTGT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
@@ -296,8 +296,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatExLTGT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
@@ -306,8 +306,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatExLTGT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
@@ -316,8 +316,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatExLTGT{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gt"),
 					ConstraintId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
@@ -338,8 +338,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTELTE{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte_lte"),
 				},
 			),
@@ -348,8 +348,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTELTE{Val: 100},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte_lte"),
 				},
 			),
@@ -358,8 +358,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatGTELTE{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte_lte"),
 				},
 			),
@@ -384,8 +384,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte_lte_exclusive"),
 				},
 			),
@@ -394,8 +394,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatExGTELTE{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte_lte_exclusive"),
 				},
 			),
@@ -408,8 +408,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatFinite{Val: float32(math.NaN())},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.finite"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.finite"),
 					ConstraintId: proto.String("float.finite"),
 					Message:      proto.String("value must be finite"),
 				}),
@@ -418,8 +418,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatFinite{Val: float32(math.Inf(1))},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.finite"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.finite"),
 					ConstraintId: proto.String("float.finite"),
 					Message:      proto.String("value must be finite"),
 				},
@@ -433,8 +433,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatFinite{Val: float32(math.Inf(-1))},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.finite"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.finite"),
 					ConstraintId: proto.String("float.finite"),
 					Message:      proto.String("value must be finite"),
 				},
@@ -452,8 +452,8 @@ func floatSuite() suites.Suite {
 			Message: &cases.FloatIgnore{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("float.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("float.gte"),
 					ConstraintId: proto.String("float.gte_lte"),
 				},
 			),

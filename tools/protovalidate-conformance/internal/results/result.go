@@ -17,11 +17,16 @@ package results
 import (
 	"cmp"
 	"fmt"
+	"log"
 	"slices"
 	"strings"
 
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
+	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/fieldpath"
+	"github.com/davecgh/go-spew/spew"
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 type Result interface {
@@ -113,11 +118,15 @@ func (v violationsResult) String() string {
 		if err.GetForKey() {
 			forKey = " (key)"
 		}
-		rulePath := ""
-		if err.GetRulePath() != "" {
-			rulePath = " (" + err.GetRulePath() + ")"
+		violationPath := ""
+		if path := err.GetField(); path != nil {
+			violationPath = fieldpath.Marshal(path)
 		}
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s%s", resultPadding, i+1, err.GetFieldPath(), forKey, err.GetConstraintId(), rulePath)
+		rulePath := ""
+		if path := err.GetRule(); path != nil {
+			rulePath = " (" + fieldpath.Marshal(path) + ")"
+		}
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s%s", resultPadding, i+1, violationPath, forKey, err.GetConstraintId(), rulePath)
 		_, _ = fmt.Fprintf(bldr, "\n%s      %s", resultPadding, err.GetMessage())
 	}
 	return bldr.String()
@@ -137,10 +146,16 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			return false
 		}
 		for i := range len(want) {
-			matchingField := want[i].GetFieldPath() == got[i].GetFieldPath() && want[i].GetForKey() == got[i].GetForKey()
-			matchingRule := want[i].GetRulePath() == got[i].GetRulePath()
+			matchingField := want[i].GetFieldPath() == got[i].GetFieldPath() &&
+				proto.Equal(want[i].GetField(), got[i].GetField()) &&
+				want[i].GetForKey() == got[i].GetForKey()
+			matchingRule := proto.Equal(want[i].GetRule(), got[i].GetRule())
 			matchingConstraint := want[i].GetConstraintId() == got[i].GetConstraintId()
 			if !matchingField || !matchingRule || !matchingConstraint {
+				log.Printf("matchingField %v, matchingRule %v, matchingConstraint %v", matchingField, matchingRule, matchingConstraint)
+				log.Printf("--")
+				spew.Dump(want[i].GetFieldPath(), got[i].GetFieldPath())
+				log.Printf("--")
 				return false
 			}
 			if options.GetStrictMessage() && len(want[i].GetMessage()) > 0 &&
@@ -231,8 +246,56 @@ func (u unexpectedErrorResult) IsSuccessWith(_ Result, _ *harness.ResultOptions)
 func SortViolations(violations []*validate.Violation) {
 	slices.SortFunc(violations, func(a, b *validate.Violation) int {
 		if a.GetConstraintId() == b.GetConstraintId() {
-			return cmp.Compare(a.GetFieldPath(), b.GetFieldPath())
+			return cmp.Compare(fieldpath.Marshal(a.GetField()), fieldpath.Marshal(b.GetField()))
 		}
 		return cmp.Compare(a.GetConstraintId(), b.GetConstraintId())
 	})
+}
+
+// FieldPath returns a placeholder field path. It will be expanded automatically
+// when processing the results.
+func FieldPath(fieldPath string) *validate.FieldPath {
+	return &validate.FieldPath{
+		Elements: []*validate.FieldPathElement{{FieldName: &fieldPath}},
+	}
+}
+
+// HydrateFieldPaths expands placeholder field paths in the violations messages.
+func HydrateFieldPaths(
+	descriptor protoreflect.MessageDescriptor,
+	result Result,
+) error {
+	switch result := result.(type) {
+	case violationsResult:
+		violations := result.inner.GetValidationError()
+		if violations == nil {
+			break
+		}
+		for _, violation := range violations.GetViolations() {
+			if path := violation.GetField(); path != nil && len(path.GetElements()) > 0 {
+				var err error
+				//nolint:staticcheck // Intentional use of deprecated field
+				violation.FieldPath = proto.String(path.GetElements()[0].GetFieldName())
+				violation.Field, err = fieldpath.Unmarshal(
+					descriptor,
+					path.GetElements()[0].GetFieldName(),
+				)
+				if err != nil {
+					return fmt.Errorf("hydrating field path: %w", err)
+				}
+			}
+			if path := violation.GetRule(); path != nil && len(path.GetElements()) > 0 {
+				var err error
+				constraints := validate.FieldConstraints{}
+				violation.Rule, err = fieldpath.Unmarshal(
+					constraints.ProtoReflect().Descriptor(),
+					path.GetElements()[0].GetFieldName(),
+				)
+				if err != nil {
+					return fmt.Errorf("hydrating rule path: %w", err)
+				}
+			}
+		}
+	}
+	return nil
 }

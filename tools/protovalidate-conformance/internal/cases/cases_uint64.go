@@ -36,8 +36,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64Const{Val: 2},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.const"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.const"),
 					ConstraintId: proto.String("uint64.const"),
 				},
 			),
@@ -50,8 +50,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64In{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.in"),
 					ConstraintId: proto.String("uint64.in"),
 				},
 			),
@@ -64,8 +64,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64NotIn{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.not_in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.not_in"),
 					ConstraintId: proto.String("uint64.not_in"),
 				},
 			),
@@ -78,8 +78,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64LT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.lt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.lt"),
 					ConstraintId: proto.String("uint64.lt"),
 				},
 			),
@@ -88,8 +88,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64LT{Val: 6},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.lt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.lt"),
 					ConstraintId: proto.String("uint64.lt"),
 				},
 			),
@@ -106,8 +106,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64LTE{Val: 65},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.lte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.lte"),
 					ConstraintId: proto.String("uint64.lte"),
 				},
 			),
@@ -120,8 +120,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GT{Val: 16},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt"),
 				},
 			),
@@ -130,8 +130,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GT{Val: 15},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt"),
 				},
 			),
@@ -148,8 +148,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GTE{Val: 7},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gte"),
 					ConstraintId: proto.String("uint64.gte"),
 				},
 			),
@@ -162,8 +162,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GTLT{Val: 11},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt_lt"),
 				},
 			),
@@ -172,8 +172,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GTLT{Val: 4},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt_lt"),
 				},
 			),
@@ -182,8 +182,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GTLT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt_lt"),
 				},
 			),
@@ -192,8 +192,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GTLT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt_lt"),
 				},
 			),
@@ -210,8 +210,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64ExLTGT{Val: 6},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt_lt_exclusive"),
 				},
 			),
@@ -220,8 +220,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64ExLTGT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt_lt_exclusive"),
 				},
 			),
@@ -230,8 +230,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64ExLTGT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gt"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gt"),
 					ConstraintId: proto.String("uint64.gt_lt_exclusive"),
 				},
 			),
@@ -252,8 +252,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GTELTE{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gte"),
 					ConstraintId: proto.String("uint64.gte_lte"),
 				},
 			),
@@ -262,8 +262,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64GTELTE{Val: 100},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gte"),
 					ConstraintId: proto.String("uint64.gte_lte"),
 				},
 			),
@@ -288,8 +288,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64ExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gte"),
 					ConstraintId: proto.String("uint64.gte_lte_exclusive"),
 				},
 			),
@@ -306,8 +306,8 @@ func uint64Suite() suites.Suite {
 			Message: &cases.UInt64Ignore{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("uint64.gte"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("uint64.gte"),
 					ConstraintId: proto.String("uint64.gte_lte"),
 				},
 			),

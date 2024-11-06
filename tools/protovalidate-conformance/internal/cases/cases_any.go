@@ -61,8 +61,8 @@ func anySuite() suites.Suite {
 			Message: &cases.AnyIn{Val: tsAny},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("any.in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("any.in"),
 					ConstraintId: proto.String("any.in"),
 				},
 			),
@@ -71,8 +71,8 @@ func anySuite() suites.Suite {
 			Message: &cases.AnyIn{Val: fooAny},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("any.in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("any.in"),
 					ConstraintId: proto.String("any.in"),
 				},
 			),
@@ -93,8 +93,8 @@ func anySuite() suites.Suite {
 			Message: &cases.AnyNotIn{Val: tsAny},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("any.not_in"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("any.not_in"),
 					ConstraintId: proto.String("any.not_in"),
 				},
 			),
@@ -111,8 +111,8 @@ func anySuite() suites.Suite {
 			Message: &cases.AnyRequired{},
 			Expected: results.Violations(
 				&validate.Violation{
-					FieldPath:    proto.String("val"),
-					RulePath:     proto.String("required"),
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("required"),
 					ConstraintId: proto.String("required"),
 				},
 			),
