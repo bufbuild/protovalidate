@@ -17,14 +17,12 @@ package results
 import (
 	"cmp"
 	"fmt"
-	"log"
 	"slices"
 	"strings"
 
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/fieldpath"
-	"github.com/davecgh/go-spew/spew"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
@@ -152,10 +150,6 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			matchingRule := proto.Equal(want[i].GetRule(), got[i].GetRule())
 			matchingConstraint := want[i].GetConstraintId() == got[i].GetConstraintId()
 			if !matchingField || !matchingRule || !matchingConstraint {
-				log.Printf("matchingField %v, matchingRule %v, matchingConstraint %v", matchingField, matchingRule, matchingConstraint)
-				log.Printf("--")
-				spew.Dump(want[i].GetFieldPath(), got[i].GetFieldPath())
-				log.Printf("--")
 				return false
 			}
 			if options.GetStrictMessage() && len(want[i].GetMessage()) > 0 &&
