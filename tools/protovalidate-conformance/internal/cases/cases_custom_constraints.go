@@ -109,6 +109,7 @@ func customSuite() suites.Suite {
 				C: &custom_constraints.FieldExpressions_Nested{
 					A: 16,
 				},
+				D: 0,
 			},
 			Expected: results.Success(true),
 		},
@@ -119,6 +120,7 @@ func customSuite() suites.Suite {
 				C: &custom_constraints.FieldExpressions_Nested{
 					A: -3,
 				},
+				D: 3,
 			},
 			Expected: results.Violations(
 				&validate.Violation{
@@ -136,6 +138,13 @@ func customSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("c.a"),
 					ConstraintId: proto.String("field_expression_nested"),
+				},
+				&validate.Violation{
+					Field:        results.FieldPath("d"),
+				},
+				&validate.Violation{
+					Field:        results.FieldPath("d"),
+					ConstraintId: proto.String("field_expression_scalar_multiple_2"),
 				},
 			),
 		},

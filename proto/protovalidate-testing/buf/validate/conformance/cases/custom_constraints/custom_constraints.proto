@@ -87,6 +87,20 @@ message FieldExpressions {
     message: "c.a must be a multiple of 4"
     expression: "this.a % 4 == 0"
   }];
+  int32 d = 4 [
+    (field).cel = {
+      id: "field_expression_scalar_multiple_1"
+      expression:
+        "this < 1 ? ''"
+        ": 'd must be less than 1'"
+    },
+    (field).cel = {
+      id: "field_expression_scalar_multiple_2"
+      expression:
+        "this < 2 ? ''"
+        ": 'd must be less than 2'"
+    }
+  ];
 
   message Nested {
     int32 a = 1 [(field).cel = {
