@@ -94,10 +94,12 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("field_expression_scalar"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("field_expression_enum"),
 				},
 			),
@@ -125,25 +127,32 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("field_expression_scalar"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("field_expression_enum"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("c"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("field_expression_embed"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("c.a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("field_expression_nested"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("d"),
+					Rule:         results.FieldPath("cel[0]"),
+					ConstraintId: proto.String("field_expression_scalar_multiple_1"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("d"),
+					Rule:         results.FieldPath("cel[1]"),
 					ConstraintId: proto.String("field_expression_scalar_multiple_2"),
 				},
 			),

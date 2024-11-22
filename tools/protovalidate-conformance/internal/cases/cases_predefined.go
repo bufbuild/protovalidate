@@ -653,16 +653,19 @@ func predefinedSuite() suites.Suite {
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_embedded_proto2"),
 					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b.c"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_nested_proto2"),
 					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_scalar_proto2"),
 					Message:      proto.String("a must be greater than 24"),
 				},
@@ -707,6 +710,7 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("standard_predefined_and_custom_rule_scalar_proto2"),
 					Message:      proto.String("a must be greater than 24"),
 				},
@@ -1351,16 +1355,19 @@ func predefinedSuite() suites.Suite {
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_embedded_proto3"),
 					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b.c"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_nested_proto3"),
 					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_scalar_proto3"),
 					Message:      proto.String("a must be greater than 24"),
 				},
@@ -1405,6 +1412,7 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("standard_predefined_and_custom_rule_scalar_proto3"),
 					Message:      proto.String("a must be greater than 24"),
 				},
@@ -2049,16 +2057,19 @@ func predefinedSuite() suites.Suite {
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_embedded_edition_2023"),
 					Message:      proto.String("b.c must be a multiple of 3"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b.c"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_nested_edition_2023"),
 					Message:      proto.String("c must be positive"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("predefined_and_custom_rule_scalar_edition_2023"),
 					Message:      proto.String("a must be greater than 24"),
 				},
@@ -2103,6 +2114,7 @@ func predefinedSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("standard_predefined_and_custom_rule_scalar_edition_2023"),
 					Message:      proto.String("a must be greater than 24"),
 				},

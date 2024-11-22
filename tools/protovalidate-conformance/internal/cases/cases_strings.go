@@ -1727,6 +1727,7 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("string.host_and_port.optional_port"),
 				},
 			),
@@ -1736,6 +1737,7 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("string.host_and_port.optional_port"),
 				},
 			),
@@ -1745,6 +1747,7 @@ func stringSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("cel[0]"),
 					ConstraintId: proto.String("string.host_and_port.optional_port"),
 				},
 			),

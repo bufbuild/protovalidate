@@ -104,6 +104,7 @@ func ignoreEmptySuite() suites.Suite {
 			Message: &cases.IgnoreEmptyProto2Message{Val: &cases.IgnoreEmptyProto2Message_Msg{}},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("ignore_empty.proto2.message"),
 			}),
 		},
@@ -199,6 +200,7 @@ func ignoreEmptySuite() suites.Suite {
 			Message: &cases.IgnoreEmptyProto3Message{Val: &cases.IgnoreEmptyProto3Message_Msg{}},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("ignore_empty.proto3.message"),
 			}),
 		},
@@ -418,6 +420,7 @@ func ignoreEmptySuite() suites.Suite {
 			Message: &cases.IgnoreEmptyEditionsMessageExplicitPresence{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresence_Msg{}},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("ignore_empty.editions.message"),
 			}),
 		},
@@ -433,6 +436,7 @@ func ignoreEmptySuite() suites.Suite {
 			Message: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited{Val: &cases.IgnoreEmptyEditionsMessageExplicitPresenceDelimited_Msg{}},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("ignore_empty.editions.message"),
 			}),
 		},

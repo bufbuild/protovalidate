@@ -336,6 +336,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -345,6 +346,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -364,6 +366,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -373,6 +376,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -392,6 +396,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -413,6 +418,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -422,6 +428,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -437,6 +444,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -446,6 +454,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -461,6 +470,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
@@ -1068,6 +1078,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1077,6 +1088,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1096,6 +1108,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1105,6 +1118,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1124,6 +1138,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1145,6 +1160,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1154,6 +1170,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1169,6 +1186,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1178,6 +1196,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1193,6 +1212,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
@@ -1912,6 +1932,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -1921,6 +1942,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -1940,6 +1962,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -1949,6 +1972,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -1968,6 +1992,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -1977,6 +2002,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -1996,6 +2022,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2005,6 +2032,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2024,6 +2052,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2049,6 +2078,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2070,6 +2100,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2079,6 +2110,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2094,6 +2126,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2103,6 +2136,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2118,6 +2152,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2127,6 +2162,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2142,6 +2178,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2151,6 +2188,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2166,6 +2204,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
@@ -2187,6 +2226,7 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("cel[0]"),
 				ConstraintId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
