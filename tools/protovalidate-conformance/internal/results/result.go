@@ -144,6 +144,7 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			return false
 		}
 		for i := range len(want) {
+			//nolint:staticcheck // Intentional use of deprecated field
 			matchingField := want[i].GetFieldPath() == got[i].GetFieldPath() &&
 				proto.Equal(want[i].GetField(), got[i].GetField()) &&
 				want[i].GetForKey() == got[i].GetForKey()
