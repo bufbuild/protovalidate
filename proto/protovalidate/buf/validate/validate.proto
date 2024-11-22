@@ -4785,16 +4785,16 @@ message Violation {
   //
   // ```textproto
   // violation {
-	//   field { element { field_number: 1, field_name: "a", field_type: 8 } }
-	//   ...
-	// }
+  //   field { element { field_number: 1, field_name: "a", field_type: 8 } }
+  //   ...
+  // }
   // ```
   optional FieldPath field = 5;
 
   // `rule` is a machine-readable path that points to the specific constraint rule that failed validation.
   // This will be a nested field starting from the FieldConstraints of the field that failed validation.
   // For custom constraints, this will provide the path of the constraint, e.g. `cel[0]`.
-  // 
+  //
   // For example, consider the following message:
   //
   // ```proto
@@ -4811,13 +4811,13 @@ message Violation {
   //
   // ```textproto
   // violation {
-	//   rule { element { field_number: 25, field_name: "required", field_type: 8 } }
-	//   ...
-	// }
+  //   rule { element { field_number: 25, field_name: "required", field_type: 8 } }
+  //   ...
+  // }
   // violation {
-	//   rule { element { field_number: 23, field_name: "cel", field_type: 11, index: 0 } }
-	//   ...
-	// }
+  //   rule { element { field_number: 23, field_name: "cel", field_type: 11, index: 0 } }
+  //   ...
+  // }
   // ```
   optional FieldPath rule = 6;
 
