@@ -139,9 +139,9 @@ func parseSubscript(
 		if err := parseMapKey(descriptor, subscript, element); err != nil {
 			return nil, err
 		}
-		descriptor = descriptor.MapValue()
 		element.KeyType = descriptorpb.FieldDescriptorProto_Type(descriptor.MapKey().Kind()).Enum()
 		element.ValueType = descriptorpb.FieldDescriptorProto_Type(descriptor.MapValue().Kind()).Enum()
+		descriptor = descriptor.MapValue()
 	default:
 		return nil, fmt.Errorf("unexpected subscript on field %s", name)
 	}
