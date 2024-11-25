@@ -4873,24 +4873,30 @@ message FieldPathElement {
   // can be explicitly used in Protocol Buffers 2023 Edition.
   optional google.protobuf.FieldDescriptorProto.Type field_type = 3;
 
+  // `key_type` specifies the map key type of this field. This value is useful when traversing
+  // unknown fields through wire data: specifically, it allows handling the differences between
+  // different integer encodings.
+  optional google.protobuf.FieldDescriptorProto.Type key_type = 4;
+
+  // `value_type` specifies map value type of this field. This is useful if you want to display a
+  // value inside unknown fields through wire data.
+  optional google.protobuf.FieldDescriptorProto.Type value_type = 5;
+
   // `subscript` contains a repeated index or map key, if this path element nests into a repeated or map field.
   oneof subscript {
     // `index` specifies a 0-based index into a repeated field.
-    uint64 index = 4;
+    uint64 index = 6;
 
     // `bool_key` specifies a map key of type bool.
-    bool bool_key = 5;
+    bool bool_key = 7;
 
-    // `int_key` specifies a map key of type int32, int64, sfixed32 or sfixed64.
-    int64 int_key = 6;
-
-    // `sint_key` specifies a map key of type sint32 or sint64.
-    sint64 sint_key = 7;
+    // `int_key` specifies a map key of type int32, int64, sint32, sint64, sfixed32 or sfixed64.
+    int64 int_key = 8;
 
     // `uint_key` specifies a map key of type uint32, uint64, fixed32 or fixed64.
-    uint64 uint_key = 8;
+    uint64 uint_key = 9;
 
     // `string_key` specifies a map key of type string.
-    string string_key = 9;
+    string string_key = 10;
   }
 }

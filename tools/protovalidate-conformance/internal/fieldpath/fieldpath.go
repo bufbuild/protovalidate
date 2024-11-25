@@ -50,8 +50,6 @@ func Marshal(path *validate.FieldPath) string {
 			result.WriteString(strconv.FormatBool(value.BoolKey))
 		case *validate.FieldPathElement_IntKey:
 			result.WriteString(strconv.FormatInt(value.IntKey, 10))
-		case *validate.FieldPathElement_SintKey:
-			result.WriteString(strconv.FormatInt(value.SintKey, 10))
 		case *validate.FieldPathElement_UintKey:
 			result.WriteString(strconv.FormatUint(value.UintKey, 10))
 		case *validate.FieldPathElement_StringKey:
@@ -142,6 +140,8 @@ func parseSubscript(
 			return nil, err
 		}
 		descriptor = descriptor.MapValue()
+		element.KeyType = descriptorpb.FieldDescriptorProto_Type(descriptor.MapKey().Kind()).Enum()
+		element.ValueType = descriptorpb.FieldDescriptorProto_Type(descriptor.MapValue().Kind()).Enum()
 	default:
 		return nil, fmt.Errorf("unexpected subscript on field %s", name)
 	}
@@ -161,12 +161,12 @@ func parseMapKey(
 		}
 	case protoreflect.Sint32Kind:
 		if intValue, err := strconv.ParseInt(subscript, 10, 32); err == nil {
-			element.Subscript = &validate.FieldPathElement_SintKey{SintKey: intValue}
+			element.Subscript = &validate.FieldPathElement_IntKey{IntKey: intValue}
 			return nil
 		}
 	case protoreflect.Sint64Kind:
 		if intValue, err := strconv.ParseInt(subscript, 10, 64); err == nil {
-			element.Subscript = &validate.FieldPathElement_SintKey{SintKey: intValue}
+			element.Subscript = &validate.FieldPathElement_IntKey{IntKey: intValue}
 			return nil
 		}
 	case protoreflect.Int32Kind, protoreflect.Sfixed32Kind:
