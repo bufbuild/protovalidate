@@ -5,6 +5,11 @@ incremental, and relatively painless, but it will still require a handful of
 operations to get there. To ease this burden, we've provided this documentation
 and a migration tool to simplify the process.
 
+> [!NOTE]
+> 
+> `protovalidate` does not require any code generation. The plugin `protoc-gen-valide`
+> is no longer needed, and shouldn't be used with `protovalidate`.
+
 ## Migration process
 
 1. **[OPTIONAL] Use `protovalidate` in legacy mode.** If supported, an

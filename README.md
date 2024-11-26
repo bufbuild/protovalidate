@@ -14,7 +14,8 @@ rules. The primary goal of `protovalidate` is to help developers ensure data
 consistency and integrity across the network without requiring generated code.
 
 > [!NOTE]
-> `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv].
+> `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv]. It does not require any code
+> generation and supports custom constraints.
 >
 > We recommend that new and existing projects transition to using `protovalidate` instead of `protoc-gen-validate`.
 >
