@@ -49,16 +49,28 @@ func oneofSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field/X/invalid": {
-			Message:  &cases.Oneof{O: &cases.Oneof_X{X: "fizzbuzz"}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("x"), ConstraintId: proto.String("string.prefix")}),
+			Message: &cases.Oneof{O: &cases.Oneof_X{X: "fizzbuzz"}},
+			Expected: results.Violations(&validate.Violation{
+				Field:        results.FieldPath("x"),
+				Rule:         results.FieldPath("string.prefix"),
+				ConstraintId: proto.String("string.prefix"),
+			}),
 		},
 		"field/Y/invalid": {
-			Message:  &cases.Oneof{O: &cases.Oneof_Y{Y: -1}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("y"), ConstraintId: proto.String("int32.gt")}),
+			Message: &cases.Oneof{O: &cases.Oneof_Y{Y: -1}},
+			Expected: results.Violations(&validate.Violation{
+				Field:        results.FieldPath("y"),
+				Rule:         results.FieldPath("int32.gt"),
+				ConstraintId: proto.String("int32.gt"),
+			}),
 		},
 		"filed/Z/invalid": {
-			Message:  &cases.Oneof{O: &cases.Oneof_Z{Z: &cases.TestOneofMsg{}}},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("z.val"), ConstraintId: proto.String("bool.const")}),
+			Message: &cases.Oneof{O: &cases.Oneof_Z{Z: &cases.TestOneofMsg{}}},
+			Expected: results.Violations(&validate.Violation{
+				Field:        results.FieldPath("z.val"),
+				Rule:         results.FieldPath("bool.const"),
+				ConstraintId: proto.String("bool.const"),
+			}),
 		},
 		"required/valid/empty": {
 			Message:  &cases.OneofRequired{O: &cases.OneofRequired_X{X: ""}},
@@ -69,8 +81,11 @@ func oneofSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"required/invalid": {
-			Message:  &cases.OneofRequired{},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("o"), ConstraintId: proto.String("required")}),
+			Message: &cases.OneofRequired{},
+			Expected: results.Violations(&validate.Violation{
+				Field:        results.FieldPath("o"),
+				ConstraintId: proto.String("required"),
+			}),
 		},
 		"required/required_field/valid/empty": {
 			Message: &cases.OneofRequiredWithRequiredField{
@@ -88,13 +103,25 @@ func oneofSuite() suites.Suite {
 			Message: &cases.OneofRequiredWithRequiredField{
 				O: &cases.OneofRequiredWithRequiredField_B{B: "foo"},
 			},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("a"), ConstraintId: proto.String("required")}),
+			Expected: results.Violations(&validate.Violation{
+				Field:        results.FieldPath("a"),
+				Rule:         results.FieldPath("required"),
+				ConstraintId: proto.String("required"),
+			}),
 		},
 		"required/required_field/invalid": {
 			Message: &cases.OneofRequiredWithRequiredField{},
 			Expected: results.Violations(
-				&validate.Violation{FieldPath: proto.String("o"), ConstraintId: proto.String("required")},
-				&validate.Violation{FieldPath: proto.String("a"), ConstraintId: proto.String("required")}),
+				&validate.Violation{
+					Field:        results.FieldPath("o"),
+					ConstraintId: proto.String("required"),
+				},
+				&validate.Violation{
+					Field:        results.FieldPath("a"),
+					Rule:         results.FieldPath("required"),
+					ConstraintId: proto.String("required"),
+				},
+			),
 		},
 	}
 }

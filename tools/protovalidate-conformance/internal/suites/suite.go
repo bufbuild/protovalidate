@@ -97,6 +97,12 @@ func (s Suite) ProcessResults(
 		if err != nil {
 			return err
 		}
+		if err := results.HydrateFieldPaths(
+			testCase.Message.ProtoReflect().Descriptor(),
+			testCase.Expected,
+		); err != nil {
+			return err
+		}
 		out.AddCase(&harness.CaseResult{
 			Name:            caseName,
 			Success:         testCase.Expected.IsSuccessWith(actual, options),

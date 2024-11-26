@@ -43,7 +43,8 @@ func nestedSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("two.three.uuid"),
+				Field:        results.FieldPath("two.three.uuid"),
+				Rule:         results.FieldPath("string.uuid"),
 				ConstraintId: proto.String("string.uuid"),
 			}),
 		},

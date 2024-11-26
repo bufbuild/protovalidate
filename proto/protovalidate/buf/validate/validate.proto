@@ -4770,9 +4770,62 @@ message Violations {
 // }
 // ```
 message Violation {
-  // `field_path` is a machine-readable identifier that points to the specific field that failed the validation.
+  // `field` is a machine-readable path to the field that failed validation.
   // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
-  optional string field_path = 1;
+  //
+  // For example, consider the following message:
+  //
+  // ```proto
+  // message Message {
+  //   bool a = 1 [(buf.validate.field).required = true];
+  // }
+  // ```
+  //
+  // It could produce the following violation:
+  //
+  // ```textproto
+  // violation {
+  //   field { element { field_number: 1, field_name: "a", field_type: 8 } }
+  //   ...
+  // }
+  // ```
+  optional FieldPath field = 5;
+
+  // `rule` is a machine-readable path that points to the specific constraint rule that failed validation.
+  // This will be a nested field starting from the FieldConstraints of the field that failed validation.
+  // For custom constraints, this will provide the path of the constraint, e.g. `cel[0]`.
+  //
+  // For example, consider the following message:
+  //
+  // ```proto
+  // message Message {
+  //   bool a = 1 [(buf.validate.field).required = true];
+  //   bool b = 2 [(buf.validate.field).cel = {
+  //     id: "custom_constraint",
+  //     expression: "!this ? 'b must be true': ''"
+  //   }]
+  // }
+  // ```
+  //
+  // It could produce the following violations:
+  //
+  // ```textproto
+  // violation {
+  //   rule { element { field_number: 25, field_name: "required", field_type: 8 } }
+  //   ...
+  // }
+  // violation {
+  //   rule { element { field_number: 23, field_name: "cel", field_type: 11, index: 0 } }
+  //   ...
+  // }
+  // ```
+  optional FieldPath rule = 6;
+
+  // `field_path` is a human-readable identifier that points to the specific field that failed the validation.
+  // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
+  //
+  // Deprecated: use the `field` instead.
+  optional string field_path = 1 [deprecated = true];
 
   // `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
   // This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
@@ -4784,4 +4837,66 @@ message Violation {
 
   // `for_key` indicates whether the violation was caused by a map key, rather than a value.
   optional bool for_key = 4;
+}
+
+// `FieldPath` provides a path to a nested protobuf field.
+//
+// This message provides enough information to render a dotted field path even without protobuf descriptors.
+// It also provides enough information to resolve a nested field through unknown wire data.
+message FieldPath {
+  // `elements` contains each element of the path, starting from the root and recursing downward.
+  repeated FieldPathElement elements = 1;
+}
+
+// `FieldPathElement` provides enough information to nest through a single protobuf field.
+//
+// If the selected field is a map or repeated field, the `subscript` value selects a specific element from it.
+// A path that refers to a value nested under a map key or repeated field index will have a `subscript` value.
+// The `field_type` field allows unambiguous resolution of a field even if descriptors are not available.
+message FieldPathElement {
+  // `field_number` is the field number this path element refers to.
+  optional int32 field_number = 1;
+
+  // `field_name` contains the field name this path element refers to.
+  // This can be used to display a human-readable path even if the field number is unknown.
+  optional string field_name = 2;
+
+  // `field_type` specifies the type of this field. When using reflection, this value is not needed.
+  //
+  // This value is provided to make it possible to traverse unknown fields through wire data.
+  // When traversing wire data, be mindful of both packed[1] and delimited[2] encoding schemes.
+  //
+  // [1]: https://protobuf.dev/programming-guides/encoding/#packed
+  // [2]: https://protobuf.dev/programming-guides/encoding/#groups
+  //
+  // N.B.: Although groups are deprecated, the corresponding delimited encoding scheme is not, and
+  // can be explicitly used in Protocol Buffers 2023 Edition.
+  optional google.protobuf.FieldDescriptorProto.Type field_type = 3;
+
+  // `key_type` specifies the map key type of this field. This value is useful when traversing
+  // unknown fields through wire data: specifically, it allows handling the differences between
+  // different integer encodings.
+  optional google.protobuf.FieldDescriptorProto.Type key_type = 4;
+
+  // `value_type` specifies map value type of this field. This is useful if you want to display a
+  // value inside unknown fields through wire data.
+  optional google.protobuf.FieldDescriptorProto.Type value_type = 5;
+
+  // `subscript` contains a repeated index or map key, if this path element nests into a repeated or map field.
+  oneof subscript {
+    // `index` specifies a 0-based index into a repeated field.
+    uint64 index = 6;
+
+    // `bool_key` specifies a map key of type bool.
+    bool bool_key = 7;
+
+    // `int_key` specifies a map key of type int32, int64, sint32, sint64, sfixed32 or sfixed64.
+    int64 int_key = 8;
+
+    // `uint_key` specifies a map key of type uint32, uint64, fixed32 or fixed64.
+    uint64 uint_key = 9;
+
+    // `string_key` specifies a map key of type string.
+    string string_key = 10;
+  }
 }

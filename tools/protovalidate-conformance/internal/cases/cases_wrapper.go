@@ -44,7 +44,8 @@ func wrapperSuite() suites.Suite {
 		"float/invalid": {
 			Message: &cases.WrapperFloat{Val: &wrapperspb.FloatValue{Value: 0}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("float.gt"),
 				ConstraintId: proto.String("float.gt"),
 				Message:      proto.String("value must be greater than 0"),
 			}),
@@ -60,7 +61,8 @@ func wrapperSuite() suites.Suite {
 		"double/invalid": {
 			Message: &cases.WrapperDouble{Val: &wrapperspb.DoubleValue{Value: 0}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("double.gt"),
 				ConstraintId: proto.String("double.gt"),
 				Message:      proto.String("value must be greater than 0"),
 			}),
@@ -76,7 +78,8 @@ func wrapperSuite() suites.Suite {
 		"int64/invalid": {
 			Message: &cases.WrapperInt64{Val: &wrapperspb.Int64Value{Value: 0}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("int64.gt"),
 				ConstraintId: proto.String("int64.gt"),
 				Message:      proto.String("value must be greater than 0"),
 			}),
@@ -92,7 +95,8 @@ func wrapperSuite() suites.Suite {
 		"int32/invalid": {
 			Message: &cases.WrapperInt32{Val: &wrapperspb.Int32Value{Value: 0}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("int32.gt"),
 				ConstraintId: proto.String("int32.gt"),
 				Message:      proto.String("value must be greater than 0"),
 			}),
@@ -108,7 +112,8 @@ func wrapperSuite() suites.Suite {
 		"uint64/invalid": {
 			Message: &cases.WrapperUInt64{Val: &wrapperspb.UInt64Value{Value: 0}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("uint64.gt"),
 				ConstraintId: proto.String("uint64.gt"),
 				Message:      proto.String("value must be greater than 0"),
 			}),
@@ -124,7 +129,8 @@ func wrapperSuite() suites.Suite {
 		"uint32/invalid": {
 			Message: &cases.WrapperUInt32{Val: &wrapperspb.UInt32Value{Value: 0}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("uint32.gt"),
 				ConstraintId: proto.String("uint32.gt"),
 				Message:      proto.String("value must be greater than 0"),
 			}),
@@ -140,7 +146,8 @@ func wrapperSuite() suites.Suite {
 		"bool/invalid": {
 			Message: &cases.WrapperBool{Val: &wrapperspb.BoolValue{Value: false}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("bool.const"),
 				ConstraintId: proto.String("bool.const"),
 				Message:      proto.String("value must equal true"),
 			}),
@@ -156,7 +163,8 @@ func wrapperSuite() suites.Suite {
 		"string/invalid": {
 			Message: &cases.WrapperString{Val: &wrapperspb.StringValue{Value: "fizzbuzz"}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("string.suffix"),
 				ConstraintId: proto.String("string.suffix"),
 				Message:      proto.String("value does not have suffix `bar`"),
 			}),
@@ -172,7 +180,8 @@ func wrapperSuite() suites.Suite {
 		"bytes/invalid": {
 			Message: &cases.WrapperBytes{Val: &wrapperspb.BytesValue{Value: []byte("x")}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("bytes.min_len"),
 				ConstraintId: proto.String("bytes.min_len"),
 				Message:      proto.String("value length must be at least 3 bytes"),
 			}),
@@ -184,7 +193,8 @@ func wrapperSuite() suites.Suite {
 		"required/string/invalid": {
 			Message: &cases.WrapperRequiredString{Val: &wrapperspb.StringValue{Value: "foo"}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("string.const"),
 				ConstraintId: proto.String("string.const"),
 				Message:      proto.String("value must equal `bar`"),
 			}),
@@ -192,7 +202,8 @@ func wrapperSuite() suites.Suite {
 		"required/string/empty/invalid": {
 			Message: &cases.WrapperRequiredString{},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 				Message:      proto.String("value is required"),
 			}),
@@ -204,14 +215,15 @@ func wrapperSuite() suites.Suite {
 		"required/empty/string/invalid": {
 			Message: &cases.WrapperRequiredEmptyString{Val: &wrapperspb.StringValue{Value: "foo"}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("string.const"),
 				ConstraintId: proto.String("string.const"),
 				Message:      proto.String("value must equal ``"),
 			}),
 		},
 		"required/empty/string/empty/invalid": {
 			Message:  &cases.WrapperRequiredEmptyString{},
-			Expected: results.Violations(&validate.Violation{FieldPath: proto.String("val"), ConstraintId: proto.String("required"), Message: proto.String("value is required")}),
+			Expected: results.Violations(&validate.Violation{Field: results.FieldPath("val"), Rule: results.FieldPath("required"), ConstraintId: proto.String("required"), Message: proto.String("value is required")}),
 		},
 		"optional/string/uuid/valid": {
 			Message:  &cases.WrapperOptionalUuidString{Val: &wrapperspb.StringValue{Value: "8b72987b-024a-43b3-b4cf-647a1f925c5d"}},
@@ -224,7 +236,8 @@ func wrapperSuite() suites.Suite {
 		"optional/string/uuid/invalid": {
 			Message: &cases.WrapperOptionalUuidString{Val: &wrapperspb.StringValue{Value: "foo"}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("string.uuid"),
 				ConstraintId: proto.String("string.uuid"),
 				Message:      proto.String("value must be a valid UUID"),
 			}),
@@ -236,7 +249,8 @@ func wrapperSuite() suites.Suite {
 		"required/float/invalid": {
 			Message: &cases.WrapperRequiredFloat{Val: &wrapperspb.FloatValue{Value: -5}},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("float.gt"),
 				ConstraintId: proto.String("float.gt"),
 				Message:      proto.String("value must be greater than 0"),
 			}),
@@ -244,7 +258,8 @@ func wrapperSuite() suites.Suite {
 		"required/float/empty/invalid": {
 			Message: &cases.WrapperRequiredFloat{},
 			Expected: results.Violations(&validate.Violation{
-				FieldPath:    proto.String("val"),
+				Field:        results.FieldPath("val"),
+				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 				Message:      proto.String("value is required"),
 			}),
