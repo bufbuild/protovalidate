@@ -7,7 +7,7 @@ and a migration tool to simplify the process.
 
 > [!NOTE]
 > 
-> `protovalidate` does not require any code generation. The plugin `protoc-gen-valide`
+> `protovalidate` does not require any code generation. The plugin `protoc-gen-validate`
 > is no longer needed, and shouldn't be used with `protovalidate`.
 
 ## Migration process
