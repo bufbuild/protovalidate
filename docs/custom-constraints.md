@@ -8,7 +8,7 @@ requirements specific to your application.
 
 Field-level constraints apply to specific data types within a message and can
 include requirements such as minimum and maximum values, regular expressions,
-and custom validation functions. Message-level constraints, on the other hand,
+and [custom validation functions](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md#custom-variables-functions-and-overloads). Message-level constraints, on the other hand,
 apply to the entire message, allowing for more complex validation scenarios that
 depend on the relationships between fields or specific combinations of field
 values.
