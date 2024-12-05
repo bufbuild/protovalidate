@@ -30,7 +30,7 @@ You can customize the behavior of the tests using the following flags:
 | `--json`               | Return results as JSON to stdout.                    | `false`       |
 | `--proto`              | Return results as binary serialized proto to stdout. | `false`       |
 | `--dump`               | Output the expected results, without a command.      | `false`       |
-| `--expected-failures`  | `.yaml` file containing list of expected failures    | None          |
+| `--expected_failures`  | `.yaml` file containing list of expected failures    | None          |
 
 ## Components
 
@@ -65,7 +65,7 @@ controlled through the `-suite` and `-case` flags mentioned above.
 
 The conformance test harness can be configured to expect certain failures. This
 is useful for testing the behavior of a library when it encounters an invalid
-message. To use this feature, pass the `--expected-failures` flag with a path to
+message. To use this feature, pass the `--expected_failures` flag with a path to
 a `.yaml` file containing a list of expected failures. The format of the file is
 as follows:
 
@@ -94,7 +94,7 @@ Then we could run the conformance tests with the following command:
 
 ```shell
 .tmp/bin/protovalidate-conformance \
-  --expected-failures=expected_failures.yaml \
+  --expected_failures=expected_failures.yaml \
   my-executor
 ```
 
