@@ -12,8 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_buf//buf:defs.bzl", "buf_lint_test")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+# gazelle:resolve proto proto google/type/postal_address.proto @googleapis//google/type:postal_address_proto
 
 proto_library(
     name = "examples_proto",
@@ -107,7 +109,7 @@ proto_library(
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
-        "@go_googleapis//google/type:postaladdress_proto",
+        "@googleapis//google/type:postal_address_proto",
     ],
 )
 
