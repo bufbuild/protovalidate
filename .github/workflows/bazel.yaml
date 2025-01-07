@@ -1,0 +1,32 @@
+name: Bazel CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {} # support manual runs
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Install bazelisk
+        uses: bazelbuild/setup-bazelisk@v3
+      - name: Mount bazel cache
+        uses: actions/cache@v4
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+      - name: Test Bazel targets with legacy WORKSPACE mode
+        run: bazel build --noenable_bzlmod --enable_workspace //... && bazel test --noenable_bzlmod --enable_workspace //...
+      - name: Test Bazel targets with bzlmod-only mode
+        run: bazel build --enable_bzlmod --noenable_workspace //... && bazel test --enable_bzlmod --noenable_workspace //...
+      - name: Test Bazel targets with hybrid incremental-migration mode
+        run: bazel build --enable_bzlmod --enable_workspace //... && bazel test --enable_bzlmod --enable_workspace //...
