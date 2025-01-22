@@ -252,7 +252,7 @@ Offered under the [Apache 2 license][license].
 [file-bug]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Bug&template=bug_report.md&title=%5BBUG%5D
 [file-feature-request]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Feature&template=feature_request.md&title=%5BFeature+Request%5D
 [license]: https://github.com/bufbuild/protovalidate/blob/main/LICENSE
-[migrate]: https://github.com/bufbuild/protovalidate/blob/main/docs/migrate.md
+[migrate]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/
 [migration-tool]: https://github.com/bufbuild/protovalidate/blob/main/tools/protovalidate-migrate
 [pgv]: https://github.com/bufbuild/protoc-gen-validate
 [pv-go]: https://github.com/bufbuild/protovalidate-go

@@ -47,7 +47,9 @@ existing projects to `protovalidate`.
   Conformance tool. Learn how to use this tool to ensure all implementations
   align with `protovalidate`'s rules and constraints effectively.
 
-- [Migrate](migrate.md): If you're planning to migrate your existing project to
+- [Migrate][migrate]: If you're planning to migrate your existing project to
   `protovalidate`, this guide is for you. The Migrate tool is designed to help
   you transition smoothly, minimizing any potential disruption to your project's
   development.
+
+[migrate]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/
