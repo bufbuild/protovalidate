@@ -71,7 +71,7 @@ message IgnoreEmptyProto3Map {
 
 message IgnoreEmptyRepeatedItems {
   repeated int32 val = 1 [(buf.validate.field).repeated.items = {
-    ignore: IGNORE_IF_UNPOPULATED,
+    ignore: IGNORE_IF_UNPOPULATED
     int32: {gt: 0}
   }];
 }
@@ -79,11 +79,11 @@ message IgnoreEmptyRepeatedItems {
 message IgnoreEmptyMapPairs {
   map<string, int32> val = 1 [
     (buf.validate.field).map.keys = {
-      ignore: IGNORE_IF_UNPOPULATED,
+      ignore: IGNORE_IF_UNPOPULATED
       string: {min_len: 3}
     },
     (buf.validate.field).map.values = {
-      ignore: IGNORE_IF_UNPOPULATED,
+      ignore: IGNORE_IF_UNPOPULATED
       int32: {gt: 0}
     }
   ];
