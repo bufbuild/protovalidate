@@ -263,6 +263,10 @@ message PredefinedConstraints {
   repeated Constraint cel = 1;
 
   reserved 24, 26;
+  reserved
+    "skipped"
+    "ignore_empty"
+;
 }
 
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
@@ -4822,6 +4826,7 @@ message Violation {
   optional bool for_key = 4;
 
   reserved 1;
+  reserved "field_path";
 }
 
 // `FieldPath` provides a path to a nested protobuf field.
