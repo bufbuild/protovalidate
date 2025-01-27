@@ -413,6 +413,11 @@ enum Ignore {
   // }
   // ```
   IGNORE_ALWAYS = 3;
+
+  reserved
+    "IGNORE_EMPTY"
+    "IGNORE_DEFAULT"
+;
 }
 
 // FloatRules describes the constraints applied to `float` values. These
