@@ -21,7 +21,7 @@ import "validate/validate.proto";
 import "buf/validate/validate.proto";
 
 message FieldIgnoreEmpty {
-  int32 x = 1 [(validate.rules).int32.ignore_empty = true,(buf.validate.field).ignore = IGNORE_IF_UNPOPULATED];
+  int32 x = 1 [(validate.rules).int32.ignore = IGNORE_IF_UNPOPULATED,(buf.validate.field).ignore = IGNORE_IF_UNPOPULATED];
   string y = 2 [
     (validate.rules).int32 = { ignore_empty: false },
     (buf.validate.field).int32 = { }

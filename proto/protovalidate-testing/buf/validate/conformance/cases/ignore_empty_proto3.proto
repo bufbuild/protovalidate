@@ -20,21 +20,21 @@ import "buf/validate/validate.proto";
 
 message IgnoreEmptyProto3Scalar {
   int32 val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).int32.gt = 0
   ];
 }
 
 message IgnoreEmptyProto3OptionalScalar {
   optional int32 val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).int32.gt = 0
   ];
 }
 
 message IgnoreEmptyProto3Message {
   optional Msg val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).cel = {
       id: "ignore_empty.proto3.message"
       message: "foobar"
@@ -49,7 +49,7 @@ message IgnoreEmptyProto3Message {
 message IgnoreEmptyProto3Oneof {
   oneof o {
     int32 val = 1 [
-      (buf.validate.field).ignore_empty = true,
+      (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
       (buf.validate.field).int32.gt = 0
     ];
   }
@@ -57,21 +57,21 @@ message IgnoreEmptyProto3Oneof {
 
 message IgnoreEmptyProto3Repeated {
   repeated int32 val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).repeated.min_items = 3
   ];
 }
 
 message IgnoreEmptyProto3Map {
   map<int32, int32> val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).map.min_pairs = 3
   ];
 }
 
 message IgnoreEmptyRepeatedItems {
   repeated int32 val = 1 [(buf.validate.field).repeated.items = {
-    ignore_empty: true
+    ignore: IGNORE_IF_UNPOPULATED,
     int32: {gt: 0}
   }];
 }
@@ -79,11 +79,11 @@ message IgnoreEmptyRepeatedItems {
 message IgnoreEmptyMapPairs {
   map<string, int32> val = 1 [
     (buf.validate.field).map.keys = {
-      ignore_empty: true
+      ignore: IGNORE_IF_UNPOPULATED,
       string: {min_len: 3}
     },
     (buf.validate.field).map.values = {
-      ignore_empty: true
+      ignore: IGNORE_IF_UNPOPULATED,
       int32: {gt: 0}
     }
   ];

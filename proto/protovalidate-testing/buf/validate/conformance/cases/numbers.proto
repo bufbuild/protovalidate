@@ -85,7 +85,7 @@ message FloatIgnore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -164,7 +164,7 @@ message DoubleIgnore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -237,7 +237,7 @@ message Int32Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -310,7 +310,7 @@ message Int64Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 message Int64BigConstraints {
@@ -408,7 +408,7 @@ message UInt32Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -481,7 +481,7 @@ message UInt64Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -554,7 +554,7 @@ message SInt32Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -627,7 +627,7 @@ message SInt64Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 message SInt64IncorrectType {
@@ -699,7 +699,7 @@ message Fixed32Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -772,7 +772,7 @@ message Fixed64Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -845,7 +845,7 @@ message SFixed32Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 
@@ -918,7 +918,7 @@ message SFixed64Ignore {
       gte: 128
       lte: 256
     },
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 

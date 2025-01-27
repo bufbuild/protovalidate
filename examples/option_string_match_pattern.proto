@@ -43,7 +43,7 @@ message UserProfile {
     // defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3).
     // (buf.validate.field).string.uri_ref = true,
     (buf.validate.field).string.uri = true,
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
   // `ip` specifies that a string field must be a valid ip address, in either v4 or v6.
   string last_login_at = 6 [(buf.validate.field).string.ip = true];

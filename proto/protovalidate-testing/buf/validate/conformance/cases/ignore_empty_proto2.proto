@@ -20,14 +20,14 @@ import "buf/validate/validate.proto";
 
 message IgnoreEmptyProto2ScalarOptional {
   optional int32 val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).int32.gt = 0
   ];
 }
 
 message IgnoreEmptyProto2ScalarOptionalWithDefault {
   optional int32 val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).int32.gt = 0,
     default = 42
   ];
@@ -35,14 +35,14 @@ message IgnoreEmptyProto2ScalarOptionalWithDefault {
 
 message IgnoreEmptyProto2ScalarRequired {
   required int32 val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).int32.gt = 0
   ];
 }
 
 message IgnoreEmptyProto2Message {
   optional Msg val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).cel = {
       id: "ignore_empty.proto2.message"
       message: "foobar"
@@ -57,7 +57,7 @@ message IgnoreEmptyProto2Message {
 message IgnoreEmptyProto2Oneof {
   oneof o {
     int32 val = 1 [
-      (buf.validate.field).ignore_empty = true,
+      (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
       (buf.validate.field).int32.gt = 0
     ];
   }
@@ -65,14 +65,14 @@ message IgnoreEmptyProto2Oneof {
 
 message IgnoreEmptyProto2Repeated {
   repeated int32 val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).repeated.min_items = 3
   ];
 }
 
 message IgnoreEmptyProto2Map {
   map<int32, int32> val = 1 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     (buf.validate.field).map.min_pairs = 3
   ];
 }

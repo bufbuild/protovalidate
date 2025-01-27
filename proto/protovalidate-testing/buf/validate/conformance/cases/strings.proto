@@ -220,7 +220,7 @@ message StringHttpHeaderValueLoose {
 message StringUUIDIgnore {
   string val = 1 [
     (buf.validate.field).string = {uuid: true},
-    (buf.validate.field).ignore_empty = true
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
 message StringInOneof {

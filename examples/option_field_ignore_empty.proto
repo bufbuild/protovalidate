@@ -27,7 +27,7 @@ message SubmitFeedbackRequest {
   string email = 2 [
     // `ignore_empty` skips validation on a field if it's empty.
     // The email will be not validated if it's empty.
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
     // `string.email` validates that a string field is a valid email.
     (buf.validate.field).string.email = true
   ];

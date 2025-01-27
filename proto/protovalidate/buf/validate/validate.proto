@@ -241,11 +241,6 @@ message FieldConstraints {
     DurationRules duration = 21;
     TimestampRules timestamp = 22;
   }
-
-  // DEPRECATED: use ignore=IGNORE_ALWAYS instead. TODO: remove this field pre-v1.
-  optional bool skipped = 24 [deprecated = true];
-  // DEPRECATED: use ignore=IGNORE_IF_UNPOPULATED instead. TODO: remove this field pre-v1.
-  optional bool ignore_empty = 26 [deprecated = true];
 }
 
 // PredefinedConstraints are custom constraints that can be re-used with
@@ -266,13 +261,13 @@ message PredefinedConstraints {
   // }
   // ```
   repeated Constraint cel = 1;
+
+  reserved 24, 26;
 }
 
 // Specifies how FieldConstraints.ignore behaves. See the documentation for
 // FieldConstraints.required for definitions of "populated" and "nullable".
 enum Ignore {
-  // buf:lint:ignore ENUM_NO_ALLOW_ALIAS // allowance for deprecations. TODO: remove pre-v1.
-  option allow_alias = true;
   // Validation is only skipped if it's an unpopulated nullable fields.
   //
   // ```proto
@@ -305,8 +300,7 @@ enum Ignore {
   IGNORE_UNSPECIFIED = 0;
 
   // Validation is skipped if the field is unpopulated. This rule is redundant
-  // if the field is already nullable. This value is equivalent behavior to the
-  // deprecated ignore_empty rule.
+  // if the field is already nullable.
   //
   // ```proto
   // syntax="proto3
@@ -415,11 +409,6 @@ enum Ignore {
   // }
   // ```
   IGNORE_ALWAYS = 3;
-
-  // Deprecated: Use IGNORE_IF_UNPOPULATED instead. TODO: Remove this value pre-v1.
-  IGNORE_EMPTY = 1 [deprecated = true];
-  // Deprecated: Use IGNORE_IF_DEFAULT_VALUE. TODO: Remove this value pre-v1.
-  IGNORE_DEFAULT = 2 [deprecated = true];
 }
 
 // FloatRules describes the constraints applied to `float` values. These
@@ -4821,12 +4810,6 @@ message Violation {
   // ```
   optional FieldPath rule = 6;
 
-  // `field_path` is a human-readable identifier that points to the specific field that failed the validation.
-  // This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation.
-  //
-  // Deprecated: use the `field` instead.
-  optional string field_path = 1 [deprecated = true];
-
   // `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
   // This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
   optional string constraint_id = 2;
@@ -4837,6 +4820,8 @@ message Violation {
 
   // `for_key` indicates whether the violation was caused by a map key, rather than a value.
   optional bool for_key = 4;
+
+  reserved 1;
 }
 
 // `FieldPath` provides a path to a nested protobuf field.

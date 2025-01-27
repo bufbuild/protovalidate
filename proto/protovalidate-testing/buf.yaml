@@ -12,7 +12,7 @@ breaking:
     - buf/validate/conformance
 lint:
   use:
-    - DEFAULT
+    - STANDARD
   except:
     - PROTOVALIDATE
   ignore_only:
