@@ -29,7 +29,7 @@ message UserProfile {
       // must match it.
       pattern: "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
     }
-    ignore_empty: true
+    ignore: IGNORE_IF_UNPOPULATED
   }];
   // `hostname` specifies that the field value must be a valid hostname as defined
   // by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5).
