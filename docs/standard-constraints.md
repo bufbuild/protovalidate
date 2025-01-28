@@ -99,9 +99,8 @@ proper validations for each field type:
 ```protobuf
 message FieldConstraints {
   repeated Constraint cel = 23;
-  bool skipped = 24;
   bool required = 25;
-  bool ignore_empty = 26;
+  Ignore ignore = 27;
   oneof type {
     // Scalar Field Types
     // ...
@@ -212,13 +211,13 @@ message Event {
 
 ### Other constraints
 
-`FieldConstraints` contains other constraints that can be applied to fields
-including `skipped`, `required`, and `ignore_empty`. 
+`FieldConstraints` contains other constraints that can be applied to fields,
+including `required` and `ignore`. 
 
 ```protobuf
 message Event {
   int64 start_time = 1 [(buf.validate.field).required = true];
-  int64 end_time = 2[(buf.validate.field).ignore_empty = true];
+  int64 end_time = 2[(buf.validate.field).ignore = IGNORE_IF_UNPOPULATED];
 }
 ```
 

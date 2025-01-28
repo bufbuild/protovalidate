@@ -144,9 +144,7 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			return false
 		}
 		for i := range len(want) {
-			//nolint:staticcheck // Intentional use of deprecated field
-			matchingField := want[i].GetFieldPath() == got[i].GetFieldPath() &&
-				proto.Equal(want[i].GetField(), got[i].GetField()) &&
+			matchingField := proto.Equal(want[i].GetField(), got[i].GetField()) &&
 				want[i].GetForKey() == got[i].GetForKey()
 			matchingRule := proto.Equal(want[i].GetRule(), got[i].GetRule())
 			matchingConstraint := want[i].GetConstraintId() == got[i].GetConstraintId()
@@ -269,8 +267,6 @@ func HydrateFieldPaths(
 		for _, violation := range violations.GetViolations() {
 			if path := violation.GetField(); path != nil && len(path.GetElements()) > 0 {
 				var err error
-				//nolint:staticcheck // Intentional use of deprecated field
-				violation.FieldPath = proto.String(path.GetElements()[0].GetFieldName())
 				violation.Field, err = fieldpath.Unmarshal(
 					descriptor,
 					path.GetElements()[0].GetFieldName(),
