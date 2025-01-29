@@ -1,0 +1,9 @@
+bazel_dep(name = "protovalidate", version = "0.0.0", dev_dependency = True)
+local_path_override(
+    module_name = "protovalidate",
+    path = "../..",
+)
+
+bazel_dep(name = "rules_buf", version = "0.3.0")
+bazel_dep(name = "protobuf", version = "29.2", repo_name = "com_google_protobuf")
+bazel_dep(name = "rules_proto", version = "7.1.0")

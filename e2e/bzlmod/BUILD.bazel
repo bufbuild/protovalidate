@@ -1,0 +1,19 @@
+load("@rules_buf//buf:defs.bzl", "buf_lint_test")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "example_proto",
+    srcs = [
+        "example.proto",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@protovalidate//proto/protovalidate/buf/validate:validate_proto",
+    ],
+)
+
+buf_lint_test(
+    name = "example_proto_lint",
+    config = "//:buf.yaml",
+    targets = [":example_proto"],
+)
