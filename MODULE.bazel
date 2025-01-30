@@ -14,7 +14,7 @@
 
 module(
     name = "protovalidate",
-    version = "0.10.0",
+    version = "0.10.1",
     repo_name = "com_github_bufbuild_protovalidate",
 )
 
