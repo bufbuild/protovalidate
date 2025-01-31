@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   create-release-tag:
+    name: Create release tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,11 +23,20 @@ jobs:
         with:
           script: |
             const tag = '${{ github.event.inputs.tag_name }}';
+            const toolsTag = `tools/${tag}`;
             const commitTag = await github.rest.git.createTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag,
               message: tag,
+              object: context.sha,
+              type: 'commit',
+            });
+            const toolsCommitTag = await github.rest.git.createTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: toolsTag,
+              message: toolsTag,
               object: context.sha,
               type: 'commit',
             });
@@ -36,8 +46,15 @@ jobs:
               ref: `refs/tags/${tag}`,
               sha: commitTag.data.sha,
             });
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${toolsTag}`,
+              sha: toolsCommitTag.data.sha,
+            });
 
   create-release-draft:
+    name: Start release automation
     uses: ./.github/workflows/create-release-draft.yaml
     with:
       tag_name: ${{ github.event.inputs.tag_name }}
