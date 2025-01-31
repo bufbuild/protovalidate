@@ -1124,7 +1124,6 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
-
 		"uri_ref/invalid/not_checked/empty": {
 			Message:  &cases.StringNotURIRef{Val: ""},
 			Expected: results.Success(true),
