@@ -1048,6 +1048,16 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
+		"uri/invalid/encoding": {
+			Message: &cases.StringURI{Val: "http://example.com/foo/bar?baz=%x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
+				},
+			),
+		},
 		"uri/invalid/not_checked/empty": {
 			Message:  &cases.StringNotURI{Val: ""},
 			Expected: results.Success(true),
@@ -1076,6 +1086,26 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
+		"uri/invalid/absolute/encoding": {
+			Message: &cases.StringURI{Val: "https://example.com/foo/bar?baz=%x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
+				},
+			),
+		},
+		"uri/invalid/relative/encoding": {
+			Message: &cases.StringURI{Val: "/foo/bar?baz=%x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
+				},
+			),
+		},
 		"uri_ref/valid/absolute": {
 			Message:  &cases.StringURIRef{Val: "https://example.com/foo/bar?baz=quux"},
 			Expected: results.Success(true),
@@ -1094,6 +1124,7 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
+
 		"uri_ref/invalid/not_checked/empty": {
 			Message:  &cases.StringNotURIRef{Val: ""},
 			Expected: results.Success(true),
