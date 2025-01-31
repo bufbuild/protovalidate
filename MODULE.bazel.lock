@@ -441,7 +441,7 @@
     "@@rules_buf+//buf:extensions.bzl%buf": {
       "general": {
         "bzlTransitiveDigest": "Cn52bY/1OxGKNv4TI5yExj2vL9hBgfRj4HOOcjWQTdQ=",
-        "usagesDigest": "kgkTda36TM0OQAZD9IGhUdFyy7Q94+znktf/Uhw8RKM=",
+        "usagesDigest": "DNyLeXiz76KXJ1VlWq1b3zhuLWpJNMllrMF6Fo6iD90=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},

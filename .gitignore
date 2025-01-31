@@ -3,3 +3,5 @@
 *.svg
 cover.out
 /bazel-*
+/protovalidate-*.tar.gz
+/release_notes.md
