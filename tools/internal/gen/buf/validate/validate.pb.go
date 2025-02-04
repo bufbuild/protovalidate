@@ -245,9 +245,9 @@ type KnownRegex int32
 
 const (
 	KnownRegex_KNOWN_REGEX_UNSPECIFIED KnownRegex = 0
-	// HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2).
+	// HTTP header name as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2).
 	KnownRegex_KNOWN_REGEX_HTTP_HEADER_NAME KnownRegex = 1
-	// HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4).
+	// HTTP header value as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4).
 	KnownRegex_KNOWN_REGEX_HTTP_HEADER_VALUE KnownRegex = 2
 )
 
@@ -4605,7 +4605,7 @@ type StringRules struct {
 	WellKnown isStringRules_WellKnown `protobuf_oneof:"well_known"`
 	// This applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
 	// enable strict header validation. By default, this is true, and HTTP header
-	// validations are [RFC-compliant](https://tools.ietf.org/html/rfc7230#section-3). Setting to false will enable looser
+	// validations are [RFC-compliant](https://datatracker.ietf.org/doc/html/rfc7230#section-3). Setting to false will enable looser
 	// validations that only disallow `\r\n\0` characters, which can be used to
 	// bypass header matching rules.
 	//
@@ -4918,7 +4918,7 @@ type isStringRules_WellKnown interface {
 
 type StringRules_Email struct {
 	// `email` specifies that the field value must be a valid email address
-	// (addr-spec only) as defined by [RFC 5322](https://tools.ietf.org/html/rfc5322#section-3.4.1).
+	// (addr-spec only) as defined by [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322#section-3.4.1).
 	// If the field value isn't a valid email address, an error message will be generated.
 	//
 	// ```proto
@@ -4934,7 +4934,7 @@ type StringRules_Email struct {
 
 type StringRules_Hostname struct {
 	// `hostname` specifies that the field value must be a valid
-	// hostname as defined by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5). This constraint doesn't support
+	// hostname as defined by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5). This constraint doesn't support
 	// internationalized domain names (IDNs). If the field value isn't a
 	// valid hostname, an error message will be generated.
 	//
@@ -5000,7 +5000,7 @@ type StringRules_Ipv6 struct {
 
 type StringRules_Uri struct {
 	// `uri` specifies that the field value must be a valid,
-	// absolute URI as defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3). If the field value isn't a valid,
+	// absolute URI as defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3). If the field value isn't a valid,
 	// absolute URI, an error message will be generated.
 	//
 	// ```proto
@@ -5016,7 +5016,7 @@ type StringRules_Uri struct {
 
 type StringRules_UriRef struct {
 	// `uri_ref` specifies that the field value must be a valid URI
-	// as defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3) and may be either relative or absolute. If the
+	// as defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3) and may be either relative or absolute. If the
 	// field value isn't a valid URI, an error message will be generated.
 	//
 	// ```proto
@@ -5032,7 +5032,7 @@ type StringRules_UriRef struct {
 
 type StringRules_Address struct {
 	// `address` specifies that the field value must be either a valid hostname
-	// as defined by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5)
+	// as defined by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5)
 	// (which doesn't support internationalized domain names or IDNs) or a valid
 	// IP (v4 or v6). If the field value isn't a valid hostname or IP, an error
 	// message will be generated.
@@ -5050,7 +5050,7 @@ type StringRules_Address struct {
 
 type StringRules_Uuid struct {
 	// `uuid` specifies that the field value must be a valid UUID as defined by
-	// [RFC 4122](https://tools.ietf.org/html/rfc4122#section-4.1.2). If the
+	// [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2). If the
 	// field value isn't a valid UUID, an error message will be generated.
 	//
 	// ```proto
@@ -5066,7 +5066,7 @@ type StringRules_Uuid struct {
 
 type StringRules_Tuuid struct {
 	// `tuuid` (trimmed UUID) specifies that the field value must be a valid UUID as
-	// defined by [RFC 4122](https://tools.ietf.org/html/rfc4122#section-4.1.2) with all dashes
+	// defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2) with all dashes
 	// omitted. If the field value isn't a valid UUID without dashes, an error message
 	// will be generated.
 	//
@@ -5211,8 +5211,8 @@ type StringRules_WellKnownRegex struct {
 	// | Name                          | Number | Description                               |
 	// |-------------------------------|--------|-------------------------------------------|
 	// | KNOWN_REGEX_UNSPECIFIED       | 0      |                                           |
-	// | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2)  |
-	// | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4) |
+	// | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2)  |
+	// | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4) |
 	WellKnownRegex KnownRegex `protobuf:"varint,24,opt,name=well_known_regex,json=wellKnownRegex,enum=buf.validate.KnownRegex,oneof"`
 }
 
