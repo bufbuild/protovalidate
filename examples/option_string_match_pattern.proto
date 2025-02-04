@@ -32,15 +32,15 @@ message UserProfile {
     ignore: IGNORE_IF_UNPOPULATED
   }];
   // `hostname` specifies that the field value must be a valid hostname as defined
-  // by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5).
+  // by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5).
   // Note: This constraint doesn't support internationalized domain names (IDNs).
   string organization_domain = 4 [(buf.validate.field).string.hostname = true];
   string personal_page = 5 [
     // `uri` validates that a string field must be an absolute uri, as defined by
-    // [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3).
+    // [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3).
     //
     // Or use `uri_ref` to validate that it must be a relative or absolute URI, as
-    // defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3).
+    // defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3).
     // (buf.validate.field).string.uri_ref = true,
     (buf.validate.field).string.uri = true,
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
@@ -56,7 +56,7 @@ message UserProfile {
 message HyperLink {
   string text = 1;
   // `address` specifies that the field value must be either a valid hostname
-  // as defined by [RFC 1034](https://tools.ietf.org/html/rfc1034#section-3.5)
+  // as defined by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5)
   // (which doesn't support internationalized domain names or IDNs) or a valid
   // IP (v4 or v6).
   string address = 2 [(buf.validate.field).string.address = true];
