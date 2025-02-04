@@ -3419,8 +3419,8 @@ message StringRules {
     // `uri_ref` specifies that the field value must be a valid URI Reference as
     // defined by [RFC 3986](https://tools.ietf.org/html/rfc3986#section-4.1).
     //
-    // A URI Reference is either a [URI](https://datatracker.ietf.org/doc/html/rfc3986#section-3),
-    // or a [Relative Reference](https://datatracker.ietf.org/doc/html/rfc3986#section-4.2).
+    // A URI Reference is either a [URI](https://tools.ietf.org/html/rfc3986#section-3),
+    // or a [Relative Reference](https://tools.ietf.org/html/rfc3986#section-4.2).
     //
     // If the field value isn't a valid URI Reference, an error message will be
     // generated.
