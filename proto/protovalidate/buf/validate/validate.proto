@@ -3392,9 +3392,10 @@ message StringRules {
       }
     ];
 
-    // `uri` specifies that the field value must be a valid,
-    // absolute URI as defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3). If the field value isn't a valid,
-    // absolute URI, an error message will be generated.
+    // `uri` specifies that the field value must be a valid URI as defined by
+    // [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3).
+    //
+    // If the field value isn't a valid URI, an error message will be generated.
     //
     // ```proto
     // message MyString {
@@ -3415,19 +3416,24 @@ message StringRules {
       }
     ];
 
-    // `uri_ref` specifies that the field value must be a valid URI
-    // as defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3) and may be either relative or absolute. If the
-    // field value isn't a valid URI, an error message will be generated.
+    // `uri_ref` specifies that the field value must be a valid URI Reference as
+    // defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-4.1).
+    //
+    // A URI Reference is either a [URI](https://datatracker.ietf.org/doc/html/rfc3986#section-3),
+    // or a [Relative Reference](https://datatracker.ietf.org/doc/html/rfc3986#section-4.2).
+    //
+    // If the field value isn't a valid URI Reference, an error message will be
+    // generated.
     //
     // ```proto
     // message MyString {
-    //   // value must be a valid URI
+    //   // value must be a valid URI Reference
     //   string value = 1 [(buf.validate.field).string.uri_ref = true];
     // }
     // ```
     bool uri_ref = 18 [(predefined).cel = {
       id: "string.uri_ref"
-      message: "value must be a valid URI"
+      message: "value must be a valid URI Reference"
       expression: "!rules.uri_ref || this.isUriRef()"
     }];
 
