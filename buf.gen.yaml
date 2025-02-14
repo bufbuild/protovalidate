@@ -1,11 +1,11 @@
-version: v1
+version: v2
+clean: true
 managed:
   enabled: true
-  go_package_prefix:
-    default: github.com/bufbuild/protovalidate/tools/internal/gen
-    except:
-      - buf.build/envoyproxy/protoc-gen-validate
+  override:
+    - file_option: go_package_prefix
+      value: github.com/bufbuild/protovalidate/tools/internal/gen
 plugins:
-  - plugin: buf.build/protocolbuffers/go:v1.34.2
+  - remote: buf.build/protocolbuffers/go:v1.36.5
     out: tools/internal/gen
     opt: paths=source_relative
