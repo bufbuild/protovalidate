@@ -14,5 +14,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
+          # Push and archive are disabled because Protovalidate is managed in https://github.com/bufbuild/modules
           push: false
           archive: false

@@ -1034,8 +1034,12 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
-		"uri/valid": {
+		"uri/valid/url": {
 			Message:  &cases.StringURI{Val: "https://example.com/foo/bar?baz=quux"},
+			Expected: results.Success(true),
+		},
+		"uri/valid/urn": {
+			Message:  &cases.StringURI{Val: "urn:isbn:0451450523"},
 			Expected: results.Success(true),
 		},
 		"uri/invalid/empty": {
@@ -1045,6 +1049,26 @@ func stringSuite() suites.Suite {
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("string.uri"),
 					ConstraintId: proto.String("string.uri_empty"),
+				},
+			),
+		},
+		"uri/invalid/urn/encoding": {
+			Message: &cases.StringURI{Val: "urn:isbn:0451450523?baz=%x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
+				},
+			),
+		},
+		"uri/invalid/urn/no_scheme": {
+			Message: &cases.StringURI{Val: ":isbn:0451450523"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
 				},
 			),
 		},
@@ -1066,7 +1090,7 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
-		"uri/invalid/relative": {
+		"uri/invalid/url/relative": {
 			Message: &cases.StringURI{Val: "/foo/bar?baz=quux"},
 			Expected: results.Violations(
 				&validate.Violation{
@@ -1076,21 +1100,65 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
-		"uri_ref/valid/absolute": {
+		"uri/invalid/url/absolute/encoding": {
+			Message: &cases.StringURI{Val: "https://example.com/foo/bar?baz=%x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
+				},
+			),
+		},
+		"uri/invalid/url/relative/encoding": {
+			Message: &cases.StringURI{Val: "/foo/bar?baz=%x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
+				},
+			),
+		},
+		"uri_ref/valid/urn": {
+			Message:  &cases.StringURI{Val: "urn:isbn:0451450523"},
+			Expected: results.Success(true),
+		},
+		"uri_ref/valid/url/absolute": {
 			Message:  &cases.StringURIRef{Val: "https://example.com/foo/bar?baz=quux"},
 			Expected: results.Success(true),
 		},
-		"uri_ref/valid/relative": {
+		"uri_ref/valid/url/relative": {
 			Message:  &cases.StringURIRef{Val: "/foo/bar?baz=quux"},
 			Expected: results.Success(true),
 		},
-		"uri_ref/invalid": {
+		"uri_ref/invalid/url": {
 			Message: &cases.StringURIRef{Val: "!@#$%^&*"},
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("string.uri_ref"),
 					ConstraintId: proto.String("string.uri_ref"),
+				},
+			),
+		},
+		"uri_ref/invalid/urn/encoding": {
+			Message: &cases.StringURI{Val: "urn:isbn:0451450523?baz=%x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
+				},
+			),
+		},
+		"uri_ref/invalid/urn/no_scheme": {
+			Message: &cases.StringURI{Val: ":isbn:0451450523"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					Rule:         results.FieldPath("string.uri"),
+					ConstraintId: proto.String("string.uri"),
 				},
 			),
 		},
