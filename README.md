@@ -14,13 +14,7 @@ rules. The primary goal of `protovalidate` is to help developers ensure data
 consistency and integrity across the network without requiring generated code.
 
 > [!NOTE]
-> `protovalidate` is the spiritual successor to [protoc-gen-validate][pgv]. It does not require any code
-> generation and supports custom constraints.
->
-> We recommend that new and existing projects transition to using `protovalidate` instead of `protoc-gen-validate`.
->
-> Read [our blog post][announce] if you want to learn more about the limitations of `protoc-gen-validate` and
-> how we have designed `protovalidate` to be better.
+> If you are migrating from [protoc-gen-validate][pgv], read our [migration guide][migration-guide].
 
 ## What is this repository?
 
@@ -261,3 +255,4 @@ Offered under the [Apache 2 license][license].
 [pv-python]: https://github.com/bufbuild/protovalidate-python
 [slack]: https://buf.build/links/slack
 [validate-proto]: https://buf.build/bufbuild/protovalidate/docs/main:buf.validate
+[migration-guide]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/
