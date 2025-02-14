@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: "~/.cache/bazel"
-          key: bazel
+          key: bazel-${{matrix.type}}
       - if: matrix.type == 'legacy'
         name: Test Bazel targets with legacy WORKSPACE mode
         run: bazel build --noenable_bzlmod --enable_workspace //... && bazel test --noenable_bzlmod --enable_workspace //...
