@@ -66,7 +66,6 @@ generate-bazel:
 
 .PHONY: generate-proto
 generate-proto: | $(BIN)/buf
-	rm -rf tools/internal/gen/*/
 	$(BIN)/buf generate
 
 .PHONY: generate-license
@@ -92,7 +91,6 @@ checkgenerate: generate
 
 .PHONY: upgrade-go
 upgrade-go:
-	cd ./tools/internal/gen && $(GO) get -u -t ./... && go mod tidy -v
 	cd ./tools && $(GO) get -u -t ./... && go mod tidy -v
 
 $(BIN):
