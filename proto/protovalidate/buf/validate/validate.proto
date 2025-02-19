@@ -241,6 +241,9 @@ message FieldConstraints {
     DurationRules duration = 21;
     TimestampRules timestamp = 22;
   }
+
+  reserved 24, 26;
+  reserved "skipped", "ignore_empty";
 }
 
 // PredefinedConstraints are custom constraints that can be re-used with
