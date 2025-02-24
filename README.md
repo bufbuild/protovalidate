@@ -208,7 +208,7 @@ The key components include:
   constraints at both the field and message level.
 
 - [**Error Handling**](https://github.com/bufbuild/protovalidate/blob/main/docs/README.md#errors): When a violation
-  occurs, `protovalidate`provides
+  occurs, `protovalidate` provides
   detailed error information to help you quickly identify the source and fix for
   an issue.
 
