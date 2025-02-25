@@ -1,4 +1,4 @@
-# Common Expression Language
+# Common Expression Language (CEL)
 
 The [Common Expression Language (CEL)](https://github.com/google/cel-spec) is
 utilized by `protovalidate` for the formulation of validation rules, serving
