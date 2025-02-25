@@ -1,3 +1,5 @@
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
+
 # Testing
 
 Many `protovalidate` tests are defined as protobuf messages, this provides a
