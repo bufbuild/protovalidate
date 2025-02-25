@@ -35,7 +35,7 @@ message MoneyTransfer {
 }
 ```
 
-# Supported Languages
+## Supported Languages
 
 This repository is the Protovalidate core: the Protobuf definition of its API, [conformance testing utilities][conformance], and [example custom rules](./examples). To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate], or go directly to the repository for your language of choice:
 
@@ -48,7 +48,7 @@ This repository is the Protovalidate core: the Protobuf definition of its API, [
 > [!NOTE]  
 > Interested in adding support for another language? Check out our [Contributing Guidelines][contributing].
 
-# Documentation
+## Documentation
 
 Comprehensive documentation for Protovalidate is available in [Buf's documentation library][protovalidate].
 
@@ -58,19 +58,19 @@ Highlights include:
 * Comprehensive RPC how-to's for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-go], and [gRPC and Python][grpc-python]
 * A [migration guide for protoc-gen-validate][migration-guide] users
 
-# Contribution
+## Contribution
 
 We genuinely appreciate any help! If you'd like to contribute, the following will be of interest:
 
 - [Contributing Guidelines][contributing]: Guidelines to make your contribution process straightforward and meaningful
 - [Conformance testing utilities](https://github.com/bufbuild/protovalidate/tree/main/docs/conformance.md): Utilities providing acceptance testing of `protovalidate` implementations
 
-# Related Sites
+## Related Sites
 
 - [Buf][buf]: Enterprise-grade Kafka and gRPC for the modern age
 - [Common Expression Language (CEL)][cel]: The open-source technology at the core of Protovalidate
 
-# Legal
+## Legal
 
 Offered under the [Apache 2 license][license].
 

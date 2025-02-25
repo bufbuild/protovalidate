@@ -1,6 +1,4 @@
-# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
-
-# Protovalidate and the Common Expression Language (CEL)
+# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) Common Expression Language (CEL)
 
 [Common Expression Language (CEL)](https://github.com/google/cel-spec) is a lightweight, high-performance expression language designed to be embedded within applications. All of Protovalidate's [standard rules][standard-rules] are written in CEL, and it's how Protovalidate allows you to write your own [custom][custom-rules] or [predefined][predefined-rules] rules.
 

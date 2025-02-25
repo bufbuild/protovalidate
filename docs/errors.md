@@ -1,6 +1,4 @@
-# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
-
-# Rule violations
+# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) Rule violations
 
 This page has moved to the [violation reference][violation-reference] within [Protovalidate's documentation][protovalidate] at [Buf][buf].
 

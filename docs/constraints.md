@@ -1,6 +1,4 @@
-# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
-
-# Rules
+# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) Rules
 
 This page has moved to [Protovalidate's comprehensive documentation][protovalidate] at [Buf][buf].
 
