@@ -55,7 +55,7 @@ Comprehensive documentation for Protovalidate is available in [Buf's documentati
 Highlights include:
 
 * The [developer quickstart][quickstart]
-* Comprehensive RPC how-to's for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-go], and [gRPC and Python][grpc-python]
+* Comprehensive RPC how-to's for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-java], and [gRPC and Python][grpc-python]
 * A [migration guide for protoc-gen-validate][migration-guide] users
 
 ## Contribution
