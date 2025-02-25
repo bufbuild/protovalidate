@@ -62,7 +62,7 @@ Highlights include:
 
 ## Contribution
 
-We genuinely appreciate any help! If you'd like to contribute, the following will be of interest:
+We genuinely appreciate any help! If you'd like to contribute, check out these resources:
 
 - [Contributing Guidelines][contributing]: Guidelines to make your contribution process straightforward and meaningful
 - [Conformance testing utilities](https://github.com/bufbuild/protovalidate/tree/main/docs/conformance.md): Utilities providing acceptance testing of `protovalidate` implementations
