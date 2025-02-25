@@ -1,4 +1,6 @@
-# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) Documentation
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
+
+# Documentation
 
 This page has moved to [Protovalidate's documentation][protovalidate] at [Buf][buf].
 

@@ -1,4 +1,6 @@
-# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) 
+
+# Protovalidate
 
 [![CI](https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml/badge.svg?branch=main)][ci]
 [![Slack](https://img.shields.io/badge/Slack-Buf-%23e01563)][slack]
