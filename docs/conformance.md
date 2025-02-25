@@ -1,6 +1,6 @@
-![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
+# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
 
-# Protovalidate conformance test harness
+# Conformance test harness
 
 The `protovalidate` conformance tests provide a rigorous set of tests to ensure
 the correct behavior of any `protovalidate` implementation. It is expected that

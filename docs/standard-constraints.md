@@ -1,6 +1,6 @@
-![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
+# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
 
-# Protovalidate standard rules
+# Standard rules
 
 This page has moved to [standard rules][standard-rules] within [Protovalidate's documentation][protovalidate] at [Buf][buf].
 

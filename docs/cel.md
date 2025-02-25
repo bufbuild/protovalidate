@@ -1,4 +1,4 @@
-![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
+# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
 
 # Protovalidate and the Common Expression Language (CEL)
 
@@ -11,11 +11,11 @@ Learn more about using CEL in [Protovalidate's documentation][protovalidate]:
 - Write [custom rules][custom-rules] for messages or fields.
 - Create reusable [predefined rules][predefined-rules].
 - Explore the reference documentation for [Protovalidate's CEL extensions][cel-extensions].
-- See [the inner workings][advanced-cel] of how CEL and Protovalidate work together 
+- See [the inner workings][advanced-cel] of how CEL and Protovalidate work together.
 
 ## Learn more about CEL
 
-Protovalidate CEL expressions can use all of the CEL standard library, including:
+Protovalidate CEL expressions can use the entire CEL standard library, including:
 
 - CEL's standard functions, as detailed in the [list of standard definitions](https://github.com/google/cel-spec/blob/master/doc/langdef.md#list-of-standard-definitions)
 - CEL's standard [macros](https://github.com/google/cel-spec/blob/v0.8.0/doc/langdef.md#macros)

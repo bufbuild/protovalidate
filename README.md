@@ -1,6 +1,4 @@
-![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
-
-# protovalidate
+# ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) protovalidate
 
 [![CI](https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml/badge.svg?branch=main)][ci]
 [![Slack](https://img.shields.io/badge/Slack-Buf-%23e01563)][slack]
@@ -60,16 +58,17 @@ Highlights include:
 * Comprehensive RPC how-to's for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-go], and [gRPC and Python][grpc-python]
 * A [migration guide for protoc-gen-validate][migration-guide] users
 
-# Related Sites
-
-- [Buf][buf] - Enterprise-grade Kafka and gRPC for the modern age
-
 # Contribution
 
 We genuinely appreciate any help! If you'd like to contribute, the following will be of interest:
 
-- [Contributing Guidelines][contributing] - Guidelines to make your contribution process straightforward and meaningful
-- [Conformance testing utilities](https://github.com/bufbuild/protovalidate/tree/main/docs/conformance.md) - Utilities providing acceptance testing of `protovalidate` implementations
+- [Contributing Guidelines][contributing]: Guidelines to make your contribution process straightforward and meaningful
+- [Conformance testing utilities](https://github.com/bufbuild/protovalidate/tree/main/docs/conformance.md): Utilities providing acceptance testing of `protovalidate` implementations
+
+# Related Sites
+
+- [Buf][buf]: Enterprise-grade Kafka and gRPC for the modern age
+- [Common Expression Language (CEL)][cel]: The open-source technology at the core of Protovalidate
 
 # Legal
 
