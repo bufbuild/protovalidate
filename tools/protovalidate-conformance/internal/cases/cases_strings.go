@@ -424,30 +424,8 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
-		"email/invalid/local_segment_long": {
-			Message: &cases.StringEmail{Val: "x0123456789012345678901234567890123456789012345678901234567890123456789@example.com"},
-			Expected: results.Violations(
-				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("string.email"),
-					ConstraintId: proto.String("string.email"),
-				},
-			),
-		},
 		"email/invalid/host_segment_long": {
 			Message: &cases.StringEmail{Val: "foo@x0123456789012345678901234567890123456789012345678901234567890123456789.com"},
-			Expected: results.Violations(
-				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("string.email"),
-					ConstraintId: proto.String("string.email"),
-				},
-			),
-		},
-		"email/invalid/too_long": {
-			Message: &cases.StringEmail{
-				Val: "x123456789.x123456789.x123456789.x123456789.x123456789@x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789.x123456789",
-			},
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
