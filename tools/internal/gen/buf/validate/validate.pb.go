@@ -5038,12 +5038,12 @@ type StringRules_Email struct {
 	// `email` specifies that the field value must be a valid email address, for
 	// example "foo@example.com".
 	//
-	// Conforms to the definition for a valid email address from the HTML standard.
-	// Note that this standard willfully deviates from RFC 5322, which allows many
-	// unexpected forms of email addresses and will easily match a typographical
-	// error. This standard will still match email addresses that may be unexpected,
-	// for example, it does not require a top-level domain ("foo@example" is a valid
-	// email address).
+	// Conforms to the definition for a valid email address from the [HTML standard](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address).
+	// Note that this standard willfully deviates from [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322),
+	// which allows many unexpected forms of email addresses and will easily match
+	// a typographical error. This standard will still match email addresses that
+	// may be unexpected, for example, it does not require a top-level domain
+	// ("foo@example" is a valid email address).
 	//
 	// If the field value isn't a valid email address, an error message will be generated.
 	//
@@ -5090,8 +5090,8 @@ type StringRules_Ip struct {
 	// IPv6 addresses are expected in their text representation, for example "::1",
 	// or "2001:0DB8:ABCD:0012::0".
 	//
-	// Both formats are well-defined in the internet standard RFC 3986. Zone
-	// identifiers for IPv6 addresses (for example "fe80::a%en1") are supported.
+	// Both formats are well-defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
+	// Zone identifiers for IPv6 addresses (for example "fe80::a%en1") are supported.
 	//
 	// If the field value isn't a valid IP address, an error message will be
 	// generated.
@@ -5143,8 +5143,8 @@ type StringRules_Uri struct {
 	// `uri` specifies that the field value must be a valid URI, for example
 	// "https://example.com/foo/bar?baz=quux#frag".
 	//
-	// URI is defined in the internet standard RFC 3986.
-	// Zone Identifiers in IPv6 address literals are supported (RFC 6874).
+	// URI is defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
+	// Zone Identifiers in IPv6 address literals are supported ([RFC 6874](https://datatracker.ietf.org/doc/html/rfc6874)).
 	//
 	// If the field value isn't a valid URI, an error message will be generated.
 	//
@@ -5165,8 +5165,8 @@ type StringRules_UriRef struct {
 	// Reference such as "./foo/bar?query".
 	//
 	// URI, URI Reference, and Relative Reference are defined in the internet
-	// standard RFC 3986. Zone Identifiers in IPv6 address literals are supported
-	// (RFC 6874).
+	// standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986). Zone
+	// Identifiers in IPv6 address literals are supported ([RFC 6874](https://datatracker.ietf.org/doc/html/rfc6874)).
 	//
 	// If the field value isn't a valid URI Reference, an error message will be
 	// generated.
