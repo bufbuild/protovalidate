@@ -5035,8 +5035,16 @@ type isStringRules_WellKnown interface {
 }
 
 type StringRules_Email struct {
-	// `email` specifies that the field value must be a valid email address
-	// (addr-spec only) as defined by [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322#section-3.4.1).
+	// `email` specifies that the field value must be a valid email address, for
+	// example "foo@example.com".
+	//
+	// Conforms to the definition for a valid email address from the HTML standard.
+	// Note that this standard willfully deviates from RFC 5322, which allows many
+	// unexpected forms of email addresses and will easily match a typographical
+	// error. This standard will still match email addresses that may be unexpected,
+	// for example, it does not require a top-level domain ("foo@example" is a valid
+	// email address).
+	//
 	// If the field value isn't a valid email address, an error message will be generated.
 	//
 	// ```proto
@@ -5051,10 +5059,18 @@ type StringRules_Email struct {
 }
 
 type StringRules_Hostname struct {
-	// `hostname` specifies that the field value must be a valid
-	// hostname as defined by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5). This constraint doesn't support
-	// internationalized domain names (IDNs). If the field value isn't a
-	// valid hostname, an error message will be generated.
+	// `hostname` specifies that the field value must be a valid host name, for
+	// example "foo.example.com".
+	//
+	// A valid host name follows the rules below:
+	// - The name consists of one or more labels, separated by a dot (".").
+	// - Each label can be 1 to 63 alphanumeric characters.
+	// - A label can contain hyphens ("-"), but must not start or end with a hyphen.
+	// - The right-most label must not be digits only.
+	// - The name can have a trailing dot, for example "foo.example.com.".
+	// - The name can be 253 characters at most, excluding the optional trailing dot.
+	//
+	// If the field value isn't a valid hostname, an error message will be generated.
 	//
 	// ```proto
 	//
@@ -5068,8 +5084,15 @@ type StringRules_Hostname struct {
 }
 
 type StringRules_Ip struct {
-	// `ip` specifies that the field value must be a valid IP
-	// (v4 or v6) address, without surrounding square brackets for IPv6 addresses.
+	// `ip` specifies that the field value must be a valid IP (v4 or v6) address.
+	//
+	// IPv4 addresses are expected in the dotted decimal format, for example "192.168.5.21".
+	// IPv6 addresses are expected in their text representation, for example "::1",
+	// or "2001:0DB8:ABCD:0012::0".
+	//
+	// Both formats are well-defined in the internet standard RFC 3986. Zone
+	// identifiers for IPv6 addresses (for example "fe80::a%en1") are supported.
+	//
 	// If the field value isn't a valid IP address, an error message will be
 	// generated.
 	//
@@ -5085,9 +5108,9 @@ type StringRules_Ip struct {
 }
 
 type StringRules_Ipv4 struct {
-	// `ipv4` specifies that the field value must be a valid IPv4
-	// address. If the field value isn't a valid IPv4 address, an error message
-	// will be generated.
+	// `ipv4` specifies that the field value must be a valid IPv4 address, for
+	// example "192.168.5.21". If the field value isn't a valid IPv4 address, an
+	// error message will be generated.
 	//
 	// ```proto
 	//
@@ -5101,9 +5124,9 @@ type StringRules_Ipv4 struct {
 }
 
 type StringRules_Ipv6 struct {
-	// `ipv6` specifies that the field value must be a valid
-	// IPv6 address, without surrounding square brackets. If the field value is
-	// not a valid IPv6 address, an error message will be generated.
+	// `ipv6` specifies that the field value must be a valid IPv6 address, for
+	// example "::1", or "d7a:115c:a1e0:ab12:4843:cd96:626b:430b". If the field
+	// value is not a valid IPv6 address, an error message will be generated.
 	//
 	// ```proto
 	//
@@ -5117,8 +5140,11 @@ type StringRules_Ipv6 struct {
 }
 
 type StringRules_Uri struct {
-	// `uri` specifies that the field value must be a valid URI as defined by
-	// [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3).
+	// `uri` specifies that the field value must be a valid URI, for example
+	// "https://example.com/foo/bar?baz=quux#frag".
+	//
+	// URI is defined in the internet standard RFC 3986.
+	// Zone Identifiers in IPv6 address literals are supported (RFC 6874).
 	//
 	// If the field value isn't a valid URI, an error message will be generated.
 	//
@@ -5134,11 +5160,13 @@ type StringRules_Uri struct {
 }
 
 type StringRules_UriRef struct {
-	// `uri_ref` specifies that the field value must be a valid URI Reference as
-	// defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-4.1).
+	// `uri_ref` specifies that the field value must be a valid URI Reference -
+	// a URI such as "https://example.com/foo/bar?baz=quux#frag", or a Relative
+	// Reference such as "./foo/bar?query".
 	//
-	// A URI Reference is either a [URI](https://datatracker.ietf.org/doc/html/rfc3986#section-3),
-	// or a [Relative Reference](https://datatracker.ietf.org/doc/html/rfc3986#section-4.2).
+	// URI, URI Reference, and Relative Reference are defined in the internet
+	// standard RFC 3986. Zone Identifiers in IPv6 address literals are supported
+	// (RFC 6874).
 	//
 	// If the field value isn't a valid URI Reference, an error message will be
 	// generated.
@@ -5156,9 +5184,8 @@ type StringRules_UriRef struct {
 
 type StringRules_Address struct {
 	// `address` specifies that the field value must be either a valid hostname
-	// as defined by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5)
-	// (which doesn't support internationalized domain names or IDNs) or a valid
-	// IP (v4 or v6). If the field value isn't a valid hostname or IP, an error
+	// (for example "example.com"), or a valid IPv4 or IPv6 (for example "192.168.0.1",
+	// or "::1"). If the field value isn't a valid hostname or IP, an error
 	// message will be generated.
 	//
 	// ```proto
@@ -5206,9 +5233,10 @@ type StringRules_Tuuid struct {
 }
 
 type StringRules_IpWithPrefixlen struct {
-	// `ip_with_prefixlen` specifies that the field value must be a valid IP (v4 or v6)
-	// address with prefix length. If the field value isn't a valid IP with prefix
-	// length, an error message will be generated.
+	// `ip_with_prefixlen` specifies that the field value must be a valid IP
+	// (v4 or v6) address with prefix length, for example "192.168.5.21/16", or
+	// "2001:0DB8:ABCD:0012::F1/64". If the field value isn't a valid IP with
+	// prefix length, an error message will be generated.
 	//
 	// ```proto
 	//
@@ -5223,9 +5251,9 @@ type StringRules_IpWithPrefixlen struct {
 
 type StringRules_Ipv4WithPrefixlen struct {
 	// `ipv4_with_prefixlen` specifies that the field value must be a valid
-	// IPv4 address with prefix.
-	// If the field value isn't a valid IPv4 address with prefix length,
-	// an error message will be generated.
+	// IPv4 address with prefix length, for example "192.168.5.21/16". If the
+	// field value isn't a valid IPv4 address with prefix length, an error
+	// message will be generated.
 	//
 	// ```proto
 	//
@@ -5240,7 +5268,7 @@ type StringRules_Ipv4WithPrefixlen struct {
 
 type StringRules_Ipv6WithPrefixlen struct {
 	// `ipv6_with_prefixlen` specifies that the field value must be a valid
-	// IPv6 address with prefix length.
+	// IPv6 address with prefix length, for example "2001:0DB8:ABCD:0012::F1/64".
 	// If the field value is not a valid IPv6 address with prefix length,
 	// an error message will be generated.
 	//
@@ -5256,10 +5284,15 @@ type StringRules_Ipv6WithPrefixlen struct {
 }
 
 type StringRules_IpPrefix struct {
-	// `ip_prefix` specifies that the field value must be a valid IP (v4 or v6) prefix.
+	// `ip_prefix` specifies that the field value must be a valid IP (v4 or v6)
+	// prefix, for example "192.168.0.0/16", or "2001:0DB8:ABCD:0012::0/64".
+	//
+	// The prefix must have all zeros for the unmasked bits. For example,
+	// "2001:0DB8:ABCD:0012::0/64" designates the left-most 64 bits for the
+	// prefix, and the remaining 64 bits must be zero.
+	//
 	// If the field value isn't a valid IP prefix, an error message will be
-	// generated. The prefix must have all zeros for the masked bits of the prefix (e.g.,
-	// `127.0.0.0/16`, not `127.0.0.1/16`).
+	// generated.
 	//
 	// ```proto
 	//
@@ -5274,9 +5307,14 @@ type StringRules_IpPrefix struct {
 
 type StringRules_Ipv4Prefix struct {
 	// `ipv4_prefix` specifies that the field value must be a valid IPv4
-	// prefix. If the field value isn't a valid IPv4 prefix, an error message
-	// will be generated. The prefix must have all zeros for the masked bits of
-	// the prefix (e.g., `127.0.0.0/16`, not `127.0.0.1/16`).
+	// prefix, for example "192.168.0.0/16".
+	//
+	// The prefix must have all zeros for the unmasked bits. For example,
+	// "192.168.0.0/16" designates the left-most 16 bits for the prefix,
+	// and the remaining 16 bits must be zero.
+	//
+	// If the field value isn't a valid IPv4 prefix, an error message
+	// will be generated.
 	//
 	// ```proto
 	//
@@ -5290,10 +5328,15 @@ type StringRules_Ipv4Prefix struct {
 }
 
 type StringRules_Ipv6Prefix struct {
-	// `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix.
+	// `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix,
+	// for example "2001:0DB8:ABCD:0012::0/64".
+	//
+	// The prefix must have all zeros for the unmasked bits. For example,
+	// "2001:0DB8:ABCD:0012::0/64" designates the left-most 64 bits for the
+	// prefix, and the remaining 64 bits must be zero.
+	//
 	// If the field value is not a valid IPv6 prefix, an error message will be
-	// generated. The prefix must have all zeros for the masked bits of the prefix
-	// (e.g., `2001:db8::/48`, not `2001:db8::1/48`).
+	// generated.
 	//
 	// ```proto
 	//
@@ -5307,10 +5350,16 @@ type StringRules_Ipv6Prefix struct {
 }
 
 type StringRules_HostAndPort struct {
-	// `host_and_port` specifies the field value must be a valid host and port
-	// pair. The host must be a valid hostname or IP address while the port
-	// must be in the range of 0-65535, inclusive. IPv6 addresses must be delimited
-	// with square brackets (e.g., `[::1]:1234`).
+	// `host_and_port` specifies the field value must be valid host/port pair,
+	// for example "example.com:8080".
+	//
+	// The host can be one of:
+	// - An IPv4 address in dotted decimal format, for example "192.168.5.21".
+	// - An IPv6 address enclosed in square brackets, for example "[2001:0DB8:ABCD:0012::F1]".
+	// - A hostname, for example "example.com".
+	//
+	// The port is separated by a colon. It must be non-empty, with a decimal number
+	// in the range of 0-65535, inclusive.
 	HostAndPort bool `protobuf:"varint,32,opt,name=host_and_port,json=hostAndPort,oneof"`
 }
 

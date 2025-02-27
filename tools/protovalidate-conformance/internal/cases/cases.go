@@ -59,7 +59,7 @@ func GlobalSuites() suites.Suites {
 		"library/is_ip_prefix":                            isIPPrefixSuite(),
 		"library/is_ip":                                   isIPSuite(),
 		"library/is_email":                                isEmailSuite(),
-		"library/is_uri":                                  isUriSuite(),
-		"library/is_uri_ref":                              isUriRefSuite(),
+		"library/is_uri":                                  isURISuite(),
+		"library/is_uri_ref":                              isURIRefSuite(),
 	}
 }

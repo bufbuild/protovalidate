@@ -22,7 +22,7 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-func isUriSuite() suites.Suite {
+func isURISuite() suites.Suite {
 	return suites.Suite{
 		"valid/example": {
 			Message:  &cases.IsUri{Val: "https://example.com"},

@@ -22,7 +22,7 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-func isUriRefSuite() suites.Suite {
+func isURIRefSuite() suites.Suite {
 	return suites.Suite{
 		"valid/path-noscheme_with_segment": {
 			Message:  &cases.IsUriRef{Val: "./foo"},
