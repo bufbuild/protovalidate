@@ -3445,7 +3445,7 @@ message StringRules {
       }
     ];
 
-    // `uri_ref` specifies that the field value must be a valid URI Reference -
+    // `uri_ref` specifies that the field value must be a valid URI Reference—either
     // a URI such as "https://example.com/foo/bar?baz=quux#frag", or a Relative
     // Reference such as "./foo/bar?query".
     //
