@@ -3372,7 +3372,7 @@ message StringRules {
       }
     ];
 
-    // `ipv4` specifies that the field value must be a valid IPv4 address, for
+    // `ipv4` specifies that the field value must be a valid IPv4 address—for
     // example "192.168.5.21". If the field value isn't a valid IPv4 address, an
     // error message will be generated.
     //
