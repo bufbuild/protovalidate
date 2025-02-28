@@ -3669,7 +3669,7 @@ message StringRules {
       }
     ];
 
-    // `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix,
+    // `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix—for
     // for example "2001:0DB8:ABCD:0012::0/64".
     //
     // The prefix must have all zeros for the unmasked bits. For example,
