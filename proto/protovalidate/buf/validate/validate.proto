@@ -3588,7 +3588,7 @@ message StringRules {
     ];
 
     // `ipv6_with_prefixlen` specifies that the field value must be a valid
-    // IPv6 address with prefix length, for example "2001:0DB8:ABCD:0012::F1/64".
+    // IPv6 address with prefix length—for example, "2001:0DB8:ABCD:0012::F1/64".
     // If the field value is not a valid IPv6 address with prefix length,
     // an error message will be generated.
     //
