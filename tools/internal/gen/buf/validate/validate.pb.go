@@ -5041,9 +5041,7 @@ type StringRules_Email struct {
 	// Conforms to the definition for a valid email address from the [HTML standard](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address).
 	// Note that this standard willfully deviates from [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322),
 	// which allows many unexpected forms of email addresses and will easily match
-	// a typographical error. This standard will still match email addresses that
-	// may be unexpected, for example, it does not require a top-level domain
-	// ("foo@example" is a valid email address).
+	// a typographical error.
 	//
 	// If the field value isn't a valid email address, an error message will be generated.
 	//
