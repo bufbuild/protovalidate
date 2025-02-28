@@ -3703,7 +3703,7 @@ message StringRules {
     //
     // The host can be one of:
     //- An IPv4 address in dotted decimal format—for example, "192.168.5.21".
-    //- An IPv6 address enclosed in square brackets, for example "[2001:0DB8:ABCD:0012::F1]".
+    //- An IPv6 address enclosed in square brackets—for example, "[2001:0DB8:ABCD:0012::F1]".
     //- A hostname, for example "example.com".
     //
     // The port is separated by a colon. It must be non-empty, with a decimal number
