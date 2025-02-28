@@ -3540,7 +3540,7 @@ message StringRules {
     ];
 
     // `ip_with_prefixlen` specifies that the field value must be a valid IP
-    // (v4 or v6) address with prefix length, for example "192.168.5.21/16", or
+    // (v4 or v6) address with prefix length—for example, "192.168.5.21/16" or
     // "2001:0DB8:ABCD:0012::F1/64". If the field value isn't a valid IP with
     // prefix length, an error message will be generated.
     //
