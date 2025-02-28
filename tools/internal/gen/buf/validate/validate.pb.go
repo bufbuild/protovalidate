@@ -4661,7 +4661,7 @@ type StringRules struct {
 	// ```
 	NotIn []string `protobuf:"bytes,11,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `WellKnown` rules provide advanced constraints against common string
-	// patterns
+	// patterns.
 	//
 	// Types that are valid to be assigned to WellKnown:
 	//

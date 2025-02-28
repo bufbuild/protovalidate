@@ -3276,7 +3276,7 @@ message StringRules {
   }];
 
   // `WellKnown` rules provide advanced constraints against common string
-  // patterns
+  // patterns.
   oneof well_known {
     // `email` specifies that the field value must be a valid email address, for
     // example "foo@example.com".
