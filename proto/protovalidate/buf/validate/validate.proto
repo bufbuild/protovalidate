@@ -3348,7 +3348,7 @@ message StringRules {
     // or "2001:0DB8:ABCD:0012::0".
     //
     // Both formats are well-defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
-    // Zone identifiers for IPv6 addresses (for example "fe80::a%en1") are supported.
+    // Zone identifiers for IPv6 addresses (for example, "fe80::a%en1") are supported.
     //
     // If the field value isn't a valid IP address, an error message will be
     // generated.
