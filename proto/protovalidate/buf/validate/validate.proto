@@ -3699,7 +3699,7 @@ message StringRules {
     ];
 
     // `host_and_port` specifies that the field value must be valid host/port
-    // for example "example.com:8080".
+    // pair—for example, "example.com:8080".
     //
     // The host can be one of:
     //- An IPv4 address in dotted decimal format, for example "192.168.5.21".
