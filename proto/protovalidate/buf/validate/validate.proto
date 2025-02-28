@@ -3395,7 +3395,7 @@ message StringRules {
       }
     ];
 
-    // `ipv6` specifies that the field value must be a valid IPv6 address, for
+    // `ipv6` specifies that the field value must be a valid IPv6 address—for
     // example "::1", or "d7a:115c:a1e0:ab12:4843:cd96:626b:430b". If the field
     // value is not a valid IPv6 address, an error message will be generated.
     //
