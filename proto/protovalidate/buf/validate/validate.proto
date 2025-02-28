@@ -3469,7 +3469,7 @@ message StringRules {
     }];
 
     // `address` specifies that the field value must be either a valid hostname
-    // (for example "example.com"), or a valid IPv4 or IPv6 (for example "192.168.0.1",
+    // (for example, "example.com"), or a valid IPv4 or IPv6 (for example, "192.168.0.1",
     // or "::1"). If the field value isn't a valid hostname or IP, an error
     // message will be generated.
     //
