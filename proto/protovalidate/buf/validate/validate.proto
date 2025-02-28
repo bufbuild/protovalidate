@@ -3564,7 +3564,7 @@ message StringRules {
     ];
 
     // `ipv4_with_prefixlen` specifies that the field value must be a valid
-    // IPv4 address with prefix length, for example "192.168.5.21/16". If the
+    // IPv4 address with prefix length—for example, "192.168.5.21/16". If the
     // field value isn't a valid IPv4 address with prefix length, an error
     // message will be generated.
     //
