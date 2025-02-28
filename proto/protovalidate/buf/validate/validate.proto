@@ -3343,7 +3343,7 @@ message StringRules {
 
     // `ip` specifies that the field value must be a valid IP (v4 or v6) address.
     //
-    // IPv4 addresses are expected in the dotted decimal format, for example "192.168.5.21".
+    // IPv4 addresses are expected in the dotted decimal format—for example, "192.168.5.21".
     // IPv6 addresses are expected in their text representation, for example "::1",
     // or "2001:0DB8:ABCD:0012::0".
     //
