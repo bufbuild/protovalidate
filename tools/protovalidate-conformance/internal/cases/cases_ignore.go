@@ -184,6 +184,42 @@ func ignoreSuite() suites.Suite {
 				ConstraintId: proto.String("int32.gt"),
 			}),
 		},
+		"proto2/scalar/optional/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlways{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlways{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlways{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional_with_default/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlwaysWithDefault{},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional_with_default/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlwaysWithDefault{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional_with_default/ignore_always/invalid/default_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlwaysWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional_with_default/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlwaysWithDefault{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/optional_with_default/ignore_always/invalid/zero_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarOptionalIgnoreAlwaysWithDefault{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
 		"proto2/scalar/required/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.Proto2ScalarRequiredIgnoreUnspecified{Val: proto.Int32(123)},
 			Expected: results.Success(true),
@@ -320,6 +356,35 @@ func ignoreSuite() suites.Suite {
 				ConstraintId: proto.String("int32.gt"),
 			}),
 		},
+		"proto2/scalar/required/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2ScalarRequiredIgnoreAlways{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/required/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarRequiredIgnoreAlways{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/required/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarRequiredIgnoreAlways{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
+		// proto2, required scalar with default
+		"proto2/scalar/required_with_default/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2ScalarRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/required_with_default/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/required_with_default/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto2/scalar/required_with_default/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.Proto2ScalarRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
 		"proto2/message/optional/ignore_unspecified/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto2MessageOptionalIgnoreUnspecified{},
 			Expected: results.Success(true),
@@ -406,6 +471,28 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Success(true),
 		},
+		"proto2/message/optional/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto2MessageOptionalIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto2/message/optional/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.Proto2MessageOptionalIgnoreAlways{
+				Val: &cases.Proto2MessageOptionalIgnoreAlways_Msg{Val: proto.String("foo")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/message/optional/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.Proto2MessageOptionalIgnoreAlways{
+				Val: &cases.Proto2MessageOptionalIgnoreAlways_Msg{Val: proto.String("bar")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/message/optional/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.Proto2MessageOptionalIgnoreAlways{
+				Val: &cases.Proto2MessageOptionalIgnoreAlways_Msg{},
+			},
+			Expected: results.Success(true),
+		},
 		"proto2/message/required/ignore_unspecified/valid/populated": suites.Case{
 			Message: &cases.Proto2MessageRequiredIgnoreUnspecified{
 				Val: &cases.Proto2MessageRequiredIgnoreUnspecified_Msg{Val: proto.String("foo")},
@@ -477,6 +564,24 @@ func ignoreSuite() suites.Suite {
 		"proto2/message/required/ignore_default/valid/default": suites.Case{
 			Message: &cases.Proto2MessageRequiredIgnoreDefault{
 				Val: &cases.Proto2MessageRequiredIgnoreDefault_Msg{},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/message/required/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.Proto2MessageRequiredIgnoreAlways{
+				Val: &cases.Proto2MessageRequiredIgnoreAlways_Msg{Val: proto.String("foo")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/message/required/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.Proto2MessageRequiredIgnoreAlways{
+				Val: &cases.Proto2MessageRequiredIgnoreAlways_Msg{Val: proto.String("bar")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/message/required/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.Proto2MessageRequiredIgnoreAlways{
+				Val: &cases.Proto2MessageRequiredIgnoreAlways_Msg{},
 			},
 			Expected: results.Success(true),
 		},
@@ -682,6 +787,56 @@ func ignoreSuite() suites.Suite {
 				ConstraintId: proto.String("int32.gt"),
 			}),
 		},
+		"proto2/oneof/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto2OneofIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.Proto2OneofIgnoreAlways{
+				O: &cases.Proto2OneofIgnoreAlways_Val{Val: 123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.Proto2OneofIgnoreAlways{
+				O: &cases.Proto2OneofIgnoreAlways_Val{Val: -123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.Proto2OneofIgnoreAlways{
+				O: &cases.Proto2OneofIgnoreAlways_Val{},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof_with_default/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto2OneofIgnoreAlwaysWithDefault{},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof_with_default/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.Proto2OneofIgnoreAlwaysWithDefault{
+				O: &cases.Proto2OneofIgnoreAlwaysWithDefault_Val{Val: 123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof_with_default/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.Proto2OneofIgnoreAlwaysWithDefault{
+				O: &cases.Proto2OneofIgnoreAlwaysWithDefault_Val{Val: -123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof_with_default/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.Proto2OneofIgnoreAlwaysWithDefault{
+				O: &cases.Proto2OneofIgnoreAlwaysWithDefault_Val{Val: -42},
+			},
+			Expected: results.Success(true),
+		},
+		"proto2/oneof_with_default/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message: &cases.Proto2OneofIgnoreAlwaysWithDefault{
+				O: &cases.Proto2OneofIgnoreAlwaysWithDefault_Val{},
+			},
+			Expected: results.Success(true),
+		},
 		"proto2/repeated/ignore_unspecified/invalid/unpopulated": suites.Case{
 			Message: &cases.Proto2RepeatedIgnoreUnspecified{},
 			Expected: results.Violations(&validate.Violation{
@@ -732,6 +887,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto2/repeated/ignore_default/valid/populated": suites.Case{
 			Message:  &cases.Proto2RepeatedIgnoreDefault{Val: []int32{1, 2, 3}},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto2RepeatedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2RepeatedIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2RepeatedIgnoreAlways{Val: []int32{1, 2, 3}},
 			Expected: results.Success(true),
 		},
 		"proto2/map/ignore_unspecified/invalid/unpopulated": suites.Case{
@@ -786,6 +953,18 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto2MapIgnoreDefault{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
 			Expected: results.Success(true),
 		},
+		"proto2/map/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto2MapIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto2/map/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2MapIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto2/map/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2MapIgnoreAlways{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
+			Expected: results.Success(true),
+		},
 		"proto2/repeated/items/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.Proto2RepeatedItemIgnoreUnspecified{Val: []int32{1}},
 			Expected: results.Success(true),
@@ -836,6 +1015,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto2/repeated/items/ignore_default/valid/zero": suites.Case{
 			Message:  &cases.Proto2RepeatedItemIgnoreDefault{Val: []int32{0}},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/items/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2RepeatedItemIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/items/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2RepeatedItemIgnoreAlways{Val: []int32{-42}},
+			Expected: results.Success(true),
+		},
+		"proto2/repeated/items/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.Proto2RepeatedItemIgnoreAlways{Val: []int32{0}},
 			Expected: results.Success(true),
 		},
 		"proto2/map/keys/ignore_unspecified/valid/populated": suites.Case{
@@ -890,6 +1081,18 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto2MapKeyIgnoreDefault{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
+		"proto2/map/keys/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2MapKeyIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto2/map/keys/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2MapKeyIgnoreAlways{Val: map[int32]int32{-42: -42}},
+			Expected: results.Success(true),
+		},
+		"proto2/map/keys/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.Proto2MapKeyIgnoreAlways{Val: map[int32]int32{0: 0}},
+			Expected: results.Success(true),
+		},
 		"proto2/map/values/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.Proto2MapValueIgnoreUnspecified{Val: map[int32]int32{1: 1}},
 			Expected: results.Success(true),
@@ -940,6 +1143,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto2/map/values/ignore_default/valid/zero": suites.Case{
 			Message:  &cases.Proto2MapValueIgnoreDefault{Val: map[int32]int32{0: 0}},
+			Expected: results.Success(true),
+		},
+		"proto2/map/values/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto2MapValueIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto2/map/values/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto2MapValueIgnoreAlways{Val: map[int32]int32{-42: -42}},
+			Expected: results.Success(true),
+		},
+		"proto2/map/values/ignore_always/valid/zero_valid_value": suites.Case{
+			Message:  &cases.Proto2MapValueIgnoreAlways{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
 		"proto3/scalar/optional/ignore_unspecified/valid/unpopulated": suites.Case{
@@ -1010,6 +1225,22 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto3ScalarOptionalIgnoreDefault{Val: proto.Int32(0)},
 			Expected: results.Success(true),
 		},
+		"proto3/scalar/optional/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto3ScalarOptionalIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto3/scalar/optional/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto3ScalarOptionalIgnoreAlways{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto3/scalar/optional/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto3ScalarOptionalIgnoreAlways{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto3/scalar/optional/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.Proto3ScalarOptionalIgnoreAlways{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
 		"proto3/scalar/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.Proto3ScalarIgnoreUnspecified{Val: 123},
 			Expected: results.Success(true),
@@ -1060,6 +1291,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto3/scalar/ignore_default/valid/default": suites.Case{
 			Message:  &cases.Proto3ScalarIgnoreDefault{Val: 0},
+			Expected: results.Success(true),
+		},
+		"proto3/scalar/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto3ScalarIgnoreAlways{Val: 123},
+			Expected: results.Success(true),
+		},
+		"proto3/scalar/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto3ScalarIgnoreAlways{Val: -123},
+			Expected: results.Success(true),
+		},
+		"proto3/scalar/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.Proto3ScalarIgnoreAlways{Val: 0},
 			Expected: results.Success(true),
 		},
 		"proto3/message/optional/ignore_unspecified/valid/unpopulated": suites.Case{
@@ -1145,6 +1388,28 @@ func ignoreSuite() suites.Suite {
 		"proto3/message/optional/ignore_default/valid/default": suites.Case{
 			Message: &cases.Proto3MessageOptionalIgnoreDefault{
 				Val: &cases.Proto3MessageOptionalIgnoreDefault_Msg{},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/message/optional/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto3MessageOptionalIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto3/message/optional/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.Proto3MessageOptionalIgnoreAlways{
+				Val: &cases.Proto3MessageOptionalIgnoreAlways_Msg{Val: proto.String("foo")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/message/optional/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.Proto3MessageOptionalIgnoreAlways{
+				Val: &cases.Proto3MessageOptionalIgnoreAlways_Msg{Val: proto.String("bar")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/message/optional/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.Proto3MessageOptionalIgnoreAlways{
+				Val: &cases.Proto3MessageOptionalIgnoreAlways_Msg{},
 			},
 			Expected: results.Success(true),
 		},
@@ -1308,6 +1573,28 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Success(true),
 		},
+		"proto3/oneof/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto3OneofIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto3/oneof/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.Proto3OneofIgnoreAlways{
+				O: &cases.Proto3OneofIgnoreAlways_Val{Val: 123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/oneof/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.Proto3OneofIgnoreAlways{
+				O: &cases.Proto3OneofIgnoreAlways_Val{Val: -123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/oneof/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.Proto3OneofIgnoreAlways{
+				O: &cases.Proto3OneofIgnoreAlways_Val{},
+			},
+			Expected: results.Success(true),
+		},
 		"proto3/repeated/ignore_unspecified/invalid/unpopulated": suites.Case{
 			Message: &cases.Proto3RepeatedIgnoreUnspecified{},
 			Expected: results.Violations(&validate.Violation{
@@ -1358,6 +1645,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto3/repeated/ignore_default/valid/populated": suites.Case{
 			Message:  &cases.Proto3RepeatedIgnoreDefault{Val: []int32{1, 2, 3}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto3RepeatedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto3RepeatedIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto3RepeatedIgnoreAlways{Val: []int32{1, 2, 3}},
 			Expected: results.Success(true),
 		},
 		"proto3/map/ignore_unspecified/invalid/unpopulated": suites.Case{
@@ -1412,6 +1711,18 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto3MapIgnoreDefault{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
 			Expected: results.Success(true),
 		},
+		"proto3/map/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.Proto3MapIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto3/map/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto3MapIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto3MapIgnoreAlways{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
+			Expected: results.Success(true),
+		},
 		"proto3/repeated/items/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.Proto3RepeatedItemIgnoreUnspecified{Val: []int32{1}},
 			Expected: results.Success(true),
@@ -1462,6 +1773,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto3/repeated/items/ignore_default/valid/zero": suites.Case{
 			Message:  &cases.Proto3RepeatedItemIgnoreDefault{Val: []int32{0}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/items/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto3RepeatedItemIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/items/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto3RepeatedItemIgnoreAlways{Val: []int32{-42}},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/items/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.Proto3RepeatedItemIgnoreAlways{Val: []int32{0}},
 			Expected: results.Success(true),
 		},
 		"proto3/map/keys/ignore_unspecified/valid/populated": suites.Case{
@@ -1516,6 +1839,18 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto3MapKeyIgnoreDefault{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
+		"proto3/map/keys/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto3MapKeyIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/keys/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto3MapKeyIgnoreAlways{Val: map[int32]int32{-42: -42}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/keys/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.Proto3MapKeyIgnoreAlways{Val: map[int32]int32{0: 0}},
+			Expected: results.Success(true),
+		},
 		"proto3/map/values/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.Proto3MapValueIgnoreUnspecified{Val: map[int32]int32{1: 1}},
 			Expected: results.Success(true),
@@ -1566,6 +1901,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto3/map/values/ignore_default/valid/zero": suites.Case{
 			Message:  &cases.Proto3MapValueIgnoreDefault{Val: map[int32]int32{0: 0}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/values/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.Proto3MapValueIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/values/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.Proto3MapValueIgnoreAlways{Val: map[int32]int32{-42: -42}},
+			Expected: results.Success(true),
+		},
+		"proto3/map/values/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.Proto3MapValueIgnoreAlways{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/explicit_presence/ignore_unspecified/valid/unpopulated": suites.Case{
@@ -1728,6 +2075,42 @@ func ignoreSuite() suites.Suite {
 				ConstraintId: proto.String("int32.gt"),
 			}),
 		},
+		"proto/2023/scalar/explicit_presence/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlways{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlways{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlways{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlwaysWithDefault{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlwaysWithDefault{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlwaysWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlwaysWithDefault{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/explicit_presence_with_default/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlwaysWithDefault{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
 		"proto/2023/scalar/implicit_presence/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.EditionsScalarImplicitPresenceIgnoreUnspecified{Val: 123},
 			Expected: results.Success(true),
@@ -1778,6 +2161,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto/2023/scalar/implicit_presence/ignore_default/valid/default": suites.Case{
 			Message:  &cases.EditionsScalarImplicitPresenceIgnoreDefault{Val: 0},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/implicit_presence/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsScalarImplicitPresenceIgnoreAlways{Val: 123},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/implicit_presence/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarImplicitPresenceIgnoreAlways{Val: -123},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/implicit_presence/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarImplicitPresenceIgnoreAlways{Val: 0},
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/legacy_required/ignore_unspecified/valid/populated": suites.Case{
@@ -1915,6 +2310,34 @@ func ignoreSuite() suites.Suite {
 				Rule:         results.FieldPath("int32.gt"),
 				ConstraintId: proto.String("int32.gt"),
 			}),
+		},
+		"proto/2023/scalar/legacy_required/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsScalarLegacyRequiredIgnoreAlways{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/legacy_required/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarLegacyRequiredIgnoreAlways{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/legacy_required/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarLegacyRequiredIgnoreAlways{Val: proto.Int32(0)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/required_with_default/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsScalarLegacyRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/required_with_default/ignore_always/valid/default_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarLegacyRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(-42)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/required_with_default/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarLegacyRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(-123)},
+			Expected: results.Success(true),
+		},
+		"proto/2023/scalar/required_with_default/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.EditionsScalarLegacyRequiredIgnoreAlwaysWithDefault{Val: proto.Int32(0)},
+			Expected: results.Success(true),
 		},
 		"proto/2023/message/explicit_presence/length_prefixed/ignore_unspecified/valid/unpopulated": suites.Case{
 			Message:  &cases.EditionsMessageExplicitPresenceIgnoreUnspecified{},
@@ -2088,6 +2511,50 @@ func ignoreSuite() suites.Suite {
 			},
 			Expected: results.Success(true),
 		},
+		"proto/2023/message/explicit_presence/length_prefixed/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsMessageExplicitPresenceIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.EditionsMessageExplicitPresenceIgnoreAlways{
+				Val: &cases.EditionsMessageExplicitPresenceIgnoreAlways_Msg{Val: proto.String("foo")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageExplicitPresenceIgnoreAlways{
+				Val: &cases.EditionsMessageExplicitPresenceIgnoreAlways_Msg{Val: proto.String("bar")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/length_prefixed/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageExplicitPresenceIgnoreAlways{
+				Val: &cases.EditionsMessageExplicitPresenceIgnoreAlways_Msg{},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsMessageExplicitPresenceDelimitedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreAlways{
+				Val: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreAlways_Msg{Val: proto.String("foo")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreAlways{
+				Val: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreAlways_Msg{Val: proto.String("bar")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/explicit_presence/delimited/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreAlways{
+				Val: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreAlways_Msg{},
+			},
+			Expected: results.Success(true),
+		},
 		"proto/2023/message/legacy_required/length_prefixed/ignore_unspecified/valid/populated": suites.Case{
 			Message: &cases.EditionsMessageLegacyRequiredIgnoreUnspecified{
 				Val: &cases.EditionsMessageLegacyRequiredIgnoreUnspecified_Msg{Val: proto.String("foo")},
@@ -2233,6 +2700,42 @@ func ignoreSuite() suites.Suite {
 		"proto/2023/message/legacy_required/delimited/ignore_default/valid/default": suites.Case{
 			Message: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault{
 				Val: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault_Msg{},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/length_prefixed/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.EditionsMessageLegacyRequiredIgnoreAlways{
+				Val: &cases.EditionsMessageLegacyRequiredIgnoreAlways_Msg{Val: proto.String("foo")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/length_prefixed/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageLegacyRequiredIgnoreAlways{
+				Val: &cases.EditionsMessageLegacyRequiredIgnoreAlways_Msg{Val: proto.String("bar")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/length_prefixed/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageLegacyRequiredIgnoreAlways{
+				Val: &cases.EditionsMessageLegacyRequiredIgnoreAlways_Msg{},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/delimited/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreAlways{
+				Val: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreAlways_Msg{Val: proto.String("foo")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/delimited/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreAlways{
+				Val: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreAlways_Msg{Val: proto.String("bar")},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/message/legacy_required/delimited/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreAlways{
+				Val: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreAlways_Msg{},
 			},
 			Expected: results.Success(true),
 		},
@@ -2438,6 +2941,56 @@ func ignoreSuite() suites.Suite {
 				ConstraintId: proto.String("int32.gt"),
 			}),
 		},
+		"proto/2023/oneof/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsOneofIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.EditionsOneofIgnoreAlways{
+				O: &cases.EditionsOneofIgnoreAlways_Val{Val: 123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.EditionsOneofIgnoreAlways{
+				O: &cases.EditionsOneofIgnoreAlways_Val{Val: -123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.EditionsOneofIgnoreAlways{
+				O: &cases.EditionsOneofIgnoreAlways_Val{},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof_with_default/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsOneofIgnoreAlwaysWithDefault{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof_with_default/ignore_always/valid/populated_valid_value": suites.Case{
+			Message: &cases.EditionsOneofIgnoreAlwaysWithDefault{
+				O: &cases.EditionsOneofIgnoreAlwaysWithDefault_Val{Val: 123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof_with_default/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message: &cases.EditionsOneofIgnoreAlwaysWithDefault{
+				O: &cases.EditionsOneofIgnoreAlwaysWithDefault_Val{Val: -123},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof_with_default/ignore_always/valid/default_invalid_value": suites.Case{
+			Message: &cases.EditionsOneofIgnoreAlwaysWithDefault{
+				O: &cases.EditionsOneofIgnoreAlwaysWithDefault_Val{Val: -42},
+			},
+			Expected: results.Success(true),
+		},
+		"proto/2023/oneof_with_default/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message: &cases.EditionsOneofIgnoreAlwaysWithDefault{
+				O: &cases.EditionsOneofIgnoreAlwaysWithDefault_Val{},
+			},
+			Expected: results.Success(true),
+		},
 		"proto/2023/repeated/compact/ignore_unspecified/invalid/unpopulated": suites.Case{
 			Message: &cases.EditionsRepeatedIgnoreUnspecified{},
 			Expected: results.Violations(&validate.Violation{
@@ -2542,6 +3095,30 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.EditionsRepeatedExpandedIgnoreDefault{Val: []int32{1, 2, 3}},
 			Expected: results.Success(true),
 		},
+		"proto/2023/repeated/compact/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsRepeatedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/compact/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/compact/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedIgnoreAlways{Val: []int32{1, 2, 3}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsRepeatedExpandedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedExpandedIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedExpandedIgnoreAlways{Val: []int32{1, 2, 3}},
+			Expected: results.Success(true),
+		},
 		"proto/2023/map/ignore_unspecified/invalid/unpopulated": suites.Case{
 			Message: &cases.EditionsMapIgnoreUnspecified{},
 			Expected: results.Violations(&validate.Violation{
@@ -2592,6 +3169,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto/2023/map/ignore_default/valid/populated": suites.Case{
 			Message:  &cases.EditionsMapIgnoreDefault{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/ignore_always/valid/unpopulated": suites.Case{
+			Message:  &cases.EditionsMapIgnoreAlways{},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/ignore_always/invalid/populated": suites.Case{
+			Message:  &cases.EditionsMapIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/ignore_always/valid/populated": suites.Case{
+			Message:  &cases.EditionsMapIgnoreAlways{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
 			Expected: results.Success(true),
 		},
 		"proto/2023/repeated/compact/items/ignore_unspecified/valid/populated": suites.Case{
@@ -2698,6 +3287,30 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.EditionsRepeatedExpandedItemIgnoreDefault{Val: []int32{0}},
 			Expected: results.Success(true),
 		},
+		"proto/2023/repeated/compact/items/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedItemIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/compact/items/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedItemIgnoreAlways{Val: []int32{-42}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/compact/items/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedItemIgnoreAlways{Val: []int32{0}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/items/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedExpandedItemIgnoreAlways{Val: []int32{1}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/items/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedExpandedItemIgnoreAlways{Val: []int32{-42}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/repeated/expanded/items/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.EditionsRepeatedExpandedItemIgnoreAlways{Val: []int32{0}},
+			Expected: results.Success(true),
+		},
 		"proto/2023/map/keys/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.EditionsMapKeyIgnoreUnspecified{Val: map[int32]int32{1: 1}},
 			Expected: results.Success(true),
@@ -2754,6 +3367,18 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.EditionsMapValueIgnoreUnspecified{Val: map[int32]int32{1: 1}},
 			Expected: results.Success(true),
 		},
+		"proto/2023/map/keys/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsMapKeyIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/keys/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsMapKeyIgnoreAlways{Val: map[int32]int32{-42: -42}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/keys/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.EditionsMapKeyIgnoreAlways{Val: map[int32]int32{0: 0}},
+			Expected: results.Success(true),
+		},
 		"proto/2023/map/values/ignore_unspecified/invalid/populated": suites.Case{
 			Message: &cases.EditionsMapValueIgnoreUnspecified{Val: map[int32]int32{-42: -42}},
 			Expected: results.Violations(&validate.Violation{
@@ -2800,6 +3425,18 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto/2023/map/values/ignore_default/valid/zero": suites.Case{
 			Message:  &cases.EditionsMapValueIgnoreDefault{Val: map[int32]int32{0: 0}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/values/ignore_always/valid/populated_valid_value": suites.Case{
+			Message:  &cases.EditionsMapValueIgnoreAlways{Val: map[int32]int32{1: 1}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/values/ignore_always/valid/populated_invalid_value": suites.Case{
+			Message:  &cases.EditionsMapValueIgnoreAlways{Val: map[int32]int32{-42: -42}},
+			Expected: results.Success(true),
+		},
+		"proto/2023/map/values/ignore_always/valid/zero_invalid_value": suites.Case{
+			Message:  &cases.EditionsMapValueIgnoreAlways{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
 	}
