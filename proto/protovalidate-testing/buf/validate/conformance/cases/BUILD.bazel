@@ -29,6 +29,7 @@ proto_library(
         "ignore_proto3.proto",
         "ignore_proto_editions.proto",
         "kitchen_sink.proto",
+        "library.proto",
         "maps.proto",
         "messages.proto",
         "numbers.proto",
