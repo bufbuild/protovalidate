@@ -1099,7 +1099,7 @@ type FloatRules struct {
 	//
 	//	message MyFloat {
 	//	  // value must be in list [1.0, 2.0, 3.0]
-	//	  repeated float value = 1 (buf.validate.field).float = { in: [1.0, 2.0, 3.0] };
+	//	  float value = 1 [(buf.validate.field).float = { in: [1.0, 2.0, 3.0] }];
 	//	}
 	//
 	// ```
@@ -1112,7 +1112,7 @@ type FloatRules struct {
 	//
 	//	message MyFloat {
 	//	  // value must not be in list [1.0, 2.0, 3.0]
-	//	  repeated float value = 1 (buf.validate.field).float = { not_in: [1.0, 2.0, 3.0] };
+	//	  float value = 1 [(buf.validate.field).float = { not_in: [1.0, 2.0, 3.0] }];
 	//	}
 	//
 	// ```
@@ -1385,7 +1385,7 @@ type DoubleRules struct {
 	//
 	//	message MyDouble {
 	//	  // value must be in list [1.0, 2.0, 3.0]
-	//	  repeated double value = 1 (buf.validate.field).double = { in: [1.0, 2.0, 3.0] };
+	//	  double value = 1 [(buf.validate.field).double = { in: [1.0, 2.0, 3.0] }];
 	//	}
 	//
 	// ```
@@ -1398,7 +1398,7 @@ type DoubleRules struct {
 	//
 	//	message MyDouble {
 	//	  // value must not be in list [1.0, 2.0, 3.0]
-	//	  repeated double value = 1 (buf.validate.field).double = { not_in: [1.0, 2.0, 3.0] };
+	//	  double value = 1 [(buf.validate.field).double = { not_in: [1.0, 2.0, 3.0] }];
 	//	}
 	//
 	// ```
@@ -1671,7 +1671,7 @@ type Int32Rules struct {
 	//
 	//	message MyInt32 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated int32 value = 1 (buf.validate.field).int32 = { in: [1, 2, 3] };
+	//	  int32 value = 1 [(buf.validate.field).int32 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -1684,7 +1684,7 @@ type Int32Rules struct {
 	//
 	//	message MyInt32 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated int32 value = 1 (buf.validate.field).int32 = { not_in: [1, 2, 3] };
+	//	  int32 value = 1 [(buf.validate.field).int32 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -1947,7 +1947,7 @@ type Int64Rules struct {
 	//
 	//	message MyInt64 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated int64 value = 1 (buf.validate.field).int64 = { in: [1, 2, 3] };
+	//	  int64 value = 1 [(buf.validate.field).int64 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -1960,7 +1960,7 @@ type Int64Rules struct {
 	//
 	//	message MyInt64 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated int64 value = 1 (buf.validate.field).int64 = { not_in: [1, 2, 3] };
+	//	  int64 value = 1 [(buf.validate.field).int64 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -2223,7 +2223,7 @@ type UInt32Rules struct {
 	//
 	//	message MyUInt32 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated uint32 value = 1 (buf.validate.field).uint32 = { in: [1, 2, 3] };
+	//	  uint32 value = 1 [(buf.validate.field).uint32 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -2236,7 +2236,7 @@ type UInt32Rules struct {
 	//
 	//	message MyUInt32 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated uint32 value = 1 (buf.validate.field).uint32 = { not_in: [1, 2, 3] };
+	//	  uint32 value = 1 [(buf.validate.field).uint32 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -2499,7 +2499,7 @@ type UInt64Rules struct {
 	//
 	//	message MyUInt64 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated uint64 value = 1 (buf.validate.field).uint64 = { in: [1, 2, 3] };
+	//	  uint64 value = 1 [(buf.validate.field).uint64 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -2512,7 +2512,7 @@ type UInt64Rules struct {
 	//
 	//	message MyUInt64 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated uint64 value = 1 (buf.validate.field).uint64 = { not_in: [1, 2, 3] };
+	//	  uint64 value = 1 [(buf.validate.field).uint64 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -2774,7 +2774,7 @@ type SInt32Rules struct {
 	//
 	//	message MySInt32 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated sint32 value = 1 (buf.validate.field).sint32 = { in: [1, 2, 3] };
+	//	  sint32 value = 1 [(buf.validate.field).sint32 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -2787,7 +2787,7 @@ type SInt32Rules struct {
 	//
 	//	message MySInt32 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated sint32 value = 1 (buf.validate.field).sint32 = { not_in: [1, 2, 3] };
+	//	  sint32 value = 1 [(buf.validate.field).sint32 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3049,7 +3049,7 @@ type SInt64Rules struct {
 	//
 	//	message MySInt64 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated sint64 value = 1 (buf.validate.field).sint64 = { in: [1, 2, 3] };
+	//	  sint64 value = 1 [(buf.validate.field).sint64 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3062,7 +3062,7 @@ type SInt64Rules struct {
 	//
 	//	message MySInt64 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated sint64 value = 1 (buf.validate.field).sint64 = { not_in: [1, 2, 3] };
+	//	  sint64 value = 1 [(buf.validate.field).sint64 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3324,7 +3324,7 @@ type Fixed32Rules struct {
 	//
 	//	message MyFixed32 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated fixed32 value = 1 (buf.validate.field).fixed32 = { in: [1, 2, 3] };
+	//	  fixed32 value = 1 [(buf.validate.field).fixed32 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3337,7 +3337,7 @@ type Fixed32Rules struct {
 	//
 	//	message MyFixed32 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated fixed32 value = 1 (buf.validate.field).fixed32 = { not_in: [1, 2, 3] };
+	//	  fixed32 value = 1 [(buf.validate.field).fixed32 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3599,7 +3599,7 @@ type Fixed64Rules struct {
 	//
 	//	message MyFixed64 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated fixed64 value = 1 (buf.validate.field).fixed64 = { in: [1, 2, 3] };
+	//	  fixed64 value = 1 [(buf.validate.field).fixed64 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3612,7 +3612,7 @@ type Fixed64Rules struct {
 	//
 	//	message MyFixed64 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated fixed64 value = 1 (buf.validate.field).fixed64 = { not_in: [1, 2, 3] };
+	//	  fixed64 value = 1 [(buf.validate.field).fixed64 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3874,7 +3874,7 @@ type SFixed32Rules struct {
 	//
 	//	message MySFixed32 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { in: [1, 2, 3] };
+	//	  sfixed32 value = 1 [(buf.validate.field).sfixed32 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -3887,7 +3887,7 @@ type SFixed32Rules struct {
 	//
 	//	message MySFixed32 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated sfixed32 value = 1 (buf.validate.field).sfixed32 = { not_in: [1, 2, 3] };
+	//	  sfixed32 value = 1 [(buf.validate.field).sfixed32 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -4149,7 +4149,7 @@ type SFixed64Rules struct {
 	//
 	//	message MySFixed64 {
 	//	  // value must be in list [1, 2, 3]
-	//	  repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { in: [1, 2, 3] };
+	//	  sfixed64 value = 1 [(buf.validate.field).sfixed64 = { in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -4162,7 +4162,7 @@ type SFixed64Rules struct {
 	//
 	//	message MySFixed64 {
 	//	  // value must not be in list [1, 2, 3]
-	//	  repeated sfixed64 value = 1 (buf.validate.field).sfixed64 = { not_in: [1, 2, 3] };
+	//	  sfixed64 value = 1 [(buf.validate.field).sfixed64 = { not_in: [1, 2, 3] }];
 	//	}
 	//
 	// ```
@@ -4643,7 +4643,7 @@ type StringRules struct {
 	//
 	//	message MyString {
 	//	  // value must be in list ["apple", "banana"]
-	//	  repeated string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
+	//	  string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
 	//	}
 	//
 	// ```
@@ -4655,7 +4655,7 @@ type StringRules struct {
 	//
 	//	message MyString {
 	//	  // value must not be in list ["orange", "grape"]
-	//	  repeated string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
+	//	  string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
 	//	}
 	//
 	// ```
