@@ -71,7 +71,7 @@ func anySuite() suites.Suite {
 			Message: &cases.AnyIn{Val: fooAny},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("valXXX"),
+					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("any.in"),
 					ConstraintId: proto.String("any.in"),
 				},
