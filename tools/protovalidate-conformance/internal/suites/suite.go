@@ -15,6 +15,7 @@
 package suites
 
 import (
+	"fmt"
 	"regexp"
 
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
@@ -79,12 +80,12 @@ func (s Suite) ProcessResults(
 	resp *harness.TestConformanceResponse,
 	options *harness.ResultOptions,
 	skippedCases []string,
-) *results.SuiteResults {
+) (*results.SuiteResults, error) {
 	out := &results.SuiteResults{
 		Name: suiteName,
 	}
 	respResults := resp.GetResults()
-	_ = s.Range(filter, func(caseName string, testCase Case) error {
+	err := s.Range(filter, func(caseName string, testCase Case) error {
 		var actual results.Result
 		if result, ok := respResults[caseName]; ok {
 			actual = results.FromProto(result)
@@ -114,7 +115,11 @@ func (s Suite) ProcessResults(
 		return nil
 	})
 
-	return out
+	if err != nil {
+		return nil, fmt.Errorf("failed to process results for suite \"%s\": %w", suiteName, err)
+	}
+
+	return out, nil
 }
 
 func isSkipped(caseName string, cases []string) bool {

@@ -57,13 +57,16 @@ func main() {
 				return err
 			}
 		}
-		res := suite.ProcessResults(
+		res, err := suite.ProcessResults(
 			suiteName,
 			cfg.caseFilter,
 			resp,
 			options,
 			cfg.expectedFailures[suiteName],
 		)
+		if err != nil {
+			return err
+		}
 		res.Fdset = req.GetFdset()
 		resultSet.AddSuite(res, cfg.verbose)
 		return nil
