@@ -22,7 +22,6 @@ import (
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
-	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -87,13 +86,11 @@ func main() {
 	switch {
 	case cfg.proto:
 		err = resultSet.MarshalTo(os.Stdout, proto.Marshal)
-	case cfg.json:
-		err = resultSet.MarshalTo(os.Stdout, protojson.Marshal)
+		if err != nil {
+			log.Fatal(err)
+		}
 	default:
 		resultSet.Print(os.Stderr)
-	}
-	if err != nil {
-		log.Fatal(err)
 	}
 
 	os.Exit(int(resultSet.Failures))

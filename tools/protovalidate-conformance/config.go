@@ -38,8 +38,6 @@ type config struct {
 	strictMessage       bool
 	strictError         bool
 	proto               bool
-	json                bool
-	print               bool
 	dump                bool
 	benchmark           int
 	cmd                 string
@@ -66,14 +64,11 @@ func parseFlags() (*config, error) {
 	flag.BoolVar(&cfg.strict, "strict", cfg.strict, "require that the violation type is an exact match")
 	flag.BoolVar(&cfg.strictMessage, "strict_message", cfg.strictMessage, "require that violation messages match the expected message exactly")
 	flag.BoolVar(&cfg.strictError, "strict_error", cfg.strictError, "require that compile-time errors are distinguished from runtime errors")
-	flag.BoolVar(&cfg.json, "json", cfg.json, "return results as JSON to stdout")
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
 	flag.IntVar(&cfg.benchmark, "benchmark", cfg.benchmark, "run benchmarks")
 	flag.StringVar(&cfg.expectedFailureFile, "expected_failures", cfg.expectedFailureFile, "yaml file containing list of expected failures")
 	flag.Parse()
-
-	cfg.print = !cfg.json && !cfg.proto
 
 	args := flag.Args()
 	if len(args) == 0 {
