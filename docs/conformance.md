@@ -29,7 +29,6 @@ You can customize the behavior of the tests using the following flags:
 | `--strict`             | Enable strict mode. Require that the violation type is an exact match.                              | `false`       |
 | `--strict_message`     | Require that violation messages match the expected message exactly.                                 | `false`       |
 | `--strict_error`       | Require that compile-time errors are distinguished from runtime errors.                             | `false`       |
-| `--json`               | Return results as JSON serialized message `buf.validate.conformance.harness.ResultSet` to stdout.   | `false`       |
 | `--proto`              | Return results as binary serialized message `buf.validate.conformance.harness.ResultSet` to stdout. | `false`       |
 | `--dump`               | Output the expected results, without a command.                                                     | `false`       |
 | `--expected_failures`  | `.yaml` file containing list of expected failures                                                   | None          |
