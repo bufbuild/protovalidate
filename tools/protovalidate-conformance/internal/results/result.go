@@ -84,12 +84,12 @@ func (s successResult) String() string {
 	return "invalid (no further details provided)"
 }
 
-func (s successResult) IsSuccessWith(other Result, options *harness.ResultOptions) bool {
+func (s successResult) IsSuccessWith(other Result, _ *harness.ResultOptions) bool {
 	switch res := other.(type) {
 	case successResult:
 		return s.inner.GetSuccess() == res.inner.GetSuccess()
 	default:
-		return !options.GetStrict() && !s.inner.GetSuccess()
+		return false
 	}
 }
 
@@ -146,9 +146,6 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 		return res.IsSuccessWith(v, options)
 	case violationsResult:
 		got := res.inner.GetValidationError().GetViolations()
-		if !options.GetStrict() {
-			return len(got) > 0
-		}
 		want := v.inner.GetValidationError().GetViolations()
 		if len(want) != len(got) {
 			return false

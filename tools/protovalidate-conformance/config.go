@@ -34,7 +34,6 @@ type config struct {
 	caseFilter          *regexp.Regexp
 	suiteTimeout        time.Duration
 	verbose             bool
-	strict              bool
 	strictMessage       bool
 	strictError         bool
 	proto               bool
@@ -61,7 +60,6 @@ func parseFlags() (*config, error) {
 	flag.StringVar(&cfg.caseFilterPattern, "case", cfg.caseFilterPattern, "regex to filter cases")
 	flag.DurationVar(&cfg.suiteTimeout, "timeout", cfg.suiteTimeout, "per-suite timeout")
 	flag.BoolVarP(&cfg.verbose, "verbose", "v", cfg.verbose, "verbose output")
-	flag.BoolVar(&cfg.strict, "strict", cfg.strict, "require that the violation type is an exact match")
 	flag.BoolVar(&cfg.strictMessage, "strict_message", cfg.strictMessage, "require that violation messages match the expected message exactly")
 	flag.BoolVar(&cfg.strictError, "strict_error", cfg.strictError, "require that compile-time errors are distinguished from runtime errors")
 	flag.BoolVar(&cfg.proto, "proto", cfg.proto, "return results as binary serialized proto to stdout")

@@ -35,7 +35,6 @@ func main() {
 		SuiteFilter:   cfg.suiteFilterPattern,
 		CaseFilter:    cfg.caseFilterPattern,
 		Verbose:       cfg.verbose,
-		Strict:        cfg.strict,
 		StrictMessage: cfg.strictMessage,
 		StrictError:   cfg.strictError,
 	}
