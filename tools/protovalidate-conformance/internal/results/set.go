@@ -70,7 +70,9 @@ func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
 	default:
 		suite.Failures++
 	}
-	if verbose || (!res.GetSuccess() && !res.GetExpectedFailure()) {
+	unexpectedFailure := !res.GetSuccess() && !res.GetExpectedFailure()
+	unexpectedSuccess := res.GetSuccess() && res.GetExpectedFailure()
+	if verbose || unexpectedFailure || unexpectedSuccess {
 		suite.Cases = append(suite.Cases, res)
 	}
 }
