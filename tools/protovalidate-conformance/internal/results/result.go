@@ -109,23 +109,33 @@ func Violations(violations ...*validate.Violation) Result {
 
 func (v violationsResult) String() string {
 	bldr := &strings.Builder{}
-	errs := v.inner.GetValidationError().GetViolations()
-	_, _ = fmt.Fprintf(bldr, "%d validation error(s)", len(errs))
-	for i, err := range errs {
-		forKey := ""
-		if err.GetForKey() {
-			forKey = " (key)"
+	violations := v.inner.GetValidationError().GetViolations()
+	if len(violations) == 1 {
+		_, _ = fmt.Fprintf(bldr, "validation error (%d violation)", len(violations))
+	} else {
+		_, _ = fmt.Fprintf(bldr, "validation error (%d violations)", len(violations))
+	}
+	for i, violation := range violations {
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. constraint_id: ", resultPadding, i+1)
+		if violation.ConstraintId == nil {
+			bldr.WriteString("<nil>")
+		} else {
+			_, _ = fmt.Fprintf(bldr, "%#v", violation.GetConstraintId())
 		}
-		violationPath := ""
-		if path := err.GetField(); path != nil {
-			violationPath = fieldpath.Marshal(path)
+		if violation.Message != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      message: %#v", resultPadding, violation.GetMessage())
 		}
-		rulePath := ""
-		if path := err.GetRule(); path != nil {
-			rulePath = " (" + fieldpath.Marshal(path) + ")"
+		//nolint:protogetter
+		if violation.Field != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      field: %#v %s", resultPadding, fieldpath.Marshal(violation.GetField()), violation.GetField())
 		}
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s%s", resultPadding, i+1, violationPath, forKey, err.GetConstraintId(), rulePath)
-		_, _ = fmt.Fprintf(bldr, "\n%s      %s", resultPadding, err.GetMessage())
+		if violation.ForKey != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      for_key: %v", resultPadding, violation.GetForKey())
+		}
+		//nolint:protogetter
+		if violation.Rule != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      rule: %#v %s", resultPadding, fieldpath.Marshal(violation.GetRule()), violation.GetRule())
+		}
 	}
 	return bldr.String()
 }
