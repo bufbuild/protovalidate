@@ -20,11 +20,12 @@ import (
 	"slices"
 	"strings"
 
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/fieldpath"
-	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 type Result interface {
@@ -150,7 +151,7 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 		if len(want) != len(got) {
 			return false
 		}
-		for i := range len(want) {
+		for i := range want {
 			matchingField := proto.Equal(want[i].GetField(), got[i].GetField()) &&
 				want[i].GetForKey() == got[i].GetForKey()
 			matchingRule := proto.Equal(want[i].GetRule(), got[i].GetRule())
