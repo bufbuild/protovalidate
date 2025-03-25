@@ -1,4 +1,4 @@
-// Copyright 2023 Buf Technologies, Inc.
+// Copyright 2023-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import (
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
-	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -36,7 +35,6 @@ func main() {
 		SuiteFilter:   cfg.suiteFilterPattern,
 		CaseFilter:    cfg.caseFilterPattern,
 		Verbose:       cfg.verbose,
-		Strict:        cfg.strict,
 		StrictMessage: cfg.strictMessage,
 		StrictError:   cfg.strictError,
 	}
@@ -57,13 +55,16 @@ func main() {
 				return err
 			}
 		}
-		res := suite.ProcessResults(
+		res, err := suite.ProcessResults(
 			suiteName,
 			cfg.caseFilter,
 			resp,
 			options,
 			cfg.expectedFailures[suiteName],
 		)
+		if err != nil {
+			return err
+		}
 		res.Fdset = req.GetFdset()
 		resultSet.AddSuite(res, cfg.verbose)
 		return nil
@@ -84,13 +85,11 @@ func main() {
 	switch {
 	case cfg.proto:
 		err = resultSet.MarshalTo(os.Stdout, proto.Marshal)
-	case cfg.json:
-		err = resultSet.MarshalTo(os.Stdout, protojson.Marshal)
+		if err != nil {
+			log.Fatal(err)
+		}
 	default:
 		resultSet.Print(os.Stderr)
-	}
-	if err != nil {
-		log.Fatal(err)
 	}
 
 	os.Exit(int(resultSet.Failures))

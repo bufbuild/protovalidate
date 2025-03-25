@@ -1,0 +1,73 @@
+// Copyright 2023-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases;
+
+import "buf/validate/validate.proto";
+
+message IsHostname {
+  string val = 1;
+  option (buf.validate.message).cel = {
+    id: "library.is_hostname"
+    expression: "this.val.isHostname()"
+  };
+}
+message IsHostAndPort {
+  string val = 1;
+  bool port_required = 2;
+  option (buf.validate.message).cel = {
+    id: "library.is_host_and_port"
+    expression: "this.val.isHostAndPort(this.port_required)"
+  };
+}
+message IsIpPrefix {
+  string val = 1;
+  optional int32 version = 2;
+  optional bool strict = 3;
+  option (buf.validate.message).cel = {
+    id: "library.is_ip_prefix"
+    expression: "has(this.version) && has(this.strict) ? this.val.isIpPrefix(this.version, this.strict) : has(this.version) ? this.val.isIpPrefix(this.version) : has(this.strict) ? this.val.isIpPrefix(this.strict) : this.val.isIpPrefix()"
+  };
+}
+message IsIp {
+  string val = 1;
+  optional int32 version = 2;
+  option (buf.validate.message).cel = {
+    id: "library.is_ip"
+    expression: "has(this.version) ? this.val.isIp(this.version) : this.val.isIp()"
+  };
+}
+message IsEmail {
+  string val = 1;
+  option (buf.validate.message).cel = {
+    id: "library.is_email"
+    expression: "this.val.isEmail()"
+  };
+}
+message IsUri {
+  string val = 1;
+  option (buf.validate.message).cel = {
+    id: "library.is_uri"
+    expression: "this.val.isUri()"
+  };
+}
+message IsUriRef {
+  string val = 1;
+  option (buf.validate.message).cel = {
+    id: "library.is_uri_ref"
+    expression: "this.val.isUriRef()"
+  };
+}

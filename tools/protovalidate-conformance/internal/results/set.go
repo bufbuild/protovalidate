@@ -1,4 +1,4 @@
-// Copyright 2023 Buf Technologies, Inc.
+// Copyright 2023-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -70,7 +70,9 @@ func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
 	default:
 		suite.Failures++
 	}
-	if verbose || !res.GetSuccess() {
+	unexpectedFailure := !res.GetSuccess() && !res.GetExpectedFailure()
+	unexpectedSuccess := res.GetSuccess() && res.GetExpectedFailure()
+	if verbose || unexpectedFailure || unexpectedSuccess {
 		suite.Cases = append(suite.Cases, res)
 	}
 }

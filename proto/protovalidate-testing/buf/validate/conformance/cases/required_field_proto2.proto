@@ -1,4 +1,4 @@
-// Copyright 2023 Buf Technologies, Inc.
+// Copyright 2023-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,12 +19,16 @@ package buf.validate.conformance.cases;
 import "buf/validate/validate.proto";
 
 message RequiredProto2ScalarOptional {
-  optional string val = 1 [(buf.validate.field).required = true];
+  optional string val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
 }
 
 message RequiredProto2ScalarOptionalDefault {
   optional string val = 1 [
     (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
     default = "foo"
   ];
 }

@@ -1,4 +1,4 @@
-// Copyright 2023 Buf Technologies, Inc.
+// Copyright 2023-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,6 +59,21 @@ message EditionsScalarExplicitPresenceIgnoreDefaultWithDefault {
   ];
 }
 
+message EditionsScalarExplicitPresenceIgnoreAlways {
+  int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message EditionsScalarExplicitPresenceIgnoreAlwaysWithDefault {
+  int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).int32.gt = 0,
+    default = -42
+  ];
+}
+
 message EditionsScalarImplicitPresenceIgnoreUnspecified {
   int32 val = 1 [
     features.field_presence = IMPLICIT,
@@ -78,6 +93,14 @@ message EditionsScalarImplicitPresenceIgnoreDefault {
   int32 val = 1 [
     features.field_presence = IMPLICIT,
     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message EditionsScalarImplicitPresenceIgnoreAlways {
+  int32 val = 1 [
+    features.field_presence = IMPLICIT,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
     (buf.validate.field).int32.gt = 0
   ];
 }
@@ -126,6 +149,23 @@ message EditionsScalarLegacyRequiredIgnoreDefaultWithDefault {
   int32 val = 1 [
     features.field_presence = LEGACY_REQUIRED,
     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
+    (buf.validate.field).int32.gt = 0,
+    default = -42
+  ];
+}
+
+message EditionsScalarLegacyRequiredIgnoreAlways {
+  int32 val = 1 [
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).int32.gt = 0
+  ];
+}
+
+message EditionsScalarLegacyRequiredIgnoreAlwaysWithDefault {
+  int32 val = 1 [
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
     (buf.validate.field).int32.gt = 0,
     default = -42
   ];
@@ -205,6 +245,35 @@ message EditionsMessageExplicitPresenceDelimitedIgnoreDefault {
     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).cel = {
       id: "proto.editions.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
+    }
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+
+message EditionsMessageExplicitPresenceIgnoreAlways {
+  Msg val = 1 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).cel = {
+      id: "proto.editions.message.ignore.always"
+      message: "foobar"
+      expression: "this.val == 'foo'"
+    }
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+
+message EditionsMessageExplicitPresenceDelimitedIgnoreAlways {
+  Msg val = 1 [
+    features.message_encoding = DELIMITED,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).cel = {
+      id: "proto.editions.message.ignore.always"
       message: "foobar"
       expression: "this.val == 'foo'"
     }
@@ -305,6 +374,37 @@ message EditionsMessageLegacyRequiredDelimitedIgnoreDefault {
   }
 }
 
+message EditionsMessageLegacyRequiredIgnoreAlways {
+  Msg val = 1 [
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).cel = {
+      id: "proto.editions.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
+    }
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+
+message EditionsMessageLegacyRequiredDelimitedIgnoreAlways {
+  Msg val = 1 [
+    features.message_encoding = DELIMITED,
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).cel = {
+      id: "proto.editions.message.ignore.empty"
+      message: "foobar"
+      expression: "this.val == 'foo'"
+    }
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+
 message EditionsOneofIgnoreUnspecified {
   oneof o {
     int32 val = 1 [(buf.validate.field).int32.gt = 0];
@@ -358,6 +458,25 @@ message EditionsOneofIgnoreDefaultWithDefault {
   }
 }
 
+message EditionsOneofIgnoreAlways {
+  oneof o {
+    int32 val = 1 [
+      (buf.validate.field).ignore = IGNORE_ALWAYS,
+      (buf.validate.field).int32.gt = 0
+    ];
+  }
+}
+
+message EditionsOneofIgnoreAlwaysWithDefault {
+  oneof o {
+    int32 val = 1 [
+      (buf.validate.field).ignore = IGNORE_ALWAYS,
+      (buf.validate.field).int32.gt = 0,
+      default = -42
+    ];
+  }
+}
+
 message EditionsRepeatedIgnoreUnspecified {
   repeated int32 val = 1 [(buf.validate.field).repeated.min_items = 3];
 }
@@ -399,6 +518,21 @@ message EditionsRepeatedExpandedIgnoreDefault {
   ];
 }
 
+message EditionsRepeatedIgnoreAlways {
+  repeated int32 val = 1 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).repeated.min_items = 3
+  ];
+}
+
+message EditionsRepeatedExpandedIgnoreAlways {
+  repeated int32 val = 1 [
+    features.repeated_field_encoding = EXPANDED,
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
+    (buf.validate.field).repeated.min_items = 3
+  ];
+}
+
 message EditionsMapIgnoreUnspecified {
   map<int32, int32> val = 1 [(buf.validate.field).map.min_pairs = 3];
 }
@@ -413,6 +547,13 @@ message EditionsMapIgnoreEmpty {
 message EditionsMapIgnoreDefault {
   map<int32, int32> val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
+    (buf.validate.field).map.min_pairs = 3
+  ];
+}
+
+message EditionsMapIgnoreAlways {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS,
     (buf.validate.field).map.min_pairs = 3
   ];
 }
@@ -458,6 +599,21 @@ message EditionsRepeatedExpandedItemIgnoreDefault {
   ];
 }
 
+message EditionsRepeatedItemIgnoreAlways {
+  repeated int32 val = 1 [
+    (buf.validate.field).repeated.items.ignore = IGNORE_ALWAYS,
+    (buf.validate.field).repeated.items.int32.gt = 0
+  ];
+}
+
+message EditionsRepeatedExpandedItemIgnoreAlways {
+  repeated int32 val = 1 [
+    features.repeated_field_encoding = EXPANDED,
+    (buf.validate.field).repeated.items.ignore = IGNORE_ALWAYS,
+    (buf.validate.field).repeated.items.int32.gt = 0
+  ];
+}
+
 message EditionsMapKeyIgnoreUnspecified {
   map<int32, int32> val = 1 [(buf.validate.field).map.keys.int32.gt = 0];
 }
@@ -476,6 +632,13 @@ message EditionsMapKeyIgnoreDefault {
   ];
 }
 
+message EditionsMapKeyIgnoreAlways {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).map.keys.ignore = IGNORE_ALWAYS,
+    (buf.validate.field).map.keys.int32.gt = 0
+  ];
+}
+
 message EditionsMapValueIgnoreUnspecified {
   map<int32, int32> val = 1 [(buf.validate.field).map.values.int32.gt = 0];
 }
@@ -490,6 +653,13 @@ message EditionsMapValueIgnoreEmpty {
 message EditionsMapValueIgnoreDefault {
   map<int32, int32> val = 1 [
     (buf.validate.field).map.values.ignore = IGNORE_IF_DEFAULT_VALUE,
+    (buf.validate.field).map.values.int32.gt = 0
+  ];
+}
+
+message EditionsMapValueIgnoreAlways {
+  map<int32, int32> val = 1 [
+    (buf.validate.field).map.values.ignore = IGNORE_ALWAYS,
     (buf.validate.field).map.values.int32.gt = 0
   ];
 }
