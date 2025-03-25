@@ -39,7 +39,7 @@ message MoneyTransfer {
 
 ## Supported Languages
 
-This repository is the Protovalidate core: the Protobuf definition of its API, [conformance testing utilities][conformance], and [example custom rules](./examples). To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate], or go directly to the repository for your language of choice:
+This repository is the Protovalidate core: the Protobuf definition of its API, [conformance testing utilities][conformance]. To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate], or go directly to the repository for your language of choice:
 
 - [`protovalidate-go`][pv-go] (Go)
 - [`protovalidate-java`][pv-java] (Java)
