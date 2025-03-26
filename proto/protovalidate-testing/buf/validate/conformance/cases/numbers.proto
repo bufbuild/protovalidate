@@ -313,7 +313,7 @@ message Int64Ignore {
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
   ];
 }
-message Int64BigConstraints {
+message Int64BigRules {
   // Intentionally choose limits that are outside the range of both signed and unsigned 32-bit integers.
   int64 lt_pos = 1 [(buf.validate.field).int64.lt = 5444333222];
   int64 lt_neg = 2 [(buf.validate.field).int64.lt = -5444333222];
