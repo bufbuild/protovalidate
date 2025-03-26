@@ -1,4 +1,4 @@
-# Predefined Constraints
+# Predefined Rules
 
 Custom rules in `protovalidate` afford a lot of power, but can become
 cumbersome and repetitive when the same kind of custom rules are needed
@@ -11,7 +11,7 @@ proto3. Either proto2 or at least Protobuf 2023 Edition must be used to define
 predefined rules. Predefined rules defined in proto2 or Protobuf
 2023 Edition or later can be imported and utilized in proto3 files.
 
-## Predefined Field Constraints
+## Predefined Field Rules
 
 To create a predefined field rule, extend one of the standard rules
 messages. For example, to define a new rule for `float` fields, extend
@@ -30,7 +30,7 @@ extend buf.validate.FloatRules {
 ```
 
 > [!TIP]
-> Constraints can refer to their own value with the `rule` constant. Rules apply
+> Rules can refer to their own value with the `rule` constant. Rules apply
 > when they are set, so a boolean rule in the form of `is_...` should
 > always check to ensure that `rule` is `true`.
 

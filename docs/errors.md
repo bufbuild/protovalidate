@@ -18,9 +18,9 @@ rule validation. It has one field:
   returned by `protovalidate` when a message fails to fulfill the requirements
   of the rule validation.
 
-In summary, the `Constraints` and `Violations` messages provide a way to define
+In summary, the `Rules` and `Violations` messages provide a way to define
 and enforce validation rules using the Common Expression Language (CEL)
-syntax. Standard rules are defined using the `Constraints` message and
+syntax. Standard rules are defined using the `Rules` message and
 provide a set of predefined validation rules that can be applied to various.
 These messages can be used to ensure that the data conforms to the
 specified rules and to report any violations that occur during validation.

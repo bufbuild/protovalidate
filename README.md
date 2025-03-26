@@ -195,13 +195,13 @@ overview of all its components, the supported rules, and how to use them
 effectively, please refer to our [comprehensive documentation](docs/README.md).
 The key components include:
 
-- [**Standard Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/standard-rules.md): `protovalidate`
+- [**Standard Rules**](https://github.com/bufbuild/protovalidate/blob/main/docs/standard-rules.md): `protovalidate`
   supports a wide range of standard
   rules for all field types as well as special functionality for the
   Protobuf Well-Known-Types. You can apply these rules to your Protobuf
   messages to ensure they meet certain common conditions.
 
-- [**Custom Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/custom-rules.md): With Google's Common
+- [**Custom Rules**](https://github.com/bufbuild/protovalidate/blob/main/docs/custom-rules.md): With Google's Common
   Expression Language (CEL),
   `protovalidate` allows you to create complex, custom rules to
   handle unique validation scenarios that aren't covered by the standard

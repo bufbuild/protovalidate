@@ -10,24 +10,24 @@ library.
   the Common Expression Language (CEL). It is an excellent starting point if you
   are new to CEL or need a refresher on its core concepts.
 
-- [Constraints](rules.md): This section explores the concept of
+- [Rules](rules.md): This section explores the concept of
   rules in `protovalidate`. You'll learn about their purpose, how they
   work,
   and how they can be applied in your project.
 
-    - [Custom Constraints](custom-rules.md): This section explains how to
+    - [Custom Rules](custom-rules.md): This section explains how to
       define and apply your own custom rules in `protovalidate`. This can
       be
       particularly useful when the standard rules do not fit the specific
       requirements of your project.
 
-    - [Standard Constraints](standard-rules.md): Here, you will learn
+    - [Standard Rules](standard-rules.md): Here, you will learn
       about the pre-defined rules available in the `protovalidate`
       library.
       This guide will help you understand when and how to use these standard
       rules effectively.
 
-    - [Predefined Constraints](predefined-rules.md): This section
+    - [Predefined Rules](predefined-rules.md): This section
       discusses how to extend `protovalidate` with custom reusable rules that
       behave similarly to the standard rules. This can be useful in order
       to share similar custom validation logic across multiple fields or

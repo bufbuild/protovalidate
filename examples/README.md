@@ -2,7 +2,7 @@
 
 This directory has examples for protovalidate.
 
-## Standard Constraints
+## Standard Rules
 
 `rule_*.proto` has protovalidate examples based on options.
 
@@ -14,7 +14,7 @@ To get started, checkout the following examples:
 
 The complete set of options can be found [here](../proto/protovalidate/buf/validate/validate.proto).
 
-## Custom Constraints
+## Custom Rules
 
 `cel_*.proto` has protovalidate examples that validate with CEL expressions.
 

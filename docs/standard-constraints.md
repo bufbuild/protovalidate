@@ -13,7 +13,7 @@ Message-level rules can be applied to messages.
 ### Extending MessageOptions
 
 The schema extends `google.protobuf.MessageOptions` to include a new optional 
-field of type `MessageConstraints`. This allows you to specify rules for 
+field of type `MessageRules`. This allows you to specify rules for 
 messages in your Protobuf schema:
 
 ```protobuf
@@ -37,7 +37,7 @@ message Example {
 
 **See more:**
 
-- [MessageConstraints](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.MessageConstraints)
+- [MessageRules](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.MessageRules)
 
 ## Oneof-level rules
 
@@ -46,7 +46,7 @@ Oneof-level rules can be applied to oneof unions on a message.
 ### Extending OneofOptions
 
 The schema extends `google.protobuf.OneofOptions` to include a new optional 
-named field of the type `OneofConstraints`. This allows you to specify 
+named field of the type `OneofRules`. This allows you to specify 
 rules for oneofs in your Protobuf schema:
 
 ```protobuf
@@ -72,7 +72,7 @@ message Example {
 
 **See more:**
 
-- [OneofConstraints](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.OneofConstraints)
+- [OneofRules](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.OneofRules)
 
 ## Field-level rules
 
@@ -81,7 +81,7 @@ Field-level rules can be applied to the fields of a message.
 ### Extending FieldOptions
 
 The schema extends `google.protobuf.FieldOptions` to include a new optional
-named field of type `FieldConstraints`. This allows you to specify
+named field of type `FieldRules`. This allows you to specify
 rules for fields in your Protobuf schema:
 
 ```protobuf
@@ -90,15 +90,15 @@ message Example {
 }
 ```
 
-### Defining FieldConstraints
+### Defining FieldRules
 
-The `FieldConstraints` message type enables you to manage rules for fields
+The `FieldRules` message type enables you to manage rules for fields
 in your Protobuf messages. You can use the appropriate set of rules to ensure
 proper validations for each field type:
 
 ```protobuf
-message FieldConstraints {
-  repeated Constraint cel = 23;
+message FieldRules {
+  repeated Rule cel = 23;
   bool required = 25;
   Ignore ignore = 27;
   oneof type {
@@ -211,7 +211,7 @@ message Event {
 
 ### Other rules
 
-`FieldConstraints` contains other rules that can be applied to fields,
+`FieldRules` contains other rules that can be applied to fields,
 including `required` and `ignore`. 
 
 ```protobuf
@@ -223,8 +223,8 @@ message Event {
 
 See more:
 
-- [field-level rules](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.FieldConstraints)
+- [field-level rules](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.FieldRules)
 
 ## Related docs
 
-- [Custom Constraints](custom-rules.md)
+- [Custom Rules](custom-rules.md)

@@ -99,7 +99,7 @@ controls to limit execution time, helping to prevent excessive resource
 consumption during evaluation. Here are some guidelines for effectively managing
 resource rules and minimizing performance regressions:
 
-1. __Understanding Resource Constraints__: CEL has resource rule features
+1. __Understanding Resource Rules__: CEL has resource rule features
    which provide feedback about expression complexity. These are designed to
    prevent CEL evaluation from consuming excessive resources. One key element is
    the concept of a _cost unit_, an independent measure used for tracking CPU

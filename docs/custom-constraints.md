@@ -13,9 +13,9 @@ apply to the entire message, allowing for more complex validation scenarios that
 depend on the relationships between fields or specific combinations of field
 values.
 
-## Constraints
+## Rules
 
-The `Constraint` message is used to define validation rules for messages or
+The `Rule` message is used to define validation rules for messages or
 fields in a message. The rules are then evaluated using
 the `protovalidate` tool to ensure that the data conforms to the specified
 rules. If any violations occur during validation, they are reported using
@@ -23,9 +23,9 @@ the `Violations` message. The `Violation` message provides detailed information
 about the violated rule, including the field path, the rule ID, and
 the error message.
 
-### Constraint
+### Rule
 
-The `Constraint` message defines a validation rule using the Common
+The `Rule` message defines a validation rule using the Common
 Expression Language (CEL) syntax. It has three fields:
 
 - `id`: a machine-readable name for this expression that should be unique to its
@@ -38,13 +38,13 @@ Expression Language (CEL) syntax. It has three fields:
   considered rejected (i.e., validation failed) if the expression evaluates to
   false or a non-empty string.
 
-View Documentation [here](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.Constraint)
+View Documentation [here](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.Rule)
 
-### Specifying validation rules with Constraint
+### Specifying validation rules with Rule
 
 The expression must evaluate to a boolean or string value, and if it evaluates
 to false or a non-empty string, the validation is considered to have failed. To
-define validation rules, add `Constraint` messages to the `cel` field:
+define validation rules, add `Rule` messages to the `cel` field:
 
 ```protobuf
 message Example{
@@ -59,7 +59,7 @@ message Example{
 }
 ```
 
-To create a validation rule, define a Constraint message with a unique
+To create a validation rule, define a Rule message with a unique
 id, an appropriate error message, and a valid CEL expression. The validation
 will fail if the expression evaluates to false or a non-empty string.
 
@@ -90,21 +90,21 @@ between `0` and `1000` for a valid `Product` message.
 
 ### Defining custom rules
 
-The `Constraint` message type represents an individual validation rule. It
+The `Rule` message type represents an individual validation rule. It
 contains three fields: `id`, `message`, and `expression`. The `id` is a unique,
 machine-readable name for the validation rule. The message field stores a
 human-readable error message to display when the validation rule fails. The
 expression field holds a CEL expression that performs the validation:
 
 ```protobuf
-message Constraint {
+message Rule {
   string id = 1;
   string message = 2;
   string expression = 3;
 }
 ```
 
-To create a validation rule, define a `Constraint` message with a unique
+To create a validation rule, define a `Rule` message with a unique
 `id`, an appropriate error `message`, and a valid CEL `expression`. The
 validation will fail if the expression evaluates to `false` or a non-empty
 string.
@@ -155,20 +155,20 @@ By leveraging both field-level and message-level rules, `protovalidate`
 enables developers to create a comprehensive set of validation rules that ensure
 the integrity and consistency of their data across gRPC services.
 
-### Defining MessageConstraints
+### Defining MessageRules
 
-The `MessageConstraints` message defines custom
+The `MessageRules` message defines custom
 validation rules for a Protobuf message using CEL expressions. The
 disabled field is an optional boolean value that, if set to true, nullifies
 all validation rules for the message and its associated fields. The
-Constraints field is a repeated field of Constraint messages, which specify
+Rules field is a repeated field of Rule messages, which specify
 the validation rules to be applied to the message.
 
 ```protobuf
-message MessageConstraints {
+message MessageRules {
   ...
-  // Constraints specifies the validation rules to be applied to this message.
-  repeated Constraint cel = 3;
+  // Rules specifies the validation rules to be applied to this message.
+  repeated Rule cel = 3;
   ...
 }
 ```
