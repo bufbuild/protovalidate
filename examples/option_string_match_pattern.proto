@@ -33,7 +33,7 @@ message UserProfile {
   }];
   // `hostname` specifies that the field value must be a valid hostname as defined
   // by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5).
-  // Note: This constraint doesn't support internationalized domain names (IDNs).
+  // Note: This rule doesn't support internationalized domain names (IDNs).
   string organization_domain = 4 [(buf.validate.field).string.hostname = true];
   string personal_page = 5 [
     // `uri` validates that a string field must be an absolute uri, as defined by
