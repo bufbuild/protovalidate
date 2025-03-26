@@ -16,7 +16,7 @@ package cases
 
 import (
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
-	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_constraints"
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_rules"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
@@ -25,35 +25,35 @@ import (
 func customSuite() suites.Suite {
 	return suites.Suite{
 		"no_expressions/empty": {
-			Message:  &custom_constraints.NoExpressions{},
+			Message:  &custom_rules.NoExpressions{},
 			Expected: results.Success(true),
 		},
 		"no_expression/populated": {
-			Message: &custom_constraints.NoExpressions{
+			Message: &custom_rules.NoExpressions{
 				A: 1,
-				B: custom_constraints.Enum_ENUM_ONE,
-				C: &custom_constraints.NoExpressions_Nested{},
+				B: custom_rules.Enum_ENUM_ONE,
+				C: &custom_rules.NoExpressions_Nested{},
 			},
 			Expected: results.Success(true),
 		},
 		"message_expressions/empty": {
-			Message: &custom_constraints.MessageExpressions{},
+			Message: &custom_rules.MessageExpressions{},
 			Expected: results.Violations(
 				&validate.Violation{ConstraintId: proto.String("message_expression_scalar")},
 				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
 			),
 		},
 		"message_expression/valid": {
-			Message: &custom_constraints.MessageExpressions{
+			Message: &custom_rules.MessageExpressions{
 				A: 3,
 				B: 4,
-				C: custom_constraints.Enum_ENUM_ONE,
-				D: custom_constraints.Enum_ENUM_UNSPECIFIED,
-				E: &custom_constraints.MessageExpressions_Nested{
+				C: custom_rules.Enum_ENUM_ONE,
+				D: custom_rules.Enum_ENUM_UNSPECIFIED,
+				E: &custom_rules.MessageExpressions_Nested{
 					A: 4,
 					B: 3,
 				},
-				F: &custom_constraints.MessageExpressions_Nested{
+				F: &custom_rules.MessageExpressions_Nested{
 					A: 4,
 					B: 2,
 				},
@@ -61,16 +61,16 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"message_expression/invalid": {
-			Message: &custom_constraints.MessageExpressions{
+			Message: &custom_rules.MessageExpressions{
 				A: 5,
 				B: 4,
-				C: custom_constraints.Enum_ENUM_ONE,
-				D: custom_constraints.Enum_ENUM_ONE,
-				E: &custom_constraints.MessageExpressions_Nested{
+				C: custom_rules.Enum_ENUM_ONE,
+				D: custom_rules.Enum_ENUM_ONE,
+				E: &custom_rules.MessageExpressions_Nested{
 					A: 3,
 					B: 3,
 				},
-				F: &custom_constraints.MessageExpressions_Nested{
+				F: &custom_rules.MessageExpressions_Nested{
 					A: 4,
 					B: 5,
 				},
@@ -90,32 +90,32 @@ func customSuite() suites.Suite {
 			),
 		},
 		"now/equality": {
-			Message:  &custom_constraints.NowEqualsNow{},
+			Message:  &custom_rules.NowEqualsNow{},
 			Expected: results.Success(true),
 		},
 		"compilation/missing_field": {
-			Message: &custom_constraints.MissingField{A: 123},
+			Message: &custom_rules.MissingField{A: 123},
 			Expected: results.CompilationError(
 				"expression references a non-existent field b"),
 		},
 		"compilation/incorrect_type": {
-			Message: &custom_constraints.IncorrectType{A: 123},
+			Message: &custom_rules.IncorrectType{A: 123},
 			Expected: results.CompilationError(
 				"expression incorrectly treats an int32 field as a string"),
 		},
 		"runtime/dyn_incorrect_type": {
-			Message: &custom_constraints.DynRuntimeError{A: 123},
+			Message: &custom_rules.DynRuntimeError{A: 123},
 			Expected: results.RuntimeError(
 				"dynamic type field access results in runtime type error"),
 		},
 		"field_expression/multiple/scalar/valid": {
-			Message: &custom_constraints.FieldExpressionMultipleScalar{
+			Message: &custom_rules.FieldExpressionMultipleScalar{
 				Val: 3,
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/multiple/scalar/invalid": {
-			Message: &custom_constraints.FieldExpressionMultipleScalar{
+			Message: &custom_rules.FieldExpressionMultipleScalar{
 				Val: 1,
 			},
 			Expected: results.Violations(
@@ -134,16 +134,16 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/nested/scalar/valid": {
-			Message: &custom_constraints.FieldExpressionNestedScalar{
-				Nested: &custom_constraints.FieldExpressionScalar{
+			Message: &custom_rules.FieldExpressionNestedScalar{
+				Nested: &custom_rules.FieldExpressionScalar{
 					Val: 1,
 				},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/nested/scalar/invalid": {
-			Message: &custom_constraints.FieldExpressionNestedScalar{
-				Nested: &custom_constraints.FieldExpressionScalar{
+			Message: &custom_rules.FieldExpressionNestedScalar{
+				Nested: &custom_rules.FieldExpressionScalar{
 					Val: 2,
 				},
 			},
@@ -157,11 +157,11 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/optional/scalar/unpopulated/valid": {
-			Message:  &custom_constraints.FieldExpressionOptionalScalar{},
+			Message:  &custom_rules.FieldExpressionOptionalScalar{},
 			Expected: results.Success(true),
 		},
 		"field_expression/scalar/unpopulated/invalid": {
-			Message: &custom_constraints.FieldExpressionScalar{},
+			Message: &custom_rules.FieldExpressionScalar{},
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
@@ -172,13 +172,13 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/scalar/valid": {
-			Message: &custom_constraints.FieldExpressionScalar{
+			Message: &custom_rules.FieldExpressionScalar{
 				Val: 1,
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/scalar/invalid": {
-			Message: &custom_constraints.FieldExpressionScalar{
+			Message: &custom_rules.FieldExpressionScalar{
 				Val: 2,
 			},
 			Expected: results.Violations(
@@ -191,14 +191,14 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/enum/valid": {
-			Message: &custom_constraints.FieldExpressionEnum{
-				Val: custom_constraints.Enum_ENUM_ONE,
+			Message: &custom_rules.FieldExpressionEnum{
+				Val: custom_rules.Enum_ENUM_ONE,
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/enum/invalid": {
-			Message: &custom_constraints.FieldExpressionEnum{
-				Val: custom_constraints.Enum_ENUM_UNSPECIFIED,
+			Message: &custom_rules.FieldExpressionEnum{
+				Val: custom_rules.Enum_ENUM_UNSPECIFIED,
 			},
 			Expected: results.Violations(
 				&validate.Violation{
@@ -210,16 +210,16 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/message/valid": {
-			Message: &custom_constraints.FieldExpressionMessage{
-				Val: &custom_constraints.FieldExpressionMessage_Msg{
+			Message: &custom_rules.FieldExpressionMessage{
+				Val: &custom_rules.FieldExpressionMessage_Msg{
 					A: 1,
 				},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/message/invalid": {
-			Message: &custom_constraints.FieldExpressionMessage{
-				Val: &custom_constraints.FieldExpressionMessage_Msg{
+			Message: &custom_rules.FieldExpressionMessage{
+				Val: &custom_rules.FieldExpressionMessage_Msg{
 					A: 2,
 				},
 			},
@@ -233,7 +233,7 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/map/scalar/valid": {
-			Message: &custom_constraints.FieldExpressionMapScalar{
+			Message: &custom_rules.FieldExpressionMapScalar{
 				Val: map[int32]int32{
 					1: 1,
 				},
@@ -241,7 +241,7 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field_expression/map/scalar/invalid": {
-			Message: &custom_constraints.FieldExpressionMapScalar{
+			Message: &custom_rules.FieldExpressionMapScalar{
 				Val: map[int32]int32{
 					1: 1,
 					2: 2,
@@ -258,20 +258,20 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/map/enum/valid": {
-			Message: &custom_constraints.FieldExpressionMapEnum{
-				Val: map[int32]custom_constraints.Enum{
-					4: custom_constraints.Enum_ENUM_ONE,
-					8: custom_constraints.Enum_ENUM_ONE,
+			Message: &custom_rules.FieldExpressionMapEnum{
+				Val: map[int32]custom_rules.Enum{
+					4: custom_rules.Enum_ENUM_ONE,
+					8: custom_rules.Enum_ENUM_ONE,
 				},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/map/enum/invalid": {
-			Message: &custom_constraints.FieldExpressionMapEnum{
-				Val: map[int32]custom_constraints.Enum{
-					4:  custom_constraints.Enum_ENUM_ONE,
-					8:  custom_constraints.Enum_ENUM_UNSPECIFIED,
-					12: custom_constraints.Enum_ENUM_ONE,
+			Message: &custom_rules.FieldExpressionMapEnum{
+				Val: map[int32]custom_rules.Enum{
+					4:  custom_rules.Enum_ENUM_ONE,
+					8:  custom_rules.Enum_ENUM_UNSPECIFIED,
+					12: custom_rules.Enum_ENUM_ONE,
 				},
 			},
 			Expected: results.Violations(
@@ -284,8 +284,8 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/map/message/valid": {
-			Message: &custom_constraints.FieldExpressionMapMessage{
-				Val: map[int32]*custom_constraints.FieldExpressionMapMessage_Msg{
+			Message: &custom_rules.FieldExpressionMapMessage{
+				Val: map[int32]*custom_rules.FieldExpressionMapMessage_Msg{
 					4: {A: 1},
 					8: {A: 1},
 				},
@@ -293,8 +293,8 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field_expression/map/message/invalid": {
-			Message: &custom_constraints.FieldExpressionMapMessage{
-				Val: map[int32]*custom_constraints.FieldExpressionMapMessage_Msg{
+			Message: &custom_rules.FieldExpressionMapMessage{
+				Val: map[int32]*custom_rules.FieldExpressionMapMessage_Msg{
 					4:  {A: 1},
 					8:  {A: 2},
 					12: {A: 1},
@@ -310,7 +310,7 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/map/keys/valid": {
-			Message: &custom_constraints.FieldExpressionMapKeys{
+			Message: &custom_rules.FieldExpressionMapKeys{
 				Val: map[int32]int32{
 					4: 0,
 					8: 0,
@@ -319,7 +319,7 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field_expression/map/keys/invalid": {
-			Message: &custom_constraints.FieldExpressionMapKeys{
+			Message: &custom_rules.FieldExpressionMapKeys{
 				Val: map[int32]int32{
 					4: 0,
 					9: 0,
@@ -336,7 +336,7 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/map/scalar/values/valid": {
-			Message: &custom_constraints.FieldExpressionMapScalarValues{
+			Message: &custom_rules.FieldExpressionMapScalarValues{
 				Val: map[int32]int32{
 					4: 1,
 					8: 1,
@@ -345,7 +345,7 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field_expression/map/scalar/values/invalid": {
-			Message: &custom_constraints.FieldExpressionMapScalarValues{
+			Message: &custom_rules.FieldExpressionMapScalarValues{
 				Val: map[int32]int32{
 					4:  1,
 					8:  0,
@@ -362,20 +362,20 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/map/enum/values/valid": {
-			Message: &custom_constraints.FieldExpressionMapEnumValues{
-				Val: map[int32]custom_constraints.Enum{
-					4: custom_constraints.Enum_ENUM_ONE,
-					8: custom_constraints.Enum_ENUM_ONE,
+			Message: &custom_rules.FieldExpressionMapEnumValues{
+				Val: map[int32]custom_rules.Enum{
+					4: custom_rules.Enum_ENUM_ONE,
+					8: custom_rules.Enum_ENUM_ONE,
 				},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/map/enum/values/invalid": {
-			Message: &custom_constraints.FieldExpressionMapEnumValues{
-				Val: map[int32]custom_constraints.Enum{
-					4:  custom_constraints.Enum_ENUM_ONE,
-					8:  custom_constraints.Enum_ENUM_UNSPECIFIED,
-					12: custom_constraints.Enum_ENUM_ONE,
+			Message: &custom_rules.FieldExpressionMapEnumValues{
+				Val: map[int32]custom_rules.Enum{
+					4:  custom_rules.Enum_ENUM_ONE,
+					8:  custom_rules.Enum_ENUM_UNSPECIFIED,
+					12: custom_rules.Enum_ENUM_ONE,
 				},
 			},
 			Expected: results.Violations(
@@ -388,8 +388,8 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/map/message/values/valid": {
-			Message: &custom_constraints.FieldExpressionMapMessageValues{
-				Val: map[int32]*custom_constraints.FieldExpressionMapMessageValues_Msg{
+			Message: &custom_rules.FieldExpressionMapMessageValues{
+				Val: map[int32]*custom_rules.FieldExpressionMapMessageValues_Msg{
 					4: {A: 1},
 					8: {A: 1},
 				},
@@ -397,8 +397,8 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field_expression/map/message/values//invalid": {
-			Message: &custom_constraints.FieldExpressionMapMessageValues{
-				Val: map[int32]*custom_constraints.FieldExpressionMapMessageValues_Msg{
+			Message: &custom_rules.FieldExpressionMapMessageValues{
+				Val: map[int32]*custom_rules.FieldExpressionMapMessageValues_Msg{
 					4:  {A: 1},
 					8:  {A: 2},
 					12: {A: 1},
@@ -414,13 +414,13 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/repeated/scalar/valid": {
-			Message: &custom_constraints.FieldExpressionRepeatedScalar{
+			Message: &custom_rules.FieldExpressionRepeatedScalar{
 				Val: []int32{1, 1},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/repeated/scalar/invalid": {
-			Message: &custom_constraints.FieldExpressionRepeatedScalar{
+			Message: &custom_rules.FieldExpressionRepeatedScalar{
 				Val: []int32{1, 2, 1},
 			},
 			Expected: results.Violations(
@@ -433,14 +433,14 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/repeated/enum/valid": {
-			Message: &custom_constraints.FieldExpressionRepeatedEnum{
-				Val: []custom_constraints.Enum{1, 1},
+			Message: &custom_rules.FieldExpressionRepeatedEnum{
+				Val: []custom_rules.Enum{1, 1},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/repeated/enum/invalid": {
-			Message: &custom_constraints.FieldExpressionRepeatedEnum{
-				Val: []custom_constraints.Enum{custom_constraints.Enum_ENUM_ONE, custom_constraints.Enum_ENUM_UNSPECIFIED, custom_constraints.Enum_ENUM_ONE},
+			Message: &custom_rules.FieldExpressionRepeatedEnum{
+				Val: []custom_rules.Enum{custom_rules.Enum_ENUM_ONE, custom_rules.Enum_ENUM_UNSPECIFIED, custom_rules.Enum_ENUM_ONE},
 			},
 			Expected: results.Violations(
 				&validate.Violation{
@@ -452,8 +452,8 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/repeated/message/valid": {
-			Message: &custom_constraints.FieldExpressionRepeatedMessage{
-				Val: []*custom_constraints.FieldExpressionRepeatedMessage_Msg{
+			Message: &custom_rules.FieldExpressionRepeatedMessage{
+				Val: []*custom_rules.FieldExpressionRepeatedMessage_Msg{
 					{A: 1},
 					{A: 1},
 				},
@@ -461,8 +461,8 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field_expression/repeated/message/invalid": {
-			Message: &custom_constraints.FieldExpressionRepeatedMessage{
-				Val: []*custom_constraints.FieldExpressionRepeatedMessage_Msg{
+			Message: &custom_rules.FieldExpressionRepeatedMessage{
+				Val: []*custom_rules.FieldExpressionRepeatedMessage_Msg{
 					{A: 1},
 					{A: 2},
 					{A: 1},
@@ -478,13 +478,13 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/repeated/scalar/items/valid": {
-			Message: &custom_constraints.FieldExpressionRepeatedScalarItems{
+			Message: &custom_rules.FieldExpressionRepeatedScalarItems{
 				Val: []int32{1, 1},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/repeated/scalar/items/invalid": {
-			Message: &custom_constraints.FieldExpressionRepeatedScalarItems{
+			Message: &custom_rules.FieldExpressionRepeatedScalarItems{
 				Val: []int32{1, 2, 1},
 			},
 			Expected: results.Violations(
@@ -497,16 +497,16 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/repeated/enum/items/valid": {
-			Message: &custom_constraints.FieldExpressionRepeatedEnumItems{
-				Val: []custom_constraints.Enum{custom_constraints.Enum_ENUM_ONE, custom_constraints.Enum_ENUM_ONE},
+			Message: &custom_rules.FieldExpressionRepeatedEnumItems{
+				Val: []custom_rules.Enum{custom_rules.Enum_ENUM_ONE, custom_rules.Enum_ENUM_ONE},
 			},
 			Expected: results.Success(true),
 		},
 		"field_expression/repeated/enum/items/invalid": {
-			Message: &custom_constraints.FieldExpressionRepeatedEnumItems{
-				Val: []custom_constraints.Enum{
-					custom_constraints.Enum_ENUM_ONE,
-					custom_constraints.Enum_ENUM_UNSPECIFIED,
+			Message: &custom_rules.FieldExpressionRepeatedEnumItems{
+				Val: []custom_rules.Enum{
+					custom_rules.Enum_ENUM_ONE,
+					custom_rules.Enum_ENUM_UNSPECIFIED,
 				},
 			},
 			Expected: results.Violations(
@@ -519,8 +519,8 @@ func customSuite() suites.Suite {
 			),
 		},
 		"field_expression/repeated/message/items/valid": {
-			Message: &custom_constraints.FieldExpressionRepeatedMessageItems{
-				Val: []*custom_constraints.FieldExpressionRepeatedMessageItems_Msg{
+			Message: &custom_rules.FieldExpressionRepeatedMessageItems{
+				Val: []*custom_rules.FieldExpressionRepeatedMessageItems_Msg{
 					{A: 1},
 					{A: 1},
 				},
@@ -528,8 +528,8 @@ func customSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"field_expression/repeated/message/items/invalid": {
-			Message: &custom_constraints.FieldExpressionRepeatedMessageItems{
-				Val: []*custom_constraints.FieldExpressionRepeatedMessageItems_Msg{
+			Message: &custom_rules.FieldExpressionRepeatedMessageItems{
+				Val: []*custom_rules.FieldExpressionRepeatedMessageItems_Msg{
 					{A: 1},
 					{A: 2},
 					{A: 1},
