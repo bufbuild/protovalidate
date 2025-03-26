@@ -16,21 +16,21 @@ load("@rules_buf//buf:defs.bzl", "buf_lint_test")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 
 proto_library(
-    name = "buf_validate_conformance_cases_custom_constraints_proto",
-    srcs = ["custom_constraints.proto"],
+    name = "buf_validate_conformance_cases_custom_rules_proto",
+    srcs = ["custom_rules.proto"],
     strip_import_prefix = "/proto/protovalidate-testing",
     visibility = ["//visibility:public"],
     deps = ["//proto/protovalidate/buf/validate:validate_proto"],
 )
 
 buf_lint_test(
-    name = "buf_validate_conformance_cases_custom_constraints_proto_lint",
+    name = "buf_validate_conformance_cases_custom_rules_proto_lint",
     config = "//proto/protovalidate-testing:buf.yaml",
-    targets = [":buf_validate_conformance_cases_custom_constraints_proto"],
+    targets = [":buf_validate_conformance_cases_custom_rules_proto"],
 )
 
 cc_proto_library(
-    name = "buf_validate_conformance_cases_custom_constraints_cc_proto",
+    name = "buf_validate_conformance_cases_custom_rules_cc_proto",
     visibility = ["//visibility:public"],
-    deps = [":buf_validate_conformance_cases_custom_constraints_proto"],
+    deps = [":buf_validate_conformance_cases_custom_rules_proto"],
 )
