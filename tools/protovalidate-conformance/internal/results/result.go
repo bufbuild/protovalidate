@@ -155,8 +155,8 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			matchingField := proto.Equal(want[i].GetField(), got[i].GetField()) &&
 				want[i].GetForKey() == got[i].GetForKey()
 			matchingRule := proto.Equal(want[i].GetRule(), got[i].GetRule())
-			matchingRule := want[i].GetRuleId() == got[i].GetRuleId()
-			if !matchingField || !matchingRule || !matchingRule {
+			matchingRuleID := want[i].GetRuleId() == got[i].GetRuleId()
+			if !matchingField || !matchingRule || !matchingRuleID {
 				return false
 			}
 			if options.GetStrictMessage() && len(want[i].GetMessage()) > 0 &&
