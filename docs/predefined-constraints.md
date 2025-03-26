@@ -1,19 +1,19 @@
 # Predefined Constraints
 
-Custom constraints in `protovalidate` afford a lot of power, but can become
-cumbersome and repetitive when the same kind of custom constraints are needed
+Custom rules in `protovalidate` afford a lot of power, but can become
+cumbersome and repetitive when the same kind of custom rules are needed
 across multiple fields or messages. To this end, `protovalidate` provides a
-mechanism for creating reusable constraints that can be applied on multiple
+mechanism for creating reusable rules that can be applied on multiple
 fields.
 
-Predefined constraints require Protobuf extensions, which are not available in
+Predefined rules require Protobuf extensions, which are not available in
 proto3. Either proto2 or at least Protobuf 2023 Edition must be used to define
-predefined constraints. Predefined constraints defined in proto2 or Protobuf
+predefined rules. Predefined rules defined in proto2 or Protobuf
 2023 Edition or later can be imported and utilized in proto3 files.
 
 ## Predefined Field Constraints
 
-To create a predefined field constraint, extend one of the standard rules
+To create a predefined field rule, extend one of the standard rules
 messages. For example, to define a new rule for `float` fields, extend
 `buf.validate.FloatRules`, as follows:
 
@@ -31,7 +31,7 @@ extend buf.validate.FloatRules {
 
 > [!TIP]
 > Constraints can refer to their own value with the `rule` constant. Rules apply
-> when they are set, so a boolean constraint in the form of `is_...` should
+> when they are set, so a boolean rule in the form of `is_...` should
 > always check to ensure that `rule` is `true`.
 
 > [!WARNING]
@@ -39,7 +39,7 @@ extend buf.validate.FloatRules {
 > to the same message across _all_ Protobuf files in a given process. This
 > restriction also applies to users that consume Protobuf files indirectly as
 > dependencies. The same extension number may be re-used across different kinds
-> of constraint, e.g. `1000` in `FloatRules` is distinct from `1000` in
+> of rule, e.g. `1000` in `FloatRules` is distinct from `1000` in
 > `Int32Rules`.
 >
 > Extension numbers may be from 1000 to 536870911, inclusive. Values from 1000
@@ -50,8 +50,8 @@ extend buf.validate.FloatRules {
 
 [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md "Protobuf Global Extension Registry"
 
-Similarly to the standard constraints, a rule will take effect when it is set on
-the options of a field. Here is how one might use a predefined constraint:
+Similarly to the standard rules, a rule will take effect when it is set on
+the options of a field. Here is how one might use a predefined rule:
 
 ```proto
 message MyMessage {

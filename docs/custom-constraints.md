@@ -1,14 +1,14 @@
-# Custom constraints
+# Custom rules
 
-Custom constraints in `protovalidate` are field-level and message-level
-options that define validation rules and constraints for individual fields
+Custom rules in `protovalidate` are field-level and message-level
+options that define validation rules and rules for individual fields
 within a Protobuf message. These options ensure that the data being passed
 through your gRPC services adheres to the expected format, range, or other
 requirements specific to your application.
 
-Field-level constraints apply to specific data types within a message and can
+Field-level rules apply to specific data types within a message and can
 include requirements such as minimum and maximum values, regular expressions,
-and [custom validation functions](cel.md#custom-variables-functions-and-overloads). Message-level constraints, on the other hand,
+and [custom validation functions](cel.md#custom-variables-functions-and-overloads). Message-level rules, on the other hand,
 apply to the entire message, allowing for more complex validation scenarios that
 depend on the relationships between fields or specific combinations of field
 values.
@@ -16,16 +16,16 @@ values.
 ## Constraints
 
 The `Constraint` message is used to define validation rules for messages or
-fields in a message. The constraints are then evaluated using
+fields in a message. The rules are then evaluated using
 the `protovalidate` tool to ensure that the data conforms to the specified
 rules. If any violations occur during validation, they are reported using
 the `Violations` message. The `Violation` message provides detailed information
-about the violated constraint, including the field path, the constraint ID, and
+about the violated rule, including the field path, the rule ID, and
 the error message.
 
 ### Constraint
 
-The `Constraint` message defines a validation constraint using the Common
+The `Constraint` message defines a validation rule using the Common
 Expression Language (CEL) syntax. It has three fields:
 
 - `id`: a machine-readable name for this expression that should be unique to its
@@ -67,13 +67,13 @@ In addition to the libraries from the CEL community, protovalidate incorporates
 CEL libraries that are universally accessible wherever CEL is employed within
 protovalidate. Read more [here](cel.md#custom-functions-and-overloads).
 
-## Field-level constraints
+## Field-level rules
 
-Field-level constraints provide a way to apply validation rules for an
-individual field within a message. These constraints use CEL expressions to
+Field-level rules provide a way to apply validation rules for an
+individual field within a message. These rules use CEL expressions to
 define more complex validation scenarios.
 
-Here's an example of a field-level custom constraint:
+Here's an example of a field-level custom rule:
 
 ```protobuf
 message Product {
@@ -85,10 +85,10 @@ message Product {
 }
 ```
 
-In this example, the field-level constraint ensures that the `price` value is
+In this example, the field-level rule ensures that the `price` value is
 between `0` and `1000` for a valid `Product` message.
 
-### Defining custom constraints
+### Defining custom rules
 
 The `Constraint` message type represents an individual validation rule. It
 contains three fields: `id`, `message`, and `expression`. The `id` is a unique,
@@ -120,21 +120,21 @@ message Example{
 ```
 
 The schema also defines various rules for scalar, complex, and well-known field
-types, which can be used to enforce specific constraints on each field type.
+types, which can be used to enforce specific rules on each field type.
 
 "Variables" are what the inputs to a CEL program are called. For any
 protovalidate field that incorporates CEL, the accessible variables for that
 field are defined is `this` and is always made available and refers to the
 current state of the data being validated by the CEL expression.
 
-## Message-level constraints
+## Message-level rules
 
-Message-level constraints provide a way to apply validation rules that depend on
+Message-level rules provide a way to apply validation rules that depend on
 the relationship between fields or specific combinations of field values within
-a message. These constraints use CEL expressions to define more complex
+a message. These rules use CEL expressions to define more complex
 validation scenarios.
 
-Here's an example of a message-level constraint:
+Here's an example of a message-level rule:
 
 ```protobuf
 message Event {
@@ -148,10 +148,10 @@ message Event {
 }
 ```
 
-In this example, the message-level constraint ensures that the `start_time`
+In this example, the message-level rule ensures that the `start_time`
 value is less than the `end_time` value for a valid `Event` message.
 
-By leveraging both field-level and message-level constraints, `protovalidate`
+By leveraging both field-level and message-level rules, `protovalidate`
 enables developers to create a comprehensive set of validation rules that ensure
 the integrity and consistency of their data across gRPC services.
 
@@ -175,5 +175,5 @@ message MessageConstraints {
 
 ## Related docs
 
-- [Standard constraints](standard-constraints.md)
+- [Standard rules](standard-rules.md)
 - [Overview of Common Expression Language (CEL)](cel.md)

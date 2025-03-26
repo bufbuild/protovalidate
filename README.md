@@ -20,7 +20,7 @@ consistency and integrity across the network without requiring generated code.
 
 This repository is the core of the `protovalidate` project. It contains:
 
-- [The API definition][validate-proto]: used to describe validation constraints
+- [The API definition][validate-proto]: used to describe validation rules
 - [Documentation][docs]: how to apply `protovalidate` effectively
 - [Migration tooling][migrate]: incrementally migrate from `protoc-gen-validate`
 - [Examples][examples]: example `.proto` files using `protovalidate`
@@ -43,7 +43,7 @@ Interested in adding support for another language? Check out our
 
 ### Import protovalidate
 
-To define constraints within your Protobuf messages,
+To define rules within your Protobuf messages,
 import `buf/validate/validate.proto` into your `.proto` files:
 
 ```protobuf
@@ -81,13 +81,13 @@ protoc \
   # <snip>
 ```
 
-### Implementing validation constraints
+### Implementing validation rules
 
-Validation constraints can be enforced using the `buf.validate` Protobuf package. The rules are specified directly in the `.proto` files.
+Validation rules can be enforced using the `buf.validate` Protobuf package. The rules are specified directly in the `.proto` files.
 
 Let's consider a few examples:
 
-1. **Scalar field validation:** For a basic `User` message, we can enforce constraints such as a minimum length for the user's name.
+1. **Scalar field validation:** For a basic `User` message, we can enforce rules such as a minimum length for the user's name.
 
    ```protobuf
    syntax = "proto3";
@@ -113,7 +113,7 @@ Let's consider a few examples:
    }
    ```
 
-3. **Well-known type (WKT) validation:** For the `User` message, we can add a constraint to ensure the `created_at` timestamp is in the past.
+3. **Well-known type (WKT) validation:** For the `User` message, we can add a rule to ensure the `created_at` timestamp is in the past.
 
    ```protobuf
    syntax = "proto3";
@@ -127,7 +127,7 @@ Let's consider a few examples:
    }
    ```
 
-For more advanced or custom constraints, `protovalidate` allows for CEL expressions that can incorporate information across fields.
+For more advanced or custom rules, `protovalidate` allows for CEL expressions that can incorporate information across fields.
 
 1. **Field-level expressions:** We can enforce that a products' `price`, sent as a string, includes a currency symbol like "$" or "£". We want to ensure that the price is positive and the currency symbol is valid.
 
@@ -180,32 +180,32 @@ For more advanced or custom constraints, `protovalidate` allows for CEL expressi
    }
    ```
 
-Check out [`examples`][examples] for examples on both standard constraints and custom CEL constraints.
+Check out [`examples`][examples] for examples on both standard rules and custom CEL rules.
 
 ### Validate Messages
 
-Once the messages are annotated with constraints, use one of the [supported language libraries](#implementations) to validate; no additional code generation necessary.
+Once the messages are annotated with rules, use one of the [supported language libraries](#implementations) to validate; no additional code generation necessary.
 
 ## Documentation
 
 `protovalidate` provides a robust framework for validating Protobuf messages by
-enforcing standard and custom constraints on various data types, and offering
+enforcing standard and custom rules on various data types, and offering
 detailed error information when validation violations occur. For a detailed
-overview of all its components, the supported constraints, and how to use them
+overview of all its components, the supported rules, and how to use them
 effectively, please refer to our [comprehensive documentation](docs/README.md).
 The key components include:
 
-- [**Standard Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/standard-constraints.md): `protovalidate`
+- [**Standard Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/standard-rules.md): `protovalidate`
   supports a wide range of standard
-  constraints for all field types as well as special functionality for the
-  Protobuf Well-Known-Types. You can apply these constraints to your Protobuf
+  rules for all field types as well as special functionality for the
+  Protobuf Well-Known-Types. You can apply these rules to your Protobuf
   messages to ensure they meet certain common conditions.
 
-- [**Custom Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/custom-constraints.md): With Google's Common
+- [**Custom Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/custom-rules.md): With Google's Common
   Expression Language (CEL),
-  `protovalidate` allows you to create complex, custom constraints to
+  `protovalidate` allows you to create complex, custom rules to
   handle unique validation scenarios that aren't covered by the standard
-  constraints at both the field and message level.
+  rules at both the field and message level.
 
 - [**Error Handling**](https://github.com/bufbuild/protovalidate/blob/main/docs/README.md#errors): When a violation
   occurs, `protovalidate` provides
@@ -216,9 +216,9 @@ The key components include:
 
 `protovalidate` is the spiritual successor to [`protoc-gen-validate`][pgv], offering
 all of the same functionality present in the original plugin, without the need
-for custom code generation, and the new ability to describe complex constraints in CEL.
+for custom code generation, and the new ability to describe complex rules in CEL.
 
-`protovalidate`'s constraints very closely emulate those
+`protovalidate`'s rules very closely emulate those
 in `protoc-gen-validate` to ensure an easy transition for developers. To
 migrate from `protoc-gen-validate` to `protovalidate`, use the
 provided [migration tool][migration-tool] to

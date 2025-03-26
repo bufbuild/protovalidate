@@ -79,13 +79,13 @@ an invalid recursive message, we could create a file
 called `expected_failures.yaml` with the following contents:
 
 ```yaml
-standard_constraints/map:
+standard_rules/map:
   - recursive/invalid
-standard_constraints/well_known_types/duration:
+standard_rules/well_known_types/duration:
   - gte_lte/invalid/above
   - lte/invalid
   - not in/valid
-standard_constraints/well_known_types/timestamp:
+standard_rules/well_known_types/timestamp:
   - gte_lte/invalid/above
   - lte/invalid
 ```

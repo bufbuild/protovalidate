@@ -1,19 +1,19 @@
-# Standard constraints
+# Standard rules
 
-Standard constraints in `protovalidate` are field-level and message-level
-options that define validation rules and constraints for individual fields
+Standard rules in `protovalidate` are field-level and message-level
+options that define validation rules and rules for individual fields
 within a Protobuf message. These options ensure that the data being passed
 through your gRPC services adheres to the expected format, range, or other
 requirements specific to your application.
 
-## Message-level constraints
+## Message-level rules
 
-Message-level constraints can be applied to messages.
+Message-level rules can be applied to messages.
 
 ### Extending MessageOptions
 
 The schema extends `google.protobuf.MessageOptions` to include a new optional 
-field of type `MessageConstraints`. This allows you to specify constraints for 
+field of type `MessageConstraints`. This allows you to specify rules for 
 messages in your Protobuf schema:
 
 ```protobuf
@@ -22,10 +22,10 @@ message Example {
 }
 ```
 
-### Disabled constraint
+### Disabled rule
 
-Currently, only one constraint is available on messages: `disabled`. This 
-constraint prevents any validation rule from the message's oneofs and fields to 
+Currently, only one rule is available on messages: `disabled`. This 
+rule prevents any validation rule from the message's oneofs and fields to 
 be applied to that message, including transitive validation rules from message 
 fields.
 
@@ -39,15 +39,15 @@ message Example {
 
 - [MessageConstraints](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.MessageConstraints)
 
-## Oneof-level constraints
+## Oneof-level rules
 
-Oneof-level constraints can be applied to oneof unions on a message.
+Oneof-level rules can be applied to oneof unions on a message.
 
 ### Extending OneofOptions
 
 The schema extends `google.protobuf.OneofOptions` to include a new optional 
 named field of the type `OneofConstraints`. This allows you to specify 
-constraints for oneofs in your Protobuf schema:
+rules for oneofs in your Protobuf schema:
 
 ```protobuf
 message Example {
@@ -57,10 +57,10 @@ message Example {
 }
 ```
 
-### Required constraint
+### Required rule
 
-Currently, only one constraint is available on oneofs: `required`. This 
-constraint requires that exactly one field in the oneof must be set.
+Currently, only one rule is available on oneofs: `required`. This 
+rule requires that exactly one field in the oneof must be set.
 
 ```protobuf
 message Example {
@@ -74,15 +74,15 @@ message Example {
 
 - [OneofConstraints](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.OneofConstraints)
 
-## Field-level constraints
+## Field-level rules
 
-Field-level constraints can be applied to the fields of a message.
+Field-level rules can be applied to the fields of a message.
 
 ### Extending FieldOptions
 
 The schema extends `google.protobuf.FieldOptions` to include a new optional
 named field of type `FieldConstraints`. This allows you to specify
-constraints for fields in your Protobuf schema:
+rules for fields in your Protobuf schema:
 
 ```protobuf
 message Example {
@@ -92,7 +92,7 @@ message Example {
 
 ### Defining FieldConstraints
 
-The `FieldConstraints` message type enables you to manage constraints for fields
+The `FieldConstraints` message type enables you to manage rules for fields
 in your Protobuf messages. You can use the appropriate set of rules to ensure
 proper validations for each field type:
 
@@ -118,7 +118,7 @@ message Example{
 }
 ```
 
-### Scalar constraints
+### Scalar rules
 
 Enforce requirements like minimum and maximum lengths or allowed patterns using
 regular expressions for `string`, `bool`, and `bytes` fields.
@@ -138,7 +138,7 @@ message User {
 - [Bytes](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.BytesRules)
 - [String](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.StringRules)
 
-### Numeric constraints
+### Numeric rules
 
 Define ranges or specific allowed values for `double`, `fixed`, `float`, and
 `int` fields.
@@ -165,9 +165,9 @@ message Product {
   - [SInt32](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.SInt32Rules)
   - [SInt64](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.SInt64Rules)
 
-### Complex constraints
+### Complex rules
 
-Define constraints for complex data types such as enums, maps, and repeated
+Define rules for complex data types such as enums, maps, and repeated
 fields.
 
 ```protobuf
@@ -190,9 +190,9 @@ message Order {
 - [Map](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.MapRules)
 - [Repeated](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.RepeatedRules)
 
-### Well-known constraints
+### Well-known rules
 
-Apply constraints to well-known types such as `Any`, `Duration`,
+Apply rules to well-known types such as `Any`, `Duration`,
 and `Timestamp`.
 
 ```protobuf
@@ -209,9 +209,9 @@ message Event {
 - [Duration](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.DurationRules)
 - [Timestamp](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.TimestampRules)
 
-### Other constraints
+### Other rules
 
-`FieldConstraints` contains other constraints that can be applied to fields,
+`FieldConstraints` contains other rules that can be applied to fields,
 including `required` and `ignore`. 
 
 ```protobuf
@@ -223,8 +223,8 @@ message Event {
 
 See more:
 
-- [field-level constraints](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.FieldConstraints)
+- [field-level rules](https://buf.build/bufbuild/protovalidate/docs/main:buf.validate#buf.validate.FieldConstraints)
 
 ## Related docs
 
-- [Custom Constraints](custom-constraints.md)
+- [Custom Constraints](custom-rules.md)
