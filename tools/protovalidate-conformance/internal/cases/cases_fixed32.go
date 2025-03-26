@@ -36,9 +36,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32Const{Val: 2},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.const"),
-					ConstraintId: proto.String("fixed32.const"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.const"),
+					RuleId: proto.String("fixed32.const"),
 				},
 			),
 		},
@@ -50,9 +50,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32In{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.in"),
-					ConstraintId: proto.String("fixed32.in"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.in"),
+					RuleId: proto.String("fixed32.in"),
 				},
 			),
 		},
@@ -64,9 +64,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32NotIn{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.not_in"),
-					ConstraintId: proto.String("fixed32.not_in"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.not_in"),
+					RuleId: proto.String("fixed32.not_in"),
 				},
 			),
 		},
@@ -78,9 +78,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32LT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.lt"),
-					ConstraintId: proto.String("fixed32.lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.lt"),
+					RuleId: proto.String("fixed32.lt"),
 				},
 			),
 		},
@@ -88,9 +88,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32LT{Val: 6},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.lt"),
-					ConstraintId: proto.String("fixed32.lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.lt"),
+					RuleId: proto.String("fixed32.lt"),
 				},
 			),
 		},
@@ -106,9 +106,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32LTE{Val: 65},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.lte"),
-					ConstraintId: proto.String("fixed32.lte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.lte"),
+					RuleId: proto.String("fixed32.lte"),
 				},
 			),
 		},
@@ -120,9 +120,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GT{Val: 16},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt"),
 				},
 			),
 		},
@@ -130,9 +130,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GT{Val: 15},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt"),
 				},
 			),
 		},
@@ -148,9 +148,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GTE{Val: 7},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gte"),
-					ConstraintId: proto.String("fixed32.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gte"),
+					RuleId: proto.String("fixed32.gte"),
 				},
 			),
 		},
@@ -162,9 +162,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GTLT{Val: 11},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt_lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt_lt"),
 				},
 			),
 		},
@@ -172,9 +172,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GTLT{Val: 4},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt_lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt_lt"),
 				},
 			),
 		},
@@ -182,9 +182,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GTLT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt_lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt_lt"),
 				},
 			),
 		},
@@ -192,9 +192,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GTLT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt_lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt_lt"),
 				},
 			),
 		},
@@ -210,9 +210,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32ExLTGT{Val: 6},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt_lt_exclusive"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -220,9 +220,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32ExLTGT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt_lt_exclusive"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -230,9 +230,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32ExLTGT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gt"),
-					ConstraintId: proto.String("fixed32.gt_lt_exclusive"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gt"),
+					RuleId: proto.String("fixed32.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -252,9 +252,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GTELTE{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gte"),
-					ConstraintId: proto.String("fixed32.gte_lte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gte"),
+					RuleId: proto.String("fixed32.gte_lte"),
 				},
 			),
 		},
@@ -262,9 +262,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32GTELTE{Val: 100},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gte"),
-					ConstraintId: proto.String("fixed32.gte_lte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gte"),
+					RuleId: proto.String("fixed32.gte_lte"),
 				},
 			),
 		},
@@ -288,9 +288,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32ExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gte"),
-					ConstraintId: proto.String("fixed32.gte_lte_exclusive"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gte"),
+					RuleId: proto.String("fixed32.gte_lte_exclusive"),
 				},
 			),
 		},
@@ -306,9 +306,9 @@ func fixed32Suite() suites.Suite {
 			Message: &cases.Fixed32Ignore{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("fixed32.gte"),
-					ConstraintId: proto.String("fixed32.gte_lte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("fixed32.gte"),
+					RuleId: proto.String("fixed32.gte_lte"),
 				},
 			),
 		},

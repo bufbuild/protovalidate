@@ -40,7 +40,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -48,7 +48,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: " example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -56,7 +56,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -64,7 +64,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -72,7 +72,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: " example.com", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -80,7 +80,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com ", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -88,7 +88,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "你好.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -96,7 +96,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -104,7 +104,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -112,7 +112,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -124,7 +124,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:+0", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -132,7 +132,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:+0"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -140,7 +140,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:0xFA"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -148,7 +148,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:0xFA", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -164,7 +164,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:65536"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -172,7 +172,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "example.com:65536", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -192,7 +192,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "256.0.0.0"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -200,7 +200,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "127.0.0"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -208,7 +208,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "127..0.1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -236,7 +236,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "192.168.0.1:65536", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -244,7 +244,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "192.168.0.1", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -256,7 +256,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "192.168.0.1:", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -264,7 +264,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "192.168.0.1:"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -292,7 +292,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "[::1%]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -304,7 +304,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "[127.0.0.1]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -312,7 +312,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "[example.com]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -332,7 +332,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "[::1]:65536", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -340,7 +340,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "[::1]", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
@@ -348,7 +348,7 @@ func isHostAndPortSuite() suites.Suite {
 			Message: &cases.IsHostAndPort{Val: "[::1]:", PortRequired: true},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_host_and_port"),
+					RuleId: proto.String("library.is_host_and_port"),
 				},
 			),
 		},
