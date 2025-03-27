@@ -68,7 +68,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "127.0.0.1/16", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -76,7 +76,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "::1/64", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -84,7 +84,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "::1/64", Version: proto.Int32(5)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -92,7 +92,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "::1/64", Version: proto.Int32(7)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -108,7 +108,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "2001:0DB8:ABCD:0012:FFFF:FFFF:FFFF:FFFF/64", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -116,7 +116,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.128.0/16", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -140,7 +140,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -148,7 +148,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "", Version: proto.Int32(1)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -156,7 +156,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -164,7 +164,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -172,7 +172,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: " ::1/64"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -180,7 +180,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "::1/64 "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -188,7 +188,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: " 127.0.0.1/16"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -196,7 +196,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "127.0.0.1/16 "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -224,7 +224,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "1.0.0.0/0", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -240,7 +240,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "192.168.1.0/33"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -248,7 +248,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "192.168.1.0/024"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -256,7 +256,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "192.168.1.0/12345678901234567890"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -264,7 +264,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "192.168.1.0/"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -272,7 +272,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "192.168.1.0"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -284,7 +284,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "1.0.0.0/0", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -292,7 +292,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "128.0.0.0/0", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "127.0.0.0/1", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -316,7 +316,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "129.0.0.0/1", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -324,7 +324,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "1.0.0.0/1", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -344,7 +344,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "193.0.0.0/2", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -352,7 +352,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "224.0.0.0/2", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -368,7 +368,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.0.0.0/7", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -388,7 +388,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.128.0.0/8", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -412,7 +412,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.128.0/16", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -420,7 +420,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.0.128/16", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -440,7 +440,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.255.0/23", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -448,7 +448,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.254.128/23", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -464,7 +464,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.255.128/24", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -480,7 +480,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.255.129/25", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -496,7 +496,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "255.255.255.255/31", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -552,7 +552,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "2001:0DB8:ABCD:0012:FFFF:FFFF:FFFF:FFFF/129"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -560,7 +560,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "2001:0DB8:ABCD:0012:FFFF:FFFF:FFFF:FFFF/024"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -568,7 +568,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "2001:0DB8:ABCD:0012:FFFF:FFFF:FFFF:FFFF/12345678901234567890"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -576,7 +576,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "2001:0DB8:ABCD:0012:FFFF:FFFF:FFFF:FFFF/"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -584,7 +584,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "2001:0DB8:ABCD:0012:FFFF:FFFF:FFFF:FFFF"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -592,7 +592,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "::1%en1/64"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -600,7 +600,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "::1/64%en1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -612,7 +612,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "1:0:0:0:0:0:0:0/0", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -628,7 +628,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "c000:0:0:0:0:0:0:0/1", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -644,7 +644,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "ff80:0:0:0:0:0:0:0/8", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -660,7 +660,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "ffff:ffff:ffff:ffff:8000:0:0:0/64", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -676,7 +676,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "ffff:ffff:ffff:ffff:ffff:ffff:ffff:8000/112", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -692,7 +692,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/127", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -720,7 +720,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "0:0:0:0:0:ffff:192.1.0.128/112", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -736,7 +736,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "0:0:0:0:0:ffff:0.0.128.0/96", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
@@ -752,7 +752,7 @@ func isIPPrefixSuite() suites.Suite {
 			Message: &cases.IsIpPrefix{Val: "::ffff:192.1.128.0/112", Strict: proto.Bool(true)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip_prefix"),
+					RuleId: proto.String("library.is_ip_prefix"),
 				},
 			),
 		},
