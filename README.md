@@ -47,7 +47,7 @@ To start using Protovalidate in your projects, see the [developer quickstart][qu
 - [`protovalidate-java`][pv-java] (Java)
 - [`protovalidate-python`][pv-python] (Python)
 - [`protovalidate-cc`][pv-cc] (C++)
-- `protovalidate-ts` (TypeScript, coming soon!)
+- `protovalidate-es` (TypeScript and JavaScript, coming soon!)
 
 > [!NOTE]  
 > Interested in adding support for another language? Check out our [Contributing Guidelines][contributing].
