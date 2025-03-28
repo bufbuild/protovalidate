@@ -284,6 +284,14 @@ func isIPSuite() suites.Suite {
 			Message:  &cases.IsIp{Val: "::"},
 			Expected: results.Success(true),
 		},
+		"version/omitted/valid/ipv6/j": {
+			Message:  &cases.IsIp{Val: "0:00::000:0000"},
+			Expected: results.Success(true),
+		},
+		"version/omitted/valid/ipv6/k": {
+			Message:  &cases.IsIp{Val: "0::"},
+			Expected: results.Success(true),
+		},
 		"version/omitted/valid/ipv6_embedded_ipv4": {
 			Message:  &cases.IsIp{Val: "0:0:0:0:0:ffff:192.1.56.10"},
 			Expected: results.Success(true),
@@ -386,6 +394,38 @@ func isIPSuite() suites.Suite {
 		},
 		"version/omitted/invalid/ipv6/f": {
 			Message: &cases.IsIp{Val: "1::3:4::6:7:8"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/omitted/invalid/ipv6/g": {
+			Message: &cases.IsIp{Val: ":0::0"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/omitted/invalid/ipv6/h": {
+			Message: &cases.IsIp{Val: "0::0:"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/omitted/invalid/ipv6/i": {
+			Message: &cases.IsIp{Val: "0::0:"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/omitted/invalid/ipv6/j": {
+			Message: &cases.IsIp{Val: "::0000ffff"},
 			Expected: results.Violations(
 				&validate.Violation{
 					ConstraintId: proto.String("library.is_ip"),
