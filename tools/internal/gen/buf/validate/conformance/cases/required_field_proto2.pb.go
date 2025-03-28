@@ -435,11 +435,11 @@ var File_buf_validate_conformance_cases_required_field_proto2_proto protoreflect
 
 const file_buf_validate_conformance_cases_required_field_proto2_proto_rawDesc = "" +
 	"\n" +
-	":buf/validate/conformance/cases/required_field_proto2.proto\x12\x1ebuf.validate.conformance.cases\x1a\x1bbuf/validate/validate.proto\";\n" +
-	"\x1cRequiredProto2ScalarOptional\x12\x1b\n" +
-	"\x03val\x18\x01 \x01(\tB\t\xbaH\x06\xc8\x01\x01\xd8\x01\x03R\x03val\"G\n" +
-	"#RequiredProto2ScalarOptionalDefault\x12 \n" +
-	"\x03val\x18\x01 \x01(\t:\x03fooB\t\xbaH\x06\xc8\x01\x01\xd8\x01\x03R\x03val\"8\n" +
+	":buf/validate/conformance/cases/required_field_proto2.proto\x12\x1ebuf.validate.conformance.cases\x1a\x1bbuf/validate/validate.proto\"8\n" +
+	"\x1cRequiredProto2ScalarOptional\x12\x18\n" +
+	"\x03val\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x03val\"D\n" +
+	"#RequiredProto2ScalarOptionalDefault\x12\x1d\n" +
+	"\x03val\x18\x01 \x01(\t:\x03fooB\x06\xbaH\x03\xc8\x01\x01R\x03val\"8\n" +
 	"\x1cRequiredProto2ScalarRequired\x12\x18\n" +
 	"\x03val\x18\x01 \x02(\tB\x06\xbaH\x03\xc8\x01\x01R\x03val\"\x85\x01\n" +
 	"\x15RequiredProto2Message\x12S\n" +
