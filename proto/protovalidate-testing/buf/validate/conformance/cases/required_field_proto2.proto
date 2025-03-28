@@ -19,16 +19,12 @@ package buf.validate.conformance.cases;
 import "buf/validate/validate.proto";
 
 message RequiredProto2ScalarOptional {
-  optional string val = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).ignore = IGNORE_ALWAYS
-  ];
+  optional string val = 1 [(buf.validate.field).required = true];
 }
 
 message RequiredProto2ScalarOptionalDefault {
   optional string val = 1 [
     (buf.validate.field).required = true,
-    (buf.validate.field).ignore = IGNORE_ALWAYS,
     default = "foo"
   ];
 }
