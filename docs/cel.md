@@ -2,7 +2,7 @@
 
 The [Common Expression Language (CEL)](https://github.com/google/cel-spec) is
 utilized by `protovalidate` for the formulation of validation rules, serving
-both as the basis for the standard constraints as well as custom constraints.
+both as the basis for the standard rules as well as custom rules.
 
 [CEL](https://github.com/google/cel-spec/blob/master/doc/langdef.md) features a
 user-friendly syntax, reminiscent of the expressions found in C, C++, Java,

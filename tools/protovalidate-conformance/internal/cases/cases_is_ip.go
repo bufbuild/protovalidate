@@ -60,7 +60,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -68,7 +68,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.1", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -76,7 +76,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.1/16", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -84,7 +84,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: " 127.0.0.1", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -92,7 +92,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.1 ", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -100,7 +100,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: " 127.0.0.1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -108,7 +108,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.1 "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -116,7 +116,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1/64", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -124,7 +124,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "[127.0.0.1]", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -132,7 +132,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "[::1]", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -140,7 +140,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: " ::1", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -148,7 +148,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1 ", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -156,7 +156,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: " ::1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -164,7 +164,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1 "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -172,7 +172,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1", Version: proto.Int32(1)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -180,7 +180,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.1", Version: proto.Int32(1)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -188,7 +188,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1", Version: proto.Int32(5)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -196,7 +196,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.1", Version: proto.Int32(5)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -204,7 +204,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1", Version: proto.Int32(7)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -212,7 +212,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.1", Version: proto.Int32(7)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -220,7 +220,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -228,7 +228,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "", Version: proto.Int32(1)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -236,7 +236,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "", Version: proto.Int32(4)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -244,7 +244,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -300,7 +300,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "0:0:0:0:0:ffff:256.1.56.10"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "0:0:0:0:0:ffff:192.x.56.10"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -316,7 +316,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "0:0:0:0:0:ffff:192..56.10"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -324,7 +324,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "0:0:0:0:0:ffff:192.1.56."},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -332,7 +332,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "0:0:0:0:0:ffff:192.1.56"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -344,7 +344,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "::1%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -356,7 +356,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: ":2:3:4:5:6:7:8"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -364,7 +364,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "12345:2:3:4:5:6:7:8"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -372,7 +372,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "g:2:3:4:5:6:7:8"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -380,7 +380,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: ":::1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -388,7 +388,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "1::3:4::6:7:8"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -396,7 +396,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "1::3:4::6:7:8"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -456,7 +456,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -464,7 +464,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.1."},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -472,7 +472,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127..0.1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -480,7 +480,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "127.0.0.0.1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -488,7 +488,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "256.0.0.0"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
@@ -496,7 +496,7 @@ func isIPSuite() suites.Suite {
 			Message: &cases.IsIp{Val: "0x0.0.0.0"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_ip"),
+					RuleId: proto.String("library.is_ip"),
 				},
 			),
 		},
