@@ -40,6 +40,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto2/scalar/optional/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto2ScalarOptionalIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto2/scalar/optional_with_default/nonzero": suites.Case{
 			Message:  &cases.RequiredProto2ScalarOptionalDefault{Val: proto.String("bar")},
 			Expected: results.Success(true),
@@ -59,6 +63,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto2/scalar/optional_with_default/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto2ScalarOptionalDefaultIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto2/scalar/required/nonzero": suites.Case{
 			Message:  &cases.RequiredProto2ScalarRequired{Val: proto.String("foo")},
@@ -84,6 +92,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto2/message/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto2MessageIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto2/oneof/nonzero": suites.Case{
 			Message:  &cases.RequiredProto2Oneof{Val: &cases.RequiredProto2Oneof_A{A: "foo"}},
 			Expected: results.Success(true),
@@ -100,6 +112,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto2/oneof/other_member/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto2OneofIgnoreAlways{Val: &cases.RequiredProto2OneofIgnoreAlways_B{B: "foo"}},
+			Expected: results.Success(true),
+		},
 		"proto2/oneof/unset": suites.Case{
 			Message: &cases.RequiredProto2Oneof{},
 			Expected: results.Violations(&validate.Violation{
@@ -107,6 +123,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto2/oneof/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto2OneofIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto2/repeated/nonempty": suites.Case{
 			Message:  &cases.RequiredProto2Repeated{Val: []string{"foo"}},
@@ -120,6 +140,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto2/repeated/empty/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto2RepeatedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto2/map/nonempty": suites.Case{
 			Message:  &cases.RequiredProto2Map{Val: map[string]string{"foo": "bar"}},
 			Expected: results.Success(true),
@@ -132,6 +156,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto2/map/empty/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto2MapIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto3/scalar/nonzero": suites.Case{
 			Message:  &cases.RequiredProto3Scalar{Val: "foo"},
 			Expected: results.Success(true),
@@ -143,6 +171,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto3/scalar/zero/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto3ScalarIgnoreAlways{Val: ""},
+			Expected: results.Success(true),
 		},
 		"proto3/scalar/optional/nonzero": suites.Case{
 			Message:  &cases.RequiredProto3OptionalScalar{Val: proto.String("foo")},
@@ -160,6 +192,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto3/scalar/optional/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto3OptionalScalarIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto3/message/nonzero": suites.Case{
 			Message:  &cases.RequiredProto3Message{Val: &cases.RequiredProto3Message_Msg{Val: "foo"}},
 			Expected: results.Success(true),
@@ -175,6 +211,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto3/message/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto3MessageIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto3/oneof/nonzero": suites.Case{
 			Message:  &cases.RequiredProto3OneOf{Val: &cases.RequiredProto3OneOf_A{A: "foo"}},
@@ -192,6 +232,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto3/oneof/other_member/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto3OneOfIgnoreAlways{Val: &cases.RequiredProto3OneOfIgnoreAlways_B{B: "foo"}},
+			Expected: results.Success(true),
+		},
 		"proto3/oneof/unset": suites.Case{
 			Message: &cases.RequiredProto3OneOf{},
 			Expected: results.Violations(&validate.Violation{
@@ -199,6 +243,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto3/oneof/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto3OneOfIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto3/repeated/nonempty": suites.Case{
 			Message:  &cases.RequiredProto3Repeated{Val: []string{"foo"}},
@@ -212,6 +260,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto3/repeated/empty/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto3RepeatedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto3/map/nonempty": suites.Case{
 			Message:  &cases.RequiredProto3Map{Val: map[string]string{"foo": "bar"}},
 			Expected: results.Success(true),
@@ -223,6 +275,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto3/map/empty/ignore_always": suites.Case{
+			Message:  &cases.RequiredProto3MapIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/explicit_presence/nonzero": suites.Case{
 			Message:  &cases.RequiredEditionsScalarExplicitPresence{Val: proto.String("foo")},
@@ -239,6 +295,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto/2023/scalar/explicit_presence/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresenceIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/explicit_presence_with_default/nonzero": suites.Case{
 			Message:  &cases.RequiredEditionsScalarExplicitPresenceDefault{Val: proto.String("bar")},
@@ -260,6 +320,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto/2023/scalar/explicit_presence_with_default/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsScalarExplicitPresenceDefaultIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto/2023/scalar/implicit_presence/nonzero": suites.Case{
 			Message:  &cases.RequiredEditionsScalarImplicitPresence{Val: "foo"},
 			Expected: results.Success(true),
@@ -271,6 +335,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto/2023/scalar/implicit_presence/zero/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsScalarImplicitPresenceIgnoreAlways{Val: ""},
+			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/legacy_required/nonzero": suites.Case{
 			Message:  &cases.RequiredEditionsScalarLegacyRequired{Val: proto.String("foo")},
@@ -296,6 +364,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto/2023/message/explicit_presence/length_prefixed/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresenceIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto/2023/message/explicit_presence/delimited/nonzero": suites.Case{
 			Message:  &cases.RequiredEditionsMessageExplicitPresenceDelimited{Val: &cases.RequiredEditionsMessageExplicitPresenceDelimited_Msg{Val: proto.String("foo")}},
 			Expected: results.Success(true),
@@ -311,6 +383,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto/2023/message/explicit_presence/delimited/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsMessageExplicitPresenceDelimitedIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto/2023/message/legacy_required/length_prefixed/nonzero": suites.Case{
 			Message:  &cases.RequiredEditionsMessageLegacyRequired{Val: &cases.RequiredEditionsMessageLegacyRequired_Msg{Val: proto.String("foo")}},
@@ -344,6 +420,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto/2023/oneof/other_member/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsOneofIgnoreAlways{Val: &cases.RequiredEditionsOneofIgnoreAlways_B{B: "foo"}},
+			Expected: results.Success(true),
+		},
 		"proto/2023/oneof/unset": suites.Case{
 			Message: &cases.RequiredEditionsOneof{},
 			Expected: results.Violations(&validate.Violation{
@@ -351,6 +431,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto/2023/oneof/unset/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsOneofIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 		"proto/2023/repeated/compact/nonempty": suites.Case{
 			Message:  &cases.RequiredEditionsRepeated{Val: []string{"foo"}},
@@ -364,6 +448,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto/2023/repeated/compact/empty/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsRepeatedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto/2023/repeated/expanded/nonempty": suites.Case{
 			Message:  &cases.RequiredEditionsRepeatedExpanded{Val: []string{"foo"}},
 			Expected: results.Success(true),
@@ -376,6 +464,10 @@ func requiredSuite() suites.Suite {
 				ConstraintId: proto.String("required"),
 			}),
 		},
+		"proto/2023/repeated/expanded/empty/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsRepeatedExpandedIgnoreAlways{},
+			Expected: results.Success(true),
+		},
 		"proto/2023/map/nonempty": suites.Case{
 			Message:  &cases.RequiredEditionsMap{Val: map[string]string{"foo": "bar"}},
 			Expected: results.Success(true),
@@ -387,6 +479,10 @@ func requiredSuite() suites.Suite {
 				Rule:         results.FieldPath("required"),
 				ConstraintId: proto.String("required"),
 			}),
+		},
+		"proto/2023/map/empty/ignore_always": suites.Case{
+			Message:  &cases.RequiredEditionsMapIgnoreAlways{},
+			Expected: results.Success(true),
 		},
 	}
 }

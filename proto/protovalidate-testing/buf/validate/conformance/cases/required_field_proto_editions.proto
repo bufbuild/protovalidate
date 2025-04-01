@@ -21,6 +21,12 @@ import "buf/validate/validate.proto";
 message RequiredEditionsScalarExplicitPresence {
   string val = 1 [(buf.validate.field).required = true];
 }
+message RequiredEditionsScalarExplicitPresenceIgnoreAlways {
+  string val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
 
 message RequiredEditionsScalarExplicitPresenceDefault {
   string val = 1 [
@@ -28,11 +34,25 @@ message RequiredEditionsScalarExplicitPresenceDefault {
     default = "foo"
   ];
 }
+message RequiredEditionsScalarExplicitPresenceDefaultIgnoreAlways {
+  string val = 1 [
+    (buf.validate.field).required = true,
+    default = "foo",
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
 
 message RequiredEditionsScalarImplicitPresence {
   string val = 1 [
     features.field_presence = IMPLICIT,
     (buf.validate.field).required = true
+  ];
+}
+message RequiredEditionsScalarImplicitPresenceIgnoreAlways {
+  string val = 1 [
+    features.field_presence = IMPLICIT,
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
   ];
 }
 
@@ -49,11 +69,30 @@ message RequiredEditionsMessageExplicitPresence {
     string val = 1;
   }
 }
+message RequiredEditionsMessageExplicitPresenceIgnoreAlways {
+  Msg val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
 
 message RequiredEditionsMessageExplicitPresenceDelimited {
   Msg val = 1 [
     features.message_encoding = DELIMITED,
     (buf.validate.field).required = true
+  ];
+  message Msg {
+    string val = 1;
+  }
+}
+message RequiredEditionsMessageExplicitPresenceDelimitedIgnoreAlways {
+  Msg val = 1 [
+    features.message_encoding = DELIMITED,
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
   ];
   message Msg {
     string val = 1;
@@ -87,9 +126,24 @@ message RequiredEditionsOneof {
     string b = 2;
   }
 }
+message RequiredEditionsOneofIgnoreAlways {
+  oneof val {
+    string a = 1 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).ignore = IGNORE_ALWAYS
+    ];
+    string b = 2;
+  }
+}
 
 message RequiredEditionsRepeated {
   repeated string val = 1 [(buf.validate.field).required = true];
+}
+message RequiredEditionsRepeatedIgnoreAlways {
+  repeated string val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
 }
 
 message RequiredEditionsRepeatedExpanded {
@@ -98,7 +152,20 @@ message RequiredEditionsRepeatedExpanded {
     (buf.validate.field).required = true
   ];
 }
+message RequiredEditionsRepeatedExpandedIgnoreAlways {
+  repeated string val = 1 [
+    features.repeated_field_encoding = EXPANDED,
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
 
 message RequiredEditionsMap {
   map<string, string> val = 1 [(buf.validate.field).required = true];
+}
+message RequiredEditionsMapIgnoreAlways {
+  map<string, string> val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
 }
