@@ -19,9 +19,9 @@ The following direct links can be used to find the examples that used to be in t
 
 [buf]: https://buf.build
 [protovalidate]: https://buf.build/docs/protovalidate/overview/
-[protovalidate-examples]: https://github.com/bufbuild/protovalidate-examples
-[standard-rules-example]: https://github.com/bufbuild/protovalidate-examples/tree/main/standard-rules-example
-[custom-rules-example]: https://github.com/bufbuild/protovalidate-examples/tree/main/custom-rules-example
+[protovalidate-examples]: https://github.com/bufbuild/buf-examples/protovalidate
+[standard-rules-example]: https://github.com/bufbuild/buf-examples/protovalidate/tree/main/rules-standard
+[custom-rules-example]: https://github.com/bufbuild/buf-examples/protovalidate/tree/main/rules-custom
 [quickstart]: https://buf.build/docs/protovalidate/quickstart/
 [standard-rules]: https://buf.build/docs/protovalidate/schemas/standard-rules/
 [custom-rules]: https://buf.build/docs/protovalidate/schemas/custom-rules/
