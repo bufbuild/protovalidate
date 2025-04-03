@@ -59,7 +59,7 @@ Comprehensive documentation for Protovalidate is available in [Buf's documentati
 Highlights include:
 
 * The [developer quickstart][quickstart]
-* Comprehensive RPC how-to's for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-java], and [gRPC and Python][grpc-python]
+* Comprehensive RPC quickstarts for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-java], and [gRPC and Python][grpc-python]
 * A [migration guide for protoc-gen-validate][migration-guide] users
 
 ## Contribution
@@ -95,10 +95,10 @@ Offered under the [Apache 2 license][license].
 [conformance]: https://github.com/bufbuild/protovalidate/blob/main/docs/conformance.md
 [ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
 
-[protovalidate]: https://buf.build/docs/protovalidate/overview/
+[protovalidate]: https://buf.build/docs/protovalidate/
 [quickstart]: https://buf.build/docs/protovalidate/quickstart/
-[connect-go]: https://buf.build/docs/protovalidate/how-to/connect-go/
-[grpc-go]: https://buf.build/docs/protovalidate/how-to/grpc-go/
-[grpc-java]: https://buf.build/docs/protovalidate/how-to/grpc-java/
-[grpc-python]: https://buf.build/docs/protovalidate/how-to/grpc-python/
+[connect-go]: https://buf.build/docs/protovalidate/quickstart/connect-go/
+[grpc-go]: https://buf.build/docs/protovalidate/quickstart/grpc-go/
+[grpc-java]: https://buf.build/docs/protovalidate/quickstart/grpc-java/
+[grpc-python]: https://buf.build/docs/protovalidate/quickstart/grpc-python/
 [migration-guide]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/

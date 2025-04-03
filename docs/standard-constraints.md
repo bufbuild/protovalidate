@@ -5,5 +5,5 @@
 This page has moved to [standard rules][standard-rules] within [Protovalidate's documentation][protovalidate] at [Buf][buf].
 
 [buf]: https://buf.build
-[protovalidate]: https://buf.build/docs/protovalidate/overview/
+[protovalidate]: https://buf.build/docs/protovalidate/
 [standard-rules]: https://buf.build/docs/protovalidate/schemas/standard-rules/
