@@ -19,7 +19,7 @@ The following direct links can be used to find the examples that used to be in t
 
 [buf]: https://buf.build
 [protovalidate]: https://buf.build/docs/protovalidate/
-[protovalidate-examples]: https://github.com/bufbuild/buf-examples/protovalidate
+[protovalidate-examples]: https://github.com/bufbuild/buf-examples/tree/main/protovalidate
 [standard-rules-example]: https://github.com/bufbuild/buf-examples/protovalidate/tree/main/rules-standard
 [custom-rules-example]: https://github.com/bufbuild/buf-examples/protovalidate/tree/main/rules-custom
 [quickstart]: https://buf.build/docs/protovalidate/quickstart/
