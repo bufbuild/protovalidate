@@ -2,7 +2,7 @@
 
 # Examples
 
-Protovalidate examples have moved to the [protovalidate-examples repository][protovalidate-examples]. 
+Protovalidate examples have moved to the [buf-examples repository][protovalidate-examples]. 
 
 ## Direct links to examples
 
