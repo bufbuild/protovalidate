@@ -21,13 +21,34 @@ import "buf/validate/validate.proto";
 message RequiredProto3Scalar {
   string val = 1 [(buf.validate.field).required = true];
 }
+message RequiredProto3ScalarIgnoreAlways {
+  string val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
 
 message RequiredProto3OptionalScalar {
   optional string val = 1 [(buf.validate.field).required = true];
 }
+message RequiredProto3OptionalScalarIgnoreAlways {
+  optional string val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
 
 message RequiredProto3Message {
   Msg val = 1 [(buf.validate.field).required = true];
+  message Msg {
+    string val = 1;
+  }
+}
+message RequiredProto3MessageIgnoreAlways {
+  Msg val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
   message Msg {
     string val = 1;
   }
@@ -39,11 +60,32 @@ message RequiredProto3OneOf {
     string b = 2;
   }
 }
+message RequiredProto3OneOfIgnoreAlways {
+  oneof val {
+    string a = 1 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).ignore = IGNORE_ALWAYS
+    ];
+    string b = 2;
+  }
+}
 
 message RequiredProto3Repeated {
   repeated string val = 1 [(buf.validate.field).required = true];
 }
+message RequiredProto3RepeatedIgnoreAlways {
+  repeated string val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
 
 message RequiredProto3Map {
   map<string, string> val = 1 [(buf.validate.field).required = true];
+}
+message RequiredProto3MapIgnoreAlways {
+  map<string, string> val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
 }
