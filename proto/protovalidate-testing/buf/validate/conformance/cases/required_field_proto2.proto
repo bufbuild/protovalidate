@@ -19,6 +19,9 @@ package buf.validate.conformance.cases;
 import "buf/validate/validate.proto";
 
 message RequiredProto2ScalarOptional {
+  optional string val = 1 [(buf.validate.field).required = true];
+}
+message RequiredProto2ScalarOptionalIgnoreAlways {
   optional string val = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).ignore = IGNORE_ALWAYS
@@ -28,8 +31,14 @@ message RequiredProto2ScalarOptional {
 message RequiredProto2ScalarOptionalDefault {
   optional string val = 1 [
     (buf.validate.field).required = true,
-    (buf.validate.field).ignore = IGNORE_ALWAYS,
     default = "foo"
+  ];
+}
+message RequiredProto2ScalarOptionalDefaultIgnoreAlways {
+  optional string val = 1 [
+    (buf.validate.field).required = true,
+    default = "foo",
+    (buf.validate.field).ignore = IGNORE_ALWAYS
   ];
 }
 
@@ -43,6 +52,15 @@ message RequiredProto2Message {
     optional string val = 1;
   }
 }
+message RequiredProto2MessageIgnoreAlways {
+  optional Msg val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+  message Msg {
+    optional string val = 1;
+  }
+}
 
 message RequiredProto2Oneof {
   oneof val {
@@ -50,11 +68,32 @@ message RequiredProto2Oneof {
     string b = 2;
   }
 }
+message RequiredProto2OneofIgnoreAlways {
+  oneof val {
+    string a = 1 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).ignore = IGNORE_ALWAYS
+    ];
+    string b = 2;
+  }
+}
 
 message RequiredProto2Repeated {
   repeated string val = 1 [(buf.validate.field).required = true];
 }
+message RequiredProto2RepeatedIgnoreAlways {
+  repeated string val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+}
 
 message RequiredProto2Map {
   map<string, string> val = 1 [(buf.validate.field).required = true];
+}
+message RequiredProto2MapIgnoreAlways {
+  map<string, string> val = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
 }
