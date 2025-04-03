@@ -35,7 +35,6 @@ assignees: ''
 - **Version**: <!--[e.g., macOS 10.15.7, Windows 10, Ubuntu 20.04]-->
 - **Compiler/Toolchain**: <!--[e.g., GCC 9.3.0, Clang 10.0.0]-->
 - **Protobuf Compiler & Version**: <!--[e.g. buf v1.17.0, protoc 3.17.3]-->
-- **Protoc-gen-validate Version**: <!--[if applicable, e.g., v0.6.1]-->
 - **Protovalidate Version**: <!--[if applicable, e.g., v1.0.2]-->
 
 ## Possible Solution
