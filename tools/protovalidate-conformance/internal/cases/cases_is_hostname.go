@@ -220,5 +220,13 @@ func isHostnameSuite() suites.Suite {
 				},
 			),
 		},
+		"invalid/fuzz1": {
+			Message: &cases.IsHostname{Val: "İ"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_hostname"),
+				},
+			),
+		},
 	}
 }
