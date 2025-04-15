@@ -120,6 +120,38 @@ func isHostAndPortSuite() suites.Suite {
 			Message:  &cases.IsHostAndPort{Val: "example.com:0", PortRequired: true},
 			Expected: results.Success(true),
 		},
+		"port_required/true/invalid/port_double_zero": {
+			Message: &cases.IsHostAndPort{Val: "example.com:00", PortRequired: true},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_host_and_port"),
+				},
+			),
+		},
+		"port_required/true/invalid/port_leading_zero": {
+			Message: &cases.IsHostAndPort{Val: "example.com:080", PortRequired: true},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_host_and_port"),
+				},
+			),
+		},
+		"port_required/false/invalid/port_double_zero": {
+			Message: &cases.IsHostAndPort{Val: "example.com:00"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_host_and_port"),
+				},
+			),
+		},
+		"port_required/false/invalid/port_leading_zero": {
+			Message: &cases.IsHostAndPort{Val: "example.com:080"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_host_and_port"),
+				},
+			),
+		},
 		"port_required/true/invalid/port_number_sign": {
 			Message: &cases.IsHostAndPort{Val: "example.com:+0", PortRequired: true},
 			Expected: results.Violations(
@@ -298,6 +330,10 @@ func isHostAndPortSuite() suites.Suite {
 		},
 		"port_required/false/valid/ipv6_zone-id_any_non_null_character": {
 			Message:  &cases.IsHostAndPort{Val: "[::1%% :x\x1F]"},
+			Expected: results.Success(true),
+		},
+		"port_required/false/valid/ipv6_zone-id_any_non_null_character_2": {
+			Message:  &cases.IsHostAndPort{Val: "[::0%00]]"},
 			Expected: results.Success(true),
 		},
 		"port_required/false/invalid/ipv4_in_brackets": {
