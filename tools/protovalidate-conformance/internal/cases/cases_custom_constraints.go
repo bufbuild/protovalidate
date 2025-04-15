@@ -367,8 +367,8 @@ func customSuite() suites.Suite {
 		"field_expression/map/string/invalid": {
 			Message: &custom_constraints.FieldExpressionMapString{
 				Val: map[string]string{
-					"bar": "foo",
-					"baz": "bing",
+					"test": "foo",
+					"bar":  "baz",
 				},
 			},
 			Expected: results.Violations(
