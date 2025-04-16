@@ -1818,40 +1818,40 @@ const file_buf_validate_conformance_cases_custom_constraints_custom_constraints_
 	"\x03val\x18\x01 \x01(\v2M.buf.validate.conformance.cases.custom_constraints.FieldExpressionMessage.MsgBT\xbaHQ\xba\x01N\n" +
 	"\x18field_expression.message\x12%test message field_expression.message\x1a\vthis.a == 1R\x03val\x1a\x13\n" +
 	"\x03Msg\x12\f\n" +
-	"\x01a\x18\x01 \x01(\x05R\x01a\"\xa3\x02\n" +
-	"\x17FieldExpressionMapInt32\x12\xcf\x01\n" +
-	"\x03val\x18\x01 \x03(\v2S.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapInt32.ValEntryBh\xbaHe\xba\x01b\n" +
-	"\x1bfield_expression.map.scalar\x12(test message field_expression.map.scalar\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
+	"\x01a\x18\x01 \x01(\x05R\x01a\"\x95\x02\n" +
+	"\x17FieldExpressionMapInt32\x12\xc1\x01\n" +
+	"\x03val\x18\x01 \x03(\v2S.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapInt32.ValEntryBZ\xbaHW\xba\x01T\n" +
+	"\x1afield_expression.map.int32\x12\x1ball map values must equal 1\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xa3\x02\n" +
-	"\x17FieldExpressionMapInt64\x12\xcf\x01\n" +
-	"\x03val\x18\x01 \x03(\v2S.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapInt64.ValEntryBh\xbaHe\xba\x01b\n" +
-	"\x1bfield_expression.map.scalar\x12(test message field_expression.map.scalar\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\x95\x02\n" +
+	"\x17FieldExpressionMapInt64\x12\xc1\x01\n" +
+	"\x03val\x18\x01 \x03(\v2S.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapInt64.ValEntryBZ\xbaHW\xba\x01T\n" +
+	"\x1afield_expression.map.int64\x12\x1ball map values must equal 1\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x03R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01\"\xa5\x02\n" +
-	"\x18FieldExpressionMapUint32\x12\xd0\x01\n" +
-	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapUint32.ValEntryBh\xbaHe\xba\x01b\n" +
-	"\x1bfield_expression.map.scalar\x12(test message field_expression.map.scalar\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
+	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01\"\x98\x02\n" +
+	"\x18FieldExpressionMapUint32\x12\xc3\x01\n" +
+	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapUint32.ValEntryB[\xbaHX\xba\x01U\n" +
+	"\x1bfield_expression.map.uint32\x12\x1ball map values must equal 1\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\rR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\rR\x05value:\x028\x01\"\xa5\x02\n" +
-	"\x18FieldExpressionMapUint64\x12\xd0\x01\n" +
-	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapUint64.ValEntryBh\xbaHe\xba\x01b\n" +
-	"\x1bfield_expression.map.scalar\x12(test message field_expression.map.scalar\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
+	"\x05value\x18\x02 \x01(\rR\x05value:\x028\x01\"\x98\x02\n" +
+	"\x18FieldExpressionMapUint64\x12\xc3\x01\n" +
+	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapUint64.ValEntryB[\xbaHX\xba\x01U\n" +
+	"\x1bfield_expression.map.uint64\x12\x1ball map values must equal 1\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x04R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\"\xa5\x02\n" +
-	"\x16FieldExpressionMapBool\x12\xd2\x01\n" +
-	"\x03val\x18\x01 \x03(\v2R.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapBool.ValEntryBl\xbaHi\xba\x01f\n" +
-	"\x1bfield_expression.map.scalar\x12(test message field_expression.map.scalar\x1a\x1dthis.all(k, this[k] == false)R\x03val\x1a6\n" +
+	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\"\x9a\x02\n" +
+	"\x16FieldExpressionMapBool\x12\xc7\x01\n" +
+	"\x03val\x18\x01 \x03(\v2R.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapBool.ValEntryBa\xbaH^\xba\x01[\n" +
+	"\x19field_expression.map.bool\x12\x1fall map values must equal false\x1a\x1dthis.all(k, this[k] == false)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\bR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"\xa9\x02\n" +
-	"\x18FieldExpressionMapString\x12\xd4\x01\n" +
-	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapString.ValEntryBl\xbaHi\xba\x01f\n" +
-	"\x1bfield_expression.map.scalar\x12(test message field_expression.map.scalar\x1a\x1dthis.all(k, this[k] == 'foo')R\x03val\x1a6\n" +
+	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"\xa0\x02\n" +
+	"\x18FieldExpressionMapString\x12\xcb\x01\n" +
+	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_constraints.FieldExpressionMapString.ValEntryBc\xbaH`\xba\x01]\n" +
+	"\x1bfield_expression.map.string\x12\x1fall map values must equal 'foo'\x1a\x1dthis.all(k, this[k] == 'foo')R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xd6\x02\n" +
