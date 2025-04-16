@@ -164,43 +164,43 @@ message FieldExpressionMessage {
 }
 message FieldExpressionMapInt32 {
   map<int32, int32> val = 1 [(buf.validate.field).cel = {
-    id: "field_expression.map.scalar"
-    message: "test message field_expression.map.scalar"
+    id: "field_expression.map.int32"
+    message: "all map values must equal 1"
     expression: "this.all(k, this[k] == 1)"
   }];
 }
 message FieldExpressionMapInt64 {
   map<int64, int64> val = 1 [(buf.validate.field).cel = {
-    id: "field_expression.map.scalar"
-    message: "test message field_expression.map.scalar"
+    id: "field_expression.map.int64"
+    message: "all map values must equal 1"
     expression: "this.all(k, this[k] == 1)"
   }];
 }
 message FieldExpressionMapUint32 {
   map<uint32, uint32> val = 1 [(buf.validate.field).cel = {
-    id: "field_expression.map.scalar"
-    message: "test message field_expression.map.scalar"
+    id: "field_expression.map.uint32"
+    message: "all map values must equal 1"
     expression: "this.all(k, this[k] == 1)"
   }];
 }
 message FieldExpressionMapUint64 {
   map<uint64, uint64> val = 1 [(buf.validate.field).cel = {
-    id: "field_expression.map.scalar"
-    message: "test message field_expression.map.scalar"
+    id: "field_expression.map.uint64"
+    message: "all map values must equal 1"
     expression: "this.all(k, this[k] == 1)"
   }];
 }
 message FieldExpressionMapBool {
   map<bool, bool> val = 1 [(buf.validate.field).cel = {
-    id: "field_expression.map.scalar"
-    message: "test message field_expression.map.scalar"
+    id: "field_expression.map.bool"
+    message: "all map values must equal false"
     expression: "this.all(k, this[k] == false)"
   }];
 }
 message FieldExpressionMapString {
   map<string, string> val = 1 [(buf.validate.field).cel = {
-    id: "field_expression.map.scalar"
-    message: "test message field_expression.map.scalar"
+    id: "field_expression.map.string"
+    message: "all map values must equal 'foo'"
     expression: "this.all(k, this[k] == 'foo')"
   }];
 }
