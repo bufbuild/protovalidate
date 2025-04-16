@@ -232,16 +232,16 @@ func customSuite() suites.Suite {
 				},
 			),
 		},
-		"field_expression/map/scalar/valid": {
-			Message: &custom_constraints.FieldExpressionMapScalar{
+		"field_expression/map/int32/valid": {
+			Message: &custom_constraints.FieldExpressionMapInt32{
 				Val: map[int32]int32{
 					1: 1,
 				},
 			},
 			Expected: results.Success(true),
 		},
-		"field_expression/map/scalar/invalid": {
-			Message: &custom_constraints.FieldExpressionMapScalar{
+		"field_expression/map/int32/invalid": {
+			Message: &custom_constraints.FieldExpressionMapInt32{
 				Val: map[int32]int32{
 					1: 1,
 					2: 2,
@@ -251,9 +251,132 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.scalar"),
+					ConstraintId: proto.String("field_expression.map.int32"),
 					Rule:         results.FieldPath("cel[0]"),
-					Message:      proto.String("test message field_expression.map.scalar"),
+					Message:      proto.String("all map values must equal 1"),
+				},
+			),
+		},
+		"field_expression/map/int64/valid": {
+			Message: &custom_constraints.FieldExpressionMapInt64{
+				Val: map[int64]int64{
+					1: 1,
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"field_expression/map/int64/invalid": {
+			Message: &custom_constraints.FieldExpressionMapInt64{
+				Val: map[int64]int64{
+					1: 1,
+					2: 2,
+					3: 1,
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					ConstraintId: proto.String("field_expression.map.int64"),
+					Rule:         results.FieldPath("cel[0]"),
+					Message:      proto.String("all map values must equal 1"),
+				},
+			),
+		},
+		"field_expression/map/uint32/valid": {
+			Message: &custom_constraints.FieldExpressionMapUint32{
+				Val: map[uint32]uint32{
+					1: 1,
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"field_expression/map/uint32/invalid": {
+			Message: &custom_constraints.FieldExpressionMapUint32{
+				Val: map[uint32]uint32{
+					1: 1,
+					2: 2,
+					3: 1,
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					ConstraintId: proto.String("field_expression.map.uint32"),
+					Rule:         results.FieldPath("cel[0]"),
+					Message:      proto.String("all map values must equal 1"),
+				},
+			),
+		},
+		"field_expression/map/uint64/valid": {
+			Message: &custom_constraints.FieldExpressionMapUint64{
+				Val: map[uint64]uint64{
+					1: 1,
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"field_expression/map/uint64/invalid": {
+			Message: &custom_constraints.FieldExpressionMapUint64{
+				Val: map[uint64]uint64{
+					1: 1,
+					2: 2,
+					3: 1,
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					ConstraintId: proto.String("field_expression.map.uint64"),
+					Rule:         results.FieldPath("cel[0]"),
+					Message:      proto.String("all map values must equal 1"),
+				},
+			),
+		},
+		"field_expression/map/bool/valid": {
+			Message: &custom_constraints.FieldExpressionMapBool{
+				Val: map[bool]bool{
+					true: false,
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"field_expression/map/bool/invalid": {
+			Message: &custom_constraints.FieldExpressionMapBool{
+				Val: map[bool]bool{
+					true:  false,
+					false: true,
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					ConstraintId: proto.String("field_expression.map.bool"),
+					Rule:         results.FieldPath("cel[0]"),
+					Message:      proto.String("all map values must equal false"),
+				},
+			),
+		},
+		"field_expression/map/string/valid": {
+			Message: &custom_constraints.FieldExpressionMapString{
+				Val: map[string]string{
+					"test": "foo",
+				},
+			},
+			Expected: results.Success(true),
+		},
+		"field_expression/map/string/invalid": {
+			Message: &custom_constraints.FieldExpressionMapString{
+				Val: map[string]string{
+					"test": "foo",
+					"bar":  "baz",
+				},
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:        results.FieldPath("val"),
+					ConstraintId: proto.String("field_expression.map.string"),
+					Rule:         results.FieldPath("cel[0]"),
+					Message:      proto.String("all map values must equal 'foo'"),
 				},
 			),
 		},
