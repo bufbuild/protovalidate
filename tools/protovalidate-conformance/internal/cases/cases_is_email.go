@@ -84,6 +84,22 @@ func isEmailSuite() suites.Suite {
 				},
 			),
 		},
+		"invalid/leading_newline": {
+			Message: &cases.IsEmail{Val: "\nfoobar@example.com"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_email"),
+				},
+			),
+		},
+		"invalid/trailing_newline": {
+			Message: &cases.IsEmail{Val: "foobar@example.com\n"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_email"),
+				},
+			),
+		},
 		"valid/multiple_atext": {
 			Message:  &cases.IsEmail{Val: "foo.bar@example.com"},
 			Expected: results.Success(true),
