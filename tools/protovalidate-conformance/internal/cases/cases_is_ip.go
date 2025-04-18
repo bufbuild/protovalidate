@@ -276,20 +276,8 @@ func isIPSuite() suites.Suite {
 			Message:  &cases.IsIp{Val: "0:0:0:0:0:0:0:0"},
 			Expected: results.Success(true),
 		},
-		"version/omitted/valid/ipv6/h": {
-			Message:  &cases.IsIp{Val: "::1"},
-			Expected: results.Success(true),
-		},
-		"version/omitted/valid/ipv6/i": {
-			Message:  &cases.IsIp{Val: "::"},
-			Expected: results.Success(true),
-		},
 		"version/omitted/valid/ipv6/j": {
 			Message:  &cases.IsIp{Val: "0:00::000:0000"},
-			Expected: results.Success(true),
-		},
-		"version/omitted/valid/ipv6/k": {
-			Message:  &cases.IsIp{Val: "0::"},
 			Expected: results.Success(true),
 		},
 		"version/omitted/valid/ipv6_embedded_ipv4": {
@@ -494,6 +482,142 @@ func isIPSuite() suites.Suite {
 		},
 		"version/omitted/invalid/ipv4/f": {
 			Message: &cases.IsIp{Val: "0x0.0.0.0"},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/6/valid/ipv6/double_colon": {
+			Message:  &cases.IsIp{Val: "::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/1h16_double_colon": {
+			Message:  &cases.IsIp{Val: "1::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/2h16_double_colon": {
+			Message:  &cases.IsIp{Val: "1:2::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/3h16_double_colon": {
+			Message:  &cases.IsIp{Val: "1:2:3::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/4h16_double_colon": {
+			Message:  &cases.IsIp{Val: "1:2:3:4::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/5h16_double_colon": {
+			Message:  &cases.IsIp{Val: "1:2:3:4:5::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/6h16_double_colon": {
+			Message:  &cases.IsIp{Val: "1:2:3:4:5:6::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/7h16_double_colon": {
+			Message:  &cases.IsIp{Val: "1:2:3:4:5:6:7::", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/invalid/ipv6/7h16_double_colon": {
+			Message: &cases.IsIp{Val: "1:2:3:4:5:6:7:8::", Version: proto.Int32(6)},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/6/valid/ipv6/1h16_double_colon_1h16": {
+			Message:  &cases.IsIp{Val: "1::1", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/2h16_double_colon_1h16": {
+			Message:  &cases.IsIp{Val: "1:2::1", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/3h16_double_colon_1h16": {
+			Message:  &cases.IsIp{Val: "1:2:3::1", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/4h16_double_colon_1h16": {
+			Message:  &cases.IsIp{Val: "1:2:3:4::1", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/5h16_double_colon_1h16": {
+			Message:  &cases.IsIp{Val: "1:2:3:4:5::1", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/6h16_double_colon_1h16": {
+			Message:  &cases.IsIp{Val: "1:2:3:4:5:6::1", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/invalid/ipv6/7h16_double_colon_1h16": {
+			Message: &cases.IsIp{Val: "1:2:3:4:5:6:7::1", Version: proto.Int32(6)},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/6/valid/ipv6/double_colon_1h16": {
+			Message:  &cases.IsIp{Val: "::1", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/double_colon_2h16": {
+			Message:  &cases.IsIp{Val: "::1:2", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/double_colon_3h16": {
+			Message:  &cases.IsIp{Val: "::1:2:3", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/double_colon_4h16": {
+			Message:  &cases.IsIp{Val: "::1:2:3:4", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/double_colon_5h16": {
+			Message:  &cases.IsIp{Val: "::1:2:3:4:5", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/double_colon_6h16": {
+			Message:  &cases.IsIp{Val: "::1:2:3:4:5:6", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/double_colon_7h16": {
+			Message:  &cases.IsIp{Val: "::1:2:3:4:5:6:7", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/invalid/ipv6/double_colon_8h16": {
+			Message: &cases.IsIp{Val: "::1:2:3:4:5:6:7:8", Version: proto.Int32(6)},
+			Expected: results.Violations(
+				&validate.Violation{
+					ConstraintId: proto.String("library.is_ip"),
+				},
+			),
+		},
+		"version/6/valid/ipv6/1h16_double_colon_2h16": {
+			Message:  &cases.IsIp{Val: "1::1:2", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/1h16_double_colon_3h16": {
+			Message:  &cases.IsIp{Val: "1::1:2:3", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/1h16_double_colon_4h16": {
+			Message:  &cases.IsIp{Val: "1::1:2:3:4", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/1h16_double_colon_5h16": {
+			Message:  &cases.IsIp{Val: "1::1:2:3:4:5", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/valid/ipv6/1h16_double_colon_6h16": {
+			Message:  &cases.IsIp{Val: "1::1:2:3:4:5:6", Version: proto.Int32(6)},
+			Expected: results.Success(true),
+		},
+		"version/6/invalid/ipv6/1h16_double_colon_7h16": {
+			Message: &cases.IsIp{Val: "1::1:2:3:4:5:6:7", Version: proto.Int32(6)},
 			Expected: results.Violations(
 				&validate.Violation{
 					ConstraintId: proto.String("library.is_ip"),
