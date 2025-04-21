@@ -20,11 +20,12 @@ import (
 	"slices"
 	"strings"
 
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/fieldpath"
-	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 type Result interface {
@@ -84,12 +85,12 @@ func (s successResult) String() string {
 	return "invalid (no further details provided)"
 }
 
-func (s successResult) IsSuccessWith(other Result, options *harness.ResultOptions) bool {
+func (s successResult) IsSuccessWith(other Result, _ *harness.ResultOptions) bool {
 	switch res := other.(type) {
 	case successResult:
 		return s.inner.GetSuccess() == res.inner.GetSuccess()
 	default:
-		return !options.GetStrict() && !s.inner.GetSuccess()
+		return false
 	}
 }
 
@@ -109,23 +110,33 @@ func Violations(violations ...*validate.Violation) Result {
 
 func (v violationsResult) String() string {
 	bldr := &strings.Builder{}
-	errs := v.inner.GetValidationError().GetViolations()
-	_, _ = fmt.Fprintf(bldr, "%d validation error(s)", len(errs))
-	for i, err := range errs {
-		forKey := ""
-		if err.GetForKey() {
-			forKey = " (key)"
+	violations := v.inner.GetValidationError().GetViolations()
+	if len(violations) == 1 {
+		_, _ = fmt.Fprintf(bldr, "validation error (%d violation)", len(violations))
+	} else {
+		_, _ = fmt.Fprintf(bldr, "validation error (%d violations)", len(violations))
+	}
+	for i, violation := range violations {
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. constraint_id: ", resultPadding, i+1)
+		if violation.ConstraintId == nil {
+			bldr.WriteString("<nil>")
+		} else {
+			_, _ = fmt.Fprintf(bldr, "%#v", violation.GetConstraintId())
 		}
-		violationPath := ""
-		if path := err.GetField(); path != nil {
-			violationPath = fieldpath.Marshal(path)
+		if violation.Message != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      message: %#v", resultPadding, violation.GetMessage())
 		}
-		rulePath := ""
-		if path := err.GetRule(); path != nil {
-			rulePath = " (" + fieldpath.Marshal(path) + ")"
+		//nolint:protogetter
+		if violation.Field != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      field: %#v %s", resultPadding, fieldpath.Marshal(violation.GetField()), violation.GetField())
 		}
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. %s%s: %s%s", resultPadding, i+1, violationPath, forKey, err.GetConstraintId(), rulePath)
-		_, _ = fmt.Fprintf(bldr, "\n%s      %s", resultPadding, err.GetMessage())
+		if violation.ForKey != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      for_key: %v", resultPadding, violation.GetForKey())
+		}
+		//nolint:protogetter
+		if violation.Rule != nil {
+			_, _ = fmt.Fprintf(bldr, "\n%s      rule: %#v %s", resultPadding, fieldpath.Marshal(violation.GetRule()), violation.GetRule())
+		}
 	}
 	return bldr.String()
 }
@@ -136,14 +147,11 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 		return res.IsSuccessWith(v, options)
 	case violationsResult:
 		got := res.inner.GetValidationError().GetViolations()
-		if !options.GetStrict() {
-			return len(got) > 0
-		}
 		want := v.inner.GetValidationError().GetViolations()
 		if len(want) != len(got) {
 			return false
 		}
-		for i := range len(want) {
+		for i := range want {
 			matchingField := proto.Equal(want[i].GetField(), got[i].GetField()) &&
 				want[i].GetForKey() == got[i].GetForKey()
 			matchingRule := proto.Equal(want[i].GetRule(), got[i].GetRule())

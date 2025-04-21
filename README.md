@@ -1,258 +1,104 @@
-![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg) 
 
-# protovalidate
+# Protovalidate
 
 [![CI](https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml/badge.svg?branch=main)][ci]
 [![Slack](https://img.shields.io/badge/Slack-Buf-%23e01563)][slack]
 [![BSR](https://img.shields.io/badge/BSR-Module-0C65EC)][buf-mod]
 
-`protovalidate` is a series of libraries designed to validate Protobuf messages at
-runtime based on user-defined validation rules. Powered by Google's Common
-Expression Language ([CEL][cel-spec]), it provides a
-flexible and efficient foundation for defining and evaluating custom validation
-rules. The primary goal of `protovalidate` is to help developers ensure data
-consistency and integrity across the network without requiring generated code.
+[Protovalidate][protovalidate] provides standard annotations to validate common constraints on messages and fields, as well as the ability to use [CEL][cel] to write custom constraints. It's the next generation of [protoc-gen-validate][protoc-gen-validate], the only widely used validation library for Protobuf.
 
-> [!NOTE]
-> If you are migrating from [protoc-gen-validate][pgv], read our [migration guide][migration-guide].
-
-## What is this repository?
-
-This repository is the core of the `protovalidate` project. It contains:
-
-- [The API definition][validate-proto]: used to describe validation constraints
-- [Documentation][docs]: how to apply `protovalidate` effectively
-- [Migration tooling][migrate]: incrementally migrate from `protoc-gen-validate`
-- [Examples][examples]: example `.proto` files using `protovalidate`
-- [Conformance testing utilities][conformance]: for acceptance testing of `protovalidate` implementations
-
-### Implementations
-
-Runtime implementations of `protovalidate` can be found in their own repositories:
-
-- Go: [`protovalidate-go`][pv-go] (beta release)
-- C++: [`protovalidate-cc`][pv-cc] (beta release)
-- Java: [`protovalidate-java`][pv-java] (beta release)
-- Python: [`protovalidate-python`][pv-python] (beta release)
-- TypeScript: `protovalidate-ts` (coming soon)
-
-Interested in adding support for another language? Check out our
-[Contributing Guidelines][contributing].
-
-## Usage
-
-### Import protovalidate
-
-To define constraints within your Protobuf messages,
-import `buf/validate/validate.proto` into your `.proto` files:
+With Protovalidate, you can annotate your Protobuf messages with both standard and custom validation rules:
 
 ```protobuf
 syntax = "proto3";
 
-package my.package;
+package banking.v1;
 
 import "buf/validate/validate.proto";
+
+message MoneyTransfer {
+  string to_account_id = 1 [
+    // Standard rule: `to_account_id` must be a UUID
+    (buf.validate.field).string.uuid = true
+  ];
+
+  string from_account_id = 2 [
+    // Standard rule: `from_account_id` must be a UUID
+    (buf.validate.field).string.uuid = true
+  ];
+
+  // Custom rule: `to_account_id` and `from_account_id` can't be the same.
+  option (buf.validate.message).cel = {
+    id: "to_account_id.not.from_account_id"
+    message: "to_account_id and from_account_id should not be the same value"
+    expression: "this.to_account_id != this.from_account_id"
+  };
+}
 ```
 
-#### Build with [`buf`][buf]
+## Supported Languages
 
-Add a dependency on [`buf.build/bufbuild/protovalidate`][buf-mod] to your
-module's [`buf.yaml`][buf-deps]:
+This repository is the Protovalidate core: the Protobuf definition of its API and [conformance testing utilities][conformance]. 
 
-```yaml
-version: v1
-# <snip>
-deps:
-  - buf.build/bufbuild/protovalidate
-# <snip>
-```
+To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate], or go directly to the repository for your language of choice:
 
-After modifying your `buf.yaml`, don't forget to run `buf mod update` to ensure
-your dependencies are up-to-date.
+- [`protovalidate-go`][pv-go] (Go)
+- [`protovalidate-java`][pv-java] (Java)
+- [`protovalidate-python`][pv-python] (Python)
+- [`protovalidate-cc`][pv-cc] (C++)
+- `protovalidate-es` (TypeScript and JavaScript, coming soon!)
 
-#### Build with `protoc`
-
-Add an import path (`-I` flag) pointing to the contents of the `proto/protovalidate`
-directory to your invocation of `protoc`:
-
-```shell
-protoc \
-  -I ./vendor/protovalidate/proto/protovalidate \
-  # <snip>
-```
-
-### Implementing validation constraints
-
-Validation constraints can be enforced using the `buf.validate` Protobuf package. The rules are specified directly in the `.proto` files.
-
-Let's consider a few examples:
-
-1. **Scalar field validation:** For a basic `User` message, we can enforce constraints such as a minimum length for the user's name.
-
-   ```protobuf
-   syntax = "proto3";
-
-   import "buf/validate/validate.proto";
-
-   message User {
-     // User's name, must be at least 1 character long.
-     string name = 1 [(buf.validate.field).string.min_len = 1];
-   }
-   ```
-
-2. **Map field validation:** For a `Product` message with a map of item quantities, we can ensure that all quantities are positive.
-
-   ```protobuf
-   syntax = "proto3";
-
-   import "buf/validate/validate.proto";
-
-   message Product {
-     // Map of item quantities, all quantities must be positive.
-     map<string, int32> item_quantities = 1 [(buf.validate.field).map.values.int32.gt = 0];
-   }
-   ```
-
-3. **Well-known type (WKT) validation:** For the `User` message, we can add a constraint to ensure the `created_at` timestamp is in the past.
-
-   ```protobuf
-   syntax = "proto3";
-
-   import "google/protobuf/timestamp.proto";
-   import "buf/validate/validate.proto";
-
-   message User {
-     // User's creation date must be in the past.
-     google.protobuf.Timestamp created_at = 1 [(buf.validate.field).timestamp.lt_now = true];
-   }
-   ```
-
-For more advanced or custom constraints, `protovalidate` allows for CEL expressions that can incorporate information across fields.
-
-1. **Field-level expressions:** We can enforce that a products' `price`, sent as a string, includes a currency symbol like "$" or "£". We want to ensure that the price is positive and the currency symbol is valid.
-
-   ```protobuf
-   syntax = "proto3";
-
-   import "buf/validate/validate.proto";
-
-   message Product {
-     string price = 1 [(buf.validate.field).cel = {
-       id: "product.price",
-       message: "Price must be positive and include a valid currency symbol ($ or £)",
-       expression: "(this.startsWith('$') || this.startsWith('£')) && double(this.substring(1)) > 0"
-     }];
-   }
-   ```
-
-2. **Message-level expressions:** For a `Transaction` message, we can use a message-level CEL expression to ensure that the `delivery_date` is always after the `purchase_date`.
-
-   ```protobuf
-   syntax = "proto3";
-
-   import "google/protobuf/timestamp.proto";
-   import "buf/validate/validate.proto";
-
-   message Transaction {
-     google.protobuf.Timestamp purchase_date = 1;
-     google.protobuf.Timestamp delivery_date = 2;
-
-     option (buf.validate.message).cel = {
-       id: "transaction.delivery_date",
-       message: "Delivery date must be after purchase date",
-       expression: "this.delivery_date > this.purchase_date"
-     };
-   }
-   ```
-
-3. **Producing an error message in the expression:** We can produce custom error messages directly in the CEL expressions. In this example, if the `age` is less than 18, the CEL expression will evaluate to the error message string.
-
-   ```protobuf
-   syntax = "proto3";
-
-   import "buf/validate/validate.proto";
-
-   message User {
-     int32 age = 1 [(buf.validate.field).cel = {
-       id: "user.age",
-       expression: "this < 18 ? 'User must be at least 18 years old': ''"
-     }];
-   }
-   ```
-
-Check out [`examples`][examples] for examples on both standard constraints and custom CEL constraints.
-
-### Validate Messages
-
-Once the messages are annotated with constraints, use one of the [supported language libraries](#implementations) to validate; no additional code generation necessary.
+> [!NOTE]  
+> Interested in adding support for another language? Check out our [Contributing Guidelines][contributing].
 
 ## Documentation
 
-`protovalidate` provides a robust framework for validating Protobuf messages by
-enforcing standard and custom constraints on various data types, and offering
-detailed error information when validation violations occur. For a detailed
-overview of all its components, the supported constraints, and how to use them
-effectively, please refer to our [comprehensive documentation](docs/README.md).
-The key components include:
+Comprehensive documentation for Protovalidate is available in [Buf's documentation library][protovalidate].
 
-- [**Standard Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/standard-constraints.md): `protovalidate`
-  supports a wide range of standard
-  constraints for all field types as well as special functionality for the
-  Protobuf Well-Known-Types. You can apply these constraints to your Protobuf
-  messages to ensure they meet certain common conditions.
+Highlights include:
 
-- [**Custom Constraints**](https://github.com/bufbuild/protovalidate/blob/main/docs/custom-constraints.md): With Google's Common
-  Expression Language (CEL),
-  `protovalidate` allows you to create complex, custom constraints to
-  handle unique validation scenarios that aren't covered by the standard
-  constraints at both the field and message level.
+* The [developer quickstart][quickstart]
+* Comprehensive RPC quickstarts for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-java], and [gRPC and Python][grpc-python]
+* A [migration guide for protoc-gen-validate][migration-guide] users
 
-- [**Error Handling**](https://github.com/bufbuild/protovalidate/blob/main/docs/README.md#errors): When a violation
-  occurs, `protovalidate` provides
-  detailed error information to help you quickly identify the source and fix for
-  an issue.
+## Contribution
 
-### protoc-gen-validate
+We genuinely appreciate any help! If you'd like to contribute, check out these resources:
 
-`protovalidate` is the spiritual successor to [`protoc-gen-validate`][pgv], offering
-all of the same functionality present in the original plugin, without the need
-for custom code generation, and the new ability to describe complex constraints in CEL.
+- [Contributing Guidelines][contributing]: Guidelines to make your contribution process straightforward and meaningful
+- [Conformance testing utilities](https://github.com/bufbuild/protovalidate/tree/main/docs/conformance.md): Utilities providing acceptance testing of `protovalidate` implementations
 
-`protovalidate`'s constraints very closely emulate those
-in `protoc-gen-validate` to ensure an easy transition for developers. To
-migrate from `protoc-gen-validate` to `protovalidate`, use the
-provided [migration tool][migration-tool] to
-incrementally upgrade your `.proto` files.
+## Related Sites
 
-## Ecosystem
-
-- [Buf][buf]
-- [CEL Specification][cel-spec]
+- [Buf][buf]: Enterprise-grade Kafka and gRPC for the modern age
+- [Common Expression Language (CEL)][cel]: The open-source technology at the core of Protovalidate
 
 ## Legal
 
 Offered under the [Apache 2 license][license].
 
-[announce]: https://buf.build/blog/protoc-gen-validate-v1-and-v2/
-[buf-deps]: https://buf.build/docs/configuration/v1/buf-yaml/#deps
-[buf-mod]: https://buf.build/bufbuild/protovalidate
 [buf]: https://buf.build
-[cel-spec]: https://github.com/google/cel-spec
-[ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
-[conformance]: https://github.com/bufbuild/protovalidate/blob/main/docs/conformance.md
-[contributing]: https://github.com/bufbuild/protovalidate/blob/main/.github/CONTRIBUTING.md
-[docs]: https://github.com/bufbuild/protovalidate/blob/main/docs
-[examples]: https://github.com/bufbuild/protovalidate/tree/main/examples
-[file-bug]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Bug&template=bug_report.md&title=%5BBUG%5D
-[file-feature-request]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Feature&template=feature_request.md&title=%5BFeature+Request%5D
-[license]: https://github.com/bufbuild/protovalidate/blob/main/LICENSE
-[migrate]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/
-[migration-tool]: https://github.com/bufbuild/protovalidate/blob/main/tools/protovalidate-migrate
-[pgv]: https://github.com/bufbuild/protoc-gen-validate
+[cel]: https://cel.dev
+
 [pv-go]: https://github.com/bufbuild/protovalidate-go
-[pv-cc]: https://github.com/bufbuild/protovalidate-cc
 [pv-java]: https://github.com/bufbuild/protovalidate-java
 [pv-python]: https://github.com/bufbuild/protovalidate-python
+[pv-cc]: https://github.com/bufbuild/protovalidate-cc
+
+[buf-mod]: https://buf.build/bufbuild/protovalidate
 [slack]: https://buf.build/links/slack
-[validate-proto]: https://buf.build/bufbuild/protovalidate/docs/main:buf.validate
+[license]: LICENSE
+[contributing]: .github/CONTRIBUTING.md
+
+[protoc-gen-validate]: https://github.com/bufbuild/protoc-gen-validate
+[conformance]: https://github.com/bufbuild/protovalidate/blob/main/docs/conformance.md
+[ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
+
+[protovalidate]: https://buf.build/docs/protovalidate/
+[quickstart]: https://buf.build/docs/protovalidate/quickstart/
+[connect-go]: https://buf.build/docs/protovalidate/quickstart/connect-go/
+[grpc-go]: https://buf.build/docs/protovalidate/quickstart/grpc-go/
+[grpc-java]: https://buf.build/docs/protovalidate/quickstart/grpc-java/
+[grpc-python]: https://buf.build/docs/protovalidate/quickstart/grpc-python/
 [migration-guide]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/

@@ -93,7 +93,7 @@ func durationSuite() suites.Suite {
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("duration.in"),
 				ConstraintId: proto.String("duration.in"),
-				Message:      proto.String(`value must be in list [duration("1s"), duration("0.000001s")]`),
+				Message:      proto.String(`value must be in list [1s, 0.000001s]`),
 			}),
 		},
 		"not in/valid": {
@@ -115,7 +115,7 @@ func durationSuite() suites.Suite {
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("duration.not_in"),
 				ConstraintId: proto.String("duration.not_in"),
-				Message:      proto.String(`value must not be in list [duration("0s")]`),
+				Message:      proto.String(`value must not be in list [0s]`),
 			}),
 		},
 		"lt/valid": {

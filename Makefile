@@ -104,5 +104,4 @@ $(BIN)/license-header: $(BIN) Makefile
 		  github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@latest
 
 $(BIN)/golangci-lint: $(BIN) Makefile
-	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.60.2
-
+	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.64.7

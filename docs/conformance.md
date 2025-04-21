@@ -1,3 +1,5 @@
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
+
 # Conformance test harness
 
 The `protovalidate` conformance tests provide a rigorous set of tests to ensure
@@ -26,10 +28,8 @@ You can customize the behavior of the tests using the following flags:
 | `--case <regex>`       | Filter cases using the provided regular expression.                                                 | None          |
 | `--timeout <duration>` | Set a per-suite timeout.                                                                            | 5 seconds     |
 | `--verbose`, `-v`      | Enable verbose output.                                                                              | `false`       |
-| `--strict`             | Enable strict mode. Require that the violation type is an exact match.                              | `false`       |
 | `--strict_message`     | Require that violation messages match the expected message exactly.                                 | `false`       |
 | `--strict_error`       | Require that compile-time errors are distinguished from runtime errors.                             | `false`       |
-| `--json`               | Return results as JSON serialized message `buf.validate.conformance.harness.ResultSet` to stdout.   | `false`       |
 | `--proto`              | Return results as binary serialized message `buf.validate.conformance.harness.ResultSet` to stdout. | `false`       |
 | `--dump`               | Output the expected results, without a command.                                                     | `false`       |
 | `--expected_failures`  | `.yaml` file containing list of expected failures                                                   | None          |

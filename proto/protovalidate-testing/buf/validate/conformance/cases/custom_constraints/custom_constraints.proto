@@ -70,48 +70,6 @@ message MessageExpressions {
   }
 }
 
-message FieldExpressions {
-  int32 a = 1 [(field).cel = {
-    id: "field_expression_scalar"
-    expression:
-      "this > 42 ? ''"
-      ": 'a must be greater than 42'"
-  }];
-  Enum b = 2 [(field).cel = {
-    id: "field_expression_enum"
-    message: "b must be ~ONE"
-    expression: "this == 1"
-  }];
-  Nested c = 3 [(field).cel = {
-    id: "field_expression_embed"
-    message: "c.a must be a multiple of 4"
-    expression: "this.a % 4 == 0"
-  }];
-  int32 d = 4 [
-    (field).cel = {
-      id: "field_expression_scalar_multiple_1"
-      expression:
-        "this < 1 ? ''"
-        ": 'd must be less than 1'"
-    },
-    (field).cel = {
-      id: "field_expression_scalar_multiple_2"
-      expression:
-        "this < 2 ? ''"
-        ": 'd must be less than 2'"
-    }
-  ];
-
-  message Nested {
-    int32 a = 1 [(field).cel = {
-      id: "field_expression_nested"
-      expression:
-        "this > 0 ? ''"
-        ": 'a must be positive'"
-    }];
-  }
-}
-
 message MissingField {
   option (message).cel = {
     id: "missing_field"
@@ -148,4 +106,197 @@ message NowEqualsNow {
     message: "now should equal now within an expression"
     expression: "now == now"
   };
+}
+
+message FieldExpressionMultipleScalar {
+  int32 val = 1 [
+    (field).cel = {
+      id: "field_expression.multiple.scalar.1"
+      message: "test message field_expression.multiple.scalar.1"
+      expression: "this > 0"
+    },
+    (field).cel = {
+      id: "field_expression.multiple.scalar.2"
+      message: "test message field_expression.multiple.scalar.2"
+      expression: "this > 1"
+    },
+    (field).cel = {
+      id: "field_expression.multiple.scalar.3"
+      message: "test message field_expression.multiple.scalar.3"
+      expression: "this > 2"
+    }
+  ];
+}
+message FieldExpressionNestedScalar {
+  FieldExpressionScalar nested = 1;
+}
+message FieldExpressionOptionalScalar {
+  optional int32 val = 1 [(field).cel = {
+    id: "field_expression.optional.scalar"
+    message: "test message field_expression.optional.scalar"
+    expression: "this == 1"
+  }];
+}
+
+message FieldExpressionScalar {
+  int32 val = 1 [(field).cel = {
+    id: "field_expression.scalar"
+    message: "test message field_expression.scalar"
+    expression: "this == 1"
+  }];
+}
+message FieldExpressionEnum {
+  Enum val = 1 [(field).cel = {
+    id: "field_expression.enum"
+    message: "test message field_expression.enum"
+    expression: "this == 1"
+  }];
+}
+message FieldExpressionMessage {
+  Msg val = 1 [(field).cel = {
+    id: "field_expression.message"
+    message: "test message field_expression.message"
+    expression: "this.a == 1"
+  }];
+  message Msg {
+    int32 a = 1;
+  }
+}
+message FieldExpressionMapInt32 {
+  map<int32, int32> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.int32"
+    message: "all map values must equal 1"
+    expression: "this.all(k, this[k] == 1)"
+  }];
+}
+message FieldExpressionMapInt64 {
+  map<int64, int64> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.int64"
+    message: "all map values must equal 1"
+    expression: "this.all(k, this[k] == 1)"
+  }];
+}
+message FieldExpressionMapUint32 {
+  map<uint32, uint32> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.uint32"
+    message: "all map values must equal 1"
+    expression: "this.all(k, this[k] == 1)"
+  }];
+}
+message FieldExpressionMapUint64 {
+  map<uint64, uint64> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.uint64"
+    message: "all map values must equal 1"
+    expression: "this.all(k, this[k] == 1)"
+  }];
+}
+message FieldExpressionMapBool {
+  map<bool, bool> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.bool"
+    message: "all map values must equal false"
+    expression: "this.all(k, this[k] == false)"
+  }];
+}
+message FieldExpressionMapString {
+  map<string, string> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.string"
+    message: "all map values must equal 'foo'"
+    expression: "this.all(k, this[k] == 'foo')"
+  }];
+}
+message FieldExpressionMapEnum {
+  map<int32, Enum> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.enum"
+    message: "test message field_expression.map.enum"
+    expression: "this.all(k, this[k] == 1)"
+  }];
+}
+message FieldExpressionMapMessage {
+  map<int32, Msg> val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.map.message"
+    message: "test message field_expression.map.message"
+    expression: "this.all(k, this[k].a == 1)"
+  }];
+  message Msg {
+    int32 a = 1;
+  }
+}
+message FieldExpressionMapKeys {
+  map<int32, int32> val = 1 [(buf.validate.field).map.keys.cel = {
+    id: "field_expression.map.keys"
+    message: "test message field_expression.map.keys"
+    expression: "this == 4 || this == 8"
+  }];
+}
+message FieldExpressionMapScalarValues {
+  map<int32, int32> val = 1 [(buf.validate.field).map.values.cel = {
+    id: "field_expression.map.scalar.values"
+    message: "test message field_expression.map.scalar.values"
+    expression: "this == 1"
+  }];
+}
+message FieldExpressionMapEnumValues {
+  map<int32, Enum> val = 1 [(buf.validate.field).map.values.cel = {
+    id: "field_expression.map.enum.values"
+    message: "test message field_expression.map.enum.values"
+    expression: "this == 1"
+  }];
+}
+message FieldExpressionMapMessageValues {
+  map<int32, Msg> val = 1 [(buf.validate.field).map.values.cel = {
+    id: "field_expression.map.message.values"
+    message: "test message field_expression.map.message.values"
+    expression: "this.a == 1"
+  }];
+  message Msg {
+    int32 a = 1;
+  }
+}
+message FieldExpressionRepeatedScalar {
+  repeated int32 val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.repeated.scalar"
+    message: "test message field_expression.repeated.scalar"
+    expression: "this.all(e, e == 1)"
+  }];
+}
+message FieldExpressionRepeatedEnum {
+  repeated Enum val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.repeated.enum"
+    message: "test message field_expression.repeated.enum"
+    expression: "this.all(e, e == 1)"
+  }];
+}
+message FieldExpressionRepeatedMessage {
+  repeated Msg val = 1 [(buf.validate.field).cel = {
+    id: "field_expression.repeated.message"
+    message: "test message field_expression.repeated.message"
+    expression: "this.all(e, e.a == 1)"
+  }];
+  message Msg {
+    int32 a = 1;
+  }
+}
+message FieldExpressionRepeatedScalarItems {
+  repeated int32 val = 1 [(buf.validate.field).repeated.items.cel = {
+    id: "field_expression.repeated.scalar.items"
+    message: "test message field_expression.repeated.scalar.items"
+    expression: "this == 1"
+  }];
+}
+message FieldExpressionRepeatedEnumItems {
+  repeated Enum val = 1 [(buf.validate.field).repeated.items.cel = {
+    id: "field_expression.repeated.enum.items"
+    message: "test message field_expression.repeated.enum.items"
+    expression: "this == 1"
+  }];
+}
+message FieldExpressionRepeatedMessageItems {
+  repeated Msg val = 1 [(buf.validate.field).repeated.items.cel = {
+    id: "field_expression.repeated.message.items"
+    message: "test message field_expression.repeated.message.items"
+    expression: "this.a == 1"
+  }];
+  message Msg {
+    int32 a = 1;
+  }
 }

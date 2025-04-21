@@ -49,7 +49,7 @@ func kitchenSinkSuite() suites.Suite {
 					Field:        results.FieldPath("val.double_in"),
 					Rule:         results.FieldPath("double.in"),
 					ConstraintId: proto.String("double.in"),
-					Message:      proto.String("value must be in list [456.789000, 123.000000]"),
+					Message:      proto.String("value must be in list [456.789, 123]"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val.enum_const"),
@@ -101,13 +101,13 @@ func kitchenSinkSuite() suites.Suite {
 					Field:        results.FieldPath("val.another.double_in"),
 					Rule:         results.FieldPath("double.in"),
 					ConstraintId: proto.String("double.in"),
-					Message:      proto.String("value must be in list [456.789000, 123.000000]"),
+					Message:      proto.String("value must be in list [456.789, 123]"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val.double_in"),
 					Rule:         results.FieldPath("double.in"),
 					ConstraintId: proto.String("double.in"),
-					Message:      proto.String("value must be in list [456.789000, 123.000000]"),
+					Message:      proto.String("value must be in list [456.789, 123]"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val.another.enum_const"),
@@ -194,13 +194,13 @@ func kitchenSinkSuite() suites.Suite {
 					Field:        results.FieldPath("val.double_in"),
 					Rule:         results.FieldPath("double.in"),
 					ConstraintId: proto.String("double.in"),
-					Message:      proto.String("value must be in list [456.789000, 123.000000]"),
+					Message:      proto.String("value must be in list [456.789, 123]"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val.nested.double_in"),
 					Rule:         results.FieldPath("double.in"),
 					ConstraintId: proto.String("double.in"),
-					Message:      proto.String("value must be in list [456.789000, 123.000000]"),
+					Message:      proto.String("value must be in list [456.789, 123]"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val.enum_const"),
@@ -281,7 +281,7 @@ func kitchenSinkSuite() suites.Suite {
 					Field:        results.FieldPath("val.double_in"),
 					Rule:         results.FieldPath("double.in"),
 					ConstraintId: proto.String("double.in"),
-					Message:      proto.String("value must be in list [456.789000, 123.000000]"),
+					Message:      proto.String("value must be in list [456.789, 123]"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val.enum_const"),

@@ -900,5 +900,9 @@ func isURISuite() suites.Suite {
 			Message:  &cases.IsUri{Val: "https://example.com/#0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-._~%20!$&'()*+,=;:@?/"},
 			Expected: results.Success(true),
 		},
+		"valid/fuzz1": {
+			Message:  &cases.IsUri{Val: "A://"},
+			Expected: results.Success(true),
+		},
 	}
 }
