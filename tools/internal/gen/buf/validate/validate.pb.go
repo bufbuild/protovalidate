@@ -7412,12 +7412,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\ttimestamp\x18\x16 \x01(\v2\x1c.buf.validate.TimestampRulesH\x00R\ttimestampB\x06\n" +
 	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"X\n" +
 	"\x0fPredefinedRules\x12$\n" +
-	"\x03cel\x18\x01 \x03(\v2\x12.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\xea\x17\n" +
+	"\x03cel\x18\x01 \x03(\v2\x12.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\x90\x18\n" +
 	"\n" +
-	"FloatRules\x12p\n" +
-	"\x05const\x18\x01 \x01(\x02BZ\xc2HW\n" +
-	"U\n" +
-	"\vfloat.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xa3\x01\n" +
+	"FloatRules\x12\x8a\x01\n" +
+	"\x05const\x18\x01 \x01(\x02Bt\xc2Hq\n" +
+	"o\n" +
+	"\vfloat.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xa3\x01\n" +
 	"\x02lt\x18\x02 \x01(\x02B\x90\x01\xc2H\x8c\x01\n" +
 	"\x89\x01\n" +
 	"\bfloat.lt\x1a}!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xb4\x01\n" +
@@ -7445,10 +7445,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xe2\x01\n" +
 	"\rfloat.gte_lte\x1a\xd0\x01has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xec\x01\n" +
-	"\x17float.gte_lte_exclusive\x1a\xd0\x01has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12y\n" +
-	"\x02in\x18\x06 \x03(\x02Bi\xc2Hf\n" +
-	"d\n" +
-	"\bfloat.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12}\n" +
+	"\x17float.gte_lte_exclusive\x1a\xd0\x01has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x83\x01\n" +
+	"\x02in\x18\x06 \x03(\x02Bs\xc2Hp\n" +
+	"n\n" +
+	"\bfloat.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12}\n" +
 	"\x06not_in\x18\a \x03(\x02Bf\xc2Hc\n" +
 	"a\n" +
 	"\ffloat.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x12}\n" +
@@ -7459,11 +7459,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rfloat.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xfc\x17\n" +
-	"\vDoubleRules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x01B[\xc2HX\n" +
-	"V\n" +
-	"\fdouble.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xa4\x01\n" +
+	"\fgreater_than\"\xa2\x18\n" +
+	"\vDoubleRules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x01Bu\xc2Hr\n" +
+	"p\n" +
+	"\fdouble.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xa4\x01\n" +
 	"\x02lt\x18\x02 \x01(\x01B\x91\x01\xc2H\x8d\x01\n" +
 	"\x8a\x01\n" +
 	"\tdouble.lt\x1a}!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xb5\x01\n" +
@@ -7493,10 +7493,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xe3\x01\n" +
 	"\x0edouble.gte_lte\x1a\xd0\x01has(rules.lte) && rules.lte >= rules.gte && (this.isNan() || this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xed\x01\n" +
-	"\x18double.gte_lte_exclusive\x1a\xd0\x01has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12z\n" +
-	"\x02in\x18\x06 \x03(\x01Bj\xc2Hg\n" +
-	"e\n" +
-	"\tdouble.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12~\n" +
+	"\x18double.gte_lte_exclusive\x1a\xd0\x01has(rules.lte) && rules.lte < rules.gte && (this.isNan() || (rules.lte < this && this < rules.gte))? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x84\x01\n" +
+	"\x02in\x18\x06 \x03(\x01Bt\xc2Hq\n" +
+	"o\n" +
+	"\tdouble.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12~\n" +
 	"\x06not_in\x18\a \x03(\x01Bg\xc2Hd\n" +
 	"b\n" +
 	"\rdouble.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x12~\n" +
@@ -7507,12 +7507,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0edouble.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\x94\x15\n" +
+	"\fgreater_than\"\xba\x15\n" +
 	"\n" +
-	"Int32Rules\x12p\n" +
-	"\x05const\x18\x01 \x01(\x05BZ\xc2HW\n" +
-	"U\n" +
-	"\vint32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8e\x01\n" +
+	"Int32Rules\x12\x8a\x01\n" +
+	"\x05const\x18\x01 \x01(\x05Bt\xc2Hq\n" +
+	"o\n" +
+	"\vint32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8e\x01\n" +
 	"\x02lt\x18\x02 \x01(\x05B|\xc2Hy\n" +
 	"w\n" +
 	"\bint32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa1\x01\n" +
@@ -7540,10 +7540,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd2\x01\n" +
 	"\rint32.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xda\x01\n" +
-	"\x17int32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12y\n" +
-	"\x02in\x18\x06 \x03(\x05Bi\xc2Hf\n" +
-	"d\n" +
-	"\bint32.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12}\n" +
+	"\x17int32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x83\x01\n" +
+	"\x02in\x18\x06 \x03(\x05Bs\xc2Hp\n" +
+	"n\n" +
+	"\bint32.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12}\n" +
 	"\x06not_in\x18\a \x03(\x05Bf\xc2Hc\n" +
 	"a\n" +
 	"\fint32.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x124\n" +
@@ -7551,12 +7551,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rint32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\x94\x15\n" +
+	"\fgreater_than\"\xba\x15\n" +
 	"\n" +
-	"Int64Rules\x12p\n" +
-	"\x05const\x18\x01 \x01(\x03BZ\xc2HW\n" +
-	"U\n" +
-	"\vint64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8e\x01\n" +
+	"Int64Rules\x12\x8a\x01\n" +
+	"\x05const\x18\x01 \x01(\x03Bt\xc2Hq\n" +
+	"o\n" +
+	"\vint64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8e\x01\n" +
 	"\x02lt\x18\x02 \x01(\x03B|\xc2Hy\n" +
 	"w\n" +
 	"\bint64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa1\x01\n" +
@@ -7584,10 +7584,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd2\x01\n" +
 	"\rint64.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xda\x01\n" +
-	"\x17int64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12y\n" +
-	"\x02in\x18\x06 \x03(\x03Bi\xc2Hf\n" +
-	"d\n" +
-	"\bint64.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12}\n" +
+	"\x17int64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x83\x01\n" +
+	"\x02in\x18\x06 \x03(\x03Bs\xc2Hp\n" +
+	"n\n" +
+	"\bint64.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12}\n" +
 	"\x06not_in\x18\a \x03(\x03Bf\xc2Hc\n" +
 	"a\n" +
 	"\fint64.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x124\n" +
@@ -7595,11 +7595,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rint64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xa5\x15\n" +
-	"\vUInt32Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\rB[\xc2HX\n" +
-	"V\n" +
-	"\fuint32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vUInt32Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\rBu\xc2Hr\n" +
+	"p\n" +
+	"\fuint32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\rB}\xc2Hz\n" +
 	"x\n" +
 	"\tuint32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7629,10 +7629,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd3\x01\n" +
 	"\x0euint32.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdb\x01\n" +
-	"\x18uint32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12z\n" +
-	"\x02in\x18\x06 \x03(\rBj\xc2Hg\n" +
-	"e\n" +
-	"\tuint32.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12~\n" +
+	"\x18uint32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x84\x01\n" +
+	"\x02in\x18\x06 \x03(\rBt\xc2Hq\n" +
+	"o\n" +
+	"\tuint32.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12~\n" +
 	"\x06not_in\x18\a \x03(\rBg\xc2Hd\n" +
 	"b\n" +
 	"\ruint32.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x125\n" +
@@ -7640,11 +7640,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0euint32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xa5\x15\n" +
-	"\vUInt64Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x04B[\xc2HX\n" +
-	"V\n" +
-	"\fuint64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vUInt64Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x04Bu\xc2Hr\n" +
+	"p\n" +
+	"\fuint64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\x04B}\xc2Hz\n" +
 	"x\n" +
 	"\tuint64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7674,10 +7674,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd3\x01\n" +
 	"\x0euint64.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdb\x01\n" +
-	"\x18uint64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12z\n" +
-	"\x02in\x18\x06 \x03(\x04Bj\xc2Hg\n" +
-	"e\n" +
-	"\tuint64.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12~\n" +
+	"\x18uint64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x84\x01\n" +
+	"\x02in\x18\x06 \x03(\x04Bt\xc2Hq\n" +
+	"o\n" +
+	"\tuint64.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12~\n" +
 	"\x06not_in\x18\a \x03(\x04Bg\xc2Hd\n" +
 	"b\n" +
 	"\ruint64.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x125\n" +
@@ -7685,11 +7685,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0euint64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xa5\x15\n" +
-	"\vSInt32Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x11B[\xc2HX\n" +
-	"V\n" +
-	"\fsint32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vSInt32Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x11Bu\xc2Hr\n" +
+	"p\n" +
+	"\fsint32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\x11B}\xc2Hz\n" +
 	"x\n" +
 	"\tsint32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7719,10 +7719,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd3\x01\n" +
 	"\x0esint32.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdb\x01\n" +
-	"\x18sint32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12z\n" +
-	"\x02in\x18\x06 \x03(\x11Bj\xc2Hg\n" +
-	"e\n" +
-	"\tsint32.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12~\n" +
+	"\x18sint32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x84\x01\n" +
+	"\x02in\x18\x06 \x03(\x11Bt\xc2Hq\n" +
+	"o\n" +
+	"\tsint32.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12~\n" +
 	"\x06not_in\x18\a \x03(\x11Bg\xc2Hd\n" +
 	"b\n" +
 	"\rsint32.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x125\n" +
@@ -7730,11 +7730,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0esint32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xa5\x15\n" +
-	"\vSInt64Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x12B[\xc2HX\n" +
-	"V\n" +
-	"\fsint64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vSInt64Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x12Bu\xc2Hr\n" +
+	"p\n" +
+	"\fsint64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\x12B}\xc2Hz\n" +
 	"x\n" +
 	"\tsint64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7764,10 +7764,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd3\x01\n" +
 	"\x0esint64.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdb\x01\n" +
-	"\x18sint64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12z\n" +
-	"\x02in\x18\x06 \x03(\x12Bj\xc2Hg\n" +
-	"e\n" +
-	"\tsint64.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12~\n" +
+	"\x18sint64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x84\x01\n" +
+	"\x02in\x18\x06 \x03(\x12Bt\xc2Hq\n" +
+	"o\n" +
+	"\tsint64.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12~\n" +
 	"\x06not_in\x18\a \x03(\x12Bg\xc2Hd\n" +
 	"b\n" +
 	"\rsint64.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x125\n" +
@@ -7775,11 +7775,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0esint64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb6\x15\n" +
-	"\fFixed32Rules\x12r\n" +
-	"\x05const\x18\x01 \x01(\aB\\\xc2HY\n" +
-	"W\n" +
-	"\rfixed32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x90\x01\n" +
+	"\fgreater_than\"\xdc\x15\n" +
+	"\fFixed32Rules\x12\x8c\x01\n" +
+	"\x05const\x18\x01 \x01(\aBv\xc2Hs\n" +
+	"q\n" +
+	"\rfixed32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x90\x01\n" +
 	"\x02lt\x18\x02 \x01(\aB~\xc2H{\n" +
 	"y\n" +
 	"\n" +
@@ -7809,11 +7809,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd4\x01\n" +
 	"\x0ffixed32.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdc\x01\n" +
-	"\x19fixed32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12{\n" +
-	"\x02in\x18\x06 \x03(\aBk\xc2Hh\n" +
-	"f\n" +
+	"\x19fixed32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x85\x01\n" +
+	"\x02in\x18\x06 \x03(\aBu\xc2Hr\n" +
+	"p\n" +
 	"\n" +
-	"fixed32.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12\x7f\n" +
+	"fixed32.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12\x7f\n" +
 	"\x06not_in\x18\a \x03(\aBh\xc2He\n" +
 	"c\n" +
 	"\x0efixed32.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x126\n" +
@@ -7821,11 +7821,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x17\n" +
 	"\x0ffixed32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb6\x15\n" +
-	"\fFixed64Rules\x12r\n" +
-	"\x05const\x18\x01 \x01(\x06B\\\xc2HY\n" +
-	"W\n" +
-	"\rfixed64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x90\x01\n" +
+	"\fgreater_than\"\xdc\x15\n" +
+	"\fFixed64Rules\x12\x8c\x01\n" +
+	"\x05const\x18\x01 \x01(\x06Bv\xc2Hs\n" +
+	"q\n" +
+	"\rfixed64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x90\x01\n" +
 	"\x02lt\x18\x02 \x01(\x06B~\xc2H{\n" +
 	"y\n" +
 	"\n" +
@@ -7855,11 +7855,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd4\x01\n" +
 	"\x0ffixed64.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdc\x01\n" +
-	"\x19fixed64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12{\n" +
-	"\x02in\x18\x06 \x03(\x06Bk\xc2Hh\n" +
-	"f\n" +
+	"\x19fixed64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x85\x01\n" +
+	"\x02in\x18\x06 \x03(\x06Bu\xc2Hr\n" +
+	"p\n" +
 	"\n" +
-	"fixed64.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12\x7f\n" +
+	"fixed64.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12\x7f\n" +
 	"\x06not_in\x18\a \x03(\x06Bh\xc2He\n" +
 	"c\n" +
 	"\x0efixed64.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x126\n" +
@@ -7867,11 +7867,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x17\n" +
 	"\x0ffixed64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xc8\x15\n" +
-	"\rSFixed32Rules\x12s\n" +
-	"\x05const\x18\x01 \x01(\x0fB]\xc2HZ\n" +
-	"X\n" +
-	"\x0esfixed32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x91\x01\n" +
+	"\fgreater_than\"\xee\x15\n" +
+	"\rSFixed32Rules\x12\x8d\x01\n" +
+	"\x05const\x18\x01 \x01(\x0fBw\xc2Ht\n" +
+	"r\n" +
+	"\x0esfixed32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x91\x01\n" +
 	"\x02lt\x18\x02 \x01(\x0fB\x7f\xc2H|\n" +
 	"z\n" +
 	"\vsfixed32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa4\x01\n" +
@@ -7899,10 +7899,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd5\x01\n" +
 	"\x10sfixed32.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdd\x01\n" +
-	"\x1asfixed32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12|\n" +
-	"\x02in\x18\x06 \x03(\x0fBl\xc2Hi\n" +
-	"g\n" +
-	"\vsfixed32.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12\x80\x01\n" +
+	"\x1asfixed32.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x86\x01\n" +
+	"\x02in\x18\x06 \x03(\x0fBv\xc2Hs\n" +
+	"q\n" +
+	"\vsfixed32.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12\x80\x01\n" +
 	"\x06not_in\x18\a \x03(\x0fBi\xc2Hf\n" +
 	"d\n" +
 	"\x0fsfixed32.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x127\n" +
@@ -7910,11 +7910,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x18\n" +
 	"\x10sfixed32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xc8\x15\n" +
-	"\rSFixed64Rules\x12s\n" +
-	"\x05const\x18\x01 \x01(\x10B]\xc2HZ\n" +
-	"X\n" +
-	"\x0esfixed64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x91\x01\n" +
+	"\fgreater_than\"\xee\x15\n" +
+	"\rSFixed64Rules\x12\x8d\x01\n" +
+	"\x05const\x18\x01 \x01(\x10Bw\xc2Ht\n" +
+	"r\n" +
+	"\x0esfixed64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x91\x01\n" +
 	"\x02lt\x18\x02 \x01(\x10B\x7f\xc2H|\n" +
 	"z\n" +
 	"\vsfixed64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa4\x01\n" +
@@ -7942,10 +7942,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd5\x01\n" +
 	"\x10sfixed64.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdd\x01\n" +
-	"\x1asfixed64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12|\n" +
-	"\x02in\x18\x06 \x03(\x10Bl\xc2Hi\n" +
-	"g\n" +
-	"\vsfixed64.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12\x80\x01\n" +
+	"\x1asfixed64.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x86\x01\n" +
+	"\x02in\x18\x06 \x03(\x10Bv\xc2Hs\n" +
+	"q\n" +
+	"\vsfixed64.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12\x80\x01\n" +
 	"\x06not_in\x18\a \x03(\x10Bi\xc2Hf\n" +
 	"d\n" +
 	"\x0fsfixed64.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x127\n" +
@@ -7953,19 +7953,19 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x18\n" +
 	"\x10sfixed64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xbc\x01\n" +
-	"\tBoolRules\x12o\n" +
-	"\x05const\x18\x01 \x01(\bBY\xc2HV\n" +
-	"T\n" +
+	"\fgreater_than\"\xd7\x01\n" +
+	"\tBoolRules\x12\x89\x01\n" +
+	"\x05const\x18\x01 \x01(\bBs\xc2Hp\n" +
+	"n\n" +
 	"\n" +
-	"bool.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x123\n" +
+	"bool.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xab9\n" +
-	"\vStringRules\x12s\n" +
-	"\x05const\x18\x01 \x01(\tB]\xc2HZ\n" +
-	"X\n" +
-	"\fstring.const\x1aHthis != rules.const ? 'value must equal `%s`'.format([rules.const]) : ''R\x05const\x12\x83\x01\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xd19\n" +
+	"\vStringRules\x12\x8d\x01\n" +
+	"\x05const\x18\x01 \x01(\tBw\xc2Ht\n" +
+	"r\n" +
+	"\fstring.const\x1abthis != getField(rules, 'const') ? 'value must equal `%s`'.format([getField(rules, 'const')]) : ''R\x05const\x12\x83\x01\n" +
 	"\x03len\x18\x13 \x01(\x04Bq\xc2Hn\n" +
 	"l\n" +
 	"\n" +
@@ -7999,11 +7999,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x0fstring.contains\x1af!this.contains(rules.contains) ? 'value does not contain substring `%s`'.format([rules.contains]) : ''R\bcontains\x12\xa5\x01\n" +
 	"\fnot_contains\x18\x17 \x01(\tB\x81\x01\xc2H~\n" +
 	"|\n" +
-	"\x13string.not_contains\x1aethis.contains(rules.not_contains) ? 'value contains substring `%s`'.format([rules.not_contains]) : ''R\vnotContains\x12z\n" +
+	"\x13string.not_contains\x1aethis.contains(rules.not_contains) ? 'value contains substring `%s`'.format([rules.not_contains]) : ''R\vnotContains\x12\x84\x01\n" +
 	"\x02in\x18\n" +
-	" \x03(\tBj\xc2Hg\n" +
-	"e\n" +
-	"\tstring.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12~\n" +
+	" \x03(\tBt\xc2Hq\n" +
+	"o\n" +
+	"\tstring.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12~\n" +
 	"\x06not_in\x18\v \x03(\tBg\xc2Hd\n" +
 	"b\n" +
 	"\rstring.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x12\xe6\x01\n" +
@@ -8105,12 +8105,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0estring.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\f\n" +
 	"\n" +
-	"well_known\"\xa3\x11\n" +
+	"well_known\"\xce\x11\n" +
 	"\n" +
-	"BytesRules\x12m\n" +
-	"\x05const\x18\x01 \x01(\fBW\xc2HT\n" +
-	"R\n" +
-	"\vbytes.const\x1aCthis != rules.const ? 'value must be %x'.format([rules.const]) : ''R\x05const\x12}\n" +
+	"BytesRules\x12\x87\x01\n" +
+	"\x05const\x18\x01 \x01(\fBq\xc2Hn\n" +
+	"l\n" +
+	"\vbytes.const\x1a]this != getField(rules, 'const') ? 'value must be %x'.format([getField(rules, 'const')]) : ''R\x05const\x12}\n" +
 	"\x03len\x18\r \x01(\x04Bk\xc2Hh\n" +
 	"f\n" +
 	"\tbytes.len\x1aYuint(this.size()) != rules.len ? 'value length must be %s bytes'.format([rules.len]) : ''R\x03len\x12\x98\x01\n" +
@@ -8131,10 +8131,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\fbytes.suffix\x1aZ!this.endsWith(rules.suffix) ? 'value does not have suffix %x'.format([rules.suffix]) : ''R\x06suffix\x12\x8d\x01\n" +
 	"\bcontains\x18\a \x01(\fBq\xc2Hn\n" +
 	"l\n" +
-	"\x0ebytes.contains\x1aZ!this.contains(rules.contains) ? 'value does not contain %x'.format([rules.contains]) : ''R\bcontains\x12\x9b\x01\n" +
-	"\x02in\x18\b \x03(\fB\x8a\x01\xc2H\x86\x01\n" +
-	"\x83\x01\n" +
-	"\bbytes.in\x1awdyn(rules)['in'].size() > 0 && !(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12}\n" +
+	"\x0ebytes.contains\x1aZ!this.contains(rules.contains) ? 'value does not contain %x'.format([rules.contains]) : ''R\bcontains\x12\xab\x01\n" +
+	"\x02in\x18\b \x03(\fB\x9a\x01\xc2H\x96\x01\n" +
+	"\x93\x01\n" +
+	"\bbytes.in\x1a\x86\x01getField(rules, 'in').size() > 0 && !(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12}\n" +
 	"\x06not_in\x18\t \x03(\fBf\xc2Hc\n" +
 	"a\n" +
 	"\fbytes.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x12\xef\x01\n" +
@@ -8160,16 +8160,16 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rbytes.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\f\n" +
 	"\n" +
-	"well_known\"\xd7\x03\n" +
-	"\tEnumRules\x12o\n" +
-	"\x05const\x18\x01 \x01(\x05BY\xc2HV\n" +
-	"T\n" +
+	"well_known\"\xfd\x03\n" +
+	"\tEnumRules\x12\x89\x01\n" +
+	"\x05const\x18\x01 \x01(\x05Bs\xc2Hp\n" +
+	"n\n" +
 	"\n" +
-	"enum.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12!\n" +
-	"\fdefined_only\x18\x02 \x01(\bR\vdefinedOnly\x12x\n" +
-	"\x02in\x18\x03 \x03(\x05Bh\xc2He\n" +
-	"c\n" +
-	"\aenum.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12|\n" +
+	"enum.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12!\n" +
+	"\fdefined_only\x18\x02 \x01(\bR\vdefinedOnly\x12\x82\x01\n" +
+	"\x02in\x18\x03 \x03(\x05Br\xc2Ho\n" +
+	"m\n" +
+	"\aenum.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12|\n" +
 	"\x06not_in\x18\x04 \x03(\x05Be\xc2Hb\n" +
 	"`\n" +
 	"\venum.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x123\n" +
@@ -8198,11 +8198,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x06values\x18\x05 \x01(\v2\x18.buf.validate.FieldRulesR\x06values*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"1\n" +
 	"\bAnyRules\x12\x0e\n" +
 	"\x02in\x18\x02 \x03(\tR\x02in\x12\x15\n" +
-	"\x06not_in\x18\x03 \x03(\tR\x05notIn\"\xa2\x17\n" +
-	"\rDurationRules\x12\x8e\x01\n" +
-	"\x05const\x18\x02 \x01(\v2\x19.google.protobuf.DurationB]\xc2HZ\n" +
-	"X\n" +
-	"\x0eduration.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xac\x01\n" +
+	"\x06not_in\x18\x03 \x03(\tR\x05notIn\"\xc6\x17\n" +
+	"\rDurationRules\x12\xa8\x01\n" +
+	"\x05const\x18\x02 \x01(\v2\x19.google.protobuf.DurationBw\xc2Ht\n" +
+	"r\n" +
+	"\x0eduration.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xac\x01\n" +
 	"\x02lt\x18\x03 \x01(\v2\x19.google.protobuf.DurationB\x7f\xc2H|\n" +
 	"z\n" +
 	"\vduration.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xbf\x01\n" +
@@ -8230,10 +8230,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xd5\x01\n" +
 	"\x10duration.gte_lte\x1a\xc0\x01has(rules.lte) && rules.lte >= rules.gte && (this > rules.lte || this < rules.gte)? 'value must be greater than or equal to %s and less than or equal to %s'.format([rules.gte, rules.lte]) : ''\n" +
 	"\xdd\x01\n" +
-	"\x1aduration.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\x97\x01\n" +
-	"\x02in\x18\a \x03(\v2\x19.google.protobuf.DurationBl\xc2Hi\n" +
-	"g\n" +
-	"\vduration.in\x1aX!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''R\x02in\x12\x9b\x01\n" +
+	"\x1aduration.gte_lte_exclusive\x1a\xbe\x01has(rules.lte) && rules.lte < rules.gte && (rules.lte < this && this < rules.gte)? 'value must be greater than or equal to %s or less than or equal to %s'.format([rules.gte, rules.lte]) : ''H\x01R\x03gte\x12\xa1\x01\n" +
+	"\x02in\x18\a \x03(\v2\x19.google.protobuf.DurationBv\xc2Hs\n" +
+	"q\n" +
+	"\vduration.in\x1ab!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''R\x02in\x12\x9b\x01\n" +
 	"\x06not_in\x18\b \x03(\v2\x19.google.protobuf.DurationBi\xc2Hf\n" +
 	"d\n" +
 	"\x0fduration.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x12R\n" +
@@ -8241,11 +8241,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x18\n" +
 	"\x10duration.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb0\x18\n" +
-	"\x0eTimestampRules\x12\x90\x01\n" +
-	"\x05const\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB^\xc2H[\n" +
-	"Y\n" +
-	"\x0ftimestamp.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xaf\x01\n" +
+	"\fgreater_than\"\xca\x18\n" +
+	"\x0eTimestampRules\x12\xaa\x01\n" +
+	"\x05const\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampBx\xc2Hu\n" +
+	"s\n" +
+	"\x0ftimestamp.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xaf\x01\n" +
 	"\x02lt\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x80\x01\xc2H}\n" +
 	"{\n" +
 	"\ftimestamp.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xc1\x01\n" +
