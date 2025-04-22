@@ -8483,8 +8483,8 @@ const file_buf_validate_conformance_cases_numbers_proto_rawDesc = "" +
 	"\rInt64ExGTELTE\x12\x1d\n" +
 	"\x03val\x18\x01 \x01(\x03B\v\xbaH\b\"\x06\x18\x80\x01(\x80\x02R\x03val\"/\n" +
 	"\vInt64Ignore\x12 \n" +
-	"\x03val\x18\x01 \x01(\x03B\x0e\xbaH\v\xd8\x01\x01\"\x06\x18\x80\x02(\x80\x01R\x03val\"\x8c\x04\n" +
-	"\x13Int64BigRules\x12\"\n" +
+	"\x03val\x18\x01 \x01(\x03B\x0e\xbaH\v\xd8\x01\x01\"\x06\x18\x80\x02(\x80\x01R\x03val\"\x86\x04\n" +
+	"\rInt64BigRules\x12\"\n" +
 	"\x06lt_pos\x18\x01 \x01(\x03B\v\xbaH\b\"\x06\x10\xa6݇\xa4\x14R\x05ltPos\x12'\n" +
 	"\x06lt_neg\x18\x02 \x01(\x03B\x10\xbaH\r\"\v\x10ڢ\xf8\xdb\xeb\xff\xff\xff\xff\x01R\x05ltNeg\x12\"\n" +
 	"\x06gt_pos\x18\x03 \x01(\x03B\v\xbaH\b\"\x06 \xa6݇\xa4\x14R\x05gtPos\x12'\n" +
@@ -8898,7 +8898,7 @@ var file_buf_validate_conformance_cases_numbers_proto_goTypes = []any{
 	(*Int64GTELTE)(nil),           // 59: buf.validate.conformance.cases.Int64GTELTE
 	(*Int64ExGTELTE)(nil),         // 60: buf.validate.conformance.cases.Int64ExGTELTE
 	(*Int64Ignore)(nil),           // 61: buf.validate.conformance.cases.Int64Ignore
-	(*Int64BigRules)(nil),   // 62: buf.validate.conformance.cases.Int64BigRules
+	(*Int64BigRules)(nil),         // 62: buf.validate.conformance.cases.Int64BigRules
 	(*Int64IncorrectType)(nil),    // 63: buf.validate.conformance.cases.Int64IncorrectType
 	(*Int64Example)(nil),          // 64: buf.validate.conformance.cases.Int64Example
 	(*UInt32None)(nil),            // 65: buf.validate.conformance.cases.UInt32None

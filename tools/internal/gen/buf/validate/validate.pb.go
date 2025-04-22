@@ -7370,22 +7370,22 @@ var File_buf_validate_validate_proto protoreflect.FileDescriptor
 
 const file_buf_validate_validate_proto_rawDesc = "" +
 	"\n" +
-	"\x1bbuf/validate/validate.proto\x12\fbuf.validate\x1a google/protobuf/descriptor.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"V\n" +
-	"\n" +
-	"Rule\x12\x0e\n" +
+	"\x1bbuf/validate/validate.proto\x12\fbuf.validate\x1a google/protobuf/descriptor.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"P\n" +
+	"\x04Rule\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
 	"\n" +
 	"expression\x18\x03 \x01(\tR\n" +
-	"expression\"\\\n" +
-	"\x12MessageRules\x12\x1a\n" +
-	"\bdisabled\x18\x01 \x01(\bR\bdisabled\x12*\n" +
-	"\x03cel\x18\x03 \x03(\v2\x18.buf.validate.RuleR\x03cel\".\n" +
-	"\x10OneofRules\x12\x1a\n" +
-	"\brequired\x18\x01 \x01(\bR\brequired\"\x89\n" +
+	"expression\"P\n" +
+	"\fMessageRules\x12\x1a\n" +
+	"\bdisabled\x18\x01 \x01(\bR\bdisabled\x12$\n" +
+	"\x03cel\x18\x03 \x03(\v2\x12.buf.validate.RuleR\x03cel\"(\n" +
 	"\n" +
-	"\x10FieldRules\x12*\n" +
-	"\x03cel\x18\x17 \x03(\v2\x18.buf.validate.RuleR\x03cel\x12\x1a\n" +
+	"OneofRules\x12\x1a\n" +
+	"\brequired\x18\x01 \x01(\bR\brequired\"\xfd\t\n" +
+	"\n" +
+	"FieldRules\x12$\n" +
+	"\x03cel\x18\x17 \x03(\v2\x12.buf.validate.RuleR\x03cel\x12\x1a\n" +
 	"\brequired\x18\x19 \x01(\bR\brequired\x12,\n" +
 	"\x06ignore\x18\x1b \x01(\x0e2\x14.buf.validate.IgnoreR\x06ignore\x120\n" +
 	"\x05float\x18\x01 \x01(\v2\x18.buf.validate.FloatRulesH\x00R\x05float\x123\n" +
@@ -7410,9 +7410,9 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x03any\x18\x14 \x01(\v2\x16.buf.validate.AnyRulesH\x00R\x03any\x129\n" +
 	"\bduration\x18\x15 \x01(\v2\x1b.buf.validate.DurationRulesH\x00R\bduration\x12<\n" +
 	"\ttimestamp\x18\x16 \x01(\v2\x1c.buf.validate.TimestampRulesH\x00R\ttimestampB\x06\n" +
-	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"d\n" +
-	"\x15PredefinedRules\x12*\n" +
-	"\x03cel\x18\x01 \x03(\v2\x18.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\xea\x17\n" +
+	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"X\n" +
+	"\x0fPredefinedRules\x12$\n" +
+	"\x03cel\x18\x01 \x03(\v2\x12.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\xea\x17\n" +
 	"\n" +
 	"FloatRules\x12p\n" +
 	"\x05const\x18\x01 \x01(\x02BZ\xc2HW\n" +
@@ -8175,7 +8175,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\venum.not_in\x1aQthis in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''R\x05notIn\x123\n" +
 	"\aexample\x18\x05 \x03(\x05B\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fenum.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xa4\x04\n" +
+	"\fenum.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\x9e\x04\n" +
 	"\rRepeatedRules\x12\xa8\x01\n" +
 	"\tmin_items\x18\x01 \x01(\x04B\x8a\x01\xc2H\x86\x01\n" +
 	"\x83\x01\n" +
@@ -8185,17 +8185,17 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x12repeated.max_items\x1aquint(this.size()) > rules.max_items ? 'value must contain no more than %s item(s)'.format([rules.max_items]) : ''R\bmaxItems\x12x\n" +
 	"\x06unique\x18\x03 \x01(\bB`\xc2H]\n" +
 	"[\n" +
-	"\x0frepeated.unique\x12(repeated value must contain unique items\x1a\x1e!rules.unique || this.unique()R\x06unique\x124\n" +
-	"\x05items\x18\x04 \x01(\v2\x1e.buf.validate.FieldRulesR\x05items*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xb8\x03\n" +
+	"\x0frepeated.unique\x12(repeated value must contain unique items\x1a\x1e!rules.unique || this.unique()R\x06unique\x12.\n" +
+	"\x05items\x18\x04 \x01(\v2\x18.buf.validate.FieldRulesR\x05items*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xac\x03\n" +
 	"\bMapRules\x12\x99\x01\n" +
 	"\tmin_pairs\x18\x01 \x01(\x04B|\xc2Hy\n" +
 	"w\n" +
 	"\rmap.min_pairs\x1afuint(this.size()) < rules.min_pairs ? 'map must be at least %d entries'.format([rules.min_pairs]) : ''R\bminPairs\x12\x98\x01\n" +
 	"\tmax_pairs\x18\x02 \x01(\x04B{\xc2Hx\n" +
 	"v\n" +
-	"\rmap.max_pairs\x1aeuint(this.size()) > rules.max_pairs ? 'map must be at most %d entries'.format([rules.max_pairs]) : ''R\bmaxPairs\x122\n" +
-	"\x04keys\x18\x04 \x01(\v2\x1e.buf.validate.FieldRulesR\x04keys\x126\n" +
-	"\x06values\x18\x05 \x01(\v2\x1e.buf.validate.FieldRulesR\x06values*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"1\n" +
+	"\rmap.max_pairs\x1aeuint(this.size()) > rules.max_pairs ? 'map must be at most %d entries'.format([rules.max_pairs]) : ''R\bmaxPairs\x12,\n" +
+	"\x04keys\x18\x04 \x01(\v2\x18.buf.validate.FieldRulesR\x04keys\x120\n" +
+	"\x06values\x18\x05 \x01(\v2\x18.buf.validate.FieldRulesR\x06values*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"1\n" +
 	"\bAnyRules\x12\x0e\n" +
 	"\x02in\x18\x02 \x03(\tR\x02in\x12\x15\n" +
 	"\x06not_in\x18\x03 \x03(\tR\x05notIn\"\xa2\x17\n" +
@@ -8293,11 +8293,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"Violations\x127\n" +
 	"\n" +
 	"violations\x18\x01 \x03(\v2\x17.buf.validate.ViolationR\n" +
-	"violations\"\xd1\x01\n" +
+	"violations\"\xc5\x01\n" +
 	"\tViolation\x12-\n" +
 	"\x05field\x18\x05 \x01(\v2\x17.buf.validate.FieldPathR\x05field\x12+\n" +
-	"\x04rule\x18\x06 \x01(\v2\x17.buf.validate.FieldPathR\x04rule\x12#\n" +
-	"\rrule_id\x18\x02 \x01(\tR\fruleId\x12\x18\n" +
+	"\x04rule\x18\x06 \x01(\v2\x17.buf.validate.FieldPathR\x04rule\x12\x17\n" +
+	"\arule_id\x18\x02 \x01(\tR\x06ruleId\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x17\n" +
 	"\afor_key\x18\x04 \x01(\bR\x06forKeyJ\x04\b\x01\x10\x02R\n" +
 	"field_path\"G\n" +
@@ -8329,12 +8329,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"KnownRegex\x12\x1b\n" +
 	"\x17KNOWN_REGEX_UNSPECIFIED\x10\x00\x12 \n" +
 	"\x1cKNOWN_REGEX_HTTP_HEADER_NAME\x10\x01\x12!\n" +
-	"\x1dKNOWN_REGEX_HTTP_HEADER_VALUE\x10\x02:\\\n" +
-	"\amessage\x12\x1f.google.protobuf.MessageOptions\x18\x87\t \x01(\v2 .buf.validate.MessageRulesR\amessage:T\n" +
-	"\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\x87\t \x01(\v2\x1e.buf.validate.OneofRulesR\x05oneof:T\n" +
-	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18\x87\t \x01(\v2\x1e.buf.validate.FieldRulesR\x05field:c\n" +
+	"\x1dKNOWN_REGEX_HTTP_HEADER_VALUE\x10\x02:V\n" +
+	"\amessage\x12\x1f.google.protobuf.MessageOptions\x18\x87\t \x01(\v2\x1a.buf.validate.MessageRulesR\amessage:N\n" +
+	"\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\x87\t \x01(\v2\x18.buf.validate.OneofRulesR\x05oneof:N\n" +
+	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18\x87\t \x01(\v2\x18.buf.validate.FieldRulesR\x05field:]\n" +
 	"\n" +
-	"predefined\x12\x1d.google.protobuf.FieldOptions\x18\x88\t \x01(\v2#.buf.validate.PredefinedRulesR\n" +
+	"predefined\x12\x1d.google.protobuf.FieldOptions\x18\x88\t \x01(\v2\x1d.buf.validate.PredefinedRulesR\n" +
 	"predefinedB\xb5\x01\n" +
 	"\x10com.buf.validateB\rValidateProtoP\x01ZAgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate\xa2\x02\x03BVX\xaa\x02\fBuf.Validate\xca\x02\fBuf\\Validate\xe2\x02\x18Buf\\Validate\\GPBMetadata\xea\x02\rBuf::Validate"
 
@@ -8355,11 +8355,11 @@ var file_buf_validate_validate_proto_msgTypes = make([]protoimpl.MessageInfo, 30
 var file_buf_validate_validate_proto_goTypes = []any{
 	(Ignore)(0),                                 // 0: buf.validate.Ignore
 	(KnownRegex)(0),                             // 1: buf.validate.KnownRegex
-	(*Rule)(nil),                          // 2: buf.validate.Rule
-	(*MessageRules)(nil),                  // 3: buf.validate.MessageRules
-	(*OneofRules)(nil),                    // 4: buf.validate.OneofRules
-	(*FieldRules)(nil),                    // 5: buf.validate.FieldRules
-	(*PredefinedRules)(nil),               // 6: buf.validate.PredefinedRules
+	(*Rule)(nil),                                // 2: buf.validate.Rule
+	(*MessageRules)(nil),                        // 3: buf.validate.MessageRules
+	(*OneofRules)(nil),                          // 4: buf.validate.OneofRules
+	(*FieldRules)(nil),                          // 5: buf.validate.FieldRules
+	(*PredefinedRules)(nil),                     // 6: buf.validate.PredefinedRules
 	(*FloatRules)(nil),                          // 7: buf.validate.FloatRules
 	(*DoubleRules)(nil),                         // 8: buf.validate.DoubleRules
 	(*Int32Rules)(nil),                          // 9: buf.validate.Int32Rules

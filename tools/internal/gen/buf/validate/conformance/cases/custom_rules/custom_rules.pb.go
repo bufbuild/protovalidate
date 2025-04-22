@@ -1764,19 +1764,19 @@ var File_buf_validate_conformance_cases_custom_rules_custom_rules_proto protoref
 
 const file_buf_validate_conformance_cases_custom_rules_custom_rules_proto_rawDesc = "" +
 	"\n" +
-	"Jbuf/validate/conformance/cases/custom_rules/custom_rules.proto\x121buf.validate.conformance.cases.custom_rules\x1a\x1bbuf/validate/validate.proto\"\xc5\x01\n" +
+	">buf/validate/conformance/cases/custom_rules/custom_rules.proto\x12+buf.validate.conformance.cases.custom_rules\x1a\x1bbuf/validate/validate.proto\"\xb9\x01\n" +
 	"\rNoExpressions\x12\f\n" +
-	"\x01a\x18\x01 \x01(\x05R\x01a\x12E\n" +
-	"\x01b\x18\x02 \x01(\x0e27.buf.validate.conformance.cases.custom_rules.EnumR\x01b\x12U\n" +
-	"\x01c\x18\x03 \x01(\v2G.buf.validate.conformance.cases.custom_rules.NoExpressions.NestedR\x01c\x1a\b\n" +
-	"\x06Nested\"\xc3\x05\n" +
+	"\x01a\x18\x01 \x01(\x05R\x01a\x12?\n" +
+	"\x01b\x18\x02 \x01(\x0e21.buf.validate.conformance.cases.custom_rules.EnumR\x01b\x12O\n" +
+	"\x01c\x18\x03 \x01(\v2A.buf.validate.conformance.cases.custom_rules.NoExpressions.NestedR\x01c\x1a\b\n" +
+	"\x06Nested\"\xab\x05\n" +
 	"\x12MessageExpressions\x12\f\n" +
 	"\x01a\x18\x01 \x01(\x05R\x01a\x12\f\n" +
-	"\x01b\x18\x02 \x01(\x05R\x01b\x12E\n" +
-	"\x01c\x18\x03 \x01(\x0e27.buf.validate.conformance.cases.custom_rules.EnumR\x01c\x12E\n" +
-	"\x01d\x18\x04 \x01(\x0e27.buf.validate.conformance.cases.custom_rules.EnumR\x01d\x12Z\n" +
-	"\x01e\x18\x05 \x01(\v2L.buf.validate.conformance.cases.custom_rules.MessageExpressions.NestedR\x01e\x12Z\n" +
-	"\x01f\x18\x06 \x01(\v2L.buf.validate.conformance.cases.custom_rules.MessageExpressions.NestedR\x01f\x1ax\n" +
+	"\x01b\x18\x02 \x01(\x05R\x01b\x12?\n" +
+	"\x01c\x18\x03 \x01(\x0e21.buf.validate.conformance.cases.custom_rules.EnumR\x01c\x12?\n" +
+	"\x01d\x18\x04 \x01(\x0e21.buf.validate.conformance.cases.custom_rules.EnumR\x01d\x12T\n" +
+	"\x01e\x18\x05 \x01(\v2F.buf.validate.conformance.cases.custom_rules.MessageExpressions.NestedR\x01e\x12T\n" +
+	"\x01f\x18\x06 \x01(\v2F.buf.validate.conformance.cases.custom_rules.MessageExpressions.NestedR\x01f\x1ax\n" +
 	"\x06Nested\x12\f\n" +
 	"\x01a\x18\x01 \x01(\x05R\x01a\x12\f\n" +
 	"\x01b\x18\x02 \x01(\x05R\x01b:R\xbaHO\x1aM\n" +
@@ -1801,126 +1801,126 @@ const file_buf_validate_conformance_cases_custom_rules_custom_rules_proto_rawDes
 	"\x03val\x18\x01 \x01(\x05B\xaa\x02\xbaH\xa6\x02\xba\x01_\n" +
 	"\"field_expression.multiple.scalar.1\x12/test message field_expression.multiple.scalar.1\x1a\bthis > 0\xba\x01_\n" +
 	"\"field_expression.multiple.scalar.2\x12/test message field_expression.multiple.scalar.2\x1a\bthis > 1\xba\x01_\n" +
-	"\"field_expression.multiple.scalar.3\x12/test message field_expression.multiple.scalar.3\x1a\bthis > 2R\x03val\"\x7f\n" +
-	"\x1bFieldExpressionNestedScalar\x12`\n" +
-	"\x06nested\x18\x01 \x01(\v2H.buf.validate.conformance.cases.custom_rules.FieldExpressionScalarR\x06nested\"\xa2\x01\n" +
+	"\"field_expression.multiple.scalar.3\x12/test message field_expression.multiple.scalar.3\x1a\bthis > 2R\x03val\"y\n" +
+	"\x1bFieldExpressionNestedScalar\x12Z\n" +
+	"\x06nested\x18\x01 \x01(\v2B.buf.validate.conformance.cases.custom_rules.FieldExpressionScalarR\x06nested\"\xa2\x01\n" +
 	"\x1dFieldExpressionOptionalScalar\x12y\n" +
 	"\x03val\x18\x01 \x01(\x05Bb\xbaH_\xba\x01\\\n" +
 	" field_expression.optional.scalar\x12-test message field_expression.optional.scalar\x1a\tthis == 1H\x00R\x03val\x88\x01\x01B\x06\n" +
 	"\x04_val\"{\n" +
 	"\x15FieldExpressionScalar\x12b\n" +
 	"\x03val\x18\x01 \x01(\x05BP\xbaHM\xba\x01J\n" +
-	"\x17field_expression.scalar\x12$test message field_expression.scalar\x1a\tthis == 1R\x03val\"\xaf\x01\n" +
-	"\x13FieldExpressionEnum\x12\x97\x01\n" +
-	"\x03val\x18\x01 \x01(\x0e27.buf.validate.conformance.cases.custom_rules.EnumBL\xbaHI\xba\x01F\n" +
-	"\x15field_expression.enum\x12\"test message field_expression.enum\x1a\tthis == 1R\x03val\"\xe5\x01\n" +
-	"\x16FieldExpressionMessage\x12\xb5\x01\n" +
-	"\x03val\x18\x01 \x01(\v2M.buf.validate.conformance.cases.custom_rules.FieldExpressionMessage.MsgBT\xbaHQ\xba\x01N\n" +
+	"\x17field_expression.scalar\x12$test message field_expression.scalar\x1a\tthis == 1R\x03val\"\xa9\x01\n" +
+	"\x13FieldExpressionEnum\x12\x91\x01\n" +
+	"\x03val\x18\x01 \x01(\x0e21.buf.validate.conformance.cases.custom_rules.EnumBL\xbaHI\xba\x01F\n" +
+	"\x15field_expression.enum\x12\"test message field_expression.enum\x1a\tthis == 1R\x03val\"\xdf\x01\n" +
+	"\x16FieldExpressionMessage\x12\xaf\x01\n" +
+	"\x03val\x18\x01 \x01(\v2G.buf.validate.conformance.cases.custom_rules.FieldExpressionMessage.MsgBT\xbaHQ\xba\x01N\n" +
 	"\x18field_expression.message\x12%test message field_expression.message\x1a\vthis.a == 1R\x03val\x1a\x13\n" +
 	"\x03Msg\x12\f\n" +
-	"\x01a\x18\x01 \x01(\x05R\x01a\"\x95\x02\n" +
-	"\x17FieldExpressionMapInt32\x12\xc1\x01\n" +
-	"\x03val\x18\x01 \x03(\v2S.buf.validate.conformance.cases.custom_rules.FieldExpressionMapInt32.ValEntryBZ\xbaHW\xba\x01T\n" +
+	"\x01a\x18\x01 \x01(\x05R\x01a\"\x8f\x02\n" +
+	"\x17FieldExpressionMapInt32\x12\xbb\x01\n" +
+	"\x03val\x18\x01 \x03(\v2M.buf.validate.conformance.cases.custom_rules.FieldExpressionMapInt32.ValEntryBZ\xbaHW\xba\x01T\n" +
 	"\x1afield_expression.map.int32\x12\x1ball map values must equal 1\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\x95\x02\n" +
-	"\x17FieldExpressionMapInt64\x12\xc1\x01\n" +
-	"\x03val\x18\x01 \x03(\v2S.buf.validate.conformance.cases.custom_rules.FieldExpressionMapInt64.ValEntryBZ\xbaHW\xba\x01T\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\x8f\x02\n" +
+	"\x17FieldExpressionMapInt64\x12\xbb\x01\n" +
+	"\x03val\x18\x01 \x03(\v2M.buf.validate.conformance.cases.custom_rules.FieldExpressionMapInt64.ValEntryBZ\xbaHW\xba\x01T\n" +
 	"\x1afield_expression.map.int64\x12\x1ball map values must equal 1\x1a\x19this.all(k, this[k] == 1)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x03R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01\"\x9e\x02\n" +
-	"\x18FieldExpressionMapUint32\x12\xc9\x01\n" +
-	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_rules.FieldExpressionMapUint32.ValEntryBa\xbaH^\xba\x01[\n" +
+	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01\"\x98\x02\n" +
+	"\x18FieldExpressionMapUint32\x12\xc3\x01\n" +
+	"\x03val\x18\x01 \x03(\v2N.buf.validate.conformance.cases.custom_rules.FieldExpressionMapUint32.ValEntryBa\xbaH^\xba\x01[\n" +
 	"\x1bfield_expression.map.uint32\x12\x1ball map values must equal 1\x1a\x1fthis.all(k, this[k] == uint(1))R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\rR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\rR\x05value:\x028\x01\"\x9e\x02\n" +
-	"\x18FieldExpressionMapUint64\x12\xc9\x01\n" +
-	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_rules.FieldExpressionMapUint64.ValEntryBa\xbaH^\xba\x01[\n" +
+	"\x05value\x18\x02 \x01(\rR\x05value:\x028\x01\"\x98\x02\n" +
+	"\x18FieldExpressionMapUint64\x12\xc3\x01\n" +
+	"\x03val\x18\x01 \x03(\v2N.buf.validate.conformance.cases.custom_rules.FieldExpressionMapUint64.ValEntryBa\xbaH^\xba\x01[\n" +
 	"\x1bfield_expression.map.uint64\x12\x1ball map values must equal 1\x1a\x1fthis.all(k, this[k] == uint(1))R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x04R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\"\x9a\x02\n" +
-	"\x16FieldExpressionMapBool\x12\xc7\x01\n" +
-	"\x03val\x18\x01 \x03(\v2R.buf.validate.conformance.cases.custom_rules.FieldExpressionMapBool.ValEntryBa\xbaH^\xba\x01[\n" +
+	"\x05value\x18\x02 \x01(\x04R\x05value:\x028\x01\"\x94\x02\n" +
+	"\x16FieldExpressionMapBool\x12\xc1\x01\n" +
+	"\x03val\x18\x01 \x03(\v2L.buf.validate.conformance.cases.custom_rules.FieldExpressionMapBool.ValEntryBa\xbaH^\xba\x01[\n" +
 	"\x19field_expression.map.bool\x12\x1fall map values must equal false\x1a\x1dthis.all(k, this[k] == false)R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\bR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"\xa0\x02\n" +
-	"\x18FieldExpressionMapString\x12\xcb\x01\n" +
-	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_rules.FieldExpressionMapString.ValEntryBc\xbaH`\xba\x01]\n" +
+	"\x05value\x18\x02 \x01(\bR\x05value:\x028\x01\"\x9a\x02\n" +
+	"\x18FieldExpressionMapString\x12\xc5\x01\n" +
+	"\x03val\x18\x01 \x03(\v2N.buf.validate.conformance.cases.custom_rules.FieldExpressionMapString.ValEntryBc\xbaH`\xba\x01]\n" +
 	"\x1bfield_expression.map.string\x12\x1fall map values must equal 'foo'\x1a\x1dthis.all(k, this[k] == 'foo')R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xd6\x02\n" +
-	"\x16FieldExpressionMapEnum\x12\xca\x01\n" +
-	"\x03val\x18\x01 \x03(\v2R.buf.validate.conformance.cases.custom_rules.FieldExpressionMapEnum.ValEntryBd\xbaHa\xba\x01^\n" +
-	"\x19field_expression.map.enum\x12&test message field_expression.map.enum\x1a\x19this.all(k, this[k] == 1)R\x03val\x1ao\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xca\x02\n" +
+	"\x16FieldExpressionMapEnum\x12\xc4\x01\n" +
+	"\x03val\x18\x01 \x03(\v2L.buf.validate.conformance.cases.custom_rules.FieldExpressionMapEnum.ValEntryBd\xbaHa\xba\x01^\n" +
+	"\x19field_expression.map.enum\x12&test message field_expression.map.enum\x1a\x19this.all(k, this[k] == 1)R\x03val\x1ai\n" +
 	"\bValEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12M\n" +
-	"\x05value\x18\x02 \x01(\x0e27.buf.validate.conformance.cases.custom_rules.EnumR\x05value:\x028\x01\"\x93\x03\n" +
-	"\x19FieldExpressionMapMessage\x12\xd5\x01\n" +
-	"\x03val\x18\x01 \x03(\v2U.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessage.ValEntryBl\xbaHi\xba\x01f\n" +
-	"\x1cfield_expression.map.message\x12)test message field_expression.map.message\x1a\x1bthis.all(k, this[k].a == 1)R\x03val\x1a\x88\x01\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12G\n" +
+	"\x05value\x18\x02 \x01(\x0e21.buf.validate.conformance.cases.custom_rules.EnumR\x05value:\x028\x01\"\x87\x03\n" +
+	"\x19FieldExpressionMapMessage\x12\xcf\x01\n" +
+	"\x03val\x18\x01 \x03(\v2O.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessage.ValEntryBl\xbaHi\xba\x01f\n" +
+	"\x1cfield_expression.map.message\x12)test message field_expression.map.message\x1a\x1bthis.all(k, this[k].a == 1)R\x03val\x1a\x82\x01\n" +
 	"\bValEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12f\n" +
-	"\x05value\x18\x02 \x01(\v2P.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessage.MsgR\x05value:\x028\x01\x1a\x13\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12`\n" +
+	"\x05value\x18\x02 \x01(\v2J.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessage.MsgR\x05value:\x028\x01\x1a\x13\n" +
 	"\x03Msg\x12\f\n" +
-	"\x01a\x18\x01 \x01(\x05R\x01a\"\x9f\x02\n" +
-	"\x16FieldExpressionMapKeys\x12\xcc\x01\n" +
-	"\x03val\x18\x01 \x03(\v2R.buf.validate.conformance.cases.custom_rules.FieldExpressionMapKeys.ValEntryBf\xbaHc\x9a\x01`\"^\xba\x01[\n" +
+	"\x01a\x18\x01 \x01(\x05R\x01a\"\x99\x02\n" +
+	"\x16FieldExpressionMapKeys\x12\xc6\x01\n" +
+	"\x03val\x18\x01 \x03(\v2L.buf.validate.conformance.cases.custom_rules.FieldExpressionMapKeys.ValEntryBf\xbaHc\x9a\x01`\"^\xba\x01[\n" +
 	"\x19field_expression.map.keys\x12&test message field_expression.map.keys\x1a\x16this == 4 || this == 8R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xb4\x02\n" +
-	"\x1eFieldExpressionMapScalarValues\x12\xd9\x01\n" +
-	"\x03val\x18\x01 \x03(\v2Z.buf.validate.conformance.cases.custom_rules.FieldExpressionMapScalarValues.ValEntryBk\xbaHh\x9a\x01e*c\xba\x01`\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xae\x02\n" +
+	"\x1eFieldExpressionMapScalarValues\x12\xd3\x01\n" +
+	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_rules.FieldExpressionMapScalarValues.ValEntryBk\xbaHh\x9a\x01e*c\xba\x01`\n" +
 	"\"field_expression.map.scalar.values\x12/test message field_expression.map.scalar.values\x1a\tthis == 1R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xe5\x02\n" +
-	"\x1cFieldExpressionMapEnumValues\x12\xd3\x01\n" +
-	"\x03val\x18\x01 \x03(\v2X.buf.validate.conformance.cases.custom_rules.FieldExpressionMapEnumValues.ValEntryBg\xbaHd\x9a\x01a*_\xba\x01\\\n" +
-	" field_expression.map.enum.values\x12-test message field_expression.map.enum.values\x1a\tthis == 1R\x03val\x1ao\n" +
+	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xd9\x02\n" +
+	"\x1cFieldExpressionMapEnumValues\x12\xcd\x01\n" +
+	"\x03val\x18\x01 \x03(\v2R.buf.validate.conformance.cases.custom_rules.FieldExpressionMapEnumValues.ValEntryBg\xbaHd\x9a\x01a*_\xba\x01\\\n" +
+	" field_expression.map.enum.values\x12-test message field_expression.map.enum.values\x1a\tthis == 1R\x03val\x1ai\n" +
 	"\bValEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12M\n" +
-	"\x05value\x18\x02 \x01(\x0e27.buf.validate.conformance.cases.custom_rules.EnumR\x05value:\x028\x01\"\xa8\x03\n" +
-	"\x1fFieldExpressionMapMessageValues\x12\xde\x01\n" +
-	"\x03val\x18\x01 \x03(\v2[.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.ValEntryBo\xbaHl\x9a\x01i*g\xba\x01d\n" +
-	"#field_expression.map.message.values\x120test message field_expression.map.message.values\x1a\vthis.a == 1R\x03val\x1a\x8e\x01\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12G\n" +
+	"\x05value\x18\x02 \x01(\x0e21.buf.validate.conformance.cases.custom_rules.EnumR\x05value:\x028\x01\"\x9c\x03\n" +
+	"\x1fFieldExpressionMapMessageValues\x12\xd8\x01\n" +
+	"\x03val\x18\x01 \x03(\v2U.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.ValEntryBo\xbaHl\x9a\x01i*g\xba\x01d\n" +
+	"#field_expression.map.message.values\x120test message field_expression.map.message.values\x1a\vthis.a == 1R\x03val\x1a\x88\x01\n" +
 	"\bValEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12l\n" +
-	"\x05value\x18\x02 \x01(\v2V.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.MsgR\x05value:\x028\x01\x1a\x13\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12f\n" +
+	"\x05value\x18\x02 \x01(\v2P.buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.MsgR\x05value:\x028\x01\x1a\x13\n" +
 	"\x03Msg\x12\f\n" +
 	"\x01a\x18\x01 \x01(\x05R\x01a\"\x9f\x01\n" +
 	"\x1dFieldExpressionRepeatedScalar\x12~\n" +
 	"\x03val\x18\x01 \x03(\x05Bl\xbaHi\xba\x01f\n" +
-	" field_expression.repeated.scalar\x12-test message field_expression.repeated.scalar\x1a\x13this.all(e, e == 1)R\x03val\"\xd3\x01\n" +
-	"\x1bFieldExpressionRepeatedEnum\x12\xb3\x01\n" +
-	"\x03val\x18\x01 \x03(\x0e27.buf.validate.conformance.cases.custom_rules.EnumBh\xbaHe\xba\x01b\n" +
-	"\x1efield_expression.repeated.enum\x12+test message field_expression.repeated.enum\x1a\x13this.all(e, e == 1)R\x03val\"\x91\x02\n" +
-	"\x1eFieldExpressionRepeatedMessage\x12\xd9\x01\n" +
-	"\x03val\x18\x01 \x03(\v2U.buf.validate.conformance.cases.custom_rules.FieldExpressionRepeatedMessage.MsgBp\xbaHm\xba\x01j\n" +
+	" field_expression.repeated.scalar\x12-test message field_expression.repeated.scalar\x1a\x13this.all(e, e == 1)R\x03val\"\xcd\x01\n" +
+	"\x1bFieldExpressionRepeatedEnum\x12\xad\x01\n" +
+	"\x03val\x18\x01 \x03(\x0e21.buf.validate.conformance.cases.custom_rules.EnumBh\xbaHe\xba\x01b\n" +
+	"\x1efield_expression.repeated.enum\x12+test message field_expression.repeated.enum\x1a\x13this.all(e, e == 1)R\x03val\"\x8b\x02\n" +
+	"\x1eFieldExpressionRepeatedMessage\x12\xd3\x01\n" +
+	"\x03val\x18\x01 \x03(\v2O.buf.validate.conformance.cases.custom_rules.FieldExpressionRepeatedMessage.MsgBp\xbaHm\xba\x01j\n" +
 	"!field_expression.repeated.message\x12.test message field_expression.repeated.message\x1a\x15this.all(e, e.a == 1)R\x03val\x1a\x13\n" +
 	"\x03Msg\x12\f\n" +
 	"\x01a\x18\x01 \x01(\x05R\x01a\"\xac\x01\n" +
 	"\"FieldExpressionRepeatedScalarItems\x12\x85\x01\n" +
 	"\x03val\x18\x01 \x03(\x05Bs\xbaHp\x92\x01m\"k\xba\x01h\n" +
-	"&field_expression.repeated.scalar.items\x123test message field_expression.repeated.scalar.items\x1a\tthis == 1R\x03val\"\xdf\x01\n" +
-	" FieldExpressionRepeatedEnumItems\x12\xba\x01\n" +
-	"\x03val\x18\x01 \x03(\x0e27.buf.validate.conformance.cases.custom_rules.EnumBo\xbaHl\x92\x01i\"g\xba\x01d\n" +
-	"$field_expression.repeated.enum.items\x121test message field_expression.repeated.enum.items\x1a\tthis == 1R\x03val\"\xa2\x02\n" +
-	"#FieldExpressionRepeatedMessageItems\x12\xe5\x01\n" +
-	"\x03val\x18\x01 \x03(\v2Z.buf.validate.conformance.cases.custom_rules.FieldExpressionRepeatedMessageItems.MsgBw\xbaHt\x92\x01q\"o\xba\x01l\n" +
+	"&field_expression.repeated.scalar.items\x123test message field_expression.repeated.scalar.items\x1a\tthis == 1R\x03val\"\xd9\x01\n" +
+	" FieldExpressionRepeatedEnumItems\x12\xb4\x01\n" +
+	"\x03val\x18\x01 \x03(\x0e21.buf.validate.conformance.cases.custom_rules.EnumBo\xbaHl\x92\x01i\"g\xba\x01d\n" +
+	"$field_expression.repeated.enum.items\x121test message field_expression.repeated.enum.items\x1a\tthis == 1R\x03val\"\x9c\x02\n" +
+	"#FieldExpressionRepeatedMessageItems\x12\xdf\x01\n" +
+	"\x03val\x18\x01 \x03(\v2T.buf.validate.conformance.cases.custom_rules.FieldExpressionRepeatedMessageItems.MsgBw\xbaHt\x92\x01q\"o\xba\x01l\n" +
 	"'field_expression.repeated.message.items\x124test message field_expression.repeated.message.items\x1a\vthis.a == 1R\x03val\x1a\x13\n" +
 	"\x03Msg\x12\f\n" +
 	"\x01a\x18\x01 \x01(\x05R\x01a**\n" +
 	"\x04Enum\x12\x14\n" +
 	"\x10ENUM_UNSPECIFIED\x10\x00\x12\f\n" +
-	"\bENUM_ONE\x10\x01B\x9d\x03\n" +
-	"5com.buf.validate.conformance.cases.custom_rulesB\x16CustomRulesProtoP\x01Zfgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_rules\xa2\x02\x05BVCCC\xaa\x020Buf.Validate.Conformance.Cases.CustomRules\xca\x020Buf\\Validate\\Conformance\\Cases\\CustomRules\xe2\x02<Buf\\Validate\\Conformance\\Cases\\CustomRules\\GPBMetadata\xea\x024Buf::Validate::Conformance::Cases::CustomRulesb\x06proto3"
+	"\bENUM_ONE\x10\x01B\xf3\x02\n" +
+	"/com.buf.validate.conformance.cases.custom_rulesB\x10CustomRulesProtoP\x01Z`github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_rules\xa2\x02\x05BVCCC\xaa\x02*Buf.Validate.Conformance.Cases.CustomRules\xca\x02*Buf\\Validate\\Conformance\\Cases\\CustomRules\xe2\x026Buf\\Validate\\Conformance\\Cases\\CustomRules\\GPBMetadata\xea\x02.Buf::Validate::Conformance::Cases::CustomRulesb\x06proto3"
 
 var (
 	file_buf_validate_conformance_cases_custom_rules_custom_rules_proto_rawDescOnce sync.Once
