@@ -51,24 +51,24 @@ func oneofSuite() suites.Suite {
 		"field/X/invalid": {
 			Message: &cases.Oneof{O: &cases.Oneof_X{X: "fizzbuzz"}},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("x"),
-				Rule:         results.FieldPath("string.prefix"),
+				Field:  results.FieldPath("x"),
+				Rule:   results.FieldPath("string.prefix"),
 				RuleId: proto.String("string.prefix"),
 			}),
 		},
 		"field/Y/invalid": {
 			Message: &cases.Oneof{O: &cases.Oneof_Y{Y: -1}},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("y"),
-				Rule:         results.FieldPath("int32.gt"),
+				Field:  results.FieldPath("y"),
+				Rule:   results.FieldPath("int32.gt"),
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
 		"filed/Z/invalid": {
 			Message: &cases.Oneof{O: &cases.Oneof_Z{Z: &cases.TestOneofMsg{}}},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("z.val"),
-				Rule:         results.FieldPath("bool.const"),
+				Field:  results.FieldPath("z.val"),
+				Rule:   results.FieldPath("bool.const"),
 				RuleId: proto.String("bool.const"),
 			}),
 		},
@@ -83,7 +83,7 @@ func oneofSuite() suites.Suite {
 		"required/invalid": {
 			Message: &cases.OneofRequired{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("o"),
+				Field:  results.FieldPath("o"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -104,8 +104,8 @@ func oneofSuite() suites.Suite {
 				O: &cases.OneofRequiredWithRequiredField_B{B: "foo"},
 			},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("a"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("a"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -113,12 +113,12 @@ func oneofSuite() suites.Suite {
 			Message: &cases.OneofRequiredWithRequiredField{},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("o"),
+					Field:  results.FieldPath("o"),
 					RuleId: proto.String("required"),
 				},
 				&validate.Violation{
-					Field:        results.FieldPath("a"),
-					Rule:         results.FieldPath("required"),
+					Field:  results.FieldPath("a"),
+					Rule:   results.FieldPath("required"),
 					RuleId: proto.String("required"),
 				},
 			),

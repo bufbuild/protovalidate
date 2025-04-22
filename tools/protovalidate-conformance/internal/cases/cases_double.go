@@ -38,8 +38,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleConst{Val: 4.56},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.const"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.const"),
 					RuleId: proto.String("double.const"),
 				},
 			),
@@ -48,8 +48,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleConst{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.const"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.const"),
 					RuleId: proto.String("double.const"),
 				},
 			),
@@ -62,8 +62,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleIn{Val: 10.11},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.in"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.in"),
 					RuleId: proto.String("double.in"),
 				},
 			),
@@ -72,8 +72,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleIn{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.in"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.in"),
 					RuleId: proto.String("double.in"),
 				},
 			),
@@ -90,8 +90,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleNotIn{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.not_in"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.not_in"),
 					RuleId: proto.String("double.not_in"),
 				},
 			),
@@ -104,8 +104,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleLT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.lt"),
 					RuleId: proto.String("double.lt"),
 				},
 			),
@@ -114,8 +114,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleLT{Val: 1},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.lt"),
 					RuleId: proto.String("double.lt"),
 				},
 			),
@@ -124,8 +124,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleLT{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.lt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.lt"),
 					RuleId: proto.String("double.lt"),
 				},
 			),
@@ -142,8 +142,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleLTE{Val: 65},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.lte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.lte"),
 					RuleId: proto.String("double.lte"),
 				},
 			),
@@ -152,8 +152,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleLTE{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.lte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.lte"),
 					RuleId: proto.String("double.lte"),
 				},
 			),
@@ -166,8 +166,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGT{Val: 16},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt"),
 				},
 			),
@@ -176,8 +176,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGT{Val: 15},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt"),
 				},
 			),
@@ -186,8 +186,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGT{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt"),
 				},
 			),
@@ -204,8 +204,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTE{Val: 7},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gte"),
 					RuleId: proto.String("double.gte"),
 				},
 			),
@@ -214,8 +214,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTE{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gte"),
 					RuleId: proto.String("double.gte"),
 				},
 			),
@@ -228,8 +228,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTLT{Val: 11},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt"),
 				},
 			),
@@ -238,8 +238,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTLT{Val: -1},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt"),
 				},
 			),
@@ -248,8 +248,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTLT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt"),
 				},
 			),
@@ -258,8 +258,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTLT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt"),
 				},
 			),
@@ -276,8 +276,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExLTGT{Val: 5},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
@@ -286,8 +286,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExLTGT{Val: 10},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
@@ -296,8 +296,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExLTGT{Val: 0},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
@@ -306,8 +306,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExLTGT{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gt"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gt"),
 					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
@@ -328,8 +328,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTELTE{Val: 300},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gte"),
 					RuleId: proto.String("double.gte_lte"),
 				},
 			),
@@ -338,8 +338,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTELTE{Val: 100},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gte"),
 					RuleId: proto.String("double.gte_lte"),
 				},
 			),
@@ -348,8 +348,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleGTELTE{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gte"),
 					RuleId: proto.String("double.gte_lte"),
 				},
 			),
@@ -374,8 +374,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExGTELTE{Val: 200},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gte"),
 					RuleId: proto.String("double.gte_lte_exclusive"),
 				},
 			),
@@ -384,8 +384,8 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleExGTELTE{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.gte"),
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("double.gte"),
 					RuleId: proto.String("double.gte_lte_exclusive"),
 				},
 			),
@@ -398,20 +398,20 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleFinite{Val: math.NaN()},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.finite"),
-					RuleId: proto.String("double.finite"),
-					Message:      proto.String("value must be finite"),
+					Field:   results.FieldPath("val"),
+					Rule:    results.FieldPath("double.finite"),
+					RuleId:  proto.String("double.finite"),
+					Message: proto.String("value must be finite"),
 				}),
 		},
 		"finite/inf": {
 			Message: &cases.DoubleFinite{Val: math.Inf(1)},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.finite"),
-					RuleId: proto.String("double.finite"),
-					Message:      proto.String("value must be finite")}),
+					Field:   results.FieldPath("val"),
+					Rule:    results.FieldPath("double.finite"),
+					RuleId:  proto.String("double.finite"),
+					Message: proto.String("value must be finite")}),
 		},
 		"finite/inf/not_checked": {
 			Message:  &cases.DoubleNotFinite{Val: math.Inf(1)},
@@ -421,10 +421,10 @@ func doubleSuite() suites.Suite {
 			Message: &cases.DoubleFinite{Val: math.Inf(-1)},
 			Expected: results.Violations(
 				&validate.Violation{
-					Field:        results.FieldPath("val"),
-					Rule:         results.FieldPath("double.finite"),
-					RuleId: proto.String("double.finite"),
-					Message:      proto.String("value must be finite"),
+					Field:   results.FieldPath("val"),
+					Rule:    results.FieldPath("double.finite"),
+					RuleId:  proto.String("double.finite"),
+					Message: proto.String("value must be finite"),
 				},
 			),
 		},

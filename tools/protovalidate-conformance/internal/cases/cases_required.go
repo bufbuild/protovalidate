@@ -35,8 +35,8 @@ func requiredSuite() suites.Suite {
 		"proto2/scalar/optional/unset": suites.Case{
 			Message: &cases.RequiredProto2ScalarOptional{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -59,8 +59,8 @@ func requiredSuite() suites.Suite {
 		"proto2/scalar/optional_with_default/unset": suites.Case{
 			Message: &cases.RequiredProto2ScalarOptionalDefault{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -87,8 +87,8 @@ func requiredSuite() suites.Suite {
 		"proto2/message/unset": suites.Case{
 			Message: &cases.RequiredProto2Message{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -107,8 +107,8 @@ func requiredSuite() suites.Suite {
 		"proto2/oneof/other_member": suites.Case{
 			Message: &cases.RequiredProto2Oneof{Val: &cases.RequiredProto2Oneof_B{B: "foo"}},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("a"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("a"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -119,8 +119,8 @@ func requiredSuite() suites.Suite {
 		"proto2/oneof/unset": suites.Case{
 			Message: &cases.RequiredProto2Oneof{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("a"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("a"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -135,8 +135,8 @@ func requiredSuite() suites.Suite {
 		"proto2/repeated/empty": suites.Case{
 			Message: &cases.RequiredProto2Repeated{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -151,8 +151,8 @@ func requiredSuite() suites.Suite {
 		"proto2/map/empty": suites.Case{
 			Message: &cases.RequiredProto2Map{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -167,8 +167,8 @@ func requiredSuite() suites.Suite {
 		"proto3/scalar/zero": suites.Case{
 			Message: &cases.RequiredProto3Scalar{Val: ""},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -187,8 +187,8 @@ func requiredSuite() suites.Suite {
 		"proto3/scalar/optional/unset": suites.Case{
 			Message: &cases.RequiredProto3OptionalScalar{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -207,8 +207,8 @@ func requiredSuite() suites.Suite {
 		"proto3/message/unset": suites.Case{
 			Message: &cases.RequiredProto3Message{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -227,8 +227,8 @@ func requiredSuite() suites.Suite {
 		"proto3/oneof/other_member": suites.Case{
 			Message: &cases.RequiredProto3OneOf{Val: &cases.RequiredProto3OneOf_B{B: "foo"}},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("a"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("a"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -239,8 +239,8 @@ func requiredSuite() suites.Suite {
 		"proto3/oneof/unset": suites.Case{
 			Message: &cases.RequiredProto3OneOf{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("a"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("a"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -255,8 +255,8 @@ func requiredSuite() suites.Suite {
 		"proto3/repeated/empty": suites.Case{
 			Message: &cases.RequiredProto3Repeated{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -271,8 +271,8 @@ func requiredSuite() suites.Suite {
 		"proto3/map/empty": suites.Case{
 			Message: &cases.RequiredProto3Map{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -291,8 +291,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/scalar/explicit_presence/unset": suites.Case{
 			Message: &cases.RequiredEditionsScalarExplicitPresence{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -315,8 +315,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/scalar/explicit_presence_with_default/unset": suites.Case{
 			Message: &cases.RequiredEditionsScalarExplicitPresenceDefault{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -331,8 +331,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/scalar/implicit_presence/zero": suites.Case{
 			Message: &cases.RequiredEditionsScalarImplicitPresence{Val: ""},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -359,8 +359,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/message/explicit_presence/length_prefixed/unset": suites.Case{
 			Message: &cases.RequiredEditionsMessageExplicitPresence{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -379,8 +379,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/message/explicit_presence/delimited/unset": suites.Case{
 			Message: &cases.RequiredEditionsMessageExplicitPresenceDelimited{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -415,8 +415,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/oneof/other_member": suites.Case{
 			Message: &cases.RequiredEditionsOneof{Val: &cases.RequiredEditionsOneof_B{B: "foo"}},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("a"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("a"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -427,8 +427,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/oneof/unset": suites.Case{
 			Message: &cases.RequiredEditionsOneof{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("a"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("a"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -443,8 +443,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/repeated/compact/empty": suites.Case{
 			Message: &cases.RequiredEditionsRepeated{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -459,8 +459,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/repeated/expanded/empty": suites.Case{
 			Message: &cases.RequiredEditionsRepeatedExpanded{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},
@@ -475,8 +475,8 @@ func requiredSuite() suites.Suite {
 		"proto/2023/map/empty": suites.Case{
 			Message: &cases.RequiredEditionsMap{},
 			Expected: results.Violations(&validate.Violation{
-				Field:        results.FieldPath("val"),
-				Rule:         results.FieldPath("required"),
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
 				RuleId: proto.String("required"),
 			}),
 		},

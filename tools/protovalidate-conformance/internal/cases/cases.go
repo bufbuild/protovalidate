@@ -25,7 +25,7 @@ func GlobalSuites() suites.Suites {
 	return suites.Suites{
 		"custom_rules":                              customSuite(),
 		"predefined_rules":                          predefinedSuite(),
-		"kitchen_sink":                                    kitchenSinkSuite(),
+		"kitchen_sink":                              kitchenSinkSuite(),
 		"standard_rules/bool":                       boolSuite(),
 		"standard_rules/bytes":                      bytesSuite(),
 		"standard_rules/double":                     doubleSuite(),
@@ -54,12 +54,12 @@ func GlobalSuites() suites.Suites {
 		"standard_rules/well_known_types/duration":  durationSuite(),
 		"standard_rules/well_known_types/timestamp": timestampSuite(),
 		"standard_rules/well_known_types/wrapper":   wrapperSuite(),
-		"library/is_hostname":                             isHostnameSuite(),
-		"library/is_host_and_port":                        isHostAndPortSuite(),
-		"library/is_ip_prefix":                            isIPPrefixSuite(),
-		"library/is_ip":                                   isIPSuite(),
-		"library/is_email":                                isEmailSuite(),
-		"library/is_uri":                                  isURISuite(),
-		"library/is_uri_ref":                              isURIRefSuite(),
+		"library/is_hostname":                       isHostnameSuite(),
+		"library/is_host_and_port":                  isHostAndPortSuite(),
+		"library/is_ip_prefix":                      isIPPrefixSuite(),
+		"library/is_ip":                             isIPSuite(),
+		"library/is_email":                          isEmailSuite(),
+		"library/is_uri":                            isURISuite(),
+		"library/is_uri_ref":                        isURIRefSuite(),
 	}
 }
