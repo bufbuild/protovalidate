@@ -180,14 +180,14 @@ message FieldExpressionMapUint32 {
   map<uint32, uint32> val = 1 [(buf.validate.field).cel = {
     id: "field_expression.map.uint32"
     message: "all map values must equal 1"
-    expression: "this.all(k, this[k] == 1)"
+    expression: "this.all(k, this[k] == uint(1))"
   }];
 }
 message FieldExpressionMapUint64 {
   map<uint64, uint64> val = 1 [(buf.validate.field).cel = {
     id: "field_expression.map.uint64"
     message: "all map values must equal 1"
-    expression: "this.all(k, this[k] == 1)"
+    expression: "this.all(k, this[k] == uint(1))"
   }];
 }
 message FieldExpressionMapBool {
