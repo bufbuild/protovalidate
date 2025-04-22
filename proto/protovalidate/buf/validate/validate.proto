@@ -592,7 +592,7 @@ message FloatRules {
   // ```
   repeated float in = 6 [(predefined).cel = {
     id: "float.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `in` requires the field value to not be equal to any of the specified
@@ -813,7 +813,7 @@ message DoubleRules {
   // ```
   repeated double in = 6 [(predefined).cel = {
     id: "double.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -1035,7 +1035,7 @@ message Int32Rules {
   // ```
   repeated int32 in = 6 [(predefined).cel = {
     id: "int32.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -1250,7 +1250,7 @@ message Int64Rules {
   // ```
   repeated int64 in = 6 [(predefined).cel = {
     id: "int64.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -1465,7 +1465,7 @@ message UInt32Rules {
   // ```
   repeated uint32 in = 6 [(predefined).cel = {
     id: "uint32.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -1679,7 +1679,7 @@ message UInt64Rules {
   // ```
   repeated uint64 in = 6 [(predefined).cel = {
     id: "uint64.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -1893,7 +1893,7 @@ message SInt32Rules {
   // ```
   repeated sint32 in = 6 [(predefined).cel = {
     id: "sint32.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -2107,7 +2107,7 @@ message SInt64Rules {
   // ```
   repeated sint64 in = 6 [(predefined).cel = {
     id: "sint64.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -2321,7 +2321,7 @@ message Fixed32Rules {
   // ```
   repeated fixed32 in = 6 [(predefined).cel = {
     id: "fixed32.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -2535,7 +2535,7 @@ message Fixed64Rules {
   // ```
   repeated fixed64 in = 6 [(predefined).cel = {
     id: "fixed64.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -2749,7 +2749,7 @@ message SFixed32Rules {
   // ```
   repeated sfixed32 in = 6 [(predefined).cel = {
     id: "sfixed32.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -2963,7 +2963,7 @@ message SFixed64Rules {
   // ```
   repeated sfixed64 in = 6 [(predefined).cel = {
     id: "sfixed64.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to not be equal to any of the specified
@@ -3258,7 +3258,7 @@ message StringRules {
   // ```
   repeated string in = 10 [(predefined).cel = {
     id: "string.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` specifies that the field value cannot be equal to any
@@ -3908,7 +3908,7 @@ message BytesRules {
   // ```
   repeated bytes in = 8 [(predefined).cel = {
     id: "bytes.in"
-    expression: "dyn(rules)['in'].size() > 0 && !(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "getField(rules, 'in').size() > 0 && !(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to be not equal to any of the specified
@@ -4083,7 +4083,7 @@ message EnumRules {
   // ```
   repeated int32 in = 3 [(predefined).cel = {
     id: "enum.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` requires the field value to be not equal to any of the
@@ -4488,7 +4488,7 @@ message DurationRules {
   // ```
   repeated google.protobuf.Duration in = 7 [(predefined).cel = {
     id: "duration.in"
-    expression: "!(this in dyn(rules)['in']) ? 'value must be in list %s'.format([dyn(rules)['in']]) : ''"
+    expression: "!(this in getField(rules, 'in')) ? 'value must be in list %s'.format([getField(rules, 'in')]) : ''"
   }];
 
   // `not_in` denotes that the field must not be equal to
