@@ -32,7 +32,7 @@ option java_package = "build.buf.validate";
 extend google.protobuf.MessageOptions {
   // Rules specify the validations to be performed on this message. By default,
   // no validation is performed against a message.
-  optional MessageConstraints message = 1159;
+  optional MessageRules message = 1159;
 }
 
 // OneofOptions is an extension to google.protobuf.OneofOptions. It allows
@@ -42,7 +42,7 @@ extend google.protobuf.MessageOptions {
 extend google.protobuf.OneofOptions {
   // Rules specify the validations to be performed on this oneof. By default,
   // no validation is performed against a oneof.
-  optional OneofConstraints oneof = 1159;
+  optional OneofRules oneof = 1159;
 }
 
 // FieldOptions is an extension to google.protobuf.FieldOptions. It allows
@@ -52,7 +52,7 @@ extend google.protobuf.OneofOptions {
 extend google.protobuf.FieldOptions {
   // Rules specify the validations to be performed on this field. By default,
   // no validation is performed against a field.
-  optional FieldConstraints field = 1159;
+  optional FieldRules field = 1159;
 
   // Specifies predefined rules. When extending a standard constraint message,
   // this adds additional CEL expressions that apply when the extension is used.
@@ -70,11 +70,11 @@ extend google.protobuf.FieldOptions {
   //   int32 reserved = 1 [(buf.validate.field).int32.(is_zero) = true];
   // }
   // ```
-  optional PredefinedConstraints predefined = 1160;
+  optional PredefinedRules predefined = 1160;
 }
 
-// `Constraint` represents a validation rule written in the Common Expression
-// Language (CEL) syntax. Each Constraint includes a unique identifier, an
+// `Rule` represents a validation rule written in the Common Expression
+// Language (CEL) syntax. Each Rule includes a unique identifier, an
 // optional error message, and the CEL expression to evaluate. For more
 // information on CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
 //
@@ -88,13 +88,13 @@ extend google.protobuf.FieldOptions {
 //   int32 bar = 1;
 // }
 // ```
-message Constraint {
-  // `id` is a string that serves as a machine-readable name for this Constraint.
+message Rule {
+  // `id` is a string that serves as a machine-readable name for this Rule.
   // It should be unique within its scope, which could be either a message or a field.
   optional string id = 1;
 
   // `message` is an optional field that provides a human-readable error message
-  // for this Constraint when the CEL expression evaluates to false. If a
+  // for this Rule when the CEL expression evaluates to false. If a
   // non-empty message is provided, any strings resulting from the CEL
   // expression evaluation are ignored.
   optional string message = 2;
@@ -106,9 +106,9 @@ message Constraint {
   optional string expression = 3;
 }
 
-// MessageConstraints represents validation rules that are applied to the entire message.
-// It includes disabling options and a list of Constraint messages representing Common Expression Language (CEL) validation rules.
-message MessageConstraints {
+// MessageRules represents validation rules that are applied to the entire message.
+// It includes disabling options and a list of Rule messages representing Common Expression Language (CEL) validation rules.
+message MessageRules {
   // `disabled` is a boolean flag that, when set to true, nullifies any validation rules for this message.
   // This includes any fields within the message that would otherwise support validation.
   //
@@ -120,7 +120,7 @@ message MessageConstraints {
   // ```
   optional bool disabled = 1;
 
-  // `cel` is a repeated field of type Constraint. Each Constraint specifies a validation rule to be applied to this message.
+  // `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
   // These constraints are written in Common Expression Language (CEL) syntax. For more information on
   // CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
   //
@@ -136,12 +136,12 @@ message MessageConstraints {
   //   optional int32 foo = 1;
   // }
   // ```
-  repeated Constraint cel = 3;
+  repeated Rule cel = 3;
 }
 
-// The `OneofConstraints` message type enables you to manage constraints for
+// The `OneofRules` message type enables you to manage constraints for
 // oneof fields in your protobuf messages.
-message OneofConstraints {
+message OneofRules {
   // If `required` is true, exactly one field of the oneof must be present. A
   // validation error is returned if no fields in the oneof are present. The
   // field itself may still be a default value; further constraints
@@ -162,9 +162,9 @@ message OneofConstraints {
   optional bool required = 1;
 }
 
-// FieldConstraints encapsulates the rules for each type of field. Depending on
+// FieldRules encapsulates the rules for each type of field. Depending on
 // the field, the correct set should be used to ensure proper validations.
-message FieldConstraints {
+message FieldRules {
   // `cel` is a repeated field used to represent a textual expression
   // in the Common Expression Language (CEL) syntax. For more information on
   // CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
@@ -179,7 +179,7 @@ message FieldConstraints {
   //   }];
   // }
   // ```
-  repeated Constraint cel = 23;
+  repeated Rule cel = 23;
   // If `required` is true, the field must be populated. A populated field can be
   // described as "serialized in the wire format," which includes:
   //
@@ -246,9 +246,9 @@ message FieldConstraints {
   reserved "skipped", "ignore_empty";
 }
 
-// PredefinedConstraints are custom constraints that can be re-used with
+// PredefinedRules are custom constraints that can be re-used with
 // multiple fields.
-message PredefinedConstraints {
+message PredefinedRules {
   // `cel` is a repeated field used to represent a textual expression
   // in the Common Expression Language (CEL) syntax. For more information on
   // CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
@@ -263,7 +263,7 @@ message PredefinedConstraints {
   //   }];
   // }
   // ```
-  repeated Constraint cel = 1;
+  repeated Rule cel = 1;
 
   reserved 24, 26;
   reserved
@@ -272,8 +272,8 @@ message PredefinedConstraints {
 ;
 }
 
-// Specifies how FieldConstraints.ignore behaves. See the documentation for
-// FieldConstraints.required for definitions of "populated" and "nullable".
+// Specifies how FieldRules.ignore behaves. See the documentation for
+// FieldRules.required for definitions of "populated" and "nullable".
 enum Ignore {
   // Validation is only skipped if it's an unpopulated nullable fields.
   //
@@ -4252,7 +4252,7 @@ message RepeatedRules {
   //   }];
   // }
   // ```
-  optional FieldConstraints items = 4;
+  optional FieldRules items = 4;
 
   // Extension fields in this range that have the (buf.validate.predefined)
   // option set will be treated as predefined field constraints that can then be
@@ -4310,7 +4310,7 @@ message MapRules {
   //   }];
   // }
   // ```
-  optional FieldConstraints keys = 4;
+  optional FieldRules keys = 4;
 
   //Specifies the constraints to be applied to the value of each key in the
   // field. Message values will still have their validations evaluated unless
@@ -4327,7 +4327,7 @@ message MapRules {
   //   }];
   // }
   // ```
-  optional FieldConstraints values = 5;
+  optional FieldRules values = 5;
 
   // Extension fields in this range that have the (buf.validate.predefined)
   // option set will be treated as predefined field constraints that can then be
@@ -4803,7 +4803,7 @@ message TimestampRules {
 }
 
 // `Violations` is a collection of `Violation` messages. This message type is returned by
-// protovalidate when a proto message fails to meet the requirements set by the `Constraint` validation rules.
+// protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.
 // Each individual violation is represented by a `Violation` message.
 message Violations {
   // `violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.
@@ -4811,7 +4811,7 @@ message Violations {
 }
 
 // `Violation` represents a single instance where a validation rule, expressed
-// as a `Constraint`, was not met. It provides information about the field that
+// as a `Rule`, was not met. It provides information about the field that
 // caused the violation, the specific constraint that wasn't fulfilled, and a
 // human-readable error message.
 //
@@ -4845,7 +4845,7 @@ message Violation {
   optional FieldPath field = 5;
 
   // `rule` is a machine-readable path that points to the specific constraint rule that failed validation.
-  // This will be a nested field starting from the FieldConstraints of the field that failed validation.
+  // This will be a nested field starting from the FieldRules of the field that failed validation.
   // For custom constraints, this will provide the path of the constraint, e.g. `cel[0]`.
   //
   // For example, consider the following message:
@@ -4874,12 +4874,12 @@ message Violation {
   // ```
   optional FieldPath rule = 6;
 
-  // `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
-  // This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
+  // `constraint_id` is the unique identifier of the `Rule` that was not fulfilled.
+  // This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.
   optional string constraint_id = 2;
 
   // `message` is a human-readable error message that describes the nature of the violation.
-  // This can be the default error message from the violated `Constraint`, or it can be a custom message that gives more context about the violation.
+  // This can be the default error message from the violated `Rule`, or it can be a custom message that gives more context about the violation.
   optional string message = 3;
 
   // `for_key` indicates whether the violation was caused by a map key, rather than a value.
