@@ -97,9 +97,9 @@ Performance and efficient resource management are critical aspects
 of `protovalidate`. CEL, being non-Turing complete, provides production safety
 controls to limit execution time, helping to prevent excessive resource
 consumption during evaluation. Here are some guidelines for effectively managing
-resource constraints and minimizing performance regressions:
+resource rules and minimizing performance regressions:
 
-1. __Understanding Resource Rules__: CEL has resource constraint features
+1. __Understanding Resource Rules__: CEL has resource rule features
    which provide feedback about expression complexity. These are designed to
    prevent CEL evaluation from consuming excessive resources. One key element is
    the concept of a _cost unit_, an independent measure used for tracking CPU
@@ -124,9 +124,9 @@ resource constraints and minimizing performance regressions:
 5. __Optimize__: Always look for ways to optimize your changes without
    compromising readability, maintainability, or correctness of your code.
 6. __Discuss__: If your changes might cause a performance regression or resource
-   constraint, but you believe they're still beneficial, discuss this in the
+   rule, but you believe they're still beneficial, discuss this in the
    pull request. Explain why you think the performance regression or resource
-   constraint might be acceptable.
+   rule might be acceptable.
 
 By keeping performance and resource management in mind throughout the
 development process, we can ensure `protovalidate` remains efficient and
