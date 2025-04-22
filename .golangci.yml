@@ -46,11 +46,6 @@ linters-settings:
 issues:
   exclude-use-default: true
   exclude-rules:
-    # Loosen requirements on test harness
-    - path: go/v2/internal/cmd/
-      linters:
-        - forbidigo
-        - errorlint
     # Loosen requirements on tools
     - path: tools/
       linters:
@@ -75,10 +70,3 @@ issues:
         - varnamelen
         - unparam
         - gosec
-    - path: go/v2/internal/celext/lib.go
-      linters:
-        # setting up custom functions/overloads appears duplicative (false positive)
-        - dupl
-        # Types are checked internally within CEL. There are bigger issues if its
-        # type analysis is wrong
-        - forcetypeassert
