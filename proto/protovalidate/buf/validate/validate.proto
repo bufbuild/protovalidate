@@ -437,7 +437,7 @@ message FloatRules {
   // ```
   optional float const = 1 [(predefined).cel = {
     id: "float.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
 
   oneof less_than {
@@ -661,7 +661,7 @@ message DoubleRules {
   // ```
   optional double const = 1 [(predefined).cel = {
     id: "double.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -882,7 +882,7 @@ message Int32Rules {
   // ```
   optional int32 const = 1 [(predefined).cel = {
     id: "int32.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field
@@ -1097,7 +1097,7 @@ message Int64Rules {
   // ```
   optional int64 const = 1 [(predefined).cel = {
     id: "int64.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -1312,7 +1312,7 @@ message UInt32Rules {
   // ```
   optional uint32 const = 1 [(predefined).cel = {
     id: "uint32.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -1527,7 +1527,7 @@ message UInt64Rules {
   // ```
   optional uint64 const = 1 [(predefined).cel = {
     id: "uint64.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -1740,7 +1740,7 @@ message SInt32Rules {
   // ```
   optional sint32 const = 1 [(predefined).cel = {
     id: "sint32.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field
@@ -1954,7 +1954,7 @@ message SInt64Rules {
   // ```
   optional sint64 const = 1 [(predefined).cel = {
     id: "sint64.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field
@@ -2168,7 +2168,7 @@ message Fixed32Rules {
   // ```
   optional fixed32 const = 1 [(predefined).cel = {
     id: "fixed32.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -2382,7 +2382,7 @@ message Fixed64Rules {
   // ```
   optional fixed64 const = 1 [(predefined).cel = {
     id: "fixed64.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -2596,7 +2596,7 @@ message SFixed32Rules {
   // ```
   optional sfixed32 const = 1 [(predefined).cel = {
     id: "sfixed32.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -2810,7 +2810,7 @@ message SFixed64Rules {
   // ```
   optional sfixed64 const = 1 [(predefined).cel = {
     id: "sfixed64.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` requires the field value to be less than the specified value (field <
@@ -3025,7 +3025,7 @@ message BoolRules {
   // ```
   optional bool const = 1 [(predefined).cel = {
     id: "bool.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
@@ -3072,7 +3072,7 @@ message StringRules {
   // ```
   optional string const = 1 [(predefined).cel = {
     id: "string.const"
-    expression: "this != rules.const ? 'value must equal `%s`'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal `%s`'.format([getField(rules, 'const')]) : ''"
   }];
 
   // `len` dictates that the field value must have the specified
@@ -3787,7 +3787,7 @@ message BytesRules {
   // ```
   optional bytes const = 1 [(predefined).cel = {
     id: "bytes.const"
-    expression: "this != rules.const ? 'value must be %x'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must be %x'.format([getField(rules, 'const')]) : ''"
   }];
 
   // `len` requires the field value to have the specified length in bytes.
@@ -4045,7 +4045,7 @@ message EnumRules {
   // ```
   optional int32 const = 1 [(predefined).cel = {
     id: "enum.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
 
   // `defined_only` requires the field value to be one of the defined values for
@@ -4335,7 +4335,7 @@ message DurationRules {
   // ```
   optional google.protobuf.Duration const = 2 [(predefined).cel = {
     id: "duration.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // `lt` stipulates that the field must be less than the specified value of the `google.protobuf.Duration` type,
@@ -4549,7 +4549,7 @@ message TimestampRules {
   // ```
   optional google.protobuf.Timestamp const = 2 [(predefined).cel = {
     id: "timestamp.const"
-    expression: "this != rules.const ? 'value must equal %s'.format([rules.const]) : ''"
+    expression: "this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''"
   }];
   oneof less_than {
     // requires the duration field value to be less than the specified value (field < value). If the field value doesn't meet the required conditions, an error message is generated.

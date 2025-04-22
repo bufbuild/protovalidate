@@ -7365,12 +7365,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\ttimestamp\x18\x16 \x01(\v2\x1c.buf.validate.TimestampRulesH\x00R\ttimestampB\x06\n" +
 	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"d\n" +
 	"\x15PredefinedConstraints\x12*\n" +
-	"\x03cel\x18\x01 \x03(\v2\x18.buf.validate.ConstraintR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\xf5\x17\n" +
+	"\x03cel\x18\x01 \x03(\v2\x18.buf.validate.ConstraintR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\x90\x18\n" +
 	"\n" +
-	"FloatRules\x12p\n" +
-	"\x05const\x18\x01 \x01(\x02BZ\xc2HW\n" +
-	"U\n" +
-	"\vfloat.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xa3\x01\n" +
+	"FloatRules\x12\x8a\x01\n" +
+	"\x05const\x18\x01 \x01(\x02Bt\xc2Hq\n" +
+	"o\n" +
+	"\vfloat.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xa3\x01\n" +
 	"\x02lt\x18\x02 \x01(\x02B\x90\x01\xc2H\x8c\x01\n" +
 	"\x89\x01\n" +
 	"\bfloat.lt\x1a}!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xb4\x01\n" +
@@ -7412,11 +7412,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rfloat.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\x87\x18\n" +
-	"\vDoubleRules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x01B[\xc2HX\n" +
-	"V\n" +
-	"\fdouble.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xa4\x01\n" +
+	"\fgreater_than\"\xa2\x18\n" +
+	"\vDoubleRules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x01Bu\xc2Hr\n" +
+	"p\n" +
+	"\fdouble.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xa4\x01\n" +
 	"\x02lt\x18\x02 \x01(\x01B\x91\x01\xc2H\x8d\x01\n" +
 	"\x8a\x01\n" +
 	"\tdouble.lt\x1a}!has(rules.gte) && !has(rules.gt) && (this.isNan() || this >= rules.lt)? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xb5\x01\n" +
@@ -7460,12 +7460,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0edouble.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\x9f\x15\n" +
+	"\fgreater_than\"\xba\x15\n" +
 	"\n" +
-	"Int32Rules\x12p\n" +
-	"\x05const\x18\x01 \x01(\x05BZ\xc2HW\n" +
-	"U\n" +
-	"\vint32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8e\x01\n" +
+	"Int32Rules\x12\x8a\x01\n" +
+	"\x05const\x18\x01 \x01(\x05Bt\xc2Hq\n" +
+	"o\n" +
+	"\vint32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8e\x01\n" +
 	"\x02lt\x18\x02 \x01(\x05B|\xc2Hy\n" +
 	"w\n" +
 	"\bint32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa1\x01\n" +
@@ -7504,12 +7504,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rint32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\x9f\x15\n" +
+	"\fgreater_than\"\xba\x15\n" +
 	"\n" +
-	"Int64Rules\x12p\n" +
-	"\x05const\x18\x01 \x01(\x03BZ\xc2HW\n" +
-	"U\n" +
-	"\vint64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8e\x01\n" +
+	"Int64Rules\x12\x8a\x01\n" +
+	"\x05const\x18\x01 \x01(\x03Bt\xc2Hq\n" +
+	"o\n" +
+	"\vint64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8e\x01\n" +
 	"\x02lt\x18\x02 \x01(\x03B|\xc2Hy\n" +
 	"w\n" +
 	"\bint64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa1\x01\n" +
@@ -7548,11 +7548,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rint64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb0\x15\n" +
-	"\vUInt32Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\rB[\xc2HX\n" +
-	"V\n" +
-	"\fuint32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vUInt32Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\rBu\xc2Hr\n" +
+	"p\n" +
+	"\fuint32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\rB}\xc2Hz\n" +
 	"x\n" +
 	"\tuint32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7593,11 +7593,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0euint32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb0\x15\n" +
-	"\vUInt64Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x04B[\xc2HX\n" +
-	"V\n" +
-	"\fuint64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vUInt64Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x04Bu\xc2Hr\n" +
+	"p\n" +
+	"\fuint64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\x04B}\xc2Hz\n" +
 	"x\n" +
 	"\tuint64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7638,11 +7638,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0euint64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb0\x15\n" +
-	"\vSInt32Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x11B[\xc2HX\n" +
-	"V\n" +
-	"\fsint32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vSInt32Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x11Bu\xc2Hr\n" +
+	"p\n" +
+	"\fsint32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\x11B}\xc2Hz\n" +
 	"x\n" +
 	"\tsint32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7683,11 +7683,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0esint32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb0\x15\n" +
-	"\vSInt64Rules\x12q\n" +
-	"\x05const\x18\x01 \x01(\x12B[\xc2HX\n" +
-	"V\n" +
-	"\fsint64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x8f\x01\n" +
+	"\fgreater_than\"\xcb\x15\n" +
+	"\vSInt64Rules\x12\x8b\x01\n" +
+	"\x05const\x18\x01 \x01(\x12Bu\xc2Hr\n" +
+	"p\n" +
+	"\fsint64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x8f\x01\n" +
 	"\x02lt\x18\x02 \x01(\x12B}\xc2Hz\n" +
 	"x\n" +
 	"\tsint64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa2\x01\n" +
@@ -7728,11 +7728,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0esint64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xc1\x15\n" +
-	"\fFixed32Rules\x12r\n" +
-	"\x05const\x18\x01 \x01(\aB\\\xc2HY\n" +
-	"W\n" +
-	"\rfixed32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x90\x01\n" +
+	"\fgreater_than\"\xdc\x15\n" +
+	"\fFixed32Rules\x12\x8c\x01\n" +
+	"\x05const\x18\x01 \x01(\aBv\xc2Hs\n" +
+	"q\n" +
+	"\rfixed32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x90\x01\n" +
 	"\x02lt\x18\x02 \x01(\aB~\xc2H{\n" +
 	"y\n" +
 	"\n" +
@@ -7774,11 +7774,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x17\n" +
 	"\x0ffixed32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xc1\x15\n" +
-	"\fFixed64Rules\x12r\n" +
-	"\x05const\x18\x01 \x01(\x06B\\\xc2HY\n" +
-	"W\n" +
-	"\rfixed64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x90\x01\n" +
+	"\fgreater_than\"\xdc\x15\n" +
+	"\fFixed64Rules\x12\x8c\x01\n" +
+	"\x05const\x18\x01 \x01(\x06Bv\xc2Hs\n" +
+	"q\n" +
+	"\rfixed64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x90\x01\n" +
 	"\x02lt\x18\x02 \x01(\x06B~\xc2H{\n" +
 	"y\n" +
 	"\n" +
@@ -7820,11 +7820,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x17\n" +
 	"\x0ffixed64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xd3\x15\n" +
-	"\rSFixed32Rules\x12s\n" +
-	"\x05const\x18\x01 \x01(\x0fB]\xc2HZ\n" +
-	"X\n" +
-	"\x0esfixed32.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x91\x01\n" +
+	"\fgreater_than\"\xee\x15\n" +
+	"\rSFixed32Rules\x12\x8d\x01\n" +
+	"\x05const\x18\x01 \x01(\x0fBw\xc2Ht\n" +
+	"r\n" +
+	"\x0esfixed32.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x91\x01\n" +
 	"\x02lt\x18\x02 \x01(\x0fB\x7f\xc2H|\n" +
 	"z\n" +
 	"\vsfixed32.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa4\x01\n" +
@@ -7863,11 +7863,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x18\n" +
 	"\x10sfixed32.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xd3\x15\n" +
-	"\rSFixed64Rules\x12s\n" +
-	"\x05const\x18\x01 \x01(\x10B]\xc2HZ\n" +
-	"X\n" +
-	"\x0esfixed64.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\x91\x01\n" +
+	"\fgreater_than\"\xee\x15\n" +
+	"\rSFixed64Rules\x12\x8d\x01\n" +
+	"\x05const\x18\x01 \x01(\x10Bw\xc2Ht\n" +
+	"r\n" +
+	"\x0esfixed64.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\x91\x01\n" +
 	"\x02lt\x18\x02 \x01(\x10B\x7f\xc2H|\n" +
 	"z\n" +
 	"\vsfixed64.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xa4\x01\n" +
@@ -7906,19 +7906,19 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x18\n" +
 	"\x10sfixed64.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xbc\x01\n" +
-	"\tBoolRules\x12o\n" +
-	"\x05const\x18\x01 \x01(\bBY\xc2HV\n" +
-	"T\n" +
+	"\fgreater_than\"\xd7\x01\n" +
+	"\tBoolRules\x12\x89\x01\n" +
+	"\x05const\x18\x01 \x01(\bBs\xc2Hp\n" +
+	"n\n" +
 	"\n" +
-	"bool.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x123\n" +
+	"bool.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xb69\n" +
-	"\vStringRules\x12s\n" +
-	"\x05const\x18\x01 \x01(\tB]\xc2HZ\n" +
-	"X\n" +
-	"\fstring.const\x1aHthis != rules.const ? 'value must equal `%s`'.format([rules.const]) : ''R\x05const\x12\x83\x01\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xd19\n" +
+	"\vStringRules\x12\x8d\x01\n" +
+	"\x05const\x18\x01 \x01(\tBw\xc2Ht\n" +
+	"r\n" +
+	"\fstring.const\x1abthis != getField(rules, 'const') ? 'value must equal `%s`'.format([getField(rules, 'const')]) : ''R\x05const\x12\x83\x01\n" +
 	"\x03len\x18\x13 \x01(\x04Bq\xc2Hn\n" +
 	"l\n" +
 	"\n" +
@@ -8058,12 +8058,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0estring.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\f\n" +
 	"\n" +
-	"well_known\"\xb3\x11\n" +
+	"well_known\"\xce\x11\n" +
 	"\n" +
-	"BytesRules\x12m\n" +
-	"\x05const\x18\x01 \x01(\fBW\xc2HT\n" +
-	"R\n" +
-	"\vbytes.const\x1aCthis != rules.const ? 'value must be %x'.format([rules.const]) : ''R\x05const\x12}\n" +
+	"BytesRules\x12\x87\x01\n" +
+	"\x05const\x18\x01 \x01(\fBq\xc2Hn\n" +
+	"l\n" +
+	"\vbytes.const\x1a]this != getField(rules, 'const') ? 'value must be %x'.format([getField(rules, 'const')]) : ''R\x05const\x12}\n" +
 	"\x03len\x18\r \x01(\x04Bk\xc2Hh\n" +
 	"f\n" +
 	"\tbytes.len\x1aYuint(this.size()) != rules.len ? 'value length must be %s bytes'.format([rules.len]) : ''R\x03len\x12\x98\x01\n" +
@@ -8113,12 +8113,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x15\n" +
 	"\rbytes.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\f\n" +
 	"\n" +
-	"well_known\"\xe2\x03\n" +
-	"\tEnumRules\x12o\n" +
-	"\x05const\x18\x01 \x01(\x05BY\xc2HV\n" +
-	"T\n" +
+	"well_known\"\xfd\x03\n" +
+	"\tEnumRules\x12\x89\x01\n" +
+	"\x05const\x18\x01 \x01(\x05Bs\xc2Hp\n" +
+	"n\n" +
 	"\n" +
-	"enum.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12!\n" +
+	"enum.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12!\n" +
 	"\fdefined_only\x18\x02 \x01(\bR\vdefinedOnly\x12\x82\x01\n" +
 	"\x02in\x18\x03 \x03(\x05Br\xc2Ho\n" +
 	"m\n" +
@@ -8151,11 +8151,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x06values\x18\x05 \x01(\v2\x1e.buf.validate.FieldConstraintsR\x06values*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"1\n" +
 	"\bAnyRules\x12\x0e\n" +
 	"\x02in\x18\x02 \x03(\tR\x02in\x12\x15\n" +
-	"\x06not_in\x18\x03 \x03(\tR\x05notIn\"\xac\x17\n" +
-	"\rDurationRules\x12\x8e\x01\n" +
-	"\x05const\x18\x02 \x01(\v2\x19.google.protobuf.DurationB]\xc2HZ\n" +
-	"X\n" +
-	"\x0eduration.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xac\x01\n" +
+	"\x06not_in\x18\x03 \x03(\tR\x05notIn\"\xc6\x17\n" +
+	"\rDurationRules\x12\xa8\x01\n" +
+	"\x05const\x18\x02 \x01(\v2\x19.google.protobuf.DurationBw\xc2Ht\n" +
+	"r\n" +
+	"\x0eduration.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xac\x01\n" +
 	"\x02lt\x18\x03 \x01(\v2\x19.google.protobuf.DurationB\x7f\xc2H|\n" +
 	"z\n" +
 	"\vduration.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xbf\x01\n" +
@@ -8194,11 +8194,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x18\n" +
 	"\x10duration.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xb0\x18\n" +
-	"\x0eTimestampRules\x12\x90\x01\n" +
-	"\x05const\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB^\xc2H[\n" +
-	"Y\n" +
-	"\x0ftimestamp.const\x1aFthis != rules.const ? 'value must equal %s'.format([rules.const]) : ''R\x05const\x12\xaf\x01\n" +
+	"\fgreater_than\"\xca\x18\n" +
+	"\x0eTimestampRules\x12\xaa\x01\n" +
+	"\x05const\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampBx\xc2Hu\n" +
+	"s\n" +
+	"\x0ftimestamp.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xaf\x01\n" +
 	"\x02lt\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampB\x80\x01\xc2H}\n" +
 	"{\n" +
 	"\ftimestamp.lt\x1ak!has(rules.gte) && !has(rules.gt) && this >= rules.lt? 'value must be less than %s'.format([rules.lt]) : ''H\x00R\x02lt\x12\xc1\x01\n" +
