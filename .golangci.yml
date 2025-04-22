@@ -82,7 +82,3 @@ issues:
         # Types are checked internally within CEL. There are bigger issues if its
         # type analysis is wrong
         - forcetypeassert
-    # static unexported lookup tables
-    - path: go/v2/internal/constraints/lookups.go
-      linters:
-        - gochecknoglobals
