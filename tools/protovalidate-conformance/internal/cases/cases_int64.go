@@ -312,7 +312,7 @@ func int64Suite() suites.Suite {
 				},
 			),
 		},
-		"big_constraints/valid": {
+		"big_rules/valid": {
 			Message: &cases.Int64BigRules{
 				LtPos:       -5666777888,
 				LtNeg:       -5666777888,
@@ -331,7 +331,7 @@ func int64Suite() suites.Suite {
 		},
 		"compilation/wrong_type": {
 			Message:  &cases.Int64IncorrectType{Val: 123},
-			Expected: results.CompilationError("double constraints on float field"),
+			Expected: results.CompilationError("double rules on float field"),
 		},
 		"example/valid": {
 			Message:  &cases.Int64Example{Val: 1},

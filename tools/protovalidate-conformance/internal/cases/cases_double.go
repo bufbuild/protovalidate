@@ -443,7 +443,7 @@ func doubleSuite() suites.Suite {
 		},
 		"compilation/wrong_type": {
 			Message:  &cases.DoubleIncorrectType{Val: 123},
-			Expected: results.CompilationError("double constraints on float field"),
+			Expected: results.CompilationError("double rules on float field"),
 		},
 		"example/valid": {
 			Message:  &cases.DoubleExample{Val: 1.23},

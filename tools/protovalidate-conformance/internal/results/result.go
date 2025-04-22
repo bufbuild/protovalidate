@@ -117,7 +117,7 @@ func (v violationsResult) String() string {
 		_, _ = fmt.Fprintf(bldr, "validation error (%d violations)", len(violations))
 	}
 	for i, violation := range violations {
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. constraint_id: ", resultPadding, i+1)
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. rule_id: ", resultPadding, i+1)
 		if violation.RuleId == nil {
 			bldr.WriteString("<nil>")
 		} else {
@@ -285,9 +285,9 @@ func HydrateFieldPaths(
 			}
 			if path := violation.GetRule(); path != nil && len(path.GetElements()) > 0 {
 				var err error
-				constraints := validate.FieldRules{}
+				rules := validate.FieldRules{}
 				violation.Rule, err = fieldpath.Unmarshal(
-					constraints.ProtoReflect().Descriptor(),
+					rules.ProtoReflect().Descriptor(),
 					path.GetElements()[0].GetFieldName(),
 				)
 				if err != nil {

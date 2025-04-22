@@ -173,7 +173,7 @@ const (
 	// The validation rules of this field will be skipped and not evaluated. This
 	// is useful for situations that necessitate turning off the rules of a field
 	// containing a message that may not make sense in the current context, or to
-	// temporarily disable constraints during development.
+	// temporarily disable rules during development.
 	//
 	// ```proto
 	//
@@ -407,7 +407,7 @@ type MessageRules struct {
 	// ```
 	Disabled *bool `protobuf:"varint,1,opt,name=disabled" json:"disabled,omitempty"`
 	// `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
-	// These constraints are written in Common Expression Language (CEL) syntax. For more information on
+	// These rules are written in Common Expression Language (CEL) syntax. For more information on
 	// CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
 	//
 	// ```proto
@@ -472,13 +472,13 @@ func (x *MessageRules) GetCel() []*Rule {
 	return nil
 }
 
-// The `OneofRules` message type enables you to manage constraints for
+// The `OneofRules` message type enables you to manage rules for
 // oneof fields in your protobuf messages.
 type OneofRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// If `required` is true, exactly one field of the oneof must be present. A
 	// validation error is returned if no fields in the oneof are present. The
-	// field itself may still be a default value; further constraints
+	// field itself may still be a default value; further rules
 	// should be placed on the fields themselves to ensure they are valid values,
 	// such as `min_len` or `gt`.
 	//
@@ -1003,7 +1003,7 @@ func (*FieldRules_Duration) isFieldRules_Type() {}
 
 func (*FieldRules_Timestamp) isFieldRules_Type() {}
 
-// PredefinedRules are custom constraints that can be re-used with
+// PredefinedRules are custom rules that can be re-used with
 // multiple fields.
 type PredefinedRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1065,7 +1065,7 @@ func (x *PredefinedRules) GetCel() []*Rule {
 	return nil
 }
 
-// FloatRules describes the constraints applied to `float` values. These
+// FloatRules describes the rules applied to `float` values. These
 // rules may also be applied to the `google.protobuf.FloatValue` Well-Known-Type.
 type FloatRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1121,7 +1121,7 @@ type FloatRules struct {
 	// infinite or NaN, an error message is generated.
 	Finite *bool `protobuf:"varint,8,opt,name=finite" json:"finite,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -1351,7 +1351,7 @@ func (*FloatRules_Gt) isFloatRules_GreaterThan() {}
 
 func (*FloatRules_Gte) isFloatRules_GreaterThan() {}
 
-// DoubleRules describes the constraints applied to `double` values. These
+// DoubleRules describes the rules applied to `double` values. These
 // rules may also be applied to the `google.protobuf.DoubleValue` Well-Known-Type.
 type DoubleRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1407,7 +1407,7 @@ type DoubleRules struct {
 	// infinite or NaN, an error message is generated.
 	Finite *bool `protobuf:"varint,8,opt,name=finite" json:"finite,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -1637,7 +1637,7 @@ func (*DoubleRules_Gt) isDoubleRules_GreaterThan() {}
 
 func (*DoubleRules_Gte) isDoubleRules_GreaterThan() {}
 
-// Int32Rules describes the constraints applied to `int32` values. These
+// Int32Rules describes the rules applied to `int32` values. These
 // rules may also be applied to the `google.protobuf.Int32Value` Well-Known-Type.
 type Int32Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1690,7 +1690,7 @@ type Int32Rules struct {
 	// ```
 	NotIn []int32 `protobuf:"varint,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -1913,7 +1913,7 @@ func (*Int32Rules_Gt) isInt32Rules_GreaterThan() {}
 
 func (*Int32Rules_Gte) isInt32Rules_GreaterThan() {}
 
-// Int64Rules describes the constraints applied to `int64` values. These
+// Int64Rules describes the rules applied to `int64` values. These
 // rules may also be applied to the `google.protobuf.Int64Value` Well-Known-Type.
 type Int64Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1966,7 +1966,7 @@ type Int64Rules struct {
 	// ```
 	NotIn []int64 `protobuf:"varint,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -2189,7 +2189,7 @@ func (*Int64Rules_Gt) isInt64Rules_GreaterThan() {}
 
 func (*Int64Rules_Gte) isInt64Rules_GreaterThan() {}
 
-// UInt32Rules describes the constraints applied to `uint32` values. These
+// UInt32Rules describes the rules applied to `uint32` values. These
 // rules may also be applied to the `google.protobuf.UInt32Value` Well-Known-Type.
 type UInt32Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -2242,7 +2242,7 @@ type UInt32Rules struct {
 	// ```
 	NotIn []uint32 `protobuf:"varint,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -2465,7 +2465,7 @@ func (*UInt32Rules_Gt) isUInt32Rules_GreaterThan() {}
 
 func (*UInt32Rules_Gte) isUInt32Rules_GreaterThan() {}
 
-// UInt64Rules describes the constraints applied to `uint64` values. These
+// UInt64Rules describes the rules applied to `uint64` values. These
 // rules may also be applied to the `google.protobuf.UInt64Value` Well-Known-Type.
 type UInt64Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -2518,7 +2518,7 @@ type UInt64Rules struct {
 	// ```
 	NotIn []uint64 `protobuf:"varint,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -2741,7 +2741,7 @@ func (*UInt64Rules_Gt) isUInt64Rules_GreaterThan() {}
 
 func (*UInt64Rules_Gte) isUInt64Rules_GreaterThan() {}
 
-// SInt32Rules describes the constraints applied to `sint32` values.
+// SInt32Rules describes the rules applied to `sint32` values.
 type SInt32Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` requires the field value to exactly match the specified value. If
@@ -2793,7 +2793,7 @@ type SInt32Rules struct {
 	// ```
 	NotIn []int32 `protobuf:"zigzag32,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -3016,7 +3016,7 @@ func (*SInt32Rules_Gt) isSInt32Rules_GreaterThan() {}
 
 func (*SInt32Rules_Gte) isSInt32Rules_GreaterThan() {}
 
-// SInt64Rules describes the constraints applied to `sint64` values.
+// SInt64Rules describes the rules applied to `sint64` values.
 type SInt64Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` requires the field value to exactly match the specified value. If
@@ -3068,7 +3068,7 @@ type SInt64Rules struct {
 	// ```
 	NotIn []int64 `protobuf:"zigzag64,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -3291,7 +3291,7 @@ func (*SInt64Rules_Gt) isSInt64Rules_GreaterThan() {}
 
 func (*SInt64Rules_Gte) isSInt64Rules_GreaterThan() {}
 
-// Fixed32Rules describes the constraints applied to `fixed32` values.
+// Fixed32Rules describes the rules applied to `fixed32` values.
 type Fixed32Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` requires the field value to exactly match the specified value.
@@ -3343,7 +3343,7 @@ type Fixed32Rules struct {
 	// ```
 	NotIn []uint32 `protobuf:"fixed32,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -3566,7 +3566,7 @@ func (*Fixed32Rules_Gt) isFixed32Rules_GreaterThan() {}
 
 func (*Fixed32Rules_Gte) isFixed32Rules_GreaterThan() {}
 
-// Fixed64Rules describes the constraints applied to `fixed64` values.
+// Fixed64Rules describes the rules applied to `fixed64` values.
 type Fixed64Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` requires the field value to exactly match the specified value. If
@@ -3618,7 +3618,7 @@ type Fixed64Rules struct {
 	// ```
 	NotIn []uint64 `protobuf:"fixed64,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -3841,7 +3841,7 @@ func (*Fixed64Rules_Gt) isFixed64Rules_GreaterThan() {}
 
 func (*Fixed64Rules_Gte) isFixed64Rules_GreaterThan() {}
 
-// SFixed32Rules describes the constraints applied to `fixed32` values.
+// SFixed32Rules describes the rules applied to `fixed32` values.
 type SFixed32Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` requires the field value to exactly match the specified value. If
@@ -3893,7 +3893,7 @@ type SFixed32Rules struct {
 	// ```
 	NotIn []int32 `protobuf:"fixed32,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -4116,7 +4116,7 @@ func (*SFixed32Rules_Gt) isSFixed32Rules_GreaterThan() {}
 
 func (*SFixed32Rules_Gte) isSFixed32Rules_GreaterThan() {}
 
-// SFixed64Rules describes the constraints applied to `fixed64` values.
+// SFixed64Rules describes the rules applied to `fixed64` values.
 type SFixed64Rules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` requires the field value to exactly match the specified value. If
@@ -4168,7 +4168,7 @@ type SFixed64Rules struct {
 	// ```
 	NotIn []int64 `protobuf:"fixed64,7,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -4391,7 +4391,7 @@ func (*SFixed64Rules_Gt) isSFixed64Rules_GreaterThan() {}
 
 func (*SFixed64Rules_Gte) isSFixed64Rules_GreaterThan() {}
 
-// BoolRules describes the constraints applied to `bool` values. These rules
+// BoolRules describes the rules applied to `bool` values. These rules
 // may also be applied to the `google.protobuf.BoolValue` Well-Known-Type.
 type BoolRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -4408,7 +4408,7 @@ type BoolRules struct {
 	// ```
 	Const *bool `protobuf:"varint,1,opt,name=const" json:"const,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -4471,7 +4471,7 @@ func (x *BoolRules) GetExample() []bool {
 	return nil
 }
 
-// StringRules describes the constraints applied to `string` values These
+// StringRules describes the rules applied to `string` values These
 // rules may also be applied to the `google.protobuf.StringValue` Well-Known-Type.
 type StringRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -4660,7 +4660,7 @@ type StringRules struct {
 	//
 	// ```
 	NotIn []string `protobuf:"bytes,11,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
-	// `WellKnown` rules provide advanced constraints against common string
+	// `WellKnown` rules provide advanced rules against common string
 	// patterns.
 	//
 	// Types that are valid to be assigned to WellKnown:
@@ -4700,7 +4700,7 @@ type StringRules struct {
 	// ```
 	Strict *bool `protobuf:"varint,25,opt,name=strict" json:"strict,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -5423,7 +5423,7 @@ func (*StringRules_HostAndPort) isStringRules_WellKnown() {}
 
 func (*StringRules_WellKnownRegex) isStringRules_WellKnown() {}
 
-// BytesRules describe the constraints applied to `bytes` values. These rules
+// BytesRules describe the rules applied to `bytes` values. These rules
 // may also be applied to the `google.protobuf.BytesValue` Well-Known-Type.
 type BytesRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -5558,7 +5558,7 @@ type BytesRules struct {
 	//
 	// ```
 	NotIn [][]byte `protobuf:"bytes,9,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
-	// WellKnown rules provide advanced constraints against common byte
+	// WellKnown rules provide advanced rules against common byte
 	// patterns
 	//
 	// Types that are valid to be assigned to WellKnown:
@@ -5568,7 +5568,7 @@ type BytesRules struct {
 	//	*BytesRules_Ipv6
 	WellKnown isBytesRules_WellKnown `protobuf_oneof:"well_known"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -5734,7 +5734,7 @@ type isBytesRules_WellKnown interface {
 
 type BytesRules_Ip struct {
 	// `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-	// If the field value doesn't meet this constraint, an error message is generated.
+	// If the field value doesn't meet this rule, an error message is generated.
 	//
 	// ```proto
 	//
@@ -5749,7 +5749,7 @@ type BytesRules_Ip struct {
 
 type BytesRules_Ipv4 struct {
 	// `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-	// If the field value doesn't meet this constraint, an error message is generated.
+	// If the field value doesn't meet this rule, an error message is generated.
 	//
 	// ```proto
 	//
@@ -5764,7 +5764,7 @@ type BytesRules_Ipv4 struct {
 
 type BytesRules_Ipv6 struct {
 	// `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-	// If the field value doesn't meet this constraint, an error message is generated.
+	// If the field value doesn't meet this rule, an error message is generated.
 	// ```proto
 	//
 	//	message MyBytes {
@@ -5782,7 +5782,7 @@ func (*BytesRules_Ipv4) isBytesRules_WellKnown() {}
 
 func (*BytesRules_Ipv6) isBytesRules_WellKnown() {}
 
-// EnumRules describe the constraints applied to `enum` values.
+// EnumRules describe the rules applied to `enum` values.
 type EnumRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` requires the field value to exactly match the specified enum value.
@@ -5860,7 +5860,7 @@ type EnumRules struct {
 	// ```
 	NotIn []int32 `protobuf:"varint,4,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -5948,7 +5948,7 @@ func (x *EnumRules) GetExample() []int32 {
 	return nil
 }
 
-// RepeatedRules describe the constraints applied to `repeated` values.
+// RepeatedRules describe the rules applied to `repeated` values.
 type RepeatedRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `min_items` requires that this field must contain at least the specified
@@ -5980,7 +5980,7 @@ type RepeatedRules struct {
 	// ```
 	MaxItems *uint64 `protobuf:"varint,2,opt,name=max_items,json=maxItems" json:"max_items,omitempty"`
 	// `unique` indicates that all elements in this field must
-	// be unique. This constraint is strictly applicable to scalar and enum
+	// be unique. This rule is strictly applicable to scalar and enum
 	// types, with message types not being supported.
 	//
 	// ```proto
@@ -5992,14 +5992,14 @@ type RepeatedRules struct {
 	//
 	// ```
 	Unique *bool `protobuf:"varint,3,opt,name=unique" json:"unique,omitempty"`
-	// `items` details the constraints to be applied to each item
+	// `items` details the rules to be applied to each item
 	// in the field. Even for repeated message fields, validation is executed
 	// against each item unless skip is explicitly specified.
 	//
 	// ```proto
 	//
 	//	message MyRepeated {
-	//	  // The items in the field `value` must follow the specified constraints.
+	//	  // The items in the field `value` must follow the specified rules.
 	//	  repeated string value = 1 [(buf.validate.field).repeated.items = {
 	//	    string: {
 	//	      min_len: 3
@@ -6073,7 +6073,7 @@ func (x *RepeatedRules) GetItems() *FieldRules {
 	return nil
 }
 
-// MapRules describe the constraints applied to `map` values.
+// MapRules describe the rules applied to `map` values.
 type MapRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Specifies the minimum number of key-value pairs allowed. If the field has
@@ -6100,12 +6100,12 @@ type MapRules struct {
 	//
 	// ```
 	MaxPairs *uint64 `protobuf:"varint,2,opt,name=max_pairs,json=maxPairs" json:"max_pairs,omitempty"`
-	// Specifies the constraints to be applied to each key in the field.
+	// Specifies the rules to be applied to each key in the field.
 	//
 	// ```proto
 	//
 	//	message MyMap {
-	//	  // The keys in the field `value` must follow the specified constraints.
+	//	  // The keys in the field `value` must follow the specified rules.
 	//	  map<string, string> value = 1 [(buf.validate.field).map.keys = {
 	//	    string: {
 	//	      min_len: 3
@@ -6116,14 +6116,14 @@ type MapRules struct {
 	//
 	// ```
 	Keys *FieldRules `protobuf:"bytes,4,opt,name=keys" json:"keys,omitempty"`
-	// Specifies the constraints to be applied to the value of each key in the
+	// Specifies the rules to be applied to the value of each key in the
 	// field. Message values will still have their validations evaluated unless
 	// skip is specified here.
 	//
 	// ```proto
 	//
 	//	message MyMap {
-	//	  // The values in the field `value` must follow the specified constraints.
+	//	  // The values in the field `value` must follow the specified rules.
 	//	  map<string, string> value = 1 [(buf.validate.field).map.values = {
 	//	    string: {
 	//	      min_len: 5
@@ -6197,7 +6197,7 @@ func (x *MapRules) GetValues() *FieldRules {
 	return nil
 }
 
-// AnyRules describe constraints applied exclusively to the `google.protobuf.Any` well-known type.
+// AnyRules describe rules applied exclusively to the `google.protobuf.Any` well-known type.
 type AnyRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `in` requires the field's `type_url` to be equal to one of the
@@ -6272,7 +6272,7 @@ func (x *AnyRules) GetNotIn() []string {
 	return nil
 }
 
-// DurationRules describe the constraints applied exclusively to the `google.protobuf.Duration` well-known type.
+// DurationRules describe the rules applied exclusively to the `google.protobuf.Duration` well-known type.
 type DurationRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` dictates that the field must match the specified value of the `google.protobuf.Duration` type exactly.
@@ -6326,7 +6326,7 @@ type DurationRules struct {
 	// ```
 	NotIn []*durationpb.Duration `protobuf:"bytes,8,rep,name=not_in,json=notIn" json:"not_in,omitempty"`
 	// `example` specifies values that the field may have. These values SHOULD
-	// conform to other constraints. `example` values will not impact validation
+	// conform to other rules. `example` values will not impact validation
 	// but may be used as helpful guidance on how to populate the given field.
 	//
 	// ```proto
@@ -6549,7 +6549,7 @@ func (*DurationRules_Gt) isDurationRules_GreaterThan() {}
 
 func (*DurationRules_Gte) isDurationRules_GreaterThan() {}
 
-// TimestampRules describe the constraints applied exclusively to the `google.protobuf.Timestamp` well-known type.
+// TimestampRules describe the rules applied exclusively to the `google.protobuf.Timestamp` well-known type.
 type TimestampRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `const` dictates that this field, of the `google.protobuf.Timestamp` type, must exactly match the specified value. If the field value doesn't correspond to the specified timestamp, an error message will be generated.
@@ -6885,14 +6885,14 @@ func (x *Violations) GetViolations() []*Violation {
 
 // `Violation` represents a single instance where a validation rule, expressed
 // as a `Rule`, was not met. It provides information about the field that
-// caused the violation, the specific constraint that wasn't fulfilled, and a
+// caused the violation, the specific rule that wasn't fulfilled, and a
 // human-readable error message.
 //
 // ```json
 //
 //	{
 //	  "fieldPath": "bar",
-//	  "constraintId": "foo.bar",
+//	  "ruleId": "foo.bar",
 //	  "message": "bar must be greater than 0"
 //	}
 //
@@ -6923,9 +6923,9 @@ type Violation struct {
 	//
 	// ```
 	Field *FieldPath `protobuf:"bytes,5,opt,name=field" json:"field,omitempty"`
-	// `rule` is a machine-readable path that points to the specific constraint rule that failed validation.
+	// `rule` is a machine-readable path that points to the specific rule rule that failed validation.
 	// This will be a nested field starting from the FieldRules of the field that failed validation.
-	// For custom constraints, this will provide the path of the constraint, e.g. `cel[0]`.
+	// For custom rules, this will provide the path of the rule, e.g. `cel[0]`.
 	//
 	// For example, consider the following message:
 	//
@@ -6934,7 +6934,7 @@ type Violation struct {
 	//	message Message {
 	//	  bool a = 1 [(buf.validate.field).required = true];
 	//	  bool b = 2 [(buf.validate.field).cel = {
-	//	    id: "custom_constraint",
+	//	    id: "custom_rule",
 	//	    expression: "!this ? 'b must be true': ''"
 	//	  }]
 	//	}
@@ -6957,9 +6957,9 @@ type Violation struct {
 	//
 	// ```
 	Rule *FieldPath `protobuf:"bytes,6,opt,name=rule" json:"rule,omitempty"`
-	// `constraint_id` is the unique identifier of the `Rule` that was not fulfilled.
+	// `rule_id` is the unique identifier of the `Rule` that was not fulfilled.
 	// This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.
-	RuleId *string `protobuf:"bytes,2,opt,name=constraint_id,json=constraintId" json:"constraint_id,omitempty"`
+	RuleId *string `protobuf:"bytes,2,opt,name=rule_id,json=ruleId" json:"rule_id,omitempty"`
 	// `message` is a human-readable error message that describes the nature of the violation.
 	// This can be the default error message from the violated `Rule`, or it can be a custom message that gives more context about the violation.
 	Message *string `protobuf:"bytes,3,opt,name=message" json:"message,omitempty"`
@@ -7343,7 +7343,7 @@ var (
 	//
 	// optional buf.validate.FieldRules field = 1159;
 	E_Field = &file_buf_validate_validate_proto_extTypes[2]
-	// Specifies predefined rules. When extending a standard constraint message,
+	// Specifies predefined rules. When extending a standard rule message,
 	// this adds additional CEL expressions that apply when the extension is used.
 	//
 	// ```proto
@@ -8297,7 +8297,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\tViolation\x12-\n" +
 	"\x05field\x18\x05 \x01(\v2\x17.buf.validate.FieldPathR\x05field\x12+\n" +
 	"\x04rule\x18\x06 \x01(\v2\x17.buf.validate.FieldPathR\x04rule\x12#\n" +
-	"\rconstraint_id\x18\x02 \x01(\tR\fconstraintId\x12\x18\n" +
+	"\rrule_id\x18\x02 \x01(\tR\fruleId\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x17\n" +
 	"\afor_key\x18\x04 \x01(\bR\x06forKeyJ\x04\b\x01\x10\x02R\n" +
 	"field_path\"G\n" +
