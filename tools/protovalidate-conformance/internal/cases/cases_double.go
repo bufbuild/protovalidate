@@ -40,7 +40,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.const"),
-					ConstraintId: proto.String("double.const"),
+					RuleId: proto.String("double.const"),
 				},
 			),
 		},
@@ -50,7 +50,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.const"),
-					ConstraintId: proto.String("double.const"),
+					RuleId: proto.String("double.const"),
 				},
 			),
 		},
@@ -64,7 +64,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.in"),
-					ConstraintId: proto.String("double.in"),
+					RuleId: proto.String("double.in"),
 				},
 			),
 		},
@@ -74,7 +74,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.in"),
-					ConstraintId: proto.String("double.in"),
+					RuleId: proto.String("double.in"),
 				},
 			),
 		},
@@ -92,7 +92,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.not_in"),
-					ConstraintId: proto.String("double.not_in"),
+					RuleId: proto.String("double.not_in"),
 				},
 			),
 		},
@@ -106,7 +106,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.lt"),
-					ConstraintId: proto.String("double.lt"),
+					RuleId: proto.String("double.lt"),
 				},
 			),
 		},
@@ -116,7 +116,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.lt"),
-					ConstraintId: proto.String("double.lt"),
+					RuleId: proto.String("double.lt"),
 				},
 			),
 		},
@@ -126,7 +126,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.lt"),
-					ConstraintId: proto.String("double.lt"),
+					RuleId: proto.String("double.lt"),
 				},
 			),
 		},
@@ -144,7 +144,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.lte"),
-					ConstraintId: proto.String("double.lte"),
+					RuleId: proto.String("double.lte"),
 				},
 			),
 		},
@@ -154,7 +154,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.lte"),
-					ConstraintId: proto.String("double.lte"),
+					RuleId: proto.String("double.lte"),
 				},
 			),
 		},
@@ -168,7 +168,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt"),
+					RuleId: proto.String("double.gt"),
 				},
 			),
 		},
@@ -178,7 +178,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt"),
+					RuleId: proto.String("double.gt"),
 				},
 			),
 		},
@@ -188,7 +188,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt"),
+					RuleId: proto.String("double.gt"),
 				},
 			),
 		},
@@ -206,7 +206,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gte"),
-					ConstraintId: proto.String("double.gte"),
+					RuleId: proto.String("double.gte"),
 				},
 			),
 		},
@@ -216,7 +216,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gte"),
-					ConstraintId: proto.String("double.gte"),
+					RuleId: proto.String("double.gte"),
 				},
 			),
 		},
@@ -230,7 +230,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt"),
+					RuleId: proto.String("double.gt_lt"),
 				},
 			),
 		},
@@ -240,7 +240,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt"),
+					RuleId: proto.String("double.gt_lt"),
 				},
 			),
 		},
@@ -250,7 +250,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt"),
+					RuleId: proto.String("double.gt_lt"),
 				},
 			),
 		},
@@ -260,7 +260,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt"),
+					RuleId: proto.String("double.gt_lt"),
 				},
 			),
 		},
@@ -278,7 +278,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt_exclusive"),
+					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -288,7 +288,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt_exclusive"),
+					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -298,7 +298,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt_exclusive"),
+					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gt"),
-					ConstraintId: proto.String("double.gt_lt_exclusive"),
+					RuleId: proto.String("double.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -330,7 +330,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gte"),
-					ConstraintId: proto.String("double.gte_lte"),
+					RuleId: proto.String("double.gte_lte"),
 				},
 			),
 		},
@@ -340,7 +340,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gte"),
-					ConstraintId: proto.String("double.gte_lte"),
+					RuleId: proto.String("double.gte_lte"),
 				},
 			),
 		},
@@ -350,7 +350,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gte"),
-					ConstraintId: proto.String("double.gte_lte"),
+					RuleId: proto.String("double.gte_lte"),
 				},
 			),
 		},
@@ -376,7 +376,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gte"),
-					ConstraintId: proto.String("double.gte_lte_exclusive"),
+					RuleId: proto.String("double.gte_lte_exclusive"),
 				},
 			),
 		},
@@ -386,7 +386,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.gte"),
-					ConstraintId: proto.String("double.gte_lte_exclusive"),
+					RuleId: proto.String("double.gte_lte_exclusive"),
 				},
 			),
 		},
@@ -400,7 +400,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.finite"),
-					ConstraintId: proto.String("double.finite"),
+					RuleId: proto.String("double.finite"),
 					Message:      proto.String("value must be finite"),
 				}),
 		},
@@ -410,7 +410,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.finite"),
-					ConstraintId: proto.String("double.finite"),
+					RuleId: proto.String("double.finite"),
 					Message:      proto.String("value must be finite")}),
 		},
 		"finite/inf/not_checked": {
@@ -423,7 +423,7 @@ func doubleSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("double.finite"),
-					ConstraintId: proto.String("double.finite"),
+					RuleId: proto.String("double.finite"),
 					Message:      proto.String("value must be finite"),
 				},
 			),
@@ -439,7 +439,7 @@ func doubleSuite() suites.Suite {
 		"ignore_empty/invalid/above": {
 			Message: &cases.DoubleIgnore{Val: 300},
 			Expected: results.Violations(
-				&validate.Violation{Field: results.FieldPath("val"), Rule: results.FieldPath("double.gte"), ConstraintId: proto.String("double.gte_lte")}),
+				&validate.Violation{Field: results.FieldPath("val"), Rule: results.FieldPath("double.gte"), RuleId: proto.String("double.gte_lte")}),
 		},
 		"compilation/wrong_type": {
 			Message:  &cases.DoubleIncorrectType{Val: 123},

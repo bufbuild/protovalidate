@@ -63,7 +63,7 @@ func anySuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("any.in"),
-					ConstraintId: proto.String("any.in"),
+					RuleId: proto.String("any.in"),
 				},
 			),
 		},
@@ -73,7 +73,7 @@ func anySuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("any.in"),
-					ConstraintId: proto.String("any.in"),
+					RuleId: proto.String("any.in"),
 				},
 			),
 		},
@@ -95,7 +95,7 @@ func anySuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("any.not_in"),
-					ConstraintId: proto.String("any.not_in"),
+					RuleId: proto.String("any.not_in"),
 				},
 			),
 		},
@@ -113,7 +113,7 @@ func anySuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("required"),
-					ConstraintId: proto.String("required"),
+					RuleId: proto.String("required"),
 				},
 			),
 		},

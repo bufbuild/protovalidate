@@ -38,7 +38,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.const"),
-					ConstraintId: proto.String("fixed64.const"),
+					RuleId: proto.String("fixed64.const"),
 				},
 			),
 		},
@@ -52,7 +52,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.in"),
-					ConstraintId: proto.String("fixed64.in"),
+					RuleId: proto.String("fixed64.in"),
 				},
 			),
 		},
@@ -66,7 +66,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.not_in"),
-					ConstraintId: proto.String("fixed64.not_in"),
+					RuleId: proto.String("fixed64.not_in"),
 				},
 			),
 		},
@@ -80,7 +80,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.lt"),
-					ConstraintId: proto.String("fixed64.lt"),
+					RuleId: proto.String("fixed64.lt"),
 				},
 			),
 		},
@@ -90,7 +90,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.lt"),
-					ConstraintId: proto.String("fixed64.lt"),
+					RuleId: proto.String("fixed64.lt"),
 				},
 			),
 		},
@@ -108,7 +108,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.lte"),
-					ConstraintId: proto.String("fixed64.lte"),
+					RuleId: proto.String("fixed64.lte"),
 				},
 			),
 		},
@@ -122,7 +122,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt"),
+					RuleId: proto.String("fixed64.gt"),
 				},
 			),
 		},
@@ -132,7 +132,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt"),
+					RuleId: proto.String("fixed64.gt"),
 				},
 			),
 		},
@@ -150,7 +150,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gte"),
-					ConstraintId: proto.String("fixed64.gte"),
+					RuleId: proto.String("fixed64.gte"),
 				},
 			),
 		},
@@ -164,7 +164,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt_lt"),
+					RuleId: proto.String("fixed64.gt_lt"),
 				},
 			),
 		},
@@ -174,7 +174,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt_lt"),
+					RuleId: proto.String("fixed64.gt_lt"),
 				},
 			),
 		},
@@ -184,7 +184,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt_lt"),
+					RuleId: proto.String("fixed64.gt_lt"),
 				},
 			),
 		},
@@ -194,7 +194,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt_lt"),
+					RuleId: proto.String("fixed64.gt_lt"),
 				},
 			),
 		},
@@ -212,7 +212,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt_lt_exclusive"),
+					RuleId: proto.String("fixed64.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -222,7 +222,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt_lt_exclusive"),
+					RuleId: proto.String("fixed64.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -232,7 +232,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gt"),
-					ConstraintId: proto.String("fixed64.gt_lt_exclusive"),
+					RuleId: proto.String("fixed64.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -254,7 +254,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gte"),
-					ConstraintId: proto.String("fixed64.gte_lte"),
+					RuleId: proto.String("fixed64.gte_lte"),
 				},
 			),
 		},
@@ -264,7 +264,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gte"),
-					ConstraintId: proto.String("fixed64.gte_lte"),
+					RuleId: proto.String("fixed64.gte_lte"),
 				},
 			),
 		},
@@ -290,7 +290,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gte"),
-					ConstraintId: proto.String("fixed64.gte_lte_exclusive"),
+					RuleId: proto.String("fixed64.gte_lte_exclusive"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func fixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("fixed64.gte"),
-					ConstraintId: proto.String("fixed64.gte_lte"),
+					RuleId: proto.String("fixed64.gte_lte"),
 				},
 			),
 		},

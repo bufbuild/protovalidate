@@ -37,7 +37,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto2/scalar/optional/unset/ignore_always": suites.Case{
@@ -61,7 +61,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto2/scalar/optional_with_default/unset/ignore_always": suites.Case{
@@ -89,7 +89,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto2/message/unset/ignore_always": suites.Case{
@@ -109,7 +109,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("a"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto2/oneof/other_member/ignore_always": suites.Case{
@@ -121,7 +121,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("a"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto2/oneof/unset/ignore_always": suites.Case{
@@ -137,7 +137,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto2/repeated/empty/ignore_always": suites.Case{
@@ -153,7 +153,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto2/map/empty/ignore_always": suites.Case{
@@ -169,7 +169,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto3/scalar/zero/ignore_always": suites.Case{
@@ -189,7 +189,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto3/scalar/optional/unset/ignore_always": suites.Case{
@@ -209,7 +209,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto3/message/unset/ignore_always": suites.Case{
@@ -229,7 +229,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("a"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto3/oneof/other_member/ignore_always": suites.Case{
@@ -241,7 +241,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("a"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto3/oneof/unset/ignore_always": suites.Case{
@@ -257,7 +257,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto3/repeated/empty/ignore_always": suites.Case{
@@ -273,7 +273,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto3/map/empty/ignore_always": suites.Case{
@@ -293,7 +293,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/scalar/explicit_presence/unset/ignore_always": suites.Case{
@@ -317,7 +317,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/scalar/explicit_presence_with_default/unset/ignore_always": suites.Case{
@@ -333,7 +333,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/scalar/implicit_presence/zero/ignore_always": suites.Case{
@@ -361,7 +361,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/message/explicit_presence/length_prefixed/unset/ignore_always": suites.Case{
@@ -381,7 +381,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/message/explicit_presence/delimited/unset/ignore_always": suites.Case{
@@ -417,7 +417,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("a"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/oneof/other_member/ignore_always": suites.Case{
@@ -429,7 +429,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("a"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/oneof/unset/ignore_always": suites.Case{
@@ -445,7 +445,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/repeated/compact/empty/ignore_always": suites.Case{
@@ -461,7 +461,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/repeated/expanded/empty/ignore_always": suites.Case{
@@ -477,7 +477,7 @@ func requiredSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"proto/2023/map/empty/ignore_always": suites.Case{

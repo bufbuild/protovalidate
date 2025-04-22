@@ -40,7 +40,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"const/valid": {
@@ -56,7 +56,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.const"),
-				ConstraintId: proto.String("timestamp.const"),
+				RuleId: proto.String("timestamp.const"),
 			}),
 		},
 		"lt/valid": {
@@ -72,7 +72,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.lt"),
-				ConstraintId: proto.String("timestamp.lt"),
+				RuleId: proto.String("timestamp.lt"),
 			}),
 		},
 		"lt/invalid": {
@@ -80,7 +80,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.lt"),
-				ConstraintId: proto.String("timestamp.lt"),
+				RuleId: proto.String("timestamp.lt"),
 			}),
 		},
 		"lte/valid": {
@@ -100,7 +100,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.lte"),
-				ConstraintId: proto.String("timestamp.lte"),
+				RuleId: proto.String("timestamp.lte"),
 			}),
 		},
 		"gt/valid": {
@@ -116,7 +116,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt"),
+				RuleId: proto.String("timestamp.gt"),
 			}),
 		},
 		"gt/invalid": {
@@ -124,7 +124,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt"),
+				RuleId: proto.String("timestamp.gt"),
 			}),
 		},
 		"gte/valid": {
@@ -144,7 +144,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gte"),
-				ConstraintId: proto.String("timestamp.gte"),
+				RuleId: proto.String("timestamp.gte"),
 			}),
 		},
 		"gt_lt/valid": {
@@ -160,7 +160,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt_lt"),
+				RuleId: proto.String("timestamp.gt_lt"),
 			}),
 		},
 		"gt_lt/invalid/below": {
@@ -168,7 +168,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt_lt"),
+				RuleId: proto.String("timestamp.gt_lt"),
 			}),
 		},
 		"gt_lt/invalid/max": {
@@ -176,7 +176,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt_lt"),
+				RuleId: proto.String("timestamp.gt_lt"),
 			}),
 		},
 		"gt_lt/invalid/min": {
@@ -184,7 +184,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt_lt"),
+				RuleId: proto.String("timestamp.gt_lt"),
 			}),
 		},
 		"exclusive/gt_lt/valid/empty": {
@@ -204,7 +204,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt_lt_exclusive"),
+				RuleId: proto.String("timestamp.gt_lt_exclusive"),
 			}),
 		},
 		"exclusive/gt_lt/invalid/max": {
@@ -212,7 +212,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt_lt_exclusive"),
+				RuleId: proto.String("timestamp.gt_lt_exclusive"),
 			}),
 		},
 		"exclusive/gt_lt/invalid/min": {
@@ -220,7 +220,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt"),
-				ConstraintId: proto.String("timestamp.gt_lt_exclusive"),
+				RuleId: proto.String("timestamp.gt_lt_exclusive"),
 			}),
 		},
 		"gte_lte/valid": {
@@ -244,7 +244,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gte"),
-				ConstraintId: proto.String("timestamp.gte_lte"),
+				RuleId: proto.String("timestamp.gte_lte"),
 			}),
 		},
 		"gte_lte/invalid/below": {
@@ -252,7 +252,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gte"),
-				ConstraintId: proto.String("timestamp.gte_lte"),
+				RuleId: proto.String("timestamp.gte_lte"),
 			}),
 		},
 		"exclusive/gte_lte/valid/empty": {
@@ -280,7 +280,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gte"),
-				ConstraintId: proto.String("timestamp.gte_lte_exclusive"),
+				RuleId: proto.String("timestamp.gte_lte_exclusive"),
 			}),
 		},
 		"lt_now/valid": {
@@ -296,7 +296,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.lt_now"),
-				ConstraintId: proto.String("timestamp.lt_now"),
+				RuleId: proto.String("timestamp.lt_now"),
 			}),
 		},
 		"lt_now/invalid/not_checked": {
@@ -316,7 +316,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.gt_now"),
-				ConstraintId: proto.String("timestamp.gt_now"),
+				RuleId: proto.String("timestamp.gt_now"),
 			}),
 		},
 		"gt_now/invalid/not_checked": {
@@ -336,7 +336,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.within"),
-				ConstraintId: proto.String("timestamp.within"),
+				RuleId: proto.String("timestamp.within"),
 			}),
 		},
 		"within/invalid/above": {
@@ -344,7 +344,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.within"),
-				ConstraintId: proto.String("timestamp.within"),
+				RuleId: proto.String("timestamp.within"),
 			}),
 		},
 		"lt_now/within/valid": {
@@ -361,7 +361,7 @@ func timestampSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("timestamp.lt_now"),
-					ConstraintId: proto.String("timestamp.lt_now"),
+					RuleId: proto.String("timestamp.lt_now"),
 				}),
 		},
 		"lt_now/within/invalid/within": {
@@ -369,7 +369,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.within"),
-				ConstraintId: proto.String("timestamp.within"),
+				RuleId: proto.String("timestamp.within"),
 			}),
 		},
 		"gt_now/within/valid": {
@@ -386,11 +386,11 @@ func timestampSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("timestamp.gt_now"),
-					ConstraintId: proto.String("timestamp.gt_now")},
+					RuleId: proto.String("timestamp.gt_now")},
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("timestamp.within"),
-					ConstraintId: proto.String("timestamp.within")},
+					RuleId: proto.String("timestamp.within")},
 			),
 		},
 		"gt_now/within/invalid/within": {
@@ -398,7 +398,7 @@ func timestampSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("timestamp.within"),
-				ConstraintId: proto.String("timestamp.within"),
+				RuleId: proto.String("timestamp.within"),
 			}),
 		},
 		"example/valid": {

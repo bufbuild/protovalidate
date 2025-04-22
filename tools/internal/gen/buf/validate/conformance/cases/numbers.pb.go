@@ -2764,7 +2764,7 @@ func (x *Int64Ignore) GetVal() int64 {
 	return 0
 }
 
-type Int64BigConstraints struct {
+type Int64BigRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Intentionally choose limits that are outside the range of both signed and unsigned 32-bit integers.
 	LtPos         int64 `protobuf:"varint,1,opt,name=lt_pos,json=ltPos,proto3" json:"lt_pos,omitempty"`
@@ -2783,20 +2783,20 @@ type Int64BigConstraints struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Int64BigConstraints) Reset() {
-	*x = Int64BigConstraints{}
+func (x *Int64BigRules) Reset() {
+	*x = Int64BigRules{}
 	mi := &file_buf_validate_conformance_cases_numbers_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Int64BigConstraints) String() string {
+func (x *Int64BigRules) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Int64BigConstraints) ProtoMessage() {}
+func (*Int64BigRules) ProtoMessage() {}
 
-func (x *Int64BigConstraints) ProtoReflect() protoreflect.Message {
+func (x *Int64BigRules) ProtoReflect() protoreflect.Message {
 	mi := &file_buf_validate_conformance_cases_numbers_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2808,89 +2808,89 @@ func (x *Int64BigConstraints) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Int64BigConstraints.ProtoReflect.Descriptor instead.
-func (*Int64BigConstraints) Descriptor() ([]byte, []int) {
+// Deprecated: Use Int64BigRules.ProtoReflect.Descriptor instead.
+func (*Int64BigRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_conformance_cases_numbers_proto_rawDescGZIP(), []int{62}
 }
 
-func (x *Int64BigConstraints) GetLtPos() int64 {
+func (x *Int64BigRules) GetLtPos() int64 {
 	if x != nil {
 		return x.LtPos
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetLtNeg() int64 {
+func (x *Int64BigRules) GetLtNeg() int64 {
 	if x != nil {
 		return x.LtNeg
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetGtPos() int64 {
+func (x *Int64BigRules) GetGtPos() int64 {
 	if x != nil {
 		return x.GtPos
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetGtNeg() int64 {
+func (x *Int64BigRules) GetGtNeg() int64 {
 	if x != nil {
 		return x.GtNeg
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetLtePos() int64 {
+func (x *Int64BigRules) GetLtePos() int64 {
 	if x != nil {
 		return x.LtePos
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetLteNeg() int64 {
+func (x *Int64BigRules) GetLteNeg() int64 {
 	if x != nil {
 		return x.LteNeg
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetGtePos() int64 {
+func (x *Int64BigRules) GetGtePos() int64 {
 	if x != nil {
 		return x.GtePos
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetGteNeg() int64 {
+func (x *Int64BigRules) GetGteNeg() int64 {
 	if x != nil {
 		return x.GteNeg
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetConstantPos() int64 {
+func (x *Int64BigRules) GetConstantPos() int64 {
 	if x != nil {
 		return x.ConstantPos
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetConstantNeg() int64 {
+func (x *Int64BigRules) GetConstantNeg() int64 {
 	if x != nil {
 		return x.ConstantNeg
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetIn() int64 {
+func (x *Int64BigRules) GetIn() int64 {
 	if x != nil {
 		return x.In
 	}
 	return 0
 }
 
-func (x *Int64BigConstraints) GetNotin() int64 {
+func (x *Int64BigRules) GetNotin() int64 {
 	if x != nil {
 		return x.Notin
 	}
@@ -8484,7 +8484,7 @@ const file_buf_validate_conformance_cases_numbers_proto_rawDesc = "" +
 	"\x03val\x18\x01 \x01(\x03B\v\xbaH\b\"\x06\x18\x80\x01(\x80\x02R\x03val\"/\n" +
 	"\vInt64Ignore\x12 \n" +
 	"\x03val\x18\x01 \x01(\x03B\x0e\xbaH\v\xd8\x01\x01\"\x06\x18\x80\x02(\x80\x01R\x03val\"\x8c\x04\n" +
-	"\x13Int64BigConstraints\x12\"\n" +
+	"\x13Int64BigRules\x12\"\n" +
 	"\x06lt_pos\x18\x01 \x01(\x03B\v\xbaH\b\"\x06\x10\xa6݇\xa4\x14R\x05ltPos\x12'\n" +
 	"\x06lt_neg\x18\x02 \x01(\x03B\x10\xbaH\r\"\v\x10ڢ\xf8\xdb\xeb\xff\xff\xff\xff\x01R\x05ltNeg\x12\"\n" +
 	"\x06gt_pos\x18\x03 \x01(\x03B\v\xbaH\b\"\x06 \xa6݇\xa4\x14R\x05gtPos\x12'\n" +
@@ -8898,7 +8898,7 @@ var file_buf_validate_conformance_cases_numbers_proto_goTypes = []any{
 	(*Int64GTELTE)(nil),           // 59: buf.validate.conformance.cases.Int64GTELTE
 	(*Int64ExGTELTE)(nil),         // 60: buf.validate.conformance.cases.Int64ExGTELTE
 	(*Int64Ignore)(nil),           // 61: buf.validate.conformance.cases.Int64Ignore
-	(*Int64BigConstraints)(nil),   // 62: buf.validate.conformance.cases.Int64BigConstraints
+	(*Int64BigRules)(nil),   // 62: buf.validate.conformance.cases.Int64BigRules
 	(*Int64IncorrectType)(nil),    // 63: buf.validate.conformance.cases.Int64IncorrectType
 	(*Int64Example)(nil),          // 64: buf.validate.conformance.cases.Int64Example
 	(*UInt32None)(nil),            // 65: buf.validate.conformance.cases.UInt32None

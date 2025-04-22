@@ -40,7 +40,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -48,7 +48,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "µ@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -56,7 +56,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -64,7 +64,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -72,7 +72,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: " foo@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -80,7 +80,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@example.com "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -88,7 +88,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "\nfoobar@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -96,7 +96,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foobar@example.com\n"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -120,7 +120,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo @example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -128,7 +128,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -136,7 +136,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@example.com."},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -144,7 +144,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@.a"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -152,7 +152,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@-a"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -160,7 +160,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@a-"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -176,7 +176,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@abcd012345678901234567890123456789012345678901234567890123456789.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -196,7 +196,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@你好.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -204,7 +204,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: `"foo bar"@example.com`},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -212,7 +212,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: `"foo..bar"@example.com`},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -220,7 +220,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: `"foo@bar"@example.com`},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -228,7 +228,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foobar@ example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -236,7 +236,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "foo@example.com (comment)"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -244,7 +244,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "John Doe <john@example.com>"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},
@@ -252,7 +252,7 @@ func isEmailSuite() suites.Suite {
 			Message: &cases.IsEmail{Val: "postmaster@[123.123.123.123]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_email"),
+					RuleId: proto.String("library.is_email"),
 				},
 			),
 		},

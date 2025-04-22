@@ -42,7 +42,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("map.min_pairs"),
-					ConstraintId: proto.String("map.min_pairs"),
+					RuleId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 2 entries"),
 				},
 			),
@@ -61,7 +61,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("map.max_pairs"),
-					ConstraintId: proto.String("map.max_pairs"),
+					RuleId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 3 entries"),
 				},
 			),
@@ -84,7 +84,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("map.min_pairs"),
-					ConstraintId: proto.String("map.min_pairs"),
+					RuleId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 2 entries"),
 				},
 			),
@@ -95,7 +95,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("map.max_pairs"),
-					ConstraintId: proto.String("map.max_pairs"),
+					RuleId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 4 entries"),
 				},
 			),
@@ -110,7 +110,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("map.min_pairs"),
-					ConstraintId: proto.String("map.min_pairs"),
+					RuleId: proto.String("map.min_pairs"),
 					Message:      proto.String("map must be at least 3 entries"),
 				},
 			),
@@ -121,7 +121,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("map.max_pairs"),
-					ConstraintId: proto.String("map.max_pairs"),
+					RuleId: proto.String("map.max_pairs"),
 					Message:      proto.String("map must be at most 3 entries"),
 				},
 			),
@@ -144,7 +144,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[1]"),
 					Rule:         results.FieldPath("map.keys.sint64.lt"),
-					ConstraintId: proto.String("sint64.lt"),
+					RuleId: proto.String("sint64.lt"),
 					Message:      proto.String("value must be less than 0"),
 					ForKey:       proto.Bool(true),
 				},
@@ -156,7 +156,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[\"!@#$%^&*()\"]"),
 					Rule:         results.FieldPath("map.keys.string.pattern"),
-					ConstraintId: proto.String("string.pattern"),
+					RuleId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
 					ForKey:       proto.Bool(true),
 				},
@@ -180,13 +180,13 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[\"a\"]"),
 					Rule:         results.FieldPath("map.values.string.min_len"),
-					ConstraintId: proto.String("string.min_len"),
+					RuleId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val[\"b\"]"),
 					Rule:         results.FieldPath("map.values.string.min_len"),
-					ConstraintId: proto.String("string.min_len"),
+					RuleId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
 				},
 			),
@@ -197,7 +197,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[\"b\"]"),
 					Rule:         results.FieldPath("map.values.string.pattern"),
-					ConstraintId: proto.String("string.pattern"),
+					RuleId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
 				},
 			),
@@ -212,7 +212,7 @@ func mapSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[1].val"),
 					Rule:         results.FieldPath("string.min_len"),
-					ConstraintId: proto.String("string.min_len"),
+					RuleId: proto.String("string.min_len"),
 					Message:      proto.String("value length must be at least 3 characters"),
 				},
 			),

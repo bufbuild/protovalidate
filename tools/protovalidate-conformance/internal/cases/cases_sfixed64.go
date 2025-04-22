@@ -38,7 +38,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.const"),
-					ConstraintId: proto.String("sfixed64.const"),
+					RuleId: proto.String("sfixed64.const"),
 					Message:      proto.String("value must equal 1"),
 				},
 			),
@@ -53,7 +53,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.in"),
-					ConstraintId: proto.String("sfixed64.in"),
+					RuleId: proto.String("sfixed64.in"),
 					Message:      proto.String("value must be in list [2, 3]"),
 				},
 			),
@@ -68,7 +68,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.not_in"),
-					ConstraintId: proto.String("sfixed64.not_in"),
+					RuleId: proto.String("sfixed64.not_in"),
 					Message:      proto.String("value must not be in list [0]"),
 				},
 			),
@@ -83,7 +83,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.lt"),
-					ConstraintId: proto.String("sfixed64.lt"),
+					RuleId: proto.String("sfixed64.lt"),
 					Message:      proto.String("value must be less than 0"),
 				},
 			),
@@ -94,7 +94,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.lt"),
-					ConstraintId: proto.String("sfixed64.lt"),
+					RuleId: proto.String("sfixed64.lt"),
 					Message:      proto.String("value must be less than 0"),
 				},
 			),
@@ -113,7 +113,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.lte"),
-					ConstraintId: proto.String("sfixed64.lte"),
+					RuleId: proto.String("sfixed64.lte"),
 					Message:      proto.String("value must be less than or equal to 64"),
 				},
 			),
@@ -128,7 +128,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt"),
+					RuleId: proto.String("sfixed64.gt"),
 					Message:      proto.String("value must be greater than 16"),
 				},
 			),
@@ -139,7 +139,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt"),
+					RuleId: proto.String("sfixed64.gt"),
 					Message:      proto.String("value must be greater than 16"),
 				},
 			),
@@ -158,7 +158,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gte"),
-					ConstraintId: proto.String("sfixed64.gte"),
+					RuleId: proto.String("sfixed64.gte"),
 					Message:      proto.String("value must be greater than or equal to 8"),
 				},
 			),
@@ -173,7 +173,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt_lt"),
+					RuleId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
 			),
@@ -184,7 +184,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt_lt"),
+					RuleId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
 			),
@@ -195,7 +195,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt_lt"),
+					RuleId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
 			),
@@ -206,7 +206,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt_lt"),
+					RuleId: proto.String("sfixed64.gt_lt"),
 					Message:      proto.String("value must be greater than 0 and less than 10"),
 				},
 			),
@@ -225,7 +225,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt_lt_exclusive"),
+					RuleId: proto.String("sfixed64.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
 				},
 			),
@@ -236,7 +236,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt_lt_exclusive"),
+					RuleId: proto.String("sfixed64.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
 				},
 			),
@@ -247,7 +247,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gt"),
-					ConstraintId: proto.String("sfixed64.gt_lt_exclusive"),
+					RuleId: proto.String("sfixed64.gt_lt_exclusive"),
 					Message:      proto.String("value must be greater than 10 or less than 0"),
 				},
 			),
@@ -270,7 +270,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gte"),
-					ConstraintId: proto.String("sfixed64.gte_lte"),
+					RuleId: proto.String("sfixed64.gte_lte"),
 					Message:      proto.String("value must be greater than or equal to 128 and less than or equal to 256"),
 				},
 			),
@@ -281,7 +281,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gte"),
-					ConstraintId: proto.String("sfixed64.gte_lte"),
+					RuleId: proto.String("sfixed64.gte_lte"),
 					Message:      proto.String("value must be greater than or equal to 128 and less than or equal to 256"),
 				},
 			),
@@ -308,7 +308,7 @@ func sfixed64Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("sfixed64.gte"),
-					ConstraintId: proto.String("sfixed64.gte_lte_exclusive"),
+					RuleId: proto.String("sfixed64.gte_lte_exclusive"),
 					Message:      proto.String("value must be greater than or equal to 256 or less than or equal to 128"),
 				},
 			),

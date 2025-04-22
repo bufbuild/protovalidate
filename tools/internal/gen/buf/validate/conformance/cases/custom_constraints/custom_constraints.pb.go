@@ -1920,7 +1920,7 @@ const file_buf_validate_conformance_cases_custom_constraints_custom_constraints_
 	"\x04Enum\x12\x14\n" +
 	"\x10ENUM_UNSPECIFIED\x10\x00\x12\f\n" +
 	"\bENUM_ONE\x10\x01B\x9d\x03\n" +
-	"5com.buf.validate.conformance.cases.custom_constraintsB\x16CustomConstraintsProtoP\x01Zfgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_constraints\xa2\x02\x05BVCCC\xaa\x020Buf.Validate.Conformance.Cases.CustomConstraints\xca\x020Buf\\Validate\\Conformance\\Cases\\CustomConstraints\xe2\x02<Buf\\Validate\\Conformance\\Cases\\CustomConstraints\\GPBMetadata\xea\x024Buf::Validate::Conformance::Cases::CustomConstraintsb\x06proto3"
+	"5com.buf.validate.conformance.cases.custom_constraintsB\x16CustomRulesProtoP\x01Zfgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_constraints\xa2\x02\x05BVCCC\xaa\x020Buf.Validate.Conformance.Cases.CustomRules\xca\x020Buf\\Validate\\Conformance\\Cases\\CustomRules\xe2\x02<Buf\\Validate\\Conformance\\Cases\\CustomRules\\GPBMetadata\xea\x024Buf::Validate::Conformance::Cases::CustomRulesb\x06proto3"
 
 var (
 	file_buf_validate_conformance_cases_custom_constraints_custom_constraints_proto_rawDescOnce sync.Once

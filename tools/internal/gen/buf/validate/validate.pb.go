@@ -38,8 +38,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Specifies how FieldConstraints.ignore behaves. See the documentation for
-// FieldConstraints.required for definitions of "populated" and "nullable".
+// Specifies how FieldRules.ignore behaves. See the documentation for
+// FieldRules.required for definitions of "populated" and "nullable".
 type Ignore int32
 
 const (
@@ -303,8 +303,8 @@ func (KnownRegex) EnumDescriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{1}
 }
 
-// `Constraint` represents a validation rule written in the Common Expression
-// Language (CEL) syntax. Each Constraint includes a unique identifier, an
+// `Rule` represents a validation rule written in the Common Expression
+// Language (CEL) syntax. Each Rule includes a unique identifier, an
 // optional error message, and the CEL expression to evaluate. For more
 // information on CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
 //
@@ -320,13 +320,13 @@ func (KnownRegex) EnumDescriptor() ([]byte, []int) {
 //	}
 //
 // ```
-type Constraint struct {
+type Rule struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// `id` is a string that serves as a machine-readable name for this Constraint.
+	// `id` is a string that serves as a machine-readable name for this Rule.
 	// It should be unique within its scope, which could be either a message or a field.
 	Id *string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
 	// `message` is an optional field that provides a human-readable error message
-	// for this Constraint when the CEL expression evaluates to false. If a
+	// for this Rule when the CEL expression evaluates to false. If a
 	// non-empty message is provided, any strings resulting from the CEL
 	// expression evaluation are ignored.
 	Message *string `protobuf:"bytes,2,opt,name=message" json:"message,omitempty"`
@@ -339,20 +339,20 @@ type Constraint struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Constraint) Reset() {
-	*x = Constraint{}
+func (x *Rule) Reset() {
+	*x = Rule{}
 	mi := &file_buf_validate_validate_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Constraint) String() string {
+func (x *Rule) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Constraint) ProtoMessage() {}
+func (*Rule) ProtoMessage() {}
 
-func (x *Constraint) ProtoReflect() protoreflect.Message {
+func (x *Rule) ProtoReflect() protoreflect.Message {
 	mi := &file_buf_validate_validate_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -364,35 +364,35 @@ func (x *Constraint) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Constraint.ProtoReflect.Descriptor instead.
-func (*Constraint) Descriptor() ([]byte, []int) {
+// Deprecated: Use Rule.ProtoReflect.Descriptor instead.
+func (*Rule) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Constraint) GetId() string {
+func (x *Rule) GetId() string {
 	if x != nil && x.Id != nil {
 		return *x.Id
 	}
 	return ""
 }
 
-func (x *Constraint) GetMessage() string {
+func (x *Rule) GetMessage() string {
 	if x != nil && x.Message != nil {
 		return *x.Message
 	}
 	return ""
 }
 
-func (x *Constraint) GetExpression() string {
+func (x *Rule) GetExpression() string {
 	if x != nil && x.Expression != nil {
 		return *x.Expression
 	}
 	return ""
 }
 
-// MessageConstraints represents validation rules that are applied to the entire message.
-// It includes disabling options and a list of Constraint messages representing Common Expression Language (CEL) validation rules.
-type MessageConstraints struct {
+// MessageRules represents validation rules that are applied to the entire message.
+// It includes disabling options and a list of Rule messages representing Common Expression Language (CEL) validation rules.
+type MessageRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `disabled` is a boolean flag that, when set to true, nullifies any validation rules for this message.
 	// This includes any fields within the message that would otherwise support validation.
@@ -406,7 +406,7 @@ type MessageConstraints struct {
 	//
 	// ```
 	Disabled *bool `protobuf:"varint,1,opt,name=disabled" json:"disabled,omitempty"`
-	// `cel` is a repeated field of type Constraint. Each Constraint specifies a validation rule to be applied to this message.
+	// `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
 	// These constraints are written in Common Expression Language (CEL) syntax. For more information on
 	// CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
 	//
@@ -423,25 +423,25 @@ type MessageConstraints struct {
 	//	}
 	//
 	// ```
-	Cel           []*Constraint `protobuf:"bytes,3,rep,name=cel" json:"cel,omitempty"`
+	Cel           []*Rule `protobuf:"bytes,3,rep,name=cel" json:"cel,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MessageConstraints) Reset() {
-	*x = MessageConstraints{}
+func (x *MessageRules) Reset() {
+	*x = MessageRules{}
 	mi := &file_buf_validate_validate_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MessageConstraints) String() string {
+func (x *MessageRules) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MessageConstraints) ProtoMessage() {}
+func (*MessageRules) ProtoMessage() {}
 
-func (x *MessageConstraints) ProtoReflect() protoreflect.Message {
+func (x *MessageRules) ProtoReflect() protoreflect.Message {
 	mi := &file_buf_validate_validate_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -453,28 +453,28 @@ func (x *MessageConstraints) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MessageConstraints.ProtoReflect.Descriptor instead.
-func (*MessageConstraints) Descriptor() ([]byte, []int) {
+// Deprecated: Use MessageRules.ProtoReflect.Descriptor instead.
+func (*MessageRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *MessageConstraints) GetDisabled() bool {
+func (x *MessageRules) GetDisabled() bool {
 	if x != nil && x.Disabled != nil {
 		return *x.Disabled
 	}
 	return false
 }
 
-func (x *MessageConstraints) GetCel() []*Constraint {
+func (x *MessageRules) GetCel() []*Rule {
 	if x != nil {
 		return x.Cel
 	}
 	return nil
 }
 
-// The `OneofConstraints` message type enables you to manage constraints for
+// The `OneofRules` message type enables you to manage constraints for
 // oneof fields in your protobuf messages.
-type OneofConstraints struct {
+type OneofRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// If `required` is true, exactly one field of the oneof must be present. A
 	// validation error is returned if no fields in the oneof are present. The
@@ -500,20 +500,20 @@ type OneofConstraints struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *OneofConstraints) Reset() {
-	*x = OneofConstraints{}
+func (x *OneofRules) Reset() {
+	*x = OneofRules{}
 	mi := &file_buf_validate_validate_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *OneofConstraints) String() string {
+func (x *OneofRules) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OneofConstraints) ProtoMessage() {}
+func (*OneofRules) ProtoMessage() {}
 
-func (x *OneofConstraints) ProtoReflect() protoreflect.Message {
+func (x *OneofRules) ProtoReflect() protoreflect.Message {
 	mi := &file_buf_validate_validate_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -525,21 +525,21 @@ func (x *OneofConstraints) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OneofConstraints.ProtoReflect.Descriptor instead.
-func (*OneofConstraints) Descriptor() ([]byte, []int) {
+// Deprecated: Use OneofRules.ProtoReflect.Descriptor instead.
+func (*OneofRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *OneofConstraints) GetRequired() bool {
+func (x *OneofRules) GetRequired() bool {
 	if x != nil && x.Required != nil {
 		return *x.Required
 	}
 	return false
 }
 
-// FieldConstraints encapsulates the rules for each type of field. Depending on
+// FieldRules encapsulates the rules for each type of field. Depending on
 // the field, the correct set should be used to ensure proper validations.
-type FieldConstraints struct {
+type FieldRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `cel` is a repeated field used to represent a textual expression
 	// in the Common Expression Language (CEL) syntax. For more information on
@@ -557,7 +557,7 @@ type FieldConstraints struct {
 	//	}
 	//
 	// ```
-	Cel []*Constraint `protobuf:"bytes,23,rep,name=cel" json:"cel,omitempty"`
+	Cel []*Rule `protobuf:"bytes,23,rep,name=cel" json:"cel,omitempty"`
 	// If `required` is true, the field must be populated. A populated field can be
 	// described as "serialized in the wire format," which includes:
 	//
@@ -597,46 +597,46 @@ type FieldConstraints struct {
 	Ignore *Ignore `protobuf:"varint,27,opt,name=ignore,enum=buf.validate.Ignore" json:"ignore,omitempty"`
 	// Types that are valid to be assigned to Type:
 	//
-	//	*FieldConstraints_Float
-	//	*FieldConstraints_Double
-	//	*FieldConstraints_Int32
-	//	*FieldConstraints_Int64
-	//	*FieldConstraints_Uint32
-	//	*FieldConstraints_Uint64
-	//	*FieldConstraints_Sint32
-	//	*FieldConstraints_Sint64
-	//	*FieldConstraints_Fixed32
-	//	*FieldConstraints_Fixed64
-	//	*FieldConstraints_Sfixed32
-	//	*FieldConstraints_Sfixed64
-	//	*FieldConstraints_Bool
-	//	*FieldConstraints_String_
-	//	*FieldConstraints_Bytes
-	//	*FieldConstraints_Enum
-	//	*FieldConstraints_Repeated
-	//	*FieldConstraints_Map
-	//	*FieldConstraints_Any
-	//	*FieldConstraints_Duration
-	//	*FieldConstraints_Timestamp
-	Type          isFieldConstraints_Type `protobuf_oneof:"type"`
+	//	*FieldRules_Float
+	//	*FieldRules_Double
+	//	*FieldRules_Int32
+	//	*FieldRules_Int64
+	//	*FieldRules_Uint32
+	//	*FieldRules_Uint64
+	//	*FieldRules_Sint32
+	//	*FieldRules_Sint64
+	//	*FieldRules_Fixed32
+	//	*FieldRules_Fixed64
+	//	*FieldRules_Sfixed32
+	//	*FieldRules_Sfixed64
+	//	*FieldRules_Bool
+	//	*FieldRules_String_
+	//	*FieldRules_Bytes
+	//	*FieldRules_Enum
+	//	*FieldRules_Repeated
+	//	*FieldRules_Map
+	//	*FieldRules_Any
+	//	*FieldRules_Duration
+	//	*FieldRules_Timestamp
+	Type          isFieldRules_Type `protobuf_oneof:"type"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *FieldConstraints) Reset() {
-	*x = FieldConstraints{}
+func (x *FieldRules) Reset() {
+	*x = FieldRules{}
 	mi := &file_buf_validate_validate_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *FieldConstraints) String() string {
+func (x *FieldRules) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FieldConstraints) ProtoMessage() {}
+func (*FieldRules) ProtoMessage() {}
 
-func (x *FieldConstraints) ProtoReflect() protoreflect.Message {
+func (x *FieldRules) ProtoReflect() protoreflect.Message {
 	mi := &file_buf_validate_validate_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -648,364 +648,364 @@ func (x *FieldConstraints) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FieldConstraints.ProtoReflect.Descriptor instead.
-func (*FieldConstraints) Descriptor() ([]byte, []int) {
+// Deprecated: Use FieldRules.ProtoReflect.Descriptor instead.
+func (*FieldRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *FieldConstraints) GetCel() []*Constraint {
+func (x *FieldRules) GetCel() []*Rule {
 	if x != nil {
 		return x.Cel
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetRequired() bool {
+func (x *FieldRules) GetRequired() bool {
 	if x != nil && x.Required != nil {
 		return *x.Required
 	}
 	return false
 }
 
-func (x *FieldConstraints) GetIgnore() Ignore {
+func (x *FieldRules) GetIgnore() Ignore {
 	if x != nil && x.Ignore != nil {
 		return *x.Ignore
 	}
 	return Ignore_IGNORE_UNSPECIFIED
 }
 
-func (x *FieldConstraints) GetType() isFieldConstraints_Type {
+func (x *FieldRules) GetType() isFieldRules_Type {
 	if x != nil {
 		return x.Type
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetFloat() *FloatRules {
+func (x *FieldRules) GetFloat() *FloatRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Float); ok {
+		if x, ok := x.Type.(*FieldRules_Float); ok {
 			return x.Float
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetDouble() *DoubleRules {
+func (x *FieldRules) GetDouble() *DoubleRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Double); ok {
+		if x, ok := x.Type.(*FieldRules_Double); ok {
 			return x.Double
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetInt32() *Int32Rules {
+func (x *FieldRules) GetInt32() *Int32Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Int32); ok {
+		if x, ok := x.Type.(*FieldRules_Int32); ok {
 			return x.Int32
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetInt64() *Int64Rules {
+func (x *FieldRules) GetInt64() *Int64Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Int64); ok {
+		if x, ok := x.Type.(*FieldRules_Int64); ok {
 			return x.Int64
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetUint32() *UInt32Rules {
+func (x *FieldRules) GetUint32() *UInt32Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Uint32); ok {
+		if x, ok := x.Type.(*FieldRules_Uint32); ok {
 			return x.Uint32
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetUint64() *UInt64Rules {
+func (x *FieldRules) GetUint64() *UInt64Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Uint64); ok {
+		if x, ok := x.Type.(*FieldRules_Uint64); ok {
 			return x.Uint64
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetSint32() *SInt32Rules {
+func (x *FieldRules) GetSint32() *SInt32Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Sint32); ok {
+		if x, ok := x.Type.(*FieldRules_Sint32); ok {
 			return x.Sint32
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetSint64() *SInt64Rules {
+func (x *FieldRules) GetSint64() *SInt64Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Sint64); ok {
+		if x, ok := x.Type.(*FieldRules_Sint64); ok {
 			return x.Sint64
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetFixed32() *Fixed32Rules {
+func (x *FieldRules) GetFixed32() *Fixed32Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Fixed32); ok {
+		if x, ok := x.Type.(*FieldRules_Fixed32); ok {
 			return x.Fixed32
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetFixed64() *Fixed64Rules {
+func (x *FieldRules) GetFixed64() *Fixed64Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Fixed64); ok {
+		if x, ok := x.Type.(*FieldRules_Fixed64); ok {
 			return x.Fixed64
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetSfixed32() *SFixed32Rules {
+func (x *FieldRules) GetSfixed32() *SFixed32Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Sfixed32); ok {
+		if x, ok := x.Type.(*FieldRules_Sfixed32); ok {
 			return x.Sfixed32
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetSfixed64() *SFixed64Rules {
+func (x *FieldRules) GetSfixed64() *SFixed64Rules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Sfixed64); ok {
+		if x, ok := x.Type.(*FieldRules_Sfixed64); ok {
 			return x.Sfixed64
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetBool() *BoolRules {
+func (x *FieldRules) GetBool() *BoolRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Bool); ok {
+		if x, ok := x.Type.(*FieldRules_Bool); ok {
 			return x.Bool
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetString_() *StringRules {
+func (x *FieldRules) GetString_() *StringRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_String_); ok {
+		if x, ok := x.Type.(*FieldRules_String_); ok {
 			return x.String_
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetBytes() *BytesRules {
+func (x *FieldRules) GetBytes() *BytesRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Bytes); ok {
+		if x, ok := x.Type.(*FieldRules_Bytes); ok {
 			return x.Bytes
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetEnum() *EnumRules {
+func (x *FieldRules) GetEnum() *EnumRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Enum); ok {
+		if x, ok := x.Type.(*FieldRules_Enum); ok {
 			return x.Enum
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetRepeated() *RepeatedRules {
+func (x *FieldRules) GetRepeated() *RepeatedRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Repeated); ok {
+		if x, ok := x.Type.(*FieldRules_Repeated); ok {
 			return x.Repeated
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetMap() *MapRules {
+func (x *FieldRules) GetMap() *MapRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Map); ok {
+		if x, ok := x.Type.(*FieldRules_Map); ok {
 			return x.Map
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetAny() *AnyRules {
+func (x *FieldRules) GetAny() *AnyRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Any); ok {
+		if x, ok := x.Type.(*FieldRules_Any); ok {
 			return x.Any
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetDuration() *DurationRules {
+func (x *FieldRules) GetDuration() *DurationRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Duration); ok {
+		if x, ok := x.Type.(*FieldRules_Duration); ok {
 			return x.Duration
 		}
 	}
 	return nil
 }
 
-func (x *FieldConstraints) GetTimestamp() *TimestampRules {
+func (x *FieldRules) GetTimestamp() *TimestampRules {
 	if x != nil {
-		if x, ok := x.Type.(*FieldConstraints_Timestamp); ok {
+		if x, ok := x.Type.(*FieldRules_Timestamp); ok {
 			return x.Timestamp
 		}
 	}
 	return nil
 }
 
-type isFieldConstraints_Type interface {
-	isFieldConstraints_Type()
+type isFieldRules_Type interface {
+	isFieldRules_Type()
 }
 
-type FieldConstraints_Float struct {
+type FieldRules_Float struct {
 	// Scalar Field Types
 	Float *FloatRules `protobuf:"bytes,1,opt,name=float,oneof"`
 }
 
-type FieldConstraints_Double struct {
+type FieldRules_Double struct {
 	Double *DoubleRules `protobuf:"bytes,2,opt,name=double,oneof"`
 }
 
-type FieldConstraints_Int32 struct {
+type FieldRules_Int32 struct {
 	Int32 *Int32Rules `protobuf:"bytes,3,opt,name=int32,oneof"`
 }
 
-type FieldConstraints_Int64 struct {
+type FieldRules_Int64 struct {
 	Int64 *Int64Rules `protobuf:"bytes,4,opt,name=int64,oneof"`
 }
 
-type FieldConstraints_Uint32 struct {
+type FieldRules_Uint32 struct {
 	Uint32 *UInt32Rules `protobuf:"bytes,5,opt,name=uint32,oneof"`
 }
 
-type FieldConstraints_Uint64 struct {
+type FieldRules_Uint64 struct {
 	Uint64 *UInt64Rules `protobuf:"bytes,6,opt,name=uint64,oneof"`
 }
 
-type FieldConstraints_Sint32 struct {
+type FieldRules_Sint32 struct {
 	Sint32 *SInt32Rules `protobuf:"bytes,7,opt,name=sint32,oneof"`
 }
 
-type FieldConstraints_Sint64 struct {
+type FieldRules_Sint64 struct {
 	Sint64 *SInt64Rules `protobuf:"bytes,8,opt,name=sint64,oneof"`
 }
 
-type FieldConstraints_Fixed32 struct {
+type FieldRules_Fixed32 struct {
 	Fixed32 *Fixed32Rules `protobuf:"bytes,9,opt,name=fixed32,oneof"`
 }
 
-type FieldConstraints_Fixed64 struct {
+type FieldRules_Fixed64 struct {
 	Fixed64 *Fixed64Rules `protobuf:"bytes,10,opt,name=fixed64,oneof"`
 }
 
-type FieldConstraints_Sfixed32 struct {
+type FieldRules_Sfixed32 struct {
 	Sfixed32 *SFixed32Rules `protobuf:"bytes,11,opt,name=sfixed32,oneof"`
 }
 
-type FieldConstraints_Sfixed64 struct {
+type FieldRules_Sfixed64 struct {
 	Sfixed64 *SFixed64Rules `protobuf:"bytes,12,opt,name=sfixed64,oneof"`
 }
 
-type FieldConstraints_Bool struct {
+type FieldRules_Bool struct {
 	Bool *BoolRules `protobuf:"bytes,13,opt,name=bool,oneof"`
 }
 
-type FieldConstraints_String_ struct {
+type FieldRules_String_ struct {
 	String_ *StringRules `protobuf:"bytes,14,opt,name=string,oneof"`
 }
 
-type FieldConstraints_Bytes struct {
+type FieldRules_Bytes struct {
 	Bytes *BytesRules `protobuf:"bytes,15,opt,name=bytes,oneof"`
 }
 
-type FieldConstraints_Enum struct {
+type FieldRules_Enum struct {
 	// Complex Field Types
 	Enum *EnumRules `protobuf:"bytes,16,opt,name=enum,oneof"`
 }
 
-type FieldConstraints_Repeated struct {
+type FieldRules_Repeated struct {
 	Repeated *RepeatedRules `protobuf:"bytes,18,opt,name=repeated,oneof"`
 }
 
-type FieldConstraints_Map struct {
+type FieldRules_Map struct {
 	Map *MapRules `protobuf:"bytes,19,opt,name=map,oneof"`
 }
 
-type FieldConstraints_Any struct {
+type FieldRules_Any struct {
 	// Well-Known Field Types
 	Any *AnyRules `protobuf:"bytes,20,opt,name=any,oneof"`
 }
 
-type FieldConstraints_Duration struct {
+type FieldRules_Duration struct {
 	Duration *DurationRules `protobuf:"bytes,21,opt,name=duration,oneof"`
 }
 
-type FieldConstraints_Timestamp struct {
+type FieldRules_Timestamp struct {
 	Timestamp *TimestampRules `protobuf:"bytes,22,opt,name=timestamp,oneof"`
 }
 
-func (*FieldConstraints_Float) isFieldConstraints_Type() {}
+func (*FieldRules_Float) isFieldRules_Type() {}
 
-func (*FieldConstraints_Double) isFieldConstraints_Type() {}
+func (*FieldRules_Double) isFieldRules_Type() {}
 
-func (*FieldConstraints_Int32) isFieldConstraints_Type() {}
+func (*FieldRules_Int32) isFieldRules_Type() {}
 
-func (*FieldConstraints_Int64) isFieldConstraints_Type() {}
+func (*FieldRules_Int64) isFieldRules_Type() {}
 
-func (*FieldConstraints_Uint32) isFieldConstraints_Type() {}
+func (*FieldRules_Uint32) isFieldRules_Type() {}
 
-func (*FieldConstraints_Uint64) isFieldConstraints_Type() {}
+func (*FieldRules_Uint64) isFieldRules_Type() {}
 
-func (*FieldConstraints_Sint32) isFieldConstraints_Type() {}
+func (*FieldRules_Sint32) isFieldRules_Type() {}
 
-func (*FieldConstraints_Sint64) isFieldConstraints_Type() {}
+func (*FieldRules_Sint64) isFieldRules_Type() {}
 
-func (*FieldConstraints_Fixed32) isFieldConstraints_Type() {}
+func (*FieldRules_Fixed32) isFieldRules_Type() {}
 
-func (*FieldConstraints_Fixed64) isFieldConstraints_Type() {}
+func (*FieldRules_Fixed64) isFieldRules_Type() {}
 
-func (*FieldConstraints_Sfixed32) isFieldConstraints_Type() {}
+func (*FieldRules_Sfixed32) isFieldRules_Type() {}
 
-func (*FieldConstraints_Sfixed64) isFieldConstraints_Type() {}
+func (*FieldRules_Sfixed64) isFieldRules_Type() {}
 
-func (*FieldConstraints_Bool) isFieldConstraints_Type() {}
+func (*FieldRules_Bool) isFieldRules_Type() {}
 
-func (*FieldConstraints_String_) isFieldConstraints_Type() {}
+func (*FieldRules_String_) isFieldRules_Type() {}
 
-func (*FieldConstraints_Bytes) isFieldConstraints_Type() {}
+func (*FieldRules_Bytes) isFieldRules_Type() {}
 
-func (*FieldConstraints_Enum) isFieldConstraints_Type() {}
+func (*FieldRules_Enum) isFieldRules_Type() {}
 
-func (*FieldConstraints_Repeated) isFieldConstraints_Type() {}
+func (*FieldRules_Repeated) isFieldRules_Type() {}
 
-func (*FieldConstraints_Map) isFieldConstraints_Type() {}
+func (*FieldRules_Map) isFieldRules_Type() {}
 
-func (*FieldConstraints_Any) isFieldConstraints_Type() {}
+func (*FieldRules_Any) isFieldRules_Type() {}
 
-func (*FieldConstraints_Duration) isFieldConstraints_Type() {}
+func (*FieldRules_Duration) isFieldRules_Type() {}
 
-func (*FieldConstraints_Timestamp) isFieldConstraints_Type() {}
+func (*FieldRules_Timestamp) isFieldRules_Type() {}
 
-// PredefinedConstraints are custom constraints that can be re-used with
+// PredefinedRules are custom constraints that can be re-used with
 // multiple fields.
-type PredefinedConstraints struct {
+type PredefinedRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `cel` is a repeated field used to represent a textual expression
 	// in the Common Expression Language (CEL) syntax. For more information on
@@ -1023,25 +1023,25 @@ type PredefinedConstraints struct {
 	//	}
 	//
 	// ```
-	Cel           []*Constraint `protobuf:"bytes,1,rep,name=cel" json:"cel,omitempty"`
+	Cel           []*Rule `protobuf:"bytes,1,rep,name=cel" json:"cel,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PredefinedConstraints) Reset() {
-	*x = PredefinedConstraints{}
+func (x *PredefinedRules) Reset() {
+	*x = PredefinedRules{}
 	mi := &file_buf_validate_validate_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PredefinedConstraints) String() string {
+func (x *PredefinedRules) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PredefinedConstraints) ProtoMessage() {}
+func (*PredefinedRules) ProtoMessage() {}
 
-func (x *PredefinedConstraints) ProtoReflect() protoreflect.Message {
+func (x *PredefinedRules) ProtoReflect() protoreflect.Message {
 	mi := &file_buf_validate_validate_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1053,12 +1053,12 @@ func (x *PredefinedConstraints) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PredefinedConstraints.ProtoReflect.Descriptor instead.
-func (*PredefinedConstraints) Descriptor() ([]byte, []int) {
+// Deprecated: Use PredefinedRules.ProtoReflect.Descriptor instead.
+func (*PredefinedRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *PredefinedConstraints) GetCel() []*Constraint {
+func (x *PredefinedRules) GetCel() []*Rule {
 	if x != nil {
 		return x.Cel
 	}
@@ -6009,7 +6009,7 @@ type RepeatedRules struct {
 	//	}
 	//
 	// ```
-	Items           *FieldConstraints `protobuf:"bytes,4,opt,name=items" json:"items,omitempty"`
+	Items           *FieldRules `protobuf:"bytes,4,opt,name=items" json:"items,omitempty"`
 	extensionFields protoimpl.ExtensionFields
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -6066,7 +6066,7 @@ func (x *RepeatedRules) GetUnique() bool {
 	return false
 }
 
-func (x *RepeatedRules) GetItems() *FieldConstraints {
+func (x *RepeatedRules) GetItems() *FieldRules {
 	if x != nil {
 		return x.Items
 	}
@@ -6115,7 +6115,7 @@ type MapRules struct {
 	//	}
 	//
 	// ```
-	Keys *FieldConstraints `protobuf:"bytes,4,opt,name=keys" json:"keys,omitempty"`
+	Keys *FieldRules `protobuf:"bytes,4,opt,name=keys" json:"keys,omitempty"`
 	// Specifies the constraints to be applied to the value of each key in the
 	// field. Message values will still have their validations evaluated unless
 	// skip is specified here.
@@ -6133,7 +6133,7 @@ type MapRules struct {
 	//	}
 	//
 	// ```
-	Values          *FieldConstraints `protobuf:"bytes,5,opt,name=values" json:"values,omitempty"`
+	Values          *FieldRules `protobuf:"bytes,5,opt,name=values" json:"values,omitempty"`
 	extensionFields protoimpl.ExtensionFields
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -6183,14 +6183,14 @@ func (x *MapRules) GetMaxPairs() uint64 {
 	return 0
 }
 
-func (x *MapRules) GetKeys() *FieldConstraints {
+func (x *MapRules) GetKeys() *FieldRules {
 	if x != nil {
 		return x.Keys
 	}
 	return nil
 }
 
-func (x *MapRules) GetValues() *FieldConstraints {
+func (x *MapRules) GetValues() *FieldRules {
 	if x != nil {
 		return x.Values
 	}
@@ -6836,7 +6836,7 @@ func (*TimestampRules_Gte) isTimestampRules_GreaterThan() {}
 func (*TimestampRules_GtNow) isTimestampRules_GreaterThan() {}
 
 // `Violations` is a collection of `Violation` messages. This message type is returned by
-// protovalidate when a proto message fails to meet the requirements set by the `Constraint` validation rules.
+// protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.
 // Each individual violation is represented by a `Violation` message.
 type Violations struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -6884,7 +6884,7 @@ func (x *Violations) GetViolations() []*Violation {
 }
 
 // `Violation` represents a single instance where a validation rule, expressed
-// as a `Constraint`, was not met. It provides information about the field that
+// as a `Rule`, was not met. It provides information about the field that
 // caused the violation, the specific constraint that wasn't fulfilled, and a
 // human-readable error message.
 //
@@ -6924,7 +6924,7 @@ type Violation struct {
 	// ```
 	Field *FieldPath `protobuf:"bytes,5,opt,name=field" json:"field,omitempty"`
 	// `rule` is a machine-readable path that points to the specific constraint rule that failed validation.
-	// This will be a nested field starting from the FieldConstraints of the field that failed validation.
+	// This will be a nested field starting from the FieldRules of the field that failed validation.
 	// For custom constraints, this will provide the path of the constraint, e.g. `cel[0]`.
 	//
 	// For example, consider the following message:
@@ -6957,11 +6957,11 @@ type Violation struct {
 	//
 	// ```
 	Rule *FieldPath `protobuf:"bytes,6,opt,name=rule" json:"rule,omitempty"`
-	// `constraint_id` is the unique identifier of the `Constraint` that was not fulfilled.
-	// This is the same `id` that was specified in the `Constraint` message, allowing easy tracing of which rule was violated.
-	ConstraintId *string `protobuf:"bytes,2,opt,name=constraint_id,json=constraintId" json:"constraint_id,omitempty"`
+	// `constraint_id` is the unique identifier of the `Rule` that was not fulfilled.
+	// This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.
+	RuleId *string `protobuf:"bytes,2,opt,name=constraint_id,json=constraintId" json:"constraint_id,omitempty"`
 	// `message` is a human-readable error message that describes the nature of the violation.
-	// This can be the default error message from the violated `Constraint`, or it can be a custom message that gives more context about the violation.
+	// This can be the default error message from the violated `Rule`, or it can be a custom message that gives more context about the violation.
 	Message *string `protobuf:"bytes,3,opt,name=message" json:"message,omitempty"`
 	// `for_key` indicates whether the violation was caused by a map key, rather than a value.
 	ForKey        *bool `protobuf:"varint,4,opt,name=for_key,json=forKey" json:"for_key,omitempty"`
@@ -7013,9 +7013,9 @@ func (x *Violation) GetRule() *FieldPath {
 	return nil
 }
 
-func (x *Violation) GetConstraintId() string {
-	if x != nil && x.ConstraintId != nil {
-		return *x.ConstraintId
+func (x *Violation) GetRuleId() string {
+	if x != nil && x.RuleId != nil {
+		return *x.RuleId
 	}
 	return ""
 }
@@ -7286,7 +7286,7 @@ func (*FieldPathElement_StringKey) isFieldPathElement_Subscript() {}
 var file_buf_validate_validate_proto_extTypes = []protoimpl.ExtensionInfo{
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
-		ExtensionType: (*MessageConstraints)(nil),
+		ExtensionType: (*MessageRules)(nil),
 		Field:         1159,
 		Name:          "buf.validate.message",
 		Tag:           "bytes,1159,opt,name=message",
@@ -7294,7 +7294,7 @@ var file_buf_validate_validate_proto_extTypes = []protoimpl.ExtensionInfo{
 	},
 	{
 		ExtendedType:  (*descriptorpb.OneofOptions)(nil),
-		ExtensionType: (*OneofConstraints)(nil),
+		ExtensionType: (*OneofRules)(nil),
 		Field:         1159,
 		Name:          "buf.validate.oneof",
 		Tag:           "bytes,1159,opt,name=oneof",
@@ -7302,7 +7302,7 @@ var file_buf_validate_validate_proto_extTypes = []protoimpl.ExtensionInfo{
 	},
 	{
 		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
-		ExtensionType: (*FieldConstraints)(nil),
+		ExtensionType: (*FieldRules)(nil),
 		Field:         1159,
 		Name:          "buf.validate.field",
 		Tag:           "bytes,1159,opt,name=field",
@@ -7310,7 +7310,7 @@ var file_buf_validate_validate_proto_extTypes = []protoimpl.ExtensionInfo{
 	},
 	{
 		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
-		ExtensionType: (*PredefinedConstraints)(nil),
+		ExtensionType: (*PredefinedRules)(nil),
 		Field:         1160,
 		Name:          "buf.validate.predefined",
 		Tag:           "bytes,1160,opt,name=predefined",
@@ -7323,7 +7323,7 @@ var (
 	// Rules specify the validations to be performed on this message. By default,
 	// no validation is performed against a message.
 	//
-	// optional buf.validate.MessageConstraints message = 1159;
+	// optional buf.validate.MessageRules message = 1159;
 	E_Message = &file_buf_validate_validate_proto_extTypes[0]
 )
 
@@ -7332,7 +7332,7 @@ var (
 	// Rules specify the validations to be performed on this oneof. By default,
 	// no validation is performed against a oneof.
 	//
-	// optional buf.validate.OneofConstraints oneof = 1159;
+	// optional buf.validate.OneofRules oneof = 1159;
 	E_Oneof = &file_buf_validate_validate_proto_extTypes[1]
 )
 
@@ -7341,7 +7341,7 @@ var (
 	// Rules specify the validations to be performed on this field. By default,
 	// no validation is performed against a field.
 	//
-	// optional buf.validate.FieldConstraints field = 1159;
+	// optional buf.validate.FieldRules field = 1159;
 	E_Field = &file_buf_validate_validate_proto_extTypes[2]
 	// Specifies predefined rules. When extending a standard constraint message,
 	// this adds additional CEL expressions that apply when the extension is used.
@@ -7362,7 +7362,7 @@ var (
 	//
 	// ```
 	//
-	// optional buf.validate.PredefinedConstraints predefined = 1160;
+	// optional buf.validate.PredefinedRules predefined = 1160;
 	E_Predefined = &file_buf_validate_validate_proto_extTypes[3]
 )
 
@@ -7372,20 +7372,20 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\n" +
 	"\x1bbuf/validate/validate.proto\x12\fbuf.validate\x1a google/protobuf/descriptor.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"V\n" +
 	"\n" +
-	"Constraint\x12\x0e\n" +
+	"Rule\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
 	"\n" +
 	"expression\x18\x03 \x01(\tR\n" +
 	"expression\"\\\n" +
-	"\x12MessageConstraints\x12\x1a\n" +
+	"\x12MessageRules\x12\x1a\n" +
 	"\bdisabled\x18\x01 \x01(\bR\bdisabled\x12*\n" +
-	"\x03cel\x18\x03 \x03(\v2\x18.buf.validate.ConstraintR\x03cel\".\n" +
-	"\x10OneofConstraints\x12\x1a\n" +
+	"\x03cel\x18\x03 \x03(\v2\x18.buf.validate.RuleR\x03cel\".\n" +
+	"\x10OneofRules\x12\x1a\n" +
 	"\brequired\x18\x01 \x01(\bR\brequired\"\x89\n" +
 	"\n" +
-	"\x10FieldConstraints\x12*\n" +
-	"\x03cel\x18\x17 \x03(\v2\x18.buf.validate.ConstraintR\x03cel\x12\x1a\n" +
+	"\x10FieldRules\x12*\n" +
+	"\x03cel\x18\x17 \x03(\v2\x18.buf.validate.RuleR\x03cel\x12\x1a\n" +
 	"\brequired\x18\x19 \x01(\bR\brequired\x12,\n" +
 	"\x06ignore\x18\x1b \x01(\x0e2\x14.buf.validate.IgnoreR\x06ignore\x120\n" +
 	"\x05float\x18\x01 \x01(\v2\x18.buf.validate.FloatRulesH\x00R\x05float\x123\n" +
@@ -7411,8 +7411,8 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\bduration\x18\x15 \x01(\v2\x1b.buf.validate.DurationRulesH\x00R\bduration\x12<\n" +
 	"\ttimestamp\x18\x16 \x01(\v2\x1c.buf.validate.TimestampRulesH\x00R\ttimestampB\x06\n" +
 	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"d\n" +
-	"\x15PredefinedConstraints\x12*\n" +
-	"\x03cel\x18\x01 \x03(\v2\x18.buf.validate.ConstraintR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\xea\x17\n" +
+	"\x15PredefinedRules\x12*\n" +
+	"\x03cel\x18\x01 \x03(\v2\x18.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\xea\x17\n" +
 	"\n" +
 	"FloatRules\x12p\n" +
 	"\x05const\x18\x01 \x01(\x02BZ\xc2HW\n" +
@@ -8186,7 +8186,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x06unique\x18\x03 \x01(\bB`\xc2H]\n" +
 	"[\n" +
 	"\x0frepeated.unique\x12(repeated value must contain unique items\x1a\x1e!rules.unique || this.unique()R\x06unique\x124\n" +
-	"\x05items\x18\x04 \x01(\v2\x1e.buf.validate.FieldConstraintsR\x05items*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xb8\x03\n" +
+	"\x05items\x18\x04 \x01(\v2\x1e.buf.validate.FieldRulesR\x05items*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xb8\x03\n" +
 	"\bMapRules\x12\x99\x01\n" +
 	"\tmin_pairs\x18\x01 \x01(\x04B|\xc2Hy\n" +
 	"w\n" +
@@ -8194,8 +8194,8 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\tmax_pairs\x18\x02 \x01(\x04B{\xc2Hx\n" +
 	"v\n" +
 	"\rmap.max_pairs\x1aeuint(this.size()) > rules.max_pairs ? 'map must be at most %d entries'.format([rules.max_pairs]) : ''R\bmaxPairs\x122\n" +
-	"\x04keys\x18\x04 \x01(\v2\x1e.buf.validate.FieldConstraintsR\x04keys\x126\n" +
-	"\x06values\x18\x05 \x01(\v2\x1e.buf.validate.FieldConstraintsR\x06values*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"1\n" +
+	"\x04keys\x18\x04 \x01(\v2\x1e.buf.validate.FieldRulesR\x04keys\x126\n" +
+	"\x06values\x18\x05 \x01(\v2\x1e.buf.validate.FieldRulesR\x06values*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"1\n" +
 	"\bAnyRules\x12\x0e\n" +
 	"\x02in\x18\x02 \x03(\tR\x02in\x12\x15\n" +
 	"\x06not_in\x18\x03 \x03(\tR\x05notIn\"\xa2\x17\n" +
@@ -8330,11 +8330,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x17KNOWN_REGEX_UNSPECIFIED\x10\x00\x12 \n" +
 	"\x1cKNOWN_REGEX_HTTP_HEADER_NAME\x10\x01\x12!\n" +
 	"\x1dKNOWN_REGEX_HTTP_HEADER_VALUE\x10\x02:\\\n" +
-	"\amessage\x12\x1f.google.protobuf.MessageOptions\x18\x87\t \x01(\v2 .buf.validate.MessageConstraintsR\amessage:T\n" +
-	"\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\x87\t \x01(\v2\x1e.buf.validate.OneofConstraintsR\x05oneof:T\n" +
-	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18\x87\t \x01(\v2\x1e.buf.validate.FieldConstraintsR\x05field:c\n" +
+	"\amessage\x12\x1f.google.protobuf.MessageOptions\x18\x87\t \x01(\v2 .buf.validate.MessageRulesR\amessage:T\n" +
+	"\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18\x87\t \x01(\v2\x1e.buf.validate.OneofRulesR\x05oneof:T\n" +
+	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18\x87\t \x01(\v2\x1e.buf.validate.FieldRulesR\x05field:c\n" +
 	"\n" +
-	"predefined\x12\x1d.google.protobuf.FieldOptions\x18\x88\t \x01(\v2#.buf.validate.PredefinedConstraintsR\n" +
+	"predefined\x12\x1d.google.protobuf.FieldOptions\x18\x88\t \x01(\v2#.buf.validate.PredefinedRulesR\n" +
 	"predefinedB\xb5\x01\n" +
 	"\x10com.buf.validateB\rValidateProtoP\x01ZAgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate\xa2\x02\x03BVX\xaa\x02\fBuf.Validate\xca\x02\fBuf\\Validate\xe2\x02\x18Buf\\Validate\\GPBMetadata\xea\x02\rBuf::Validate"
 
@@ -8355,11 +8355,11 @@ var file_buf_validate_validate_proto_msgTypes = make([]protoimpl.MessageInfo, 30
 var file_buf_validate_validate_proto_goTypes = []any{
 	(Ignore)(0),                                 // 0: buf.validate.Ignore
 	(KnownRegex)(0),                             // 1: buf.validate.KnownRegex
-	(*Constraint)(nil),                          // 2: buf.validate.Constraint
-	(*MessageConstraints)(nil),                  // 3: buf.validate.MessageConstraints
-	(*OneofConstraints)(nil),                    // 4: buf.validate.OneofConstraints
-	(*FieldConstraints)(nil),                    // 5: buf.validate.FieldConstraints
-	(*PredefinedConstraints)(nil),               // 6: buf.validate.PredefinedConstraints
+	(*Rule)(nil),                          // 2: buf.validate.Rule
+	(*MessageRules)(nil),                  // 3: buf.validate.MessageRules
+	(*OneofRules)(nil),                    // 4: buf.validate.OneofRules
+	(*FieldRules)(nil),                    // 5: buf.validate.FieldRules
+	(*PredefinedRules)(nil),               // 6: buf.validate.PredefinedRules
 	(*FloatRules)(nil),                          // 7: buf.validate.FloatRules
 	(*DoubleRules)(nil),                         // 8: buf.validate.DoubleRules
 	(*Int32Rules)(nil),                          // 9: buf.validate.Int32Rules
@@ -8393,35 +8393,35 @@ var file_buf_validate_validate_proto_goTypes = []any{
 	(*descriptorpb.FieldOptions)(nil),           // 37: google.protobuf.FieldOptions
 }
 var file_buf_validate_validate_proto_depIdxs = []int32{
-	2,  // 0: buf.validate.MessageConstraints.cel:type_name -> buf.validate.Constraint
-	2,  // 1: buf.validate.FieldConstraints.cel:type_name -> buf.validate.Constraint
-	0,  // 2: buf.validate.FieldConstraints.ignore:type_name -> buf.validate.Ignore
-	7,  // 3: buf.validate.FieldConstraints.float:type_name -> buf.validate.FloatRules
-	8,  // 4: buf.validate.FieldConstraints.double:type_name -> buf.validate.DoubleRules
-	9,  // 5: buf.validate.FieldConstraints.int32:type_name -> buf.validate.Int32Rules
-	10, // 6: buf.validate.FieldConstraints.int64:type_name -> buf.validate.Int64Rules
-	11, // 7: buf.validate.FieldConstraints.uint32:type_name -> buf.validate.UInt32Rules
-	12, // 8: buf.validate.FieldConstraints.uint64:type_name -> buf.validate.UInt64Rules
-	13, // 9: buf.validate.FieldConstraints.sint32:type_name -> buf.validate.SInt32Rules
-	14, // 10: buf.validate.FieldConstraints.sint64:type_name -> buf.validate.SInt64Rules
-	15, // 11: buf.validate.FieldConstraints.fixed32:type_name -> buf.validate.Fixed32Rules
-	16, // 12: buf.validate.FieldConstraints.fixed64:type_name -> buf.validate.Fixed64Rules
-	17, // 13: buf.validate.FieldConstraints.sfixed32:type_name -> buf.validate.SFixed32Rules
-	18, // 14: buf.validate.FieldConstraints.sfixed64:type_name -> buf.validate.SFixed64Rules
-	19, // 15: buf.validate.FieldConstraints.bool:type_name -> buf.validate.BoolRules
-	20, // 16: buf.validate.FieldConstraints.string:type_name -> buf.validate.StringRules
-	21, // 17: buf.validate.FieldConstraints.bytes:type_name -> buf.validate.BytesRules
-	22, // 18: buf.validate.FieldConstraints.enum:type_name -> buf.validate.EnumRules
-	23, // 19: buf.validate.FieldConstraints.repeated:type_name -> buf.validate.RepeatedRules
-	24, // 20: buf.validate.FieldConstraints.map:type_name -> buf.validate.MapRules
-	25, // 21: buf.validate.FieldConstraints.any:type_name -> buf.validate.AnyRules
-	26, // 22: buf.validate.FieldConstraints.duration:type_name -> buf.validate.DurationRules
-	27, // 23: buf.validate.FieldConstraints.timestamp:type_name -> buf.validate.TimestampRules
-	2,  // 24: buf.validate.PredefinedConstraints.cel:type_name -> buf.validate.Constraint
+	2,  // 0: buf.validate.MessageRules.cel:type_name -> buf.validate.Rule
+	2,  // 1: buf.validate.FieldRules.cel:type_name -> buf.validate.Rule
+	0,  // 2: buf.validate.FieldRules.ignore:type_name -> buf.validate.Ignore
+	7,  // 3: buf.validate.FieldRules.float:type_name -> buf.validate.FloatRules
+	8,  // 4: buf.validate.FieldRules.double:type_name -> buf.validate.DoubleRules
+	9,  // 5: buf.validate.FieldRules.int32:type_name -> buf.validate.Int32Rules
+	10, // 6: buf.validate.FieldRules.int64:type_name -> buf.validate.Int64Rules
+	11, // 7: buf.validate.FieldRules.uint32:type_name -> buf.validate.UInt32Rules
+	12, // 8: buf.validate.FieldRules.uint64:type_name -> buf.validate.UInt64Rules
+	13, // 9: buf.validate.FieldRules.sint32:type_name -> buf.validate.SInt32Rules
+	14, // 10: buf.validate.FieldRules.sint64:type_name -> buf.validate.SInt64Rules
+	15, // 11: buf.validate.FieldRules.fixed32:type_name -> buf.validate.Fixed32Rules
+	16, // 12: buf.validate.FieldRules.fixed64:type_name -> buf.validate.Fixed64Rules
+	17, // 13: buf.validate.FieldRules.sfixed32:type_name -> buf.validate.SFixed32Rules
+	18, // 14: buf.validate.FieldRules.sfixed64:type_name -> buf.validate.SFixed64Rules
+	19, // 15: buf.validate.FieldRules.bool:type_name -> buf.validate.BoolRules
+	20, // 16: buf.validate.FieldRules.string:type_name -> buf.validate.StringRules
+	21, // 17: buf.validate.FieldRules.bytes:type_name -> buf.validate.BytesRules
+	22, // 18: buf.validate.FieldRules.enum:type_name -> buf.validate.EnumRules
+	23, // 19: buf.validate.FieldRules.repeated:type_name -> buf.validate.RepeatedRules
+	24, // 20: buf.validate.FieldRules.map:type_name -> buf.validate.MapRules
+	25, // 21: buf.validate.FieldRules.any:type_name -> buf.validate.AnyRules
+	26, // 22: buf.validate.FieldRules.duration:type_name -> buf.validate.DurationRules
+	27, // 23: buf.validate.FieldRules.timestamp:type_name -> buf.validate.TimestampRules
+	2,  // 24: buf.validate.PredefinedRules.cel:type_name -> buf.validate.Rule
 	1,  // 25: buf.validate.StringRules.well_known_regex:type_name -> buf.validate.KnownRegex
-	5,  // 26: buf.validate.RepeatedRules.items:type_name -> buf.validate.FieldConstraints
-	5,  // 27: buf.validate.MapRules.keys:type_name -> buf.validate.FieldConstraints
-	5,  // 28: buf.validate.MapRules.values:type_name -> buf.validate.FieldConstraints
+	5,  // 26: buf.validate.RepeatedRules.items:type_name -> buf.validate.FieldRules
+	5,  // 27: buf.validate.MapRules.keys:type_name -> buf.validate.FieldRules
+	5,  // 28: buf.validate.MapRules.values:type_name -> buf.validate.FieldRules
 	32, // 29: buf.validate.DurationRules.const:type_name -> google.protobuf.Duration
 	32, // 30: buf.validate.DurationRules.lt:type_name -> google.protobuf.Duration
 	32, // 31: buf.validate.DurationRules.lte:type_name -> google.protobuf.Duration
@@ -8448,10 +8448,10 @@ var file_buf_validate_validate_proto_depIdxs = []int32{
 	36, // 52: buf.validate.oneof:extendee -> google.protobuf.OneofOptions
 	37, // 53: buf.validate.field:extendee -> google.protobuf.FieldOptions
 	37, // 54: buf.validate.predefined:extendee -> google.protobuf.FieldOptions
-	3,  // 55: buf.validate.message:type_name -> buf.validate.MessageConstraints
-	4,  // 56: buf.validate.oneof:type_name -> buf.validate.OneofConstraints
-	5,  // 57: buf.validate.field:type_name -> buf.validate.FieldConstraints
-	6,  // 58: buf.validate.predefined:type_name -> buf.validate.PredefinedConstraints
+	3,  // 55: buf.validate.message:type_name -> buf.validate.MessageRules
+	4,  // 56: buf.validate.oneof:type_name -> buf.validate.OneofRules
+	5,  // 57: buf.validate.field:type_name -> buf.validate.FieldRules
+	6,  // 58: buf.validate.predefined:type_name -> buf.validate.PredefinedRules
 	59, // [59:59] is the sub-list for method output_type
 	59, // [59:59] is the sub-list for method input_type
 	55, // [55:59] is the sub-list for extension type_name
@@ -8465,27 +8465,27 @@ func file_buf_validate_validate_proto_init() {
 		return
 	}
 	file_buf_validate_validate_proto_msgTypes[3].OneofWrappers = []any{
-		(*FieldConstraints_Float)(nil),
-		(*FieldConstraints_Double)(nil),
-		(*FieldConstraints_Int32)(nil),
-		(*FieldConstraints_Int64)(nil),
-		(*FieldConstraints_Uint32)(nil),
-		(*FieldConstraints_Uint64)(nil),
-		(*FieldConstraints_Sint32)(nil),
-		(*FieldConstraints_Sint64)(nil),
-		(*FieldConstraints_Fixed32)(nil),
-		(*FieldConstraints_Fixed64)(nil),
-		(*FieldConstraints_Sfixed32)(nil),
-		(*FieldConstraints_Sfixed64)(nil),
-		(*FieldConstraints_Bool)(nil),
-		(*FieldConstraints_String_)(nil),
-		(*FieldConstraints_Bytes)(nil),
-		(*FieldConstraints_Enum)(nil),
-		(*FieldConstraints_Repeated)(nil),
-		(*FieldConstraints_Map)(nil),
-		(*FieldConstraints_Any)(nil),
-		(*FieldConstraints_Duration)(nil),
-		(*FieldConstraints_Timestamp)(nil),
+		(*FieldRules_Float)(nil),
+		(*FieldRules_Double)(nil),
+		(*FieldRules_Int32)(nil),
+		(*FieldRules_Int64)(nil),
+		(*FieldRules_Uint32)(nil),
+		(*FieldRules_Uint64)(nil),
+		(*FieldRules_Sint32)(nil),
+		(*FieldRules_Sint64)(nil),
+		(*FieldRules_Fixed32)(nil),
+		(*FieldRules_Fixed64)(nil),
+		(*FieldRules_Sfixed32)(nil),
+		(*FieldRules_Sfixed64)(nil),
+		(*FieldRules_Bool)(nil),
+		(*FieldRules_String_)(nil),
+		(*FieldRules_Bytes)(nil),
+		(*FieldRules_Enum)(nil),
+		(*FieldRules_Repeated)(nil),
+		(*FieldRules_Map)(nil),
+		(*FieldRules_Any)(nil),
+		(*FieldRules_Duration)(nil),
+		(*FieldRules_Timestamp)(nil),
 	}
 	file_buf_validate_validate_proto_msgTypes[5].OneofWrappers = []any{
 		(*FloatRules_Lt)(nil),

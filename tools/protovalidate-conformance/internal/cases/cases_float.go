@@ -40,7 +40,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.const"),
-					ConstraintId: proto.String("float.const"),
+					RuleId: proto.String("float.const"),
 				},
 			),
 		},
@@ -50,7 +50,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.const"),
-					ConstraintId: proto.String("float.const"),
+					RuleId: proto.String("float.const"),
 				},
 			),
 		},
@@ -64,7 +64,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.in"),
-					ConstraintId: proto.String("float.in"),
+					RuleId: proto.String("float.in"),
 				},
 			),
 		},
@@ -74,7 +74,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.in"),
-					ConstraintId: proto.String("float.in"),
+					RuleId: proto.String("float.in"),
 				},
 			),
 		},
@@ -88,7 +88,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.not_in"),
-					ConstraintId: proto.String("float.not_in"),
+					RuleId: proto.String("float.not_in"),
 				},
 			),
 		},
@@ -106,7 +106,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.lt"),
-					ConstraintId: proto.String("float.lt"),
+					RuleId: proto.String("float.lt"),
 				},
 			),
 		},
@@ -116,7 +116,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.lt"),
-					ConstraintId: proto.String("float.lt"),
+					RuleId: proto.String("float.lt"),
 				},
 			),
 		},
@@ -126,7 +126,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.lt"),
-					ConstraintId: proto.String("float.lt"),
+					RuleId: proto.String("float.lt"),
 				},
 			),
 		},
@@ -144,7 +144,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.lte"),
-					ConstraintId: proto.String("float.lte"),
+					RuleId: proto.String("float.lte"),
 				},
 			),
 		},
@@ -154,7 +154,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.lte"),
-					ConstraintId: proto.String("float.lte"),
+					RuleId: proto.String("float.lte"),
 				},
 			),
 		},
@@ -168,7 +168,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt"),
+					RuleId: proto.String("float.gt"),
 				},
 			),
 		},
@@ -178,7 +178,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt"),
+					RuleId: proto.String("float.gt"),
 				},
 			),
 		},
@@ -188,7 +188,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt"),
+					RuleId: proto.String("float.gt"),
 				},
 			),
 		},
@@ -206,7 +206,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte"),
+					RuleId: proto.String("float.gte"),
 				},
 			),
 		},
@@ -216,7 +216,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte"),
+					RuleId: proto.String("float.gte"),
 				},
 			),
 		},
@@ -230,7 +230,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt"),
+					RuleId: proto.String("float.gt_lt"),
 				},
 			),
 		},
@@ -240,7 +240,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt"),
+					RuleId: proto.String("float.gt_lt"),
 				},
 			),
 		},
@@ -250,7 +250,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt"),
+					RuleId: proto.String("float.gt_lt"),
 				},
 			),
 		},
@@ -260,7 +260,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt"),
+					RuleId: proto.String("float.gt_lt"),
 				},
 			),
 		},
@@ -270,7 +270,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt"),
+					RuleId: proto.String("float.gt_lt"),
 				},
 			),
 		},
@@ -288,7 +288,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt_exclusive"),
+					RuleId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -298,7 +298,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt_exclusive"),
+					RuleId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt_exclusive"),
+					RuleId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -318,7 +318,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gt"),
-					ConstraintId: proto.String("float.gt_lt_exclusive"),
+					RuleId: proto.String("float.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -340,7 +340,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte_lte"),
+					RuleId: proto.String("float.gte_lte"),
 				},
 			),
 		},
@@ -350,7 +350,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte_lte"),
+					RuleId: proto.String("float.gte_lte"),
 				},
 			),
 		},
@@ -360,7 +360,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte_lte"),
+					RuleId: proto.String("float.gte_lte"),
 				},
 			),
 		},
@@ -386,7 +386,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte_lte_exclusive"),
+					RuleId: proto.String("float.gte_lte_exclusive"),
 				},
 			),
 		},
@@ -396,7 +396,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte_lte_exclusive"),
+					RuleId: proto.String("float.gte_lte_exclusive"),
 				},
 			),
 		},
@@ -410,7 +410,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.finite"),
-					ConstraintId: proto.String("float.finite"),
+					RuleId: proto.String("float.finite"),
 					Message:      proto.String("value must be finite"),
 				}),
 		},
@@ -420,7 +420,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.finite"),
-					ConstraintId: proto.String("float.finite"),
+					RuleId: proto.String("float.finite"),
 					Message:      proto.String("value must be finite"),
 				},
 			),
@@ -435,7 +435,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.finite"),
-					ConstraintId: proto.String("float.finite"),
+					RuleId: proto.String("float.finite"),
 					Message:      proto.String("value must be finite"),
 				},
 			),
@@ -454,7 +454,7 @@ func floatSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("float.gte"),
-					ConstraintId: proto.String("float.gte_lte"),
+					RuleId: proto.String("float.gte_lte"),
 				},
 			),
 		},

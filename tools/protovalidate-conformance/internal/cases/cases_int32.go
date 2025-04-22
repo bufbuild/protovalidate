@@ -38,7 +38,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.const"),
-					ConstraintId: proto.String("int32.const"),
+					RuleId: proto.String("int32.const"),
 				},
 			),
 		},
@@ -52,7 +52,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.in"),
-					ConstraintId: proto.String("int32.in"),
+					RuleId: proto.String("int32.in"),
 				},
 			),
 		},
@@ -66,7 +66,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.not_in"),
-					ConstraintId: proto.String("int32.not_in"),
+					RuleId: proto.String("int32.not_in"),
 				},
 			),
 		},
@@ -80,7 +80,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.lt"),
-					ConstraintId: proto.String("int32.lt"),
+					RuleId: proto.String("int32.lt"),
 				},
 			),
 		},
@@ -90,7 +90,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.lt"),
-					ConstraintId: proto.String("int32.lt"),
+					RuleId: proto.String("int32.lt"),
 				},
 			),
 		},
@@ -108,7 +108,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.lte"),
-					ConstraintId: proto.String("int32.lte"),
+					RuleId: proto.String("int32.lte"),
 				},
 			),
 		},
@@ -122,7 +122,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt"),
+					RuleId: proto.String("int32.gt"),
 				},
 			),
 		},
@@ -132,7 +132,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt"),
+					RuleId: proto.String("int32.gt"),
 				},
 			),
 		},
@@ -150,7 +150,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gte"),
-					ConstraintId: proto.String("int32.gte"),
+					RuleId: proto.String("int32.gte"),
 				},
 			),
 		},
@@ -164,7 +164,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt_lt"),
+					RuleId: proto.String("int32.gt_lt"),
 				},
 			),
 		},
@@ -174,7 +174,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt_lt"),
+					RuleId: proto.String("int32.gt_lt"),
 				},
 			),
 		},
@@ -184,7 +184,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt_lt"),
+					RuleId: proto.String("int32.gt_lt"),
 				},
 			),
 		},
@@ -194,7 +194,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt_lt"),
+					RuleId: proto.String("int32.gt_lt"),
 				},
 			),
 		},
@@ -212,7 +212,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt_lt_exclusive"),
+					RuleId: proto.String("int32.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -222,7 +222,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt_lt_exclusive"),
+					RuleId: proto.String("int32.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -232,7 +232,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gt"),
-					ConstraintId: proto.String("int32.gt_lt_exclusive"),
+					RuleId: proto.String("int32.gt_lt_exclusive"),
 				},
 			),
 		},
@@ -254,7 +254,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gte"),
-					ConstraintId: proto.String("int32.gte_lte"),
+					RuleId: proto.String("int32.gte_lte"),
 				},
 			),
 		},
@@ -264,7 +264,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gte"),
-					ConstraintId: proto.String("int32.gte_lte"),
+					RuleId: proto.String("int32.gte_lte"),
 				},
 			),
 		},
@@ -290,7 +290,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gte"),
-					ConstraintId: proto.String("int32.gte_lte_exclusive"),
+					RuleId: proto.String("int32.gte_lte_exclusive"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func int32Suite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("int32.gte"),
-					ConstraintId: proto.String("int32.gte_lte"),
+					RuleId: proto.String("int32.gte_lte"),
 				},
 			),
 		},

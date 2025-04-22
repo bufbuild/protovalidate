@@ -53,7 +53,7 @@ func oneofSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("x"),
 				Rule:         results.FieldPath("string.prefix"),
-				ConstraintId: proto.String("string.prefix"),
+				RuleId: proto.String("string.prefix"),
 			}),
 		},
 		"field/Y/invalid": {
@@ -61,7 +61,7 @@ func oneofSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("y"),
 				Rule:         results.FieldPath("int32.gt"),
-				ConstraintId: proto.String("int32.gt"),
+				RuleId: proto.String("int32.gt"),
 			}),
 		},
 		"filed/Z/invalid": {
@@ -69,7 +69,7 @@ func oneofSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("z.val"),
 				Rule:         results.FieldPath("bool.const"),
-				ConstraintId: proto.String("bool.const"),
+				RuleId: proto.String("bool.const"),
 			}),
 		},
 		"required/valid/empty": {
@@ -84,7 +84,7 @@ func oneofSuite() suites.Suite {
 			Message: &cases.OneofRequired{},
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("o"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"required/required_field/valid/empty": {
@@ -106,7 +106,7 @@ func oneofSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("a"),
 				Rule:         results.FieldPath("required"),
-				ConstraintId: proto.String("required"),
+				RuleId: proto.String("required"),
 			}),
 		},
 		"required/required_field/invalid": {
@@ -114,12 +114,12 @@ func oneofSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("o"),
-					ConstraintId: proto.String("required"),
+					RuleId: proto.String("required"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
 					Rule:         results.FieldPath("required"),
-					ConstraintId: proto.String("required"),
+					RuleId: proto.String("required"),
 				},
 			),
 		},

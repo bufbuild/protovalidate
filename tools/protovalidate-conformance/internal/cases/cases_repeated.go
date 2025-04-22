@@ -49,7 +49,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0].val"),
 					Rule:         results.FieldPath("int64.gt"),
-					ConstraintId: proto.String("int64.gt"),
+					RuleId: proto.String("int64.gt"),
 					Message:      proto.String("value must be greater than 0"),
 				},
 			),
@@ -72,7 +72,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0].val"),
 					Rule:         results.FieldPath("int64.gt"),
-					ConstraintId: proto.String("int64.gt"),
+					RuleId: proto.String("int64.gt"),
 					Message:      proto.String("value must be greater than 0"),
 				},
 			),
@@ -91,7 +91,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.min_items"),
-					ConstraintId: proto.String("repeated.min_items"),
+					RuleId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 2 item(s)"),
 				},
 			),
@@ -102,7 +102,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[1].val"),
 					Rule:         results.FieldPath("int64.gt"),
-					ConstraintId: proto.String("int64.gt"),
+					RuleId: proto.String("int64.gt"),
 					Message:      proto.String("value must be greater than 0"),
 				},
 			),
@@ -121,7 +121,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.max_items"),
-					ConstraintId: proto.String("repeated.max_items"),
+					RuleId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 3 item(s)"),
 				},
 			),
@@ -144,7 +144,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.min_items"),
-					ConstraintId: proto.String("repeated.min_items"),
+					RuleId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 2 item(s)"),
 				},
 			),
@@ -155,7 +155,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.max_items"),
-					ConstraintId: proto.String("repeated.max_items"),
+					RuleId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 4 item(s)"),
 				},
 			),
@@ -170,7 +170,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.min_items"),
-					ConstraintId: proto.String("repeated.min_items"),
+					RuleId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 3 item(s)"),
 				},
 			),
@@ -181,7 +181,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.max_items"),
-					ConstraintId: proto.String("repeated.max_items"),
+					RuleId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 3 item(s)"),
 				},
 			),
@@ -204,7 +204,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.unique"),
-					ConstraintId: proto.String("repeated.unique"),
+					RuleId: proto.String("repeated.unique"),
 				},
 			),
 		},
@@ -222,13 +222,13 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("a"),
 					Rule:         results.FieldPath("repeated.unique"),
-					ConstraintId: proto.String("repeated.unique"),
+					RuleId: proto.String("repeated.unique"),
 					Message:      proto.String("repeated value must contain unique items"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("b"),
 					Rule:         results.FieldPath("repeated.unique"),
-					ConstraintId: proto.String("repeated.unique"),
+					RuleId: proto.String("repeated.unique"),
 					Message:      proto.String("repeated value must contain unique items"),
 				}),
 		},
@@ -250,7 +250,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[1]"),
 					Rule:         results.FieldPath("repeated.items.float.gt"),
-					ConstraintId: proto.String("float.gt"),
+					RuleId: proto.String("float.gt"),
 					Message:      proto.String("value must be greater than 0"),
 				},
 			),
@@ -261,7 +261,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[1]"),
 					Rule:         results.FieldPath("repeated.items.string.pattern"),
-					ConstraintId: proto.String("string.pattern"),
+					RuleId: proto.String("string.pattern"),
 					Message:      proto.String("value does not match regex pattern `(?i)^[a-z0-9]+$`"),
 				},
 			),
@@ -272,7 +272,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.string.in"),
-					ConstraintId: proto.String("string.in"),
+					RuleId: proto.String("string.in"),
 					Message:      proto.String(`value must be in list [foo, bar]`),
 				},
 			),
@@ -287,7 +287,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.string.not_in"),
-					ConstraintId: proto.String("string.not_in"),
+					RuleId: proto.String("string.not_in"),
 					Message:      proto.String("value must not be in list [foo, bar]"),
 				},
 			),
@@ -302,7 +302,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.enum.in"),
-					ConstraintId: proto.String("enum.in"),
+					RuleId: proto.String("enum.in"),
 					Message:      proto.String("value must be in list [0]"),
 				},
 			),
@@ -317,7 +317,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.enum.not_in"),
-					ConstraintId: proto.String("enum.not_in"),
+					RuleId: proto.String("enum.not_in"),
 					Message:      proto.String("value must not be in list [0]"),
 				},
 			),
@@ -332,7 +332,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.enum.in"),
-					ConstraintId: proto.String("enum.in"),
+					RuleId: proto.String("enum.in"),
 					Message:      proto.String("value must be in list [0]"),
 				},
 			),
@@ -347,7 +347,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.enum.not_in"),
-					ConstraintId: proto.String("enum.not_in"),
+					RuleId: proto.String("enum.not_in"),
 					Message:      proto.String("value must not be in list [0]"),
 				},
 			),
@@ -362,7 +362,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.any.in"),
-					ConstraintId: proto.String("any.in"),
+					RuleId: proto.String("any.in"),
 					Message:      proto.String("type URL must be in the allow list"),
 				},
 			),
@@ -377,7 +377,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.any.not_in"),
-					ConstraintId: proto.String("any.not_in"),
+					RuleId: proto.String("any.not_in"),
 					Message:      proto.String("type URL must not be in the block list"),
 				},
 			),
@@ -404,7 +404,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.min_items"),
-					ConstraintId: proto.String("repeated.min_items"),
+					RuleId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 1 item(s)"),
 				},
 			),
@@ -415,7 +415,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.string.len"),
-					ConstraintId: proto.String("string.len"),
+					RuleId: proto.String("string.len"),
 					Message:      proto.String("value length must be 3 characters"),
 				},
 			),
@@ -430,7 +430,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.min_items"),
-					ConstraintId: proto.String("repeated.min_items"),
+					RuleId: proto.String("repeated.min_items"),
 					Message:      proto.String("value must contain at least 1 item(s)"),
 				},
 			),
@@ -441,7 +441,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("repeated.max_items"),
-					ConstraintId: proto.String("repeated.max_items"),
+					RuleId: proto.String("repeated.max_items"),
 					Message:      proto.String("value must contain no more than 3 item(s)"),
 				},
 			),
@@ -464,7 +464,7 @@ func repeatedSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val[0]"),
 					Rule:         results.FieldPath("repeated.items.duration.gte"),
-					ConstraintId: proto.String("duration.gte"),
+					RuleId: proto.String("duration.gte"),
 					Message:      proto.String("value must be greater than or equal to 0.001s"),
 				},
 			),

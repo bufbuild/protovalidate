@@ -38,7 +38,7 @@ func boolSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("bool.const"),
-					ConstraintId: proto.String("bool.const"),
+					RuleId: proto.String("bool.const"),
 				},
 			),
 		},
@@ -52,7 +52,7 @@ func boolSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("bool.const"),
-					ConstraintId: proto.String("bool.const"),
+					RuleId: proto.String("bool.const"),
 				},
 			),
 		},

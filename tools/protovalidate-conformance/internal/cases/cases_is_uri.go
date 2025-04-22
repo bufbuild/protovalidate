@@ -48,7 +48,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -56,7 +56,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: " "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -64,7 +64,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: " https://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -72,7 +72,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -80,7 +80,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "./"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -88,7 +88,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "//example.com/foo"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -108,7 +108,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "1foo://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -116,7 +116,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "-foo://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -124,7 +124,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: ".foo://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -132,7 +132,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: ":foo://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -140,7 +140,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo%20bar://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -148,7 +148,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo\x1Fbar://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -156,7 +156,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo^bar://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -212,7 +212,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -220,7 +220,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://]@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -228,7 +228,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://@@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -236,7 +236,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://%@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -244,7 +244,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://%2x@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -256,7 +256,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://\x1F@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -264,7 +264,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://^@example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -292,7 +292,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://foo%c3x%96"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -300,7 +300,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://foo%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://foo%2x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -328,7 +328,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://2001:0db8:85a3:0000:0000:8a2e:0370:7334"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -336,7 +336,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[2001::0370::7334]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -356,7 +356,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[v1x]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -364,7 +364,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://\x1F.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -372,7 +372,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://^.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -380,7 +380,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://foo@你好.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -400,7 +400,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[::1%25foo%c3x%96]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -408,7 +408,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[::1%25]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -416,7 +416,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[::1%eth0]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -424,7 +424,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[::1%25foo%]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -432,7 +432,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://[::1%25foo%2x]"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -468,7 +468,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com:8a"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -476,7 +476,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com:x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -484,7 +484,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com: 1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -520,7 +520,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:/^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -528,7 +528,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -536,7 +536,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:/%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -560,7 +560,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:/nz/^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -568,7 +568,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:/nz/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -576,7 +576,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:/nz/%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -620,7 +620,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -628,7 +628,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -636,7 +636,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -660,7 +660,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:nz/^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -668,7 +668,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:nz/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -676,7 +676,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo:nz/%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -728,7 +728,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo://example.com/^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -736,7 +736,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo://example.com/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -744,7 +744,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "foo://example.com/%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -788,7 +788,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com?%2x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -796,7 +796,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com?\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -804,7 +804,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com?^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -852,7 +852,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com#%2x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -860,7 +860,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com#%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -876,7 +876,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com##"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -884,7 +884,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com#^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},
@@ -892,7 +892,7 @@ func isURISuite() suites.Suite {
 			Message: &cases.IsUri{Val: "https://example.com#\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri"),
+					RuleId: proto.String("library.is_uri"),
 				},
 			),
 		},

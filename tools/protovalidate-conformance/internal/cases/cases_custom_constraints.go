@@ -39,8 +39,8 @@ func customSuite() suites.Suite {
 		"message_expressions/empty": {
 			Message: &custom_constraints.MessageExpressions{},
 			Expected: results.Violations(
-				&validate.Violation{ConstraintId: proto.String("message_expression_scalar")},
-				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
+				&validate.Violation{RuleId: proto.String("message_expression_scalar")},
+				&validate.Violation{RuleId: proto.String("message_expression_enum")},
 			),
 		},
 		"message_expression/valid": {
@@ -76,16 +76,16 @@ func customSuite() suites.Suite {
 				},
 			},
 			Expected: results.Violations(
-				&validate.Violation{ConstraintId: proto.String("message_expression_scalar")},
-				&validate.Violation{ConstraintId: proto.String("message_expression_enum")},
-				&validate.Violation{ConstraintId: proto.String("message_expression_embed")},
+				&validate.Violation{RuleId: proto.String("message_expression_scalar")},
+				&validate.Violation{RuleId: proto.String("message_expression_enum")},
+				&validate.Violation{RuleId: proto.String("message_expression_embed")},
 				&validate.Violation{
 					Field:        results.FieldPath("e"),
-					ConstraintId: proto.String("message_expression_nested"),
+					RuleId: proto.String("message_expression_nested"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("f"),
-					ConstraintId: proto.String("message_expression_nested"),
+					RuleId: proto.String("message_expression_nested"),
 				},
 			),
 		},
@@ -121,13 +121,13 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.multiple.scalar.2"),
+					RuleId: proto.String("field_expression.multiple.scalar.2"),
 					Rule:         results.FieldPath("cel[1]"),
 					Message:      proto.String("test message field_expression.multiple.scalar.2"),
 				},
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.multiple.scalar.3"),
+					RuleId: proto.String("field_expression.multiple.scalar.3"),
 					Rule:         results.FieldPath("cel[2]"),
 					Message:      proto.String("test message field_expression.multiple.scalar.3"),
 				},
@@ -150,7 +150,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("nested.val"),
-					ConstraintId: proto.String("field_expression.scalar"),
+					RuleId: proto.String("field_expression.scalar"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.scalar"),
 				},
@@ -165,7 +165,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.scalar"),
+					RuleId: proto.String("field_expression.scalar"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.scalar"),
 				},
@@ -184,7 +184,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.scalar"),
+					RuleId: proto.String("field_expression.scalar"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.scalar"),
 				},
@@ -203,7 +203,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.enum"),
+					RuleId: proto.String("field_expression.enum"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.enum"),
 				},
@@ -226,7 +226,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.message"),
+					RuleId: proto.String("field_expression.message"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.message"),
 				},
@@ -251,7 +251,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.int32"),
+					RuleId: proto.String("field_expression.map.int32"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("all map values must equal 1"),
 				},
@@ -276,7 +276,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.int64"),
+					RuleId: proto.String("field_expression.map.int64"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("all map values must equal 1"),
 				},
@@ -301,7 +301,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.uint32"),
+					RuleId: proto.String("field_expression.map.uint32"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("all map values must equal 1"),
 				},
@@ -326,7 +326,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.uint64"),
+					RuleId: proto.String("field_expression.map.uint64"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("all map values must equal 1"),
 				},
@@ -350,7 +350,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.bool"),
+					RuleId: proto.String("field_expression.map.bool"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("all map values must equal false"),
 				},
@@ -374,7 +374,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.string"),
+					RuleId: proto.String("field_expression.map.string"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("all map values must equal 'foo'"),
 				},
@@ -400,7 +400,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.enum"),
+					RuleId: proto.String("field_expression.map.enum"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.map.enum"),
 				},
@@ -426,7 +426,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.map.message"),
+					RuleId: proto.String("field_expression.map.message"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.map.message"),
 				},
@@ -451,7 +451,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val[9]"),
-					ConstraintId: proto.String("field_expression.map.keys"),
+					RuleId: proto.String("field_expression.map.keys"),
 					Rule:         results.FieldPath("map.keys.cel[0]"),
 					Message:      proto.String("test message field_expression.map.keys"),
 					ForKey:       proto.Bool(true),
@@ -478,7 +478,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val[8]"),
-					ConstraintId: proto.String("field_expression.map.scalar.values"),
+					RuleId: proto.String("field_expression.map.scalar.values"),
 					Rule:         results.FieldPath("map.values.cel[0]"),
 					Message:      proto.String("test message field_expression.map.scalar.values"),
 				},
@@ -504,7 +504,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val[8]"),
-					ConstraintId: proto.String("field_expression.map.enum.values"),
+					RuleId: proto.String("field_expression.map.enum.values"),
 					Rule:         results.FieldPath("map.values.cel[0]"),
 					Message:      proto.String("test message field_expression.map.enum.values"),
 				},
@@ -530,7 +530,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val[8]"),
-					ConstraintId: proto.String("field_expression.map.message.values"),
+					RuleId: proto.String("field_expression.map.message.values"),
 					Rule:         results.FieldPath("map.values.cel[0]"),
 					Message:      proto.String("test message field_expression.map.message.values"),
 				},
@@ -549,7 +549,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.repeated.scalar"),
+					RuleId: proto.String("field_expression.repeated.scalar"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.repeated.scalar"),
 				},
@@ -568,7 +568,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.repeated.enum"),
+					RuleId: proto.String("field_expression.repeated.enum"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.repeated.enum"),
 				},
@@ -594,7 +594,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
-					ConstraintId: proto.String("field_expression.repeated.message"),
+					RuleId: proto.String("field_expression.repeated.message"),
 					Rule:         results.FieldPath("cel[0]"),
 					Message:      proto.String("test message field_expression.repeated.message"),
 				},
@@ -613,7 +613,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val[1]"),
-					ConstraintId: proto.String("field_expression.repeated.scalar.items"),
+					RuleId: proto.String("field_expression.repeated.scalar.items"),
 					Rule:         results.FieldPath("repeated.items.cel[0]"),
 					Message:      proto.String("test message field_expression.repeated.scalar.items"),
 				},
@@ -635,7 +635,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val[1]"),
-					ConstraintId: proto.String("field_expression.repeated.enum.items"),
+					RuleId: proto.String("field_expression.repeated.enum.items"),
 					Rule:         results.FieldPath("repeated.items.cel[0]"),
 					Message:      proto.String("test message field_expression.repeated.enum.items"),
 				},
@@ -661,7 +661,7 @@ func customSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:        results.FieldPath("val[1]"),
-					ConstraintId: proto.String("field_expression.repeated.message.items"),
+					RuleId: proto.String("field_expression.repeated.message.items"),
 					Rule:         results.FieldPath("repeated.items.cel[0]"),
 					Message:      proto.String("test message field_expression.repeated.message.items"),
 				},

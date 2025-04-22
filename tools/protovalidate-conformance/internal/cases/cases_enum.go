@@ -41,7 +41,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.const"),
-					ConstraintId: proto.String("enum.const"),
+					RuleId: proto.String("enum.const"),
 				},
 			),
 		},
@@ -55,7 +55,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.const"),
-					ConstraintId: proto.String("enum.const"),
+					RuleId: proto.String("enum.const"),
 				},
 			),
 		},
@@ -73,7 +73,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.defined_only"),
-					ConstraintId: proto.String("enum.defined_only"),
+					RuleId: proto.String("enum.defined_only"),
 					Message:      proto.String("value must be one of the defined enum values"),
 				},
 			),
@@ -92,7 +92,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.defined_only"),
-					ConstraintId: proto.String("enum.defined_only"),
+					RuleId: proto.String("enum.defined_only"),
 				},
 			),
 		},
@@ -106,7 +106,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.in"),
-					ConstraintId: proto.String("enum.in"),
+					RuleId: proto.String("enum.in"),
 				},
 			),
 		},
@@ -120,7 +120,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.in"),
-					ConstraintId: proto.String("enum.in"),
+					RuleId: proto.String("enum.in"),
 				},
 			),
 		},
@@ -138,7 +138,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.not_in"),
-					ConstraintId: proto.String("enum.not_in"),
+					RuleId: proto.String("enum.not_in"),
 				},
 			),
 		},
@@ -152,7 +152,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.not_in"),
-					ConstraintId: proto.String("enum.not_in"),
+					RuleId: proto.String("enum.not_in"),
 				},
 			),
 		},
@@ -166,7 +166,7 @@ func enumSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("enum.defined_only"),
-					ConstraintId: proto.String("enum.defined_only"),
+					RuleId: proto.String("enum.defined_only"),
 				},
 			),
 		},

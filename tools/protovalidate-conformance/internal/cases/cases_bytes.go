@@ -38,7 +38,7 @@ func bytesSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("bytes.const"),
-					ConstraintId: proto.String("bytes.const"),
+					RuleId: proto.String("bytes.const"),
 				},
 			),
 		},
@@ -52,7 +52,7 @@ func bytesSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("bytes.in"),
-					ConstraintId: proto.String("bytes.in"),
+					RuleId: proto.String("bytes.in"),
 				},
 			),
 		},
@@ -66,7 +66,7 @@ func bytesSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("bytes.not_in"),
-					ConstraintId: proto.String("bytes.not_in"),
+					RuleId: proto.String("bytes.not_in"),
 				},
 			),
 		},
@@ -80,7 +80,7 @@ func bytesSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("bytes.len"),
-					ConstraintId: proto.String("bytes.len"),
+					RuleId: proto.String("bytes.len"),
 				},
 			),
 		},
@@ -90,7 +90,7 @@ func bytesSuite() suites.Suite {
 				&validate.Violation{
 					Field:        results.FieldPath("val"),
 					Rule:         results.FieldPath("bytes.len"),
-					ConstraintId: proto.String("bytes.len"),
+					RuleId: proto.String("bytes.len"),
 				},
 			),
 		},
@@ -107,7 +107,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.min_len"),
-				ConstraintId: proto.String("bytes.min_len"),
+				RuleId: proto.String("bytes.min_len"),
 				Message:      proto.String("value length must be at least 3 bytes"),
 			}),
 		},
@@ -124,7 +124,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.max_len"),
-				ConstraintId: proto.String("bytes.max_len"),
+				RuleId: proto.String("bytes.max_len"),
 				Message:      proto.String("value must be at most 5 bytes"),
 			}),
 		},
@@ -145,7 +145,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.min_len"),
-				ConstraintId: proto.String("bytes.min_len"),
+				RuleId: proto.String("bytes.min_len"),
 				Message:      proto.String("value length must be at least 3 bytes"),
 			}),
 		},
@@ -154,7 +154,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.max_len"),
-				ConstraintId: proto.String("bytes.max_len"),
+				RuleId: proto.String("bytes.max_len"),
 				Message:      proto.String("value must be at most 5 bytes"),
 			}),
 		},
@@ -167,7 +167,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.max_len"),
-				ConstraintId: proto.String("bytes.max_len"),
+				RuleId: proto.String("bytes.max_len"),
 				Message:      proto.String("value must be at most 5 bytes"),
 			}),
 		},
@@ -180,7 +180,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.pattern"),
-				ConstraintId: proto.String("bytes.pattern"),
+				RuleId: proto.String("bytes.pattern"),
 				Message:      proto.String("value must match regex pattern `^[\\x00-\\x7F]+$`"),
 			}),
 		},
@@ -189,7 +189,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.pattern"),
-				ConstraintId: proto.String("bytes.pattern"),
+				RuleId: proto.String("bytes.pattern"),
 				Message:      proto.String("value must match regex pattern `^[\\x00-\\x7F]+$`"),
 			}),
 		},
@@ -210,7 +210,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.prefix"),
-				ConstraintId: proto.String("bytes.prefix"),
+				RuleId: proto.String("bytes.prefix"),
 				Message:      proto.String("value does not have prefix 99"),
 			}),
 		},
@@ -227,7 +227,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.contains"),
-				ConstraintId: proto.String("bytes.contains"),
+				RuleId: proto.String("bytes.contains"),
 				Message:      proto.String("value does not contain 626172"),
 			}),
 		},
@@ -244,7 +244,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.suffix"),
-				ConstraintId: proto.String("bytes.suffix"),
+				RuleId: proto.String("bytes.suffix"),
 				Message:      proto.String("value does not have suffix 62757a7a"),
 			}),
 		},
@@ -253,7 +253,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.suffix"),
-				ConstraintId: proto.String("bytes.suffix"),
+				RuleId: proto.String("bytes.suffix"),
 				Message:      proto.String("value does not have suffix 62757a7a"),
 			}),
 		},
@@ -270,7 +270,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.ip"),
-				ConstraintId: proto.String("bytes.ip"),
+				RuleId: proto.String("bytes.ip"),
 				Message:      proto.String("value must be a valid IP address"),
 			}),
 		},
@@ -287,7 +287,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.ipv4"),
-				ConstraintId: proto.String("bytes.ipv4"),
+				RuleId: proto.String("bytes.ipv4"),
 				Message:      proto.String("value must be a valid IPv4 address"),
 			}),
 		},
@@ -300,7 +300,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.ipv4"),
-				ConstraintId: proto.String("bytes.ipv4"),
+				RuleId: proto.String("bytes.ipv4"),
 				Message:      proto.String("value must be a valid IPv4 address"),
 			}),
 		},
@@ -313,7 +313,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.ipv6"),
-				ConstraintId: proto.String("bytes.ipv6"),
+				RuleId: proto.String("bytes.ipv6"),
 				Message:      proto.String("value must be a valid IPv6 address"),
 			}),
 		},
@@ -326,7 +326,7 @@ func bytesSuite() suites.Suite {
 			Expected: results.Violations(&validate.Violation{
 				Field:        results.FieldPath("val"),
 				Rule:         results.FieldPath("bytes.ipv6"),
-				ConstraintId: proto.String("bytes.ipv6"),
+				RuleId: proto.String("bytes.ipv6"),
 			}),
 		},
 		"IPv6/valid/ignore_empty": {
