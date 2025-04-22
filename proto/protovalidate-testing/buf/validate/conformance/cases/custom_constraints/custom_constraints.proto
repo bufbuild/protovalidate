@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-package buf.validate.conformance.cases.custom_constraints;
+package buf.validate.conformance.cases.custom_rules;
 
 import "buf/validate/validate.proto";
 

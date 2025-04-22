@@ -54,7 +54,7 @@ extend google.protobuf.FieldOptions {
   // no validation is performed against a field.
   optional FieldRules field = 1159;
 
-  // Specifies predefined rules. When extending a standard constraint message,
+  // Specifies predefined rules. When extending a standard rule message,
   // this adds additional CEL expressions that apply when the extension is used.
   //
   // ```proto
@@ -121,7 +121,7 @@ message MessageRules {
   optional bool disabled = 1;
 
   // `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
-  // These constraints are written in Common Expression Language (CEL) syntax. For more information on
+  // These rules are written in Common Expression Language (CEL) syntax. For more information on
   // CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
   //
   //
@@ -139,12 +139,12 @@ message MessageRules {
   repeated Rule cel = 3;
 }
 
-// The `OneofRules` message type enables you to manage constraints for
+// The `OneofRules` message type enables you to manage rules for
 // oneof fields in your protobuf messages.
 message OneofRules {
   // If `required` is true, exactly one field of the oneof must be present. A
   // validation error is returned if no fields in the oneof are present. The
-  // field itself may still be a default value; further constraints
+  // field itself may still be a default value; further rules
   // should be placed on the fields themselves to ensure they are valid values,
   // such as `min_len` or `gt`.
   //
@@ -246,7 +246,7 @@ message FieldRules {
   reserved "skipped", "ignore_empty";
 }
 
-// PredefinedRules are custom constraints that can be re-used with
+// PredefinedRules are custom rules that can be re-used with
 // multiple fields.
 message PredefinedRules {
   // `cel` is a repeated field used to represent a textual expression
@@ -405,7 +405,7 @@ enum Ignore {
   // The validation rules of this field will be skipped and not evaluated. This
   // is useful for situations that necessitate turning off the rules of a field
   // containing a message that may not make sense in the current context, or to
-  // temporarily disable constraints during development.
+  // temporarily disable rules during development.
   //
   // ```proto
   // message MyMessage {
@@ -423,7 +423,7 @@ enum Ignore {
 ;
 }
 
-// FloatRules describes the constraints applied to `float` values. These
+// FloatRules describes the rules applied to `float` values. These
 // rules may also be applied to the `google.protobuf.FloatValue` Well-Known-Type.
 message FloatRules {
   // `const` requires the field value to exactly match the specified value. If
@@ -618,7 +618,7 @@ message FloatRules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -635,8 +635,8 @@ message FloatRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -647,7 +647,7 @@ message FloatRules {
   extensions 1000 to max;
 }
 
-// DoubleRules describes the constraints applied to `double` values. These
+// DoubleRules describes the rules applied to `double` values. These
 // rules may also be applied to the `google.protobuf.DoubleValue` Well-Known-Type.
 message DoubleRules {
   // `const` requires the field value to exactly match the specified value. If
@@ -839,7 +839,7 @@ message DoubleRules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -856,8 +856,8 @@ message DoubleRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -868,7 +868,7 @@ message DoubleRules {
   extensions 1000 to max;
 }
 
-// Int32Rules describes the constraints applied to `int32` values. These
+// Int32Rules describes the rules applied to `int32` values. These
 // rules may also be applied to the `google.protobuf.Int32Value` Well-Known-Type.
 message Int32Rules {
   // `const` requires the field value to exactly match the specified value. If
@@ -1054,7 +1054,7 @@ message Int32Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -1071,8 +1071,8 @@ message Int32Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -1083,7 +1083,7 @@ message Int32Rules {
   extensions 1000 to max;
 }
 
-// Int64Rules describes the constraints applied to `int64` values. These
+// Int64Rules describes the rules applied to `int64` values. These
 // rules may also be applied to the `google.protobuf.Int64Value` Well-Known-Type.
 message Int64Rules {
   // `const` requires the field value to exactly match the specified value. If
@@ -1269,7 +1269,7 @@ message Int64Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -1286,8 +1286,8 @@ message Int64Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -1298,7 +1298,7 @@ message Int64Rules {
   extensions 1000 to max;
 }
 
-// UInt32Rules describes the constraints applied to `uint32` values. These
+// UInt32Rules describes the rules applied to `uint32` values. These
 // rules may also be applied to the `google.protobuf.UInt32Value` Well-Known-Type.
 message UInt32Rules {
   // `const` requires the field value to exactly match the specified value. If
@@ -1484,7 +1484,7 @@ message UInt32Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -1501,8 +1501,8 @@ message UInt32Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -1513,7 +1513,7 @@ message UInt32Rules {
   extensions 1000 to max;
 }
 
-// UInt64Rules describes the constraints applied to `uint64` values. These
+// UInt64Rules describes the rules applied to `uint64` values. These
 // rules may also be applied to the `google.protobuf.UInt64Value` Well-Known-Type.
 message UInt64Rules {
   // `const` requires the field value to exactly match the specified value. If
@@ -1698,7 +1698,7 @@ message UInt64Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -1715,8 +1715,8 @@ message UInt64Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -1727,7 +1727,7 @@ message UInt64Rules {
   extensions 1000 to max;
 }
 
-// SInt32Rules describes the constraints applied to `sint32` values.
+// SInt32Rules describes the rules applied to `sint32` values.
 message SInt32Rules {
   // `const` requires the field value to exactly match the specified value. If
   // the field value doesn't match, an error message is generated.
@@ -1912,7 +1912,7 @@ message SInt32Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -1929,8 +1929,8 @@ message SInt32Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -1941,7 +1941,7 @@ message SInt32Rules {
   extensions 1000 to max;
 }
 
-// SInt64Rules describes the constraints applied to `sint64` values.
+// SInt64Rules describes the rules applied to `sint64` values.
 message SInt64Rules {
   // `const` requires the field value to exactly match the specified value. If
   // the field value doesn't match, an error message is generated.
@@ -2126,7 +2126,7 @@ message SInt64Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -2143,8 +2143,8 @@ message SInt64Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -2155,7 +2155,7 @@ message SInt64Rules {
   extensions 1000 to max;
 }
 
-// Fixed32Rules describes the constraints applied to `fixed32` values.
+// Fixed32Rules describes the rules applied to `fixed32` values.
 message Fixed32Rules {
   // `const` requires the field value to exactly match the specified value.
   // If the field value doesn't match, an error message is generated.
@@ -2340,7 +2340,7 @@ message Fixed32Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -2357,8 +2357,8 @@ message Fixed32Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -2369,7 +2369,7 @@ message Fixed32Rules {
   extensions 1000 to max;
 }
 
-// Fixed64Rules describes the constraints applied to `fixed64` values.
+// Fixed64Rules describes the rules applied to `fixed64` values.
 message Fixed64Rules {
   // `const` requires the field value to exactly match the specified value. If
   // the field value doesn't match, an error message is generated.
@@ -2554,7 +2554,7 @@ message Fixed64Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -2571,8 +2571,8 @@ message Fixed64Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -2583,7 +2583,7 @@ message Fixed64Rules {
   extensions 1000 to max;
 }
 
-// SFixed32Rules describes the constraints applied to `fixed32` values.
+// SFixed32Rules describes the rules applied to `fixed32` values.
 message SFixed32Rules {
   // `const` requires the field value to exactly match the specified value. If
   // the field value doesn't match, an error message is generated.
@@ -2768,7 +2768,7 @@ message SFixed32Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -2785,8 +2785,8 @@ message SFixed32Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -2797,7 +2797,7 @@ message SFixed32Rules {
   extensions 1000 to max;
 }
 
-// SFixed64Rules describes the constraints applied to `fixed64` values.
+// SFixed64Rules describes the rules applied to `fixed64` values.
 message SFixed64Rules {
   // `const` requires the field value to exactly match the specified value. If
   // the field value doesn't match, an error message is generated.
@@ -2982,7 +2982,7 @@ message SFixed64Rules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -2999,8 +2999,8 @@ message SFixed64Rules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -3011,7 +3011,7 @@ message SFixed64Rules {
   extensions 1000 to max;
 }
 
-// BoolRules describes the constraints applied to `bool` values. These rules
+// BoolRules describes the rules applied to `bool` values. These rules
 // may also be applied to the `google.protobuf.BoolValue` Well-Known-Type.
 message BoolRules {
   // `const` requires the field value to exactly match the specified boolean value.
@@ -3029,7 +3029,7 @@ message BoolRules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -3046,8 +3046,8 @@ message BoolRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -3058,7 +3058,7 @@ message BoolRules {
   extensions 1000 to max;
 }
 
-// StringRules describes the constraints applied to `string` values These
+// StringRules describes the rules applied to `string` values These
 // rules may also be applied to the `google.protobuf.StringValue` Well-Known-Type.
 message StringRules {
   // `const` requires the field value to exactly match the specified value. If
@@ -3275,7 +3275,7 @@ message StringRules {
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
 
-  // `WellKnown` rules provide advanced constraints against common string
+  // `WellKnown` rules provide advanced rules against common string
   // patterns.
   oneof well_known {
     // `email` specifies that the field value must be a valid email address, for
@@ -3779,7 +3779,7 @@ message StringRules {
   optional bool strict = 25;
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -3796,8 +3796,8 @@ message StringRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -3819,7 +3819,7 @@ enum KnownRegex {
   KNOWN_REGEX_HTTP_HEADER_VALUE = 2;
 }
 
-// BytesRules describe the constraints applied to `bytes` values. These rules
+// BytesRules describe the rules applied to `bytes` values. These rules
 // may also be applied to the `google.protobuf.BytesValue` Well-Known-Type.
 message BytesRules {
   // `const` requires the field value to exactly match the specified bytes
@@ -3973,11 +3973,11 @@ message BytesRules {
     expression: "this in rules.not_in ? 'value must not be in list %s'.format([rules.not_in]) : ''"
   }];
 
-  // WellKnown rules provide advanced constraints against common byte
+  // WellKnown rules provide advanced rules against common byte
   // patterns
   oneof well_known {
     // `ip` ensures that the field `value` is a valid IP address (v4 or v6) in byte format.
-    // If the field value doesn't meet this constraint, an error message is generated.
+    // If the field value doesn't meet this rule, an error message is generated.
     //
     // ```proto
     // message MyBytes {
@@ -3999,7 +3999,7 @@ message BytesRules {
     ];
 
     // `ipv4` ensures that the field `value` is a valid IPv4 address in byte format.
-    // If the field value doesn't meet this constraint, an error message is generated.
+    // If the field value doesn't meet this rule, an error message is generated.
     //
     // ```proto
     // message MyBytes {
@@ -4021,7 +4021,7 @@ message BytesRules {
     ];
 
     // `ipv6` ensures that the field `value` is a valid IPv6 address in byte format.
-    // If the field value doesn't meet this constraint, an error message is generated.
+    // If the field value doesn't meet this rule, an error message is generated.
     // ```proto
     // message MyBytes {
     //   // value must be a valid IPv6 address
@@ -4043,7 +4043,7 @@ message BytesRules {
   }
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -4060,8 +4060,8 @@ message BytesRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -4072,7 +4072,7 @@ message BytesRules {
   extensions 1000 to max;
 }
 
-// EnumRules describe the constraints applied to `enum` values.
+// EnumRules describe the rules applied to `enum` values.
 message EnumRules {
   // `const` requires the field value to exactly match the specified enum value.
   // If the field value doesn't match, an error message is generated.
@@ -4154,7 +4154,7 @@ message EnumRules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -4175,8 +4175,8 @@ message EnumRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -4187,7 +4187,7 @@ message EnumRules {
   extensions 1000 to max;
 }
 
-// RepeatedRules describe the constraints applied to `repeated` values.
+// RepeatedRules describe the rules applied to `repeated` values.
 message RepeatedRules {
   // `min_items` requires that this field must contain at least the specified
   // minimum number of items.
@@ -4222,7 +4222,7 @@ message RepeatedRules {
   }];
 
   // `unique` indicates that all elements in this field must
-  // be unique. This constraint is strictly applicable to scalar and enum
+  // be unique. This rule is strictly applicable to scalar and enum
   // types, with message types not being supported.
   //
   // ```proto
@@ -4237,13 +4237,13 @@ message RepeatedRules {
     expression: "!rules.unique || this.unique()"
   }];
 
-  // `items` details the constraints to be applied to each item
+  // `items` details the rules to be applied to each item
   // in the field. Even for repeated message fields, validation is executed
   // against each item unless skip is explicitly specified.
   //
   // ```proto
   // message MyRepeated {
-  //   // The items in the field `value` must follow the specified constraints.
+  //   // The items in the field `value` must follow the specified rules.
   //   repeated string value = 1 [(buf.validate.field).repeated.items = {
   //     string: {
   //       min_len: 3
@@ -4255,8 +4255,8 @@ message RepeatedRules {
   optional FieldRules items = 4;
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -4267,7 +4267,7 @@ message RepeatedRules {
   extensions 1000 to max;
 }
 
-// MapRules describe the constraints applied to `map` values.
+// MapRules describe the rules applied to `map` values.
 message MapRules {
   //Specifies the minimum number of key-value pairs allowed. If the field has
   // fewer key-value pairs than specified, an error message is generated.
@@ -4297,11 +4297,11 @@ message MapRules {
     expression: "uint(this.size()) > rules.max_pairs ? 'map must be at most %d entries'.format([rules.max_pairs]) : ''"
   }];
 
-  //Specifies the constraints to be applied to each key in the field.
+  //Specifies the rules to be applied to each key in the field.
   //
   // ```proto
   // message MyMap {
-  //   // The keys in the field `value` must follow the specified constraints.
+  //   // The keys in the field `value` must follow the specified rules.
   //   map<string, string> value = 1 [(buf.validate.field).map.keys = {
   //     string: {
   //       min_len: 3
@@ -4312,13 +4312,13 @@ message MapRules {
   // ```
   optional FieldRules keys = 4;
 
-  //Specifies the constraints to be applied to the value of each key in the
+  //Specifies the rules to be applied to the value of each key in the
   // field. Message values will still have their validations evaluated unless
   //skip is specified here.
   //
   // ```proto
   // message MyMap {
-  //   // The values in the field `value` must follow the specified constraints.
+  //   // The values in the field `value` must follow the specified rules.
   //   map<string, string> value = 1 [(buf.validate.field).map.values = {
   //     string: {
   //       min_len: 5
@@ -4330,8 +4330,8 @@ message MapRules {
   optional FieldRules values = 5;
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -4342,7 +4342,7 @@ message MapRules {
   extensions 1000 to max;
 }
 
-// AnyRules describe constraints applied exclusively to the `google.protobuf.Any` well-known type.
+// AnyRules describe rules applied exclusively to the `google.protobuf.Any` well-known type.
 message AnyRules {
   // `in` requires the field's `type_url` to be equal to one of the
   //specified values. If it doesn't match any of the specified values, an error
@@ -4367,7 +4367,7 @@ message AnyRules {
   repeated string not_in = 3;
 }
 
-// DurationRules describe the constraints applied exclusively to the `google.protobuf.Duration` well-known type.
+// DurationRules describe the rules applied exclusively to the `google.protobuf.Duration` well-known type.
 message DurationRules {
   // `const` dictates that the field must match the specified value of the `google.protobuf.Duration` type exactly.
   // If the field's value deviates from the specified value, an error message
@@ -4554,7 +4554,7 @@ message DurationRules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -4571,8 +4571,8 @@ message DurationRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -4583,7 +4583,7 @@ message DurationRules {
   extensions 1000 to max;
 }
 
-// TimestampRules describe the constraints applied exclusively to the `google.protobuf.Timestamp` well-known type.
+// TimestampRules describe the rules applied exclusively to the `google.protobuf.Timestamp` well-known type.
 message TimestampRules {
   // `const` dictates that this field, of the `google.protobuf.Timestamp` type, must exactly match the specified value. If the field value doesn't correspond to the specified timestamp, an error message will be generated.
   //
@@ -4772,7 +4772,7 @@ message TimestampRules {
   }];
 
   // `example` specifies values that the field may have. These values SHOULD
-  // conform to other constraints. `example` values will not impact validation
+  // conform to other rules. `example` values will not impact validation
   // but may be used as helpful guidance on how to populate the given field.
   //
   // ```proto
@@ -4790,8 +4790,8 @@ message TimestampRules {
   }];
 
   // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field constraints that can then be
-  // set on the field options of other fields to apply field constraints.
+  // option set will be treated as predefined field rules that can then be
+  // set on the field options of other fields to apply field rules.
   // Extension numbers 1000 to 99999 are reserved for extension numbers that are
   // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
   // above this range are reserved for extension numbers that are not explicitly
@@ -4812,13 +4812,13 @@ message Violations {
 
 // `Violation` represents a single instance where a validation rule, expressed
 // as a `Rule`, was not met. It provides information about the field that
-// caused the violation, the specific constraint that wasn't fulfilled, and a
+// caused the violation, the specific rule that wasn't fulfilled, and a
 // human-readable error message.
 //
 // ```json
 // {
 //   "fieldPath": "bar",
-//   "constraintId": "foo.bar",
+//   "ruleId": "foo.bar",
 //   "message": "bar must be greater than 0"
 // }
 // ```
@@ -4844,9 +4844,9 @@ message Violation {
   // ```
   optional FieldPath field = 5;
 
-  // `rule` is a machine-readable path that points to the specific constraint rule that failed validation.
+  // `rule` is a machine-readable path that points to the specific rule rule that failed validation.
   // This will be a nested field starting from the FieldRules of the field that failed validation.
-  // For custom constraints, this will provide the path of the constraint, e.g. `cel[0]`.
+  // For custom rules, this will provide the path of the rule, e.g. `cel[0]`.
   //
   // For example, consider the following message:
   //
@@ -4854,7 +4854,7 @@ message Violation {
   // message Message {
   //   bool a = 1 [(buf.validate.field).required = true];
   //   bool b = 2 [(buf.validate.field).cel = {
-  //     id: "custom_constraint",
+  //     id: "custom_rule",
   //     expression: "!this ? 'b must be true': ''"
   //   }]
   // }
@@ -4874,9 +4874,9 @@ message Violation {
   // ```
   optional FieldPath rule = 6;
 
-  // `constraint_id` is the unique identifier of the `Rule` that was not fulfilled.
+  // `rule_id` is the unique identifier of the `Rule` that was not fulfilled.
   // This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.
-  optional string constraint_id = 2;
+  optional string rule_id = 2;
 
   // `message` is a human-readable error message that describes the nature of the violation.
   // This can be the default error message from the violated `Rule`, or it can be a custom message that gives more context about the violation.
