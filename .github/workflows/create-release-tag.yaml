@@ -55,6 +55,7 @@ jobs:
 
   create-release-draft:
     name: Start release automation
+    needs: create-release-tag
     uses: ./.github/workflows/create-release-draft.yaml
     with:
       tag_name: ${{ github.event.inputs.tag_name }}
