@@ -44,7 +44,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: " "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -52,7 +52,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: " ./foo"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -60,7 +60,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "./foo "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -68,7 +68,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ":"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -76,7 +76,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "1foo://example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -96,7 +96,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -104,7 +104,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host/%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -160,7 +160,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host##"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -168,7 +168,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host#^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -176,7 +176,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host#\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -184,7 +184,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host#%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -196,7 +196,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host?^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -204,7 +204,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host?%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -212,7 +212,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "//host?\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -248,7 +248,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -256,7 +256,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -264,7 +264,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -292,7 +292,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/nz/^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -300,7 +300,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/nz/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -308,7 +308,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/nz/%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -348,7 +348,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/foo/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -360,7 +360,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/##"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -368,7 +368,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/#^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -376,7 +376,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/#\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -384,7 +384,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/#%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -396,7 +396,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/?^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -404,7 +404,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/?%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -412,7 +412,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "/?\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -432,7 +432,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ":"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -440,7 +440,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -448,7 +448,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -456,7 +456,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -484,7 +484,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "./^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -492,7 +492,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "./\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -500,7 +500,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "./%x"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -552,7 +552,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "./foo/\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -564,7 +564,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ".##"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -572,7 +572,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ".#^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -580,7 +580,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ".#\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -588,7 +588,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ".#%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -600,7 +600,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ".?^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -608,7 +608,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ".?%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -616,7 +616,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: ".?\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -632,7 +632,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "##"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -640,7 +640,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "#^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -648,7 +648,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "#\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -656,7 +656,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "#%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -668,7 +668,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "?^"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -676,7 +676,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "?%"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},
@@ -684,7 +684,7 @@ func isURIRefSuite() suites.Suite {
 			Message: &cases.IsUriRef{Val: "?\x1F"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_uri_ref"),
+					RuleId: proto.String("library.is_uri_ref"),
 				},
 			),
 		},

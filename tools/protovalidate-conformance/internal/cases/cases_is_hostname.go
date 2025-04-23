@@ -48,7 +48,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: ""},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -56,7 +56,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: " example.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -64,7 +64,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "example.com "},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -72,7 +72,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "foo_bar.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -80,7 +80,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "你好.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -96,7 +96,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.abcd"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -104,7 +104,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "."},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -116,7 +116,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: ".a"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -124,7 +124,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: ".."},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -132,7 +132,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "a..b"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -144,7 +144,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "-a"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -152,7 +152,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "a-"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -172,7 +172,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "a.1"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -200,7 +200,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "abcd012345678901234567890123456789012345678901234567890123456789.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -208,7 +208,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "foo.abcd012345678901234567890123456789012345678901234567890123456789"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -216,7 +216,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "foo.abcd012345678901234567890123456789012345678901234567890123456789.com"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},
@@ -224,7 +224,7 @@ func isHostnameSuite() suites.Suite {
 			Message: &cases.IsHostname{Val: "İ"},
 			Expected: results.Violations(
 				&validate.Violation{
-					ConstraintId: proto.String("library.is_hostname"),
+					RuleId: proto.String("library.is_hostname"),
 				},
 			),
 		},

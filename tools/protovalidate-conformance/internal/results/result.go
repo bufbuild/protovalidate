@@ -117,11 +117,11 @@ func (v violationsResult) String() string {
 		_, _ = fmt.Fprintf(bldr, "validation error (%d violations)", len(violations))
 	}
 	for i, violation := range violations {
-		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. constraint_id: ", resultPadding, i+1)
-		if violation.ConstraintId == nil {
+		_, _ = fmt.Fprintf(bldr, "\n%s  %2d. rule_id: ", resultPadding, i+1)
+		if violation.RuleId == nil {
 			bldr.WriteString("<nil>")
 		} else {
-			_, _ = fmt.Fprintf(bldr, "%#v", violation.GetConstraintId())
+			_, _ = fmt.Fprintf(bldr, "%#v", violation.GetRuleId())
 		}
 		if violation.Message != nil {
 			_, _ = fmt.Fprintf(bldr, "\n%s      message: %#v", resultPadding, violation.GetMessage())
@@ -155,8 +155,8 @@ func (v violationsResult) IsSuccessWith(other Result, options *harness.ResultOpt
 			matchingField := proto.Equal(want[i].GetField(), got[i].GetField()) &&
 				want[i].GetForKey() == got[i].GetForKey()
 			matchingRule := proto.Equal(want[i].GetRule(), got[i].GetRule())
-			matchingConstraint := want[i].GetConstraintId() == got[i].GetConstraintId()
-			if !matchingField || !matchingRule || !matchingConstraint {
+			matchingRuleID := want[i].GetRuleId() == got[i].GetRuleId()
+			if !matchingField || !matchingRule || !matchingRuleID {
 				return false
 			}
 			if options.GetStrictMessage() && len(want[i].GetMessage()) > 0 &&
@@ -246,10 +246,10 @@ func (u unexpectedErrorResult) IsSuccessWith(_ Result, _ *harness.ResultOptions)
 
 func SortViolations(violations []*validate.Violation) {
 	slices.SortFunc(violations, func(a, b *validate.Violation) int {
-		if a.GetConstraintId() == b.GetConstraintId() {
+		if a.GetRuleId() == b.GetRuleId() {
 			return cmp.Compare(fieldpath.Marshal(a.GetField()), fieldpath.Marshal(b.GetField()))
 		}
-		return cmp.Compare(a.GetConstraintId(), b.GetConstraintId())
+		return cmp.Compare(a.GetRuleId(), b.GetRuleId())
 	})
 }
 
@@ -285,9 +285,9 @@ func HydrateFieldPaths(
 			}
 			if path := violation.GetRule(); path != nil && len(path.GetElements()) > 0 {
 				var err error
-				constraints := validate.FieldConstraints{}
+				rules := validate.FieldRules{}
 				violation.Rule, err = fieldpath.Unmarshal(
-					constraints.ProtoReflect().Descriptor(),
+					rules.ProtoReflect().Descriptor(),
 					path.GetElements()[0].GetFieldName(),
 				)
 				if err != nil {
