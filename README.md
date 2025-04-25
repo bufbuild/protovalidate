@@ -19,12 +19,12 @@ import "buf/validate/validate.proto";
 
 message MoneyTransfer {
   string to_account_id = 1 [
-    // Standard rule: `to_account_id` must be a UUID
+    // Standard rule: `to_account_id` must be a UUID.
     (buf.validate.field).string.uuid = true
   ];
 
   string from_account_id = 2 [
-    // Standard rule: `from_account_id` must be a UUID
+    // Standard rule: `from_account_id` must be a UUID.
     (buf.validate.field).string.uuid = true
   ];
 
