@@ -569,6 +569,7 @@ type FieldRules struct {
 	//
 	// - proto3 scalar fields must be non-zero to be considered populated
 	// - repeated and map fields must be non-empty to be considered populated
+	// - map keys/values and repeated items are always considered populated
 	//
 	// ```proto
 	//
