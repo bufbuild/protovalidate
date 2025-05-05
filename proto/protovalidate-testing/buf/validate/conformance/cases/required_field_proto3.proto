@@ -89,3 +89,15 @@ message RequiredProto3MapIgnoreAlways {
     (buf.validate.field).ignore = IGNORE_ALWAYS
   ];
 }
+
+message RequiredProto3MapKey {
+  map<string, string> val = 1 [(buf.validate.field).map.keys.required = true];
+}
+
+message RequiredProto3MapValue {
+  map<string, string> val = 1 [(buf.validate.field).map.values.required = true];
+}
+
+message RequiredProto3RepeatedItem {
+  repeated string val = 1 [(buf.validate.field).repeated.items.required = true];
+}

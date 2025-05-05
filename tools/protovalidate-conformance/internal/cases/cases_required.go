@@ -280,6 +280,24 @@ func requiredSuite() suites.Suite {
 			Message:  &cases.RequiredProto3MapIgnoreAlways{},
 			Expected: results.Success(true),
 		},
+		"proto3/map/keys/required": suites.Case{
+			Message: &cases.RequiredProto3MapKey{
+				Val: map[string]string{"": "val"},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/map/values/required": suites.Case{
+			Message: &cases.RequiredProto3MapValue{
+				Val: map[string]string{"key": ""},
+			},
+			Expected: results.Success(true),
+		},
+		"proto3/repeated/items/required": suites.Case{
+			Message: &cases.RequiredProto3RepeatedItem{
+				Val: []string{""},
+			},
+			Expected: results.Success(true),
+		},
 		"proto/2023/scalar/explicit_presence/nonzero": suites.Case{
 			Message:  &cases.RequiredEditionsScalarExplicitPresence{Val: proto.String("foo")},
 			Expected: results.Success(true),
