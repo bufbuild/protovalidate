@@ -5997,6 +5997,9 @@ type RepeatedRules struct {
 	// in the field. Even for repeated message fields, validation is executed
 	// against each item unless skip is explicitly specified.
 	//
+	// Note that repeated items are always considered populated. The `required`
+	// rule does not apply.
+	//
 	// ```proto
 	//
 	//	message MyRepeated {
@@ -6103,6 +6106,9 @@ type MapRules struct {
 	MaxPairs *uint64 `protobuf:"varint,2,opt,name=max_pairs,json=maxPairs" json:"max_pairs,omitempty"`
 	// Specifies the rules to be applied to each key in the field.
 	//
+	// Note that map keys are always considered populated. The `required`
+	// rule does not apply.
+	//
 	// ```proto
 	//
 	//	message MyMap {
@@ -6120,6 +6126,9 @@ type MapRules struct {
 	// Specifies the rules to be applied to the value of each key in the
 	// field. Message values will still have their validations evaluated unless
 	// skip is specified here.
+	//
+	// Note that map values are always considered populated. The `required`
+	// rule does not apply.
 	//
 	// ```proto
 	//
