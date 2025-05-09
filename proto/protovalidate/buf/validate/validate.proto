@@ -4793,7 +4793,6 @@ message TimestampRules {
   //   ];
   // }
   // ```
-
   repeated google.protobuf.Timestamp example = 10 [(predefined).cel = {
     id: "timestamp.example"
     expression: "true"

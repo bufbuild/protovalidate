@@ -6595,7 +6595,21 @@ type TimestampRules struct {
 	//	}
 	//
 	// ```
-	Within          *durationpb.Duration     `protobuf:"bytes,9,opt,name=within" json:"within,omitempty"`
+	Within *durationpb.Duration `protobuf:"bytes,9,opt,name=within" json:"within,omitempty"`
+	// `example` specifies values that the field may have. These values SHOULD
+	// conform to other rules. `example` values will not impact validation
+	// but may be used as helpful guidance on how to populate the given field.
+	//
+	// ```proto
+	//
+	//	message MyTimestamp {
+	//	  google.protobuf.Timestamp value = 1 [
+	//	    (buf.validate.field).timestamp.example = { seconds: 1672444800 },
+	//	    (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+	//	  ];
+	//	}
+	//
+	// ```
 	Example         []*timestamppb.Timestamp `protobuf:"bytes,10,rep,name=example" json:"example,omitempty"`
 	extensionFields protoimpl.ExtensionFields
 	unknownFields   protoimpl.UnknownFields
