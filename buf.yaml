@@ -1,0 +1,37 @@
+version: v2
+modules:
+  - path: proto/protovalidate
+    name: buf.build/bufbuild/protovalidate
+    breaking:
+      use:
+        - FILE
+    lint:
+      use:
+        - STANDARD
+      ignore_only:
+        PACKAGE_VERSION_SUFFIX:
+          - proto/protovalidate/buf/validate
+  - path: proto/protovalidate-testing
+    name: buf.build/bufbuild/protovalidate-testing
+    excludes:
+      - proto/protovalidate-testing/tests
+    breaking:
+      use:
+        - FILE
+      ignore:
+        - proto/protovalidate-testing/buf/validate/conformance
+    lint:
+      use:
+        - STANDARD
+      except:
+        - PROTOVALIDATE
+      ignore_only:
+        ENUM_NO_ALLOW_ALIAS:
+          - proto/protovalidate-testing/buf/validate/conformance/cases/enums.proto
+        FILE_LOWER_SNAKE_CASE:
+          - proto/protovalidate-testing/buf/validate/conformance/cases/filename-with-dash.proto
+        IMPORT_USED:
+          - proto/protovalidate-testing/buf/validate/conformance/cases/subdirectory/in_subdirectory.proto
+          - proto/protovalidate-testing/buf/validate/conformance/cases/filename-with-dash.proto
+        PACKAGE_VERSION_SUFFIX:
+          - proto/protovalidate-testing/buf/validate/conformance
