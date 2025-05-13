@@ -18,6 +18,7 @@ package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 message TimestampNone {
   google.protobuf.Timestamp val = 1;
@@ -98,4 +99,20 @@ message TimestampGTNowWithin {
 
 message TimestampExample {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).timestamp.example = {seconds: 3}];
+}
+
+// The below messages should throw compilation errors due to rules being applied toincorrect types.
+message TimestampWrongTypeScalar {
+  int32 val = 1 [(buf.validate.field).timestamp.lt_now = true];
+}
+
+message TimestampWrongTypeMessage {
+  message WrongType {
+    int32 val = 1;
+  }
+  WrongType val = 1 [(buf.validate.field).timestamp.lt_now = true];
+}
+
+message TimestampWrongTypeWrapper {
+  google.protobuf.Int32Value val = 1 [(buf.validate.field).timestamp.lt_now = true];
 }

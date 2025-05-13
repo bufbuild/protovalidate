@@ -18,6 +18,7 @@ package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
 
 message DurationNone {
   google.protobuf.Duration val = 1;
@@ -93,9 +94,18 @@ message DurationExample {
   google.protobuf.Duration val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
 }
 
-message DurationIncorrectMessageType {
+// The below messages should throw compilation errors due to incorrect types.
+message DurationWrongTypeScalar {
+  int32 seconds = 1 [(buf.validate.field).duration.lte = {seconds: 1}];
+}
+
+message DurationWrongTypeMessage {
   message WrongType {
-    string name = 1;
+    int32 seconds = 1;
   }
-  WrongType f = 1 [(buf.validate.field).duration.lte = {seconds: 1}];
+  WrongType val = 1 [(buf.validate.field).duration.lte = {seconds: 1}];
+}
+
+message DurationWrongTypeWrapper {
+  google.protobuf.Int32Value val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
 }

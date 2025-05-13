@@ -21,6 +21,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/durationpb"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 func durationSuite() suites.Suite {
@@ -474,6 +475,18 @@ func durationSuite() suites.Suite {
 				},
 			},
 			Expected: results.Success(true),
+		},
+		"compilation/wrong_type/scalar": {
+			Message:  &cases.DurationWrongTypeScalar{Seconds: 42},
+			Expected: results.CompilationError("mismatched message rules"),
+		},
+		"compilation/wrong_type/message": {
+			Message:  &cases.DurationWrongTypeMessage{Val: &cases.DurationWrongTypeMessage_WrongType{Seconds: 42}},
+			Expected: results.CompilationError("mismatched message rules"),
+		},
+		"compilation/wrong_type/wrapper": {
+			Message:  &cases.DurationWrongTypeWrapper{Val: &wrapperspb.Int32Value{Value: 42}},
+			Expected: results.CompilationError("mismatched message rules"),
 		},
 	}
 }

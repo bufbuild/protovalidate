@@ -25,6 +25,7 @@ import (
 	"google.golang.org/protobuf/types/known/anypb"
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 func anySuite() suites.Suite {
@@ -116,6 +117,18 @@ func anySuite() suites.Suite {
 					RuleId: proto.String("required"),
 				},
 			),
+		},
+		"compilation/wrong_type/scalar": {
+			Message:  &cases.AnyWrongTypeScalar{Val: "test"},
+			Expected: results.CompilationError("mismatched message rules"),
+		},
+		"compilation/wrong_type/message": {
+			Message:  &cases.AnyWrongTypeMessage{Val: &cases.AnyWrongTypeMessage_WrongType{Val: 42}},
+			Expected: results.CompilationError("mismatched message rules"),
+		},
+		"compilation/wrong_type/wrapper": {
+			Message:  &cases.AnyWrongTypeWrapper{Val: &wrapperspb.Int32Value{Value: 42}},
+			Expected: results.CompilationError("mismatched message rules"),
 		},
 	}
 }

@@ -18,6 +18,7 @@ package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/wrappers.proto";
 
 message AnyNone {
   google.protobuf.Any val = 1;
@@ -32,6 +33,26 @@ message AnyIn {
 }
 message AnyNotIn {
   google.protobuf.Any val = 1 [(buf.validate.field).any = {
+    not_in: ["type.googleapis.com/google.protobuf.Timestamp"]
+  }];
+}
+
+// The below messages should throw compilation errors due to incorrect types.
+message AnyWrongTypeScalar {
+  string val = 1 [(buf.validate.field).any = {
+    not_in: ["type.googleapis.com/google.protobuf.Timestamp"]
+  }];
+}
+message AnyWrongTypeMessage {
+  message WrongType {
+    int32 val = 1;
+  }
+  WrongType val = 1 [(buf.validate.field).any = {
+    not_in: ["type.googleapis.com/google.protobuf.Timestamp"]
+  }];
+}
+message AnyWrongTypeWrapper {
+  google.protobuf.Int32Value val = 1 [(buf.validate.field).any = {
     not_in: ["type.googleapis.com/google.protobuf.Timestamp"]
   }];
 }
