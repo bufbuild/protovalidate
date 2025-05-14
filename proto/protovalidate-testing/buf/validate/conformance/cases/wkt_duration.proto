@@ -114,7 +114,3 @@ message DurationWrongTypeWrapper {
 message DurationWrongTypeWKT {
   google.protobuf.Timestamp val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
 }
-
-message DurationWrongTypeRepeated {
-  repeated google.protobuf.Duration val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
-}

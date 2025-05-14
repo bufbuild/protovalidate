@@ -886,50 +886,6 @@ func (x *DurationWrongTypeWKT) GetVal() *timestamppb.Timestamp {
 	return nil
 }
 
-type DurationWrongTypeRepeated struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           []*durationpb.Duration `protobuf:"bytes,1,rep,name=val,proto3" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DurationWrongTypeRepeated) Reset() {
-	*x = DurationWrongTypeRepeated{}
-	mi := &file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DurationWrongTypeRepeated) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DurationWrongTypeRepeated) ProtoMessage() {}
-
-func (x *DurationWrongTypeRepeated) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DurationWrongTypeRepeated.ProtoReflect.Descriptor instead.
-func (*DurationWrongTypeRepeated) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_wkt_duration_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *DurationWrongTypeRepeated) GetVal() []*durationpb.Duration {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
 type DurationWrongTypeMessage_WrongType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Seconds       int32                  `protobuf:"varint,1,opt,name=seconds,proto3" json:"seconds,omitempty"`
@@ -939,7 +895,7 @@ type DurationWrongTypeMessage_WrongType struct {
 
 func (x *DurationWrongTypeMessage_WrongType) Reset() {
 	*x = DurationWrongTypeMessage_WrongType{}
-	mi := &file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -951,7 +907,7 @@ func (x *DurationWrongTypeMessage_WrongType) String() string {
 func (*DurationWrongTypeMessage_WrongType) ProtoMessage() {}
 
 func (x *DurationWrongTypeMessage_WrongType) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1030,9 +986,6 @@ const file_buf_validate_conformance_cases_wkt_duration_proto_rawDesc = "" +
 	"\xbaH\a\xaa\x01\x04J\x02\b\x03R\x03val\"P\n" +
 	"\x14DurationWrongTypeWKT\x128\n" +
 	"\x03val\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\n" +
-	"\xbaH\a\xaa\x01\x04J\x02\b\x03R\x03val\"T\n" +
-	"\x19DurationWrongTypeRepeated\x127\n" +
-	"\x03val\x18\x01 \x03(\v2\x19.google.protobuf.DurationB\n" +
 	"\xbaH\a\xaa\x01\x04J\x02\b\x03R\x03valB\xa7\x02\n" +
 	"\"com.buf.validate.conformance.casesB\x10WktDurationProtoP\x01ZSgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases\xa2\x02\x04BVCC\xaa\x02\x1eBuf.Validate.Conformance.Cases\xca\x02\x1eBuf\\Validate\\Conformance\\Cases\xe2\x02*Buf\\Validate\\Conformance\\Cases\\GPBMetadata\xea\x02!Buf::Validate::Conformance::Casesb\x06proto3"
 
@@ -1048,7 +1001,7 @@ func file_buf_validate_conformance_cases_wkt_duration_proto_rawDescGZIP() []byte
 	return file_buf_validate_conformance_cases_wkt_duration_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_buf_validate_conformance_cases_wkt_duration_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_buf_validate_conformance_cases_wkt_duration_proto_goTypes = []any{
 	(*DurationNone)(nil),                       // 0: buf.validate.conformance.cases.DurationNone
 	(*DurationRequired)(nil),                   // 1: buf.validate.conformance.cases.DurationRequired
@@ -1069,37 +1022,35 @@ var file_buf_validate_conformance_cases_wkt_duration_proto_goTypes = []any{
 	(*DurationWrongTypeMessage)(nil),           // 16: buf.validate.conformance.cases.DurationWrongTypeMessage
 	(*DurationWrongTypeWrapper)(nil),           // 17: buf.validate.conformance.cases.DurationWrongTypeWrapper
 	(*DurationWrongTypeWKT)(nil),               // 18: buf.validate.conformance.cases.DurationWrongTypeWKT
-	(*DurationWrongTypeRepeated)(nil),          // 19: buf.validate.conformance.cases.DurationWrongTypeRepeated
-	(*DurationWrongTypeMessage_WrongType)(nil), // 20: buf.validate.conformance.cases.DurationWrongTypeMessage.WrongType
-	(*durationpb.Duration)(nil),                // 21: google.protobuf.Duration
-	(*wrapperspb.Int32Value)(nil),              // 22: google.protobuf.Int32Value
-	(*timestamppb.Timestamp)(nil),              // 23: google.protobuf.Timestamp
+	(*DurationWrongTypeMessage_WrongType)(nil), // 19: buf.validate.conformance.cases.DurationWrongTypeMessage.WrongType
+	(*durationpb.Duration)(nil),                // 20: google.protobuf.Duration
+	(*wrapperspb.Int32Value)(nil),              // 21: google.protobuf.Int32Value
+	(*timestamppb.Timestamp)(nil),              // 22: google.protobuf.Timestamp
 }
 var file_buf_validate_conformance_cases_wkt_duration_proto_depIdxs = []int32{
-	21, // 0: buf.validate.conformance.cases.DurationNone.val:type_name -> google.protobuf.Duration
-	21, // 1: buf.validate.conformance.cases.DurationRequired.val:type_name -> google.protobuf.Duration
-	21, // 2: buf.validate.conformance.cases.DurationConst.val:type_name -> google.protobuf.Duration
-	21, // 3: buf.validate.conformance.cases.DurationIn.val:type_name -> google.protobuf.Duration
-	21, // 4: buf.validate.conformance.cases.DurationNotIn.val:type_name -> google.protobuf.Duration
-	21, // 5: buf.validate.conformance.cases.DurationLT.val:type_name -> google.protobuf.Duration
-	21, // 6: buf.validate.conformance.cases.DurationLTE.val:type_name -> google.protobuf.Duration
-	21, // 7: buf.validate.conformance.cases.DurationGT.val:type_name -> google.protobuf.Duration
-	21, // 8: buf.validate.conformance.cases.DurationGTE.val:type_name -> google.protobuf.Duration
-	21, // 9: buf.validate.conformance.cases.DurationGTLT.val:type_name -> google.protobuf.Duration
-	21, // 10: buf.validate.conformance.cases.DurationExLTGT.val:type_name -> google.protobuf.Duration
-	21, // 11: buf.validate.conformance.cases.DurationGTELTE.val:type_name -> google.protobuf.Duration
-	21, // 12: buf.validate.conformance.cases.DurationExGTELTE.val:type_name -> google.protobuf.Duration
-	21, // 13: buf.validate.conformance.cases.DurationFieldWithOtherFields.duration_val:type_name -> google.protobuf.Duration
-	21, // 14: buf.validate.conformance.cases.DurationExample.val:type_name -> google.protobuf.Duration
-	20, // 15: buf.validate.conformance.cases.DurationWrongTypeMessage.val:type_name -> buf.validate.conformance.cases.DurationWrongTypeMessage.WrongType
-	22, // 16: buf.validate.conformance.cases.DurationWrongTypeWrapper.val:type_name -> google.protobuf.Int32Value
-	23, // 17: buf.validate.conformance.cases.DurationWrongTypeWKT.val:type_name -> google.protobuf.Timestamp
-	21, // 18: buf.validate.conformance.cases.DurationWrongTypeRepeated.val:type_name -> google.protobuf.Duration
-	19, // [19:19] is the sub-list for method output_type
-	19, // [19:19] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	20, // 0: buf.validate.conformance.cases.DurationNone.val:type_name -> google.protobuf.Duration
+	20, // 1: buf.validate.conformance.cases.DurationRequired.val:type_name -> google.protobuf.Duration
+	20, // 2: buf.validate.conformance.cases.DurationConst.val:type_name -> google.protobuf.Duration
+	20, // 3: buf.validate.conformance.cases.DurationIn.val:type_name -> google.protobuf.Duration
+	20, // 4: buf.validate.conformance.cases.DurationNotIn.val:type_name -> google.protobuf.Duration
+	20, // 5: buf.validate.conformance.cases.DurationLT.val:type_name -> google.protobuf.Duration
+	20, // 6: buf.validate.conformance.cases.DurationLTE.val:type_name -> google.protobuf.Duration
+	20, // 7: buf.validate.conformance.cases.DurationGT.val:type_name -> google.protobuf.Duration
+	20, // 8: buf.validate.conformance.cases.DurationGTE.val:type_name -> google.protobuf.Duration
+	20, // 9: buf.validate.conformance.cases.DurationGTLT.val:type_name -> google.protobuf.Duration
+	20, // 10: buf.validate.conformance.cases.DurationExLTGT.val:type_name -> google.protobuf.Duration
+	20, // 11: buf.validate.conformance.cases.DurationGTELTE.val:type_name -> google.protobuf.Duration
+	20, // 12: buf.validate.conformance.cases.DurationExGTELTE.val:type_name -> google.protobuf.Duration
+	20, // 13: buf.validate.conformance.cases.DurationFieldWithOtherFields.duration_val:type_name -> google.protobuf.Duration
+	20, // 14: buf.validate.conformance.cases.DurationExample.val:type_name -> google.protobuf.Duration
+	19, // 15: buf.validate.conformance.cases.DurationWrongTypeMessage.val:type_name -> buf.validate.conformance.cases.DurationWrongTypeMessage.WrongType
+	21, // 16: buf.validate.conformance.cases.DurationWrongTypeWrapper.val:type_name -> google.protobuf.Int32Value
+	22, // 17: buf.validate.conformance.cases.DurationWrongTypeWKT.val:type_name -> google.protobuf.Timestamp
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_conformance_cases_wkt_duration_proto_init() }
@@ -1113,7 +1064,7 @@ func file_buf_validate_conformance_cases_wkt_duration_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_wkt_duration_proto_rawDesc), len(file_buf_validate_conformance_cases_wkt_duration_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
