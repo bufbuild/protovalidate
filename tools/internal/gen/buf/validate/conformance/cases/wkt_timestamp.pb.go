@@ -24,6 +24,7 @@ import (
 	_ "github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
@@ -1007,6 +1008,50 @@ func (x *TimestampWrongTypeWrapper) GetVal() *wrapperspb.Int32Value {
 	return nil
 }
 
+type TimestampWrongTypeWKT struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           *durationpb.Duration   `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TimestampWrongTypeWKT) Reset() {
+	*x = TimestampWrongTypeWKT{}
+	mi := &file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TimestampWrongTypeWKT) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TimestampWrongTypeWKT) ProtoMessage() {}
+
+func (x *TimestampWrongTypeWKT) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TimestampWrongTypeWKT.ProtoReflect.Descriptor instead.
+func (*TimestampWrongTypeWKT) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_wkt_timestamp_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *TimestampWrongTypeWKT) GetVal() *durationpb.Duration {
+	if x != nil {
+		return x.Val
+	}
+	return nil
+}
+
 type TimestampWrongTypeMessage_WrongType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Val           int32                  `protobuf:"varint,1,opt,name=val,proto3" json:"val,omitempty"`
@@ -1016,7 +1061,7 @@ type TimestampWrongTypeMessage_WrongType struct {
 
 func (x *TimestampWrongTypeMessage_WrongType) Reset() {
 	*x = TimestampWrongTypeMessage_WrongType{}
-	mi := &file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes[22]
+	mi := &file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1028,7 +1073,7 @@ func (x *TimestampWrongTypeMessage_WrongType) String() string {
 func (*TimestampWrongTypeMessage_WrongType) ProtoMessage() {}
 
 func (x *TimestampWrongTypeMessage_WrongType) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes[22]
+	mi := &file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1055,7 +1100,7 @@ var File_buf_validate_conformance_cases_wkt_timestamp_proto protoreflect.FileDes
 
 const file_buf_validate_conformance_cases_wkt_timestamp_proto_rawDesc = "" +
 	"\n" +
-	"2buf/validate/conformance/cases/wkt_timestamp.proto\x12\x1ebuf.validate.conformance.cases\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"=\n" +
+	"2buf/validate/conformance/cases/wkt_timestamp.proto\x12\x1ebuf.validate.conformance.cases\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"=\n" +
 	"\rTimestampNone\x12,\n" +
 	"\x03val\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x03val\"I\n" +
 	"\x11TimestampRequired\x124\n" +
@@ -1106,7 +1151,9 @@ const file_buf_validate_conformance_cases_wkt_timestamp_proto_rawDesc = "" +
 	"\tWrongType\x12\x10\n" +
 	"\x03val\x18\x01 \x01(\x05R\x03val\"T\n" +
 	"\x19TimestampWrongTypeWrapper\x127\n" +
-	"\x03val\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueB\b\xbaH\x05\xb2\x01\x028\x01R\x03valB\xa8\x02\n" +
+	"\x03val\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueB\b\xbaH\x05\xb2\x01\x028\x01R\x03val\"N\n" +
+	"\x15TimestampWrongTypeWKT\x125\n" +
+	"\x03val\x18\x01 \x01(\v2\x19.google.protobuf.DurationB\b\xbaH\x05\xb2\x01\x028\x01R\x03valB\xa8\x02\n" +
 	"\"com.buf.validate.conformance.casesB\x11WktTimestampProtoP\x01ZSgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases\xa2\x02\x04BVCC\xaa\x02\x1eBuf.Validate.Conformance.Cases\xca\x02\x1eBuf\\Validate\\Conformance\\Cases\xe2\x02*Buf\\Validate\\Conformance\\Cases\\GPBMetadata\xea\x02!Buf::Validate::Conformance::Casesb\x06proto3"
 
 var (
@@ -1121,7 +1168,7 @@ func file_buf_validate_conformance_cases_wkt_timestamp_proto_rawDescGZIP() []byt
 	return file_buf_validate_conformance_cases_wkt_timestamp_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_buf_validate_conformance_cases_wkt_timestamp_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_buf_validate_conformance_cases_wkt_timestamp_proto_goTypes = []any{
 	(*TimestampNone)(nil),                       // 0: buf.validate.conformance.cases.TimestampNone
 	(*TimestampRequired)(nil),                   // 1: buf.validate.conformance.cases.TimestampRequired
@@ -1145,37 +1192,40 @@ var file_buf_validate_conformance_cases_wkt_timestamp_proto_goTypes = []any{
 	(*TimestampWrongTypeScalar)(nil),            // 19: buf.validate.conformance.cases.TimestampWrongTypeScalar
 	(*TimestampWrongTypeMessage)(nil),           // 20: buf.validate.conformance.cases.TimestampWrongTypeMessage
 	(*TimestampWrongTypeWrapper)(nil),           // 21: buf.validate.conformance.cases.TimestampWrongTypeWrapper
-	(*TimestampWrongTypeMessage_WrongType)(nil), // 22: buf.validate.conformance.cases.TimestampWrongTypeMessage.WrongType
-	(*timestamppb.Timestamp)(nil),               // 23: google.protobuf.Timestamp
-	(*wrapperspb.Int32Value)(nil),               // 24: google.protobuf.Int32Value
+	(*TimestampWrongTypeWKT)(nil),               // 22: buf.validate.conformance.cases.TimestampWrongTypeWKT
+	(*TimestampWrongTypeMessage_WrongType)(nil), // 23: buf.validate.conformance.cases.TimestampWrongTypeMessage.WrongType
+	(*timestamppb.Timestamp)(nil),               // 24: google.protobuf.Timestamp
+	(*wrapperspb.Int32Value)(nil),               // 25: google.protobuf.Int32Value
+	(*durationpb.Duration)(nil),                 // 26: google.protobuf.Duration
 }
 var file_buf_validate_conformance_cases_wkt_timestamp_proto_depIdxs = []int32{
-	23, // 0: buf.validate.conformance.cases.TimestampNone.val:type_name -> google.protobuf.Timestamp
-	23, // 1: buf.validate.conformance.cases.TimestampRequired.val:type_name -> google.protobuf.Timestamp
-	23, // 2: buf.validate.conformance.cases.TimestampConst.val:type_name -> google.protobuf.Timestamp
-	23, // 3: buf.validate.conformance.cases.TimestampLT.val:type_name -> google.protobuf.Timestamp
-	23, // 4: buf.validate.conformance.cases.TimestampLTE.val:type_name -> google.protobuf.Timestamp
-	23, // 5: buf.validate.conformance.cases.TimestampGT.val:type_name -> google.protobuf.Timestamp
-	23, // 6: buf.validate.conformance.cases.TimestampGTE.val:type_name -> google.protobuf.Timestamp
-	23, // 7: buf.validate.conformance.cases.TimestampGTLT.val:type_name -> google.protobuf.Timestamp
-	23, // 8: buf.validate.conformance.cases.TimestampExLTGT.val:type_name -> google.protobuf.Timestamp
-	23, // 9: buf.validate.conformance.cases.TimestampGTELTE.val:type_name -> google.protobuf.Timestamp
-	23, // 10: buf.validate.conformance.cases.TimestampExGTELTE.val:type_name -> google.protobuf.Timestamp
-	23, // 11: buf.validate.conformance.cases.TimestampLTNow.val:type_name -> google.protobuf.Timestamp
-	23, // 12: buf.validate.conformance.cases.TimestampNotLTNow.val:type_name -> google.protobuf.Timestamp
-	23, // 13: buf.validate.conformance.cases.TimestampGTNow.val:type_name -> google.protobuf.Timestamp
-	23, // 14: buf.validate.conformance.cases.TimestampNotGTNow.val:type_name -> google.protobuf.Timestamp
-	23, // 15: buf.validate.conformance.cases.TimestampWithin.val:type_name -> google.protobuf.Timestamp
-	23, // 16: buf.validate.conformance.cases.TimestampLTNowWithin.val:type_name -> google.protobuf.Timestamp
-	23, // 17: buf.validate.conformance.cases.TimestampGTNowWithin.val:type_name -> google.protobuf.Timestamp
-	23, // 18: buf.validate.conformance.cases.TimestampExample.val:type_name -> google.protobuf.Timestamp
-	22, // 19: buf.validate.conformance.cases.TimestampWrongTypeMessage.val:type_name -> buf.validate.conformance.cases.TimestampWrongTypeMessage.WrongType
-	24, // 20: buf.validate.conformance.cases.TimestampWrongTypeWrapper.val:type_name -> google.protobuf.Int32Value
-	21, // [21:21] is the sub-list for method output_type
-	21, // [21:21] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	24, // 0: buf.validate.conformance.cases.TimestampNone.val:type_name -> google.protobuf.Timestamp
+	24, // 1: buf.validate.conformance.cases.TimestampRequired.val:type_name -> google.protobuf.Timestamp
+	24, // 2: buf.validate.conformance.cases.TimestampConst.val:type_name -> google.protobuf.Timestamp
+	24, // 3: buf.validate.conformance.cases.TimestampLT.val:type_name -> google.protobuf.Timestamp
+	24, // 4: buf.validate.conformance.cases.TimestampLTE.val:type_name -> google.protobuf.Timestamp
+	24, // 5: buf.validate.conformance.cases.TimestampGT.val:type_name -> google.protobuf.Timestamp
+	24, // 6: buf.validate.conformance.cases.TimestampGTE.val:type_name -> google.protobuf.Timestamp
+	24, // 7: buf.validate.conformance.cases.TimestampGTLT.val:type_name -> google.protobuf.Timestamp
+	24, // 8: buf.validate.conformance.cases.TimestampExLTGT.val:type_name -> google.protobuf.Timestamp
+	24, // 9: buf.validate.conformance.cases.TimestampGTELTE.val:type_name -> google.protobuf.Timestamp
+	24, // 10: buf.validate.conformance.cases.TimestampExGTELTE.val:type_name -> google.protobuf.Timestamp
+	24, // 11: buf.validate.conformance.cases.TimestampLTNow.val:type_name -> google.protobuf.Timestamp
+	24, // 12: buf.validate.conformance.cases.TimestampNotLTNow.val:type_name -> google.protobuf.Timestamp
+	24, // 13: buf.validate.conformance.cases.TimestampGTNow.val:type_name -> google.protobuf.Timestamp
+	24, // 14: buf.validate.conformance.cases.TimestampNotGTNow.val:type_name -> google.protobuf.Timestamp
+	24, // 15: buf.validate.conformance.cases.TimestampWithin.val:type_name -> google.protobuf.Timestamp
+	24, // 16: buf.validate.conformance.cases.TimestampLTNowWithin.val:type_name -> google.protobuf.Timestamp
+	24, // 17: buf.validate.conformance.cases.TimestampGTNowWithin.val:type_name -> google.protobuf.Timestamp
+	24, // 18: buf.validate.conformance.cases.TimestampExample.val:type_name -> google.protobuf.Timestamp
+	23, // 19: buf.validate.conformance.cases.TimestampWrongTypeMessage.val:type_name -> buf.validate.conformance.cases.TimestampWrongTypeMessage.WrongType
+	25, // 20: buf.validate.conformance.cases.TimestampWrongTypeWrapper.val:type_name -> google.protobuf.Int32Value
+	26, // 21: buf.validate.conformance.cases.TimestampWrongTypeWKT.val:type_name -> google.protobuf.Duration
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_conformance_cases_wkt_timestamp_proto_init() }
@@ -1189,7 +1239,7 @@ func file_buf_validate_conformance_cases_wkt_timestamp_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_wkt_timestamp_proto_rawDesc), len(file_buf_validate_conformance_cases_wkt_timestamp_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

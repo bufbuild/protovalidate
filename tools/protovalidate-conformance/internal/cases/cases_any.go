@@ -130,5 +130,9 @@ func anySuite() suites.Suite {
 			Message:  &cases.AnyWrongTypeWrapper{Val: &wrapperspb.Int32Value{Value: 42}},
 			Expected: results.CompilationError("mismatched message rules"),
 		},
+		"compilation/wrong_type/wkt": {
+			Message:  &cases.AnyWrongTypeWKT{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix()}},
+			Expected: results.CompilationError("mismatched message rules"),
+		},
 	}
 }

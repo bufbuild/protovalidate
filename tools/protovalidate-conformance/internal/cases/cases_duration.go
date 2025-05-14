@@ -15,12 +15,15 @@
 package cases
 
 import (
+	"time"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/durationpb"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
@@ -486,6 +489,10 @@ func durationSuite() suites.Suite {
 		},
 		"compilation/wrong_type/wrapper": {
 			Message:  &cases.DurationWrongTypeWrapper{Val: &wrapperspb.Int32Value{Value: 42}},
+			Expected: results.CompilationError("mismatched message rules"),
+		},
+		"compilation/wrong_type/wkt": {
+			Message:  &cases.DurationWrongTypeWKT{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix()}},
 			Expected: results.CompilationError("mismatched message rules"),
 		},
 	}

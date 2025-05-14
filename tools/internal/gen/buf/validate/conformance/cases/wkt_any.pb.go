@@ -25,6 +25,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	sync "sync"
@@ -347,6 +348,50 @@ func (x *AnyWrongTypeWrapper) GetVal() *wrapperspb.Int32Value {
 	return nil
 }
 
+type AnyWrongTypeWKT struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AnyWrongTypeWKT) Reset() {
+	*x = AnyWrongTypeWKT{}
+	mi := &file_buf_validate_conformance_cases_wkt_any_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AnyWrongTypeWKT) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AnyWrongTypeWKT) ProtoMessage() {}
+
+func (x *AnyWrongTypeWKT) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_wkt_any_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AnyWrongTypeWKT.ProtoReflect.Descriptor instead.
+func (*AnyWrongTypeWKT) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_wkt_any_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AnyWrongTypeWKT) GetVal() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Val
+	}
+	return nil
+}
+
 type AnyWrongTypeMessage_WrongType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Val           int32                  `protobuf:"varint,1,opt,name=val,proto3" json:"val,omitempty"`
@@ -356,7 +401,7 @@ type AnyWrongTypeMessage_WrongType struct {
 
 func (x *AnyWrongTypeMessage_WrongType) Reset() {
 	*x = AnyWrongTypeMessage_WrongType{}
-	mi := &file_buf_validate_conformance_cases_wkt_any_proto_msgTypes[7]
+	mi := &file_buf_validate_conformance_cases_wkt_any_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -368,7 +413,7 @@ func (x *AnyWrongTypeMessage_WrongType) String() string {
 func (*AnyWrongTypeMessage_WrongType) ProtoMessage() {}
 
 func (x *AnyWrongTypeMessage_WrongType) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_wkt_any_proto_msgTypes[7]
+	mi := &file_buf_validate_conformance_cases_wkt_any_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -395,7 +440,7 @@ var File_buf_validate_conformance_cases_wkt_any_proto protoreflect.FileDescripto
 
 const file_buf_validate_conformance_cases_wkt_any_proto_rawDesc = "" +
 	"\n" +
-	",buf/validate/conformance/cases/wkt_any.proto\x12\x1ebuf.validate.conformance.cases\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/wrappers.proto\"1\n" +
+	",buf/validate/conformance/cases/wkt_any.proto\x12\x1ebuf.validate.conformance.cases\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"1\n" +
 	"\aAnyNone\x12&\n" +
 	"\x03val\x18\x01 \x01(\v2\x14.google.protobuf.AnyR\x03val\"=\n" +
 	"\vAnyRequired\x12.\n" +
@@ -411,7 +456,9 @@ const file_buf_validate_conformance_cases_wkt_any_proto_rawDesc = "" +
 	"\tWrongType\x12\x10\n" +
 	"\x03val\x18\x01 \x01(\x05R\x03val\"{\n" +
 	"\x13AnyWrongTypeWrapper\x12d\n" +
-	"\x03val\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueB5\xbaH2\xa2\x01/\x1a-type.googleapis.com/google.protobuf.TimestampR\x03valB\xa2\x02\n" +
+	"\x03val\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueB5\xbaH2\xa2\x01/\x1a-type.googleapis.com/google.protobuf.TimestampR\x03val\"v\n" +
+	"\x0fAnyWrongTypeWKT\x12c\n" +
+	"\x03val\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB5\xbaH2\xa2\x01/\x1a-type.googleapis.com/google.protobuf.TimestampR\x03valB\xa2\x02\n" +
 	"\"com.buf.validate.conformance.casesB\vWktAnyProtoP\x01ZSgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases\xa2\x02\x04BVCC\xaa\x02\x1eBuf.Validate.Conformance.Cases\xca\x02\x1eBuf\\Validate\\Conformance\\Cases\xe2\x02*Buf\\Validate\\Conformance\\Cases\\GPBMetadata\xea\x02!Buf::Validate::Conformance::Casesb\x06proto3"
 
 var (
@@ -426,7 +473,7 @@ func file_buf_validate_conformance_cases_wkt_any_proto_rawDescGZIP() []byte {
 	return file_buf_validate_conformance_cases_wkt_any_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_wkt_any_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_buf_validate_conformance_cases_wkt_any_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_buf_validate_conformance_cases_wkt_any_proto_goTypes = []any{
 	(*AnyNone)(nil),                       // 0: buf.validate.conformance.cases.AnyNone
 	(*AnyRequired)(nil),                   // 1: buf.validate.conformance.cases.AnyRequired
@@ -435,22 +482,25 @@ var file_buf_validate_conformance_cases_wkt_any_proto_goTypes = []any{
 	(*AnyWrongTypeScalar)(nil),            // 4: buf.validate.conformance.cases.AnyWrongTypeScalar
 	(*AnyWrongTypeMessage)(nil),           // 5: buf.validate.conformance.cases.AnyWrongTypeMessage
 	(*AnyWrongTypeWrapper)(nil),           // 6: buf.validate.conformance.cases.AnyWrongTypeWrapper
-	(*AnyWrongTypeMessage_WrongType)(nil), // 7: buf.validate.conformance.cases.AnyWrongTypeMessage.WrongType
-	(*anypb.Any)(nil),                     // 8: google.protobuf.Any
-	(*wrapperspb.Int32Value)(nil),         // 9: google.protobuf.Int32Value
+	(*AnyWrongTypeWKT)(nil),               // 7: buf.validate.conformance.cases.AnyWrongTypeWKT
+	(*AnyWrongTypeMessage_WrongType)(nil), // 8: buf.validate.conformance.cases.AnyWrongTypeMessage.WrongType
+	(*anypb.Any)(nil),                     // 9: google.protobuf.Any
+	(*wrapperspb.Int32Value)(nil),         // 10: google.protobuf.Int32Value
+	(*timestamppb.Timestamp)(nil),         // 11: google.protobuf.Timestamp
 }
 var file_buf_validate_conformance_cases_wkt_any_proto_depIdxs = []int32{
-	8, // 0: buf.validate.conformance.cases.AnyNone.val:type_name -> google.protobuf.Any
-	8, // 1: buf.validate.conformance.cases.AnyRequired.val:type_name -> google.protobuf.Any
-	8, // 2: buf.validate.conformance.cases.AnyIn.val:type_name -> google.protobuf.Any
-	8, // 3: buf.validate.conformance.cases.AnyNotIn.val:type_name -> google.protobuf.Any
-	7, // 4: buf.validate.conformance.cases.AnyWrongTypeMessage.val:type_name -> buf.validate.conformance.cases.AnyWrongTypeMessage.WrongType
-	9, // 5: buf.validate.conformance.cases.AnyWrongTypeWrapper.val:type_name -> google.protobuf.Int32Value
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	9,  // 0: buf.validate.conformance.cases.AnyNone.val:type_name -> google.protobuf.Any
+	9,  // 1: buf.validate.conformance.cases.AnyRequired.val:type_name -> google.protobuf.Any
+	9,  // 2: buf.validate.conformance.cases.AnyIn.val:type_name -> google.protobuf.Any
+	9,  // 3: buf.validate.conformance.cases.AnyNotIn.val:type_name -> google.protobuf.Any
+	8,  // 4: buf.validate.conformance.cases.AnyWrongTypeMessage.val:type_name -> buf.validate.conformance.cases.AnyWrongTypeMessage.WrongType
+	10, // 5: buf.validate.conformance.cases.AnyWrongTypeWrapper.val:type_name -> google.protobuf.Int32Value
+	11, // 6: buf.validate.conformance.cases.AnyWrongTypeWKT.val:type_name -> google.protobuf.Timestamp
+	7,  // [7:7] is the sub-list for method output_type
+	7,  // [7:7] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_conformance_cases_wkt_any_proto_init() }
@@ -464,7 +514,7 @@ func file_buf_validate_conformance_cases_wkt_any_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_wkt_any_proto_rawDesc), len(file_buf_validate_conformance_cases_wkt_any_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

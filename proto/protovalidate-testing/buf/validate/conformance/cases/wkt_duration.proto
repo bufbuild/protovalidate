@@ -18,6 +18,7 @@ package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 message DurationNone {
@@ -108,4 +109,12 @@ message DurationWrongTypeMessage {
 
 message DurationWrongTypeWrapper {
   google.protobuf.Int32Value val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
+}
+
+message DurationWrongTypeWKT {
+  google.protobuf.Timestamp val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
+}
+
+message DurationWrongTypeRepeated {
+  repeated google.protobuf.Duration val = 1 [(buf.validate.field).duration.example = {seconds: 3}];
 }

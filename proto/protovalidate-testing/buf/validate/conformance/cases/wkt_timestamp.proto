@@ -17,6 +17,7 @@ syntax = "proto3";
 package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
@@ -115,4 +116,8 @@ message TimestampWrongTypeMessage {
 
 message TimestampWrongTypeWrapper {
   google.protobuf.Int32Value val = 1 [(buf.validate.field).timestamp.lt_now = true];
+}
+
+message TimestampWrongTypeWKT {
+  google.protobuf.Duration val = 1 [(buf.validate.field).timestamp.lt_now = true];
 }

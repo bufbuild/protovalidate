@@ -18,6 +18,7 @@ package buf.validate.conformance.cases;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 message AnyNone {
@@ -53,6 +54,12 @@ message AnyWrongTypeMessage {
 }
 message AnyWrongTypeWrapper {
   google.protobuf.Int32Value val = 1 [(buf.validate.field).any = {
+    not_in: ["type.googleapis.com/google.protobuf.Timestamp"]
+  }];
+}
+
+message AnyWrongTypeWKT {
+  google.protobuf.Timestamp val = 1 [(buf.validate.field).any = {
     not_in: ["type.googleapis.com/google.protobuf.Timestamp"]
   }];
 }

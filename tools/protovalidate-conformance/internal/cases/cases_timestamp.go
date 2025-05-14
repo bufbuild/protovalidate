@@ -22,6 +22,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
@@ -416,6 +417,10 @@ func timestampSuite() suites.Suite {
 		},
 		"compilation/wrong_type/wrapper": {
 			Message:  &cases.TimestampWrongTypeWrapper{Val: &wrapperspb.Int32Value{Value: 42}},
+			Expected: results.CompilationError("mismatched message rules"),
+		},
+		"compilation/wrong_type/wkt": {
+			Message:  &cases.TimestampWrongTypeWKT{Val: &durationpb.Duration{Seconds: 60}},
 			Expected: results.CompilationError("mismatched message rules"),
 		},
 	}
