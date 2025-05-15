@@ -117,5 +117,21 @@ func anySuite() suites.Suite {
 				},
 			),
 		},
+		"compilation/wrong_type/scalar": {
+			Message:  &cases.AnyWrongTypeScalar{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/message": {
+			Message:  &cases.AnyWrongTypeMessage{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/wrapper": {
+			Message:  &cases.AnyWrongTypeWrapper{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/wkt": {
+			Message:  &cases.AnyWrongTypeWKT{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
 	}
 }

@@ -405,5 +405,21 @@ func timestampSuite() suites.Suite {
 			Message:  &cases.TimestampExample{Val: &timestamppb.Timestamp{Seconds: 3, Nanos: 0}},
 			Expected: results.Success(true),
 		},
+		"compilation/wrong_type/scalar": {
+			Message:  &cases.TimestampWrongTypeScalar{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/message": {
+			Message:  &cases.TimestampWrongTypeMessage{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/wrapper": {
+			Message:  &cases.TimestampWrongTypeWrapper{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/wkt": {
+			Message:  &cases.TimestampWrongTypeWKT{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
 	}
 }

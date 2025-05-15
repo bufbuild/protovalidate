@@ -475,5 +475,21 @@ func durationSuite() suites.Suite {
 			},
 			Expected: results.Success(true),
 		},
+		"compilation/wrong_type/scalar": {
+			Message:  &cases.DurationWrongTypeScalar{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/message": {
+			Message:  &cases.DurationWrongTypeMessage{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/wrapper": {
+			Message:  &cases.DurationWrongTypeWrapper{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
+		"compilation/wrong_type/wkt": {
+			Message:  &cases.DurationWrongTypeWKT{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
+		},
 	}
 }
