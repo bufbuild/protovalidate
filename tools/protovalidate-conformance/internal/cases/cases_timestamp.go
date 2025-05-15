@@ -22,9 +22,7 @@ import (
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
 	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 func timestampSuite() suites.Suite {
@@ -408,20 +406,20 @@ func timestampSuite() suites.Suite {
 			Expected: results.Success(true),
 		},
 		"compilation/wrong_type/scalar": {
-			Message:  &cases.TimestampWrongTypeScalar{Val: 42},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.TimestampWrongTypeScalar{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 		"compilation/wrong_type/message": {
-			Message:  &cases.TimestampWrongTypeMessage{Val: &cases.TimestampWrongTypeMessage_WrongType{Val: 42}},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.TimestampWrongTypeMessage{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 		"compilation/wrong_type/wrapper": {
-			Message:  &cases.TimestampWrongTypeWrapper{Val: &wrapperspb.Int32Value{Value: 42}},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.TimestampWrongTypeWrapper{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 		"compilation/wrong_type/wkt": {
-			Message:  &cases.TimestampWrongTypeWKT{Val: &durationpb.Duration{Seconds: 60}},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.TimestampWrongTypeWKT{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 	}
 }

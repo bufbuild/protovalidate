@@ -25,7 +25,6 @@ import (
 	"google.golang.org/protobuf/types/known/anypb"
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 func anySuite() suites.Suite {
@@ -119,20 +118,20 @@ func anySuite() suites.Suite {
 			),
 		},
 		"compilation/wrong_type/scalar": {
-			Message:  &cases.AnyWrongTypeScalar{Val: "test"},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.AnyWrongTypeScalar{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 		"compilation/wrong_type/message": {
-			Message:  &cases.AnyWrongTypeMessage{Val: &cases.AnyWrongTypeMessage_WrongType{Val: 42}},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.AnyWrongTypeMessage{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 		"compilation/wrong_type/wrapper": {
-			Message:  &cases.AnyWrongTypeWrapper{Val: &wrapperspb.Int32Value{Value: 42}},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.AnyWrongTypeWrapper{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 		"compilation/wrong_type/wkt": {
-			Message:  &cases.AnyWrongTypeWKT{Val: &timestamppb.Timestamp{Seconds: time.Now().Unix()}},
-			Expected: results.CompilationError("mismatched message rules"),
+			Message:  &cases.AnyWrongTypeWKT{},
+			Expected: results.CompilationError("mismatched rule type and field type"),
 		},
 	}
 }
