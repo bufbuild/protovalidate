@@ -847,7 +847,7 @@ message DoubleRules {
   // message MyDouble {
   //   double value = 1 [
   //     (buf.validate.field).double.example = 1.0,
-  //     (buf.validate.field).double.example = "Infinity"
+  //     (buf.validate.field).double.example = -2.0
   //   ];
   // }
   // ```
