@@ -1130,7 +1130,7 @@ type FloatRules struct {
 	//	message MyFloat {
 	//	  float value = 1 [
 	//	    (buf.validate.field).float.example = 1.0,
-	//	    (buf.validate.field).float.example = "Infinity"
+	//	    (buf.validate.field).float.example = inf
 	//	  ];
 	//	}
 	//
@@ -1416,7 +1416,7 @@ type DoubleRules struct {
 	//	message MyDouble {
 	//	  double value = 1 [
 	//	    (buf.validate.field).double.example = 1.0,
-	//	    (buf.validate.field).double.example = "Infinity"
+	//	    (buf.validate.field).double.example = inf
 	//	  ];
 	//	}
 	//
@@ -6218,7 +6218,9 @@ type AnyRules struct {
 	//
 	//	message MyAny {
 	//	  //  The `value` field must have a `type_url` equal to one of the specified values.
-	//	  google.protobuf.Any value = 1 [(buf.validate.field).any.in = ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]];
+	//	  google.protobuf.Any value = 1 [(buf.validate.field).any = {
+	//	      in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+	//	  }];
 	//	}
 	//
 	// ```
@@ -6228,8 +6230,10 @@ type AnyRules struct {
 	// ```proto
 	//
 	//	message MyAny {
-	//	  // The field `value` must not have a `type_url` equal to any of the specified values.
-	//	  google.protobuf.Any value = 1 [(buf.validate.field).any.not_in = ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]];
+	//	  //  The `value` field must not have a `type_url` equal to any of the specified values.
+	//	  google.protobuf.Any value = 1 [(buf.validate.field).any = {
+	//	      not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
+	//	  }];
 	//	}
 	//
 	// ```
