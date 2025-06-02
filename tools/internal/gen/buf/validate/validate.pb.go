@@ -1130,7 +1130,7 @@ type FloatRules struct {
 	//	message MyFloat {
 	//	  float value = 1 [
 	//	    (buf.validate.field).float.example = 1.0,
-	//	    (buf.validate.field).float.example = -2.0
+	//	    (buf.validate.field).float.example = inf
 	//	  ];
 	//	}
 	//
@@ -1416,7 +1416,7 @@ type DoubleRules struct {
 	//	message MyDouble {
 	//	  double value = 1 [
 	//	    (buf.validate.field).double.example = 1.0,
-	//	    (buf.validate.field).double.example = -2.0
+	//	    (buf.validate.field).double.example = inf
 	//	  ];
 	//	}
 	//
