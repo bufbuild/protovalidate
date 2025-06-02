@@ -4374,7 +4374,7 @@ message AnyRules {
   // message MyAny {
   //   //  The `value` field must not have a `type_url` equal to any of the specified values.
   //   google.protobuf.Any value = 1 [(buf.validate.field).any = {
-  //       not_in: ["type.googleapis.com/MyType1", "type.googleapis.com/MyType2"]
+  //       not_in: ["type.googleapis.com/ForbiddenType1", "type.googleapis.com/ForbiddenType2"]
   //   }];
   // }
   // ```
