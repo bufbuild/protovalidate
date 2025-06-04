@@ -562,7 +562,7 @@ type FieldRules struct {
 	// described as "serialized in the wire format," which includes:
 	//
 	// - the following "nullable" fields must be explicitly set to be considered populated:
-	//   - singular message fields (whose fields may be unpopulated / default values)
+	//   - singular message fields (whose fields may be unpopulated/default values)
 	//   - member fields of a oneof (may be their default value)
 	//   - proto3 optional fields (may be their default value)
 	//   - proto2 scalar fields (both optional and required)
