@@ -306,7 +306,7 @@ func (KnownRegex) EnumDescriptor() ([]byte, []int) {
 // `Rule` represents a validation rule written in the Common Expression
 // Language (CEL) syntax. Each Rule includes a unique identifier, an
 // optional error message, and the CEL expression to evaluate. For more
-// information on CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+// information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
 //
 // ```proto
 //
@@ -407,8 +407,8 @@ type MessageRules struct {
 	// ```
 	Disabled *bool `protobuf:"varint,1,opt,name=disabled" json:"disabled,omitempty"`
 	// `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
-	// These rules are written in Common Expression Language (CEL) syntax. For more information on
-	// CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+	// These rules are written in Common Expression Language (CEL) syntax. For more information,
+	// [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
 	//
 	// ```proto
 	//
@@ -542,8 +542,8 @@ func (x *OneofRules) GetRequired() bool {
 type FieldRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `cel` is a repeated field used to represent a textual expression
-	// in the Common Expression Language (CEL) syntax. For more information on
-	// CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+	// in the Common Expression Language (CEL) syntax. For more information,
+	// [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
 	//
 	// ```proto
 	//
@@ -1009,8 +1009,8 @@ func (*FieldRules_Timestamp) isFieldRules_Type() {}
 type PredefinedRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// `cel` is a repeated field used to represent a textual expression
-	// in the Common Expression Language (CEL) syntax. For more information on
-	// CEL, [see our documentation](https://github.com/bufbuild/protovalidate/blob/main/docs/cel.md).
+	// in the Common Expression Language (CEL) syntax. For more information,
+	// [see our documentation](https://buf.build/docs/protovalidate/schemas/predefined-rules/).
 	//
 	// ```proto
 	//
