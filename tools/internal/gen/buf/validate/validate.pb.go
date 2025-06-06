@@ -43,7 +43,7 @@ const (
 type Ignore int32
 
 const (
-	// Validation is only skipped if it's an unpopulated nullable fields.
+	// Validation is only skipped if it's an unpopulated nullable field.
 	//
 	// ```proto
 	// syntax="proto3";
@@ -241,7 +241,7 @@ func (Ignore) EnumDescriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{0}
 }
 
-// WellKnownRegex contain some well-known patterns.
+// KnownRegex contains some well-known patterns.
 type KnownRegex int32
 
 const (
@@ -6982,7 +6982,7 @@ type Violation struct {
 	//
 	// ```
 	Field *FieldPath `protobuf:"bytes,5,opt,name=field" json:"field,omitempty"`
-	// `rule` is a machine-readable path that points to the specific rule rule that failed validation.
+	// `rule` is a machine-readable path that points to the specific rule that failed validation.
 	// This will be a nested field starting from the FieldRules of the field that failed validation.
 	// For custom rules, this will provide the path of the rule, e.g. `cel[0]`.
 	//

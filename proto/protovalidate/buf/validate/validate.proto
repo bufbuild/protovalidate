@@ -276,7 +276,7 @@ message PredefinedRules {
 // Specifies how FieldRules.ignore behaves. See the documentation for
 // FieldRules.required for definitions of "populated" and "nullable".
 enum Ignore {
-  // Validation is only skipped if it's an unpopulated nullable fields.
+  // Validation is only skipped if it's an unpopulated nullable field.
   //
   // ```proto
   // syntax="proto3";
@@ -3809,7 +3809,7 @@ message StringRules {
   extensions 1000 to max;
 }
 
-// WellKnownRegex contain some well-known patterns.
+// KnownRegex contains some well-known patterns.
 enum KnownRegex {
   KNOWN_REGEX_UNSPECIFIED = 0;
 
@@ -4887,7 +4887,7 @@ message Violation {
   // ```
   optional FieldPath field = 5;
 
-  // `rule` is a machine-readable path that points to the specific rule rule that failed validation.
+  // `rule` is a machine-readable path that points to the specific rule that failed validation.
   // This will be a nested field starting from the FieldRules of the field that failed validation.
   // For custom rules, this will provide the path of the rule, e.g. `cel[0]`.
   //
