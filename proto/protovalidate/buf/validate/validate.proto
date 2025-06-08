@@ -137,6 +137,17 @@ message MessageRules {
   // }
   // ```
   repeated Rule cel = 3;
+
+  // message MyMessage {
+  //   option (buf.validate.message).oneof = { fields: ["field1", "field2"] };
+  //   option (buf.validate.message).oneof = { fields: ["field3", "field4"], required: true };
+  // }
+  repeated MessageOneofRule oneof = 4;
+}
+
+message MessageOneofRule {
+  repeated string fields = 1;
+  optional bool required = 2;
 }
 
 // The `OneofRules` message type enables you to manage rules for
