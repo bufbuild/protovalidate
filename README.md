@@ -62,6 +62,10 @@ Highlights include:
 * Comprehensive RPC quickstarts for [Connect and Go][connect-go], [gRPC and Go][grpc-go], [gRPC and Java][grpc-java], and [gRPC and Python][grpc-python]
 * A [migration guide for protoc-gen-validate][migration-guide] users
 
+> [!IMPORTANT]  
+> Currently, the [CEL spec](https://github.com/google/cel-spec) has not reached a v1.0 release. Please be aware that until that time,
+> breaking changes in the spec will likely necessitate breaking changes in Protovalidate and its implementations.
+
 ## Contribution
 
 We genuinely appreciate any help! If you'd like to contribute, check out these resources:
