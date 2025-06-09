@@ -6927,6 +6927,8 @@ func (x *Violations) GetViolations() []*Violation {
 //	    }];
 //	}
 //
+// ```
+//
 // It could produce the following violation:
 //
 // ```json
