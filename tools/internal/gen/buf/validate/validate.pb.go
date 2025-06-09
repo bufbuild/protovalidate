@@ -43,7 +43,7 @@ const (
 type Ignore int32
 
 const (
-	// Validation is only skipped if it's an unpopulated nullable fields.
+	// Validation is only skipped if it's an unpopulated nullable field.
 	//
 	// ```proto
 	// syntax="proto3";
@@ -241,7 +241,7 @@ func (Ignore) EnumDescriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{0}
 }
 
-// WellKnownRegex contain some well-known patterns.
+// KnownRegex contains some well-known patterns.
 type KnownRegex int32
 
 const (
@@ -6864,7 +6864,7 @@ func (*TimestampRules_Gte) isTimestampRules_GreaterThan() {}
 func (*TimestampRules_GtNow) isTimestampRules_GreaterThan() {}
 
 // `Violations` is a collection of `Violation` messages. This message type is returned by
-// protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.
+// Protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.
 // Each individual violation is represented by a `Violation` message.
 type Violations struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -6916,12 +6916,43 @@ func (x *Violations) GetViolations() []*Violation {
 // caused the violation, the specific rule that wasn't fulfilled, and a
 // human-readable error message.
 //
+// For example, consider the following message:
+//
+// ```proto
+//
+//	message User {
+//	    int32 age = 1 [(buf.validate.field).cel = {
+//	        id: "user.age",
+//	        expression: "this < 18 ? 'User must be at least 18 years old' : ''",
+//	    }];
+//	}
+//
+// It could produce the following violation:
+//
 // ```json
 //
 //	{
-//	  "fieldPath": "bar",
-//	  "ruleId": "foo.bar",
-//	  "message": "bar must be greater than 0"
+//	  "ruleId": "user.age",
+//	  "message": "User must be at least 18 years old",
+//	  "field": {
+//	    "elements": [
+//	      {
+//	        "fieldNumber": 1,
+//	        "fieldName": "age",
+//	        "fieldType": "TYPE_INT32"
+//	      }
+//	    ]
+//	  },
+//	  "rule": {
+//	    "elements": [
+//	      {
+//	        "fieldNumber": 23,
+//	        "fieldName": "cel",
+//	        "fieldType": "TYPE_MESSAGE",
+//	        "index": "0"
+//	      }
+//	    ]
+//	  }
 //	}
 //
 // ```
@@ -6951,7 +6982,7 @@ type Violation struct {
 	//
 	// ```
 	Field *FieldPath `protobuf:"bytes,5,opt,name=field" json:"field,omitempty"`
-	// `rule` is a machine-readable path that points to the specific rule rule that failed validation.
+	// `rule` is a machine-readable path that points to the specific rule that failed validation.
 	// This will be a nested field starting from the FieldRules of the field that failed validation.
 	// For custom rules, this will provide the path of the rule, e.g. `cel[0]`.
 	//
