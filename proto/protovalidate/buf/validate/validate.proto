@@ -139,7 +139,8 @@ message MessageRules {
   repeated Rule cel = 3;
 
   // `oneof` is a repeated field of type MessageOneofRule that specifies a list of fields
-  // of which exactly one can be present.
+  // of which exactly one can be present. If `required` is also specified, then exactly one
+  // of the specified fields _must_ be present.
   //
   //
   // ```proto

@@ -425,7 +425,8 @@ type MessageRules struct {
 	// ```
 	Cel []*Rule `protobuf:"bytes,3,rep,name=cel" json:"cel,omitempty"`
 	// `oneof` is a repeated field of type MessageOneofRule that specifies a list of fields
-	// of which exactly one can be present.
+	// of which exactly one can be present. If `required` is also specified, then exactly one
+	// of the specified fields _must_ be present.
 	//
 	// ```proto
 	//
