@@ -137,6 +137,26 @@ message MessageRules {
   // }
   // ```
   repeated Rule cel = 3;
+
+  // `oneof` is a repeated field of type MessageOneofRule that specifies a list of fields
+  // of which exactly one can be present. If `required` is also specified, then exactly one
+  // of the specified fields _must_ be present.
+  //
+  //
+  // ```proto
+  // message MyMessage {
+  //   // Only one of 'field1' or 'field2' _can_ be present in this message. 
+  //   option (buf.validate.message).oneof = { fields: ["field1", "field2"] };
+  //   // Only one of 'field3' or 'field4' _must_ be present in this message. 
+  //   option (buf.validate.message).oneof = { fields: ["field3", "field4"], required: true };
+  // }
+  // ```
+  repeated MessageOneofRule oneof = 4;
+}
+
+message MessageOneofRule {
+  repeated string fields = 1;
+  optional bool required = 2;
 }
 
 // The `OneofRules` message type enables you to manage rules for
