@@ -155,5 +155,40 @@ func messageSuite() suites.Suite {
 				},
 			),
 		},
+		"oneof/single-field/valid": {
+			// BoolField is not part of the oneof, so it can be set on this message
+			Message:  &cases.MessageOneofSingleField{StrField: "test", BoolField: true},
+			Expected: results.Success(true),
+		},
+		"oneof/two-fields/valid": {
+			Message:  &cases.MessageOneofMultipleFields{StrField: "test"},
+			Expected: results.Success(true),
+		},
+		"oneof/two-fields/invalid": {
+			Message: &cases.MessageOneofMultipleFields{StrField: "test", BoolField: true},
+			Expected: results.Violations(
+				&validate.Violation{
+					// Field:   results.FieldPath("str_field"),
+					// Rule:    results.FieldPath("message.oneof"),
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("only one of ['str_field', 'bool_field'] can be set"),
+				},
+			),
+		},
+		"oneof/multiple-fields/required/valid": {
+			Message:  &cases.MessageOneofMultipleFields{StrField: "test"},
+			Expected: results.Success(true),
+		},
+		"oneof/multiple-fields/required/invalid": {
+			Message: &cases.MessageOneofMultipleFields{},
+			Expected: results.Violations(
+				&validate.Violation{
+					// Field:   results.FieldPath("str_field"),
+					// Rule:    results.FieldPath("message.oneof"),
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of ['str_field', 'bool_field'] must be set"),
+				},
+			),
+		},
 	}
 }

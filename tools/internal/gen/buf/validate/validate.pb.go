@@ -423,7 +423,21 @@ type MessageRules struct {
 	//	}
 	//
 	// ```
-	Cel           []*Rule `protobuf:"bytes,3,rep,name=cel" json:"cel,omitempty"`
+	Cel []*Rule `protobuf:"bytes,3,rep,name=cel" json:"cel,omitempty"`
+	// `oneof` is a repeated field of type MessageOneofRule that specifies a list of fields
+	// of which exactly one can be present.
+	//
+	// ```proto
+	//
+	//	message MyMessage {
+	//	  // Only one of 'field1' or 'field2' _can_ be present in this message.
+	//	  option (buf.validate.message).oneof = { fields: ["field1", "field2"] };
+	//	  // Only one of 'field3' or 'field4' _must_ be present in this message.
+	//	  option (buf.validate.message).oneof = { fields: ["field3", "field4"], required: true };
+	//	}
+	//
+	// ```
+	Oneof         []*MessageOneofRule `protobuf:"bytes,4,rep,name=oneof" json:"oneof,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -472,6 +486,65 @@ func (x *MessageRules) GetCel() []*Rule {
 	return nil
 }
 
+func (x *MessageRules) GetOneof() []*MessageOneofRule {
+	if x != nil {
+		return x.Oneof
+	}
+	return nil
+}
+
+type MessageOneofRule struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Fields        []string               `protobuf:"bytes,1,rep,name=fields" json:"fields,omitempty"`
+	Required      *bool                  `protobuf:"varint,2,opt,name=required" json:"required,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MessageOneofRule) Reset() {
+	*x = MessageOneofRule{}
+	mi := &file_buf_validate_validate_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MessageOneofRule) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MessageOneofRule) ProtoMessage() {}
+
+func (x *MessageOneofRule) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_validate_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MessageOneofRule.ProtoReflect.Descriptor instead.
+func (*MessageOneofRule) Descriptor() ([]byte, []int) {
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *MessageOneofRule) GetFields() []string {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+func (x *MessageOneofRule) GetRequired() bool {
+	if x != nil && x.Required != nil {
+		return *x.Required
+	}
+	return false
+}
+
 // The `OneofRules` message type enables you to manage rules for
 // oneof fields in your protobuf messages.
 type OneofRules struct {
@@ -502,7 +575,7 @@ type OneofRules struct {
 
 func (x *OneofRules) Reset() {
 	*x = OneofRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[2]
+	mi := &file_buf_validate_validate_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -514,7 +587,7 @@ func (x *OneofRules) String() string {
 func (*OneofRules) ProtoMessage() {}
 
 func (x *OneofRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[2]
+	mi := &file_buf_validate_validate_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -527,7 +600,7 @@ func (x *OneofRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OneofRules.ProtoReflect.Descriptor instead.
 func (*OneofRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{2}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *OneofRules) GetRequired() bool {
@@ -626,7 +699,7 @@ type FieldRules struct {
 
 func (x *FieldRules) Reset() {
 	*x = FieldRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[3]
+	mi := &file_buf_validate_validate_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -638,7 +711,7 @@ func (x *FieldRules) String() string {
 func (*FieldRules) ProtoMessage() {}
 
 func (x *FieldRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[3]
+	mi := &file_buf_validate_validate_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -651,7 +724,7 @@ func (x *FieldRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FieldRules.ProtoReflect.Descriptor instead.
 func (*FieldRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{3}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *FieldRules) GetCel() []*Rule {
@@ -1031,7 +1104,7 @@ type PredefinedRules struct {
 
 func (x *PredefinedRules) Reset() {
 	*x = PredefinedRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[4]
+	mi := &file_buf_validate_validate_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1043,7 +1116,7 @@ func (x *PredefinedRules) String() string {
 func (*PredefinedRules) ProtoMessage() {}
 
 func (x *PredefinedRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[4]
+	mi := &file_buf_validate_validate_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1056,7 +1129,7 @@ func (x *PredefinedRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PredefinedRules.ProtoReflect.Descriptor instead.
 func (*PredefinedRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{4}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PredefinedRules) GetCel() []*Rule {
@@ -1143,7 +1216,7 @@ type FloatRules struct {
 
 func (x *FloatRules) Reset() {
 	*x = FloatRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[5]
+	mi := &file_buf_validate_validate_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1155,7 +1228,7 @@ func (x *FloatRules) String() string {
 func (*FloatRules) ProtoMessage() {}
 
 func (x *FloatRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[5]
+	mi := &file_buf_validate_validate_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1168,7 +1241,7 @@ func (x *FloatRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FloatRules.ProtoReflect.Descriptor instead.
 func (*FloatRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{5}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *FloatRules) GetConst() float32 {
@@ -1429,7 +1502,7 @@ type DoubleRules struct {
 
 func (x *DoubleRules) Reset() {
 	*x = DoubleRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[6]
+	mi := &file_buf_validate_validate_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1441,7 +1514,7 @@ func (x *DoubleRules) String() string {
 func (*DoubleRules) ProtoMessage() {}
 
 func (x *DoubleRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[6]
+	mi := &file_buf_validate_validate_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1454,7 +1527,7 @@ func (x *DoubleRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DoubleRules.ProtoReflect.Descriptor instead.
 func (*DoubleRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{6}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DoubleRules) GetConst() float64 {
@@ -1712,7 +1785,7 @@ type Int32Rules struct {
 
 func (x *Int32Rules) Reset() {
 	*x = Int32Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[7]
+	mi := &file_buf_validate_validate_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1724,7 +1797,7 @@ func (x *Int32Rules) String() string {
 func (*Int32Rules) ProtoMessage() {}
 
 func (x *Int32Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[7]
+	mi := &file_buf_validate_validate_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1737,7 +1810,7 @@ func (x *Int32Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Int32Rules.ProtoReflect.Descriptor instead.
 func (*Int32Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{7}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Int32Rules) GetConst() int32 {
@@ -1988,7 +2061,7 @@ type Int64Rules struct {
 
 func (x *Int64Rules) Reset() {
 	*x = Int64Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[8]
+	mi := &file_buf_validate_validate_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2000,7 +2073,7 @@ func (x *Int64Rules) String() string {
 func (*Int64Rules) ProtoMessage() {}
 
 func (x *Int64Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[8]
+	mi := &file_buf_validate_validate_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2013,7 +2086,7 @@ func (x *Int64Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Int64Rules.ProtoReflect.Descriptor instead.
 func (*Int64Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{8}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Int64Rules) GetConst() int64 {
@@ -2264,7 +2337,7 @@ type UInt32Rules struct {
 
 func (x *UInt32Rules) Reset() {
 	*x = UInt32Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[9]
+	mi := &file_buf_validate_validate_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2276,7 +2349,7 @@ func (x *UInt32Rules) String() string {
 func (*UInt32Rules) ProtoMessage() {}
 
 func (x *UInt32Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[9]
+	mi := &file_buf_validate_validate_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2289,7 +2362,7 @@ func (x *UInt32Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UInt32Rules.ProtoReflect.Descriptor instead.
 func (*UInt32Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{9}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UInt32Rules) GetConst() uint32 {
@@ -2540,7 +2613,7 @@ type UInt64Rules struct {
 
 func (x *UInt64Rules) Reset() {
 	*x = UInt64Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[10]
+	mi := &file_buf_validate_validate_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2552,7 +2625,7 @@ func (x *UInt64Rules) String() string {
 func (*UInt64Rules) ProtoMessage() {}
 
 func (x *UInt64Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[10]
+	mi := &file_buf_validate_validate_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2565,7 +2638,7 @@ func (x *UInt64Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UInt64Rules.ProtoReflect.Descriptor instead.
 func (*UInt64Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{10}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UInt64Rules) GetConst() uint64 {
@@ -2815,7 +2888,7 @@ type SInt32Rules struct {
 
 func (x *SInt32Rules) Reset() {
 	*x = SInt32Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[11]
+	mi := &file_buf_validate_validate_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2827,7 +2900,7 @@ func (x *SInt32Rules) String() string {
 func (*SInt32Rules) ProtoMessage() {}
 
 func (x *SInt32Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[11]
+	mi := &file_buf_validate_validate_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2840,7 +2913,7 @@ func (x *SInt32Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SInt32Rules.ProtoReflect.Descriptor instead.
 func (*SInt32Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{11}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SInt32Rules) GetConst() int32 {
@@ -3090,7 +3163,7 @@ type SInt64Rules struct {
 
 func (x *SInt64Rules) Reset() {
 	*x = SInt64Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[12]
+	mi := &file_buf_validate_validate_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3102,7 +3175,7 @@ func (x *SInt64Rules) String() string {
 func (*SInt64Rules) ProtoMessage() {}
 
 func (x *SInt64Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[12]
+	mi := &file_buf_validate_validate_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3115,7 +3188,7 @@ func (x *SInt64Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SInt64Rules.ProtoReflect.Descriptor instead.
 func (*SInt64Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{12}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SInt64Rules) GetConst() int64 {
@@ -3365,7 +3438,7 @@ type Fixed32Rules struct {
 
 func (x *Fixed32Rules) Reset() {
 	*x = Fixed32Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[13]
+	mi := &file_buf_validate_validate_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3377,7 +3450,7 @@ func (x *Fixed32Rules) String() string {
 func (*Fixed32Rules) ProtoMessage() {}
 
 func (x *Fixed32Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[13]
+	mi := &file_buf_validate_validate_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3390,7 +3463,7 @@ func (x *Fixed32Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Fixed32Rules.ProtoReflect.Descriptor instead.
 func (*Fixed32Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{13}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *Fixed32Rules) GetConst() uint32 {
@@ -3640,7 +3713,7 @@ type Fixed64Rules struct {
 
 func (x *Fixed64Rules) Reset() {
 	*x = Fixed64Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[14]
+	mi := &file_buf_validate_validate_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3652,7 +3725,7 @@ func (x *Fixed64Rules) String() string {
 func (*Fixed64Rules) ProtoMessage() {}
 
 func (x *Fixed64Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[14]
+	mi := &file_buf_validate_validate_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3665,7 +3738,7 @@ func (x *Fixed64Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Fixed64Rules.ProtoReflect.Descriptor instead.
 func (*Fixed64Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{14}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *Fixed64Rules) GetConst() uint64 {
@@ -3915,7 +3988,7 @@ type SFixed32Rules struct {
 
 func (x *SFixed32Rules) Reset() {
 	*x = SFixed32Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[15]
+	mi := &file_buf_validate_validate_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3927,7 +4000,7 @@ func (x *SFixed32Rules) String() string {
 func (*SFixed32Rules) ProtoMessage() {}
 
 func (x *SFixed32Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[15]
+	mi := &file_buf_validate_validate_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3940,7 +4013,7 @@ func (x *SFixed32Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SFixed32Rules.ProtoReflect.Descriptor instead.
 func (*SFixed32Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{15}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *SFixed32Rules) GetConst() int32 {
@@ -4190,7 +4263,7 @@ type SFixed64Rules struct {
 
 func (x *SFixed64Rules) Reset() {
 	*x = SFixed64Rules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[16]
+	mi := &file_buf_validate_validate_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4202,7 +4275,7 @@ func (x *SFixed64Rules) String() string {
 func (*SFixed64Rules) ProtoMessage() {}
 
 func (x *SFixed64Rules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[16]
+	mi := &file_buf_validate_validate_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4215,7 +4288,7 @@ func (x *SFixed64Rules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SFixed64Rules.ProtoReflect.Descriptor instead.
 func (*SFixed64Rules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{16}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *SFixed64Rules) GetConst() int64 {
@@ -4430,7 +4503,7 @@ type BoolRules struct {
 
 func (x *BoolRules) Reset() {
 	*x = BoolRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[17]
+	mi := &file_buf_validate_validate_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4442,7 +4515,7 @@ func (x *BoolRules) String() string {
 func (*BoolRules) ProtoMessage() {}
 
 func (x *BoolRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[17]
+	mi := &file_buf_validate_validate_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4455,7 +4528,7 @@ func (x *BoolRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BoolRules.ProtoReflect.Descriptor instead.
 func (*BoolRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{17}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *BoolRules) GetConst() bool {
@@ -4722,7 +4795,7 @@ type StringRules struct {
 
 func (x *StringRules) Reset() {
 	*x = StringRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[18]
+	mi := &file_buf_validate_validate_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4734,7 +4807,7 @@ func (x *StringRules) String() string {
 func (*StringRules) ProtoMessage() {}
 
 func (x *StringRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[18]
+	mi := &file_buf_validate_validate_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4747,7 +4820,7 @@ func (x *StringRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringRules.ProtoReflect.Descriptor instead.
 func (*StringRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{18}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *StringRules) GetConst() string {
@@ -5590,7 +5663,7 @@ type BytesRules struct {
 
 func (x *BytesRules) Reset() {
 	*x = BytesRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[19]
+	mi := &file_buf_validate_validate_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5602,7 +5675,7 @@ func (x *BytesRules) String() string {
 func (*BytesRules) ProtoMessage() {}
 
 func (x *BytesRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[19]
+	mi := &file_buf_validate_validate_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5615,7 +5688,7 @@ func (x *BytesRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BytesRules.ProtoReflect.Descriptor instead.
 func (*BytesRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{19}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *BytesRules) GetConst() []byte {
@@ -5886,7 +5959,7 @@ type EnumRules struct {
 
 func (x *EnumRules) Reset() {
 	*x = EnumRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[20]
+	mi := &file_buf_validate_validate_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5898,7 +5971,7 @@ func (x *EnumRules) String() string {
 func (*EnumRules) ProtoMessage() {}
 
 func (x *EnumRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[20]
+	mi := &file_buf_validate_validate_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5911,7 +5984,7 @@ func (x *EnumRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnumRules.ProtoReflect.Descriptor instead.
 func (*EnumRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{20}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *EnumRules) GetConst() int32 {
@@ -6021,7 +6094,7 @@ type RepeatedRules struct {
 
 func (x *RepeatedRules) Reset() {
 	*x = RepeatedRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[21]
+	mi := &file_buf_validate_validate_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6033,7 +6106,7 @@ func (x *RepeatedRules) String() string {
 func (*RepeatedRules) ProtoMessage() {}
 
 func (x *RepeatedRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[21]
+	mi := &file_buf_validate_validate_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6046,7 +6119,7 @@ func (x *RepeatedRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RepeatedRules.ProtoReflect.Descriptor instead.
 func (*RepeatedRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{21}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *RepeatedRules) GetMinItems() uint64 {
@@ -6151,7 +6224,7 @@ type MapRules struct {
 
 func (x *MapRules) Reset() {
 	*x = MapRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[22]
+	mi := &file_buf_validate_validate_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6163,7 +6236,7 @@ func (x *MapRules) String() string {
 func (*MapRules) ProtoMessage() {}
 
 func (x *MapRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[22]
+	mi := &file_buf_validate_validate_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6176,7 +6249,7 @@ func (x *MapRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapRules.ProtoReflect.Descriptor instead.
 func (*MapRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{22}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *MapRules) GetMinPairs() uint64 {
@@ -6244,7 +6317,7 @@ type AnyRules struct {
 
 func (x *AnyRules) Reset() {
 	*x = AnyRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[23]
+	mi := &file_buf_validate_validate_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6256,7 +6329,7 @@ func (x *AnyRules) String() string {
 func (*AnyRules) ProtoMessage() {}
 
 func (x *AnyRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[23]
+	mi := &file_buf_validate_validate_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6269,7 +6342,7 @@ func (x *AnyRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AnyRules.ProtoReflect.Descriptor instead.
 func (*AnyRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{23}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *AnyRules) GetIn() []string {
@@ -6361,7 +6434,7 @@ type DurationRules struct {
 
 func (x *DurationRules) Reset() {
 	*x = DurationRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[24]
+	mi := &file_buf_validate_validate_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6373,7 +6446,7 @@ func (x *DurationRules) String() string {
 func (*DurationRules) ProtoMessage() {}
 
 func (x *DurationRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[24]
+	mi := &file_buf_validate_validate_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6386,7 +6459,7 @@ func (x *DurationRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DurationRules.ProtoReflect.Descriptor instead.
 func (*DurationRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{24}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DurationRules) GetConst() *durationpb.Duration {
@@ -6622,7 +6695,7 @@ type TimestampRules struct {
 
 func (x *TimestampRules) Reset() {
 	*x = TimestampRules{}
-	mi := &file_buf_validate_validate_proto_msgTypes[25]
+	mi := &file_buf_validate_validate_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6634,7 +6707,7 @@ func (x *TimestampRules) String() string {
 func (*TimestampRules) ProtoMessage() {}
 
 func (x *TimestampRules) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[25]
+	mi := &file_buf_validate_validate_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6647,7 +6720,7 @@ func (x *TimestampRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TimestampRules.ProtoReflect.Descriptor instead.
 func (*TimestampRules) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{25}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *TimestampRules) GetConst() *timestamppb.Timestamp {
@@ -6876,7 +6949,7 @@ type Violations struct {
 
 func (x *Violations) Reset() {
 	*x = Violations{}
-	mi := &file_buf_validate_validate_proto_msgTypes[26]
+	mi := &file_buf_validate_validate_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6888,7 +6961,7 @@ func (x *Violations) String() string {
 func (*Violations) ProtoMessage() {}
 
 func (x *Violations) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[26]
+	mi := &file_buf_validate_validate_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6901,7 +6974,7 @@ func (x *Violations) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Violations.ProtoReflect.Descriptor instead.
 func (*Violations) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{26}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *Violations) GetViolations() []*Violation {
@@ -7032,7 +7105,7 @@ type Violation struct {
 
 func (x *Violation) Reset() {
 	*x = Violation{}
-	mi := &file_buf_validate_validate_proto_msgTypes[27]
+	mi := &file_buf_validate_validate_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7044,7 +7117,7 @@ func (x *Violation) String() string {
 func (*Violation) ProtoMessage() {}
 
 func (x *Violation) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[27]
+	mi := &file_buf_validate_validate_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7057,7 +7130,7 @@ func (x *Violation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Violation.ProtoReflect.Descriptor instead.
 func (*Violation) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{27}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *Violation) GetField() *FieldPath {
@@ -7109,7 +7182,7 @@ type FieldPath struct {
 
 func (x *FieldPath) Reset() {
 	*x = FieldPath{}
-	mi := &file_buf_validate_validate_proto_msgTypes[28]
+	mi := &file_buf_validate_validate_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7121,7 +7194,7 @@ func (x *FieldPath) String() string {
 func (*FieldPath) ProtoMessage() {}
 
 func (x *FieldPath) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[28]
+	mi := &file_buf_validate_validate_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7134,7 +7207,7 @@ func (x *FieldPath) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FieldPath.ProtoReflect.Descriptor instead.
 func (*FieldPath) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{28}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *FieldPath) GetElements() []*FieldPathElement {
@@ -7190,7 +7263,7 @@ type FieldPathElement struct {
 
 func (x *FieldPathElement) Reset() {
 	*x = FieldPathElement{}
-	mi := &file_buf_validate_validate_proto_msgTypes[29]
+	mi := &file_buf_validate_validate_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7202,7 +7275,7 @@ func (x *FieldPathElement) String() string {
 func (*FieldPathElement) ProtoMessage() {}
 
 func (x *FieldPathElement) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_validate_proto_msgTypes[29]
+	mi := &file_buf_validate_validate_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7215,7 +7288,7 @@ func (x *FieldPathElement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FieldPathElement.ProtoReflect.Descriptor instead.
 func (*FieldPathElement) Descriptor() ([]byte, []int) {
-	return file_buf_validate_validate_proto_rawDescGZIP(), []int{29}
+	return file_buf_validate_validate_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *FieldPathElement) GetFieldNumber() int32 {
@@ -7437,10 +7510,14 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
 	"\n" +
 	"expression\x18\x03 \x01(\tR\n" +
-	"expression\"P\n" +
+	"expression\"\x86\x01\n" +
 	"\fMessageRules\x12\x1a\n" +
 	"\bdisabled\x18\x01 \x01(\bR\bdisabled\x12$\n" +
-	"\x03cel\x18\x03 \x03(\v2\x12.buf.validate.RuleR\x03cel\"(\n" +
+	"\x03cel\x18\x03 \x03(\v2\x12.buf.validate.RuleR\x03cel\x124\n" +
+	"\x05oneof\x18\x04 \x03(\v2\x1e.buf.validate.MessageOneofRuleR\x05oneof\"F\n" +
+	"\x10MessageOneofRule\x12\x16\n" +
+	"\x06fields\x18\x01 \x03(\tR\x06fields\x12\x1a\n" +
+	"\brequired\x18\x02 \x01(\bR\brequired\"(\n" +
 	"\n" +
 	"OneofRules\x12\x1a\n" +
 	"\brequired\x18\x01 \x01(\bR\brequired\"\xfd\t\n" +
@@ -8412,112 +8489,114 @@ func file_buf_validate_validate_proto_rawDescGZIP() []byte {
 }
 
 var file_buf_validate_validate_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_buf_validate_validate_proto_msgTypes = make([]protoimpl.MessageInfo, 30)
+var file_buf_validate_validate_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
 var file_buf_validate_validate_proto_goTypes = []any{
 	(Ignore)(0),                                 // 0: buf.validate.Ignore
 	(KnownRegex)(0),                             // 1: buf.validate.KnownRegex
 	(*Rule)(nil),                                // 2: buf.validate.Rule
 	(*MessageRules)(nil),                        // 3: buf.validate.MessageRules
-	(*OneofRules)(nil),                          // 4: buf.validate.OneofRules
-	(*FieldRules)(nil),                          // 5: buf.validate.FieldRules
-	(*PredefinedRules)(nil),                     // 6: buf.validate.PredefinedRules
-	(*FloatRules)(nil),                          // 7: buf.validate.FloatRules
-	(*DoubleRules)(nil),                         // 8: buf.validate.DoubleRules
-	(*Int32Rules)(nil),                          // 9: buf.validate.Int32Rules
-	(*Int64Rules)(nil),                          // 10: buf.validate.Int64Rules
-	(*UInt32Rules)(nil),                         // 11: buf.validate.UInt32Rules
-	(*UInt64Rules)(nil),                         // 12: buf.validate.UInt64Rules
-	(*SInt32Rules)(nil),                         // 13: buf.validate.SInt32Rules
-	(*SInt64Rules)(nil),                         // 14: buf.validate.SInt64Rules
-	(*Fixed32Rules)(nil),                        // 15: buf.validate.Fixed32Rules
-	(*Fixed64Rules)(nil),                        // 16: buf.validate.Fixed64Rules
-	(*SFixed32Rules)(nil),                       // 17: buf.validate.SFixed32Rules
-	(*SFixed64Rules)(nil),                       // 18: buf.validate.SFixed64Rules
-	(*BoolRules)(nil),                           // 19: buf.validate.BoolRules
-	(*StringRules)(nil),                         // 20: buf.validate.StringRules
-	(*BytesRules)(nil),                          // 21: buf.validate.BytesRules
-	(*EnumRules)(nil),                           // 22: buf.validate.EnumRules
-	(*RepeatedRules)(nil),                       // 23: buf.validate.RepeatedRules
-	(*MapRules)(nil),                            // 24: buf.validate.MapRules
-	(*AnyRules)(nil),                            // 25: buf.validate.AnyRules
-	(*DurationRules)(nil),                       // 26: buf.validate.DurationRules
-	(*TimestampRules)(nil),                      // 27: buf.validate.TimestampRules
-	(*Violations)(nil),                          // 28: buf.validate.Violations
-	(*Violation)(nil),                           // 29: buf.validate.Violation
-	(*FieldPath)(nil),                           // 30: buf.validate.FieldPath
-	(*FieldPathElement)(nil),                    // 31: buf.validate.FieldPathElement
-	(*durationpb.Duration)(nil),                 // 32: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),               // 33: google.protobuf.Timestamp
-	(descriptorpb.FieldDescriptorProto_Type)(0), // 34: google.protobuf.FieldDescriptorProto.Type
-	(*descriptorpb.MessageOptions)(nil),         // 35: google.protobuf.MessageOptions
-	(*descriptorpb.OneofOptions)(nil),           // 36: google.protobuf.OneofOptions
-	(*descriptorpb.FieldOptions)(nil),           // 37: google.protobuf.FieldOptions
+	(*MessageOneofRule)(nil),                    // 4: buf.validate.MessageOneofRule
+	(*OneofRules)(nil),                          // 5: buf.validate.OneofRules
+	(*FieldRules)(nil),                          // 6: buf.validate.FieldRules
+	(*PredefinedRules)(nil),                     // 7: buf.validate.PredefinedRules
+	(*FloatRules)(nil),                          // 8: buf.validate.FloatRules
+	(*DoubleRules)(nil),                         // 9: buf.validate.DoubleRules
+	(*Int32Rules)(nil),                          // 10: buf.validate.Int32Rules
+	(*Int64Rules)(nil),                          // 11: buf.validate.Int64Rules
+	(*UInt32Rules)(nil),                         // 12: buf.validate.UInt32Rules
+	(*UInt64Rules)(nil),                         // 13: buf.validate.UInt64Rules
+	(*SInt32Rules)(nil),                         // 14: buf.validate.SInt32Rules
+	(*SInt64Rules)(nil),                         // 15: buf.validate.SInt64Rules
+	(*Fixed32Rules)(nil),                        // 16: buf.validate.Fixed32Rules
+	(*Fixed64Rules)(nil),                        // 17: buf.validate.Fixed64Rules
+	(*SFixed32Rules)(nil),                       // 18: buf.validate.SFixed32Rules
+	(*SFixed64Rules)(nil),                       // 19: buf.validate.SFixed64Rules
+	(*BoolRules)(nil),                           // 20: buf.validate.BoolRules
+	(*StringRules)(nil),                         // 21: buf.validate.StringRules
+	(*BytesRules)(nil),                          // 22: buf.validate.BytesRules
+	(*EnumRules)(nil),                           // 23: buf.validate.EnumRules
+	(*RepeatedRules)(nil),                       // 24: buf.validate.RepeatedRules
+	(*MapRules)(nil),                            // 25: buf.validate.MapRules
+	(*AnyRules)(nil),                            // 26: buf.validate.AnyRules
+	(*DurationRules)(nil),                       // 27: buf.validate.DurationRules
+	(*TimestampRules)(nil),                      // 28: buf.validate.TimestampRules
+	(*Violations)(nil),                          // 29: buf.validate.Violations
+	(*Violation)(nil),                           // 30: buf.validate.Violation
+	(*FieldPath)(nil),                           // 31: buf.validate.FieldPath
+	(*FieldPathElement)(nil),                    // 32: buf.validate.FieldPathElement
+	(*durationpb.Duration)(nil),                 // 33: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),               // 34: google.protobuf.Timestamp
+	(descriptorpb.FieldDescriptorProto_Type)(0), // 35: google.protobuf.FieldDescriptorProto.Type
+	(*descriptorpb.MessageOptions)(nil),         // 36: google.protobuf.MessageOptions
+	(*descriptorpb.OneofOptions)(nil),           // 37: google.protobuf.OneofOptions
+	(*descriptorpb.FieldOptions)(nil),           // 38: google.protobuf.FieldOptions
 }
 var file_buf_validate_validate_proto_depIdxs = []int32{
 	2,  // 0: buf.validate.MessageRules.cel:type_name -> buf.validate.Rule
-	2,  // 1: buf.validate.FieldRules.cel:type_name -> buf.validate.Rule
-	0,  // 2: buf.validate.FieldRules.ignore:type_name -> buf.validate.Ignore
-	7,  // 3: buf.validate.FieldRules.float:type_name -> buf.validate.FloatRules
-	8,  // 4: buf.validate.FieldRules.double:type_name -> buf.validate.DoubleRules
-	9,  // 5: buf.validate.FieldRules.int32:type_name -> buf.validate.Int32Rules
-	10, // 6: buf.validate.FieldRules.int64:type_name -> buf.validate.Int64Rules
-	11, // 7: buf.validate.FieldRules.uint32:type_name -> buf.validate.UInt32Rules
-	12, // 8: buf.validate.FieldRules.uint64:type_name -> buf.validate.UInt64Rules
-	13, // 9: buf.validate.FieldRules.sint32:type_name -> buf.validate.SInt32Rules
-	14, // 10: buf.validate.FieldRules.sint64:type_name -> buf.validate.SInt64Rules
-	15, // 11: buf.validate.FieldRules.fixed32:type_name -> buf.validate.Fixed32Rules
-	16, // 12: buf.validate.FieldRules.fixed64:type_name -> buf.validate.Fixed64Rules
-	17, // 13: buf.validate.FieldRules.sfixed32:type_name -> buf.validate.SFixed32Rules
-	18, // 14: buf.validate.FieldRules.sfixed64:type_name -> buf.validate.SFixed64Rules
-	19, // 15: buf.validate.FieldRules.bool:type_name -> buf.validate.BoolRules
-	20, // 16: buf.validate.FieldRules.string:type_name -> buf.validate.StringRules
-	21, // 17: buf.validate.FieldRules.bytes:type_name -> buf.validate.BytesRules
-	22, // 18: buf.validate.FieldRules.enum:type_name -> buf.validate.EnumRules
-	23, // 19: buf.validate.FieldRules.repeated:type_name -> buf.validate.RepeatedRules
-	24, // 20: buf.validate.FieldRules.map:type_name -> buf.validate.MapRules
-	25, // 21: buf.validate.FieldRules.any:type_name -> buf.validate.AnyRules
-	26, // 22: buf.validate.FieldRules.duration:type_name -> buf.validate.DurationRules
-	27, // 23: buf.validate.FieldRules.timestamp:type_name -> buf.validate.TimestampRules
-	2,  // 24: buf.validate.PredefinedRules.cel:type_name -> buf.validate.Rule
-	1,  // 25: buf.validate.StringRules.well_known_regex:type_name -> buf.validate.KnownRegex
-	5,  // 26: buf.validate.RepeatedRules.items:type_name -> buf.validate.FieldRules
-	5,  // 27: buf.validate.MapRules.keys:type_name -> buf.validate.FieldRules
-	5,  // 28: buf.validate.MapRules.values:type_name -> buf.validate.FieldRules
-	32, // 29: buf.validate.DurationRules.const:type_name -> google.protobuf.Duration
-	32, // 30: buf.validate.DurationRules.lt:type_name -> google.protobuf.Duration
-	32, // 31: buf.validate.DurationRules.lte:type_name -> google.protobuf.Duration
-	32, // 32: buf.validate.DurationRules.gt:type_name -> google.protobuf.Duration
-	32, // 33: buf.validate.DurationRules.gte:type_name -> google.protobuf.Duration
-	32, // 34: buf.validate.DurationRules.in:type_name -> google.protobuf.Duration
-	32, // 35: buf.validate.DurationRules.not_in:type_name -> google.protobuf.Duration
-	32, // 36: buf.validate.DurationRules.example:type_name -> google.protobuf.Duration
-	33, // 37: buf.validate.TimestampRules.const:type_name -> google.protobuf.Timestamp
-	33, // 38: buf.validate.TimestampRules.lt:type_name -> google.protobuf.Timestamp
-	33, // 39: buf.validate.TimestampRules.lte:type_name -> google.protobuf.Timestamp
-	33, // 40: buf.validate.TimestampRules.gt:type_name -> google.protobuf.Timestamp
-	33, // 41: buf.validate.TimestampRules.gte:type_name -> google.protobuf.Timestamp
-	32, // 42: buf.validate.TimestampRules.within:type_name -> google.protobuf.Duration
-	33, // 43: buf.validate.TimestampRules.example:type_name -> google.protobuf.Timestamp
-	29, // 44: buf.validate.Violations.violations:type_name -> buf.validate.Violation
-	30, // 45: buf.validate.Violation.field:type_name -> buf.validate.FieldPath
-	30, // 46: buf.validate.Violation.rule:type_name -> buf.validate.FieldPath
-	31, // 47: buf.validate.FieldPath.elements:type_name -> buf.validate.FieldPathElement
-	34, // 48: buf.validate.FieldPathElement.field_type:type_name -> google.protobuf.FieldDescriptorProto.Type
-	34, // 49: buf.validate.FieldPathElement.key_type:type_name -> google.protobuf.FieldDescriptorProto.Type
-	34, // 50: buf.validate.FieldPathElement.value_type:type_name -> google.protobuf.FieldDescriptorProto.Type
-	35, // 51: buf.validate.message:extendee -> google.protobuf.MessageOptions
-	36, // 52: buf.validate.oneof:extendee -> google.protobuf.OneofOptions
-	37, // 53: buf.validate.field:extendee -> google.protobuf.FieldOptions
-	37, // 54: buf.validate.predefined:extendee -> google.protobuf.FieldOptions
-	3,  // 55: buf.validate.message:type_name -> buf.validate.MessageRules
-	4,  // 56: buf.validate.oneof:type_name -> buf.validate.OneofRules
-	5,  // 57: buf.validate.field:type_name -> buf.validate.FieldRules
-	6,  // 58: buf.validate.predefined:type_name -> buf.validate.PredefinedRules
-	59, // [59:59] is the sub-list for method output_type
-	59, // [59:59] is the sub-list for method input_type
-	55, // [55:59] is the sub-list for extension type_name
-	51, // [51:55] is the sub-list for extension extendee
-	0,  // [0:51] is the sub-list for field type_name
+	4,  // 1: buf.validate.MessageRules.oneof:type_name -> buf.validate.MessageOneofRule
+	2,  // 2: buf.validate.FieldRules.cel:type_name -> buf.validate.Rule
+	0,  // 3: buf.validate.FieldRules.ignore:type_name -> buf.validate.Ignore
+	8,  // 4: buf.validate.FieldRules.float:type_name -> buf.validate.FloatRules
+	9,  // 5: buf.validate.FieldRules.double:type_name -> buf.validate.DoubleRules
+	10, // 6: buf.validate.FieldRules.int32:type_name -> buf.validate.Int32Rules
+	11, // 7: buf.validate.FieldRules.int64:type_name -> buf.validate.Int64Rules
+	12, // 8: buf.validate.FieldRules.uint32:type_name -> buf.validate.UInt32Rules
+	13, // 9: buf.validate.FieldRules.uint64:type_name -> buf.validate.UInt64Rules
+	14, // 10: buf.validate.FieldRules.sint32:type_name -> buf.validate.SInt32Rules
+	15, // 11: buf.validate.FieldRules.sint64:type_name -> buf.validate.SInt64Rules
+	16, // 12: buf.validate.FieldRules.fixed32:type_name -> buf.validate.Fixed32Rules
+	17, // 13: buf.validate.FieldRules.fixed64:type_name -> buf.validate.Fixed64Rules
+	18, // 14: buf.validate.FieldRules.sfixed32:type_name -> buf.validate.SFixed32Rules
+	19, // 15: buf.validate.FieldRules.sfixed64:type_name -> buf.validate.SFixed64Rules
+	20, // 16: buf.validate.FieldRules.bool:type_name -> buf.validate.BoolRules
+	21, // 17: buf.validate.FieldRules.string:type_name -> buf.validate.StringRules
+	22, // 18: buf.validate.FieldRules.bytes:type_name -> buf.validate.BytesRules
+	23, // 19: buf.validate.FieldRules.enum:type_name -> buf.validate.EnumRules
+	24, // 20: buf.validate.FieldRules.repeated:type_name -> buf.validate.RepeatedRules
+	25, // 21: buf.validate.FieldRules.map:type_name -> buf.validate.MapRules
+	26, // 22: buf.validate.FieldRules.any:type_name -> buf.validate.AnyRules
+	27, // 23: buf.validate.FieldRules.duration:type_name -> buf.validate.DurationRules
+	28, // 24: buf.validate.FieldRules.timestamp:type_name -> buf.validate.TimestampRules
+	2,  // 25: buf.validate.PredefinedRules.cel:type_name -> buf.validate.Rule
+	1,  // 26: buf.validate.StringRules.well_known_regex:type_name -> buf.validate.KnownRegex
+	6,  // 27: buf.validate.RepeatedRules.items:type_name -> buf.validate.FieldRules
+	6,  // 28: buf.validate.MapRules.keys:type_name -> buf.validate.FieldRules
+	6,  // 29: buf.validate.MapRules.values:type_name -> buf.validate.FieldRules
+	33, // 30: buf.validate.DurationRules.const:type_name -> google.protobuf.Duration
+	33, // 31: buf.validate.DurationRules.lt:type_name -> google.protobuf.Duration
+	33, // 32: buf.validate.DurationRules.lte:type_name -> google.protobuf.Duration
+	33, // 33: buf.validate.DurationRules.gt:type_name -> google.protobuf.Duration
+	33, // 34: buf.validate.DurationRules.gte:type_name -> google.protobuf.Duration
+	33, // 35: buf.validate.DurationRules.in:type_name -> google.protobuf.Duration
+	33, // 36: buf.validate.DurationRules.not_in:type_name -> google.protobuf.Duration
+	33, // 37: buf.validate.DurationRules.example:type_name -> google.protobuf.Duration
+	34, // 38: buf.validate.TimestampRules.const:type_name -> google.protobuf.Timestamp
+	34, // 39: buf.validate.TimestampRules.lt:type_name -> google.protobuf.Timestamp
+	34, // 40: buf.validate.TimestampRules.lte:type_name -> google.protobuf.Timestamp
+	34, // 41: buf.validate.TimestampRules.gt:type_name -> google.protobuf.Timestamp
+	34, // 42: buf.validate.TimestampRules.gte:type_name -> google.protobuf.Timestamp
+	33, // 43: buf.validate.TimestampRules.within:type_name -> google.protobuf.Duration
+	34, // 44: buf.validate.TimestampRules.example:type_name -> google.protobuf.Timestamp
+	30, // 45: buf.validate.Violations.violations:type_name -> buf.validate.Violation
+	31, // 46: buf.validate.Violation.field:type_name -> buf.validate.FieldPath
+	31, // 47: buf.validate.Violation.rule:type_name -> buf.validate.FieldPath
+	32, // 48: buf.validate.FieldPath.elements:type_name -> buf.validate.FieldPathElement
+	35, // 49: buf.validate.FieldPathElement.field_type:type_name -> google.protobuf.FieldDescriptorProto.Type
+	35, // 50: buf.validate.FieldPathElement.key_type:type_name -> google.protobuf.FieldDescriptorProto.Type
+	35, // 51: buf.validate.FieldPathElement.value_type:type_name -> google.protobuf.FieldDescriptorProto.Type
+	36, // 52: buf.validate.message:extendee -> google.protobuf.MessageOptions
+	37, // 53: buf.validate.oneof:extendee -> google.protobuf.OneofOptions
+	38, // 54: buf.validate.field:extendee -> google.protobuf.FieldOptions
+	38, // 55: buf.validate.predefined:extendee -> google.protobuf.FieldOptions
+	3,  // 56: buf.validate.message:type_name -> buf.validate.MessageRules
+	5,  // 57: buf.validate.oneof:type_name -> buf.validate.OneofRules
+	6,  // 58: buf.validate.field:type_name -> buf.validate.FieldRules
+	7,  // 59: buf.validate.predefined:type_name -> buf.validate.PredefinedRules
+	60, // [60:60] is the sub-list for method output_type
+	60, // [60:60] is the sub-list for method input_type
+	56, // [56:60] is the sub-list for extension type_name
+	52, // [52:56] is the sub-list for extension extendee
+	0,  // [0:52] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_validate_proto_init() }
@@ -8525,7 +8604,7 @@ func file_buf_validate_validate_proto_init() {
 	if File_buf_validate_validate_proto != nil {
 		return
 	}
-	file_buf_validate_validate_proto_msgTypes[3].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[4].OneofWrappers = []any{
 		(*FieldRules_Float)(nil),
 		(*FieldRules_Double)(nil),
 		(*FieldRules_Int32)(nil),
@@ -8548,79 +8627,79 @@ func file_buf_validate_validate_proto_init() {
 		(*FieldRules_Duration)(nil),
 		(*FieldRules_Timestamp)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[5].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[6].OneofWrappers = []any{
 		(*FloatRules_Lt)(nil),
 		(*FloatRules_Lte)(nil),
 		(*FloatRules_Gt)(nil),
 		(*FloatRules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[6].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[7].OneofWrappers = []any{
 		(*DoubleRules_Lt)(nil),
 		(*DoubleRules_Lte)(nil),
 		(*DoubleRules_Gt)(nil),
 		(*DoubleRules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[7].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[8].OneofWrappers = []any{
 		(*Int32Rules_Lt)(nil),
 		(*Int32Rules_Lte)(nil),
 		(*Int32Rules_Gt)(nil),
 		(*Int32Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[8].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[9].OneofWrappers = []any{
 		(*Int64Rules_Lt)(nil),
 		(*Int64Rules_Lte)(nil),
 		(*Int64Rules_Gt)(nil),
 		(*Int64Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[9].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[10].OneofWrappers = []any{
 		(*UInt32Rules_Lt)(nil),
 		(*UInt32Rules_Lte)(nil),
 		(*UInt32Rules_Gt)(nil),
 		(*UInt32Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[10].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[11].OneofWrappers = []any{
 		(*UInt64Rules_Lt)(nil),
 		(*UInt64Rules_Lte)(nil),
 		(*UInt64Rules_Gt)(nil),
 		(*UInt64Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[11].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[12].OneofWrappers = []any{
 		(*SInt32Rules_Lt)(nil),
 		(*SInt32Rules_Lte)(nil),
 		(*SInt32Rules_Gt)(nil),
 		(*SInt32Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[12].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[13].OneofWrappers = []any{
 		(*SInt64Rules_Lt)(nil),
 		(*SInt64Rules_Lte)(nil),
 		(*SInt64Rules_Gt)(nil),
 		(*SInt64Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[13].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[14].OneofWrappers = []any{
 		(*Fixed32Rules_Lt)(nil),
 		(*Fixed32Rules_Lte)(nil),
 		(*Fixed32Rules_Gt)(nil),
 		(*Fixed32Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[14].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[15].OneofWrappers = []any{
 		(*Fixed64Rules_Lt)(nil),
 		(*Fixed64Rules_Lte)(nil),
 		(*Fixed64Rules_Gt)(nil),
 		(*Fixed64Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[15].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[16].OneofWrappers = []any{
 		(*SFixed32Rules_Lt)(nil),
 		(*SFixed32Rules_Lte)(nil),
 		(*SFixed32Rules_Gt)(nil),
 		(*SFixed32Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[16].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[17].OneofWrappers = []any{
 		(*SFixed64Rules_Lt)(nil),
 		(*SFixed64Rules_Lte)(nil),
 		(*SFixed64Rules_Gt)(nil),
 		(*SFixed64Rules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[18].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[19].OneofWrappers = []any{
 		(*StringRules_Email)(nil),
 		(*StringRules_Hostname)(nil),
 		(*StringRules_Ip)(nil),
@@ -8640,18 +8719,18 @@ func file_buf_validate_validate_proto_init() {
 		(*StringRules_HostAndPort)(nil),
 		(*StringRules_WellKnownRegex)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[19].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[20].OneofWrappers = []any{
 		(*BytesRules_Ip)(nil),
 		(*BytesRules_Ipv4)(nil),
 		(*BytesRules_Ipv6)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[24].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[25].OneofWrappers = []any{
 		(*DurationRules_Lt)(nil),
 		(*DurationRules_Lte)(nil),
 		(*DurationRules_Gt)(nil),
 		(*DurationRules_Gte)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[25].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[26].OneofWrappers = []any{
 		(*TimestampRules_Lt)(nil),
 		(*TimestampRules_Lte)(nil),
 		(*TimestampRules_LtNow)(nil),
@@ -8659,7 +8738,7 @@ func file_buf_validate_validate_proto_init() {
 		(*TimestampRules_Gte)(nil),
 		(*TimestampRules_GtNow)(nil),
 	}
-	file_buf_validate_validate_proto_msgTypes[29].OneofWrappers = []any{
+	file_buf_validate_validate_proto_msgTypes[30].OneofWrappers = []any{
 		(*FieldPathElement_Index)(nil),
 		(*FieldPathElement_BoolKey)(nil),
 		(*FieldPathElement_IntKey)(nil),
@@ -8672,7 +8751,7 @@ func file_buf_validate_validate_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_validate_proto_rawDesc), len(file_buf_validate_validate_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   30,
+			NumMessages:   31,
 			NumExtensions: 4,
 			NumServices:   0,
 		},
