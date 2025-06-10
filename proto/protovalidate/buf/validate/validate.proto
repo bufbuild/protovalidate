@@ -287,7 +287,7 @@ message PredefinedRules {
 // Specifies how FieldRules.ignore behaves. See the documentation for
 // FieldRules.required for definitions of "populated" and "nullable".
 enum Ignore {
-  // Validation is only skipped if it's an unpopulated nullable fields.
+  // Validation is only skipped if it's an unpopulated nullable field.
   //
   // ```proto
   // syntax="proto3";
@@ -3820,7 +3820,7 @@ message StringRules {
   extensions 1000 to max;
 }
 
-// WellKnownRegex contain some well-known patterns.
+// KnownRegex contains some well-known patterns.
 enum KnownRegex {
   KNOWN_REGEX_UNSPECIFIED = 0;
 
@@ -4827,7 +4827,7 @@ message TimestampRules {
 }
 
 // `Violations` is a collection of `Violation` messages. This message type is returned by
-// protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.
+// Protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.
 // Each individual violation is represented by a `Violation` message.
 message Violations {
   // `violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.
@@ -4839,11 +4839,42 @@ message Violations {
 // caused the violation, the specific rule that wasn't fulfilled, and a
 // human-readable error message.
 //
+// For example, consider the following message:
+//
+// ```proto
+// message User {
+//     int32 age = 1 [(buf.validate.field).cel = {
+//         id: "user.age",
+//         expression: "this < 18 ? 'User must be at least 18 years old' : ''",
+//     }];
+// }
+// ```
+//
+// It could produce the following violation:
+//
 // ```json
 // {
-//   "fieldPath": "bar",
-//   "ruleId": "foo.bar",
-//   "message": "bar must be greater than 0"
+//   "ruleId": "user.age",
+//   "message": "User must be at least 18 years old",
+//   "field": {
+//     "elements": [
+//       {
+//         "fieldNumber": 1,
+//         "fieldName": "age",
+//         "fieldType": "TYPE_INT32"
+//       }
+//     ]
+//   },
+//   "rule": {
+//     "elements": [
+//       {
+//         "fieldNumber": 23,
+//         "fieldName": "cel",
+//         "fieldType": "TYPE_MESSAGE",
+//         "index": "0"
+//       }
+//     ]
+//   }
 // }
 // ```
 message Violation {
@@ -4868,7 +4899,7 @@ message Violation {
   // ```
   optional FieldPath field = 5;
 
-  // `rule` is a machine-readable path that points to the specific rule rule that failed validation.
+  // `rule` is a machine-readable path that points to the specific rule that failed validation.
   // This will be a nested field starting from the FieldRules of the field that failed validation.
   // For custom rules, this will provide the path of the rule, e.g. `cel[0]`.
   //
