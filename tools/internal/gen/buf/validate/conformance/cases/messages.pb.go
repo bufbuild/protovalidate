@@ -655,6 +655,50 @@ func (x *MessageOneofMultipleFieldsRequired) GetBoolField() bool {
 	return false
 }
 
+type MessageOneofUnknownFieldName struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StrField      string                 `protobuf:"bytes,1,opt,name=str_field,json=strField,proto3" json:"str_field,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MessageOneofUnknownFieldName) Reset() {
+	*x = MessageOneofUnknownFieldName{}
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MessageOneofUnknownFieldName) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MessageOneofUnknownFieldName) ProtoMessage() {}
+
+func (x *MessageOneofUnknownFieldName) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MessageOneofUnknownFieldName.ProtoReflect.Descriptor instead.
+func (*MessageOneofUnknownFieldName) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_messages_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *MessageOneofUnknownFieldName) GetStrField() string {
+	if x != nil {
+		return x.StrField
+	}
+	return ""
+}
+
 type MessageNone_NoneMsg struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -663,7 +707,7 @@ type MessageNone_NoneMsg struct {
 
 func (x *MessageNone_NoneMsg) Reset() {
 	*x = MessageNone_NoneMsg{}
-	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[13]
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -675,7 +719,7 @@ func (x *MessageNone_NoneMsg) String() string {
 func (*MessageNone_NoneMsg) ProtoMessage() {}
 
 func (x *MessageNone_NoneMsg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[13]
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -739,7 +783,11 @@ const file_buf_validate_conformance_cases_messages_proto_rawDesc = "" +
 	"bool_field\x18\x02 \x01(\bR\tboolField:\x1e\xbaH\x1b\"\x19\n" +
 	"\tstr_field\n" +
 	"\n" +
-	"bool_field\x10\x01B\xa4\x02\n" +
+	"bool_field\x10\x01\"G\n" +
+	"\x1cMessageOneofUnknownFieldName\x12\x1b\n" +
+	"\tstr_field\x18\x01 \x01(\tR\bstrField:\n" +
+	"\xbaH\a\"\x05\n" +
+	"\x03xxxB\xa4\x02\n" +
 	"\"com.buf.validate.conformance.casesB\rMessagesProtoP\x01ZSgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases\xa2\x02\x04BVCC\xaa\x02\x1eBuf.Validate.Conformance.Cases\xca\x02\x1eBuf\\Validate\\Conformance\\Cases\xe2\x02*Buf\\Validate\\Conformance\\Cases\\GPBMetadata\xea\x02!Buf::Validate::Conformance::Casesb\x06proto3"
 
 var (
@@ -754,7 +802,7 @@ func file_buf_validate_conformance_cases_messages_proto_rawDescGZIP() []byte {
 	return file_buf_validate_conformance_cases_messages_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_buf_validate_conformance_cases_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_buf_validate_conformance_cases_messages_proto_goTypes = []any{
 	(*TestMsg)(nil),                            // 0: buf.validate.conformance.cases.TestMsg
 	(*MessageNone)(nil),                        // 1: buf.validate.conformance.cases.MessageNone
@@ -769,14 +817,15 @@ var file_buf_validate_conformance_cases_messages_proto_goTypes = []any{
 	(*MessageOneofSingleField)(nil),            // 10: buf.validate.conformance.cases.MessageOneofSingleField
 	(*MessageOneofMultipleFields)(nil),         // 11: buf.validate.conformance.cases.MessageOneofMultipleFields
 	(*MessageOneofMultipleFieldsRequired)(nil), // 12: buf.validate.conformance.cases.MessageOneofMultipleFieldsRequired
-	(*MessageNone_NoneMsg)(nil),                // 13: buf.validate.conformance.cases.MessageNone.NoneMsg
-	(*other_package.Embed)(nil),                // 14: buf.validate.conformance.cases.other_package.Embed
+	(*MessageOneofUnknownFieldName)(nil),       // 13: buf.validate.conformance.cases.MessageOneofUnknownFieldName
+	(*MessageNone_NoneMsg)(nil),                // 14: buf.validate.conformance.cases.MessageNone.NoneMsg
+	(*other_package.Embed)(nil),                // 15: buf.validate.conformance.cases.other_package.Embed
 }
 var file_buf_validate_conformance_cases_messages_proto_depIdxs = []int32{
 	0,  // 0: buf.validate.conformance.cases.TestMsg.nested:type_name -> buf.validate.conformance.cases.TestMsg
-	13, // 1: buf.validate.conformance.cases.MessageNone.val:type_name -> buf.validate.conformance.cases.MessageNone.NoneMsg
+	14, // 1: buf.validate.conformance.cases.MessageNone.val:type_name -> buf.validate.conformance.cases.MessageNone.NoneMsg
 	0,  // 2: buf.validate.conformance.cases.Message.val:type_name -> buf.validate.conformance.cases.TestMsg
-	14, // 3: buf.validate.conformance.cases.MessageCrossPackage.val:type_name -> buf.validate.conformance.cases.other_package.Embed
+	15, // 3: buf.validate.conformance.cases.MessageCrossPackage.val:type_name -> buf.validate.conformance.cases.other_package.Embed
 	0,  // 4: buf.validate.conformance.cases.MessageSkip.val:type_name -> buf.validate.conformance.cases.TestMsg
 	0,  // 5: buf.validate.conformance.cases.MessageRequired.val:type_name -> buf.validate.conformance.cases.TestMsg
 	0,  // 6: buf.validate.conformance.cases.MessageRequiredButOptional.val:type_name -> buf.validate.conformance.cases.TestMsg
@@ -803,7 +852,7 @@ func file_buf_validate_conformance_cases_messages_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_messages_proto_rawDesc), len(file_buf_validate_conformance_cases_messages_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

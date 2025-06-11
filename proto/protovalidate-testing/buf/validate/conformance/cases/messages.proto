@@ -89,3 +89,10 @@ message MessageOneofMultipleFieldsRequired {
   string str_field = 1;
   bool bool_field = 2;
 }
+
+message MessageOneofUnknownFieldName {
+  option (buf.validate.message).oneof = {
+    fields: ["xxx"]
+  };
+  string str_field = 1;
+}

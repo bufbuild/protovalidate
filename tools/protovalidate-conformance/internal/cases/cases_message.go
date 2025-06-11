@@ -169,7 +169,7 @@ func messageSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					RuleId:  proto.String("message.oneof"),
-					Message: proto.String("only one of ['str_field', 'bool_field'] can be set"),
+					Message: proto.String("only one of str_field, bool_field can be set"),
 				},
 			),
 		},
@@ -182,9 +182,13 @@ func messageSuite() suites.Suite {
 			Expected: results.Violations(
 				&validate.Violation{
 					RuleId:  proto.String("message.oneof"),
-					Message: proto.String("one of ['str_field', 'bool_field'] must be set"),
+					Message: proto.String("one of str_field, bool_field must be set"),
 				},
 			),
+		},
+		"oneof/unknown-field/invalid": {
+			Message:  &cases.MessageOneofUnknownFieldName{},
+			Expected: results.CompilationError("field not found in message"),
 		},
 	}
 }
