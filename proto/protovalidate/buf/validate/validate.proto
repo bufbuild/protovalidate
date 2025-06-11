@@ -159,7 +159,10 @@ message MessageRules {
 }
 
 message MessageOneofRule {
+  // A list of field names to include in the oneof. All field names must be 
+  // defined in the message.
   repeated string fields = 1;
+  // If true, one of the fields specified _must_ be set.
   optional bool required = 2;
 }
 

@@ -499,9 +499,12 @@ func (x *MessageRules) GetOneof() []*MessageOneofRule {
 }
 
 type MessageOneofRule struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Fields        []string               `protobuf:"bytes,1,rep,name=fields" json:"fields,omitempty"`
-	Required      *bool                  `protobuf:"varint,2,opt,name=required" json:"required,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A list of field names to include in the oneof. All field names must be
+	// defined in the message.
+	Fields []string `protobuf:"bytes,1,rep,name=fields" json:"fields,omitempty"`
+	// If true, one of the fields specified _must_ be set.
+	Required      *bool `protobuf:"varint,2,opt,name=required" json:"required,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

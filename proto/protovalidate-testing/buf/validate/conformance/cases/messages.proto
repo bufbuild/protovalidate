@@ -96,3 +96,10 @@ message MessageOneofUnknownFieldName {
   };
   string str_field = 1;
 }
+
+message MessageOneofNoFields {
+  option (buf.validate.message).oneof = {
+    fields: []
+  };
+  string str_field = 1;
+}

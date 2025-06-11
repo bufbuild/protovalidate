@@ -190,5 +190,9 @@ func messageSuite() suites.Suite {
 			Message:  &cases.MessageOneofUnknownFieldName{},
 			Expected: results.CompilationError("field xxx not found in message buf.validate.conformance.cases.MessageOneofUnknownFieldName"),
 		},
+		"oneof/no-fields/invalid": {
+			Message:  &cases.MessageOneofNoFields{},
+			Expected: results.CompilationError("at least one field must be specified in the oneof in message buf.validate.conformance.cases.MessageOneofNoFields"),
+		},
 	}
 }
