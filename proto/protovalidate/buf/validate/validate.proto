@@ -137,6 +137,46 @@ message MessageRules {
   // }
   // ```
   repeated Rule cel = 3;
+
+  // `oneof` is a repeated field of type MessageOneofRule that specifies a list of fields
+  // of which at most one can be present. If `required` is also specified, then exactly one
+  // of the specified fields _must_ be present.
+  //
+  // This will enforce oneof-like constraints with a few features not provided by
+  // actual Protobuf oneof declarations:
+  //   1. Repeated and map fields are allowed in this validation. In a Protobuf oneof,
+  //      only scalar fields are allowed.
+  //   2. Fields with implicit presence are allowed. In a Protobuf oneof, all member
+  //      fields have explicit presence. This means that, for the purpose of determining
+  //      how many fields are set, explicitly setting such a field to its zero value is
+  //      effectively the same as not setting it at all.
+  //   3. This will generate validation errors when unmarshalling, even from the binary
+  //      format. With a Protobuf oneof, if multiple fields are present in the serialized
+  //      form, earlier values are usually silently ignored when unmarshalling, with only
+  //      the last field being present when unmarshalling completes.
+  //
+  //
+  // ```proto
+  // message MyMessage {
+  //   // Only one of `field1` or `field2` _can_ be present in this message.
+  //   option (buf.validate.message).oneof = { fields: ["field1", "field2"] };
+  //   // Only one of `field3` or `field4` _must_ be present in this message.
+  //   option (buf.validate.message).oneof = { fields: ["field3", "field4"], required: true };
+  //   string field1 = 1;
+  //   bytes field2 = 2;
+  //   bool field3 = 3;
+  //   int32 field4 = 4;
+  // }
+  // ```
+  repeated MessageOneofRule oneof = 4;
+}
+
+message MessageOneofRule {
+  // A list of field names to include in the oneof. All field names must be
+  // defined in the message.
+  repeated string fields = 1;
+  // If true, one of the fields specified _must_ be set.
+  optional bool required = 2;
 }
 
 // The `OneofRules` message type enables you to manage rules for
