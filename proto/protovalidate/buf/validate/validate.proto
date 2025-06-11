@@ -150,10 +150,11 @@ message MessageRules {
   //      fields have explicit presence. This means that, for the purpose of determining
   //      how many fields are set, explicitly setting such a field to its zero value is
   //      effectively the same as not setting it at all.
-  //   3. This will generate validation errors when unmarshalling, even from the binary
-  //      format. With a Protobuf oneof, if multiple fields are present in the serialized
-  //      form, earlier values are usually silently ignored when unmarshalling, with only
-  //      the last field being present when unmarshalling completes.
+  //   3. This will always generate validation errors for a message unmarshalled from
+  //      serialized data that sets more than one field. With a Protobuf oneof, when
+  //      multiple fields are present in the serialized form, earlier values are usually
+  //      silently ignored when unmarshalling, with only the last field being set when
+  //      unmarshalling completes.
   //
   //
   // ```proto
