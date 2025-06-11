@@ -143,15 +143,15 @@ message MessageRules {
   // of the specified fields _must_ be present.
   //
   // This will enforce oneof-like constraints with a few features not provided by
-  // actual oneof declarations:
-  //   1. Repeated and map fields are allowed in this validation. In a oneof
-  //      declaration in the language, only scalar fields are allowed.
-  //   2. Fields with implicit presence are allowed. In a oneof definition, all member
+  // actual Protobuf oneof declarations:
+  //   1. Repeated and map fields are allowed in this validation. In a Protobuf oneof,
+  //      only scalar fields are allowed.
+  //   2. Fields with implicit presence are allowed. In a Protobuf oneof, all member
   //      fields have explicit presence. This means that, for the purpose of determining
   //      how many fields are set, explicitly setting such a field to its zero value is
   //      effectively the same as not setting it at all.
   //   3. This will generate validation errors when unmarshalling, even from the binary
-  //      format. With oneof definitions, if multiple fields are present in the serialized
+  //      format. With a Protobuf oneof, if multiple fields are present in the serialized
   //      form, earlier values are usually silently ignored when unmarshalling, with only
   //      the last field being present when unmarshalling completes.
   //
