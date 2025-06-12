@@ -447,7 +447,7 @@ type MessageRules struct {
 	//	message MyMessage {
 	//	  // Only one of `field1` or `field2` _can_ be present in this message.
 	//	  option (buf.validate.message).oneof = { fields: ["field1", "field2"] };
-	//	  // Only one of `field3` or `field4` _must_ be present in this message.
+	//	  // Exactly one of `field3` or `field4` _must_ be present in this message.
 	//	  option (buf.validate.message).oneof = { fields: ["field3", "field4"], required: true };
 	//	  string field1 = 1;
 	//	  bytes field2 = 2;
