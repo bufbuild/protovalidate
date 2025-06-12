@@ -128,7 +128,11 @@ message MessageOneofUnknownFieldName {
 
 message MessageOneofDuplicateField {
   option (buf.validate.message).oneof = {
-    fields: ["str_field", "bool_field", "str_field"]
+    fields: [
+      "str_field",
+      "bool_field",
+      "str_field"
+    ]
   };
   string str_field = 1;
   bool bool_field = 2;
