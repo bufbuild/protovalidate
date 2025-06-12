@@ -145,3 +145,30 @@ message MessageOneofZeroFields {
   string str_field = 1;
   bool bool_field = 2;
 }
+
+message MessageOneofUnsatisfiable {
+  bool a = 1;
+  bool b = 2;
+  bool c = 3;
+  option (buf.validate.message).oneof = {
+    fields: [
+      "a",
+      "b"
+    ]
+    required: true
+  };
+  option (buf.validate.message).oneof = {
+    fields: [
+      "b",
+      "c"
+    ]
+    required: true
+  };
+  option (buf.validate.message).oneof = {
+    fields: [
+      "a",
+      "c"
+    ]
+    required: true
+  };
+}

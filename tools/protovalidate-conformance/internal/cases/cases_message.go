@@ -231,5 +231,22 @@ func messageSuite() suites.Suite {
 			Message:  &cases.MessageOneofZeroFields{},
 			Expected: results.CompilationError("at least one field must be specified in oneof rule for the message buf.validate.conformance.cases.MessageOneofZeroFields"),
 		},
+		"oneof/unsatisfiable/invalid": {
+			Message: &cases.MessageOneofUnsatisfiable{},
+			Expected: results.Violations(
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of a, b must be set"),
+				},
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of b, c must be set"),
+				},
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of a, c must be set"),
+				},
+			),
+		},
 	}
 }
