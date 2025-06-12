@@ -16,8 +16,6 @@ load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
 package(default_visibility = ["//visibility:public"])
 
-exports_files(["buf.yaml"])
-
 gazelle_binary(
     name = "gazelle-buf",
     languages = [
