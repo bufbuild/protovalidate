@@ -229,7 +229,7 @@ func messageSuite() suites.Suite {
 		},
 		"oneof/zero-fields/invalid": {
 			Message:  &cases.MessageOneofZeroFields{},
-			Expected: results.CompilationError("at least one field is required in oneof rule for the message buf.validate.conformance.cases.MessageOneofDuplicateField"),
+			Expected: results.CompilationError("at least one field must be specified in oneof rule for the message buf.validate.conformance.cases.MessageOneofZeroFields"),
 		},
 	}
 }
