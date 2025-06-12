@@ -160,6 +160,21 @@ func messageSuite() suites.Suite {
 			Message:  &cases.MessageOneofSingleField{StrField: "test", BoolField: true},
 			Expected: results.Success(true),
 		},
+		"oneof/single-field/required/valid": {
+			// BoolField is not part of the oneof, so it can be set on this message
+			Message:  &cases.MessageOneofSingleFieldRequired{StrField: "test", BoolField: true},
+			Expected: results.Success(true),
+		},
+		"oneof/single-field/required/invalid": {
+			// BoolField is not part of the oneof, so it can be set on this message
+			Message: &cases.MessageOneofSingleFieldRequired{BoolField: true},
+			Expected: results.Violations(
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of str_field must be set"),
+				},
+			),
+		},
 		"oneof/two-fields/valid": {
 			Message:  &cases.MessageOneofMultipleFields{StrField: "test"},
 			Expected: results.Success(true),
@@ -186,9 +201,52 @@ func messageSuite() suites.Suite {
 				},
 			),
 		},
+		"oneof/multiple-shared-fields/required/valid": {
+			// String field which is common in both should satisfy both.
+			Message: &cases.MessageOneofMultipleSharedFields{
+				StrField: "test",
+			},
+			Expected: results.Success(true),
+		},
+		"oneof/multiple-shared-fields/required/invalid": {
+			Message: &cases.MessageOneofMultipleSharedFields{
+				BoolField: true,
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of str_field, int_field must be set"),
+				},
+			),
+		},
 		"oneof/unknown-field/invalid": {
 			Message:  &cases.MessageOneofUnknownFieldName{},
 			Expected: results.CompilationError("field xxx not found in message buf.validate.conformance.cases.MessageOneofUnknownFieldName"),
+		},
+		"oneof/duplicate-field/invalid": {
+			Message:  &cases.MessageOneofDuplicateField{},
+			Expected: results.CompilationError("duplicate str_field in oneof rule for the message buf.validate.conformance.cases.MessageOneofDuplicateField"),
+		},
+		"oneof/zero-fields/invalid": {
+			Message:  &cases.MessageOneofZeroFields{},
+			Expected: results.CompilationError("at least one field must be specified in oneof rule for the message buf.validate.conformance.cases.MessageOneofZeroFields"),
+		},
+		"oneof/unsatisfiable/invalid": {
+			Message: &cases.MessageOneofUnsatisfiable{},
+			Expected: results.Violations(
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of a, b must be set"),
+				},
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of b, c must be set"),
+				},
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of a, c must be set"),
+				},
+			),
 		},
 	}
 }

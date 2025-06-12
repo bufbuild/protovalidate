@@ -67,6 +67,15 @@ message MessageOneofSingleField {
   bool bool_field = 2;
 }
 
+message MessageOneofSingleFieldRequired {
+  option (buf.validate.message).oneof = {
+    fields: ["str_field"]
+    required: true
+  };
+  string str_field = 1;
+  bool bool_field = 2;
+}
+
 message MessageOneofMultipleFields {
   option (buf.validate.message).oneof = {
     fields: [
@@ -90,9 +99,76 @@ message MessageOneofMultipleFieldsRequired {
   bool bool_field = 2;
 }
 
+message MessageOneofMultipleSharedFields {
+  option (buf.validate.message).oneof = {
+    fields: [
+      "str_field",
+      "bool_field"
+    ]
+    required: true
+  };
+  option (buf.validate.message).oneof = {
+    fields: [
+      "str_field",
+      "int_field"
+    ]
+    required: true
+  };
+  string str_field = 1;
+  bool bool_field = 2;
+  int32 int_field = 3;
+}
+
 message MessageOneofUnknownFieldName {
   option (buf.validate.message).oneof = {
     fields: ["xxx"]
   };
   string str_field = 1;
+}
+
+message MessageOneofDuplicateField {
+  option (buf.validate.message).oneof = {
+    fields: [
+      "str_field",
+      "bool_field",
+      "str_field"
+    ]
+  };
+  string str_field = 1;
+  bool bool_field = 2;
+}
+
+message MessageOneofZeroFields {
+  option (buf.validate.message).oneof = {
+    fields: []
+  };
+  string str_field = 1;
+  bool bool_field = 2;
+}
+
+message MessageOneofUnsatisfiable {
+  bool a = 1;
+  bool b = 2;
+  bool c = 3;
+  option (buf.validate.message).oneof = {
+    fields: [
+      "a",
+      "b"
+    ]
+    required: true
+  };
+  option (buf.validate.message).oneof = {
+    fields: [
+      "b",
+      "c"
+    ]
+    required: true
+  };
+  option (buf.validate.message).oneof = {
+    fields: [
+      "a",
+      "c"
+    ]
+    required: true
+  };
 }
