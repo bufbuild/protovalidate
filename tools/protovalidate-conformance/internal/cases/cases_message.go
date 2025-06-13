@@ -201,6 +201,18 @@ func messageSuite() suites.Suite {
 				},
 			),
 		},
+		"oneof/multiple-fields/required/two-fields-set/invalid": {
+			Message: &cases.MessageOneofMultipleFieldsRequired{
+				StrField:  "test",
+				BoolField: true,
+			},
+			Expected: results.Violations(
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("only one of str_field, bool_field can be set"),
+				},
+			),
+		},
 		"oneof/multiple-shared-fields/required/valid": {
 			// String field which is common in both should satisfy both.
 			Message: &cases.MessageOneofMultipleSharedFields{
