@@ -238,7 +238,9 @@ func messageSuite() suites.Suite {
 		},
 		"oneof/ignore-override/valid": {
 			Message: &cases.MessageOneofIgnoreOverride{
-				StrField: "something else",
+				MsgField: &cases.TestMsg{
+					Const: "wrong value",
+				},
 			},
 			Expected: results.Success(true),
 		},

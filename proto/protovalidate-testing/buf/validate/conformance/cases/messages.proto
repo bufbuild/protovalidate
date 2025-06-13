@@ -199,13 +199,10 @@ message MessageOneofIgnoreUnpopulatedRequired {
 message MessageOneofIgnoreOverride {
   option (buf.validate.message).oneof = {
     fields: [
-      "str_field",
+      "msg_field",
       "bool_field"
     ]
   };
-  string str_field = 1 [(buf.validate.field) = {
-    string: {const: "never"}
-    ignore: IGNORE_ALWAYS
-  }];
+  TestMsg msg_field = 1 [(buf.validate.field).ignore = IGNORE_ALWAYS];
   bool bool_field = 2;
 }

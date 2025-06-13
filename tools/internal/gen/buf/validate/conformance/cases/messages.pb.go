@@ -1081,7 +1081,7 @@ func (x *MessageOneofIgnoreUnpopulatedRequired) GetBoolField() bool {
 
 type MessageOneofIgnoreOverride struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	StrField      string                 `protobuf:"bytes,1,opt,name=str_field,json=strField,proto3" json:"str_field,omitempty"`
+	MsgField      *TestMsg               `protobuf:"bytes,1,opt,name=msg_field,json=msgField,proto3" json:"msg_field,omitempty"`
 	BoolField     bool                   `protobuf:"varint,2,opt,name=bool_field,json=boolField,proto3" json:"bool_field,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1117,11 +1117,11 @@ func (*MessageOneofIgnoreOverride) Descriptor() ([]byte, []int) {
 	return file_buf_validate_conformance_cases_messages_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *MessageOneofIgnoreOverride) GetStrField() string {
+func (x *MessageOneofIgnoreOverride) GetMsgField() *TestMsg {
 	if x != nil {
-		return x.StrField
+		return x.MsgField
 	}
-	return ""
+	return nil
 }
 
 func (x *MessageOneofIgnoreOverride) GetBoolField() bool {
@@ -1270,13 +1270,12 @@ const file_buf_validate_conformance_cases_messages_proto_rawDesc = "" +
 	"bool_field\x18\x02 \x01(\bB\a\xbaH\x04j\x02\b\x01R\tboolField:\x1e\xbaH\x1b\"\x19\n" +
 	"\tstr_field\n" +
 	"\n" +
-	"bool_field\x10\x01\"\x87\x01\n" +
-	"\x1aMessageOneofIgnoreOverride\x12,\n" +
-	"\tstr_field\x18\x01 \x01(\tB\x0f\xbaH\f\xd8\x01\x03r\a\n" +
-	"\x05neverR\bstrField\x12\x1d\n" +
+	"bool_field\x10\x01\"\xa7\x01\n" +
+	"\x1aMessageOneofIgnoreOverride\x12L\n" +
+	"\tmsg_field\x18\x01 \x01(\v2'.buf.validate.conformance.cases.TestMsgB\x06\xbaH\x03\xd8\x01\x03R\bmsgField\x12\x1d\n" +
 	"\n" +
 	"bool_field\x18\x02 \x01(\bR\tboolField:\x1c\xbaH\x19\"\x17\n" +
-	"\tstr_field\n" +
+	"\tmsg_field\n" +
 	"\n" +
 	"bool_fieldB\xa4\x02\n" +
 	"\"com.buf.validate.conformance.casesB\rMessagesProtoP\x01ZSgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases\xa2\x02\x04BVCC\xaa\x02\x1eBuf.Validate.Conformance.Cases\xca\x02\x1eBuf\\Validate\\Conformance\\Cases\xe2\x02*Buf\\Validate\\Conformance\\Cases\\GPBMetadata\xea\x02!Buf::Validate::Conformance::Casesb\x06proto3"
@@ -1329,11 +1328,12 @@ var file_buf_validate_conformance_cases_messages_proto_depIdxs = []int32{
 	0,  // 5: buf.validate.conformance.cases.MessageRequired.val:type_name -> buf.validate.conformance.cases.TestMsg
 	0,  // 6: buf.validate.conformance.cases.MessageRequiredButOptional.val:type_name -> buf.validate.conformance.cases.TestMsg
 	0,  // 7: buf.validate.conformance.cases.MessageRequiredOneof.val:type_name -> buf.validate.conformance.cases.TestMsg
-	8,  // [8:8] is the sub-list for method output_type
-	8,  // [8:8] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	0,  // 8: buf.validate.conformance.cases.MessageOneofIgnoreOverride.msg_field:type_name -> buf.validate.conformance.cases.TestMsg
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_conformance_cases_messages_proto_init() }
