@@ -236,6 +236,12 @@ func messageSuite() suites.Suite {
 				},
 			),
 		},
+		"oneof/ignore-override/valid": {
+			Message: &cases.MessageOneofIgnoreOverride{
+				StrField: "something else",
+			},
+			Expected: results.Success(true),
+		},
 		"oneof/unknown-field/invalid": {
 			Message:  &cases.MessageOneofUnknownFieldName{},
 			Expected: results.CompilationError("field xxx not found in message buf.validate.conformance.cases.MessageOneofUnknownFieldName"),

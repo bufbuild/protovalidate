@@ -1079,6 +1079,58 @@ func (x *MessageOneofIgnoreUnpopulatedRequired) GetBoolField() bool {
 	return false
 }
 
+type MessageOneofIgnoreOverride struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StrField      string                 `protobuf:"bytes,1,opt,name=str_field,json=strField,proto3" json:"str_field,omitempty"`
+	BoolField     bool                   `protobuf:"varint,2,opt,name=bool_field,json=boolField,proto3" json:"bool_field,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MessageOneofIgnoreOverride) Reset() {
+	*x = MessageOneofIgnoreOverride{}
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MessageOneofIgnoreOverride) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MessageOneofIgnoreOverride) ProtoMessage() {}
+
+func (x *MessageOneofIgnoreOverride) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MessageOneofIgnoreOverride.ProtoReflect.Descriptor instead.
+func (*MessageOneofIgnoreOverride) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_messages_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *MessageOneofIgnoreOverride) GetStrField() string {
+	if x != nil {
+		return x.StrField
+	}
+	return ""
+}
+
+func (x *MessageOneofIgnoreOverride) GetBoolField() bool {
+	if x != nil {
+		return x.BoolField
+	}
+	return false
+}
+
 type MessageNone_NoneMsg struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1087,7 +1139,7 @@ type MessageNone_NoneMsg struct {
 
 func (x *MessageNone_NoneMsg) Reset() {
 	*x = MessageNone_NoneMsg{}
-	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[21]
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1099,7 +1151,7 @@ func (x *MessageNone_NoneMsg) String() string {
 func (*MessageNone_NoneMsg) ProtoMessage() {}
 
 func (x *MessageNone_NoneMsg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[21]
+	mi := &file_buf_validate_conformance_cases_messages_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1218,7 +1270,15 @@ const file_buf_validate_conformance_cases_messages_proto_rawDesc = "" +
 	"bool_field\x18\x02 \x01(\bB\a\xbaH\x04j\x02\b\x01R\tboolField:\x1e\xbaH\x1b\"\x19\n" +
 	"\tstr_field\n" +
 	"\n" +
-	"bool_field\x10\x01B\xa4\x02\n" +
+	"bool_field\x10\x01\"\x87\x01\n" +
+	"\x1aMessageOneofIgnoreOverride\x12,\n" +
+	"\tstr_field\x18\x01 \x01(\tB\x0f\xbaH\f\xd8\x01\x03r\a\n" +
+	"\x05neverR\bstrField\x12\x1d\n" +
+	"\n" +
+	"bool_field\x18\x02 \x01(\bR\tboolField:\x1c\xbaH\x19\"\x17\n" +
+	"\tstr_field\n" +
+	"\n" +
+	"bool_fieldB\xa4\x02\n" +
 	"\"com.buf.validate.conformance.casesB\rMessagesProtoP\x01ZSgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases\xa2\x02\x04BVCC\xaa\x02\x1eBuf.Validate.Conformance.Cases\xca\x02\x1eBuf\\Validate\\Conformance\\Cases\xe2\x02*Buf\\Validate\\Conformance\\Cases\\GPBMetadata\xea\x02!Buf::Validate::Conformance::Casesb\x06proto3"
 
 var (
@@ -1233,7 +1293,7 @@ func file_buf_validate_conformance_cases_messages_proto_rawDescGZIP() []byte {
 	return file_buf_validate_conformance_cases_messages_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_buf_validate_conformance_cases_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_buf_validate_conformance_cases_messages_proto_goTypes = []any{
 	(*TestMsg)(nil),                               // 0: buf.validate.conformance.cases.TestMsg
 	(*MessageNone)(nil),                           // 1: buf.validate.conformance.cases.MessageNone
@@ -1256,14 +1316,15 @@ var file_buf_validate_conformance_cases_messages_proto_goTypes = []any{
 	(*MessageOneofUnsatisfiable)(nil),             // 18: buf.validate.conformance.cases.MessageOneofUnsatisfiable
 	(*MessageOneofIgnoreUnpopulated)(nil),         // 19: buf.validate.conformance.cases.MessageOneofIgnoreUnpopulated
 	(*MessageOneofIgnoreUnpopulatedRequired)(nil), // 20: buf.validate.conformance.cases.MessageOneofIgnoreUnpopulatedRequired
-	(*MessageNone_NoneMsg)(nil),                   // 21: buf.validate.conformance.cases.MessageNone.NoneMsg
-	(*other_package.Embed)(nil),                   // 22: buf.validate.conformance.cases.other_package.Embed
+	(*MessageOneofIgnoreOverride)(nil),            // 21: buf.validate.conformance.cases.MessageOneofIgnoreOverride
+	(*MessageNone_NoneMsg)(nil),                   // 22: buf.validate.conformance.cases.MessageNone.NoneMsg
+	(*other_package.Embed)(nil),                   // 23: buf.validate.conformance.cases.other_package.Embed
 }
 var file_buf_validate_conformance_cases_messages_proto_depIdxs = []int32{
 	0,  // 0: buf.validate.conformance.cases.TestMsg.nested:type_name -> buf.validate.conformance.cases.TestMsg
-	21, // 1: buf.validate.conformance.cases.MessageNone.val:type_name -> buf.validate.conformance.cases.MessageNone.NoneMsg
+	22, // 1: buf.validate.conformance.cases.MessageNone.val:type_name -> buf.validate.conformance.cases.MessageNone.NoneMsg
 	0,  // 2: buf.validate.conformance.cases.Message.val:type_name -> buf.validate.conformance.cases.TestMsg
-	22, // 3: buf.validate.conformance.cases.MessageCrossPackage.val:type_name -> buf.validate.conformance.cases.other_package.Embed
+	23, // 3: buf.validate.conformance.cases.MessageCrossPackage.val:type_name -> buf.validate.conformance.cases.other_package.Embed
 	0,  // 4: buf.validate.conformance.cases.MessageSkip.val:type_name -> buf.validate.conformance.cases.TestMsg
 	0,  // 5: buf.validate.conformance.cases.MessageRequired.val:type_name -> buf.validate.conformance.cases.TestMsg
 	0,  // 6: buf.validate.conformance.cases.MessageRequiredButOptional.val:type_name -> buf.validate.conformance.cases.TestMsg
@@ -1290,7 +1351,7 @@ func file_buf_validate_conformance_cases_messages_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_messages_proto_rawDesc), len(file_buf_validate_conformance_cases_messages_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
