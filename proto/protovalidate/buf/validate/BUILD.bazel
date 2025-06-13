@@ -31,8 +31,7 @@ proto_library(
 
 buf_lint_test(
     name = "validate_proto_lint",
-    config = "//:buf.yaml",
-    module = "proto/protovalidate",
+    config = "//proto/protovalidate:buf.yaml",
     targets = [":validate_proto"],
 )
 
