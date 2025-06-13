@@ -443,7 +443,8 @@ type MessageRules struct {
 	//     unmarshalling completes.
 	//
 	// Note that adding a field to a `oneof` will also set the IGNORE_IF_UNPOPULATED on the fields. This means
-	// only the field that os set will be validated and the unset fields are not validated according to the field rules.
+	// only the field that is set will be validated and the unset fields are not validated according to the field rules.
+	// This behavior can be overridden by setting `ignore` against a field.
 	//
 	// ```proto
 	//
