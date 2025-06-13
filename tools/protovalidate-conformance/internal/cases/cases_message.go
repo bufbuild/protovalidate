@@ -219,6 +219,23 @@ func messageSuite() suites.Suite {
 				},
 			),
 		},
+		"oneof/implicit-ignore/valid": {
+			Message:  &cases.MessageOneofIgnoreUnpopulated{},
+			Expected: results.Success(true),
+		},
+		"oneof/implicit-ignore/required/valid": {
+			Message:  &cases.MessageOneofIgnoreUnpopulatedRequired{StrField: "test"},
+			Expected: results.Success(true),
+		},
+		"oneof/implicit-ignore/required/invalid": {
+			Message: &cases.MessageOneofIgnoreUnpopulatedRequired{},
+			Expected: results.Violations(
+				&validate.Violation{
+					RuleId:  proto.String("message.oneof"),
+					Message: proto.String("one of str_field, bool_field must be set"),
+				},
+			),
+		},
 		"oneof/unknown-field/invalid": {
 			Message:  &cases.MessageOneofUnknownFieldName{},
 			Expected: results.CompilationError("field xxx not found in message buf.validate.conformance.cases.MessageOneofUnknownFieldName"),
