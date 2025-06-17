@@ -271,7 +271,7 @@ message FieldRules {
   // To learn which fields track presence, see the
   // [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
   //
-  // Note: While field rules can be applied to repeated items, map keys and map
+  // Note: While field rules can be applied to repeated items, map keys, and map
   // values, the elements are always considered to be set. Consequently,
   // specifying `repeated.items.required` is redundant.
   optional bool required = 25;
