@@ -130,7 +130,7 @@ const (
 	// For fields that don't track presence, the field's value determines
 	// whether the field is set and rules apply:
 	//
-	//   - For string and bytes bytes, and empty value is ignored.
+	//   - For string and bytes, an empty value is ignored.
 	//   - For bool, false is ignored.
 	//   - For numeric types, zero is ignored.
 	//   - For enums, the first defined enum value is ignored.
@@ -6135,7 +6135,7 @@ type RepeatedRules struct {
 	//
 	// ```
 	//
-	// Note that the `required` rules does not apply. Repeated items
+	// Note that the `required` rule does not apply. Repeated items
 	// cannot be unset.
 	Items           *FieldRules `protobuf:"bytes,4,opt,name=items" json:"items,omitempty"`
 	extensionFields protoimpl.ExtensionFields
