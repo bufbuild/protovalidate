@@ -4324,7 +4324,7 @@ message RepeatedRules {
   // }
   // ```
   //
-  // Note that the `required` rules does not apply. Repeated items
+  // Note that the `required` rule does not apply. Repeated items
   // cannot be unset.
   optional FieldRules items = 4;
 
