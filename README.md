@@ -22,7 +22,7 @@ message User {
   uint32 age = 2 [(buf.validate.field).uint32.lte = 150]; // We can only hope.
   string email = 3 [(buf.validate.field).string.email = true];
   string first_name = 4 [(buf.validate.field).string.max_len = 64];
-  string last_name = 4 [(buf.validate.field).string.max_len = 64];
+  string last_name = 5 [(buf.validate.field).string.max_len = 64];
 
   option (buf.validate.message).cel = {
     id: "first_name_requires_last_name"
