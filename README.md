@@ -32,7 +32,7 @@ message User {
 }
 ```
 
-## Supported Languages
+## Supported languages
 
 To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate], or go directly to the repository for your language of choice:
 
