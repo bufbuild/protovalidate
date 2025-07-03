@@ -21,10 +21,10 @@ Protovalidate CEL expressions can use the entire CEL standard library, including
 - CEL's standard [macros](https://github.com/google/cel-spec/blob/v0.8.0/doc/langdef.md#macros)
 - CEL's [extended string function library](https://pkg.go.dev/github.com/google/cel-go/ext#Strings)
 
-[protovalidate]: .https://protovalidate.com/
+[protovalidate]: https://protovalidate.com/
 [cel]: https://cel.dev
-[standard-rules]: .https://protovalidate.com/schemas/standard-rules/
-[custom-rules]: .https://protovalidate.com/schemas/custom-rules/
-[predefined-rules]: .https://protovalidate.com/schemas/predefined-rules/
-[cel-extensions]: .https://protovalidate.com/reference/cel_extensions/
-[advanced-cel]: .https://protovalidate.com/cel/
+[standard-rules]: https://protovalidate.com/schemas/standard-rules/
+[custom-rules]: https://protovalidate.com/schemas/custom-rules/
+[predefined-rules]: https://protovalidate.com/schemas/predefined-rules/
+[cel-extensions]: https://protovalidate.com/reference/cel_extensions/
+[advanced-cel]: https://protovalidate.com/cel/

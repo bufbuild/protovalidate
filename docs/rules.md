@@ -5,4 +5,4 @@
 This page has moved to [protovalidate.com][protovalidate].
 
 [buf]: https://buf.build
-[protovalidate]: .https://protovalidate.com/
+[protovalidate]: https://protovalidate.com/
