@@ -2,8 +2,8 @@
 
 # Documentation
 
-This page has moved to [Protovalidate's documentation][protovalidate] at [Buf][buf].
+This page has moved to [protovalidate.com][protovalidate].
 
 [buf]: https://buf.build
-[protovalidate]: https://buf.build/docs/protovalidate/
-[violation-reference]: https://buf.build/docs/reference/protovalidate/violations/
+[protovalidate]: .https://protovalidate.com/
+[violation-reference]: .https://protovalidate.com/reference/violations/
