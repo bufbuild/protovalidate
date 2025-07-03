@@ -172,7 +172,7 @@ const (
 	// ```proto
 	//
 	//	message MyMessage {
-	//	  // The field's rules will always be ignored, including any validation's
+	//	  // The field's rules will always be ignored, including any validations
 	//	  // on value's fields.
 	//	  MyOtherMessage value = 1 [
 	//	    (buf.validate.field).ignore = IGNORE_ALWAYS];
