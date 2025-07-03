@@ -6,5 +6,5 @@ Migrating from `protoc-gen-validate` to `protovalidate` should be safe, incremen
 
 Visit [Buf's documentation][migrate] to learn about automated and manual migrations.
 
-[migrate]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/
+[migrate]: https://protovalidate.com/migration-guides/migrate-from-protoc-gen-validate/
 
