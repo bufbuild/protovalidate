@@ -2,8 +2,8 @@
 
 # Standard rules
 
-This page has moved to [standard rules][standard-rules] within [Protovalidate's documentation][protovalidate] at [Buf][buf].
+This page has moved to [standard rules][standard-rules] at [protovalidate.com][protovalidate].
 
 [buf]: https://buf.build
-[protovalidate]: https://buf.build/docs/protovalidate/
-[standard-rules]: https://buf.build/docs/protovalidate/schemas/standard-rules/
+[protovalidate]: https://protovalidate.com/
+[standard-rules]: https://protovalidate.com/schemas/standard-rules/
