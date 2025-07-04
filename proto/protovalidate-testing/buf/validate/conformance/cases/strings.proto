@@ -203,6 +203,10 @@ message StringHttpHeaderValue {
   string val = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_VALUE];
 }
 
+message StringBic {
+  string val = 1 [(buf.validate.field).string.bic = true];
+}
+
 message StringHttpHeaderNameLoose {
   string val = 1 [(buf.validate.field).string = {
     well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
