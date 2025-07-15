@@ -33,14 +33,6 @@ func messageSuite() suites.Suite {
 			Message:  &cases.MessageNone{},
 			Expected: results.Success(true),
 		},
-		"disabled/valid": {
-			Message:  &cases.MessageDisabled{Val: 456},
-			Expected: results.Success(true),
-		},
-		"disabled/invalid-field/valid": {
-			Message:  &cases.MessageDisabled{Val: 0},
-			Expected: results.Success(true),
-		},
 		"field/valid": {
 			Message:  &cases.Message{Val: &cases.TestMsg{Const: "foo"}},
 			Expected: results.Success(true),
