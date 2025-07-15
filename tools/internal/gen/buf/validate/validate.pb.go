@@ -97,54 +97,21 @@ const (
 	// To learn which fields track presence, see the
 	// [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
 	Ignore_IGNORE_UNSPECIFIED Ignore = 0
-	// Ignore rules if the field is unset, also for fields that don't track
-	// presence.
+	// Ignore rules if the field is unset, or set to the zero value.
 	//
-	// In proto3, repeated fields, map fields, and fields with scalar types don't
-	// track presence. Consequently, the following fields are only validated if
-	// they are set:
-	//
-	// ```proto
-	// syntax="proto3";
-	//
-	//	message RulesApplyIfSet {
-	//	  // `string.email` is ignored for the empty string.
-	//	  string link = 1 [
-	//	    (buf.validate.field).string.email = true,
-	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
-	//	  ];
-	//	  // `int32.gte` is ignored for the zero value.
-	//	  int32 age = 2 [
-	//	    (buf.validate.field).int32.gte = 21,
-	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
-	//	  ];
-	//	  // `repeated.min_items` is ignored if the list is empty.
-	//	  repeated string labels = 3 [
-	//	    (buf.validate.field).repeated.min_items = 3,
-	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
-	//	  ];
-	//	}
-	//
-	// ```
-	//
-	// For fields that don't track presence, the field's value determines
-	// whether the field is set and rules apply:
-	//
-	//   - For string and bytes, an empty value is ignored.
-	//   - For bool, false is ignored.
-	//   - For numeric types, zero is ignored.
-	//   - For enums, the first defined enum value is ignored.
-	//   - For repeated fields, an empty list is ignored.
-	//   - For map fields, an empty map is ignored.
-	//   - For message fields, absence of the message (typically a null-value) is
-	//     ignored.
+	// The zero value depends on the field type:
+	// - For strings, the zero value is the empty string.
+	// - For bytes, the zero value is empty bytes.
+	// - For bool, the zero value is false.
+	// - For numeric types, the zero value is zero.
+	// - For enums, the zero value is the first defined enum value.
+	// - For repeated fields, the zero is an empty list.
+	// - For map fields, the zero is an empty map.
+	// - For message fields, absence of the message (typically a null-value) is considered zero value.
 	//
 	// For fields that track presence (e.g. adding the `optional` label in proto3),
-	// behavior is the same as the default `IGNORE_UNSPECIFIED`.
-	//
-	// To learn which fields track presence, see the
-	// [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
-	Ignore_IGNORE_IF_UNPOPULATED Ignore = 1
+	// this a no-op and behavior is the same as the default `IGNORE_UNSPECIFIED`.
+	Ignore_IGNORE_IF_ZERO_VALUE Ignore = 1
 	// Always ignore rules, including the `required` rule.
 	//
 	// This is useful for ignoring the rules of a referenced message, or to
@@ -167,13 +134,13 @@ const (
 var (
 	Ignore_name = map[int32]string{
 		0: "IGNORE_UNSPECIFIED",
-		1: "IGNORE_IF_UNPOPULATED",
+		1: "IGNORE_IF_ZERO_VALUE",
 		3: "IGNORE_ALWAYS",
 	}
 	Ignore_value = map[string]int32{
-		"IGNORE_UNSPECIFIED":    0,
-		"IGNORE_IF_UNPOPULATED": 1,
-		"IGNORE_ALWAYS":         3,
+		"IGNORE_UNSPECIFIED":   0,
+		"IGNORE_IF_ZERO_VALUE": 1,
+		"IGNORE_ALWAYS":        3,
 	}
 )
 
@@ -403,7 +370,7 @@ type MessageRules struct {
 	//     silently ignored when unmarshalling, with only the last field being set when
 	//     unmarshalling completes.
 	//
-	// Note that adding a field to a `oneof` will also set the IGNORE_IF_UNPOPULATED on the fields. This means
+	// Note that adding a field to a `oneof` will also set the IGNORE_IF_ZERO_VALUE on the fields. This means
 	// only the field that is set will be validated and the unset fields are not validated according to the field rules.
 	// This behavior can be overridden by setting `ignore` against a field.
 	//
@@ -8463,11 +8430,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\n" +
 	"string_key\x18\n" +
 	" \x01(\tH\x00R\tstringKeyB\v\n" +
-	"\tsubscript*\x8b\x01\n" +
+	"\tsubscript*\xa1\x01\n" +
 	"\x06Ignore\x12\x16\n" +
-	"\x12IGNORE_UNSPECIFIED\x10\x00\x12\x19\n" +
-	"\x15IGNORE_IF_UNPOPULATED\x10\x01\x12\x11\n" +
-	"\rIGNORE_ALWAYS\x10\x03\"\x04\b\x02\x10\x02*\fIGNORE_EMPTY*\x0eIGNORE_DEFAULT*\x17IGNORE_IF_DEFAULT_VALUE*n\n" +
+	"\x12IGNORE_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14IGNORE_IF_ZERO_VALUE\x10\x01\x12\x11\n" +
+	"\rIGNORE_ALWAYS\x10\x03\"\x04\b\x02\x10\x02*\fIGNORE_EMPTY*\x0eIGNORE_DEFAULT*\x17IGNORE_IF_DEFAULT_VALUE*\x15IGNORE_IF_UNPOPULATED*n\n" +
 	"\n" +
 	"KnownRegex\x12\x1b\n" +
 	"\x17KNOWN_REGEX_UNSPECIFIED\x10\x00\x12 \n" +
