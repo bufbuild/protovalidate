@@ -7596,9 +7596,9 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x03any\x18\x14 \x01(\v2\x16.buf.validate.AnyRulesH\x00R\x03any\x129\n" +
 	"\bduration\x18\x15 \x01(\v2\x1b.buf.validate.DurationRulesH\x00R\bduration\x12<\n" +
 	"\ttimestamp\x18\x16 \x01(\v2\x1c.buf.validate.TimestampRulesH\x00R\ttimestampB\x06\n" +
-	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"X\n" +
+	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"Z\n" +
 	"\x0fPredefinedRules\x12$\n" +
-	"\x03cel\x18\x01 \x03(\v2\x12.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\x13skippedignore_empty\"\x90\x18\n" +
+	"\x03cel\x18\x01 \x03(\v2\x12.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"\x90\x18\n" +
 	"\n" +
 	"FloatRules\x12\x8a\x01\n" +
 	"\x05const\x18\x01 \x01(\x02Bt\xc2Hq\n" +
@@ -8505,12 +8505,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\n" +
 	"string_key\x18\n" +
 	" \x01(\tH\x00R\tstringKeyB\v\n" +
-	"\tsubscript*\x87\x01\n" +
+	"\tsubscript*\x89\x01\n" +
 	"\x06Ignore\x12\x16\n" +
 	"\x12IGNORE_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15IGNORE_IF_UNPOPULATED\x10\x01\x12\x1b\n" +
 	"\x17IGNORE_IF_DEFAULT_VALUE\x10\x02\x12\x11\n" +
-	"\rIGNORE_ALWAYS\x10\x03*\x1aIGNORE_EMPTYIGNORE_DEFAULT*n\n" +
+	"\rIGNORE_ALWAYS\x10\x03*\fIGNORE_EMPTY*\x0eIGNORE_DEFAULT*n\n" +
 	"\n" +
 	"KnownRegex\x12\x1b\n" +
 	"\x17KNOWN_REGEX_UNSPECIFIED\x10\x00\x12 \n" +

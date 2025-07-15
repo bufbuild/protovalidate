@@ -343,10 +343,7 @@ message PredefinedRules {
   repeated Rule cel = 1;
 
   reserved 24, 26;
-  reserved
-    "skipped"
-    "ignore_empty"
-;
+  reserved "skipped", "ignore_empty";
 }
 
 // Specifies how `FieldRules.ignore` behaves, depending on the field's value, and
@@ -488,10 +485,7 @@ enum Ignore {
   // ```
   IGNORE_ALWAYS = 3;
 
-  reserved
-    "IGNORE_EMPTY"
-    "IGNORE_DEFAULT"
-;
+  reserved "IGNORE_EMPTY", "IGNORE_DEFAULT";
 }
 
 // FloatRules describes the rules applied to `float` values. These
