@@ -109,17 +109,6 @@ message Rule {
 // MessageRules represents validation rules that are applied to the entire message.
 // It includes disabling options and a list of Rule messages representing Common Expression Language (CEL) validation rules.
 message MessageRules {
-  // `disabled` is a boolean flag that, when set to true, nullifies any validation rules for this message.
-  // This includes any fields within the message that would otherwise support validation.
-  //
-  // ```proto
-  // message MyMessage {
-  //   // validation will be bypassed for this message
-  //   option (buf.validate.message).disabled = true;
-  // }
-  // ```
-  optional bool disabled = 1;
-
   // `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
   // These rules are written in Common Expression Language (CEL) syntax. For more information,
   // [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
@@ -173,6 +162,9 @@ message MessageRules {
   // }
   // ```
   repeated MessageOneofRule oneof = 4;
+
+  reserved 1;
+  reserved "deleted";
 }
 
 message MessageOneofRule {
