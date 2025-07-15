@@ -136,54 +136,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
-		"proto2/scalar/optional/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto2ScalarOptionalIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/optional/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2ScalarOptionalIgnoreDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/optional/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2ScalarOptionalIgnoreDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/scalar/optional/ignore_default/valid/default": suites.Case{
-			Message:  &cases.Proto2ScalarOptionalIgnoreDefault{Val: proto.Int32(0)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/optional_with_default/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto2ScalarOptionalIgnoreDefaultWithDefault{},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/optional_with_default/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2ScalarOptionalIgnoreDefaultWithDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/optional_with_default/ignore_default/valid/default": suites.Case{
-			Message:  &cases.Proto2ScalarOptionalIgnoreDefaultWithDefault{Val: proto.Int32(-42)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/optional_with_default/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2ScalarOptionalIgnoreDefaultWithDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/scalar/optional_with_default/ignore_default/invalid/zero": suites.Case{
-			Message: &cases.Proto2ScalarOptionalIgnoreDefaultWithDefault{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
 		"proto2/scalar/optional/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto2ScalarOptionalIgnoreAlways{},
 			Expected: results.Success(true),
@@ -316,46 +268,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
-		"proto2/scalar/required/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2ScalarRequiredIgnoreDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/required/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2ScalarRequiredIgnoreDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/scalar/required/ignore_default/valid/default": suites.Case{
-			Message:  &cases.Proto2ScalarRequiredIgnoreDefault{Val: proto.Int32(0)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/required_with_default/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2ScalarRequiredIgnoreDefaultWithDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/required_with_default/ignore_default/valid/default": suites.Case{
-			Message:  &cases.Proto2ScalarRequiredIgnoreDefaultWithDefault{Val: proto.Int32(-42)},
-			Expected: results.Success(true),
-		},
-		"proto2/scalar/required_with_default/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2ScalarRequiredIgnoreDefaultWithDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/scalar/required_with_default/ignore_default/invalid/zero": suites.Case{
-			Message: &cases.Proto2ScalarRequiredIgnoreDefaultWithDefault{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
 		"proto2/scalar/required/ignore_always/valid/populated_valid_value": suites.Case{
 			Message:  &cases.Proto2ScalarRequiredIgnoreAlways{Val: proto.Int32(123)},
 			Expected: results.Success(true),
@@ -445,32 +357,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("proto2.message.ignore.empty"),
 			}),
 		},
-		"proto2/message/optional/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto2MessageOptionalIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto2/message/optional/ignore_default/valid/populated": suites.Case{
-			Message: &cases.Proto2MessageOptionalIgnoreDefault{
-				Val: &cases.Proto2MessageOptionalIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto2/message/optional/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2MessageOptionalIgnoreDefault{
-				Val: &cases.Proto2MessageOptionalIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto2.message.ignore.empty"),
-			}),
-		},
-		"proto2/message/optional/ignore_default/valid/default": suites.Case{
-			Message: &cases.Proto2MessageOptionalIgnoreDefault{
-				Val: &cases.Proto2MessageOptionalIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
-		},
 		"proto2/message/optional/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto2MessageOptionalIgnoreAlways{},
 			Expected: results.Success(true),
@@ -544,28 +430,6 @@ func ignoreSuite() suites.Suite {
 				Rule:   results.FieldPath("cel[0]"),
 				RuleId: proto.String("proto2.message.ignore.empty"),
 			}),
-		},
-		"proto2/message/required/ignore_default/valid/populated": suites.Case{
-			Message: &cases.Proto2MessageRequiredIgnoreDefault{
-				Val: &cases.Proto2MessageRequiredIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto2/message/required/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2MessageRequiredIgnoreDefault{
-				Val: &cases.Proto2MessageRequiredIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto2.message.ignore.empty"),
-			}),
-		},
-		"proto2/message/required/ignore_default/valid/default": suites.Case{
-			Message: &cases.Proto2MessageRequiredIgnoreDefault{
-				Val: &cases.Proto2MessageRequiredIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
 		},
 		"proto2/message/required/ignore_always/valid/populated_valid_value": suites.Case{
 			Message: &cases.Proto2MessageRequiredIgnoreAlways{
@@ -725,68 +589,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
-		"proto2/oneof/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto2OneofIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto2/oneof/ignore_default/valid/populated": suites.Case{
-			Message: &cases.Proto2OneofIgnoreDefault{
-				O: &cases.Proto2OneofIgnoreDefault_Val{Val: 123},
-			},
-			Expected: results.Success(true),
-		},
-		"proto2/oneof/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2OneofIgnoreDefault{
-				O: &cases.Proto2OneofIgnoreDefault_Val{Val: -123},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/oneof/ignore_default/valid/default": suites.Case{
-			Message: &cases.Proto2OneofIgnoreDefault{
-				O: &cases.Proto2OneofIgnoreDefault_Val{},
-			},
-			Expected: results.Success(true),
-		},
-		"proto2/oneof_with_default/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto2OneofIgnoreDefaultWithDefault{},
-			Expected: results.Success(true),
-		},
-		"proto2/oneof_with_default/ignore_default/valid/populated": suites.Case{
-			Message: &cases.Proto2OneofIgnoreDefaultWithDefault{
-				O: &cases.Proto2OneofIgnoreDefaultWithDefault_Val{Val: 123},
-			},
-			Expected: results.Success(true),
-		},
-		"proto2/oneof_with_default/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2OneofIgnoreDefaultWithDefault{
-				O: &cases.Proto2OneofIgnoreDefaultWithDefault_Val{Val: -123},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/oneof_with_default/ignore_default/valid/default": suites.Case{
-			Message: &cases.Proto2OneofIgnoreDefaultWithDefault{
-				O: &cases.Proto2OneofIgnoreDefaultWithDefault_Val{Val: -42},
-			},
-			Expected: results.Success(true),
-		},
-		"proto2/oneof_with_default/ignore_default/invalid/zero": suites.Case{
-			Message: &cases.Proto2OneofIgnoreDefaultWithDefault{
-				O: &cases.Proto2OneofIgnoreDefaultWithDefault_Val{},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
 		"proto2/oneof/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto2OneofIgnoreAlways{},
 			Expected: results.Success(true),
@@ -873,22 +675,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto2RepeatedIgnoreEmpty{Val: []int32{1, 2, 3}},
 			Expected: results.Success(true),
 		},
-		"proto2/repeated/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto2RepeatedIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto2/repeated/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2RepeatedIgnoreDefault{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("repeated.min_items"),
-				RuleId: proto.String("repeated.min_items"),
-			}),
-		},
-		"proto2/repeated/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2RepeatedIgnoreDefault{Val: []int32{1, 2, 3}},
-			Expected: results.Success(true),
-		},
 		"proto2/repeated/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto2RepeatedIgnoreAlways{},
 			Expected: results.Success(true),
@@ -935,22 +721,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto2/map/ignore_empty/valid/populated": suites.Case{
 			Message:  &cases.Proto2MapIgnoreEmpty{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
-			Expected: results.Success(true),
-		},
-		"proto2/map/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto2MapIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto2/map/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2MapIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("map.min_pairs"),
-				RuleId: proto.String("map.min_pairs"),
-			}),
-		},
-		"proto2/map/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2MapIgnoreDefault{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
 			Expected: results.Success(true),
 		},
 		"proto2/map/ignore_always/valid/unpopulated": suites.Case{
@@ -1001,22 +771,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto2RepeatedItemIgnoreEmpty{Val: []int32{0}},
 			Expected: results.Success(true),
 		},
-		"proto2/repeated/items/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2RepeatedItemIgnoreDefault{Val: []int32{1}},
-			Expected: results.Success(true),
-		},
-		"proto2/repeated/items/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2RepeatedItemIgnoreDefault{Val: []int32{-42}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[0]"),
-				Rule:   results.FieldPath("repeated.items.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/repeated/items/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.Proto2RepeatedItemIgnoreDefault{Val: []int32{0}},
-			Expected: results.Success(true),
-		},
 		"proto2/repeated/items/ignore_always/valid/populated_valid_value": suites.Case{
 			Message:  &cases.Proto2RepeatedItemIgnoreAlways{Val: []int32{1}},
 			Expected: results.Success(true),
@@ -1065,22 +819,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto2MapKeyIgnoreEmpty{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
-		"proto2/map/keys/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2MapKeyIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Success(true),
-		},
-		"proto2/map/keys/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2MapKeyIgnoreDefault{Val: map[int32]int32{-42: -42}},
-			Expected: results.Violations(&validate.Violation{
-				Field: results.FieldPath("val[-42]"), ForKey: proto.Bool(true),
-				Rule:   results.FieldPath("map.keys.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/map/keys/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.Proto2MapKeyIgnoreDefault{Val: map[int32]int32{0: 0}},
-			Expected: results.Success(true),
-		},
 		"proto2/map/keys/ignore_always/valid/populated_valid_value": suites.Case{
 			Message:  &cases.Proto2MapKeyIgnoreAlways{Val: map[int32]int32{1: 1}},
 			Expected: results.Success(true),
@@ -1127,22 +865,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto2/map/values/ignore_empty/valid/zero": suites.Case{
 			Message:  &cases.Proto2MapValueIgnoreEmpty{Val: map[int32]int32{0: 0}},
-			Expected: results.Success(true),
-		},
-		"proto2/map/values/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto2MapValueIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Success(true),
-		},
-		"proto2/map/values/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto2MapValueIgnoreDefault{Val: map[int32]int32{-42: -42}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[-42]"),
-				Rule:   results.FieldPath("map.values.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto2/map/values/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.Proto2MapValueIgnoreDefault{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
 		"proto2/map/values/ignore_always/valid/populated_valid_value": suites.Case{
@@ -1205,26 +927,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
-		"proto3/scalar/optional/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto3ScalarOptionalIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto3/scalar/optional/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto3ScalarOptionalIgnoreDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto3/scalar/optional/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3ScalarOptionalIgnoreDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto3/scalar/optional/ignore_default/valid/default": suites.Case{
-			Message:  &cases.Proto3ScalarOptionalIgnoreDefault{Val: proto.Int32(0)},
-			Expected: results.Success(true),
-		},
 		"proto3/scalar/optional/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto3ScalarOptionalIgnoreAlways{},
 			Expected: results.Success(true),
@@ -1275,22 +977,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto3/scalar/ignore_empty/valid/default": suites.Case{
 			Message:  &cases.Proto3ScalarIgnoreEmpty{Val: 0},
-			Expected: results.Success(true),
-		},
-		"proto3/scalar/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto3ScalarIgnoreDefault{Val: 123},
-			Expected: results.Success(true),
-		},
-		"proto3/scalar/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3ScalarIgnoreDefault{Val: -123},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto3/scalar/ignore_default/valid/default": suites.Case{
-			Message:  &cases.Proto3ScalarIgnoreDefault{Val: 0},
 			Expected: results.Success(true),
 		},
 		"proto3/scalar/ignore_always/valid/populated_valid_value": suites.Case{
@@ -1364,32 +1050,6 @@ func ignoreSuite() suites.Suite {
 				Rule:   results.FieldPath("cel[0]"),
 				RuleId: proto.String("proto3.message.ignore.empty"),
 			}),
-		},
-		"proto3/message/optional/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto3MessageOptionalIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto3/message/optional/ignore_default/valid/populated": suites.Case{
-			Message: &cases.Proto3MessageOptionalIgnoreDefault{
-				Val: &cases.Proto3MessageOptionalIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto3/message/optional/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3MessageOptionalIgnoreDefault{
-				Val: &cases.Proto3MessageOptionalIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto3.message.ignore.empty"),
-			}),
-		},
-		"proto3/message/optional/ignore_default/valid/default": suites.Case{
-			Message: &cases.Proto3MessageOptionalIgnoreDefault{
-				Val: &cases.Proto3MessageOptionalIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
 		},
 		"proto3/message/optional/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto3MessageOptionalIgnoreAlways{},
@@ -1465,28 +1125,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("proto3.message.ignore.empty"),
 			}),
 		},
-		"proto3/message/ignore_default/valid/populated": suites.Case{
-			Message: &cases.Proto3MessageIgnoreDefault{
-				Val: &cases.Proto3MessageIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto3/message/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3MessageIgnoreDefault{
-				Val: &cases.Proto3MessageIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto3.message.ignore.empty"),
-			}),
-		},
-		"proto3/message/ignore_default/valid/default": suites.Case{
-			Message: &cases.Proto3MessageIgnoreDefault{
-				Val: &cases.Proto3MessageIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
-		},
 		"proto3/oneof/ignore_unspecified/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto3OneofIgnoreUnspecified{},
 			Expected: results.Success(true),
@@ -1547,32 +1185,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
-		"proto3/oneof/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto3OneofIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto3/oneof/ignore_default/valid/populated": suites.Case{
-			Message: &cases.Proto3OneofIgnoreDefault{
-				O: &cases.Proto3OneofIgnoreDefault_Val{Val: 123},
-			},
-			Expected: results.Success(true),
-		},
-		"proto3/oneof/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3OneofIgnoreDefault{
-				O: &cases.Proto3OneofIgnoreDefault_Val{Val: -123},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto3/oneof/ignore_default/valid/default": suites.Case{
-			Message: &cases.Proto3OneofIgnoreDefault{
-				O: &cases.Proto3OneofIgnoreDefault_Val{},
-			},
-			Expected: results.Success(true),
-		},
 		"proto3/oneof/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto3OneofIgnoreAlways{},
 			Expected: results.Success(true),
@@ -1631,22 +1243,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto3RepeatedIgnoreEmpty{Val: []int32{1, 2, 3}},
 			Expected: results.Success(true),
 		},
-		"proto3/repeated/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto3RepeatedIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto3/repeated/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3RepeatedIgnoreDefault{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("repeated.min_items"),
-				RuleId: proto.String("repeated.min_items"),
-			}),
-		},
-		"proto3/repeated/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto3RepeatedIgnoreDefault{Val: []int32{1, 2, 3}},
-			Expected: results.Success(true),
-		},
 		"proto3/repeated/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.Proto3RepeatedIgnoreAlways{},
 			Expected: results.Success(true),
@@ -1693,22 +1289,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto3/map/ignore_empty/valid/populated": suites.Case{
 			Message:  &cases.Proto3MapIgnoreEmpty{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
-			Expected: results.Success(true),
-		},
-		"proto3/map/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.Proto3MapIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto3/map/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3MapIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("map.min_pairs"),
-				RuleId: proto.String("map.min_pairs"),
-			}),
-		},
-		"proto3/map/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto3MapIgnoreDefault{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
 			Expected: results.Success(true),
 		},
 		"proto3/map/ignore_always/valid/unpopulated": suites.Case{
@@ -1759,22 +1339,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto3RepeatedItemIgnoreEmpty{Val: []int32{0}},
 			Expected: results.Success(true),
 		},
-		"proto3/repeated/items/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto3RepeatedItemIgnoreDefault{Val: []int32{1}},
-			Expected: results.Success(true),
-		},
-		"proto3/repeated/items/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3RepeatedItemIgnoreDefault{Val: []int32{-42}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[0]"),
-				Rule:   results.FieldPath("repeated.items.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto3/repeated/items/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.Proto3RepeatedItemIgnoreDefault{Val: []int32{0}},
-			Expected: results.Success(true),
-		},
 		"proto3/repeated/items/ignore_always/valid/populated_valid_value": suites.Case{
 			Message:  &cases.Proto3RepeatedItemIgnoreAlways{Val: []int32{1}},
 			Expected: results.Success(true),
@@ -1823,22 +1387,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.Proto3MapKeyIgnoreEmpty{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
-		"proto3/map/keys/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto3MapKeyIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Success(true),
-		},
-		"proto3/map/keys/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3MapKeyIgnoreDefault{Val: map[int32]int32{-42: -42}},
-			Expected: results.Violations(&validate.Violation{
-				Field: results.FieldPath("val[-42]"), ForKey: proto.Bool(true),
-				Rule:   results.FieldPath("map.keys.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto3/map/keys/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.Proto3MapKeyIgnoreDefault{Val: map[int32]int32{0: 0}},
-			Expected: results.Success(true),
-		},
 		"proto3/map/keys/ignore_always/valid/populated_valid_value": suites.Case{
 			Message:  &cases.Proto3MapKeyIgnoreAlways{Val: map[int32]int32{1: 1}},
 			Expected: results.Success(true),
@@ -1885,22 +1433,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto3/map/values/ignore_empty/valid/zero": suites.Case{
 			Message:  &cases.Proto3MapValueIgnoreEmpty{Val: map[int32]int32{0: 0}},
-			Expected: results.Success(true),
-		},
-		"proto3/map/values/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.Proto3MapValueIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Success(true),
-		},
-		"proto3/map/values/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.Proto3MapValueIgnoreDefault{Val: map[int32]int32{-42: -42}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[-42]"),
-				Rule:   results.FieldPath("map.values.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto3/map/values/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.Proto3MapValueIgnoreDefault{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
 		"proto3/map/values/ignore_always/valid/populated_valid_value": suites.Case{
@@ -2027,54 +1559,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
-		"proto/2023/scalar/explicit_presence/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsScalarExplicitPresenceIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/explicit_presence/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsScalarExplicitPresenceIgnoreDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/explicit_presence/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsScalarExplicitPresenceIgnoreDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/scalar/explicit_presence/ignore_default/valid/default": suites.Case{
-			Message:  &cases.EditionsScalarExplicitPresenceIgnoreDefault{Val: proto.Int32(0)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/explicit_presence_with_default/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsScalarExplicitPresenceIgnoreDefaultWithDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/explicit_presence_with_default/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsScalarExplicitPresenceIgnoreDefaultWithDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/explicit_presence_with_default/ignore_default/valid/default": suites.Case{
-			Message:  &cases.EditionsScalarExplicitPresenceIgnoreDefaultWithDefault{Val: proto.Int32(-42)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/explicit_presence_with_default/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsScalarExplicitPresenceIgnoreDefaultWithDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/scalar/explicit_presence_with_default/ignore_default/invalid/zero": suites.Case{
-			Message: &cases.EditionsScalarExplicitPresenceIgnoreDefaultWithDefault{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
 		"proto/2023/scalar/explicit_presence/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.EditionsScalarExplicitPresenceIgnoreAlways{},
 			Expected: results.Success(true),
@@ -2145,22 +1629,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto/2023/scalar/implicit_presence/ignore_empty/valid/default": suites.Case{
 			Message:  &cases.EditionsScalarImplicitPresenceIgnoreEmpty{Val: 0},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/implicit_presence/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsScalarImplicitPresenceIgnoreDefault{Val: 123},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/implicit_presence/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsScalarImplicitPresenceIgnoreDefault{Val: -123},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/scalar/implicit_presence/ignore_default/valid/default": suites.Case{
-			Message:  &cases.EditionsScalarImplicitPresenceIgnoreDefault{Val: 0},
 			Expected: results.Success(true),
 		},
 		"proto/2023/scalar/implicit_presence/ignore_always/valid/populated_valid_value": suites.Case{
@@ -2265,46 +1733,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto/2023/scalar/required_with_default/ignore_empty/invalid/zero": suites.Case{
 			Message: &cases.EditionsScalarLegacyRequiredIgnoreEmptyWithDefault{Val: proto.Int32(0)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/scalar/legacy_required/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsScalarLegacyRequiredIgnoreDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/legacy_required/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsScalarLegacyRequiredIgnoreDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/scalar/legacy_required/ignore_default/valid/default": suites.Case{
-			Message:  &cases.EditionsScalarLegacyRequiredIgnoreDefault{Val: proto.Int32(0)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/required_with_default/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsScalarLegacyRequiredIgnoreDefaultWithDefault{Val: proto.Int32(123)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/required_with_default/ignore_default/valid/default": suites.Case{
-			Message:  &cases.EditionsScalarLegacyRequiredIgnoreDefaultWithDefault{Val: proto.Int32(-42)},
-			Expected: results.Success(true),
-		},
-		"proto/2023/scalar/required_with_default/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsScalarLegacyRequiredIgnoreDefaultWithDefault{Val: proto.Int32(-123)},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/scalar/required_with_default/ignore_default/invalid/zero": suites.Case{
-			Message: &cases.EditionsScalarLegacyRequiredIgnoreDefaultWithDefault{Val: proto.Int32(0)},
 			Expected: results.Violations(&validate.Violation{
 				Field:  results.FieldPath("val"),
 				Rule:   results.FieldPath("int32.gt"),
@@ -2459,58 +1887,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("proto.editions.message.ignore.empty"),
 			}),
 		},
-		"proto/2023/message/explicit_presence/length_prefixed/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsMessageExplicitPresenceIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/explicit_presence/length_prefixed/ignore_default/valid/populated": suites.Case{
-			Message: &cases.EditionsMessageExplicitPresenceIgnoreDefault{
-				Val: &cases.EditionsMessageExplicitPresenceIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/explicit_presence/length_prefixed/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsMessageExplicitPresenceIgnoreDefault{
-				Val: &cases.EditionsMessageExplicitPresenceIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto.editions.message.ignore.empty"),
-			}),
-		},
-		"proto/2023/message/explicit_presence/length_prefixed/ignore_default/valid/default": suites.Case{
-			Message: &cases.EditionsMessageExplicitPresenceIgnoreDefault{
-				Val: &cases.EditionsMessageExplicitPresenceIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/explicit_presence/delimited/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsMessageExplicitPresenceDelimitedIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/explicit_presence/delimited/ignore_default/valid/populated": suites.Case{
-			Message: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreDefault{
-				Val: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/explicit_presence/delimited/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreDefault{
-				Val: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto.editions.message.ignore.empty"),
-			}),
-		},
-		"proto/2023/message/explicit_presence/delimited/ignore_default/valid/default": suites.Case{
-			Message: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreDefault{
-				Val: &cases.EditionsMessageExplicitPresenceDelimitedIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
-		},
 		"proto/2023/message/explicit_presence/length_prefixed/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.EditionsMessageExplicitPresenceIgnoreAlways{},
 			Expected: results.Success(true),
@@ -2658,50 +2034,6 @@ func ignoreSuite() suites.Suite {
 				Rule:   results.FieldPath("cel[0]"),
 				RuleId: proto.String("proto.editions.message.ignore.empty"),
 			}),
-		},
-		"proto/2023/message/legacy_required/length_prefixed/ignore_default/valid/populated": suites.Case{
-			Message: &cases.EditionsMessageLegacyRequiredIgnoreDefault{
-				Val: &cases.EditionsMessageLegacyRequiredIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/legacy_required/length_prefixed/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsMessageLegacyRequiredIgnoreDefault{
-				Val: &cases.EditionsMessageLegacyRequiredIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto.editions.message.ignore.empty"),
-			}),
-		},
-		"proto/2023/message/legacy_required/length_prefixed/ignore_default/valid/default": suites.Case{
-			Message: &cases.EditionsMessageLegacyRequiredIgnoreDefault{
-				Val: &cases.EditionsMessageLegacyRequiredIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/legacy_required/delimited/ignore_default/valid/populated": suites.Case{
-			Message: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault{
-				Val: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault_Msg{Val: proto.String("foo")},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/message/legacy_required/delimited/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault{
-				Val: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault_Msg{Val: proto.String("bar")},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("cel[0]"),
-				RuleId: proto.String("proto.editions.message.ignore.empty"),
-			}),
-		},
-		"proto/2023/message/legacy_required/delimited/ignore_default/valid/default": suites.Case{
-			Message: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault{
-				Val: &cases.EditionsMessageLegacyRequiredDelimitedIgnoreDefault_Msg{},
-			},
-			Expected: results.Success(true),
 		},
 		"proto/2023/message/legacy_required/length_prefixed/ignore_always/valid/populated_valid_value": suites.Case{
 			Message: &cases.EditionsMessageLegacyRequiredIgnoreAlways{
@@ -2879,68 +2211,6 @@ func ignoreSuite() suites.Suite {
 				RuleId: proto.String("int32.gt"),
 			}),
 		},
-		"proto/2023/oneof/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsOneofIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/oneof/ignore_default/valid/populated": suites.Case{
-			Message: &cases.EditionsOneofIgnoreDefault{
-				O: &cases.EditionsOneofIgnoreDefault_Val{Val: 123},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/oneof/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsOneofIgnoreDefault{
-				O: &cases.EditionsOneofIgnoreDefault_Val{Val: -123},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/oneof/ignore_default/valid/default": suites.Case{
-			Message: &cases.EditionsOneofIgnoreDefault{
-				O: &cases.EditionsOneofIgnoreDefault_Val{},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/oneof_with_default/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsOneofIgnoreDefaultWithDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/oneof_with_default/ignore_default/valid/populated": suites.Case{
-			Message: &cases.EditionsOneofIgnoreDefaultWithDefault{
-				O: &cases.EditionsOneofIgnoreDefaultWithDefault_Val{Val: 123},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/oneof_with_default/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsOneofIgnoreDefaultWithDefault{
-				O: &cases.EditionsOneofIgnoreDefaultWithDefault_Val{Val: -123},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/oneof_with_default/ignore_default/valid/default": suites.Case{
-			Message: &cases.EditionsOneofIgnoreDefaultWithDefault{
-				O: &cases.EditionsOneofIgnoreDefaultWithDefault_Val{Val: -42},
-			},
-			Expected: results.Success(true),
-		},
-		"proto/2023/oneof_with_default/ignore_default/invalid/zero": suites.Case{
-			Message: &cases.EditionsOneofIgnoreDefaultWithDefault{
-				O: &cases.EditionsOneofIgnoreDefaultWithDefault_Val{},
-			},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
 		"proto/2023/oneof/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.EditionsOneofIgnoreAlways{},
 			Expected: results.Success(true),
@@ -3063,38 +2333,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.EditionsRepeatedExpandedIgnoreEmpty{Val: []int32{1, 2, 3}},
 			Expected: results.Success(true),
 		},
-		"proto/2023/repeated/compact/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsRepeatedIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/repeated/compact/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsRepeatedIgnoreDefault{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("repeated.min_items"),
-				RuleId: proto.String("repeated.min_items"),
-			}),
-		},
-		"proto/2023/repeated/compact/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsRepeatedIgnoreDefault{Val: []int32{1, 2, 3}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/repeated/expanded/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsRepeatedExpandedIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/repeated/expanded/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsRepeatedExpandedIgnoreDefault{Val: []int32{1}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("repeated.min_items"),
-				RuleId: proto.String("repeated.min_items"),
-			}),
-		},
-		"proto/2023/repeated/expanded/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsRepeatedExpandedIgnoreDefault{Val: []int32{1, 2, 3}},
-			Expected: results.Success(true),
-		},
 		"proto/2023/repeated/compact/ignore_always/valid/unpopulated": suites.Case{
 			Message:  &cases.EditionsRepeatedIgnoreAlways{},
 			Expected: results.Success(true),
@@ -3153,22 +2391,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto/2023/map/ignore_empty/valid/populated": suites.Case{
 			Message:  &cases.EditionsMapIgnoreEmpty{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/map/ignore_default/valid/unpopulated": suites.Case{
-			Message:  &cases.EditionsMapIgnoreDefault{},
-			Expected: results.Success(true),
-		},
-		"proto/2023/map/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsMapIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val"),
-				Rule:   results.FieldPath("map.min_pairs"),
-				RuleId: proto.String("map.min_pairs"),
-			}),
-		},
-		"proto/2023/map/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsMapIgnoreDefault{Val: map[int32]int32{1: 1, 2: 2, 3: 3}},
 			Expected: results.Success(true),
 		},
 		"proto/2023/map/ignore_always/valid/unpopulated": suites.Case{
@@ -3255,38 +2477,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.EditionsRepeatedExpandedItemIgnoreEmpty{Val: []int32{0}},
 			Expected: results.Success(true),
 		},
-		"proto/2023/repeated/compact/items/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsRepeatedItemIgnoreDefault{Val: []int32{1}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/repeated/compact/items/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsRepeatedItemIgnoreDefault{Val: []int32{-42}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[0]"),
-				Rule:   results.FieldPath("repeated.items.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/repeated/compact/items/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.EditionsRepeatedItemIgnoreDefault{Val: []int32{0}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/repeated/expanded/items/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsRepeatedExpandedItemIgnoreDefault{Val: []int32{1}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/repeated/expanded/items/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsRepeatedExpandedItemIgnoreDefault{Val: []int32{-42}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[0]"),
-				Rule:   results.FieldPath("repeated.items.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/repeated/expanded/items/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.EditionsRepeatedExpandedItemIgnoreDefault{Val: []int32{0}},
-			Expected: results.Success(true),
-		},
 		"proto/2023/repeated/compact/items/ignore_always/valid/populated_valid_value": suites.Case{
 			Message:  &cases.EditionsRepeatedItemIgnoreAlways{Val: []int32{1}},
 			Expected: results.Success(true),
@@ -3347,22 +2537,6 @@ func ignoreSuite() suites.Suite {
 			Message:  &cases.EditionsMapKeyIgnoreEmpty{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
-		"proto/2023/map/keys/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsMapKeyIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/map/keys/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsMapKeyIgnoreDefault{Val: map[int32]int32{-42: -42}},
-			Expected: results.Violations(&validate.Violation{
-				Field: results.FieldPath("val[-42]"), ForKey: proto.Bool(true),
-				Rule:   results.FieldPath("map.keys.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/map/keys/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.EditionsMapKeyIgnoreDefault{Val: map[int32]int32{0: 0}},
-			Expected: results.Success(true),
-		},
 		"proto/2023/map/values/ignore_unspecified/valid/populated": suites.Case{
 			Message:  &cases.EditionsMapValueIgnoreUnspecified{Val: map[int32]int32{1: 1}},
 			Expected: results.Success(true),
@@ -3409,22 +2583,6 @@ func ignoreSuite() suites.Suite {
 		},
 		"proto/2023/map/values/ignore_empty/valid/zero": suites.Case{
 			Message:  &cases.EditionsMapValueIgnoreEmpty{Val: map[int32]int32{0: 0}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/map/values/ignore_default/valid/populated": suites.Case{
-			Message:  &cases.EditionsMapValueIgnoreDefault{Val: map[int32]int32{1: 1}},
-			Expected: results.Success(true),
-		},
-		"proto/2023/map/values/ignore_default/invalid/populated": suites.Case{
-			Message: &cases.EditionsMapValueIgnoreDefault{Val: map[int32]int32{-42: -42}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[-42]"),
-				Rule:   results.FieldPath("map.values.int32.gt"),
-				RuleId: proto.String("int32.gt"),
-			}),
-		},
-		"proto/2023/map/values/ignore_default/valid/zero": suites.Case{
-			Message:  &cases.EditionsMapValueIgnoreDefault{Val: map[int32]int32{0: 0}},
 			Expected: results.Success(true),
 		},
 		"proto/2023/map/values/ignore_always/valid/populated_valid_value": suites.Case{

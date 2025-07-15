@@ -145,25 +145,6 @@ const (
 	// To learn which fields track presence, see the
 	// [Field Presence cheat sheet](https://protobuf.dev/programming-guides/field_presence/#cheat).
 	Ignore_IGNORE_IF_UNPOPULATED Ignore = 1
-	// Ignore rules if the field is unset, or set to the default value.
-	//
-	// The default value depends on the field type:
-	//   - For strings, the default value is the empty string.
-	//   - For bytes, the default value is empty bytes.
-	//   - For bool, the default value is false.
-	//   - For numeric types, the default value is zero.
-	//   - For enums, the default value is the first defined enum value.
-	//   - For repeated fields, the default is an empty list.
-	//   - For map fields, the default is an empty map.
-	//   - For message fields, Protovalidate treats the empty message as the
-	//     default value. All rules of the referenced message are ignored as well.
-	//
-	// For some fields, the default value can be overridden with the Protobuf
-	// `default` option.
-	//
-	// For fields that don't track presence and don't have the `default` option,
-	// behavior is the same as the default `IGNORE_UNSPECIFIED`.
-	Ignore_IGNORE_IF_DEFAULT_VALUE Ignore = 2
 	// Always ignore rules, including the `required` rule.
 	//
 	// This is useful for ignoring the rules of a referenced message, or to
@@ -187,14 +168,12 @@ var (
 	Ignore_name = map[int32]string{
 		0: "IGNORE_UNSPECIFIED",
 		1: "IGNORE_IF_UNPOPULATED",
-		2: "IGNORE_IF_DEFAULT_VALUE",
 		3: "IGNORE_ALWAYS",
 	}
 	Ignore_value = map[string]int32{
-		"IGNORE_UNSPECIFIED":      0,
-		"IGNORE_IF_UNPOPULATED":   1,
-		"IGNORE_IF_DEFAULT_VALUE": 2,
-		"IGNORE_ALWAYS":           3,
+		"IGNORE_UNSPECIFIED":    0,
+		"IGNORE_IF_UNPOPULATED": 1,
+		"IGNORE_ALWAYS":         3,
 	}
 )
 
@@ -710,10 +689,9 @@ type FieldRules struct {
 	// ```proto
 	//
 	//	message UpdateRequest {
-	//	  // The uri rule only applies if the field is populated and not an empty
-	//	  // string.
-	//	  optional string url = 1 [
-	//	    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
+	//	  // The uri rule only applies if the field is not an empty string.
+	//	  string url = 1 [
+	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
 	//	    (buf.validate.field).string.uri = true
 	//	  ];
 	//	}
@@ -8505,12 +8483,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\n" +
 	"string_key\x18\n" +
 	" \x01(\tH\x00R\tstringKeyB\v\n" +
-	"\tsubscript*\x89\x01\n" +
+	"\tsubscript*\x8b\x01\n" +
 	"\x06Ignore\x12\x16\n" +
 	"\x12IGNORE_UNSPECIFIED\x10\x00\x12\x19\n" +
-	"\x15IGNORE_IF_UNPOPULATED\x10\x01\x12\x1b\n" +
-	"\x17IGNORE_IF_DEFAULT_VALUE\x10\x02\x12\x11\n" +
-	"\rIGNORE_ALWAYS\x10\x03*\fIGNORE_EMPTY*\x0eIGNORE_DEFAULT*n\n" +
+	"\x15IGNORE_IF_UNPOPULATED\x10\x01\x12\x11\n" +
+	"\rIGNORE_ALWAYS\x10\x03\"\x04\b\x02\x10\x02*\fIGNORE_EMPTY*\x0eIGNORE_DEFAULT*\x17IGNORE_IF_DEFAULT_VALUE*n\n" +
 	"\n" +
 	"KnownRegex\x12\x1b\n" +
 	"\x17KNOWN_REGEX_UNSPECIFIED\x10\x00\x12 \n" +
