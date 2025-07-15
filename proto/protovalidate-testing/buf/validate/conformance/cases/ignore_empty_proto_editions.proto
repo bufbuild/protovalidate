@@ -20,14 +20,14 @@ import "buf/validate/validate.proto";
 
 message IgnoreEmptyEditionsScalarExplicitPresence {
   int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).int32.gt = 0
   ];
 }
 
 message IgnoreEmptyEditionsScalarExplicitPresenceWithDefault {
   int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).int32.gt = 0,
     default = 42
   ];
@@ -36,7 +36,7 @@ message IgnoreEmptyEditionsScalarExplicitPresenceWithDefault {
 message IgnoreEmptyEditionsScalarImplicitPresence {
   int32 val = 1 [
     features.field_presence = IMPLICIT,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).int32.gt = 0
   ];
 }
@@ -44,7 +44,7 @@ message IgnoreEmptyEditionsScalarImplicitPresence {
 message IgnoreEmptyEditionsScalarLegacyRequired {
   int32 val = 1 [
     features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).int32.gt = 0
   ];
 }
@@ -52,7 +52,7 @@ message IgnoreEmptyEditionsScalarLegacyRequired {
 message IgnoreEmptyEditionsScalarLegacyRequiredWithDefault {
   int32 val = 1 [
     features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).int32.gt = 0,
     default = 42
   ];
@@ -60,7 +60,7 @@ message IgnoreEmptyEditionsScalarLegacyRequiredWithDefault {
 
 message IgnoreEmptyEditionsMessageExplicitPresence {
   Msg val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).cel = {
       id: "ignore_empty.editions.message"
       message: "foobar"
@@ -75,7 +75,7 @@ message IgnoreEmptyEditionsMessageExplicitPresence {
 message IgnoreEmptyEditionsMessageExplicitPresenceDelimited {
   Msg val = 1 [
     features.message_encoding = DELIMITED,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).cel = {
       id: "ignore_empty.editions.message"
       message: "foobar"
@@ -90,7 +90,7 @@ message IgnoreEmptyEditionsMessageExplicitPresenceDelimited {
 message IgnoreEmptyEditionsMessageLegacyRequired {
   Msg val = 1 [
     features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).cel = {
       id: "ignore_empty.editions.message"
       message: "foobar"
@@ -106,7 +106,7 @@ message IgnoreEmptyEditionsMessageLegacyRequiredDelimited {
   Msg val = 1 [
     features.message_encoding = DELIMITED,
     features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).cel = {
       id: "ignore_empty.editions.message"
       message: "foobar"
@@ -121,7 +121,7 @@ message IgnoreEmptyEditionsMessageLegacyRequiredDelimited {
 message IgnoreEmptyEditionsOneof {
   oneof o {
     int32 val = 1 [
-      (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+      (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
       (buf.validate.field).int32.gt = 0
     ];
   }
@@ -129,7 +129,7 @@ message IgnoreEmptyEditionsOneof {
 
 message IgnoreEmptyEditionsRepeated {
   repeated int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).repeated.min_items = 3
   ];
 }
@@ -137,14 +137,14 @@ message IgnoreEmptyEditionsRepeated {
 message IgnoreEmptyEditionsRepeatedExpanded {
   repeated int32 val = 1 [
     features.repeated_field_encoding = EXPANDED,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).repeated.min_items = 3
   ];
 }
 
 message IgnoreEmptyEditionsMap {
   map<int32, int32> val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).map.min_pairs = 3
   ];
 }

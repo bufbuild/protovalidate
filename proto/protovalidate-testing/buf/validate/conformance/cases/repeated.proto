@@ -161,6 +161,6 @@ message RepeatedExactIgnore {
       min_items: 3
       max_items: 3
     },
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
 }

@@ -94,7 +94,7 @@ message BytesNotIPv6 {
 message BytesIPv6Ignore {
   bytes val = 1 [
     (buf.validate.field).bytes.ipv6 = true,
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
 }
 message BytesExample {
