@@ -164,7 +164,7 @@ message MessageRules {
   repeated MessageOneofRule oneof = 4;
 
   reserved 1;
-  reserved "deleted";
+  reserved "disabled";
 }
 
 message MessageOneofRule {

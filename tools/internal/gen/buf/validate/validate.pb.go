@@ -7539,10 +7539,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
 	"\n" +
 	"expression\x18\x03 \x01(\tR\n" +
-	"expression\"y\n" +
+	"expression\"z\n" +
 	"\fMessageRules\x12$\n" +
 	"\x03cel\x18\x03 \x03(\v2\x12.buf.validate.RuleR\x03cel\x124\n" +
-	"\x05oneof\x18\x04 \x03(\v2\x1e.buf.validate.MessageOneofRuleR\x05oneofJ\x04\b\x01\x10\x02R\adeleted\"F\n" +
+	"\x05oneof\x18\x04 \x03(\v2\x1e.buf.validate.MessageOneofRuleR\x05oneofJ\x04\b\x01\x10\x02R\bdisabled\"F\n" +
 	"\x10MessageOneofRule\x12\x16\n" +
 	"\x06fields\x18\x01 \x03(\tR\x06fields\x12\x1a\n" +
 	"\brequired\x18\x02 \x01(\bR\brequired\"(\n" +
