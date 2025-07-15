@@ -388,18 +388,6 @@ func (x *Rule) GetExpression() string {
 // It includes disabling options and a list of Rule messages representing Common Expression Language (CEL) validation rules.
 type MessageRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// `disabled` is a boolean flag that, when set to true, nullifies any validation rules for this message.
-	// This includes any fields within the message that would otherwise support validation.
-	//
-	// ```proto
-	//
-	//	message MyMessage {
-	//	  // validation will be bypassed for this message
-	//	  option (buf.validate.message).disabled = true;
-	//	}
-	//
-	// ```
-	Disabled *bool `protobuf:"varint,1,opt,name=disabled" json:"disabled,omitempty"`
 	// `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
 	// These rules are written in Common Expression Language (CEL) syntax. For more information,
 	// [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
@@ -487,13 +475,6 @@ func (x *MessageRules) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MessageRules.ProtoReflect.Descriptor instead.
 func (*MessageRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *MessageRules) GetDisabled() bool {
-	if x != nil && x.Disabled != nil {
-		return *x.Disabled
-	}
-	return false
 }
 
 func (x *MessageRules) GetCel() []*Rule {
@@ -7558,11 +7539,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
 	"\n" +
 	"expression\x18\x03 \x01(\tR\n" +
-	"expression\"\x86\x01\n" +
-	"\fMessageRules\x12\x1a\n" +
-	"\bdisabled\x18\x01 \x01(\bR\bdisabled\x12$\n" +
+	"expression\"y\n" +
+	"\fMessageRules\x12$\n" +
 	"\x03cel\x18\x03 \x03(\v2\x12.buf.validate.RuleR\x03cel\x124\n" +
-	"\x05oneof\x18\x04 \x03(\v2\x1e.buf.validate.MessageOneofRuleR\x05oneof\"F\n" +
+	"\x05oneof\x18\x04 \x03(\v2\x1e.buf.validate.MessageOneofRuleR\x05oneofJ\x04\b\x01\x10\x02R\adeleted\"F\n" +
 	"\x10MessageOneofRule\x12\x16\n" +
 	"\x06fields\x18\x01 \x03(\tR\x06fields\x12\x1a\n" +
 	"\brequired\x18\x02 \x01(\bR\brequired\"(\n" +
