@@ -68,7 +68,7 @@ message MapExactIgnore {
       min_pairs: 3
       max_pairs: 3
     },
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
 }
 

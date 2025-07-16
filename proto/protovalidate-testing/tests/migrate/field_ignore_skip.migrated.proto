@@ -29,7 +29,7 @@ message IgnoreAndSkips {
     (buf.validate.field).string = {
       pattern: '^a+$',
     }
-    , (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+    , (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
   repeated string y = 2 [
     (validate.rules).repeated = {
@@ -41,7 +41,7 @@ message IgnoreAndSkips {
       unique: true,
       items: { string: { in: ['a', 'b'] } }
     }
-    , (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+    , (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
   IgnoreAndSkips z = 3 [
     (validate.rules).message = { skip: true },
