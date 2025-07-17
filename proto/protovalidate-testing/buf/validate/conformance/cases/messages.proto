@@ -29,11 +29,6 @@ message MessageNone {
   message NoneMsg {}
 }
 
-message MessageDisabled {
-  option (buf.validate.message).disabled = true;
-  uint64 val = 1 [(buf.validate.field).uint64.gt = 123];
-}
-
 message Message {
   TestMsg val = 1;
 }
