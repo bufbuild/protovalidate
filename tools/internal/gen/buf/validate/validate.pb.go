@@ -639,7 +639,7 @@ type FieldRules struct {
 	//	message UpdateRequest {
 	//	  // The uri rule only applies if the field is not an empty string.
 	//	  string url = 1 [
-	//	    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+	//	    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
 	//	    (buf.validate.field).string.uri = true
 	//	  ];
 	//	}
