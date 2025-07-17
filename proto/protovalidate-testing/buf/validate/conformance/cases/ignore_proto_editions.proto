@@ -44,21 +44,6 @@ message EditionsScalarExplicitPresenceIgnoreEmptyWithDefault {
   ];
 }
 
-message EditionsScalarExplicitPresenceIgnoreDefault {
-  int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).int32.gt = 0
-  ];
-}
-
-message EditionsScalarExplicitPresenceIgnoreDefaultWithDefault {
-  int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).int32.gt = 0,
-    default = -42
-  ];
-}
-
 message EditionsScalarExplicitPresenceIgnoreAlways {
   int32 val = 1 [
     (buf.validate.field).ignore = IGNORE_ALWAYS,
@@ -85,14 +70,6 @@ message EditionsScalarImplicitPresenceIgnoreEmpty {
   int32 val = 1 [
     features.field_presence = IMPLICIT,
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).int32.gt = 0
-  ];
-}
-
-message EditionsScalarImplicitPresenceIgnoreDefault {
-  int32 val = 1 [
-    features.field_presence = IMPLICIT,
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).int32.gt = 0
   ];
 }
@@ -132,23 +109,6 @@ message EditionsScalarLegacyRequiredIgnoreEmptyWithDefault {
   int32 val = 1 [
     features.field_presence = LEGACY_REQUIRED,
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).int32.gt = 0,
-    default = -42
-  ];
-}
-
-message EditionsScalarLegacyRequiredIgnoreDefault {
-  int32 val = 1 [
-    features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).int32.gt = 0
-  ];
-}
-
-message EditionsScalarLegacyRequiredIgnoreDefaultWithDefault {
-  int32 val = 1 [
-    features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).int32.gt = 0,
     default = -42
   ];
@@ -214,35 +174,6 @@ message EditionsMessageExplicitPresenceDelimitedIgnoreEmpty {
   Msg val = 1 [
     features.message_encoding = DELIMITED,
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).cel = {
-      id: "proto.editions.message.ignore.empty"
-      message: "foobar"
-      expression: "this.val == 'foo'"
-    }
-  ];
-  message Msg {
-    string val = 1;
-  }
-}
-
-message EditionsMessageExplicitPresenceIgnoreDefault {
-  Msg val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).cel = {
-      id: "proto.editions.message.ignore.empty"
-      message: "foobar"
-      expression: "this.val == 'foo'"
-    }
-  ];
-  message Msg {
-    string val = 1;
-  }
-}
-
-message EditionsMessageExplicitPresenceDelimitedIgnoreDefault {
-  Msg val = 1 [
-    features.message_encoding = DELIMITED,
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).cel = {
       id: "proto.editions.message.ignore.empty"
       message: "foobar"
@@ -343,37 +274,6 @@ message EditionsMessageLegacyRequiredDelimitedIgnoreEmpty {
   }
 }
 
-message EditionsMessageLegacyRequiredIgnoreDefault {
-  Msg val = 1 [
-    features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).cel = {
-      id: "proto.editions.message.ignore.empty"
-      message: "foobar"
-      expression: "this.val == 'foo'"
-    }
-  ];
-  message Msg {
-    string val = 1;
-  }
-}
-
-message EditionsMessageLegacyRequiredDelimitedIgnoreDefault {
-  Msg val = 1 [
-    features.message_encoding = DELIMITED,
-    features.field_presence = LEGACY_REQUIRED,
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).cel = {
-      id: "proto.editions.message.ignore.empty"
-      message: "foobar"
-      expression: "this.val == 'foo'"
-    }
-  ];
-  message Msg {
-    string val = 1;
-  }
-}
-
 message EditionsMessageLegacyRequiredIgnoreAlways {
   Msg val = 1 [
     features.field_presence = LEGACY_REQUIRED,
@@ -439,25 +339,6 @@ message EditionsOneofIgnoreEmptyWithDefault {
   }
 }
 
-message EditionsOneofIgnoreDefault {
-  oneof o {
-    int32 val = 1 [
-      (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-      (buf.validate.field).int32.gt = 0
-    ];
-  }
-}
-
-message EditionsOneofIgnoreDefaultWithDefault {
-  oneof o {
-    int32 val = 1 [
-      (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-      (buf.validate.field).int32.gt = 0,
-      default = -42
-    ];
-  }
-}
-
 message EditionsOneofIgnoreAlways {
   oneof o {
     int32 val = 1 [
@@ -503,21 +384,6 @@ message EditionsRepeatedExpandedIgnoreEmpty {
   ];
 }
 
-message EditionsRepeatedIgnoreDefault {
-  repeated int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).repeated.min_items = 3
-  ];
-}
-
-message EditionsRepeatedExpandedIgnoreDefault {
-  repeated int32 val = 1 [
-    features.repeated_field_encoding = EXPANDED,
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).repeated.min_items = 3
-  ];
-}
-
 message EditionsRepeatedIgnoreAlways {
   repeated int32 val = 1 [
     (buf.validate.field).ignore = IGNORE_ALWAYS,
@@ -540,13 +406,6 @@ message EditionsMapIgnoreUnspecified {
 message EditionsMapIgnoreEmpty {
   map<int32, int32> val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).map.min_pairs = 3
-  ];
-}
-
-message EditionsMapIgnoreDefault {
-  map<int32, int32> val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).map.min_pairs = 3
   ];
 }
@@ -584,21 +443,6 @@ message EditionsRepeatedExpandedItemIgnoreEmpty {
   ];
 }
 
-message EditionsRepeatedItemIgnoreDefault {
-  repeated int32 val = 1 [
-    (buf.validate.field).repeated.items.ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).repeated.items.int32.gt = 0
-  ];
-}
-
-message EditionsRepeatedExpandedItemIgnoreDefault {
-  repeated int32 val = 1 [
-    features.repeated_field_encoding = EXPANDED,
-    (buf.validate.field).repeated.items.ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).repeated.items.int32.gt = 0
-  ];
-}
-
 message EditionsRepeatedItemIgnoreAlways {
   repeated int32 val = 1 [
     (buf.validate.field).repeated.items.ignore = IGNORE_ALWAYS,
@@ -625,13 +469,6 @@ message EditionsMapKeyIgnoreEmpty {
   ];
 }
 
-message EditionsMapKeyIgnoreDefault {
-  map<int32, int32> val = 1 [
-    (buf.validate.field).map.keys.ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).map.keys.int32.gt = 0
-  ];
-}
-
 message EditionsMapKeyIgnoreAlways {
   map<int32, int32> val = 1 [
     (buf.validate.field).map.keys.ignore = IGNORE_ALWAYS,
@@ -646,13 +483,6 @@ message EditionsMapValueIgnoreUnspecified {
 message EditionsMapValueIgnoreEmpty {
   map<int32, int32> val = 1 [
     (buf.validate.field).map.values.ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).map.values.int32.gt = 0
-  ];
-}
-
-message EditionsMapValueIgnoreDefault {
-  map<int32, int32> val = 1 [
-    (buf.validate.field).map.values.ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).map.values.int32.gt = 0
   ];
 }

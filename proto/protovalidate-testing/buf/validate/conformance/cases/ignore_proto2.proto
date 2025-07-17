@@ -44,21 +44,6 @@ message Proto2ScalarOptionalIgnoreEmptyWithDefault {
   ];
 }
 
-message Proto2ScalarOptionalIgnoreDefault {
-  optional int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).int32.gt = 0
-  ];
-}
-
-message Proto2ScalarOptionalIgnoreDefaultWithDefault {
-  optional int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).int32.gt = 0,
-    default = -42
-  ];
-}
-
 message Proto2ScalarOptionalIgnoreAlways {
   optional int32 val = 1 [
     (buf.validate.field).ignore = IGNORE_ALWAYS,
@@ -95,21 +80,6 @@ message Proto2ScalarRequiredIgnoreEmpty {
 message Proto2ScalarRequiredIgnoreEmptyWithDefault {
   required int32 val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).int32.gt = 0,
-    default = -42
-  ];
-}
-
-message Proto2ScalarRequiredIgnoreDefault {
-  required int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).int32.gt = 0
-  ];
-}
-
-message Proto2ScalarRequiredIgnoreDefaultWithDefault {
-  required int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).int32.gt = 0,
     default = -42
   ];
@@ -155,20 +125,6 @@ message Proto2MessageOptionalIgnoreEmpty {
   }
 }
 
-message Proto2MessageOptionalIgnoreDefault {
-  optional Msg val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).cel = {
-      id: "proto2.message.ignore.empty"
-      message: "foobar"
-      expression: "this.val == 'foo'"
-    }
-  ];
-  message Msg {
-    optional string val = 1;
-  }
-}
-
 message Proto2MessageOptionalIgnoreAlways {
   optional Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_ALWAYS,
@@ -197,20 +153,6 @@ message Proto2MessageRequiredIgnoreUnspecified {
 message Proto2MessageRequiredIgnoreEmpty {
   required Msg val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).cel = {
-      id: "proto2.message.ignore.empty"
-      message: "foobar"
-      expression: "this.val == 'foo'"
-    }
-  ];
-  message Msg {
-    optional string val = 1;
-  }
-}
-
-message Proto2MessageRequiredIgnoreDefault {
-  required Msg val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).cel = {
       id: "proto2.message.ignore.empty"
       message: "foobar"
@@ -270,25 +212,6 @@ message Proto2OneofIgnoreEmptyWithDefault {
   }
 }
 
-message Proto2OneofIgnoreDefault {
-  oneof o {
-    int32 val = 1 [
-      (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-      (buf.validate.field).int32.gt = 0
-    ];
-  }
-}
-
-message Proto2OneofIgnoreDefaultWithDefault {
-  oneof o {
-    int32 val = 1 [
-      (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-      (buf.validate.field).int32.gt = 0,
-      default = -42
-    ];
-  }
-}
-
 message Proto2OneofIgnoreAlways {
   oneof o {
     int32 val = 1 [
@@ -319,13 +242,6 @@ message Proto2RepeatedIgnoreEmpty {
   ];
 }
 
-message Proto2RepeatedIgnoreDefault {
-  repeated int32 val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).repeated.min_items = 3
-  ];
-}
-
 message Proto2RepeatedIgnoreAlways {
   repeated int32 val = 1 [
     (buf.validate.field).ignore = IGNORE_ALWAYS,
@@ -340,13 +256,6 @@ message Proto2MapIgnoreUnspecified {
 message Proto2MapIgnoreEmpty {
   map<int32, int32> val = 1 [
     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).map.min_pairs = 3
-  ];
-}
-
-message Proto2MapIgnoreDefault {
-  map<int32, int32> val = 1 [
-    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).map.min_pairs = 3
   ];
 }
@@ -369,13 +278,6 @@ message Proto2RepeatedItemIgnoreEmpty {
   ];
 }
 
-message Proto2RepeatedItemIgnoreDefault {
-  repeated int32 val = 1 [
-    (buf.validate.field).repeated.items.ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).repeated.items.int32.gt = 0
-  ];
-}
-
 message Proto2RepeatedItemIgnoreAlways {
   repeated int32 val = 1 [
     (buf.validate.field).repeated.items.ignore = IGNORE_ALWAYS,
@@ -394,13 +296,6 @@ message Proto2MapKeyIgnoreEmpty {
   ];
 }
 
-message Proto2MapKeyIgnoreDefault {
-  map<int32, int32> val = 1 [
-    (buf.validate.field).map.keys.ignore = IGNORE_IF_DEFAULT_VALUE,
-    (buf.validate.field).map.keys.int32.gt = 0
-  ];
-}
-
 message Proto2MapKeyIgnoreAlways {
   map<int32, int32> val = 1 [
     (buf.validate.field).map.keys.ignore = IGNORE_ALWAYS,
@@ -415,13 +310,6 @@ message Proto2MapValueIgnoreUnspecified {
 message Proto2MapValueIgnoreEmpty {
   map<int32, int32> val = 1 [
     (buf.validate.field).map.values.ignore = IGNORE_IF_UNPOPULATED,
-    (buf.validate.field).map.values.int32.gt = 0
-  ];
-}
-
-message Proto2MapValueIgnoreDefault {
-  map<int32, int32> val = 1 [
-    (buf.validate.field).map.values.ignore = IGNORE_IF_DEFAULT_VALUE,
     (buf.validate.field).map.values.int32.gt = 0
   ];
 }

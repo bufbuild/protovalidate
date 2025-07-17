@@ -124,50 +124,6 @@ func (x *Proto3ScalarOptionalIgnoreEmpty) GetVal() int32 {
 	return 0
 }
 
-type Proto3ScalarOptionalIgnoreDefault struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           *int32                 `protobuf:"varint,1,opt,name=val,proto3,oneof" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3ScalarOptionalIgnoreDefault) Reset() {
-	*x = Proto3ScalarOptionalIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3ScalarOptionalIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3ScalarOptionalIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3ScalarOptionalIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3ScalarOptionalIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3ScalarOptionalIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *Proto3ScalarOptionalIgnoreDefault) GetVal() int32 {
-	if x != nil && x.Val != nil {
-		return *x.Val
-	}
-	return 0
-}
-
 type Proto3ScalarOptionalIgnoreAlways struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Val           *int32                 `protobuf:"varint,1,opt,name=val,proto3,oneof" json:"val,omitempty"`
@@ -177,7 +133,7 @@ type Proto3ScalarOptionalIgnoreAlways struct {
 
 func (x *Proto3ScalarOptionalIgnoreAlways) Reset() {
 	*x = Proto3ScalarOptionalIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[3]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -189,7 +145,7 @@ func (x *Proto3ScalarOptionalIgnoreAlways) String() string {
 func (*Proto3ScalarOptionalIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3ScalarOptionalIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[3]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,7 +158,7 @@ func (x *Proto3ScalarOptionalIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3ScalarOptionalIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3ScalarOptionalIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{3}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Proto3ScalarOptionalIgnoreAlways) GetVal() int32 {
@@ -221,7 +177,7 @@ type Proto3ScalarIgnoreUnspecified struct {
 
 func (x *Proto3ScalarIgnoreUnspecified) Reset() {
 	*x = Proto3ScalarIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[4]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -233,7 +189,7 @@ func (x *Proto3ScalarIgnoreUnspecified) String() string {
 func (*Proto3ScalarIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3ScalarIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[4]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -246,7 +202,7 @@ func (x *Proto3ScalarIgnoreUnspecified) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3ScalarIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3ScalarIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{4}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Proto3ScalarIgnoreUnspecified) GetVal() int32 {
@@ -265,7 +221,7 @@ type Proto3ScalarIgnoreEmpty struct {
 
 func (x *Proto3ScalarIgnoreEmpty) Reset() {
 	*x = Proto3ScalarIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[5]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -277,7 +233,7 @@ func (x *Proto3ScalarIgnoreEmpty) String() string {
 func (*Proto3ScalarIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3ScalarIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[5]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -290,54 +246,10 @@ func (x *Proto3ScalarIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3ScalarIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3ScalarIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{5}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Proto3ScalarIgnoreEmpty) GetVal() int32 {
-	if x != nil {
-		return x.Val
-	}
-	return 0
-}
-
-type Proto3ScalarIgnoreDefault struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           int32                  `protobuf:"varint,1,opt,name=val,proto3" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3ScalarIgnoreDefault) Reset() {
-	*x = Proto3ScalarIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3ScalarIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3ScalarIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3ScalarIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3ScalarIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3ScalarIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *Proto3ScalarIgnoreDefault) GetVal() int32 {
 	if x != nil {
 		return x.Val
 	}
@@ -353,7 +265,7 @@ type Proto3ScalarIgnoreAlways struct {
 
 func (x *Proto3ScalarIgnoreAlways) Reset() {
 	*x = Proto3ScalarIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[7]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -365,7 +277,7 @@ func (x *Proto3ScalarIgnoreAlways) String() string {
 func (*Proto3ScalarIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3ScalarIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[7]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -378,7 +290,7 @@ func (x *Proto3ScalarIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3ScalarIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3ScalarIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{7}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Proto3ScalarIgnoreAlways) GetVal() int32 {
@@ -397,7 +309,7 @@ type Proto3MessageOptionalIgnoreUnspecified struct {
 
 func (x *Proto3MessageOptionalIgnoreUnspecified) Reset() {
 	*x = Proto3MessageOptionalIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[8]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -409,7 +321,7 @@ func (x *Proto3MessageOptionalIgnoreUnspecified) String() string {
 func (*Proto3MessageOptionalIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3MessageOptionalIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[8]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -422,7 +334,7 @@ func (x *Proto3MessageOptionalIgnoreUnspecified) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use Proto3MessageOptionalIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3MessageOptionalIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{8}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Proto3MessageOptionalIgnoreUnspecified) GetVal() *Proto3MessageOptionalIgnoreUnspecified_Msg {
@@ -441,7 +353,7 @@ type Proto3MessageOptionalIgnoreEmpty struct {
 
 func (x *Proto3MessageOptionalIgnoreEmpty) Reset() {
 	*x = Proto3MessageOptionalIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[9]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -453,7 +365,7 @@ func (x *Proto3MessageOptionalIgnoreEmpty) String() string {
 func (*Proto3MessageOptionalIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3MessageOptionalIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[9]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -466,54 +378,10 @@ func (x *Proto3MessageOptionalIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MessageOptionalIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3MessageOptionalIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{9}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *Proto3MessageOptionalIgnoreEmpty) GetVal() *Proto3MessageOptionalIgnoreEmpty_Msg {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3MessageOptionalIgnoreDefault struct {
-	state         protoimpl.MessageState                  `protogen:"open.v1"`
-	Val           *Proto3MessageOptionalIgnoreDefault_Msg `protobuf:"bytes,1,opt,name=val,proto3,oneof" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MessageOptionalIgnoreDefault) Reset() {
-	*x = Proto3MessageOptionalIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MessageOptionalIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MessageOptionalIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3MessageOptionalIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MessageOptionalIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3MessageOptionalIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *Proto3MessageOptionalIgnoreDefault) GetVal() *Proto3MessageOptionalIgnoreDefault_Msg {
 	if x != nil {
 		return x.Val
 	}
@@ -529,7 +397,7 @@ type Proto3MessageOptionalIgnoreAlways struct {
 
 func (x *Proto3MessageOptionalIgnoreAlways) Reset() {
 	*x = Proto3MessageOptionalIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[11]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -541,7 +409,7 @@ func (x *Proto3MessageOptionalIgnoreAlways) String() string {
 func (*Proto3MessageOptionalIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3MessageOptionalIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[11]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -554,7 +422,7 @@ func (x *Proto3MessageOptionalIgnoreAlways) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use Proto3MessageOptionalIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3MessageOptionalIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{11}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Proto3MessageOptionalIgnoreAlways) GetVal() *Proto3MessageOptionalIgnoreAlways_Msg {
@@ -573,7 +441,7 @@ type Proto3MessageIgnoreUnspecified struct {
 
 func (x *Proto3MessageIgnoreUnspecified) Reset() {
 	*x = Proto3MessageIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[12]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -585,7 +453,7 @@ func (x *Proto3MessageIgnoreUnspecified) String() string {
 func (*Proto3MessageIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3MessageIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[12]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -598,7 +466,7 @@ func (x *Proto3MessageIgnoreUnspecified) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MessageIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3MessageIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{12}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Proto3MessageIgnoreUnspecified) GetVal() *Proto3MessageIgnoreUnspecified_Msg {
@@ -617,7 +485,7 @@ type Proto3MessageIgnoreEmpty struct {
 
 func (x *Proto3MessageIgnoreEmpty) Reset() {
 	*x = Proto3MessageIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[13]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -629,7 +497,7 @@ func (x *Proto3MessageIgnoreEmpty) String() string {
 func (*Proto3MessageIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3MessageIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[13]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -642,98 +510,10 @@ func (x *Proto3MessageIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MessageIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3MessageIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{13}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Proto3MessageIgnoreEmpty) GetVal() *Proto3MessageIgnoreEmpty_Msg {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3MessageIgnoreDefault struct {
-	state         protoimpl.MessageState          `protogen:"open.v1"`
-	Val           *Proto3MessageIgnoreDefault_Msg `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MessageIgnoreDefault) Reset() {
-	*x = Proto3MessageIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MessageIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MessageIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3MessageIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MessageIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3MessageIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *Proto3MessageIgnoreDefault) GetVal() *Proto3MessageIgnoreDefault_Msg {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3MessageIgnoreAlways struct {
-	state         protoimpl.MessageState         `protogen:"open.v1"`
-	Val           *Proto3MessageIgnoreAlways_Msg `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MessageIgnoreAlways) Reset() {
-	*x = Proto3MessageIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MessageIgnoreAlways) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MessageIgnoreAlways) ProtoMessage() {}
-
-func (x *Proto3MessageIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MessageIgnoreAlways.ProtoReflect.Descriptor instead.
-func (*Proto3MessageIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *Proto3MessageIgnoreAlways) GetVal() *Proto3MessageIgnoreAlways_Msg {
 	if x != nil {
 		return x.Val
 	}
@@ -752,7 +532,7 @@ type Proto3OneofIgnoreUnspecified struct {
 
 func (x *Proto3OneofIgnoreUnspecified) Reset() {
 	*x = Proto3OneofIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[16]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -764,7 +544,7 @@ func (x *Proto3OneofIgnoreUnspecified) String() string {
 func (*Proto3OneofIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3OneofIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[16]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -777,7 +557,7 @@ func (x *Proto3OneofIgnoreUnspecified) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3OneofIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3OneofIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{16}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Proto3OneofIgnoreUnspecified) GetO() isProto3OneofIgnoreUnspecified_O {
@@ -818,7 +598,7 @@ type Proto3OneofIgnoreEmpty struct {
 
 func (x *Proto3OneofIgnoreEmpty) Reset() {
 	*x = Proto3OneofIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[17]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -830,7 +610,7 @@ func (x *Proto3OneofIgnoreEmpty) String() string {
 func (*Proto3OneofIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3OneofIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[17]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -843,7 +623,7 @@ func (x *Proto3OneofIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3OneofIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3OneofIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{17}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *Proto3OneofIgnoreEmpty) GetO() isProto3OneofIgnoreEmpty_O {
@@ -872,72 +652,6 @@ type Proto3OneofIgnoreEmpty_Val struct {
 
 func (*Proto3OneofIgnoreEmpty_Val) isProto3OneofIgnoreEmpty_O() {}
 
-type Proto3OneofIgnoreDefault struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to O:
-	//
-	//	*Proto3OneofIgnoreDefault_Val
-	O             isProto3OneofIgnoreDefault_O `protobuf_oneof:"o"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3OneofIgnoreDefault) Reset() {
-	*x = Proto3OneofIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3OneofIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3OneofIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3OneofIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3OneofIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3OneofIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *Proto3OneofIgnoreDefault) GetO() isProto3OneofIgnoreDefault_O {
-	if x != nil {
-		return x.O
-	}
-	return nil
-}
-
-func (x *Proto3OneofIgnoreDefault) GetVal() int32 {
-	if x != nil {
-		if x, ok := x.O.(*Proto3OneofIgnoreDefault_Val); ok {
-			return x.Val
-		}
-	}
-	return 0
-}
-
-type isProto3OneofIgnoreDefault_O interface {
-	isProto3OneofIgnoreDefault_O()
-}
-
-type Proto3OneofIgnoreDefault_Val struct {
-	Val int32 `protobuf:"varint,1,opt,name=val,proto3,oneof"`
-}
-
-func (*Proto3OneofIgnoreDefault_Val) isProto3OneofIgnoreDefault_O() {}
-
 type Proto3OneofIgnoreAlways struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to O:
@@ -950,7 +664,7 @@ type Proto3OneofIgnoreAlways struct {
 
 func (x *Proto3OneofIgnoreAlways) Reset() {
 	*x = Proto3OneofIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[19]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -962,7 +676,7 @@ func (x *Proto3OneofIgnoreAlways) String() string {
 func (*Proto3OneofIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3OneofIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[19]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -975,7 +689,7 @@ func (x *Proto3OneofIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3OneofIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3OneofIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{19}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Proto3OneofIgnoreAlways) GetO() isProto3OneofIgnoreAlways_O {
@@ -1013,7 +727,7 @@ type Proto3RepeatedIgnoreUnspecified struct {
 
 func (x *Proto3RepeatedIgnoreUnspecified) Reset() {
 	*x = Proto3RepeatedIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1025,7 +739,7 @@ func (x *Proto3RepeatedIgnoreUnspecified) String() string {
 func (*Proto3RepeatedIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3RepeatedIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1038,7 +752,7 @@ func (x *Proto3RepeatedIgnoreUnspecified) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3RepeatedIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3RepeatedIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{20}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *Proto3RepeatedIgnoreUnspecified) GetVal() []int32 {
@@ -1057,7 +771,7 @@ type Proto3RepeatedIgnoreEmpty struct {
 
 func (x *Proto3RepeatedIgnoreEmpty) Reset() {
 	*x = Proto3RepeatedIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[21]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1069,7 +783,7 @@ func (x *Proto3RepeatedIgnoreEmpty) String() string {
 func (*Proto3RepeatedIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3RepeatedIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[21]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1082,54 +796,10 @@ func (x *Proto3RepeatedIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3RepeatedIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3RepeatedIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{21}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *Proto3RepeatedIgnoreEmpty) GetVal() []int32 {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3RepeatedIgnoreDefault struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           []int32                `protobuf:"varint,1,rep,packed,name=val,proto3" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3RepeatedIgnoreDefault) Reset() {
-	*x = Proto3RepeatedIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3RepeatedIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3RepeatedIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3RepeatedIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3RepeatedIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3RepeatedIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *Proto3RepeatedIgnoreDefault) GetVal() []int32 {
 	if x != nil {
 		return x.Val
 	}
@@ -1145,7 +815,7 @@ type Proto3RepeatedIgnoreAlways struct {
 
 func (x *Proto3RepeatedIgnoreAlways) Reset() {
 	*x = Proto3RepeatedIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[23]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1157,7 +827,7 @@ func (x *Proto3RepeatedIgnoreAlways) String() string {
 func (*Proto3RepeatedIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3RepeatedIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[23]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1170,7 +840,7 @@ func (x *Proto3RepeatedIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3RepeatedIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3RepeatedIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{23}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *Proto3RepeatedIgnoreAlways) GetVal() []int32 {
@@ -1189,7 +859,7 @@ type Proto3MapIgnoreUnspecified struct {
 
 func (x *Proto3MapIgnoreUnspecified) Reset() {
 	*x = Proto3MapIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[24]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1201,7 +871,7 @@ func (x *Proto3MapIgnoreUnspecified) String() string {
 func (*Proto3MapIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3MapIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[24]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1214,7 +884,7 @@ func (x *Proto3MapIgnoreUnspecified) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3MapIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{24}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *Proto3MapIgnoreUnspecified) GetVal() map[int32]int32 {
@@ -1233,7 +903,7 @@ type Proto3MapIgnoreEmpty struct {
 
 func (x *Proto3MapIgnoreEmpty) Reset() {
 	*x = Proto3MapIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[25]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1245,7 +915,7 @@ func (x *Proto3MapIgnoreEmpty) String() string {
 func (*Proto3MapIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3MapIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[25]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1258,54 +928,10 @@ func (x *Proto3MapIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3MapIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{25}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *Proto3MapIgnoreEmpty) GetVal() map[int32]int32 {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3MapIgnoreDefault struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           map[int32]int32        `protobuf:"bytes,1,rep,name=val,proto3" json:"val,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MapIgnoreDefault) Reset() {
-	*x = Proto3MapIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[26]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MapIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MapIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3MapIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[26]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MapIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3MapIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{26}
-}
-
-func (x *Proto3MapIgnoreDefault) GetVal() map[int32]int32 {
 	if x != nil {
 		return x.Val
 	}
@@ -1321,7 +947,7 @@ type Proto3MapIgnoreAlways struct {
 
 func (x *Proto3MapIgnoreAlways) Reset() {
 	*x = Proto3MapIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[27]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1333,7 +959,7 @@ func (x *Proto3MapIgnoreAlways) String() string {
 func (*Proto3MapIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3MapIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[27]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1346,7 +972,7 @@ func (x *Proto3MapIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3MapIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{27}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *Proto3MapIgnoreAlways) GetVal() map[int32]int32 {
@@ -1365,7 +991,7 @@ type Proto3RepeatedItemIgnoreUnspecified struct {
 
 func (x *Proto3RepeatedItemIgnoreUnspecified) Reset() {
 	*x = Proto3RepeatedItemIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[28]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1377,7 +1003,7 @@ func (x *Proto3RepeatedItemIgnoreUnspecified) String() string {
 func (*Proto3RepeatedItemIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3RepeatedItemIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[28]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1390,7 +1016,7 @@ func (x *Proto3RepeatedItemIgnoreUnspecified) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use Proto3RepeatedItemIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3RepeatedItemIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{28}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Proto3RepeatedItemIgnoreUnspecified) GetVal() []int32 {
@@ -1409,7 +1035,7 @@ type Proto3RepeatedItemIgnoreEmpty struct {
 
 func (x *Proto3RepeatedItemIgnoreEmpty) Reset() {
 	*x = Proto3RepeatedItemIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[29]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1421,7 +1047,7 @@ func (x *Proto3RepeatedItemIgnoreEmpty) String() string {
 func (*Proto3RepeatedItemIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3RepeatedItemIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[29]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1434,54 +1060,10 @@ func (x *Proto3RepeatedItemIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3RepeatedItemIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3RepeatedItemIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{29}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *Proto3RepeatedItemIgnoreEmpty) GetVal() []int32 {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3RepeatedItemIgnoreDefault struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           []int32                `protobuf:"varint,1,rep,packed,name=val,proto3" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3RepeatedItemIgnoreDefault) Reset() {
-	*x = Proto3RepeatedItemIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[30]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3RepeatedItemIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3RepeatedItemIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3RepeatedItemIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[30]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3RepeatedItemIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3RepeatedItemIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{30}
-}
-
-func (x *Proto3RepeatedItemIgnoreDefault) GetVal() []int32 {
 	if x != nil {
 		return x.Val
 	}
@@ -1497,7 +1079,7 @@ type Proto3RepeatedItemIgnoreAlways struct {
 
 func (x *Proto3RepeatedItemIgnoreAlways) Reset() {
 	*x = Proto3RepeatedItemIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[31]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1509,7 +1091,7 @@ func (x *Proto3RepeatedItemIgnoreAlways) String() string {
 func (*Proto3RepeatedItemIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3RepeatedItemIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[31]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1522,7 +1104,7 @@ func (x *Proto3RepeatedItemIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3RepeatedItemIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3RepeatedItemIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{31}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *Proto3RepeatedItemIgnoreAlways) GetVal() []int32 {
@@ -1541,7 +1123,7 @@ type Proto3MapKeyIgnoreUnspecified struct {
 
 func (x *Proto3MapKeyIgnoreUnspecified) Reset() {
 	*x = Proto3MapKeyIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[32]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1553,7 +1135,7 @@ func (x *Proto3MapKeyIgnoreUnspecified) String() string {
 func (*Proto3MapKeyIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3MapKeyIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[32]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1566,7 +1148,7 @@ func (x *Proto3MapKeyIgnoreUnspecified) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapKeyIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3MapKeyIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{32}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *Proto3MapKeyIgnoreUnspecified) GetVal() map[int32]int32 {
@@ -1585,7 +1167,7 @@ type Proto3MapKeyIgnoreEmpty struct {
 
 func (x *Proto3MapKeyIgnoreEmpty) Reset() {
 	*x = Proto3MapKeyIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[33]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1597,7 +1179,7 @@ func (x *Proto3MapKeyIgnoreEmpty) String() string {
 func (*Proto3MapKeyIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3MapKeyIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[33]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1610,54 +1192,10 @@ func (x *Proto3MapKeyIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapKeyIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3MapKeyIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{33}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *Proto3MapKeyIgnoreEmpty) GetVal() map[int32]int32 {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3MapKeyIgnoreDefault struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           map[int32]int32        `protobuf:"bytes,1,rep,name=val,proto3" json:"val,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MapKeyIgnoreDefault) Reset() {
-	*x = Proto3MapKeyIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[34]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MapKeyIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MapKeyIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3MapKeyIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[34]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MapKeyIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3MapKeyIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{34}
-}
-
-func (x *Proto3MapKeyIgnoreDefault) GetVal() map[int32]int32 {
 	if x != nil {
 		return x.Val
 	}
@@ -1673,7 +1211,7 @@ type Proto3MapKeyIgnoreAlways struct {
 
 func (x *Proto3MapKeyIgnoreAlways) Reset() {
 	*x = Proto3MapKeyIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[35]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1685,7 +1223,7 @@ func (x *Proto3MapKeyIgnoreAlways) String() string {
 func (*Proto3MapKeyIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3MapKeyIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[35]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1698,7 +1236,7 @@ func (x *Proto3MapKeyIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapKeyIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3MapKeyIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{35}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *Proto3MapKeyIgnoreAlways) GetVal() map[int32]int32 {
@@ -1717,7 +1255,7 @@ type Proto3MapValueIgnoreUnspecified struct {
 
 func (x *Proto3MapValueIgnoreUnspecified) Reset() {
 	*x = Proto3MapValueIgnoreUnspecified{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[36]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1729,7 +1267,7 @@ func (x *Proto3MapValueIgnoreUnspecified) String() string {
 func (*Proto3MapValueIgnoreUnspecified) ProtoMessage() {}
 
 func (x *Proto3MapValueIgnoreUnspecified) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[36]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1742,7 +1280,7 @@ func (x *Proto3MapValueIgnoreUnspecified) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapValueIgnoreUnspecified.ProtoReflect.Descriptor instead.
 func (*Proto3MapValueIgnoreUnspecified) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{36}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *Proto3MapValueIgnoreUnspecified) GetVal() map[int32]int32 {
@@ -1761,7 +1299,7 @@ type Proto3MapValueIgnoreEmpty struct {
 
 func (x *Proto3MapValueIgnoreEmpty) Reset() {
 	*x = Proto3MapValueIgnoreEmpty{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[37]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1773,7 +1311,7 @@ func (x *Proto3MapValueIgnoreEmpty) String() string {
 func (*Proto3MapValueIgnoreEmpty) ProtoMessage() {}
 
 func (x *Proto3MapValueIgnoreEmpty) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[37]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1786,54 +1324,10 @@ func (x *Proto3MapValueIgnoreEmpty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapValueIgnoreEmpty.ProtoReflect.Descriptor instead.
 func (*Proto3MapValueIgnoreEmpty) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{37}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *Proto3MapValueIgnoreEmpty) GetVal() map[int32]int32 {
-	if x != nil {
-		return x.Val
-	}
-	return nil
-}
-
-type Proto3MapValueIgnoreDefault struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           map[int32]int32        `protobuf:"bytes,1,rep,name=val,proto3" json:"val,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MapValueIgnoreDefault) Reset() {
-	*x = Proto3MapValueIgnoreDefault{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[38]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MapValueIgnoreDefault) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MapValueIgnoreDefault) ProtoMessage() {}
-
-func (x *Proto3MapValueIgnoreDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[38]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MapValueIgnoreDefault.ProtoReflect.Descriptor instead.
-func (*Proto3MapValueIgnoreDefault) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{38}
-}
-
-func (x *Proto3MapValueIgnoreDefault) GetVal() map[int32]int32 {
 	if x != nil {
 		return x.Val
 	}
@@ -1849,7 +1343,7 @@ type Proto3MapValueIgnoreAlways struct {
 
 func (x *Proto3MapValueIgnoreAlways) Reset() {
 	*x = Proto3MapValueIgnoreAlways{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[39]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1861,7 +1355,7 @@ func (x *Proto3MapValueIgnoreAlways) String() string {
 func (*Proto3MapValueIgnoreAlways) ProtoMessage() {}
 
 func (x *Proto3MapValueIgnoreAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[39]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1874,7 +1368,7 @@ func (x *Proto3MapValueIgnoreAlways) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MapValueIgnoreAlways.ProtoReflect.Descriptor instead.
 func (*Proto3MapValueIgnoreAlways) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{39}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *Proto3MapValueIgnoreAlways) GetVal() map[int32]int32 {
@@ -1893,7 +1387,7 @@ type Proto3MessageOptionalIgnoreUnspecified_Msg struct {
 
 func (x *Proto3MessageOptionalIgnoreUnspecified_Msg) Reset() {
 	*x = Proto3MessageOptionalIgnoreUnspecified_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[40]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1905,7 +1399,7 @@ func (x *Proto3MessageOptionalIgnoreUnspecified_Msg) String() string {
 func (*Proto3MessageOptionalIgnoreUnspecified_Msg) ProtoMessage() {}
 
 func (x *Proto3MessageOptionalIgnoreUnspecified_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[40]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1918,7 +1412,7 @@ func (x *Proto3MessageOptionalIgnoreUnspecified_Msg) ProtoReflect() protoreflect
 
 // Deprecated: Use Proto3MessageOptionalIgnoreUnspecified_Msg.ProtoReflect.Descriptor instead.
 func (*Proto3MessageOptionalIgnoreUnspecified_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{8, 0}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{6, 0}
 }
 
 func (x *Proto3MessageOptionalIgnoreUnspecified_Msg) GetVal() string {
@@ -1937,7 +1431,7 @@ type Proto3MessageOptionalIgnoreEmpty_Msg struct {
 
 func (x *Proto3MessageOptionalIgnoreEmpty_Msg) Reset() {
 	*x = Proto3MessageOptionalIgnoreEmpty_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[41]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1949,7 +1443,7 @@ func (x *Proto3MessageOptionalIgnoreEmpty_Msg) String() string {
 func (*Proto3MessageOptionalIgnoreEmpty_Msg) ProtoMessage() {}
 
 func (x *Proto3MessageOptionalIgnoreEmpty_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[41]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1962,54 +1456,10 @@ func (x *Proto3MessageOptionalIgnoreEmpty_Msg) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use Proto3MessageOptionalIgnoreEmpty_Msg.ProtoReflect.Descriptor instead.
 func (*Proto3MessageOptionalIgnoreEmpty_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{9, 0}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{7, 0}
 }
 
 func (x *Proto3MessageOptionalIgnoreEmpty_Msg) GetVal() string {
-	if x != nil && x.Val != nil {
-		return *x.Val
-	}
-	return ""
-}
-
-type Proto3MessageOptionalIgnoreDefault_Msg struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           *string                `protobuf:"bytes,1,opt,name=val,proto3,oneof" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MessageOptionalIgnoreDefault_Msg) Reset() {
-	*x = Proto3MessageOptionalIgnoreDefault_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[42]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MessageOptionalIgnoreDefault_Msg) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MessageOptionalIgnoreDefault_Msg) ProtoMessage() {}
-
-func (x *Proto3MessageOptionalIgnoreDefault_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[42]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MessageOptionalIgnoreDefault_Msg.ProtoReflect.Descriptor instead.
-func (*Proto3MessageOptionalIgnoreDefault_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{10, 0}
-}
-
-func (x *Proto3MessageOptionalIgnoreDefault_Msg) GetVal() string {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
@@ -2025,7 +1475,7 @@ type Proto3MessageOptionalIgnoreAlways_Msg struct {
 
 func (x *Proto3MessageOptionalIgnoreAlways_Msg) Reset() {
 	*x = Proto3MessageOptionalIgnoreAlways_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[43]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2037,7 +1487,7 @@ func (x *Proto3MessageOptionalIgnoreAlways_Msg) String() string {
 func (*Proto3MessageOptionalIgnoreAlways_Msg) ProtoMessage() {}
 
 func (x *Proto3MessageOptionalIgnoreAlways_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[43]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2050,7 +1500,7 @@ func (x *Proto3MessageOptionalIgnoreAlways_Msg) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use Proto3MessageOptionalIgnoreAlways_Msg.ProtoReflect.Descriptor instead.
 func (*Proto3MessageOptionalIgnoreAlways_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{11, 0}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{8, 0}
 }
 
 func (x *Proto3MessageOptionalIgnoreAlways_Msg) GetVal() string {
@@ -2069,7 +1519,7 @@ type Proto3MessageIgnoreUnspecified_Msg struct {
 
 func (x *Proto3MessageIgnoreUnspecified_Msg) Reset() {
 	*x = Proto3MessageIgnoreUnspecified_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[44]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2081,7 +1531,7 @@ func (x *Proto3MessageIgnoreUnspecified_Msg) String() string {
 func (*Proto3MessageIgnoreUnspecified_Msg) ProtoMessage() {}
 
 func (x *Proto3MessageIgnoreUnspecified_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[44]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2094,7 +1544,7 @@ func (x *Proto3MessageIgnoreUnspecified_Msg) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use Proto3MessageIgnoreUnspecified_Msg.ProtoReflect.Descriptor instead.
 func (*Proto3MessageIgnoreUnspecified_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{12, 0}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{9, 0}
 }
 
 func (x *Proto3MessageIgnoreUnspecified_Msg) GetVal() string {
@@ -2113,7 +1563,7 @@ type Proto3MessageIgnoreEmpty_Msg struct {
 
 func (x *Proto3MessageIgnoreEmpty_Msg) Reset() {
 	*x = Proto3MessageIgnoreEmpty_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[45]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2125,7 +1575,7 @@ func (x *Proto3MessageIgnoreEmpty_Msg) String() string {
 func (*Proto3MessageIgnoreEmpty_Msg) ProtoMessage() {}
 
 func (x *Proto3MessageIgnoreEmpty_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[45]
+	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2138,98 +1588,10 @@ func (x *Proto3MessageIgnoreEmpty_Msg) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Proto3MessageIgnoreEmpty_Msg.ProtoReflect.Descriptor instead.
 func (*Proto3MessageIgnoreEmpty_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{13, 0}
+	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{10, 0}
 }
 
 func (x *Proto3MessageIgnoreEmpty_Msg) GetVal() string {
-	if x != nil && x.Val != nil {
-		return *x.Val
-	}
-	return ""
-}
-
-type Proto3MessageIgnoreDefault_Msg struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           *string                `protobuf:"bytes,1,opt,name=val,proto3,oneof" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MessageIgnoreDefault_Msg) Reset() {
-	*x = Proto3MessageIgnoreDefault_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[46]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MessageIgnoreDefault_Msg) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MessageIgnoreDefault_Msg) ProtoMessage() {}
-
-func (x *Proto3MessageIgnoreDefault_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[46]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MessageIgnoreDefault_Msg.ProtoReflect.Descriptor instead.
-func (*Proto3MessageIgnoreDefault_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{14, 0}
-}
-
-func (x *Proto3MessageIgnoreDefault_Msg) GetVal() string {
-	if x != nil && x.Val != nil {
-		return *x.Val
-	}
-	return ""
-}
-
-type Proto3MessageIgnoreAlways_Msg struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Val           *string                `protobuf:"bytes,1,opt,name=val,proto3,oneof" json:"val,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Proto3MessageIgnoreAlways_Msg) Reset() {
-	*x = Proto3MessageIgnoreAlways_Msg{}
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[47]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Proto3MessageIgnoreAlways_Msg) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Proto3MessageIgnoreAlways_Msg) ProtoMessage() {}
-
-func (x *Proto3MessageIgnoreAlways_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[47]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Proto3MessageIgnoreAlways_Msg.ProtoReflect.Descriptor instead.
-func (*Proto3MessageIgnoreAlways_Msg) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP(), []int{15, 0}
-}
-
-func (x *Proto3MessageIgnoreAlways_Msg) GetVal() string {
 	if x != nil && x.Val != nil {
 		return *x.Val
 	}
@@ -2247,10 +1609,6 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x1fProto3ScalarOptionalIgnoreEmpty\x12!\n" +
 	"\x03val\x18\x01 \x01(\x05B\n" +
 	"\xbaH\a\xd8\x01\x01\x1a\x02 \x00H\x00R\x03val\x88\x01\x01B\x06\n" +
-	"\x04_val\"N\n" +
-	"!Proto3ScalarOptionalIgnoreDefault\x12!\n" +
-	"\x03val\x18\x01 \x01(\x05B\n" +
-	"\xbaH\a\xd8\x01\x02\x1a\x02 \x00H\x00R\x03val\x88\x01\x01B\x06\n" +
 	"\x04_val\"M\n" +
 	" Proto3ScalarOptionalIgnoreAlways\x12!\n" +
 	"\x03val\x18\x01 \x01(\x05B\n" +
@@ -2260,10 +1618,7 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x03val\x18\x01 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\x03val\"7\n" +
 	"\x17Proto3ScalarIgnoreEmpty\x12\x1c\n" +
 	"\x03val\x18\x01 \x01(\x05B\n" +
-	"\xbaH\a\xd8\x01\x01\x1a\x02 \x00R\x03val\"9\n" +
-	"\x19Proto3ScalarIgnoreDefault\x12\x1c\n" +
-	"\x03val\x18\x01 \x01(\x05B\n" +
-	"\xbaH\a\xd8\x01\x02\x1a\x02 \x00R\x03val\"8\n" +
+	"\xbaH\a\xd8\x01\x01\x1a\x02 \x00R\x03val\"8\n" +
 	"\x18Proto3ScalarIgnoreAlways\x12\x1c\n" +
 	"\x03val\x18\x01 \x01(\x05B\n" +
 	"\xbaH\a\xd8\x01\x03\x1a\x02 \x00R\x03val\"\xfa\x01\n" +
@@ -2277,13 +1632,6 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	" Proto3MessageOptionalIgnoreEmpty\x12\x9e\x01\n" +
 	"\x03val\x18\x01 \x01(\v2D.buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty.MsgBA\xbaH>\xba\x018\n" +
 	"\x1bproto3.message.ignore.empty\x12\x06foobar\x1a\x11this.val == 'foo'\xd8\x01\x01H\x00R\x03val\x88\x01\x01\x1a$\n" +
-	"\x03Msg\x12\x15\n" +
-	"\x03val\x18\x01 \x01(\tH\x00R\x03val\x88\x01\x01B\x06\n" +
-	"\x04_valB\x06\n" +
-	"\x04_val\"\xf5\x01\n" +
-	"\"Proto3MessageOptionalIgnoreDefault\x12\xa0\x01\n" +
-	"\x03val\x18\x01 \x01(\v2F.buf.validate.conformance.cases.Proto3MessageOptionalIgnoreDefault.MsgBA\xbaH>\xba\x018\n" +
-	"\x1bproto3.message.ignore.empty\x12\x06foobar\x1a\x11this.val == 'foo'\xd8\x01\x02H\x00R\x03val\x88\x01\x01\x1a$\n" +
 	"\x03Msg\x12\x15\n" +
 	"\x03val\x18\x01 \x01(\tH\x00R\x03val\x88\x01\x01B\x06\n" +
 	"\x04_valB\x06\n" +
@@ -2306,18 +1654,6 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x1bproto3.message.ignore.empty\x12\x06foobar\x1a\x11this.val == 'foo'\xd8\x01\x01R\x03val\x1a$\n" +
 	"\x03Msg\x12\x15\n" +
 	"\x03val\x18\x01 \x01(\tH\x00R\x03val\x88\x01\x01B\x06\n" +
-	"\x04_val\"\xd8\x01\n" +
-	"\x1aProto3MessageIgnoreDefault\x12\x93\x01\n" +
-	"\x03val\x18\x01 \x01(\v2>.buf.validate.conformance.cases.Proto3MessageIgnoreDefault.MsgBA\xbaH>\xba\x018\n" +
-	"\x1bproto3.message.ignore.empty\x12\x06foobar\x1a\x11this.val == 'foo'\xd8\x01\x02R\x03val\x1a$\n" +
-	"\x03Msg\x12\x15\n" +
-	"\x03val\x18\x01 \x01(\tH\x00R\x03val\x88\x01\x01B\x06\n" +
-	"\x04_val\"\xd6\x01\n" +
-	"\x19Proto3MessageIgnoreAlways\x12\x92\x01\n" +
-	"\x03val\x18\x01 \x01(\v2=.buf.validate.conformance.cases.Proto3MessageIgnoreAlways.MsgBA\xbaH>\xba\x018\n" +
-	"\x1bproto3.message.ignore.empty\x12\x06foobar\x1a\x11this.val == 'foo'\xd8\x01\x02R\x03val\x1a$\n" +
-	"\x03Msg\x12\x15\n" +
-	"\x03val\x18\x01 \x01(\tH\x00R\x03val\x88\x01\x01B\x06\n" +
 	"\x04_val\"@\n" +
 	"\x1cProto3OneofIgnoreUnspecified\x12\x1b\n" +
 	"\x03val\x18\x01 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00H\x00R\x03valB\x03\n" +
@@ -2325,10 +1661,6 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x16Proto3OneofIgnoreEmpty\x12\x1e\n" +
 	"\x03val\x18\x01 \x01(\x05B\n" +
 	"\xbaH\a\xd8\x01\x01\x1a\x02 \x00H\x00R\x03valB\x03\n" +
-	"\x01o\"?\n" +
-	"\x18Proto3OneofIgnoreDefault\x12\x1e\n" +
-	"\x03val\x18\x01 \x01(\x05B\n" +
-	"\xbaH\a\xd8\x01\x02\x1a\x02 \x00H\x00R\x03valB\x03\n" +
 	"\x01o\">\n" +
 	"\x17Proto3OneofIgnoreAlways\x12\x1e\n" +
 	"\x03val\x18\x01 \x01(\x05B\n" +
@@ -2337,9 +1669,7 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x1fProto3RepeatedIgnoreUnspecified\x12\x1a\n" +
 	"\x03val\x18\x01 \x03(\x05B\b\xbaH\x05\x92\x01\x02\b\x03R\x03val\":\n" +
 	"\x19Proto3RepeatedIgnoreEmpty\x12\x1d\n" +
-	"\x03val\x18\x01 \x03(\x05B\v\xbaH\b\xd8\x01\x01\x92\x01\x02\b\x03R\x03val\"<\n" +
-	"\x1bProto3RepeatedIgnoreDefault\x12\x1d\n" +
-	"\x03val\x18\x01 \x03(\x05B\v\xbaH\b\xd8\x01\x02\x92\x01\x02\b\x03R\x03val\";\n" +
+	"\x03val\x18\x01 \x03(\x05B\v\xbaH\b\xd8\x01\x01\x92\x01\x02\b\x03R\x03val\";\n" +
 	"\x1aProto3RepeatedIgnoreAlways\x12\x1d\n" +
 	"\x03val\x18\x01 \x03(\x05B\v\xbaH\b\xd8\x01\x03\x92\x01\x02\b\x03R\x03val\"\xb5\x01\n" +
 	"\x1aProto3MapIgnoreUnspecified\x12_\n" +
@@ -2351,11 +1681,6 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x03val\x18\x01 \x03(\v2=.buf.validate.conformance.cases.Proto3MapIgnoreEmpty.ValEntryB\v\xbaH\b\xd8\x01\x01\x9a\x01\x02\b\x03R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xb0\x01\n" +
-	"\x16Proto3MapIgnoreDefault\x12^\n" +
-	"\x03val\x18\x01 \x03(\v2?.buf.validate.conformance.cases.Proto3MapIgnoreDefault.ValEntryB\v\xbaH\b\xd8\x01\x02\x9a\x01\x02\b\x03R\x03val\x1a6\n" +
-	"\bValEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xae\x01\n" +
 	"\x15Proto3MapIgnoreAlways\x12]\n" +
 	"\x03val\x18\x01 \x03(\v2>.buf.validate.conformance.cases.Proto3MapIgnoreAlways.ValEntryB\v\xbaH\b\xd8\x01\x03\x9a\x01\x02\b\x03R\x03val\x1a6\n" +
@@ -2365,9 +1690,7 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"#Proto3RepeatedItemIgnoreUnspecified\x12\x1e\n" +
 	"\x03val\x18\x01 \x03(\x05B\f\xbaH\t\x92\x01\x06\"\x04\x1a\x02 \x00R\x03val\"B\n" +
 	"\x1dProto3RepeatedItemIgnoreEmpty\x12!\n" +
-	"\x03val\x18\x01 \x03(\x05B\x0f\xbaH\f\x92\x01\t\"\a\xd8\x01\x01\x1a\x02 \x00R\x03val\"D\n" +
-	"\x1fProto3RepeatedItemIgnoreDefault\x12!\n" +
-	"\x03val\x18\x01 \x03(\x05B\x0f\xbaH\f\x92\x01\t\"\a\xd8\x01\x02\x1a\x02 \x00R\x03val\"C\n" +
+	"\x03val\x18\x01 \x03(\x05B\x0f\xbaH\f\x92\x01\t\"\a\xd8\x01\x01\x1a\x02 \x00R\x03val\"C\n" +
 	"\x1eProto3RepeatedItemIgnoreAlways\x12!\n" +
 	"\x03val\x18\x01 \x03(\x05B\x0f\xbaH\f\x92\x01\t\"\a\xd8\x01\x03\x1a\x02 \x00R\x03val\"\xbf\x01\n" +
 	"\x1dProto3MapKeyIgnoreUnspecified\x12f\n" +
@@ -2377,11 +1700,6 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xb6\x01\n" +
 	"\x17Proto3MapKeyIgnoreEmpty\x12c\n" +
 	"\x03val\x18\x01 \x03(\v2@.buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty.ValEntryB\x0f\xbaH\f\x9a\x01\t\"\a\xd8\x01\x01\x1a\x02 \x00R\x03val\x1a6\n" +
-	"\bValEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xba\x01\n" +
-	"\x19Proto3MapKeyIgnoreDefault\x12e\n" +
-	"\x03val\x18\x01 \x03(\v2B.buf.validate.conformance.cases.Proto3MapKeyIgnoreDefault.ValEntryB\x0f\xbaH\f\x9a\x01\t\"\a\xd8\x01\x02\x1a\x02 \x00R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xb8\x01\n" +
@@ -2397,11 +1715,6 @@ const file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xba\x01\n" +
 	"\x19Proto3MapValueIgnoreEmpty\x12e\n" +
 	"\x03val\x18\x01 \x03(\v2B.buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty.ValEntryB\x0f\xbaH\f\x9a\x01\t*\a\xd8\x01\x01\x1a\x02 \x00R\x03val\x1a6\n" +
-	"\bValEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xbe\x01\n" +
-	"\x1bProto3MapValueIgnoreDefault\x12g\n" +
-	"\x03val\x18\x01 \x03(\v2D.buf.validate.conformance.cases.Proto3MapValueIgnoreDefault.ValEntryB\x0f\xbaH\f\x9a\x01\t*\a\xd8\x01\x02\x1a\x02 \x00R\x03val\x1a6\n" +
 	"\bValEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xbc\x01\n" +
@@ -2424,95 +1737,72 @@ func file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescGZIP() []byt
 	return file_buf_validate_conformance_cases_ignore_proto3_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes = make([]protoimpl.MessageInfo, 60)
+var file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
 var file_buf_validate_conformance_cases_ignore_proto3_proto_goTypes = []any{
 	(*Proto3ScalarOptionalIgnoreUnspecified)(nil),      // 0: buf.validate.conformance.cases.Proto3ScalarOptionalIgnoreUnspecified
 	(*Proto3ScalarOptionalIgnoreEmpty)(nil),            // 1: buf.validate.conformance.cases.Proto3ScalarOptionalIgnoreEmpty
-	(*Proto3ScalarOptionalIgnoreDefault)(nil),          // 2: buf.validate.conformance.cases.Proto3ScalarOptionalIgnoreDefault
-	(*Proto3ScalarOptionalIgnoreAlways)(nil),           // 3: buf.validate.conformance.cases.Proto3ScalarOptionalIgnoreAlways
-	(*Proto3ScalarIgnoreUnspecified)(nil),              // 4: buf.validate.conformance.cases.Proto3ScalarIgnoreUnspecified
-	(*Proto3ScalarIgnoreEmpty)(nil),                    // 5: buf.validate.conformance.cases.Proto3ScalarIgnoreEmpty
-	(*Proto3ScalarIgnoreDefault)(nil),                  // 6: buf.validate.conformance.cases.Proto3ScalarIgnoreDefault
-	(*Proto3ScalarIgnoreAlways)(nil),                   // 7: buf.validate.conformance.cases.Proto3ScalarIgnoreAlways
-	(*Proto3MessageOptionalIgnoreUnspecified)(nil),     // 8: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified
-	(*Proto3MessageOptionalIgnoreEmpty)(nil),           // 9: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty
-	(*Proto3MessageOptionalIgnoreDefault)(nil),         // 10: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreDefault
-	(*Proto3MessageOptionalIgnoreAlways)(nil),          // 11: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways
-	(*Proto3MessageIgnoreUnspecified)(nil),             // 12: buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified
-	(*Proto3MessageIgnoreEmpty)(nil),                   // 13: buf.validate.conformance.cases.Proto3MessageIgnoreEmpty
-	(*Proto3MessageIgnoreDefault)(nil),                 // 14: buf.validate.conformance.cases.Proto3MessageIgnoreDefault
-	(*Proto3MessageIgnoreAlways)(nil),                  // 15: buf.validate.conformance.cases.Proto3MessageIgnoreAlways
-	(*Proto3OneofIgnoreUnspecified)(nil),               // 16: buf.validate.conformance.cases.Proto3OneofIgnoreUnspecified
-	(*Proto3OneofIgnoreEmpty)(nil),                     // 17: buf.validate.conformance.cases.Proto3OneofIgnoreEmpty
-	(*Proto3OneofIgnoreDefault)(nil),                   // 18: buf.validate.conformance.cases.Proto3OneofIgnoreDefault
-	(*Proto3OneofIgnoreAlways)(nil),                    // 19: buf.validate.conformance.cases.Proto3OneofIgnoreAlways
-	(*Proto3RepeatedIgnoreUnspecified)(nil),            // 20: buf.validate.conformance.cases.Proto3RepeatedIgnoreUnspecified
-	(*Proto3RepeatedIgnoreEmpty)(nil),                  // 21: buf.validate.conformance.cases.Proto3RepeatedIgnoreEmpty
-	(*Proto3RepeatedIgnoreDefault)(nil),                // 22: buf.validate.conformance.cases.Proto3RepeatedIgnoreDefault
-	(*Proto3RepeatedIgnoreAlways)(nil),                 // 23: buf.validate.conformance.cases.Proto3RepeatedIgnoreAlways
-	(*Proto3MapIgnoreUnspecified)(nil),                 // 24: buf.validate.conformance.cases.Proto3MapIgnoreUnspecified
-	(*Proto3MapIgnoreEmpty)(nil),                       // 25: buf.validate.conformance.cases.Proto3MapIgnoreEmpty
-	(*Proto3MapIgnoreDefault)(nil),                     // 26: buf.validate.conformance.cases.Proto3MapIgnoreDefault
-	(*Proto3MapIgnoreAlways)(nil),                      // 27: buf.validate.conformance.cases.Proto3MapIgnoreAlways
-	(*Proto3RepeatedItemIgnoreUnspecified)(nil),        // 28: buf.validate.conformance.cases.Proto3RepeatedItemIgnoreUnspecified
-	(*Proto3RepeatedItemIgnoreEmpty)(nil),              // 29: buf.validate.conformance.cases.Proto3RepeatedItemIgnoreEmpty
-	(*Proto3RepeatedItemIgnoreDefault)(nil),            // 30: buf.validate.conformance.cases.Proto3RepeatedItemIgnoreDefault
-	(*Proto3RepeatedItemIgnoreAlways)(nil),             // 31: buf.validate.conformance.cases.Proto3RepeatedItemIgnoreAlways
-	(*Proto3MapKeyIgnoreUnspecified)(nil),              // 32: buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified
-	(*Proto3MapKeyIgnoreEmpty)(nil),                    // 33: buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty
-	(*Proto3MapKeyIgnoreDefault)(nil),                  // 34: buf.validate.conformance.cases.Proto3MapKeyIgnoreDefault
-	(*Proto3MapKeyIgnoreAlways)(nil),                   // 35: buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways
-	(*Proto3MapValueIgnoreUnspecified)(nil),            // 36: buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified
-	(*Proto3MapValueIgnoreEmpty)(nil),                  // 37: buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty
-	(*Proto3MapValueIgnoreDefault)(nil),                // 38: buf.validate.conformance.cases.Proto3MapValueIgnoreDefault
-	(*Proto3MapValueIgnoreAlways)(nil),                 // 39: buf.validate.conformance.cases.Proto3MapValueIgnoreAlways
-	(*Proto3MessageOptionalIgnoreUnspecified_Msg)(nil), // 40: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified.Msg
-	(*Proto3MessageOptionalIgnoreEmpty_Msg)(nil),       // 41: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty.Msg
-	(*Proto3MessageOptionalIgnoreDefault_Msg)(nil),     // 42: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreDefault.Msg
-	(*Proto3MessageOptionalIgnoreAlways_Msg)(nil),      // 43: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.Msg
-	(*Proto3MessageIgnoreUnspecified_Msg)(nil),         // 44: buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified.Msg
-	(*Proto3MessageIgnoreEmpty_Msg)(nil),               // 45: buf.validate.conformance.cases.Proto3MessageIgnoreEmpty.Msg
-	(*Proto3MessageIgnoreDefault_Msg)(nil),             // 46: buf.validate.conformance.cases.Proto3MessageIgnoreDefault.Msg
-	(*Proto3MessageIgnoreAlways_Msg)(nil),              // 47: buf.validate.conformance.cases.Proto3MessageIgnoreAlways.Msg
-	nil,                                                // 48: buf.validate.conformance.cases.Proto3MapIgnoreUnspecified.ValEntry
-	nil,                                                // 49: buf.validate.conformance.cases.Proto3MapIgnoreEmpty.ValEntry
-	nil,                                                // 50: buf.validate.conformance.cases.Proto3MapIgnoreDefault.ValEntry
-	nil,                                                // 51: buf.validate.conformance.cases.Proto3MapIgnoreAlways.ValEntry
-	nil,                                                // 52: buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified.ValEntry
-	nil,                                                // 53: buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty.ValEntry
-	nil,                                                // 54: buf.validate.conformance.cases.Proto3MapKeyIgnoreDefault.ValEntry
-	nil,                                                // 55: buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways.ValEntry
-	nil,                                                // 56: buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified.ValEntry
-	nil,                                                // 57: buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty.ValEntry
-	nil,                                                // 58: buf.validate.conformance.cases.Proto3MapValueIgnoreDefault.ValEntry
-	nil,                                                // 59: buf.validate.conformance.cases.Proto3MapValueIgnoreAlways.ValEntry
+	(*Proto3ScalarOptionalIgnoreAlways)(nil),           // 2: buf.validate.conformance.cases.Proto3ScalarOptionalIgnoreAlways
+	(*Proto3ScalarIgnoreUnspecified)(nil),              // 3: buf.validate.conformance.cases.Proto3ScalarIgnoreUnspecified
+	(*Proto3ScalarIgnoreEmpty)(nil),                    // 4: buf.validate.conformance.cases.Proto3ScalarIgnoreEmpty
+	(*Proto3ScalarIgnoreAlways)(nil),                   // 5: buf.validate.conformance.cases.Proto3ScalarIgnoreAlways
+	(*Proto3MessageOptionalIgnoreUnspecified)(nil),     // 6: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified
+	(*Proto3MessageOptionalIgnoreEmpty)(nil),           // 7: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty
+	(*Proto3MessageOptionalIgnoreAlways)(nil),          // 8: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways
+	(*Proto3MessageIgnoreUnspecified)(nil),             // 9: buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified
+	(*Proto3MessageIgnoreEmpty)(nil),                   // 10: buf.validate.conformance.cases.Proto3MessageIgnoreEmpty
+	(*Proto3OneofIgnoreUnspecified)(nil),               // 11: buf.validate.conformance.cases.Proto3OneofIgnoreUnspecified
+	(*Proto3OneofIgnoreEmpty)(nil),                     // 12: buf.validate.conformance.cases.Proto3OneofIgnoreEmpty
+	(*Proto3OneofIgnoreAlways)(nil),                    // 13: buf.validate.conformance.cases.Proto3OneofIgnoreAlways
+	(*Proto3RepeatedIgnoreUnspecified)(nil),            // 14: buf.validate.conformance.cases.Proto3RepeatedIgnoreUnspecified
+	(*Proto3RepeatedIgnoreEmpty)(nil),                  // 15: buf.validate.conformance.cases.Proto3RepeatedIgnoreEmpty
+	(*Proto3RepeatedIgnoreAlways)(nil),                 // 16: buf.validate.conformance.cases.Proto3RepeatedIgnoreAlways
+	(*Proto3MapIgnoreUnspecified)(nil),                 // 17: buf.validate.conformance.cases.Proto3MapIgnoreUnspecified
+	(*Proto3MapIgnoreEmpty)(nil),                       // 18: buf.validate.conformance.cases.Proto3MapIgnoreEmpty
+	(*Proto3MapIgnoreAlways)(nil),                      // 19: buf.validate.conformance.cases.Proto3MapIgnoreAlways
+	(*Proto3RepeatedItemIgnoreUnspecified)(nil),        // 20: buf.validate.conformance.cases.Proto3RepeatedItemIgnoreUnspecified
+	(*Proto3RepeatedItemIgnoreEmpty)(nil),              // 21: buf.validate.conformance.cases.Proto3RepeatedItemIgnoreEmpty
+	(*Proto3RepeatedItemIgnoreAlways)(nil),             // 22: buf.validate.conformance.cases.Proto3RepeatedItemIgnoreAlways
+	(*Proto3MapKeyIgnoreUnspecified)(nil),              // 23: buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified
+	(*Proto3MapKeyIgnoreEmpty)(nil),                    // 24: buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty
+	(*Proto3MapKeyIgnoreAlways)(nil),                   // 25: buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways
+	(*Proto3MapValueIgnoreUnspecified)(nil),            // 26: buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified
+	(*Proto3MapValueIgnoreEmpty)(nil),                  // 27: buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty
+	(*Proto3MapValueIgnoreAlways)(nil),                 // 28: buf.validate.conformance.cases.Proto3MapValueIgnoreAlways
+	(*Proto3MessageOptionalIgnoreUnspecified_Msg)(nil), // 29: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified.Msg
+	(*Proto3MessageOptionalIgnoreEmpty_Msg)(nil),       // 30: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty.Msg
+	(*Proto3MessageOptionalIgnoreAlways_Msg)(nil),      // 31: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.Msg
+	(*Proto3MessageIgnoreUnspecified_Msg)(nil),         // 32: buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified.Msg
+	(*Proto3MessageIgnoreEmpty_Msg)(nil),               // 33: buf.validate.conformance.cases.Proto3MessageIgnoreEmpty.Msg
+	nil,                                                // 34: buf.validate.conformance.cases.Proto3MapIgnoreUnspecified.ValEntry
+	nil,                                                // 35: buf.validate.conformance.cases.Proto3MapIgnoreEmpty.ValEntry
+	nil,                                                // 36: buf.validate.conformance.cases.Proto3MapIgnoreAlways.ValEntry
+	nil,                                                // 37: buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified.ValEntry
+	nil,                                                // 38: buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty.ValEntry
+	nil,                                                // 39: buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways.ValEntry
+	nil,                                                // 40: buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified.ValEntry
+	nil,                                                // 41: buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty.ValEntry
+	nil,                                                // 42: buf.validate.conformance.cases.Proto3MapValueIgnoreAlways.ValEntry
 }
 var file_buf_validate_conformance_cases_ignore_proto3_proto_depIdxs = []int32{
-	40, // 0: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified.Msg
-	41, // 1: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty.Msg
-	42, // 2: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreDefault.val:type_name -> buf.validate.conformance.cases.Proto3MessageOptionalIgnoreDefault.Msg
-	43, // 3: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.Msg
-	44, // 4: buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified.Msg
-	45, // 5: buf.validate.conformance.cases.Proto3MessageIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MessageIgnoreEmpty.Msg
-	46, // 6: buf.validate.conformance.cases.Proto3MessageIgnoreDefault.val:type_name -> buf.validate.conformance.cases.Proto3MessageIgnoreDefault.Msg
-	47, // 7: buf.validate.conformance.cases.Proto3MessageIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MessageIgnoreAlways.Msg
-	48, // 8: buf.validate.conformance.cases.Proto3MapIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MapIgnoreUnspecified.ValEntry
-	49, // 9: buf.validate.conformance.cases.Proto3MapIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MapIgnoreEmpty.ValEntry
-	50, // 10: buf.validate.conformance.cases.Proto3MapIgnoreDefault.val:type_name -> buf.validate.conformance.cases.Proto3MapIgnoreDefault.ValEntry
-	51, // 11: buf.validate.conformance.cases.Proto3MapIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MapIgnoreAlways.ValEntry
-	52, // 12: buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified.ValEntry
-	53, // 13: buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty.ValEntry
-	54, // 14: buf.validate.conformance.cases.Proto3MapKeyIgnoreDefault.val:type_name -> buf.validate.conformance.cases.Proto3MapKeyIgnoreDefault.ValEntry
-	55, // 15: buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways.ValEntry
-	56, // 16: buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified.ValEntry
-	57, // 17: buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty.ValEntry
-	58, // 18: buf.validate.conformance.cases.Proto3MapValueIgnoreDefault.val:type_name -> buf.validate.conformance.cases.Proto3MapValueIgnoreDefault.ValEntry
-	59, // 19: buf.validate.conformance.cases.Proto3MapValueIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MapValueIgnoreAlways.ValEntry
-	20, // [20:20] is the sub-list for method output_type
-	20, // [20:20] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	29, // 0: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MessageOptionalIgnoreUnspecified.Msg
+	30, // 1: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MessageOptionalIgnoreEmpty.Msg
+	31, // 2: buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.Msg
+	32, // 3: buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MessageIgnoreUnspecified.Msg
+	33, // 4: buf.validate.conformance.cases.Proto3MessageIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MessageIgnoreEmpty.Msg
+	34, // 5: buf.validate.conformance.cases.Proto3MapIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MapIgnoreUnspecified.ValEntry
+	35, // 6: buf.validate.conformance.cases.Proto3MapIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MapIgnoreEmpty.ValEntry
+	36, // 7: buf.validate.conformance.cases.Proto3MapIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MapIgnoreAlways.ValEntry
+	37, // 8: buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MapKeyIgnoreUnspecified.ValEntry
+	38, // 9: buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MapKeyIgnoreEmpty.ValEntry
+	39, // 10: buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MapKeyIgnoreAlways.ValEntry
+	40, // 11: buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified.val:type_name -> buf.validate.conformance.cases.Proto3MapValueIgnoreUnspecified.ValEntry
+	41, // 12: buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty.val:type_name -> buf.validate.conformance.cases.Proto3MapValueIgnoreEmpty.ValEntry
+	42, // 13: buf.validate.conformance.cases.Proto3MapValueIgnoreAlways.val:type_name -> buf.validate.conformance.cases.Proto3MapValueIgnoreAlways.ValEntry
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_conformance_cases_ignore_proto3_proto_init() }
@@ -2523,38 +1813,30 @@ func file_buf_validate_conformance_cases_ignore_proto3_proto_init() {
 	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[0].OneofWrappers = []any{}
 	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[1].OneofWrappers = []any{}
 	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[2].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[3].OneofWrappers = []any{}
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[6].OneofWrappers = []any{}
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[7].OneofWrappers = []any{}
 	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[8].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[9].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[10].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[11].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[16].OneofWrappers = []any{
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[11].OneofWrappers = []any{
 		(*Proto3OneofIgnoreUnspecified_Val)(nil),
 	}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[17].OneofWrappers = []any{
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[12].OneofWrappers = []any{
 		(*Proto3OneofIgnoreEmpty_Val)(nil),
 	}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[18].OneofWrappers = []any{
-		(*Proto3OneofIgnoreDefault_Val)(nil),
-	}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[19].OneofWrappers = []any{
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[13].OneofWrappers = []any{
 		(*Proto3OneofIgnoreAlways_Val)(nil),
 	}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[40].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[41].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[42].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[43].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[44].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[45].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[46].OneofWrappers = []any{}
-	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[47].OneofWrappers = []any{}
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[29].OneofWrappers = []any{}
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[30].OneofWrappers = []any{}
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[31].OneofWrappers = []any{}
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[32].OneofWrappers = []any{}
+	file_buf_validate_conformance_cases_ignore_proto3_proto_msgTypes[33].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc), len(file_buf_validate_conformance_cases_ignore_proto3_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   60,
+			NumMessages:   43,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
