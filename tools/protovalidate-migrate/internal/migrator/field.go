@@ -154,7 +154,7 @@ func (v *FieldVisitor) buildNameParts(node *ast.OptionNode) (nameParts []ast.Nod
 		case "ignore_empty":
 			// moved up & renamed, drop the parent element from the path
 			nameParts = append(nameParts[:len(nameParts)-2], dot, v.replaceNode(part, "ignore"))
-			value = v.replaceNode(value, validate.Ignore_IGNORE_IF_UNPOPULATED.String())
+			value = v.replaceNode(value, validate.Ignore_IGNORE_IF_ZERO_VALUE.String())
 		case "required":
 			switch node.Name.Parts[i].Value() {
 			case "any", "timestamp", "duration":
@@ -259,7 +259,7 @@ func (v *MessageLiteralVisitor) VisitMessageFieldNode(node *ast.MessageFieldNode
 		name = v.replaceNode(name, "ignore")
 	case "ignore_empty":
 		if val, ok := node.Val.Value().(ast.Identifier); ok && val == "true" {
-			v.ignoreNeeded = v.replaceNode(node.Val, validate.Ignore_IGNORE_IF_UNPOPULATED.String())
+			v.ignoreNeeded = v.replaceNode(node.Val, validate.Ignore_IGNORE_IF_ZERO_VALUE.String())
 		}
 		v.wroteItem = false
 		return nil
