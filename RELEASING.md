@@ -28,16 +28,16 @@ collapsed sections below.
     in the event of manually cutting a release.
 
     Note that this workflow creates tags directly on GitHub instead of pushing
-    tags up, so it will not indirectly trigger the draft release automation in
-    that way. Instead, a workflow call is used. So, the creat release draft
-    workflow will appear nested under the create release tag workflow as a step.
+    tags up, so it will not indirectly trigger automations that trigger on tags.
+    The BCR release script is run as a workflow call. Creating the tags manually
+    will not trigger this.
 
     </details>
 
 1.  **Find the draft release.**
 
-    Upon either pushing a release tag or running the previous workflow, a
-    release draft should be created. Check for it in the [releases page].
+    Upon running the previous workflow, a release draft should be created.
+    Check for it in the [releases page].
 
     If for some reason this doesn't happen, check the workflow log for more
     information.
