@@ -79,7 +79,6 @@ collapsed sections below.
     addressed.
 
 [Release]: https://github.com/bufbuild/protovalidate/actions/workflows/release.yaml
-[create release draft]: https://github.com/bufbuild/protovalidate/actions/workflows/create-release-draft.yaml
 [releases page]: https://github.com/bufbuild/protovalidate/releases
 [Bazel Central Registry repository]: https://github.com/bazelbuild/bazel-central-registry/pulls
 [Publish to BCR]: https://github.com/apps/publish-to-bcr
