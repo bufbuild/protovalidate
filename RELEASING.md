@@ -9,9 +9,9 @@ Most of the protovalidate release process is automated, but in the event that
 automation can not be utilized, the manual steps are also included in the
 collapsed sections below.
 
-1.  **Run the [create release tag] workflow.**
+1.  **Run the [Release] workflow.**
 
-    Go to the [create release tag] workflow page and select <q>Run workflow</q>,
+    Go to the [Release] workflow page and select <q>Run workflow</q>,
     with the desired version tag (e.g. `v1.2.3`).
 
     <details>
@@ -39,20 +39,22 @@ collapsed sections below.
     Upon either pushing a release tag or running the previous workflow, a
     release draft should be created. Check for it in the [releases page].
 
-    If for some reason this doesn't happen, it is possible to directly trigger
-    the workflow by going to the [create release draft] action and selecting
-    <q>Run workflow</q>.
+    If for some reason this doesn't happen, check the workflow log for more
+    information.
 
     <details>
 
     <summary>Manually creating a release draft</summary>
+
+    Note that manually-created releases will not pass attestation and can not
+    be pushed to the BCR.
 
     To manually create a release draft, run `.github/workflows/release_prep.sh`
     with the version tag (e.g. `vX.Y.Z`) as an argument, while checked out to
     the release tag/commit:
 
     ```
-    .github/workflows/release_prep.sh v1.2.3
+    .github/workflows/release_prep.sh v1.2.3 >release_notes.md
     ```
 
     This will create two files:
@@ -76,7 +78,7 @@ collapsed sections below.
     created a new pull request. There may be failures in CI that need to be
     addressed.
 
-[create release tag]: https://github.com/bufbuild/protovalidate/actions/workflows/create-release-tag.yaml
+[Release]: https://github.com/bufbuild/protovalidate/actions/workflows/release.yaml
 [create release draft]: https://github.com/bufbuild/protovalidate/actions/workflows/create-release-draft.yaml
 [releases page]: https://github.com/bufbuild/protovalidate/releases
 [Bazel Central Registry repository]: https://github.com/bazelbuild/bazel-central-registry/pulls
