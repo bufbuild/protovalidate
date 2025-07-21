@@ -31,24 +31,24 @@ fi
 
 mv MODULE.bazel.tmp MODULE.bazel
 >&2 echo "MODULE.bazel contents:"
-cat MODULE.bazel
+>&2 cat MODULE.bazel
 
 # Create release archive
 >&2 echo "# Create release archive ${ARCHIVE}"
-git archive \
+>&2 git archive \
     --prefix="${PREFIX}/" \
     --output="${ARCHIVE}" \
     "$(git stash create)"
 
 >&2 echo "Release archive ${ARCHIVE} contents:"
-tar tvf "${ARCHIVE}"
+>&2 tar tvf "${ARCHIVE}"
 
 # Calculate SHA256 sum for WORKSPACE code
 SHA256=$(shasum -a 256 "${ARCHIVE}" | awk '{print $1}')
 
 # Generate release notes snippets
 >&2 echo "# Generate release notes snippets"
-> release_notes.md cat << EOF
+cat << EOF
 ## \`MODULE.bazel\` Usage
 \`\`\`bzl
 bazel_dep(name = "protovalidate", version = "${TAG:1}")
