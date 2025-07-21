@@ -1,0 +1,24 @@
+name: Publish to BCR
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for release (e.g. "v1.0.0")'
+        required: true
+
+permissions:
+  id-token: write
+  attestations: write
+  contents: write
+
+jobs:
+  publish:
+    uses: bazel-contrib/publish-to-bcr/.github/workflows/publish.yaml@v0.2.2
+    with:
+      tag_name: ${{ inputs.tag_name || github.ref_name }}
+      registry_fork: bufbuild/bazel-central-registry
+    secrets:
+      publish_token: ${{ secrets.BCR_PUBLISH_TOKEN }}
