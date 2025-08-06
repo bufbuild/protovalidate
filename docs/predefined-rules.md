@@ -5,5 +5,5 @@
 This page has been moved to [predefined rules][predefined-rules] at [protovalidate.com][protovalidate].
 
 [buf]: https://buf.build
-[protovalidate]: .https://protovalidate.com/
-[predefined-rules]: .https://protovalidate.com/schemas/predefined-rules/
+[protovalidate]: https://protovalidate.com/
+[predefined-rules]: https://protovalidate.com/schemas/predefined-rules/

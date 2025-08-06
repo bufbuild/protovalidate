@@ -81,10 +81,10 @@ Offered under the [Apache 2 license][license].
 [conformance]: https://github.com/bufbuild/protovalidate/blob/main/docs/conformance.md
 [ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
 
-[protovalidate]: .https://protovalidate.com/
-[quickstart]: .https://protovalidate.com/quickstart/
-[connect-go]: .https://protovalidate.com/quickstart/connect-go/
-[grpc-go]: .https://protovalidate.com/quickstart/grpc-go/
-[grpc-java]: .https://protovalidate.com/quickstart/grpc-java/
-[grpc-python]: .https://protovalidate.com/quickstart/grpc-python/
+[protovalidate]: https://protovalidate.com/
+[quickstart]: https://protovalidate.com/quickstart/
+[connect-go]: https://protovalidate.com/quickstart/connect-go/
+[grpc-go]: https://protovalidate.com/quickstart/grpc-go/
+[grpc-java]: https://protovalidate.com/quickstart/grpc-java/
+[grpc-python]: https://protovalidate.com/quickstart/grpc-python/
 [migration-guide]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/

@@ -5,5 +5,5 @@
 This page has moved to [custom rules][custom-rules] at [protovalidate.com][protovalidate].
 
 [buf]: https://buf.build
-[protovalidate]: .https://protovalidate.com/
-[custom-rules]: .https://protovalidate.com/schemas/custom-rules/
+[protovalidate]: https://protovalidate.com/
+[custom-rules]: https://protovalidate.com/schemas/custom-rules/
