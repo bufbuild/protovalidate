@@ -2,7 +2,7 @@
 
 # Rules
 
-This page has moved to [protovalidate.com][protovalidate].
+This page has moved to [Protovalidate's comprehensive documentation][protovalidate-docs] at [protovalidate.com][protovalidate].
 
-[buf]: https://buf.build
+[protovalidate-docs]: https://protovalidate.com/about/
 [protovalidate]: https://protovalidate.com/
