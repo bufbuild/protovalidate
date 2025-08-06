@@ -44,7 +44,7 @@ To start using Protovalidate in your projects, see the [developer quickstart][qu
 
 ## Documentation
 
-Comprehensive documentation for Protovalidate at [protovalidate.com][protovalidate].
+Comprehensive documentation for Protovalidate is available at [protovalidate.com][protovalidate].
 
 Highlights include:
 
