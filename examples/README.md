@@ -18,10 +18,10 @@ The following direct links can be used to find the examples that used to be in t
 - Discover how CEL-based [custom rules][custom-rules] allow you to express business rules within Protobuf.
 
 [buf]: https://buf.build
-[protovalidate]: https://buf.build/docs/protovalidate/
+[protovalidate]: .https://protovalidate.com/
 [protovalidate-examples]: https://github.com/bufbuild/buf-examples/tree/main/protovalidate
 [standard-rules-example]: https://github.com/bufbuild/buf-examples/tree/main/protovalidate/rules-standard
 [custom-rules-example]: https://github.com/bufbuild/buf-examples/tree/main/protovalidate/rules-custom
-[quickstart]: https://buf.build/docs/protovalidate/quickstart/
-[standard-rules]: https://buf.build/docs/protovalidate/schemas/standard-rules/
-[custom-rules]: https://buf.build/docs/protovalidate/schemas/custom-rules/
+[quickstart]: .https://protovalidate.com/quickstart/
+[standard-rules]: .https://protovalidate.com/schemas/standard-rules/
+[custom-rules]: .https://protovalidate.com/schemas/custom-rules/

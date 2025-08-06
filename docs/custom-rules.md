@@ -2,8 +2,8 @@
 
 # Custom rules
 
-This page has moved to [custom rules][custom-rules] within [Protovalidate's documentation][protovalidate] at [Buf][buf].
+This page has moved to [custom rules][custom-rules] at [protovalidate.com][protovalidate].
 
 [buf]: https://buf.build
-[protovalidate]: https://buf.build/docs/protovalidate/
-[custom-rules]: https://buf.build/docs/protovalidate/schemas/custom-rules/
+[protovalidate]: .https://protovalidate.com/
+[custom-rules]: .https://protovalidate.com/schemas/custom-rules/
