@@ -34,7 +34,7 @@ message User {
 
 ## Supported languages
 
-To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate], or go directly to the repository for your language of choice:
+To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate-overview], or go directly to the repository for your language of choice:
 
 - [`protovalidate-go`][pv-go] (Go)
 - [`protovalidate-java`][pv-java] (Java)
@@ -82,6 +82,7 @@ Offered under the [Apache 2 license][license].
 [ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
 
 [protovalidate]: https://protovalidate.com/
+[protovalidate-overview]: https://protovalidate.com/about/
 [quickstart]: https://protovalidate.com/quickstart/
 [connect-go]: https://protovalidate.com/quickstart/connect-go/
 [grpc-go]: https://protovalidate.com/quickstart/grpc-go/
