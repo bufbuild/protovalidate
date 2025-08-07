@@ -34,7 +34,7 @@ message User {
 
 ## Supported languages
 
-To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate], or go directly to the repository for your language of choice:
+To start using Protovalidate in your projects, see the [developer quickstart][quickstart], [Protovalidate overview][protovalidate-overview], or go directly to the repository for your language of choice:
 
 - [`protovalidate-go`][pv-go] (Go)
 - [`protovalidate-java`][pv-java] (Java)
@@ -44,7 +44,7 @@ To start using Protovalidate in your projects, see the [developer quickstart][qu
 
 ## Documentation
 
-Comprehensive documentation for Protovalidate is available in [Buf's documentation library][protovalidate].
+Comprehensive documentation for Protovalidate is available at [protovalidate.com][protovalidate].
 
 Highlights include:
 
@@ -81,10 +81,11 @@ Offered under the [Apache 2 license][license].
 [conformance]: https://github.com/bufbuild/protovalidate/blob/main/docs/conformance.md
 [ci]: https://github.com/bufbuild/protovalidate/actions/workflows/ci.yaml
 
-[protovalidate]: https://buf.build/docs/protovalidate/
-[quickstart]: https://buf.build/docs/protovalidate/quickstart/
-[connect-go]: https://buf.build/docs/protovalidate/quickstart/connect-go/
-[grpc-go]: https://buf.build/docs/protovalidate/quickstart/grpc-go/
-[grpc-java]: https://buf.build/docs/protovalidate/quickstart/grpc-java/
-[grpc-python]: https://buf.build/docs/protovalidate/quickstart/grpc-python/
+[protovalidate]: https://protovalidate.com/
+[protovalidate-overview]: https://protovalidate.com/about/
+[quickstart]: https://protovalidate.com/quickstart/
+[connect-go]: https://protovalidate.com/quickstart/connect-go/
+[grpc-go]: https://protovalidate.com/quickstart/grpc-go/
+[grpc-java]: https://protovalidate.com/quickstart/grpc-java/
+[grpc-python]: https://protovalidate.com/quickstart/grpc-python/
 [migration-guide]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/
