@@ -5,11 +5,6 @@
       "name": "Protovalidate Team",
       "email": "bcr-github@buf.build",
       "github": "bcr-buf"
-    },
-    {
-      "name": "John Chadwick",
-      "email": "jchadwick@buf.build",
-      "github": "jchadwick-buf"
     }
   ],
   "repository": ["github:bufbuild/protovalidate"],
