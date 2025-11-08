@@ -335,6 +335,26 @@ func (x *Rule) GetExpression() string {
 // It includes disabling options and a list of Rule messages representing Common Expression Language (CEL) validation rules.
 type MessageRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// `cel_expression` is a repeated field CEL expressions. Each expression specifies a validation
+	// rule to be applied to this message. These rules are written in Common Expression Language (CEL) syntax.
+	//
+	// This is a simplified form of the `cel` Rule field, where only `expression` is set. This allows for
+	// simpler syntax when defining CEL Rules where `id` and `message` are largely redundant.
+	//
+	// For more information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
+	//
+	// ```proto
+	//
+	//	message MyMessage {
+	//	  // The field `foo` must be greater than 42.
+	//	  option (buf.validate.message).cel_expression = "this.foo > 42";
+	//	  // The field `foo` must be less than 84.
+	//	  option (buf.validate.message).cel_expression = "this.foo < 84";
+	//	  optional int32 foo = 1;
+	//	}
+	//
+	// ```
+	CelExpression []string `protobuf:"bytes,5,rep,name=cel_expression,json=celExpression" json:"cel_expression,omitempty"`
 	// `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
 	// These rules are written in Common Expression Language (CEL) syntax. For more information,
 	// [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
@@ -422,6 +442,13 @@ func (x *MessageRules) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MessageRules.ProtoReflect.Descriptor instead.
 func (*MessageRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *MessageRules) GetCelExpression() []string {
+	if x != nil {
+		return x.CelExpression
+	}
+	return nil
 }
 
 func (x *MessageRules) GetCel() []*Rule {
@@ -7491,8 +7518,9 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
 	"\n" +
 	"expression\x18\x03 \x01(\tR\n" +
-	"expression\"z\n" +
-	"\fMessageRules\x12$\n" +
+	"expression\"\xa1\x01\n" +
+	"\fMessageRules\x12%\n" +
+	"\x0ecel_expression\x18\x05 \x03(\tR\rcelExpression\x12$\n" +
 	"\x03cel\x18\x03 \x03(\v2\x12.buf.validate.RuleR\x03cel\x124\n" +
 	"\x05oneof\x18\x04 \x03(\v2\x1e.buf.validate.MessageOneofRuleR\x05oneofJ\x04\b\x01\x10\x02R\bdisabled\"F\n" +
 	"\x10MessageOneofRule\x12\x16\n" +
