@@ -872,6 +872,138 @@ func (x *BytesNotIPv6) GetVal() []byte {
 	return nil
 }
 
+type BytesUUID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           []byte                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BytesUUID) Reset() {
+	*x = BytesUUID{}
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BytesUUID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BytesUUID) ProtoMessage() {}
+
+func (x *BytesUUID) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BytesUUID.ProtoReflect.Descriptor instead.
+func (*BytesUUID) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *BytesUUID) GetVal() []byte {
+	if x != nil {
+		return x.Val
+	}
+	return nil
+}
+
+type BytesNotUUID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           []byte                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BytesNotUUID) Reset() {
+	*x = BytesNotUUID{}
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BytesNotUUID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BytesNotUUID) ProtoMessage() {}
+
+func (x *BytesNotUUID) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BytesNotUUID.ProtoReflect.Descriptor instead.
+func (*BytesNotUUID) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *BytesNotUUID) GetVal() []byte {
+	if x != nil {
+		return x.Val
+	}
+	return nil
+}
+
+type BytesUUIDIgnore struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           []byte                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BytesUUIDIgnore) Reset() {
+	*x = BytesUUIDIgnore{}
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BytesUUIDIgnore) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BytesUUIDIgnore) ProtoMessage() {}
+
+func (x *BytesUUIDIgnore) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BytesUUIDIgnore.ProtoReflect.Descriptor instead.
+func (*BytesUUIDIgnore) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *BytesUUIDIgnore) GetVal() []byte {
+	if x != nil {
+		return x.Val
+	}
+	return nil
+}
+
 type BytesIPv6Ignore struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Val           []byte                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
@@ -881,7 +1013,7 @@ type BytesIPv6Ignore struct {
 
 func (x *BytesIPv6Ignore) Reset() {
 	*x = BytesIPv6Ignore{}
-	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[19]
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -893,7 +1025,7 @@ func (x *BytesIPv6Ignore) String() string {
 func (*BytesIPv6Ignore) ProtoMessage() {}
 
 func (x *BytesIPv6Ignore) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[19]
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -906,7 +1038,7 @@ func (x *BytesIPv6Ignore) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BytesIPv6Ignore.ProtoReflect.Descriptor instead.
 func (*BytesIPv6Ignore) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP(), []int{19}
+	return file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *BytesIPv6Ignore) GetVal() []byte {
@@ -925,7 +1057,7 @@ type BytesExample struct {
 
 func (x *BytesExample) Reset() {
 	*x = BytesExample{}
-	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -937,7 +1069,7 @@ func (x *BytesExample) String() string {
 func (*BytesExample) ProtoMessage() {}
 
 func (x *BytesExample) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_bytes_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -950,7 +1082,7 @@ func (x *BytesExample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BytesExample.ProtoReflect.Descriptor instead.
 func (*BytesExample) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP(), []int{20}
+	return file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *BytesExample) GetVal() []byte {
@@ -1009,7 +1141,14 @@ const file_buf_validate_conformance_cases_bytes_proto_rawDesc = "" +
 	"\tBytesIPv6\x12\x19\n" +
 	"\x03val\x18\x01 \x01(\fB\a\xbaH\x04z\x02`\x01R\x03val\")\n" +
 	"\fBytesNotIPv6\x12\x19\n" +
-	"\x03val\x18\x01 \x01(\fB\a\xbaH\x04z\x02`\x00R\x03val\"/\n" +
+	"\x03val\x18\x01 \x01(\fB\a\xbaH\x04z\x02`\x00R\x03val\"&\n" +
+	"\tBytesUUID\x12\x19\n" +
+	"\x03val\x18\x01 \x01(\fB\a\xbaH\x04z\x02x\x01R\x03val\")\n" +
+	"\fBytesNotUUID\x12\x19\n" +
+	"\x03val\x18\x01 \x01(\fB\a\xbaH\x04z\x02x\x00R\x03val\"/\n" +
+	"\x0fBytesUUIDIgnore\x12\x1c\n" +
+	"\x03val\x18\x01 \x01(\fB\n" +
+	"\xbaH\a\xd8\x01\x01z\x02x\x01R\x03val\"/\n" +
 	"\x0fBytesIPv6Ignore\x12\x1c\n" +
 	"\x03val\x18\x01 \x01(\fB\n" +
 	"\xbaH\a\xd8\x01\x01z\x02`\x01R\x03val\"*\n" +
@@ -1030,7 +1169,7 @@ func file_buf_validate_conformance_cases_bytes_proto_rawDescGZIP() []byte {
 	return file_buf_validate_conformance_cases_bytes_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_bytes_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_buf_validate_conformance_cases_bytes_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_buf_validate_conformance_cases_bytes_proto_goTypes = []any{
 	(*BytesNone)(nil),           // 0: buf.validate.conformance.cases.BytesNone
 	(*BytesConst)(nil),          // 1: buf.validate.conformance.cases.BytesConst
@@ -1051,8 +1190,11 @@ var file_buf_validate_conformance_cases_bytes_proto_goTypes = []any{
 	(*BytesNotIPv4)(nil),        // 16: buf.validate.conformance.cases.BytesNotIPv4
 	(*BytesIPv6)(nil),           // 17: buf.validate.conformance.cases.BytesIPv6
 	(*BytesNotIPv6)(nil),        // 18: buf.validate.conformance.cases.BytesNotIPv6
-	(*BytesIPv6Ignore)(nil),     // 19: buf.validate.conformance.cases.BytesIPv6Ignore
-	(*BytesExample)(nil),        // 20: buf.validate.conformance.cases.BytesExample
+	(*BytesUUID)(nil),           // 19: buf.validate.conformance.cases.BytesUUID
+	(*BytesNotUUID)(nil),        // 20: buf.validate.conformance.cases.BytesNotUUID
+	(*BytesUUIDIgnore)(nil),     // 21: buf.validate.conformance.cases.BytesUUIDIgnore
+	(*BytesIPv6Ignore)(nil),     // 22: buf.validate.conformance.cases.BytesIPv6Ignore
+	(*BytesExample)(nil),        // 23: buf.validate.conformance.cases.BytesExample
 }
 var file_buf_validate_conformance_cases_bytes_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -1073,7 +1215,7 @@ func file_buf_validate_conformance_cases_bytes_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_bytes_proto_rawDesc), len(file_buf_validate_conformance_cases_bytes_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

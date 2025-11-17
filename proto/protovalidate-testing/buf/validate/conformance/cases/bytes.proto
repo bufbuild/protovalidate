@@ -91,6 +91,18 @@ message BytesIPv6 {
 message BytesNotIPv6 {
   bytes val = 1 [(buf.validate.field).bytes.ipv6 = false];
 }
+message BytesUUID {
+  bytes val = 1 [(buf.validate.field).bytes.uuid = true];
+}
+message BytesNotUUID {
+  bytes val = 1 [(buf.validate.field).bytes.uuid = false];
+}
+message BytesUUIDIgnore {
+  bytes val = 1 [
+    (buf.validate.field).bytes.uuid = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+}
 message BytesIPv6Ignore {
   bytes val = 1 [
     (buf.validate.field).bytes.ipv6 = true,
