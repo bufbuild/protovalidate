@@ -1402,6 +1402,110 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
+		"ulid/valid/lowercase": {
+			Message:  &cases.StringULID{Val: "01arz3ndektsv4rrffq69g5fav"},
+			Expected: results.Success(true),
+		},
+		"ulid/valid/uppercase": {
+			Message:  &cases.StringULID{Val: "01ARZ3NDEKTSV4RRFFQ69G5FAV"},
+			Expected: results.Success(true),
+		},
+		"ulid/valid/mixed_case": {
+			Message:  &cases.StringULID{Val: "01ArZ3NdEkTsV4RrFfQ69G5FaV"},
+			Expected: results.Success(true),
+		},
+		"ulid/valid/nil": {
+			Message:  &cases.StringULID{Val: "00000000000000000000000000"},
+			Expected: results.Success(true),
+		},
+		"ulid/invalid/empty": {
+			Message: &cases.StringULID{Val: ""},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid_empty"),
+				},
+			),
+		},
+		"ulid/invalid/not_checked/empty": {
+			Message:  &cases.StringNotULID{Val: ""},
+			Expected: results.Success(true),
+		},
+		"ulid/invalid/not_checked/malformed": {
+			Message:  &cases.StringNotULID{Val: "foobar"},
+			Expected: results.Success(true),
+		},
+		"ulid/invalid/malformed": {
+			Message: &cases.StringULID{Val: "foobar"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
+		"ulid/invalid/too_short": {
+			Message: &cases.StringULID{Val: "01ARZ3NDEKTSV4RRFFQ69G5FA"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
+		"ulid/invalid/too_long": {
+			Message: &cases.StringULID{Val: "01ARZ3NDEKTSV4RRFFQ69G5FAVX"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
+		"ulid/invalid/invalid_characters/i": {
+			Message: &cases.StringULID{Val: "01ARZ3NDEKTSV4RRFFQ69G5FAI"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
+		"ulid/invalid/invalid_characters/l": {
+			Message: &cases.StringULID{Val: "01ARZ3NDEKTSV4RRFFQ69G5FAL"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
+		"ulid/invalid/invalid_characters/o": {
+			Message: &cases.StringULID{Val: "01ARZ3NDEKTSV4RRFFQ69G5FAO"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
+		"ulid/invalid/invalid_characters/u": {
+			Message: &cases.StringULID{Val: "01ARZ3NDEKTSV4RRFFQ69G5FAU"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
 		"well_known_regex/header_name/strict/valid/header": {
 			Message:  &cases.StringHttpHeaderName{Val: "clustername"},
 			Expected: results.Success(true),

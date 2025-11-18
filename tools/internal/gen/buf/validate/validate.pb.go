@@ -4740,6 +4740,7 @@ type StringRules struct {
 	//	*StringRules_Ipv4Prefix
 	//	*StringRules_Ipv6Prefix
 	//	*StringRules_HostAndPort
+	//	*StringRules_Ulid
 	//	*StringRules_WellKnownRegex
 	WellKnown isStringRules_WellKnown `protobuf_oneof:"well_known"`
 	// This applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
@@ -5060,6 +5061,15 @@ func (x *StringRules) GetHostAndPort() bool {
 	if x != nil {
 		if x, ok := x.WellKnown.(*StringRules_HostAndPort); ok {
 			return x.HostAndPort
+		}
+	}
+	return false
+}
+
+func (x *StringRules) GetUlid() bool {
+	if x != nil {
+		if x, ok := x.WellKnown.(*StringRules_Ulid); ok {
+			return x.Ulid
 		}
 	}
 	return false
@@ -5419,6 +5429,24 @@ type StringRules_HostAndPort struct {
 	HostAndPort bool `protobuf:"varint,32,opt,name=host_and_port,json=hostAndPort,oneof"`
 }
 
+type StringRules_Ulid struct {
+	// `ulid` specifies that the field value must be a valid ULID (Universally Unique
+	// Lexicographically Sortable Identifier) as defined by the [ULID specification](https://github.com/ulid/spec).
+	// ULID is a 26-character Base32-encoded string using Crockford's Base32 alphabet
+	// (0-9, A-Z excluding I, L, O, U). If the field value isn't a valid ULID, an error
+	// message will be generated.
+	//
+	// ```proto
+	//
+	//	message MyString {
+	//	  // value must be a valid ULID
+	//	  string value = 1 [(buf.validate.field).string.ulid = true];
+	//	}
+	//
+	// ```
+	Ulid bool `protobuf:"varint,35,opt,name=ulid,oneof"`
+}
+
 type StringRules_WellKnownRegex struct {
 	// `well_known_regex` specifies a common well-known pattern
 	// defined as a regex. If the field value doesn't match the well-known
@@ -5478,6 +5506,8 @@ func (*StringRules_Ipv4Prefix) isStringRules_WellKnown() {}
 func (*StringRules_Ipv6Prefix) isStringRules_WellKnown() {}
 
 func (*StringRules_HostAndPort) isStringRules_WellKnown() {}
+
+func (*StringRules_Ulid) isStringRules_WellKnown() {}
 
 func (*StringRules_WellKnownRegex) isStringRules_WellKnown() {}
 
@@ -8079,7 +8109,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xd19\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xc9;\n" +
 	"\vStringRules\x12\x8d\x01\n" +
 	"\x05const\x18\x01 \x01(\tBw\xc2Ht\n" +
 	"r\n" +
@@ -8210,7 +8240,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x99\x01\n" +
 	"\x14string.host_and_port\x12Avalue must be a valid host (hostname or IP address) and port pair\x1a>!rules.host_and_port || this == '' || this.isHostAndPort(true)\n" +
 	"y\n" +
-	"\x1astring.host_and_port_empty\x127value is empty, which is not a valid host and port pair\x1a\"!rules.host_and_port || this != ''H\x00R\vhostAndPort\x12\xb8\x05\n" +
+	"\x1astring.host_and_port_empty\x127value is empty, which is not a valid host and port pair\x1a\"!rules.host_and_port || this != ''H\x00R\vhostAndPort\x12\xf5\x01\n" +
+	"\x04ulid\x18# \x01(\bB\xde\x01\xc2H\xda\x01\n" +
+	"}\n" +
+	"\vstring.ulid\x12\x1avalue must be a valid ULID\x1aR!rules.ulid || this == '' || this.matches('^[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$')\n" +
+	"Y\n" +
+	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xb8\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xf1\x04\xc2H\xed\x04\n" +
 	"\xf0\x01\n" +
 	"#string.well_known_regex.header_name\x12&value must be a valid HTTP header name\x1a\xa0\x01rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :'^[^\\u0000\\u000A\\u000D]+$')\n" +
@@ -8696,6 +8731,7 @@ func file_buf_validate_validate_proto_init() {
 		(*StringRules_Ipv4Prefix)(nil),
 		(*StringRules_Ipv6Prefix)(nil),
 		(*StringRules_HostAndPort)(nil),
+		(*StringRules_Ulid)(nil),
 		(*StringRules_WellKnownRegex)(nil),
 	}
 	file_buf_validate_validate_proto_msgTypes[20].OneofWrappers = []any{

@@ -3731,6 +3731,31 @@ message StringRules {
       }
     ];
 
+    // `ulid` specifies that the field value must be a valid ULID (Universally Unique
+    // Lexicographically Sortable Identifier) as defined by the [ULID specification](https://github.com/ulid/spec).
+    // ULID is a 26-character Base32-encoded string using Crockford's Base32 alphabet
+    // (0-9, A-Z excluding I, L, O, U). If the field value isn't a valid ULID, an error
+    // message will be generated.
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid ULID
+    //   string value = 1 [(buf.validate.field).string.ulid = true];
+    // }
+    // ```
+    bool ulid = 35 [
+      (predefined).cel = {
+        id: "string.ulid"
+        message: "value must be a valid ULID"
+        expression: "!rules.ulid || this == '' || this.matches('^[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$')"
+      },
+      (predefined).cel = {
+        id: "string.ulid_empty"
+        message: "value is empty, which is not a valid ULID"
+        expression: "!rules.ulid || this != ''"
+      }
+    ];
+
     // `well_known_regex` specifies a common well-known pattern
     // defined as a regex. If the field value doesn't match the well-known
     // regex, an error message will be generated.
