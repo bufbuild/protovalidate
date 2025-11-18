@@ -4055,7 +4055,7 @@ message BytesRules {
 
     // `uuid` ensures that the field `value` encodes the 128-bit UUID data as
     // defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
-    // The field must either be unset/empty or contain exactly 16 bytes
+    // The field must contain exactly 16 bytes
     // representing the UUID. If the field value isn't a valid UUID, an error
     // message will be generated.
     //
