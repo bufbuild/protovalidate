@@ -5597,7 +5597,7 @@ type BytesRules struct {
 	// the string.
 	// If the field value doesn't meet the requirement, an error message is generated.
 	//
-	// ```protobuf
+	// ```proto
 	//
 	//	message MyBytes {
 	//	  // value does not contain \x02\x03
@@ -5610,7 +5610,7 @@ type BytesRules struct {
 	// values. If the field value doesn't match any of the specified values, an
 	// error message is generated.
 	//
-	// ```protobuf
+	// ```proto
 	//
 	//	message MyBytes {
 	//	  // value must in ["\x01\x02", "\x02\x03", "\x03\x04"]
