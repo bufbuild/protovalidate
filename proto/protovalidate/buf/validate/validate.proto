@@ -3945,7 +3945,7 @@ message BytesRules {
   // the string.
   // If the field value doesn't meet the requirement, an error message is generated.
   //
-  // ```protobuf
+  // ```proto
   // message MyBytes {
   //   // value does not contain \x02\x03
   //   optional bytes value = 1 [(buf.validate.field).bytes.contains = "\x02\x03"];
@@ -3960,7 +3960,7 @@ message BytesRules {
   // values. If the field value doesn't match any of the specified values, an
   // error message is generated.
   //
-  // ```protobuf
+  // ```proto
   // message MyBytes {
   //   // value must in ["\x01\x02", "\x02\x03", "\x03\x04"]
   //   optional bytes value = 1 [(buf.validate.field).bytes.in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
