@@ -4052,6 +4052,31 @@ message BytesRules {
         expression: "!rules.ipv6 || this.size() != 0"
       }
     ];
+
+    // `uuid` ensures that the field `value` encodes the 128-bit UUID data as
+    // defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
+    // The field must contain exactly 16 bytes
+    // representing the UUID. If the field value isn't a valid UUID, an error
+    // message will be generated.
+    //
+    // ```proto
+    // message MyBytes {
+    //   // value must be a valid UUID
+    //   optional bytes value = 1 [(buf.validate.field).bytes.uuid = true];
+    // }
+    // ```
+    bool uuid = 15 [
+      (predefined).cel = {
+        id: "bytes.uuid"
+        message: "value must be a valid UUID"
+        expression: "!rules.uuid || this.size() == 0 || this.size() == 16"
+      },
+      (predefined).cel = {
+        id: "bytes.uuid_empty"
+        message: "value is empty, which is not a valid UUID"
+        expression: "!rules.uuid || this.size() != 0"
+      }
+    ];
   }
 
   // `example` specifies values that the field may have. These values SHOULD

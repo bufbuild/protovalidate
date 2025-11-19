@@ -333,6 +333,145 @@ func bytesSuite() suites.Suite {
 			Message:  &cases.BytesIPv6Ignore{Val: nil},
 			Expected: results.Success(true),
 		},
+		"uuid/valid/nil": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v1/lowercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xB4, 0x5C, 0x0C, 0x80, 0x88, 0x80, 0x11, 0xE9,
+				0xA5, 0xB1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v1/uppercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xB4, 0x5C, 0x0C, 0x80, 0x88, 0x80, 0x11, 0xE9,
+				0xA5, 0xB1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v2/lowercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xB4, 0x5C, 0x0C, 0x80, 0x88, 0x80, 0x21, 0xE9,
+				0xA5, 0xB1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v2/uppercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xB4, 0x5C, 0x0C, 0x80, 0x88, 0x80, 0x21, 0xE9,
+				0xA5, 0xB1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v3/lowercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xA3, 0xBB, 0x18, 0x9E, 0x8B, 0xF9, 0x38, 0x88,
+				0x99, 0x12, 0xAC, 0xE4, 0xE6, 0x54, 0x30, 0x02,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v3/uppercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xA3, 0xBB, 0x18, 0x9E, 0x8B, 0xF9, 0x38, 0x88,
+				0x99, 0x12, 0xAC, 0xE4, 0xE6, 0x54, 0x30, 0x02,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v4/lowercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0x8B, 0x20, 0x83, 0x05, 0x00, 0xE8, 0x44, 0x60,
+				0xA4, 0x40, 0x5E, 0x0D, 0xCD, 0x83, 0xBB, 0x0A,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v4/uppercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0x8B, 0x20, 0x83, 0x05, 0x00, 0xE8, 0x44, 0x60,
+				0xA4, 0x40, 0x5E, 0x0D, 0xCD, 0x83, 0xBB, 0x0A,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v5/lowercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xA6, 0xED, 0xC9, 0x06, 0x2F, 0x9F, 0x5F, 0xB2,
+				0xA3, 0x73, 0xEF, 0xAC, 0x40, 0x6F, 0x0E, 0xF2,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/valid/v5/uppercase": {
+			Message: &cases.BytesUUID{Val: []byte{
+				0xA6, 0xED, 0xC9, 0x06, 0x2F, 0x9F, 0x5F, 0xB2,
+				0xA3, 0x73, 0xEF, 0xAC, 0x40, 0x6F, 0x0E, 0xF2,
+			}},
+			Expected: results.Success(true),
+		},
+		"uuid/invalid/empty": {
+			Message: &cases.BytesUUID{Val: []byte("")},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("bytes.uuid"),
+					RuleId: proto.String("bytes.uuid_empty"),
+				},
+			),
+		},
+		"uuid/invalid/not_checked/empty": {
+			Message:  &cases.BytesNotUUID{Val: []byte("")},
+			Expected: results.Success(true),
+		},
+		"uuid/invalid/not_checked/malformed": {
+			Message:  &cases.BytesNotUUID{Val: []byte("foobar")},
+			Expected: results.Success(true),
+		},
+		"uuid/invalid/malformed": {
+			Message: &cases.BytesUUID{Val: []byte("foobar")},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("bytes.uuid"),
+					RuleId: proto.String("bytes.uuid"),
+				},
+			),
+		},
+		"uuid/invalid/erroneous": {
+			Message: &cases.BytesUUID{Val: []byte("ffffffff-ffff-ffff-ffff-fffffffffffff")},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("bytes.uuid"),
+					RuleId: proto.String("bytes.uuid"),
+				},
+			),
+		},
+		"uuid/invalid/dashless/uppercase": {
+			Message: &cases.BytesUUID{Val: []byte("8B20830500E84460A4405E0DCD83BB0A")},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("bytes.uuid"),
+					RuleId: proto.String("bytes.uuid"),
+				},
+			),
+		},
+		"uuid/invalid/dashless/lowercase": {
+			Message: &cases.BytesUUID{Val: []byte("8b20830500e84460a4405e0dcd83bb0a")},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("bytes.uuid"),
+					RuleId: proto.String("bytes.uuid"),
+				},
+			),
+		},
+		"uuid/valid/ignore_empty": {
+			Message:  &cases.BytesUUIDIgnore{Val: nil},
+			Expected: results.Success(true),
+		},
 		"example/valid": {
 			Message:  &cases.BytesExample{Val: []byte("foo")},
 			Expected: results.Success(true),

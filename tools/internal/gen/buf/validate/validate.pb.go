@@ -5624,6 +5624,7 @@ type BytesRules struct {
 	//	*BytesRules_Ip
 	//	*BytesRules_Ipv4
 	//	*BytesRules_Ipv6
+	//	*BytesRules_Uuid
 	WellKnown isBytesRules_WellKnown `protobuf_oneof:"well_known"`
 	// `example` specifies values that the field may have. These values SHOULD
 	// conform to other rules. `example` values will not impact validation
@@ -5779,6 +5780,15 @@ func (x *BytesRules) GetIpv6() bool {
 	return false
 }
 
+func (x *BytesRules) GetUuid() bool {
+	if x != nil {
+		if x, ok := x.WellKnown.(*BytesRules_Uuid); ok {
+			return x.Uuid
+		}
+	}
+	return false
+}
+
 func (x *BytesRules) GetExample() [][]byte {
 	if x != nil {
 		return x.Example
@@ -5834,11 +5844,31 @@ type BytesRules_Ipv6 struct {
 	Ipv6 bool `protobuf:"varint,12,opt,name=ipv6,oneof"`
 }
 
+type BytesRules_Uuid struct {
+	// `uuid` ensures that the field `value` encodes the 128-bit UUID data as
+	// defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
+	// The field must contain exactly 16 bytes
+	// representing the UUID. If the field value isn't a valid UUID, an error
+	// message will be generated.
+	//
+	// ```proto
+	//
+	//	message MyBytes {
+	//	  // value must be a valid UUID
+	//	  optional bytes value = 1 [(buf.validate.field).bytes.uuid = true];
+	//	}
+	//
+	// ```
+	Uuid bool `protobuf:"varint,15,opt,name=uuid,oneof"`
+}
+
 func (*BytesRules_Ip) isBytesRules_WellKnown() {}
 
 func (*BytesRules_Ipv4) isBytesRules_WellKnown() {}
 
 func (*BytesRules_Ipv6) isBytesRules_WellKnown() {}
+
+func (*BytesRules_Uuid) isBytesRules_WellKnown() {}
 
 // EnumRules describe the rules applied to `enum` values.
 type EnumRules struct {
@@ -8223,7 +8253,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0estring.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\f\n" +
 	"\n" +
-	"well_known\"\xce\x11\n" +
+	"well_known\"\xac\x13\n" +
 	"\n" +
 	"BytesRules\x12\x87\x01\n" +
 	"\x05const\x18\x01 \x01(\fBq\xc2Hn\n" +
@@ -8273,7 +8303,13 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\n" +
 	"bytes.ipv6\x12\"value must be a valid IPv6 address\x1a4!rules.ipv6 || this.size() == 0 || this.size() == 16\n" +
 	"f\n" +
-	"\x10bytes.ipv6_empty\x121value is empty, which is not a valid IPv6 address\x1a\x1f!rules.ipv6 || this.size() != 0H\x00R\x04ipv6\x124\n" +
+	"\x10bytes.ipv6_empty\x121value is empty, which is not a valid IPv6 address\x1a\x1f!rules.ipv6 || this.size() != 0H\x00R\x04ipv6\x12\xdb\x01\n" +
+	"\x04uuid\x18\x0f \x01(\bB\xc4\x01\xc2H\xc0\x01\n" +
+	"^\n" +
+	"\n" +
+	"bytes.uuid\x12\x1avalue must be a valid UUID\x1a4!rules.uuid || this.size() == 0 || this.size() == 16\n" +
+	"^\n" +
+	"\x10bytes.uuid_empty\x12)value is empty, which is not a valid UUID\x1a\x1f!rules.uuid || this.size() != 0H\x00R\x04uuid\x124\n" +
 	"\aexample\x18\x0e \x03(\fB\x1a\xc2H\x17\n" +
 	"\x15\n" +
 	"\rbytes.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\f\n" +
@@ -8702,6 +8738,7 @@ func file_buf_validate_validate_proto_init() {
 		(*BytesRules_Ip)(nil),
 		(*BytesRules_Ipv4)(nil),
 		(*BytesRules_Ipv6)(nil),
+		(*BytesRules_Uuid)(nil),
 	}
 	file_buf_validate_validate_proto_msgTypes[25].OneofWrappers = []any{
 		(*DurationRules_Lt)(nil),
