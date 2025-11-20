@@ -5432,12 +5432,7 @@ type StringRules_HostAndPort struct {
 type StringRules_Ulid struct {
 	// `ulid` specifies that the field value must be a valid ULID (Universally Unique
 	// Lexicographically Sortable Identifier) as defined by the [ULID specification](https://github.com/ulid/spec).
-	// ULID is a 26-character Base32-encoded string using Crockford's Base32 alphabet
-	// (0-9, A-Z excluding I, L, O, U). The first character of a ULID string cannot exceed 7.
-	// Technically, a 26-character Base32 encoded string can contain 130 bits of information,
-	// whereas a ULID must only contain 128 bits. Therefore, the largest valid ULID encoded in
-	// Base32 is 7ZZZZZZZZZZZZZZZZZZZZZZZZZ, which corresponds to an epoch time of 281474976710655
-	// or 2^48 - 1. If the field value isn't a valid ULID, an error message will be generated.
+	// If the field value isn't a valid ULID, an error message will be generated.
 	//
 	// ```proto
 	//
