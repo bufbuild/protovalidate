@@ -5433,8 +5433,11 @@ type StringRules_Ulid struct {
 	// `ulid` specifies that the field value must be a valid ULID (Universally Unique
 	// Lexicographically Sortable Identifier) as defined by the [ULID specification](https://github.com/ulid/spec).
 	// ULID is a 26-character Base32-encoded string using Crockford's Base32 alphabet
-	// (0-9, A-Z excluding I, L, O, U). If the field value isn't a valid ULID, an error
-	// message will be generated.
+	// (0-9, A-Z excluding I, L, O, U). The first character of a ULID string cannot exceed 7.
+	// Technically, a 26-character Base32 encoded string can contain 130 bits of information,
+	// whereas a ULID must only contain 128 bits. Therefore, the largest valid ULID encoded in
+	// Base32 is 7ZZZZZZZZZZZZZZZZZZZZZZZZZ, which corresponds to an epoch time of 281474976710655
+	// or 2^48 - 1. If the field value isn't a valid ULID, an error message will be generated.
 	//
 	// ```proto
 	//
@@ -8109,7 +8112,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xc9;\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xcf;\n" +
 	"\vStringRules\x12\x8d\x01\n" +
 	"\x05const\x18\x01 \x01(\tBw\xc2Ht\n" +
 	"r\n" +
@@ -8240,10 +8243,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x99\x01\n" +
 	"\x14string.host_and_port\x12Avalue must be a valid host (hostname or IP address) and port pair\x1a>!rules.host_and_port || this == '' || this.isHostAndPort(true)\n" +
 	"y\n" +
-	"\x1astring.host_and_port_empty\x127value is empty, which is not a valid host and port pair\x1a\"!rules.host_and_port || this != ''H\x00R\vhostAndPort\x12\xf5\x01\n" +
-	"\x04ulid\x18# \x01(\bB\xde\x01\xc2H\xda\x01\n" +
-	"}\n" +
-	"\vstring.ulid\x12\x1avalue must be a valid ULID\x1aR!rules.ulid || this == '' || this.matches('^[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$')\n" +
+	"\x1astring.host_and_port_empty\x127value is empty, which is not a valid host and port pair\x1a\"!rules.host_and_port || this != ''H\x00R\vhostAndPort\x12\xfb\x01\n" +
+	"\x04ulid\x18# \x01(\bB\xe4\x01\xc2H\xe0\x01\n" +
+	"\x82\x01\n" +
+	"\vstring.ulid\x12\x1avalue must be a valid ULID\x1aW!rules.ulid || this == '' || this.matches('^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$')\n" +
 	"Y\n" +
 	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xb8\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xf1\x04\xc2H\xed\x04\n" +

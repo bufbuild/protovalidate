@@ -1506,6 +1506,26 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
+		"ulid/invalid/exceeds_maximum": {
+			Message: &cases.StringULID{Val: "80000000000000000000000000"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
+		"ulid/invalid/exceeds_maximum/nine": {
+			Message: &cases.StringULID{Val: "90000000000000000000000000"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.ulid"),
+					RuleId: proto.String("string.ulid"),
+				},
+			),
+		},
 		"well_known_regex/header_name/strict/valid/header": {
 			Message:  &cases.StringHttpHeaderName{Val: "clustername"},
 			Expected: results.Success(true),
