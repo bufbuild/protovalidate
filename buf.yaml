@@ -21,7 +21,7 @@ modules:
         - PROTOVALIDATE
       ignore_only:
         FIELD_NOT_REQUIRED:
-          - proto/protovalidate-testing/buf/validate/conformance/cases/groups.proto
+          - proto/protovalidate-testing/buf/validate/conformance/cases/groups_proto2.proto
           - proto/protovalidate-testing/buf/validate/conformance/cases/ignore_empty_proto_editions.proto
           - proto/protovalidate-testing/buf/validate/conformance/cases/ignore_empty_proto2.proto
           - proto/protovalidate-testing/buf/validate/conformance/cases/ignore_proto_editions.proto
