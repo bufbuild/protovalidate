@@ -1418,6 +1418,10 @@ func stringSuite() suites.Suite {
 			Message:  &cases.StringULID{Val: "00000000000000000000000000"},
 			Expected: results.Success(true),
 		},
+		"ulid/valid/maximum": {
+			Message:  &cases.StringULID{Val: "7ZZZZZZZZZZZZZZZZZZZZZZZZZ"},
+			Expected: results.Success(true),
+		},
 		"ulid/invalid/empty": {
 			Message: &cases.StringULID{Val: ""},
 			Expected: results.Violations(
@@ -1508,16 +1512,6 @@ func stringSuite() suites.Suite {
 		},
 		"ulid/invalid/exceeds_maximum": {
 			Message: &cases.StringULID{Val: "80000000000000000000000000"},
-			Expected: results.Violations(
-				&validate.Violation{
-					Field:  results.FieldPath("val"),
-					Rule:   results.FieldPath("string.ulid"),
-					RuleId: proto.String("string.ulid"),
-				},
-			),
-		},
-		"ulid/invalid/exceeds_maximum/nine": {
-			Message: &cases.StringULID{Val: "90000000000000000000000000"},
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:  results.FieldPath("val"),
