@@ -502,5 +502,90 @@ func requiredSuite() suites.Suite {
 			Message:  &cases.RequiredEditionsMapIgnoreAlways{},
 			Expected: results.Success(true),
 		},
+		"implicit/proto3/scalar/zero/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3Scalar{},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
+				RuleId: proto.String("required"),
+			}),
+		},
+		"implicit/proto3/scalar/ab/valid": suites.Case{
+			Message:  &cases.RequiredImplicitProto3Scalar{Val: "ab"},
+			Expected: results.Success(true),
+		},
+		"implicit/proto3/scalar/abc/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3Scalar{Val: "abc"},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("string.max_len"),
+				RuleId: proto.String("string.max_len"),
+			}),
+		},
+		"implicit/proto3/repeated/zero/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3Repeated{},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
+				RuleId: proto.String("required"),
+			}),
+		},
+		"implicit/proto3/repeated/1_item/valid": suites.Case{
+			Message:  &cases.RequiredImplicitProto3Repeated{Val: []string{"a"}},
+			Expected: results.Success(true),
+		},
+		"implicit/proto3/repeated/3_items/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3Repeated{Val: []string{"a", "b", "c"}},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("repeated.max_items"),
+				RuleId: proto.String("repeated.max_items"),
+			}),
+		},
+		"implicit/proto3/map/zero/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3Map{},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("required"),
+				RuleId: proto.String("required"),
+			}),
+		},
+		"implicit/proto3/map/1_pair/valid": suites.Case{
+			Message:  &cases.RequiredImplicitProto3Map{Val: map[string]string{"a": "a"}},
+			Expected: results.Success(true),
+		},
+		"implicit/proto3/map/3_pairs/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3Map{Val: map[string]string{"a": "a", "b": "b", "c": "c"}},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val"),
+				Rule:   results.FieldPath("map.max_pairs"),
+				RuleId: proto.String("map.max_pairs"),
+			}),
+		},
+		"implicit/proto3/map_key/zero/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3MapKey{Val: map[string]string{"": "a"}},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val[\"\"]"),
+				Rule:   results.FieldPath("map.keys.string.min_len"),
+				ForKey: proto.Bool(true),
+				RuleId: proto.String("string.min_len"),
+			}),
+		},
+		"implicit/proto3/map_value/zero/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3MapValue{Val: map[string]string{"a": ""}},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val[\"a\"]"),
+				Rule:   results.FieldPath("map.values.string.min_len"),
+				RuleId: proto.String("string.min_len"),
+			}),
+		},
+		"implicit/proto3/repeated_item/zero/invalid": suites.Case{
+			Message: &cases.RequiredImplicitProto3RepeatedItem{Val: []string{""}},
+			Expected: results.Violations(&validate.Violation{
+				Field:  results.FieldPath("val[0]"),
+				Rule:   results.FieldPath("repeated.items.string.min_len"),
+				RuleId: proto.String("string.min_len"),
+			}),
+		},
 	}
 }
