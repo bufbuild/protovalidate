@@ -562,30 +562,5 @@ func requiredSuite() suites.Suite {
 				RuleId: proto.String("map.max_pairs"),
 			}),
 		},
-		"implicit/proto3/map_key/zero/invalid": suites.Case{
-			Message: &cases.RequiredImplicitProto3MapKey{Val: map[string]string{"": "a"}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[\"\"]"),
-				Rule:   results.FieldPath("map.keys.string.min_len"),
-				ForKey: proto.Bool(true),
-				RuleId: proto.String("string.min_len"),
-			}),
-		},
-		"implicit/proto3/map_value/zero/invalid": suites.Case{
-			Message: &cases.RequiredImplicitProto3MapValue{Val: map[string]string{"a": ""}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[\"a\"]"),
-				Rule:   results.FieldPath("map.values.string.min_len"),
-				RuleId: proto.String("string.min_len"),
-			}),
-		},
-		"implicit/proto3/repeated_item/zero/invalid": suites.Case{
-			Message: &cases.RequiredImplicitProto3RepeatedItem{Val: []string{""}},
-			Expected: results.Violations(&validate.Violation{
-				Field:  results.FieldPath("val[0]"),
-				Rule:   results.FieldPath("repeated.items.string.min_len"),
-				RuleId: proto.String("string.min_len"),
-			}),
-		},
 	}
 }

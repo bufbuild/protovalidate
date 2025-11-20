@@ -772,6 +772,138 @@ func (x *RequiredProto3RepeatedItem) GetVal() []string {
 	return nil
 }
 
+type RequiredImplicitProto3Scalar struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           string                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RequiredImplicitProto3Scalar) Reset() {
+	*x = RequiredImplicitProto3Scalar{}
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RequiredImplicitProto3Scalar) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RequiredImplicitProto3Scalar) ProtoMessage() {}
+
+func (x *RequiredImplicitProto3Scalar) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RequiredImplicitProto3Scalar.ProtoReflect.Descriptor instead.
+func (*RequiredImplicitProto3Scalar) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_required_field_proto3_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *RequiredImplicitProto3Scalar) GetVal() string {
+	if x != nil {
+		return x.Val
+	}
+	return ""
+}
+
+type RequiredImplicitProto3Repeated struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           []string               `protobuf:"bytes,1,rep,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RequiredImplicitProto3Repeated) Reset() {
+	*x = RequiredImplicitProto3Repeated{}
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RequiredImplicitProto3Repeated) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RequiredImplicitProto3Repeated) ProtoMessage() {}
+
+func (x *RequiredImplicitProto3Repeated) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RequiredImplicitProto3Repeated.ProtoReflect.Descriptor instead.
+func (*RequiredImplicitProto3Repeated) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_required_field_proto3_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *RequiredImplicitProto3Repeated) GetVal() []string {
+	if x != nil {
+		return x.Val
+	}
+	return nil
+}
+
+type RequiredImplicitProto3Map struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           map[string]string      `protobuf:"bytes,1,rep,name=val,proto3" json:"val,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RequiredImplicitProto3Map) Reset() {
+	*x = RequiredImplicitProto3Map{}
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RequiredImplicitProto3Map) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RequiredImplicitProto3Map) ProtoMessage() {}
+
+func (x *RequiredImplicitProto3Map) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RequiredImplicitProto3Map.ProtoReflect.Descriptor instead.
+func (*RequiredImplicitProto3Map) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_required_field_proto3_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *RequiredImplicitProto3Map) GetVal() map[string]string {
+	if x != nil {
+		return x.Val
+	}
+	return nil
+}
+
 type RequiredProto3Message_Msg struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Val           string                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
@@ -781,7 +913,7 @@ type RequiredProto3Message_Msg struct {
 
 func (x *RequiredProto3Message_Msg) Reset() {
 	*x = RequiredProto3Message_Msg{}
-	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[15]
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -793,7 +925,7 @@ func (x *RequiredProto3Message_Msg) String() string {
 func (*RequiredProto3Message_Msg) ProtoMessage() {}
 
 func (x *RequiredProto3Message_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[15]
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -825,7 +957,7 @@ type RequiredProto3MessageIgnoreAlways_Msg struct {
 
 func (x *RequiredProto3MessageIgnoreAlways_Msg) Reset() {
 	*x = RequiredProto3MessageIgnoreAlways_Msg{}
-	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[16]
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -837,7 +969,7 @@ func (x *RequiredProto3MessageIgnoreAlways_Msg) String() string {
 func (*RequiredProto3MessageIgnoreAlways_Msg) ProtoMessage() {}
 
 func (x *RequiredProto3MessageIgnoreAlways_Msg) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[16]
+	mi := &file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -916,7 +1048,18 @@ const file_buf_validate_conformance_cases_required_field_proto3_proto_rawDesc = 
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\";\n" +
 	"\x1aRequiredProto3RepeatedItem\x12\x1d\n" +
-	"\x03val\x18\x01 \x03(\tB\v\xbaH\b\x92\x01\x05\"\x03\xc8\x01\x01R\x03valB\xaf\x02\n" +
+	"\x03val\x18\x01 \x03(\tB\v\xbaH\b\x92\x01\x05\"\x03\xc8\x01\x01R\x03val\">\n" +
+	"\x1cRequiredImplicitProto3Scalar\x12\x1e\n" +
+	"\x03val\x18\x01 \x01(\tB\f\xbaH\t\xc8\x01\x01r\x04\x10\x01\x18\x02R\x03val\"A\n" +
+	"\x1eRequiredImplicitProto3Repeated\x12\x1f\n" +
+	"\x03val\x18\x01 \x03(\tB\r\xbaH\n" +
+	"\xc8\x01\x01\x92\x01\x04\b\x01\x10\x02R\x03val\"\xb8\x01\n" +
+	"\x19RequiredImplicitProto3Map\x12c\n" +
+	"\x03val\x18\x01 \x03(\v2B.buf.validate.conformance.cases.RequiredImplicitProto3Map.ValEntryB\r\xbaH\n" +
+	"\xc8\x01\x01\x9a\x01\x04\b\x01\x10\x02R\x03val\x1a6\n" +
+	"\bValEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\xaf\x02\n" +
 	"\"com.buf.validate.conformance.casesB\x18RequiredFieldProto3ProtoP\x01ZSgithub.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases\xa2\x02\x04BVCC\xaa\x02\x1eBuf.Validate.Conformance.Cases\xca\x02\x1eBuf\\Validate\\Conformance\\Cases\xe2\x02*Buf\\Validate\\Conformance\\Cases\\GPBMetadata\xea\x02!Buf::Validate::Conformance::Casesb\x06proto3"
 
 var (
@@ -931,7 +1074,7 @@ func file_buf_validate_conformance_cases_required_field_proto3_proto_rawDescGZIP
 	return file_buf_validate_conformance_cases_required_field_proto3_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_buf_validate_conformance_cases_required_field_proto3_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_buf_validate_conformance_cases_required_field_proto3_proto_goTypes = []any{
 	(*RequiredProto3Scalar)(nil),                     // 0: buf.validate.conformance.cases.RequiredProto3Scalar
 	(*RequiredProto3ScalarIgnoreAlways)(nil),         // 1: buf.validate.conformance.cases.RequiredProto3ScalarIgnoreAlways
@@ -948,25 +1091,30 @@ var file_buf_validate_conformance_cases_required_field_proto3_proto_goTypes = []
 	(*RequiredProto3MapKey)(nil),                     // 12: buf.validate.conformance.cases.RequiredProto3MapKey
 	(*RequiredProto3MapValue)(nil),                   // 13: buf.validate.conformance.cases.RequiredProto3MapValue
 	(*RequiredProto3RepeatedItem)(nil),               // 14: buf.validate.conformance.cases.RequiredProto3RepeatedItem
-	(*RequiredProto3Message_Msg)(nil),                // 15: buf.validate.conformance.cases.RequiredProto3Message.Msg
-	(*RequiredProto3MessageIgnoreAlways_Msg)(nil),    // 16: buf.validate.conformance.cases.RequiredProto3MessageIgnoreAlways.Msg
-	nil, // 17: buf.validate.conformance.cases.RequiredProto3Map.ValEntry
-	nil, // 18: buf.validate.conformance.cases.RequiredProto3MapIgnoreAlways.ValEntry
-	nil, // 19: buf.validate.conformance.cases.RequiredProto3MapKey.ValEntry
-	nil, // 20: buf.validate.conformance.cases.RequiredProto3MapValue.ValEntry
+	(*RequiredImplicitProto3Scalar)(nil),             // 15: buf.validate.conformance.cases.RequiredImplicitProto3Scalar
+	(*RequiredImplicitProto3Repeated)(nil),           // 16: buf.validate.conformance.cases.RequiredImplicitProto3Repeated
+	(*RequiredImplicitProto3Map)(nil),                // 17: buf.validate.conformance.cases.RequiredImplicitProto3Map
+	(*RequiredProto3Message_Msg)(nil),                // 18: buf.validate.conformance.cases.RequiredProto3Message.Msg
+	(*RequiredProto3MessageIgnoreAlways_Msg)(nil),    // 19: buf.validate.conformance.cases.RequiredProto3MessageIgnoreAlways.Msg
+	nil, // 20: buf.validate.conformance.cases.RequiredProto3Map.ValEntry
+	nil, // 21: buf.validate.conformance.cases.RequiredProto3MapIgnoreAlways.ValEntry
+	nil, // 22: buf.validate.conformance.cases.RequiredProto3MapKey.ValEntry
+	nil, // 23: buf.validate.conformance.cases.RequiredProto3MapValue.ValEntry
+	nil, // 24: buf.validate.conformance.cases.RequiredImplicitProto3Map.ValEntry
 }
 var file_buf_validate_conformance_cases_required_field_proto3_proto_depIdxs = []int32{
-	15, // 0: buf.validate.conformance.cases.RequiredProto3Message.val:type_name -> buf.validate.conformance.cases.RequiredProto3Message.Msg
-	16, // 1: buf.validate.conformance.cases.RequiredProto3MessageIgnoreAlways.val:type_name -> buf.validate.conformance.cases.RequiredProto3MessageIgnoreAlways.Msg
-	17, // 2: buf.validate.conformance.cases.RequiredProto3Map.val:type_name -> buf.validate.conformance.cases.RequiredProto3Map.ValEntry
-	18, // 3: buf.validate.conformance.cases.RequiredProto3MapIgnoreAlways.val:type_name -> buf.validate.conformance.cases.RequiredProto3MapIgnoreAlways.ValEntry
-	19, // 4: buf.validate.conformance.cases.RequiredProto3MapKey.val:type_name -> buf.validate.conformance.cases.RequiredProto3MapKey.ValEntry
-	20, // 5: buf.validate.conformance.cases.RequiredProto3MapValue.val:type_name -> buf.validate.conformance.cases.RequiredProto3MapValue.ValEntry
-	6,  // [6:6] is the sub-list for method output_type
-	6,  // [6:6] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	18, // 0: buf.validate.conformance.cases.RequiredProto3Message.val:type_name -> buf.validate.conformance.cases.RequiredProto3Message.Msg
+	19, // 1: buf.validate.conformance.cases.RequiredProto3MessageIgnoreAlways.val:type_name -> buf.validate.conformance.cases.RequiredProto3MessageIgnoreAlways.Msg
+	20, // 2: buf.validate.conformance.cases.RequiredProto3Map.val:type_name -> buf.validate.conformance.cases.RequiredProto3Map.ValEntry
+	21, // 3: buf.validate.conformance.cases.RequiredProto3MapIgnoreAlways.val:type_name -> buf.validate.conformance.cases.RequiredProto3MapIgnoreAlways.ValEntry
+	22, // 4: buf.validate.conformance.cases.RequiredProto3MapKey.val:type_name -> buf.validate.conformance.cases.RequiredProto3MapKey.ValEntry
+	23, // 5: buf.validate.conformance.cases.RequiredProto3MapValue.val:type_name -> buf.validate.conformance.cases.RequiredProto3MapValue.ValEntry
+	24, // 6: buf.validate.conformance.cases.RequiredImplicitProto3Map.val:type_name -> buf.validate.conformance.cases.RequiredImplicitProto3Map.ValEntry
+	7,  // [7:7] is the sub-list for method output_type
+	7,  // [7:7] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_buf_validate_conformance_cases_required_field_proto3_proto_init() }
@@ -990,7 +1138,7 @@ func file_buf_validate_conformance_cases_required_field_proto3_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_required_field_proto3_proto_rawDesc), len(file_buf_validate_conformance_cases_required_field_proto3_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

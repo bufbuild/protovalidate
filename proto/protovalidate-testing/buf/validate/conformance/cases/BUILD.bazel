@@ -41,7 +41,6 @@ proto_library(
         "required_field_proto2.proto",
         "required_field_proto3.proto",
         "required_field_proto_editions.proto",
-        "required_implicit_field_proto3.proto",
         "strings.proto",
         "wkt_any.proto",
         "wkt_duration.proto",
