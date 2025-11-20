@@ -202,6 +202,12 @@ message StringULID {
 message StringNotULID {
   string val = 1 [(buf.validate.field).string.ulid = false];
 }
+message StringULIDIgnore {
+  string val = 1 [
+    (buf.validate.field).string = {ulid: true},
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+}
 message StringHttpHeaderName {
   string val = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_NAME];
 }
@@ -226,12 +232,6 @@ message StringHttpHeaderValueLoose {
 message StringUUIDIgnore {
   string val = 1 [
     (buf.validate.field).string = {uuid: true},
-    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
-  ];
-}
-message StringULIDIgnore {
-  string val = 1 [
-    (buf.validate.field).string = {ulid: true},
     (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
 }
