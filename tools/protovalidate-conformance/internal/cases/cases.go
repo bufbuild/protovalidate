@@ -26,6 +26,7 @@ func GlobalSuites() suites.Suites {
 		"custom_rules":                               customSuite(),
 		"predefined_rules":                           predefinedSuite(),
 		"kitchen_sink":                               kitchenSinkSuite(),
+		"groups":                                     groupsSuite(),
 		"standard_rules/bool":                        boolSuite(),
 		"standard_rules/bytes":                       bytesSuite(),
 		"standard_rules/double":                      doubleSuite(),
