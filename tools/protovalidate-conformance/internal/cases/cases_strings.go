@@ -1414,7 +1414,7 @@ func stringSuite() suites.Suite {
 			Message:  &cases.StringULID{Val: "01ArZ3NdEkTsV4RrFfQ69G5FaV"},
 			Expected: results.Success(true),
 		},
-		"ulid/valid/nil": {
+		"ulid/valid/zero": {
 			Message:  &cases.StringULID{Val: "00000000000000000000000000"},
 			Expected: results.Success(true),
 		},
