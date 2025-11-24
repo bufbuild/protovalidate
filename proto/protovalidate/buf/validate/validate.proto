@@ -3756,6 +3756,29 @@ message StringRules {
       }
     ];
 
+    // `decimal` specifies that this string represents a decimal with specific precision and scale.
+    //
+    // ```proto
+    // message MyString {
+    //   // Value must be a number with at most four digits and at most two digits after the decimal.
+    //   // 1000, 100.1, 100 are valid, whereas 10000, 1.111 are not.
+    //   string value = 1 [
+    //     (buf.validate.field).decimal.precision = 4,
+    //     (buf.validate.field).decimal.scale = 2
+    //   ];
+    // }
+    // ```
+    DecimalRules decimal = 36 [
+      (predefined).cel = {
+        id: "string.decimal"
+        // TODO: Can we have messages react to the values in decimal.precision and decimal.scale?
+        message: "value must be a valid decimal with specified precision and scale"
+        // TODO: CEL expression to take into account precision and scale, and that this is a valid decimal otherwise
+        expression: "!has(rules.decimal) || this == ''"
+      }
+    ];
+
+
     // `well_known_regex` specifies a common well-known pattern
     // defined as a regex. If the field value doesn't match the well-known
     // regex, an error message will be generated.
@@ -3843,6 +3866,25 @@ message StringRules {
   //
   // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
   extensions 1000 to max;
+}
+
+// Rules to describe a decimal represented as a string.
+//
+// TODO: Extend to the possible representations that google.type.Decimal allows?
+message DecimalRules {
+  option (message).cel = {
+    id: "decimal.scale"
+    message: "scale must be less than precision"
+    expression: "this.scale < this.precision"
+  };
+
+  // The total number of digits allowed before and after the decimal.
+  optional uint32 precision = 1 [(field).uint32.gte = 1];
+  // The number of digits allowed after the decimal.
+  //
+  // This must be less than the precision, that is at least one digit must be
+  // allowed before the decimal.
+  optional uint32 scale = 2;
 }
 
 // KnownRegex contains some well-known patterns.
