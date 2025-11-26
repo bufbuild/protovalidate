@@ -119,11 +119,11 @@ func stringSuite() suites.Suite {
 			),
 		},
 		"decimal/precision/valid": {
-			Message:  &cases.StringDecimalPrecision{Val: "12345"},
+			Message:  &cases.StringDecimalPrecision{Val: "1234"},
 			Expected: results.Success(true),
 		},
 		"decimal/precision/valid/fractional": {
-			Message:  &cases.StringDecimalPrecision{Val: "1.2345"},
+			Message:  &cases.StringDecimalPrecision{Val: "1.234"},
 			Expected: results.Success(true),
 		},
 		"decimal/precision/invalid": {
@@ -137,11 +137,11 @@ func stringSuite() suites.Suite {
 			),
 		},
 		"decimal/scale/valid": {
-			Message:  &cases.StringDecimalPrecision{Val: "0.12"},
+			Message:  &cases.StringDecimalScale{Val: "0.12"},
 			Expected: results.Success(true),
 		},
 		"decimal/scale/invalid": {
-			Message: &cases.StringDecimalPrecision{Val: "0.123"},
+			Message: &cases.StringDecimalScale{Val: "0.123"},
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:  results.FieldPath("val"),
@@ -151,11 +151,11 @@ func stringSuite() suites.Suite {
 			),
 		},
 		"decimal/precision_scale/valid": {
-			Message:  &cases.StringDecimalPrecision{Val: "1234.56"},
+			Message:  &cases.StringDecimalPrecisionScale{Val: "1234.56"},
 			Expected: results.Success(true),
 		},
 		"decimal/precision_scale/invalid": {
-			Message: &cases.StringDecimalPrecision{Val: "12345.6"},
+			Message: &cases.StringDecimalPrecisionScale{Val: "12345.6"},
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:  results.FieldPath("val"),
