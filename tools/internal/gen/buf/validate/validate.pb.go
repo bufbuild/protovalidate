@@ -5482,8 +5482,8 @@ type StringRules_Decimal struct {
 	//	  // point, and at most four digits before the decimal point.
 	//	  // "1000", "100.1", and "100" are valid, whereas "10000" and "1.111" are not.
 	//	  string value = 1 [
-	//	    (buf.validate.field).decimal.precision = 6,
-	//	    (buf.validate.field).decimal.scale = 2
+	//	    (buf.validate.field).string.decimal.precision = 6,
+	//	    (buf.validate.field).string.decimal.scale = 2
 	//	  ];
 	//	}
 	//
@@ -8381,7 +8381,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xb6L\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xbeI\n" +
 	"\vStringRules\x12\x8d\x01\n" +
 	"\x05const\x18\x01 \x01(\tBw\xc2Ht\n" +
 	"r\n" +
@@ -8517,30 +8517,26 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x82\x01\n" +
 	"\vstring.ulid\x12\x1avalue must be a valid ULID\x1aW!rules.ulid || this == '' || this.matches('^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$')\n" +
 	"Y\n" +
-	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xe4\x10\n" +
-	"\adecimal\x18$ \x01(\v2\x1a.buf.validate.DecimalRulesB\xab\x10\xc2H\xa7\x10\n" +
-	"~\n" +
-	" string.decimal.precision_minimum\x12\x1cprecision must be at least 1\x1a<!has(rules.decimal.precision) || rules.decimal.precision > 0\n" +
-	"\x90\x01\n" +
-	"&string.decimal.scale_without_precision\x12+if scale is set, precision must also be set\x1a9!has(rules.decimal.scale) || has(rules.decimal.precision)\n" +
-	"\xba\x01\n" +
-	"(string.decimal.scale_less_than_precision\x12!scale must be less than precision\x1ak!has(rules.decimal.precision) || !has(rules.decimal.scale) || rules.decimal.scale < rules.decimal.precision\n" +
+	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xec\r\n" +
+	"\adecimal\x18$ \x01(\v2\x1a.buf.validate.DecimalRulesB\xb3\r\xc2H\xaf\r\n" +
 	"\x98\x01\n" +
 	"\x17string.decimal.numerals\x12Lvalue must not have characters other than decimal digits and a decimal point\x1a/!has(rules.decimal) || !this.matches('[^0-9.]')\n" +
 	"}\n" +
 	"\x1estring.decimal.multiple_points\x12+value must not have multiple decimal points\x1a.!has(rules.decimal) || !this.matches('\\..*\\.')\n" +
-	"\x83\x01\n" +
-	"\x1estring.decimal.point_placement\x120value must not begin or end with a decimal point\x1a/!has(rules.decimal) || !this.matches('^\\.|\\.$')\n" +
+	"v\n" +
+	"\x1cstring.decimal.leading_point\x12)value must not begin with a decimal point\x1a+!has(rules.decimal) || !this.matches('^\\.')\n" +
+	"u\n" +
+	"\x1dstring.decimal.trailing_point\x12'value must not end with a decimal point\x1a+!has(rules.decimal) || !this.matches('\\.$')\n" +
 	"r\n" +
 	"\x1bstring.decimal.leading_zero\x12\"value must not have a leading zero\x1a/!has(rules.decimal) || !this.matches('^0[0-9]')\n" +
 	"]\n" +
 	"\x14string.decimal.empty\x12\"value must have at least one digit\x1a!!has(rules.decimal) || this != ''\n" +
 	"\xf7\x01\n" +
 	"\x18string.decimal.precision\x1a\xda\x01has(rules.decimal.precision) &&this.replace('.', '').size() > rules.decimal.precision  ? 'value must have no more than %d digits; got %d digits'    .format([rules.decimal.precision, this.replace('.', '').size()])  : ''\n" +
-	"\xbc\x02\n" +
-	"!string.decimal.scale_digits_after\x1a\x96\x02has(rules.decimal.scale) && this.contains('.') &&(this.size() - this.lastIndexOf('.') - 1) > rules.decimal.scale  ? 'value must have no more than %d digits after the decimal place; got %d digits'    .format([rules.decimal.scale, (this.size() - this.lastIndexOf('.') - 1)])  : ''\n" +
-	"\xa8\x03\n" +
-	"\"string.decimal.scale_digits_before\x1a\x81\x03has(rules.decimal.precision) && has(rules.decimal.scale) &&(this.contains('.') ? this.indexOf('.') : this.size()) > (rules.decimal.precision - rules.decimal.scale)  ? 'value must have no more than %d digits before the decimal place; got %d digits'    .format([      rules.decimal.precision - rules.decimal.scale,      (this.contains('.') ? this.indexOf('.') : this.size()),    ])  : ''H\x00R\adecimal\x12\xb8\x05\n" +
+	"\xaf\x02\n" +
+	"\x14string.decimal.scale\x1a\x96\x02has(rules.decimal.scale) && this.contains('.') &&(this.size() - this.lastIndexOf('.') - 1) > rules.decimal.scale  ? 'value must have no more than %d digits after the decimal place; got %d digits'    .format([rules.decimal.scale, (this.size() - this.lastIndexOf('.') - 1)])  : ''\n" +
+	"\xa4\x03\n" +
+	"\x1estring.decimal.precision_scale\x1a\x81\x03has(rules.decimal.precision) && has(rules.decimal.scale) &&(this.contains('.') ? this.indexOf('.') : this.size()) > (rules.decimal.precision - rules.decimal.scale)  ? 'value must have no more than %d digits before the decimal place; got %d digits'    .format([      rules.decimal.precision - rules.decimal.scale,      (this.contains('.') ? this.indexOf('.') : this.size()),    ])  : ''H\x00R\adecimal\x12\xb8\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xf1\x04\xc2H\xed\x04\n" +
 	"\xf0\x01\n" +
 	"#string.well_known_regex.header_name\x12&value must be a valid HTTP header name\x1a\xa0\x01rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :'^[^\\u0000\\u000A\\u000D]+$')\n" +
@@ -8553,9 +8549,9 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x16\n" +
 	"\x0estring.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\f\n" +
 	"\n" +
-	"well_known\"K\n" +
-	"\fDecimalRules\x12%\n" +
-	"\tprecision\x18\x01 \x01(\rB\a\xbaH\x04*\x02(\x01R\tprecision\x12\x14\n" +
+	"well_known\"B\n" +
+	"\fDecimalRules\x12\x1c\n" +
+	"\tprecision\x18\x01 \x01(\rR\tprecision\x12\x14\n" +
 	"\x05scale\x18\x02 \x01(\rR\x05scale\"\xac\x13\n" +
 	"\n" +
 	"BytesRules\x12\x87\x01\n" +
