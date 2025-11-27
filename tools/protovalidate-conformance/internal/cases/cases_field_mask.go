@@ -62,7 +62,7 @@ func fieldMaskSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("field_mask.const"),
 				RuleId:  proto.String("field_mask.const"),
-				Message: proto.String("value must equal a"),
+				Message: proto.String("value must equal paths [a]"),
 			}),
 		},
 		"in/valid": {
