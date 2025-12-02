@@ -9,9 +9,14 @@ MAKEFLAGS += --no-print-directory
 BIN := .tmp/bin
 COPYRIGHT_YEARS := 2023-2025
 LICENSE_IGNORE := -e internal/testdata/
+BUF_VERSION := v1.61.0
+GOLANGCI_LINT_VERSION := v1.64.7
+BAZELISK_VERSION := v1.27.0
+TOOLS_VERSION := 414d6530d429991dad4636d8d322d2863019a129
 # Set to use a different compiler. For example, `GO=go1.18rc1 make test`.
 GO ?= go
 ARGS ?=
+
 
 .PHONY: help
 help: ## Describe useful make targets
@@ -26,9 +31,9 @@ clean: ## Delete intermediate build artifacts
 	git clean -Xdf
 
 .PHONY: test
-test: generate ## Run all unit tests
+test: generate | $(BIN)/bazelisk ## Run all unit tests
 	$(GO) test -race -cover ./tools/...
-	bazel test //...
+	$(BIN)/bazelisk test //...
 
 .PHONY: lint
 lint: lint-proto lint-go  ## Lint code and protos
@@ -57,12 +62,12 @@ generate: ## Regenerate code and license headers
 	$(MAKE) generate-license
 
 .PHONY: bazel
-bazel: generate-bazel
-	bazel build //...
+bazel: generate-bazel | $(BIN)/bazelisk
+	$(BIN)/bazelisk build //...
 
 .PHONY: generate-bazel
-generate-bazel:
-	bazel run //:gazelle
+generate-bazel: | $(BIN)/bazelisk
+	$(BIN)/bazelisk run //:gazelle
 
 .PHONY: generate-proto
 generate-proto: | $(BIN)/buf
@@ -97,11 +102,14 @@ $(BIN):
 	@mkdir -p $(BIN)
 
 $(BIN)/buf: $(BIN) Makefile
-	GOBIN=$(abspath $(@D)) $(GO) install github.com/bufbuild/buf/cmd/buf@latest
+	GOBIN=$(abspath $(@D)) $(GO) install github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
+
+$(BIN)/bazelisk: $(BIN) Makefile
+	GOBIN=$(abspath $(@D)) $(GO) install github.com/bazelbuild/bazelisk@$(BAZELISK_VERSION)
 
 $(BIN)/license-header: $(BIN) Makefile
 	GOBIN=$(abspath $(@D)) $(GO) install \
-		  github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@latest
+		  github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(BUF_VERSION)
 
 $(BIN)/golangci-lint: $(BIN) Makefile
-	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.64.7
+	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
