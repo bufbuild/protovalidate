@@ -1,0 +1,63 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message UserProfile {
+  // `uuid` validates that a string field is a valid uuid.
+  string user_id = 1 [(buf.validate.field).string.uuid = true];
+  // `email` validates that a string field is a valid email.
+  string email = 2 [(buf.validate.field).string.email = true];
+  // phone_number must match the this pattern if it's not empty.
+  // Note: the `\`s in the regex pattern must be escaped.
+  string phone_number = 3 [(buf.validate.field) = {
+    string: {
+      // `pattern` specifies a regex pattern and validates that the string field
+      // must match it.
+      pattern: "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
+    }
+    ignore: IGNORE_IF_ZERO_VALUE
+  }];
+  // `hostname` specifies that the field value must be a valid hostname as defined
+  // by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5).
+  // Note: This constraint doesn't support internationalized domain names (IDNs).
+  string organization_domain = 4 [(buf.validate.field).string.hostname = true];
+  string personal_page = 5 [
+    // `uri` validates that a string field must be an absolute uri, as defined by
+    // [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3).
+    //
+    // Or use `uri_ref` to validate that it must be a relative or absolute URI, as
+    // defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986#section-3).
+    // (buf.validate.field).string.uri_ref = true,
+    (buf.validate.field).string.uri = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  // `ip` specifies that a string field must be a valid ip address, in either v4 or v6.
+  string last_login_at = 6 [(buf.validate.field).string.ip = true];
+  // To validate against a specific version, use `ipv4` or `ipv6` instead.
+  //
+  // string last_login = 5 [(buf.validate.field).string.ipv4 = true];
+  // string last_login = 5 [(buf.validate.field).string.ipv6 = true];
+}
+
+message HyperLink {
+  string text = 1;
+  // `address` specifies that the field value must be either a valid hostname
+  // as defined by [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034#section-3.5)
+  // (which doesn't support internationalized domain names or IDNs) or a valid
+  // IP (v4 or v6).
+  string address = 2 [(buf.validate.field).string.address = true];
+}

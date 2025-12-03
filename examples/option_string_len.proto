@@ -1,0 +1,41 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message User {
+  string username = 1 [(buf.validate.field).string = {
+    // `min_len` validates that username must have at least 3 characters.
+    min_len: 3
+    // `max_len` validates that username must have at most 16 characters.
+    max_len: 16
+  }];
+  string description = 2 [(buf.validate.field).string = {
+    // `min_bytes` specifies that a string field must have a least this many bytes.
+    // In this case, it validates that description must have a least 0 byte,
+    // which is a no-op.
+    min_bytes: 0
+    // `max_bytes` specifies that a string field must have at most this many bytes.
+    // In this case, it validates that description can have at most 500 bytes.
+    max_bytes: 500
+  }];
+  // `len_bytes` specifies that a string field must have exactly this many bytes.
+  // In this case, it validates that `id` must have exactly 20 bytes.
+  string id = 3 [(buf.validate.field).string.len_bytes = 20];
+  // `len` specifies that a string field must have exactly this many characters.
+  // In this case, it validates that `abbreviation` must have exactly 3 characters.
+  string abbreviation = 4 [(buf.validate.field).string.len = 3];
+}

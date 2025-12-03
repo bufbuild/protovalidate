@@ -1,27 +1,27 @@
-![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
-
 # Examples
 
-Protovalidate examples have moved to the [buf-examples repository][protovalidate-examples]. 
+This directory has examples for Protovalidate.
 
-## Direct links to examples
+## Standard Rules
 
-The following direct links can be used to find the examples that used to be in this repository.
+`rule_*.proto` are Protovalidate examples based on standard rules.
 
-- [Standard rule (`option_*.proto`)][standard-rules-example] examples
-- [Custom rule (`cel_*.proto`)][custom-rules-example] examples
+To get started, check out the following examples:
 
-## Further reading
+- [`option_number_range.proto`](option_number_range.proto)
+- [`option_string_match_pattern.proto`](option_string_match_pattern.proto)
+- [`option_repeated.proto`](option_repeated.proto)
 
-- Visit the [Protovalidate quickstart][quickstart] to learn the basics of Protovalidate.
-- See how to use [standard rules][standard-rules] to add common validation rules to fields and messages.
-- Discover how CEL-based [custom rules][custom-rules] allow you to express business rules within Protobuf.
+The complete set of options can be found [here](../proto/protovalidate/buf/validate/validate.proto).
 
-[buf]: https://buf.build
-[protovalidate]: https://protovalidate.com/
-[protovalidate-examples]: https://github.com/bufbuild/buf-examples/tree/main/protovalidate
-[standard-rules-example]: https://github.com/bufbuild/buf-examples/tree/main/protovalidate/rules-standard
-[custom-rules-example]: https://github.com/bufbuild/buf-examples/tree/main/protovalidate/rules-custom
-[quickstart]: https://protovalidate.com/quickstart/
-[standard-rules]: https://protovalidate.com/schemas/standard-rules/
-[custom-rules]: https://protovalidate.com/schemas/custom-rules/
+## Custom Rules
+
+`cel_*.proto` are Protovalidate examples that validate with CEL expressions.
+
+To get started, check out the following examples:
+
+- [`cel_field_access.proto`](cel_field_access.proto)
+- [`cel_conditional_operator.proto`](cel_conditional_operator.proto)
+- [`cel_field_presence.proto`](cel_field_presence.proto)
+
+The CEL language specification can be found [here](https://github.com/google/cel-spec/blob/master/doc/langdef.md).

@@ -1,0 +1,43 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message Author {
+  string name = 1;
+}
+
+message Book {
+  repeated string genres = 1 [(buf.validate.field).cel = {
+    id: "book_unique_genre"
+    message: "a genre cannot appear twice in the same book"
+    // `unique()` evaluates to whether each element in a list is unique.
+    //
+    // In this case, the expression validates that genres are unique.
+    expression: "this.unique()"
+  }];
+  repeated Author authors = 2 [(buf.validate.field).cel = {
+    id: "book_unique_authors"
+    message: "a name cannot appear twice in authors"
+    // `some_list.map(x, expression_x)` transforms list [x1, x2, ...] into [expression-x1, expression-x2, ...].
+    // In this case, the list of authors is transformed into the list of author names.
+    //
+    // `unique()` evaluates to whether each element in a list is unique.
+    //
+    // In this case, the expression validates that names in the list of authors are unique.
+    expression: "this.map(author, author.name).unique()"
+  }];
+}

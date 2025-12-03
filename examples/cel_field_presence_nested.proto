@@ -1,0 +1,46 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service ContactService {
+  // CreateContact creates a contact.
+  rpc CreateContact(CreateContactRequest) returns (CreateContactResponse);
+}
+
+message CreateContactRequest {
+  option (buf.validate.message).cel = {
+    id: "create_contact_with_first_name"
+    message: "the contact must have first name"
+    // This expression validates that all of `this.contact`, `this.contact.full_name`
+    // and `this.contact.full_name.first_name` are set.
+    expression: "has(this.contact.full_name.first_name)"
+  };
+
+  // contact is the contact to create.
+  Contact contact = 1;
+}
+
+message Contact {
+  FullName full_name = 1;
+}
+
+message FullName {
+  string first_name = 1;
+  string last_name = 2;
+}
+
+message CreateContactResponse {}

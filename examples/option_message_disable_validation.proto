@@ -1,0 +1,38 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+message DebugLog {
+  // payload is the payload.
+  Payload payload = 1 [
+    // IGNORE_ALWAYS disables validation for this message.
+    // In this case, validation rules defined within `Payload`'s definition will
+    // not be evaluated for `DebugLog.payload`.
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+
+  // create_time is when the log is created. The `required` rule will not
+  // be ignored.
+  google.protobuf.Timestamp create_time = 2 [
+    (buf.validate.field).required = true
+  ];
+}
+
+message Payload {
+  bytes content = 1 [(buf.validate.field).bytes.max_len = 100];
+}

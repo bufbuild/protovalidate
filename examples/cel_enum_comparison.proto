@@ -1,0 +1,47 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service FileService {
+  // UploadFile uploads a file to the server.
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
+}
+
+message UploadFileRequest {
+  bytes content = 1;
+  CompressionScheme compression_scheme = 2 [(buf.validate.field).cel = {
+    id: "compression_specified"
+    message: "compression scheme must be specified"
+    // Validate that compression_scheme is specified.
+    // Note that `this`, as a enum, can be directly compared with an int.
+    // In this case, 0 is the variant COMPRESSION_SCHEME_UNSPECIFIED from the
+    // definition below.
+    expression: "this != 0"
+  }];
+}
+
+// CompressionScheme are the supported compression scheme for UploadFileRequest
+enum CompressionScheme {
+  // COMPRESSION_SCHEME_UNSPECIFIED is when compression scheme is not specified.
+  COMPRESSION_SCHEME_UNSPECIFIED = 0;
+  // COMPRESSION_SCHEME_NONE is when the file is not compressed.
+  COMPRESSION_SCHEME_NONE = 1;
+  // COMPRESSION_SCHEME_GZIP is the gzip compression scheme.
+  COMPRESSION_SCHEME_GZIP = 2;
+}
+
+message UploadFileResponse {}

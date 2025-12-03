@@ -1,0 +1,41 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message HttpHeader {
+  string name = 1 [(buf.validate.field).string = {
+    // This validates that name is a valid http header name.
+    well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
+  }];
+  string value = 2 [(buf.validate.field).string = {
+    // This validates that value is a valid http header value.
+    well_known_regex: KNOWN_REGEX_HTTP_HEADER_VALUE
+    // `strict` applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
+    // enable strict header validation. By default this value is true and
+    // validations are [RFC-compliant](https://datatracker.ietf.org/doc/html/rfc7230#section-3).
+    // When `strict` is false, validation only disallows `\r\n\0` characters.
+    strict: false
+  }];
+}
+
+// `well_known_regex` contains some well-known patterns.
+//
+// | Name                          | Number | Description                               |
+// |-------------------------------|--------|-------------------------------------------|
+// | KNOWN_REGEX_UNSPECIFIED       | 0      |                                           |
+// | KNOWN_REGEX_HTTP_HEADER_NAME  | 1      | HTTP header name as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2)  |
+// | KNOWN_REGEX_HTTP_HEADER_VALUE | 2      | HTTP header value as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4) |

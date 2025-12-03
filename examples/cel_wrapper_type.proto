@@ -1,0 +1,99 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/wrappers.proto";
+
+service StoreService {
+  // SearchStore searches the store.
+  rpc SearchStore(SearchStoreRequest) returns (SearchStoreResponse);
+}
+
+message SearchStoreRequest {
+  option (buf.validate.message).cel = {
+    id: "positive_quantity_but_out_of_stock"
+    // this checks that if you are searching for items out of stock, you cannot
+    // specify a positive quantity available.
+    expression:
+      // At this point, `this.in_stock` can either be a bool or null.
+      // It is null iff `!has(this.in_stock)`.
+      "!has(this.in_stock) ? ''"
+      // At this point, `this.quantity_available` can be either a uint or null.
+      // It is null iff `!has(this.quantity_available).
+      ": !has(this.quantity_available) ? ''"
+      // Now that we know `this.in_stock` is a bool, we can use it like a bool.
+      ": this.in_stock ? ''"
+      // Now that we know `this.quantity_available` is an uint. We can treat it
+      // as an uint.
+      ": this.quantity_available > 0 ? 'cannot search for a positive quantity when filtering for out-of-stock items'"
+      ": ''"
+  };
+
+  // term is the search term
+  google.protobuf.StringValue term = 1 [(buf.validate.field).cel = {
+    id: "search_term_length"
+    message: "search term must be not exceed 100 characters"
+    // This validates that _if_ term is specified, it must be shorter than 100
+    // characters long.
+    // This rule is only evaluated when this field is specified, because
+    // google.protobuf.StringValue is a message type, and CEL rules are evaluated
+    // only when the message field is present.
+    expression: "size(this) <= 100"
+  }];
+  // category_id is the id of the category that the search results should be in.
+  google.protobuf.UInt64Value category_id = 2 [(buf.validate.field).cel = {
+    id: "category_id_not_123"
+    message: "category id should not be 123"
+    // This validates that _if_ category_id is specified, it must not be 123.
+    // This rule is only evaluated when this field is specified, because
+    // google.protobuf.UInt64Value is a message type, and CEL rules are evaluated
+    // only when the message field is present.
+    expression: "this != uint(123)"
+  }];
+  // in_stock is whether the search results should be in stock.
+  // Setting this field to false means only searching for out-of-stock items.
+  // Leaving this field unset searches for items both out of stock and in stock.
+  google.protobuf.BoolValue in_stock = 3;
+  // min_price is the minimum price that the search results should have.
+  google.protobuf.FloatValue min_price = 4 [(buf.validate.field).cel = {
+    id: "min_price_finite"
+    message: "min_price_must_be_positive"
+    // This validates that _if_ min_price is specified, it must be greater than 0.
+    // This rule is only evaluated when this field is specified, because
+    // google.protobuf.FloatValue is a message type, and CEL rules are evaluated
+    // only when the message field is present.
+    expression: "this > 0"
+  }];
+  // max_price is the maximum price that the search results should have.
+  google.protobuf.DoubleValue max_price = 5 [(buf.validate.field).cel = {
+    id: "max_price_finite"
+    message: "maximum price must be finite"
+    // This validates that _if_ max_price is specified, it must not be 123.
+    // This rule is only evaluated when this field is specified, because
+    // google.protobuf.DoubleValue is a message type, and CEL rules are evaluated
+    // only when the message field is present.
+    expression: "!this.isInf()"
+  }];
+  // quantity_available is the minimum quantity available of the search results.
+  google.protobuf.UInt32Value quantity_available = 6;
+}
+
+message SearchStoreResponse {
+  repeated SearchResult results = 1;
+  message SearchResult {
+    // fields not relevant to this example
+  }
+}
