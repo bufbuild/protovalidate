@@ -135,7 +135,7 @@ func customSuite() suites.Suite {
 			Message: &custom_rules.FieldExpressionOnly{},
 			Expected: results.Violations(
 				&validate.Violation{
-					RuleId:  proto.String("this > 32"),
+					RuleId:  proto.String("this > 42"),
 					Field:   results.FieldPath("val"),
 					Rule:    results.FieldPath("cel_expression[0]"),
 					Message: proto.String(fmt.Sprintf("%q returned false", "this > 42"))},
