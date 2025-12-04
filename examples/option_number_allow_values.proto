@@ -1,4 +1,4 @@
-// Copyright 2020-2025 Buf Technologies, Inc.
+// Copyright 2023-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,8 +23,6 @@ service CarService {
 
 message SearchCarRequest {
   optional fixed32 number_of_seats = 1 [(buf.validate.field) = {
-    // `IGNORE_IF_ZERO_VALUE` skips validation if the field isn't set.
-    ignore: IGNORE_IF_ZERO_VALUE
     fixed32: {
       // `in` requires that the value must be one of the specified values.
       // In this case, it validates that the number of seats is either 5 or 7.

@@ -1,4 +1,4 @@
-// Copyright 2020-2025 Buf Technologies, Inc.
+// Copyright 2023-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ message CreateReviewRequest {
 message CreateReviewResponse {
   // aggregated_review is the aggregated review after this one in request is created.
   // This value is empty if there are less than a 100 reviews submitted.
-  AggregatedReview aggregated_review = 1 [(buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE];
+  AggregatedReview aggregated_review = 1;
 }
 
 message AggregatedReview {
