@@ -18,6 +18,35 @@
 // 	protoc        (unknown)
 // source: buf/validate/validate.proto
 
+// [Protovalidate](https://protovalidate.com/) is the semantic validation library for Protobuf.
+// It provides standard annotations to validate common rules on messages and fields, as well as the ability to use [CEL](https://cel.dev) to write custom rules.
+// It's the next generation of [protoc-gen-validate](https://github.com/bufbuild/protoc-gen-validate).
+//
+// This package provides the options, messages, and enums that power Protovalidate.
+// Apply its options to messages, fields, and oneofs in your Protobuf schemas to add validation rules:
+//
+// ```proto
+// message User {
+//   string id = 1 [(buf.validate.field).string.uuid = true];
+//   string first_name = 2 [(buf.validate.field).string.max_len = 64];
+//   string last_name = 3 [(buf.validate.field).string.max_len = 64];
+//
+//   option (buf.validate.message).cel = {
+//     id: "first_name_requires_last_name"
+//     message: "last_name must be present if first_name is present"
+//     expression: "!has(this.first_name) || has(this.last_name)"
+//   };
+// }
+// ```
+//
+// These rules are enforced at runtime by language-specific libraries.
+// See the [developer quickstart](https://protovalidate.com/quickstart/) to get started, or go directly to the runtime library for your language:
+// [Go](https://github.com/bufbuild/protovalidate-go)
+// [JavaScript/TypeScript](https://github.com/bufbuild/protovalidate-es),
+// [Java](https://github.com/bufbuild/protovalidate-java),
+// [Python](https://github.com/bufbuild/protovalidate-python),
+// or [C++](https://github.com/bufbuild/protovalidate-cc).
+
 package validate
 
 import (
