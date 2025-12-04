@@ -12,7 +12,7 @@ To get started, check out the following examples:
 - [`option_string_match_pattern.proto`](option_string_match_pattern.proto)
 - [`option_repeated.proto`](option_repeated.proto)
 
-The complete set of options can be found [here](../proto/protovalidate/buf/validate/validate.proto).
+For more about Protovalidate's standard rules, see its [documentation](https://protovalidate.com/schemas/standard-rules/).
 
 ## Custom Rules
 
