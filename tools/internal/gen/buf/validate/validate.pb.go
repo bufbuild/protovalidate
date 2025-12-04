@@ -589,6 +589,23 @@ func (x *OneofRules) GetRequired() bool {
 // the field, the correct set should be used to ensure proper validations.
 type FieldRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// `cel_expression` is a repeated field CEL expressions. Each expression specifies a validation
+	// rule to be applied to this message. These rules are written in Common Expression Language (CEL) syntax.
+	//
+	// This is a simplified form of the `cel` Rule field, where only `expression` is set. This allows for
+	// simpler syntax when defining CEL Rules where `id` and `message` are largely redundant.
+	//
+	// For more information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
+	//
+	// ```proto
+	//
+	//	message MyMessage {
+	//	  // The field `value` must be greater than 42.
+	//	  optional int32 value = 1 [(buf.validate.field).cel_expression = "this > 42"];
+	//	}
+	//
+	// ```
+	CelExpression []string `protobuf:"bytes,28,rep,name=cel_expression,json=celExpression" json:"cel_expression,omitempty"`
 	// `cel` is a repeated field used to represent a textual expression
 	// in the Common Expression Language (CEL) syntax. For more information,
 	// [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
@@ -736,6 +753,13 @@ func (x *FieldRules) ProtoReflect() protoreflect.Message {
 // Deprecated: Use FieldRules.ProtoReflect.Descriptor instead.
 func (*FieldRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FieldRules) GetCelExpression() []string {
+	if x != nil {
+		return x.CelExpression
+	}
+	return nil
 }
 
 func (x *FieldRules) GetCel() []*Rule {
@@ -7528,9 +7552,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\brequired\x18\x02 \x01(\bR\brequired\"(\n" +
 	"\n" +
 	"OneofRules\x12\x1a\n" +
-	"\brequired\x18\x01 \x01(\bR\brequired\"\xfd\t\n" +
+	"\brequired\x18\x01 \x01(\bR\brequired\"\xa4\n" +
 	"\n" +
-	"FieldRules\x12$\n" +
+	"\n" +
+	"FieldRules\x12%\n" +
+	"\x0ecel_expression\x18\x1c \x03(\tR\rcelExpression\x12$\n" +
 	"\x03cel\x18\x17 \x03(\v2\x12.buf.validate.RuleR\x03cel\x12\x1a\n" +
 	"\brequired\x18\x19 \x01(\bR\brequired\x12,\n" +
 	"\x06ignore\x18\x1b \x01(\x0e2\x14.buf.validate.IgnoreR\x06ignore\x120\n" +

@@ -15,6 +15,8 @@
 package cases
 
 import (
+	"fmt"
+
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate"
 	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/cases/custom_rules"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
@@ -89,6 +91,18 @@ func customSuite() suites.Suite {
 				},
 			),
 		},
+		"message_expression_only/valid": {
+			Message: &custom_rules.MessageExpressionOnly{
+				A: 1,
+			},
+			Expected: results.Success(true),
+		},
+		"message_expression_only/invalid": {
+			Message: &custom_rules.MessageExpressionOnly{},
+			Expected: results.Violations(
+				&validate.Violation{Message: proto.String(fmt.Sprintf("%q returned false", "this.a > 0"))},
+			),
+		},
 		"now/equality": {
 			Message:  &custom_rules.NowEqualsNow{},
 			Expected: results.Success(true),
@@ -107,6 +121,21 @@ func customSuite() suites.Suite {
 			Message: &custom_rules.DynRuntimeError{A: 123},
 			Expected: results.RuntimeError(
 				"dynamic type field access results in runtime type error"),
+		},
+		"field_expression_only/valid": {
+			Message: &custom_rules.FieldExpressionOnly{
+				Val: 43,
+			},
+			Expected: results.Success(true),
+		},
+		"field_expression_only/invalid": {
+			Message: &custom_rules.FieldExpressionOnly{},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:   results.FieldPath("val"),
+					Rule:    results.FieldPath("cel_expression[0]"),
+					Message: proto.String(fmt.Sprintf("%q returned false", "this > 42"))},
+			),
 		},
 		"field_expression/multiple/scalar/valid": {
 			Message: &custom_rules.FieldExpressionMultipleScalar{

@@ -219,6 +219,21 @@ message OneofRules {
 // FieldRules encapsulates the rules for each type of field. Depending on
 // the field, the correct set should be used to ensure proper validations.
 message FieldRules {
+  // `cel_expression` is a repeated field CEL expressions. Each expression specifies a validation
+  // rule to be applied to this message. These rules are written in Common Expression Language (CEL) syntax.
+  //
+  // This is a simplified form of the `cel` Rule field, where only `expression` is set. This allows for
+  // simpler syntax when defining CEL Rules where `id` and `message` are largely redundant.
+  //
+  // For more information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
+  //
+  // ```proto
+  // message MyMessage {
+  //   // The field `value` must be greater than 42.
+  //   optional int32 value = 1 [(buf.validate.field).cel_expression = "this > 42"];
+  // }
+  // ```
+  repeated string cel_expression = 28;
   // `cel` is a repeated field used to represent a textual expression
   // in the Common Expression Language (CEL) syntax. For more information,
   // [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
