@@ -100,7 +100,10 @@ func customSuite() suites.Suite {
 		"message_expression_only/invalid": {
 			Message: &custom_rules.MessageExpressionOnly{},
 			Expected: results.Violations(
-				&validate.Violation{Message: proto.String(fmt.Sprintf("%q returned false", "this.a > 0"))},
+				&validate.Violation{
+					RuleId:  proto.String("this.a > 0"),
+					Message: proto.String(fmt.Sprintf("%q returned false", "this.a > 0")),
+				},
 			),
 		},
 		"now/equality": {
@@ -132,6 +135,7 @@ func customSuite() suites.Suite {
 			Message: &custom_rules.FieldExpressionOnly{},
 			Expected: results.Violations(
 				&validate.Violation{
+					RuleId:  proto.String("this > 32"),
 					Field:   results.FieldPath("val"),
 					Rule:    results.FieldPath("cel_expression[0]"),
 					Message: proto.String(fmt.Sprintf("%q returned false", "this > 42"))},

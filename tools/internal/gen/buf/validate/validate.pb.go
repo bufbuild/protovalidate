@@ -339,7 +339,8 @@ type MessageRules struct {
 	// rule to be applied to this message. These rules are written in Common Expression Language (CEL) syntax.
 	//
 	// This is a simplified form of the `cel` Rule field, where only `expression` is set. This allows for
-	// simpler syntax when defining CEL Rules where `id` and `message` are largely redundant.
+	// simpler syntax when defining CEL Rules where `id` and `message` derived from the `expression`. `id` will
+	// be same as an `expression`.
 	//
 	// For more information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
 	//
@@ -593,7 +594,8 @@ type FieldRules struct {
 	// rule to be applied to this message. These rules are written in Common Expression Language (CEL) syntax.
 	//
 	// This is a simplified form of the `cel` Rule field, where only `expression` is set. This allows for
-	// simpler syntax when defining CEL Rules where `id` and `message` are largely redundant.
+	// simpler syntax when defining CEL Rules where `id` and `message` derived from the `expression`. `id` will
+	// be same as an `expression`.
 	//
 	// For more information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
 	//
