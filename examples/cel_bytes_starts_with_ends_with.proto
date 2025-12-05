@@ -1,0 +1,37 @@
+// Copyright 2023-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message ScriptFile {
+  bytes content = 1 [(buf.validate.field).cel = {
+    id: "script_start_with_shabang_end_with_line_feed"
+    expression:
+      // this is a ternary expression in the form of a ? b : c, if the the
+      // script file doesn't start with '#!', the expression evaluates to the
+      // first error message, which fails the validation. Otherwise it
+      // evaluates to the next expression.
+      "!this.startsWith(bytes('#!')) ? 'must start with #!'"
+      // If this file does not end with the new line character, it evaluates
+      // to the second error message.
+      // Note: the `'\x0A'` is byte string for the new line character, but
+      // we have two backslashes below. This is because we need to escape the
+      // backslash.
+      ": !this.endsWith(bytes('\\x0A')) ? 'must end with a new line'"
+      // If the file passes the two checks above, there is no error.
+      ": ''"
+  }];
+}

@@ -1,0 +1,41 @@
+// Copyright 2023-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+service HaircutAppointmentService {
+  // BookHaircutAppointment books a haircut appointment
+  rpc BookHaircutAppointment(BookHaircutAppointmentRequest) returns (BookHaircutAppointmentResponse);
+}
+
+message BookHaircutAppointmentRequest {
+  // appointment_time is the time of the appoint.
+  google.protobuf.Timestamp appointment_time = 1 [(buf.validate.field).cel = {
+    id: "not_open_on_monday"
+    message: "the barbershop is closed on Monday"
+    // `getDayOfWeek(<time zone string>)` gets day of week from the date with
+    // timezone.
+    // The result is an int, where 0 means Sunday, 1 means Monday and so on.
+    expression: "this.getDayOfWeek('US/Central') != 1"
+    // Similar functions include `getDate`, `getDayOfMonth`, `getDayOfYear`,
+    // `getFullYear`, `getHours`, `getMilliseconds`, `getMinutes`, `getMonth`
+    // and `getSeconds`, and their definitions can be found at
+    // https://github.com/google/cel-spec/blob/master/doc/langdef.md#list-of-standard-definitions..
+  }];
+}
+
+message BookHaircutAppointmentResponse {}

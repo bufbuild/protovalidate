@@ -1,0 +1,37 @@
+// Copyright 2023-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service JeopardyService {
+  // AnswerJeopardyQuestion answers an answer to a jeopardy question.
+  rpc AnswerJeopardyQuestion(AnswerJeopardyQuestionRequest) returns (AnswerJeopardyQuestionResponse);
+}
+
+message AnswerJeopardyQuestionRequest {
+  // question_id is the id of the question.
+  uint64 question_id = 1;
+  // answer is an answer in the form of a question, such as "What is xyz?" and "Who is xyz?".
+  string answer = 2 [(buf.validate.field).cel = {
+    id: "correct_answer_format"
+    message: "answer must start with 'wh' and end with '?'"
+    // `startsWith` evaluates to true when the string operand starts with the prefix argument.
+    // `endsWith` evaluates to true when the string operand ends with the suffix argument.
+    expression: "this.startsWith('wh') && this.endsWith('?')"
+  }];
+}
+
+message AnswerJeopardyQuestionResponse {}

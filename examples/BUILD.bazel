@@ -1,0 +1,120 @@
+# Copyright 2023-2025 Buf Technologies, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("@rules_buf//buf:defs.bzl", "buf_lint_test")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+# gazelle:resolve proto proto google/type/postal_address.proto @googleapis//google/type:postal_address_proto
+
+proto_library(
+    name = "examples_proto",
+    srcs = [
+        "cel_assert_value_is_in_a_list.proto",
+        "cel_bytes_concatenation.proto",
+        "cel_bytes_contains.proto",
+        "cel_bytes_starts_with_ends_with.proto",
+        "cel_conditional_operator.proto",
+        "cel_duration_arithmetic.proto",
+        "cel_duration_from_string.proto",
+        "cel_enum_comparison.proto",
+        "cel_field_access.proto",
+        "cel_field_map.proto",
+        "cel_field_mask.proto",
+        "cel_field_presence.proto",
+        "cel_field_presence_nested.proto",
+        "cel_field_repeated.proto",
+        "cel_field_selection.proto",
+        "cel_infinity.proto",
+        "cel_list_concatenation.proto",
+        "cel_map_all.proto",
+        "cel_map_exists.proto",
+        "cel_map_exists_one.proto",
+        "cel_map_size.proto",
+        "cel_number_arithmetic.proto",
+        "cel_repeated_field_all.proto",
+        "cel_repeated_field_exists_one.proto",
+        "cel_repeated_field_filter_and_count.proto",
+        "cel_repeated_field_transform_and_unique.proto",
+        "cel_string_concatenation.proto",
+        "cel_string_contains.proto",
+        "cel_string_is_email.proto",
+        "cel_string_is_hostname.proto",
+        "cel_string_is_ip.proto",
+        "cel_string_is_uri.proto",
+        "cel_string_match_pattern.proto",
+        "cel_string_starts_with_ends_with.proto",
+        "cel_timestamp_comparison.proto",
+        "cel_timestamp_get_attribute.proto",
+        "cel_timestamp_plus_duration.proto",
+        "cel_timestamp_subtraction.proto",
+        "cel_type_conversion.proto",
+        "cel_value.proto",
+        "cel_wrapper_type.proto",
+        "option_any_type_allow_list.proto",
+        "option_any_type_ban_list.proto",
+        "option_bool.proto",
+        "option_bytes_ban_values.proto",
+        "option_bytes_contains.proto",
+        "option_bytes_equal.proto",
+        "option_bytes_len.proto",
+        "option_bytes_pattern.proto",
+        "option_bytes_prefix_suffix.proto",
+        "option_duration_allow_values.proto",
+        "option_duration_disallow_values.proto",
+        "option_duration_equal.proto",
+        "option_duration_range.proto",
+        "option_enum_allow_values.proto",
+        "option_enum_disallow_values.proto",
+        "option_field_ignore_empty.proto",
+        "option_field_presence.proto",
+        "option_field_skip_validation.proto",
+        "option_map.proto",
+        "option_message_disable_validation.proto",
+        "option_number_allow_values.proto",
+        "option_number_disallow_values.proto",
+        "option_number_equal.proto",
+        "option_number_finite_and_infinite.proto",
+        "option_number_range.proto",
+        "option_oneof.proto",
+        "option_repeated.proto",
+        "option_string_allow_values.proto",
+        "option_string_ban_values.proto",
+        "option_string_contains.proto",
+        "option_string_equal.proto",
+        "option_string_is_http_header.proto",
+        "option_string_len.proto",
+        "option_string_match_pattern.proto",
+        "option_string_prefix_suffix.proto",
+        "option_timestamp_range.proto",
+        "option_timestamp_relative_to_now.proto",
+    ],
+    strip_import_prefix = "/examples",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//proto/protovalidate/buf/validate:validate_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+        "@googleapis//google/type:postal_address_proto",
+    ],
+)
+
+buf_lint_test(
+    name = "examples_proto_lint",
+    config = "//examples:buf.yaml",
+    targets = [":examples_proto"],
+)
