@@ -1,0 +1,56 @@
+// Copyright 2023-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+service MovieReviewService {
+  // CreateReview creates a movie review.
+  rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse);
+}
+
+message CreateReviewRequest {
+  // movie_id is the ID of the movie
+  uint64 movie_id = 1;
+  // comment is the comment attached to the review
+  string comment = 2;
+  uint32 rating = 3 [(buf.validate.field).uint32 = {
+    // validates a rating is greater than 0
+    gt: 0
+    // validates a rating is at most 10
+    lte: 10
+  }];
+}
+
+message CreateReviewResponse {
+  // aggregated_review is the aggregated review after this one in request is created.
+  // This value is empty if there are less than a 100 reviews submitted.
+  AggregatedReview aggregated_review = 1;
+}
+
+message AggregatedReview {
+  // movie_id is the ID of the movie
+  uint64 movie_id = 1;
+  // average_rating is the average of individual ratings
+  float average_rating = 2 [(buf.validate.field).float = {
+    // validates the average rating is at least 1.0
+    gte: 1.0
+    // validates the average rating is at most 10.0
+    lte: 10.0
+  }];
+  // number_of_reviews is the number of individual reviews aggregated.
+  // There must be at least a hundred reviews before an aggregated review is valid.
+  uint32 number_of_reviews = 3 [(buf.validate.field).uint32 = {gt: 100}];
+}

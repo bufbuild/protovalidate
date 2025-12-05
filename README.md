@@ -88,4 +88,4 @@ Offered under the [Apache 2 license][license].
 [grpc-go]: https://protovalidate.com/quickstart/grpc-go/
 [grpc-java]: https://protovalidate.com/quickstart/grpc-java/
 [grpc-python]: https://protovalidate.com/quickstart/grpc-python/
-[migration-guide]: https://buf.build/docs/migration-guides/migrate-from-protoc-gen-validate/
+[migration-guide]: https://protovalidate.com/migration-guides/migrate-from-protoc-gen-validate/
