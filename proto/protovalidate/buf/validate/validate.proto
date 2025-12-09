@@ -4706,7 +4706,7 @@ message FieldMaskRules {
   // ```
   optional google.protobuf.FieldMask const = 1 [(predefined).cel = {
     id: "field_mask.const"
-    expression: "this != getField(rules, 'const') ? 'value must equal paths %s'.format([getField(rules, 'const').paths]) : ''"
+    expression: "this.paths != getField(rules, 'const').paths ? 'value must equal paths %s'.format([getField(rules, 'const').paths]) : ''"
   }];
 
   // `in` requires the field value to only contain paths matching specified
