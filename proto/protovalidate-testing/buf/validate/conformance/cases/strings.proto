@@ -24,6 +24,21 @@ message StringNone {
 message StringConst {
   string val = 1 [(buf.validate.field).string.const = "foo"];
 }
+message StringDecimal {
+  string val = 1 [(buf.validate.field).string.decimal = {}];
+}
+message StringDecimalPrecision {
+  string val = 1 [(buf.validate.field).string.decimal.precision = 4];
+}
+message StringDecimalScale {
+  string val = 1 [(buf.validate.field).string.decimal.scale = 2];
+}
+message StringDecimalPrecisionScale {
+  string val = 1 [
+    (buf.validate.field).string.decimal.precision = 6,
+    (buf.validate.field).string.decimal.scale = 2
+  ];
+}
 message StringIn {
   string val = 1 [(buf.validate.field).string = {
     in: [
