@@ -23,7 +23,7 @@ jobs:
       - name: Install bazelisk
         uses: bazelbuild/setup-bazelisk@v3
       - name: Mount bazel cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: "~/.cache/bazel"
           key: bazel-${{matrix.type}}
