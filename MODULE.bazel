@@ -35,4 +35,5 @@ use_repo(go_deps, "com_github_bufbuild_protocompile", "com_github_spf13_pflag", 
 buf = use_extension("@rules_buf//buf:extensions.bzl", "buf")
 buf.toolchains(
     version = "v1.50.0",
+    sha256 = "736e74d1697dcf253bc60b2f0fb4389c39dbc7be68472a7d564a953df8b19d12",
 )
