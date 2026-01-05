@@ -55,7 +55,7 @@ jobs:
               sha: toolsCommitTag.data.sha,
             });
   release:
-    uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v7.2.3
+    uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v7.2.4
     needs: create-release-tag
     with:
       release_files: protovalidate-*.tar.gz
