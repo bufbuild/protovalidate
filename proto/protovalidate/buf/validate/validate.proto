@@ -711,16 +711,9 @@ message FloatRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -932,16 +925,9 @@ message DoubleRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -1147,16 +1133,9 @@ message Int32Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -1362,16 +1341,9 @@ message Int64Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -1577,16 +1549,9 @@ message UInt32Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -1791,16 +1756,9 @@ message UInt64Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -2005,16 +1963,9 @@ message SInt32Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -2219,16 +2170,9 @@ message SInt64Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -2433,16 +2377,9 @@ message Fixed32Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -2647,16 +2584,9 @@ message Fixed64Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -2861,16 +2791,9 @@ message SFixed32Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -3075,16 +2998,9 @@ message SFixed64Rules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -3122,16 +3038,9 @@ message BoolRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -3895,16 +3804,9 @@ message StringRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -4184,16 +4086,9 @@ message BytesRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -4299,16 +4194,9 @@ message EnumRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -4382,16 +4270,9 @@ message RepeatedRules {
   // cannot be unset.
   optional FieldRules items = 4;
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -4460,16 +4341,9 @@ message MapRules {
   // Note that the `required` rule does not apply. Map values cannot be unset.
   optional FieldRules values = 5;
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -4705,16 +4579,9 @@ message DurationRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -4792,16 +4659,9 @@ message FieldMaskRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
@@ -5010,16 +4870,9 @@ message TimestampRules {
     expression: "true"
   }];
 
-  // Extension fields in this range that have the (buf.validate.predefined)
-  // option set will be treated as predefined field rules that can then be
-  // set on the field options of other fields to apply field rules.
-  // Extension numbers 1000 to 99999 are reserved for extension numbers that are
-  // defined in the [Protobuf Global Extension Registry][1]. Extension numbers
-  // above this range are reserved for extension numbers that are not explicitly
-  // assigned. For rules defined in publicly-consumed schemas, use of extensions
-  // above 99999 is discouraged due to the risk of conflicts.
-  //
-  // [1]: https://github.com/protocolbuffers/protobuf/blob/main/docs/options.md
+  // Extension fields that have the (buf.validate.predefined) option set
+  // will be treated as predefined field rules.
+  // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
 }
 
