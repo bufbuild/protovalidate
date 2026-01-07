@@ -22,6 +22,6 @@ To reserve field numbers for your predefined rule, preventing conflicts with oth
 | StringRules | 10,002 | `bufbuild.people.v1.name_component`       | int32 | Rule value example ([Protovalidate example](https://github.com/bufbuild/buf-examples/blob/main/protovalidate/rules-predefined/proto/bufbuild/people/v1/predefined_string_rules.proto))                                      |
 
 * **Extends:** The name of the rules message that is extended, such as `StringRules`, `Int32Rules`, or `RepeatedRules`.
-* **Number:** The Protobuf extension number.
-* **Full name:** The qualified name of the extension, composed of the package name and field name.
+* **Number:** The Protobuf extension number. Must be unique for the extended message.
+* **Full name:** The qualified name of the extension, composed of the package name and field name. Must be unique.
 * **Type:** The field type of the extension, such `bool` or `int32`.
