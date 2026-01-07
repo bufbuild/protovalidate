@@ -24,4 +24,4 @@ To reserve field numbers for your predefined rule, preventing conflicts with oth
 * **Extends:** The name of the rules message that is extended, such as `StringRules`, `Int32Rules`, or `RepeatedRules`.
 * **Number:** The Protobuf extension number.
 * **Full name:** The qualified name of the extension, composed of the package name and field name.
-* **Type:** The type of the extension field, such as "bool", "int32", or "repeated".
+* **Type:** The field type of the extension, such `bool` or `int32`.
