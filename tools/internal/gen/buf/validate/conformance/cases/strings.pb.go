@@ -124,6 +124,182 @@ func (x *StringConst) GetVal() string {
 	return ""
 }
 
+type StringDecimal struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           string                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringDecimal) Reset() {
+	*x = StringDecimal{}
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringDecimal) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringDecimal) ProtoMessage() {}
+
+func (x *StringDecimal) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringDecimal.ProtoReflect.Descriptor instead.
+func (*StringDecimal) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *StringDecimal) GetVal() string {
+	if x != nil {
+		return x.Val
+	}
+	return ""
+}
+
+type StringDecimalPrecision struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           string                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringDecimalPrecision) Reset() {
+	*x = StringDecimalPrecision{}
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringDecimalPrecision) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringDecimalPrecision) ProtoMessage() {}
+
+func (x *StringDecimalPrecision) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringDecimalPrecision.ProtoReflect.Descriptor instead.
+func (*StringDecimalPrecision) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *StringDecimalPrecision) GetVal() string {
+	if x != nil {
+		return x.Val
+	}
+	return ""
+}
+
+type StringDecimalScale struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           string                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringDecimalScale) Reset() {
+	*x = StringDecimalScale{}
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringDecimalScale) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringDecimalScale) ProtoMessage() {}
+
+func (x *StringDecimalScale) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringDecimalScale.ProtoReflect.Descriptor instead.
+func (*StringDecimalScale) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *StringDecimalScale) GetVal() string {
+	if x != nil {
+		return x.Val
+	}
+	return ""
+}
+
+type StringDecimalPrecisionScale struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Val           string                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringDecimalPrecisionScale) Reset() {
+	*x = StringDecimalPrecisionScale{}
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringDecimalPrecisionScale) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringDecimalPrecisionScale) ProtoMessage() {}
+
+func (x *StringDecimalPrecisionScale) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringDecimalPrecisionScale.ProtoReflect.Descriptor instead.
+func (*StringDecimalPrecisionScale) Descriptor() ([]byte, []int) {
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *StringDecimalPrecisionScale) GetVal() string {
+	if x != nil {
+		return x.Val
+	}
+	return ""
+}
+
 type StringIn struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Val           string                 `protobuf:"bytes,1,opt,name=val,proto3" json:"val,omitempty"`
@@ -133,7 +309,7 @@ type StringIn struct {
 
 func (x *StringIn) Reset() {
 	*x = StringIn{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[2]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -145,7 +321,7 @@ func (x *StringIn) String() string {
 func (*StringIn) ProtoMessage() {}
 
 func (x *StringIn) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[2]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +334,7 @@ func (x *StringIn) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIn.ProtoReflect.Descriptor instead.
 func (*StringIn) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{2}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *StringIn) GetVal() string {
@@ -177,7 +353,7 @@ type StringNotIn struct {
 
 func (x *StringNotIn) Reset() {
 	*x = StringNotIn{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[3]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -189,7 +365,7 @@ func (x *StringNotIn) String() string {
 func (*StringNotIn) ProtoMessage() {}
 
 func (x *StringNotIn) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[3]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,7 +378,7 @@ func (x *StringNotIn) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIn.ProtoReflect.Descriptor instead.
 func (*StringNotIn) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{3}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *StringNotIn) GetVal() string {
@@ -221,7 +397,7 @@ type StringLen struct {
 
 func (x *StringLen) Reset() {
 	*x = StringLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[4]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -233,7 +409,7 @@ func (x *StringLen) String() string {
 func (*StringLen) ProtoMessage() {}
 
 func (x *StringLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[4]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -246,7 +422,7 @@ func (x *StringLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringLen.ProtoReflect.Descriptor instead.
 func (*StringLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{4}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *StringLen) GetVal() string {
@@ -265,7 +441,7 @@ type StringMinLen struct {
 
 func (x *StringMinLen) Reset() {
 	*x = StringMinLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[5]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -277,7 +453,7 @@ func (x *StringMinLen) String() string {
 func (*StringMinLen) ProtoMessage() {}
 
 func (x *StringMinLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[5]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -290,7 +466,7 @@ func (x *StringMinLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringMinLen.ProtoReflect.Descriptor instead.
 func (*StringMinLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{5}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *StringMinLen) GetVal() string {
@@ -309,7 +485,7 @@ type StringMaxLen struct {
 
 func (x *StringMaxLen) Reset() {
 	*x = StringMaxLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[6]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -321,7 +497,7 @@ func (x *StringMaxLen) String() string {
 func (*StringMaxLen) ProtoMessage() {}
 
 func (x *StringMaxLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[6]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -334,7 +510,7 @@ func (x *StringMaxLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringMaxLen.ProtoReflect.Descriptor instead.
 func (*StringMaxLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{6}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *StringMaxLen) GetVal() string {
@@ -353,7 +529,7 @@ type StringMinMaxLen struct {
 
 func (x *StringMinMaxLen) Reset() {
 	*x = StringMinMaxLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[7]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -365,7 +541,7 @@ func (x *StringMinMaxLen) String() string {
 func (*StringMinMaxLen) ProtoMessage() {}
 
 func (x *StringMinMaxLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[7]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -378,7 +554,7 @@ func (x *StringMinMaxLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringMinMaxLen.ProtoReflect.Descriptor instead.
 func (*StringMinMaxLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{7}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *StringMinMaxLen) GetVal() string {
@@ -397,7 +573,7 @@ type StringEqualMinMaxLen struct {
 
 func (x *StringEqualMinMaxLen) Reset() {
 	*x = StringEqualMinMaxLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[8]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -409,7 +585,7 @@ func (x *StringEqualMinMaxLen) String() string {
 func (*StringEqualMinMaxLen) ProtoMessage() {}
 
 func (x *StringEqualMinMaxLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[8]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -422,7 +598,7 @@ func (x *StringEqualMinMaxLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringEqualMinMaxLen.ProtoReflect.Descriptor instead.
 func (*StringEqualMinMaxLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{8}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *StringEqualMinMaxLen) GetVal() string {
@@ -441,7 +617,7 @@ type StringLenBytes struct {
 
 func (x *StringLenBytes) Reset() {
 	*x = StringLenBytes{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[9]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -453,7 +629,7 @@ func (x *StringLenBytes) String() string {
 func (*StringLenBytes) ProtoMessage() {}
 
 func (x *StringLenBytes) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[9]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -466,7 +642,7 @@ func (x *StringLenBytes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringLenBytes.ProtoReflect.Descriptor instead.
 func (*StringLenBytes) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{9}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *StringLenBytes) GetVal() string {
@@ -485,7 +661,7 @@ type StringMinBytes struct {
 
 func (x *StringMinBytes) Reset() {
 	*x = StringMinBytes{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[10]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -497,7 +673,7 @@ func (x *StringMinBytes) String() string {
 func (*StringMinBytes) ProtoMessage() {}
 
 func (x *StringMinBytes) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[10]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -510,7 +686,7 @@ func (x *StringMinBytes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringMinBytes.ProtoReflect.Descriptor instead.
 func (*StringMinBytes) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{10}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *StringMinBytes) GetVal() string {
@@ -529,7 +705,7 @@ type StringMaxBytes struct {
 
 func (x *StringMaxBytes) Reset() {
 	*x = StringMaxBytes{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[11]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -541,7 +717,7 @@ func (x *StringMaxBytes) String() string {
 func (*StringMaxBytes) ProtoMessage() {}
 
 func (x *StringMaxBytes) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[11]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -554,7 +730,7 @@ func (x *StringMaxBytes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringMaxBytes.ProtoReflect.Descriptor instead.
 func (*StringMaxBytes) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{11}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *StringMaxBytes) GetVal() string {
@@ -573,7 +749,7 @@ type StringMinMaxBytes struct {
 
 func (x *StringMinMaxBytes) Reset() {
 	*x = StringMinMaxBytes{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[12]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -585,7 +761,7 @@ func (x *StringMinMaxBytes) String() string {
 func (*StringMinMaxBytes) ProtoMessage() {}
 
 func (x *StringMinMaxBytes) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[12]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -598,7 +774,7 @@ func (x *StringMinMaxBytes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringMinMaxBytes.ProtoReflect.Descriptor instead.
 func (*StringMinMaxBytes) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{12}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *StringMinMaxBytes) GetVal() string {
@@ -617,7 +793,7 @@ type StringEqualMinMaxBytes struct {
 
 func (x *StringEqualMinMaxBytes) Reset() {
 	*x = StringEqualMinMaxBytes{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[13]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -629,7 +805,7 @@ func (x *StringEqualMinMaxBytes) String() string {
 func (*StringEqualMinMaxBytes) ProtoMessage() {}
 
 func (x *StringEqualMinMaxBytes) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[13]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -642,7 +818,7 @@ func (x *StringEqualMinMaxBytes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringEqualMinMaxBytes.ProtoReflect.Descriptor instead.
 func (*StringEqualMinMaxBytes) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{13}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *StringEqualMinMaxBytes) GetVal() string {
@@ -661,7 +837,7 @@ type StringPattern struct {
 
 func (x *StringPattern) Reset() {
 	*x = StringPattern{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[14]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -673,7 +849,7 @@ func (x *StringPattern) String() string {
 func (*StringPattern) ProtoMessage() {}
 
 func (x *StringPattern) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[14]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -686,7 +862,7 @@ func (x *StringPattern) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringPattern.ProtoReflect.Descriptor instead.
 func (*StringPattern) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{14}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *StringPattern) GetVal() string {
@@ -705,7 +881,7 @@ type StringPatternEscapes struct {
 
 func (x *StringPatternEscapes) Reset() {
 	*x = StringPatternEscapes{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[15]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -717,7 +893,7 @@ func (x *StringPatternEscapes) String() string {
 func (*StringPatternEscapes) ProtoMessage() {}
 
 func (x *StringPatternEscapes) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[15]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -730,7 +906,7 @@ func (x *StringPatternEscapes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringPatternEscapes.ProtoReflect.Descriptor instead.
 func (*StringPatternEscapes) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{15}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *StringPatternEscapes) GetVal() string {
@@ -749,7 +925,7 @@ type StringPrefix struct {
 
 func (x *StringPrefix) Reset() {
 	*x = StringPrefix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[16]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -761,7 +937,7 @@ func (x *StringPrefix) String() string {
 func (*StringPrefix) ProtoMessage() {}
 
 func (x *StringPrefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[16]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -774,7 +950,7 @@ func (x *StringPrefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringPrefix.ProtoReflect.Descriptor instead.
 func (*StringPrefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{16}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *StringPrefix) GetVal() string {
@@ -793,7 +969,7 @@ type StringContains struct {
 
 func (x *StringContains) Reset() {
 	*x = StringContains{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[17]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -805,7 +981,7 @@ func (x *StringContains) String() string {
 func (*StringContains) ProtoMessage() {}
 
 func (x *StringContains) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[17]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -818,7 +994,7 @@ func (x *StringContains) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringContains.ProtoReflect.Descriptor instead.
 func (*StringContains) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{17}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *StringContains) GetVal() string {
@@ -837,7 +1013,7 @@ type StringNotContains struct {
 
 func (x *StringNotContains) Reset() {
 	*x = StringNotContains{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[18]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -849,7 +1025,7 @@ func (x *StringNotContains) String() string {
 func (*StringNotContains) ProtoMessage() {}
 
 func (x *StringNotContains) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[18]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -862,7 +1038,7 @@ func (x *StringNotContains) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotContains.ProtoReflect.Descriptor instead.
 func (*StringNotContains) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{18}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *StringNotContains) GetVal() string {
@@ -881,7 +1057,7 @@ type StringSuffix struct {
 
 func (x *StringSuffix) Reset() {
 	*x = StringSuffix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[19]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -893,7 +1069,7 @@ func (x *StringSuffix) String() string {
 func (*StringSuffix) ProtoMessage() {}
 
 func (x *StringSuffix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[19]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -906,7 +1082,7 @@ func (x *StringSuffix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringSuffix.ProtoReflect.Descriptor instead.
 func (*StringSuffix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{19}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *StringSuffix) GetVal() string {
@@ -925,7 +1101,7 @@ type StringEmail struct {
 
 func (x *StringEmail) Reset() {
 	*x = StringEmail{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -937,7 +1113,7 @@ func (x *StringEmail) String() string {
 func (*StringEmail) ProtoMessage() {}
 
 func (x *StringEmail) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[20]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -950,7 +1126,7 @@ func (x *StringEmail) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringEmail.ProtoReflect.Descriptor instead.
 func (*StringEmail) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{20}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *StringEmail) GetVal() string {
@@ -969,7 +1145,7 @@ type StringNotEmail struct {
 
 func (x *StringNotEmail) Reset() {
 	*x = StringNotEmail{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -981,7 +1157,7 @@ func (x *StringNotEmail) String() string {
 func (*StringNotEmail) ProtoMessage() {}
 
 func (x *StringNotEmail) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[21]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -994,7 +1170,7 @@ func (x *StringNotEmail) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotEmail.ProtoReflect.Descriptor instead.
 func (*StringNotEmail) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{21}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *StringNotEmail) GetVal() string {
@@ -1013,7 +1189,7 @@ type StringAddress struct {
 
 func (x *StringAddress) Reset() {
 	*x = StringAddress{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1025,7 +1201,7 @@ func (x *StringAddress) String() string {
 func (*StringAddress) ProtoMessage() {}
 
 func (x *StringAddress) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[22]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1038,7 +1214,7 @@ func (x *StringAddress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringAddress.ProtoReflect.Descriptor instead.
 func (*StringAddress) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{22}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *StringAddress) GetVal() string {
@@ -1057,7 +1233,7 @@ type StringNotAddress struct {
 
 func (x *StringNotAddress) Reset() {
 	*x = StringNotAddress{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1069,7 +1245,7 @@ func (x *StringNotAddress) String() string {
 func (*StringNotAddress) ProtoMessage() {}
 
 func (x *StringNotAddress) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[23]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1082,7 +1258,7 @@ func (x *StringNotAddress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotAddress.ProtoReflect.Descriptor instead.
 func (*StringNotAddress) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{23}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *StringNotAddress) GetVal() string {
@@ -1101,7 +1277,7 @@ type StringHostname struct {
 
 func (x *StringHostname) Reset() {
 	*x = StringHostname{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1113,7 +1289,7 @@ func (x *StringHostname) String() string {
 func (*StringHostname) ProtoMessage() {}
 
 func (x *StringHostname) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[24]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1126,7 +1302,7 @@ func (x *StringHostname) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHostname.ProtoReflect.Descriptor instead.
 func (*StringHostname) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{24}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *StringHostname) GetVal() string {
@@ -1145,7 +1321,7 @@ type StringNotHostname struct {
 
 func (x *StringNotHostname) Reset() {
 	*x = StringNotHostname{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1157,7 +1333,7 @@ func (x *StringNotHostname) String() string {
 func (*StringNotHostname) ProtoMessage() {}
 
 func (x *StringNotHostname) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[25]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1170,7 +1346,7 @@ func (x *StringNotHostname) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotHostname.ProtoReflect.Descriptor instead.
 func (*StringNotHostname) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{25}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *StringNotHostname) GetVal() string {
@@ -1189,7 +1365,7 @@ type StringIP struct {
 
 func (x *StringIP) Reset() {
 	*x = StringIP{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1201,7 +1377,7 @@ func (x *StringIP) String() string {
 func (*StringIP) ProtoMessage() {}
 
 func (x *StringIP) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[26]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1214,7 +1390,7 @@ func (x *StringIP) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIP.ProtoReflect.Descriptor instead.
 func (*StringIP) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{26}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *StringIP) GetVal() string {
@@ -1233,7 +1409,7 @@ type StringNotIP struct {
 
 func (x *StringNotIP) Reset() {
 	*x = StringNotIP{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1245,7 +1421,7 @@ func (x *StringNotIP) String() string {
 func (*StringNotIP) ProtoMessage() {}
 
 func (x *StringNotIP) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[27]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1258,7 +1434,7 @@ func (x *StringNotIP) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIP.ProtoReflect.Descriptor instead.
 func (*StringNotIP) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{27}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *StringNotIP) GetVal() string {
@@ -1277,7 +1453,7 @@ type StringIPv4 struct {
 
 func (x *StringIPv4) Reset() {
 	*x = StringIPv4{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1289,7 +1465,7 @@ func (x *StringIPv4) String() string {
 func (*StringIPv4) ProtoMessage() {}
 
 func (x *StringIPv4) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[28]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1302,7 +1478,7 @@ func (x *StringIPv4) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv4.ProtoReflect.Descriptor instead.
 func (*StringIPv4) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{28}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *StringIPv4) GetVal() string {
@@ -1321,7 +1497,7 @@ type StringNotIPv4 struct {
 
 func (x *StringNotIPv4) Reset() {
 	*x = StringNotIPv4{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1333,7 +1509,7 @@ func (x *StringNotIPv4) String() string {
 func (*StringNotIPv4) ProtoMessage() {}
 
 func (x *StringNotIPv4) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[29]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1346,7 +1522,7 @@ func (x *StringNotIPv4) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPv4.ProtoReflect.Descriptor instead.
 func (*StringNotIPv4) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{29}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *StringNotIPv4) GetVal() string {
@@ -1365,7 +1541,7 @@ type StringIPv6 struct {
 
 func (x *StringIPv6) Reset() {
 	*x = StringIPv6{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1377,7 +1553,7 @@ func (x *StringIPv6) String() string {
 func (*StringIPv6) ProtoMessage() {}
 
 func (x *StringIPv6) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[30]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1390,7 +1566,7 @@ func (x *StringIPv6) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv6.ProtoReflect.Descriptor instead.
 func (*StringIPv6) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{30}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *StringIPv6) GetVal() string {
@@ -1409,7 +1585,7 @@ type StringNotIPv6 struct {
 
 func (x *StringNotIPv6) Reset() {
 	*x = StringNotIPv6{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1421,7 +1597,7 @@ func (x *StringNotIPv6) String() string {
 func (*StringNotIPv6) ProtoMessage() {}
 
 func (x *StringNotIPv6) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[31]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1434,7 +1610,7 @@ func (x *StringNotIPv6) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPv6.ProtoReflect.Descriptor instead.
 func (*StringNotIPv6) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{31}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *StringNotIPv6) GetVal() string {
@@ -1453,7 +1629,7 @@ type StringIPWithPrefixLen struct {
 
 func (x *StringIPWithPrefixLen) Reset() {
 	*x = StringIPWithPrefixLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1465,7 +1641,7 @@ func (x *StringIPWithPrefixLen) String() string {
 func (*StringIPWithPrefixLen) ProtoMessage() {}
 
 func (x *StringIPWithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[32]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1478,7 +1654,7 @@ func (x *StringIPWithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPWithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringIPWithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{32}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *StringIPWithPrefixLen) GetVal() string {
@@ -1497,7 +1673,7 @@ type StringNotIPWithPrefixLen struct {
 
 func (x *StringNotIPWithPrefixLen) Reset() {
 	*x = StringNotIPWithPrefixLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1509,7 +1685,7 @@ func (x *StringNotIPWithPrefixLen) String() string {
 func (*StringNotIPWithPrefixLen) ProtoMessage() {}
 
 func (x *StringNotIPWithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[33]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1522,7 +1698,7 @@ func (x *StringNotIPWithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPWithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringNotIPWithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{33}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *StringNotIPWithPrefixLen) GetVal() string {
@@ -1541,7 +1717,7 @@ type StringIPv4WithPrefixLen struct {
 
 func (x *StringIPv4WithPrefixLen) Reset() {
 	*x = StringIPv4WithPrefixLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1553,7 +1729,7 @@ func (x *StringIPv4WithPrefixLen) String() string {
 func (*StringIPv4WithPrefixLen) ProtoMessage() {}
 
 func (x *StringIPv4WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[34]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1566,7 +1742,7 @@ func (x *StringIPv4WithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv4WithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringIPv4WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{34}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *StringIPv4WithPrefixLen) GetVal() string {
@@ -1585,7 +1761,7 @@ type StringNotIPv4WithPrefixLen struct {
 
 func (x *StringNotIPv4WithPrefixLen) Reset() {
 	*x = StringNotIPv4WithPrefixLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1597,7 +1773,7 @@ func (x *StringNotIPv4WithPrefixLen) String() string {
 func (*StringNotIPv4WithPrefixLen) ProtoMessage() {}
 
 func (x *StringNotIPv4WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[35]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1610,7 +1786,7 @@ func (x *StringNotIPv4WithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPv4WithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringNotIPv4WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{35}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *StringNotIPv4WithPrefixLen) GetVal() string {
@@ -1629,7 +1805,7 @@ type StringIPv6WithPrefixLen struct {
 
 func (x *StringIPv6WithPrefixLen) Reset() {
 	*x = StringIPv6WithPrefixLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1641,7 +1817,7 @@ func (x *StringIPv6WithPrefixLen) String() string {
 func (*StringIPv6WithPrefixLen) ProtoMessage() {}
 
 func (x *StringIPv6WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[36]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1654,7 +1830,7 @@ func (x *StringIPv6WithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv6WithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringIPv6WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{36}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *StringIPv6WithPrefixLen) GetVal() string {
@@ -1673,7 +1849,7 @@ type StringNotIPv6WithPrefixLen struct {
 
 func (x *StringNotIPv6WithPrefixLen) Reset() {
 	*x = StringNotIPv6WithPrefixLen{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1685,7 +1861,7 @@ func (x *StringNotIPv6WithPrefixLen) String() string {
 func (*StringNotIPv6WithPrefixLen) ProtoMessage() {}
 
 func (x *StringNotIPv6WithPrefixLen) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[37]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1698,7 +1874,7 @@ func (x *StringNotIPv6WithPrefixLen) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPv6WithPrefixLen.ProtoReflect.Descriptor instead.
 func (*StringNotIPv6WithPrefixLen) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{37}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *StringNotIPv6WithPrefixLen) GetVal() string {
@@ -1717,7 +1893,7 @@ type StringIPPrefix struct {
 
 func (x *StringIPPrefix) Reset() {
 	*x = StringIPPrefix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1729,7 +1905,7 @@ func (x *StringIPPrefix) String() string {
 func (*StringIPPrefix) ProtoMessage() {}
 
 func (x *StringIPPrefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[38]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1742,7 +1918,7 @@ func (x *StringIPPrefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPPrefix.ProtoReflect.Descriptor instead.
 func (*StringIPPrefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{38}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *StringIPPrefix) GetVal() string {
@@ -1761,7 +1937,7 @@ type StringNotIPPrefix struct {
 
 func (x *StringNotIPPrefix) Reset() {
 	*x = StringNotIPPrefix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1773,7 +1949,7 @@ func (x *StringNotIPPrefix) String() string {
 func (*StringNotIPPrefix) ProtoMessage() {}
 
 func (x *StringNotIPPrefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[39]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1786,7 +1962,7 @@ func (x *StringNotIPPrefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPPrefix.ProtoReflect.Descriptor instead.
 func (*StringNotIPPrefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{39}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *StringNotIPPrefix) GetVal() string {
@@ -1805,7 +1981,7 @@ type StringIPv4Prefix struct {
 
 func (x *StringIPv4Prefix) Reset() {
 	*x = StringIPv4Prefix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1817,7 +1993,7 @@ func (x *StringIPv4Prefix) String() string {
 func (*StringIPv4Prefix) ProtoMessage() {}
 
 func (x *StringIPv4Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[40]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1830,7 +2006,7 @@ func (x *StringIPv4Prefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv4Prefix.ProtoReflect.Descriptor instead.
 func (*StringIPv4Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{40}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *StringIPv4Prefix) GetVal() string {
@@ -1849,7 +2025,7 @@ type StringNotIPv4Prefix struct {
 
 func (x *StringNotIPv4Prefix) Reset() {
 	*x = StringNotIPv4Prefix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1861,7 +2037,7 @@ func (x *StringNotIPv4Prefix) String() string {
 func (*StringNotIPv4Prefix) ProtoMessage() {}
 
 func (x *StringNotIPv4Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[41]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1874,7 +2050,7 @@ func (x *StringNotIPv4Prefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPv4Prefix.ProtoReflect.Descriptor instead.
 func (*StringNotIPv4Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{41}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *StringNotIPv4Prefix) GetVal() string {
@@ -1893,7 +2069,7 @@ type StringIPv6Prefix struct {
 
 func (x *StringIPv6Prefix) Reset() {
 	*x = StringIPv6Prefix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1905,7 +2081,7 @@ func (x *StringIPv6Prefix) String() string {
 func (*StringIPv6Prefix) ProtoMessage() {}
 
 func (x *StringIPv6Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[42]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1918,7 +2094,7 @@ func (x *StringIPv6Prefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringIPv6Prefix.ProtoReflect.Descriptor instead.
 func (*StringIPv6Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{42}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *StringIPv6Prefix) GetVal() string {
@@ -1937,7 +2113,7 @@ type StringNotIPv6Prefix struct {
 
 func (x *StringNotIPv6Prefix) Reset() {
 	*x = StringNotIPv6Prefix{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1949,7 +2125,7 @@ func (x *StringNotIPv6Prefix) String() string {
 func (*StringNotIPv6Prefix) ProtoMessage() {}
 
 func (x *StringNotIPv6Prefix) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[43]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1962,7 +2138,7 @@ func (x *StringNotIPv6Prefix) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotIPv6Prefix.ProtoReflect.Descriptor instead.
 func (*StringNotIPv6Prefix) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{43}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *StringNotIPv6Prefix) GetVal() string {
@@ -1981,7 +2157,7 @@ type StringURI struct {
 
 func (x *StringURI) Reset() {
 	*x = StringURI{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[44]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1993,7 +2169,7 @@ func (x *StringURI) String() string {
 func (*StringURI) ProtoMessage() {}
 
 func (x *StringURI) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[44]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2006,7 +2182,7 @@ func (x *StringURI) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringURI.ProtoReflect.Descriptor instead.
 func (*StringURI) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{44}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *StringURI) GetVal() string {
@@ -2025,7 +2201,7 @@ type StringNotURI struct {
 
 func (x *StringNotURI) Reset() {
 	*x = StringNotURI{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[45]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2037,7 +2213,7 @@ func (x *StringNotURI) String() string {
 func (*StringNotURI) ProtoMessage() {}
 
 func (x *StringNotURI) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[45]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2050,7 +2226,7 @@ func (x *StringNotURI) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotURI.ProtoReflect.Descriptor instead.
 func (*StringNotURI) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{45}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *StringNotURI) GetVal() string {
@@ -2069,7 +2245,7 @@ type StringURIRef struct {
 
 func (x *StringURIRef) Reset() {
 	*x = StringURIRef{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[46]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2081,7 +2257,7 @@ func (x *StringURIRef) String() string {
 func (*StringURIRef) ProtoMessage() {}
 
 func (x *StringURIRef) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[46]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2094,7 +2270,7 @@ func (x *StringURIRef) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringURIRef.ProtoReflect.Descriptor instead.
 func (*StringURIRef) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{46}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *StringURIRef) GetVal() string {
@@ -2113,7 +2289,7 @@ type StringNotURIRef struct {
 
 func (x *StringNotURIRef) Reset() {
 	*x = StringNotURIRef{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[47]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2125,7 +2301,7 @@ func (x *StringNotURIRef) String() string {
 func (*StringNotURIRef) ProtoMessage() {}
 
 func (x *StringNotURIRef) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[47]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2138,7 +2314,7 @@ func (x *StringNotURIRef) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotURIRef.ProtoReflect.Descriptor instead.
 func (*StringNotURIRef) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{47}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *StringNotURIRef) GetVal() string {
@@ -2157,7 +2333,7 @@ type StringUUID struct {
 
 func (x *StringUUID) Reset() {
 	*x = StringUUID{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[48]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2169,7 +2345,7 @@ func (x *StringUUID) String() string {
 func (*StringUUID) ProtoMessage() {}
 
 func (x *StringUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[48]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2182,7 +2358,7 @@ func (x *StringUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringUUID.ProtoReflect.Descriptor instead.
 func (*StringUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{48}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *StringUUID) GetVal() string {
@@ -2201,7 +2377,7 @@ type StringNotUUID struct {
 
 func (x *StringNotUUID) Reset() {
 	*x = StringNotUUID{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[49]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2213,7 +2389,7 @@ func (x *StringNotUUID) String() string {
 func (*StringNotUUID) ProtoMessage() {}
 
 func (x *StringNotUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[49]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2226,7 +2402,7 @@ func (x *StringNotUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotUUID.ProtoReflect.Descriptor instead.
 func (*StringNotUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{49}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *StringNotUUID) GetVal() string {
@@ -2245,7 +2421,7 @@ type StringTUUID struct {
 
 func (x *StringTUUID) Reset() {
 	*x = StringTUUID{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[50]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2257,7 +2433,7 @@ func (x *StringTUUID) String() string {
 func (*StringTUUID) ProtoMessage() {}
 
 func (x *StringTUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[50]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2270,7 +2446,7 @@ func (x *StringTUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringTUUID.ProtoReflect.Descriptor instead.
 func (*StringTUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{50}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *StringTUUID) GetVal() string {
@@ -2289,7 +2465,7 @@ type StringNotTUUID struct {
 
 func (x *StringNotTUUID) Reset() {
 	*x = StringNotTUUID{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[51]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2301,7 +2477,7 @@ func (x *StringNotTUUID) String() string {
 func (*StringNotTUUID) ProtoMessage() {}
 
 func (x *StringNotTUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[51]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2314,7 +2490,7 @@ func (x *StringNotTUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotTUUID.ProtoReflect.Descriptor instead.
 func (*StringNotTUUID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{51}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *StringNotTUUID) GetVal() string {
@@ -2333,7 +2509,7 @@ type StringULID struct {
 
 func (x *StringULID) Reset() {
 	*x = StringULID{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[52]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2345,7 +2521,7 @@ func (x *StringULID) String() string {
 func (*StringULID) ProtoMessage() {}
 
 func (x *StringULID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[52]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2358,7 +2534,7 @@ func (x *StringULID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringULID.ProtoReflect.Descriptor instead.
 func (*StringULID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{52}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *StringULID) GetVal() string {
@@ -2377,7 +2553,7 @@ type StringNotULID struct {
 
 func (x *StringNotULID) Reset() {
 	*x = StringNotULID{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[53]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2389,7 +2565,7 @@ func (x *StringNotULID) String() string {
 func (*StringNotULID) ProtoMessage() {}
 
 func (x *StringNotULID) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[53]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2402,7 +2578,7 @@ func (x *StringNotULID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringNotULID.ProtoReflect.Descriptor instead.
 func (*StringNotULID) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{53}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *StringNotULID) GetVal() string {
@@ -2421,7 +2597,7 @@ type StringULIDIgnore struct {
 
 func (x *StringULIDIgnore) Reset() {
 	*x = StringULIDIgnore{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[54]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2433,7 +2609,7 @@ func (x *StringULIDIgnore) String() string {
 func (*StringULIDIgnore) ProtoMessage() {}
 
 func (x *StringULIDIgnore) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[54]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2446,7 +2622,7 @@ func (x *StringULIDIgnore) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringULIDIgnore.ProtoReflect.Descriptor instead.
 func (*StringULIDIgnore) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{54}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *StringULIDIgnore) GetVal() string {
@@ -2465,7 +2641,7 @@ type StringHttpHeaderName struct {
 
 func (x *StringHttpHeaderName) Reset() {
 	*x = StringHttpHeaderName{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[55]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2477,7 +2653,7 @@ func (x *StringHttpHeaderName) String() string {
 func (*StringHttpHeaderName) ProtoMessage() {}
 
 func (x *StringHttpHeaderName) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[55]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2490,7 +2666,7 @@ func (x *StringHttpHeaderName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderName.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderName) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{55}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *StringHttpHeaderName) GetVal() string {
@@ -2509,7 +2685,7 @@ type StringHttpHeaderValue struct {
 
 func (x *StringHttpHeaderValue) Reset() {
 	*x = StringHttpHeaderValue{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[56]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2521,7 +2697,7 @@ func (x *StringHttpHeaderValue) String() string {
 func (*StringHttpHeaderValue) ProtoMessage() {}
 
 func (x *StringHttpHeaderValue) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[56]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2534,7 +2710,7 @@ func (x *StringHttpHeaderValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderValue.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderValue) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{56}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *StringHttpHeaderValue) GetVal() string {
@@ -2553,7 +2729,7 @@ type StringHttpHeaderNameLoose struct {
 
 func (x *StringHttpHeaderNameLoose) Reset() {
 	*x = StringHttpHeaderNameLoose{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[57]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2565,7 +2741,7 @@ func (x *StringHttpHeaderNameLoose) String() string {
 func (*StringHttpHeaderNameLoose) ProtoMessage() {}
 
 func (x *StringHttpHeaderNameLoose) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[57]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2578,7 +2754,7 @@ func (x *StringHttpHeaderNameLoose) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderNameLoose.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderNameLoose) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{57}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *StringHttpHeaderNameLoose) GetVal() string {
@@ -2597,7 +2773,7 @@ type StringHttpHeaderValueLoose struct {
 
 func (x *StringHttpHeaderValueLoose) Reset() {
 	*x = StringHttpHeaderValueLoose{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[58]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2609,7 +2785,7 @@ func (x *StringHttpHeaderValueLoose) String() string {
 func (*StringHttpHeaderValueLoose) ProtoMessage() {}
 
 func (x *StringHttpHeaderValueLoose) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[58]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2622,7 +2798,7 @@ func (x *StringHttpHeaderValueLoose) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHttpHeaderValueLoose.ProtoReflect.Descriptor instead.
 func (*StringHttpHeaderValueLoose) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{58}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *StringHttpHeaderValueLoose) GetVal() string {
@@ -2641,7 +2817,7 @@ type StringUUIDIgnore struct {
 
 func (x *StringUUIDIgnore) Reset() {
 	*x = StringUUIDIgnore{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[59]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2653,7 +2829,7 @@ func (x *StringUUIDIgnore) String() string {
 func (*StringUUIDIgnore) ProtoMessage() {}
 
 func (x *StringUUIDIgnore) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[59]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2666,7 +2842,7 @@ func (x *StringUUIDIgnore) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringUUIDIgnore.ProtoReflect.Descriptor instead.
 func (*StringUUIDIgnore) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{59}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *StringUUIDIgnore) GetVal() string {
@@ -2688,7 +2864,7 @@ type StringInOneof struct {
 
 func (x *StringInOneof) Reset() {
 	*x = StringInOneof{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[60]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2700,7 +2876,7 @@ func (x *StringInOneof) String() string {
 func (*StringInOneof) ProtoMessage() {}
 
 func (x *StringInOneof) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[60]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2713,7 +2889,7 @@ func (x *StringInOneof) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringInOneof.ProtoReflect.Descriptor instead.
 func (*StringInOneof) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{60}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *StringInOneof) GetFoo() isStringInOneof_Foo {
@@ -2751,7 +2927,7 @@ type StringHostAndPort struct {
 
 func (x *StringHostAndPort) Reset() {
 	*x = StringHostAndPort{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[61]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2763,7 +2939,7 @@ func (x *StringHostAndPort) String() string {
 func (*StringHostAndPort) ProtoMessage() {}
 
 func (x *StringHostAndPort) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[61]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2776,7 +2952,7 @@ func (x *StringHostAndPort) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHostAndPort.ProtoReflect.Descriptor instead.
 func (*StringHostAndPort) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{61}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *StringHostAndPort) GetVal() string {
@@ -2795,7 +2971,7 @@ type StringHostAndOptionalPort struct {
 
 func (x *StringHostAndOptionalPort) Reset() {
 	*x = StringHostAndOptionalPort{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[62]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2807,7 +2983,7 @@ func (x *StringHostAndOptionalPort) String() string {
 func (*StringHostAndOptionalPort) ProtoMessage() {}
 
 func (x *StringHostAndOptionalPort) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[62]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2820,7 +2996,7 @@ func (x *StringHostAndOptionalPort) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringHostAndOptionalPort.ProtoReflect.Descriptor instead.
 func (*StringHostAndOptionalPort) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{62}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *StringHostAndOptionalPort) GetVal() string {
@@ -2839,7 +3015,7 @@ type StringExample struct {
 
 func (x *StringExample) Reset() {
 	*x = StringExample{}
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[63]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2851,7 +3027,7 @@ func (x *StringExample) String() string {
 func (*StringExample) ProtoMessage() {}
 
 func (x *StringExample) ProtoReflect() protoreflect.Message {
-	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[63]
+	mi := &file_buf_validate_conformance_cases_strings_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2864,7 +3040,7 @@ func (x *StringExample) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StringExample.ProtoReflect.Descriptor instead.
 func (*StringExample) Descriptor() ([]byte, []int) {
-	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{63}
+	return file_buf_validate_conformance_cases_strings_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *StringExample) GetVal() string {
@@ -2885,7 +3061,17 @@ const file_buf_validate_conformance_cases_strings_proto_rawDesc = "" +
 	"\vStringConst\x12\x1c\n" +
 	"\x03val\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\n" +
-	"\x03fooR\x03val\"-\n" +
+	"\x03fooR\x03val\"+\n" +
+	"\rStringDecimal\x12\x1a\n" +
+	"\x03val\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xa2\x02\x00R\x03val\"6\n" +
+	"\x16StringDecimalPrecision\x12\x1c\n" +
+	"\x03val\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\xa2\x02\x02\b\x04R\x03val\"2\n" +
+	"\x12StringDecimalScale\x12\x1c\n" +
+	"\x03val\x18\x01 \x01(\tB\n" +
+	"\xbaH\ar\x05\xa2\x02\x02\x10\x02R\x03val\"=\n" +
+	"\x1bStringDecimalPrecisionScale\x12\x1e\n" +
+	"\x03val\x18\x01 \x01(\tB\f\xbaH\tr\a\xa2\x02\x04\b\x06\x10\x02R\x03val\"-\n" +
 	"\bStringIn\x12!\n" +
 	"\x03val\x18\x01 \x01(\tB\x0f\xbaH\fr\n" +
 	"R\x03barR\x03bazR\x03val\"2\n" +
@@ -3035,72 +3221,76 @@ func file_buf_validate_conformance_cases_strings_proto_rawDescGZIP() []byte {
 	return file_buf_validate_conformance_cases_strings_proto_rawDescData
 }
 
-var file_buf_validate_conformance_cases_strings_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
+var file_buf_validate_conformance_cases_strings_proto_msgTypes = make([]protoimpl.MessageInfo, 68)
 var file_buf_validate_conformance_cases_strings_proto_goTypes = []any{
-	(*StringNone)(nil),                 // 0: buf.validate.conformance.cases.StringNone
-	(*StringConst)(nil),                // 1: buf.validate.conformance.cases.StringConst
-	(*StringIn)(nil),                   // 2: buf.validate.conformance.cases.StringIn
-	(*StringNotIn)(nil),                // 3: buf.validate.conformance.cases.StringNotIn
-	(*StringLen)(nil),                  // 4: buf.validate.conformance.cases.StringLen
-	(*StringMinLen)(nil),               // 5: buf.validate.conformance.cases.StringMinLen
-	(*StringMaxLen)(nil),               // 6: buf.validate.conformance.cases.StringMaxLen
-	(*StringMinMaxLen)(nil),            // 7: buf.validate.conformance.cases.StringMinMaxLen
-	(*StringEqualMinMaxLen)(nil),       // 8: buf.validate.conformance.cases.StringEqualMinMaxLen
-	(*StringLenBytes)(nil),             // 9: buf.validate.conformance.cases.StringLenBytes
-	(*StringMinBytes)(nil),             // 10: buf.validate.conformance.cases.StringMinBytes
-	(*StringMaxBytes)(nil),             // 11: buf.validate.conformance.cases.StringMaxBytes
-	(*StringMinMaxBytes)(nil),          // 12: buf.validate.conformance.cases.StringMinMaxBytes
-	(*StringEqualMinMaxBytes)(nil),     // 13: buf.validate.conformance.cases.StringEqualMinMaxBytes
-	(*StringPattern)(nil),              // 14: buf.validate.conformance.cases.StringPattern
-	(*StringPatternEscapes)(nil),       // 15: buf.validate.conformance.cases.StringPatternEscapes
-	(*StringPrefix)(nil),               // 16: buf.validate.conformance.cases.StringPrefix
-	(*StringContains)(nil),             // 17: buf.validate.conformance.cases.StringContains
-	(*StringNotContains)(nil),          // 18: buf.validate.conformance.cases.StringNotContains
-	(*StringSuffix)(nil),               // 19: buf.validate.conformance.cases.StringSuffix
-	(*StringEmail)(nil),                // 20: buf.validate.conformance.cases.StringEmail
-	(*StringNotEmail)(nil),             // 21: buf.validate.conformance.cases.StringNotEmail
-	(*StringAddress)(nil),              // 22: buf.validate.conformance.cases.StringAddress
-	(*StringNotAddress)(nil),           // 23: buf.validate.conformance.cases.StringNotAddress
-	(*StringHostname)(nil),             // 24: buf.validate.conformance.cases.StringHostname
-	(*StringNotHostname)(nil),          // 25: buf.validate.conformance.cases.StringNotHostname
-	(*StringIP)(nil),                   // 26: buf.validate.conformance.cases.StringIP
-	(*StringNotIP)(nil),                // 27: buf.validate.conformance.cases.StringNotIP
-	(*StringIPv4)(nil),                 // 28: buf.validate.conformance.cases.StringIPv4
-	(*StringNotIPv4)(nil),              // 29: buf.validate.conformance.cases.StringNotIPv4
-	(*StringIPv6)(nil),                 // 30: buf.validate.conformance.cases.StringIPv6
-	(*StringNotIPv6)(nil),              // 31: buf.validate.conformance.cases.StringNotIPv6
-	(*StringIPWithPrefixLen)(nil),      // 32: buf.validate.conformance.cases.StringIPWithPrefixLen
-	(*StringNotIPWithPrefixLen)(nil),   // 33: buf.validate.conformance.cases.StringNotIPWithPrefixLen
-	(*StringIPv4WithPrefixLen)(nil),    // 34: buf.validate.conformance.cases.StringIPv4WithPrefixLen
-	(*StringNotIPv4WithPrefixLen)(nil), // 35: buf.validate.conformance.cases.StringNotIPv4WithPrefixLen
-	(*StringIPv6WithPrefixLen)(nil),    // 36: buf.validate.conformance.cases.StringIPv6WithPrefixLen
-	(*StringNotIPv6WithPrefixLen)(nil), // 37: buf.validate.conformance.cases.StringNotIPv6WithPrefixLen
-	(*StringIPPrefix)(nil),             // 38: buf.validate.conformance.cases.StringIPPrefix
-	(*StringNotIPPrefix)(nil),          // 39: buf.validate.conformance.cases.StringNotIPPrefix
-	(*StringIPv4Prefix)(nil),           // 40: buf.validate.conformance.cases.StringIPv4Prefix
-	(*StringNotIPv4Prefix)(nil),        // 41: buf.validate.conformance.cases.StringNotIPv4Prefix
-	(*StringIPv6Prefix)(nil),           // 42: buf.validate.conformance.cases.StringIPv6Prefix
-	(*StringNotIPv6Prefix)(nil),        // 43: buf.validate.conformance.cases.StringNotIPv6Prefix
-	(*StringURI)(nil),                  // 44: buf.validate.conformance.cases.StringURI
-	(*StringNotURI)(nil),               // 45: buf.validate.conformance.cases.StringNotURI
-	(*StringURIRef)(nil),               // 46: buf.validate.conformance.cases.StringURIRef
-	(*StringNotURIRef)(nil),            // 47: buf.validate.conformance.cases.StringNotURIRef
-	(*StringUUID)(nil),                 // 48: buf.validate.conformance.cases.StringUUID
-	(*StringNotUUID)(nil),              // 49: buf.validate.conformance.cases.StringNotUUID
-	(*StringTUUID)(nil),                // 50: buf.validate.conformance.cases.StringTUUID
-	(*StringNotTUUID)(nil),             // 51: buf.validate.conformance.cases.StringNotTUUID
-	(*StringULID)(nil),                 // 52: buf.validate.conformance.cases.StringULID
-	(*StringNotULID)(nil),              // 53: buf.validate.conformance.cases.StringNotULID
-	(*StringULIDIgnore)(nil),           // 54: buf.validate.conformance.cases.StringULIDIgnore
-	(*StringHttpHeaderName)(nil),       // 55: buf.validate.conformance.cases.StringHttpHeaderName
-	(*StringHttpHeaderValue)(nil),      // 56: buf.validate.conformance.cases.StringHttpHeaderValue
-	(*StringHttpHeaderNameLoose)(nil),  // 57: buf.validate.conformance.cases.StringHttpHeaderNameLoose
-	(*StringHttpHeaderValueLoose)(nil), // 58: buf.validate.conformance.cases.StringHttpHeaderValueLoose
-	(*StringUUIDIgnore)(nil),           // 59: buf.validate.conformance.cases.StringUUIDIgnore
-	(*StringInOneof)(nil),              // 60: buf.validate.conformance.cases.StringInOneof
-	(*StringHostAndPort)(nil),          // 61: buf.validate.conformance.cases.StringHostAndPort
-	(*StringHostAndOptionalPort)(nil),  // 62: buf.validate.conformance.cases.StringHostAndOptionalPort
-	(*StringExample)(nil),              // 63: buf.validate.conformance.cases.StringExample
+	(*StringNone)(nil),                  // 0: buf.validate.conformance.cases.StringNone
+	(*StringConst)(nil),                 // 1: buf.validate.conformance.cases.StringConst
+	(*StringDecimal)(nil),               // 2: buf.validate.conformance.cases.StringDecimal
+	(*StringDecimalPrecision)(nil),      // 3: buf.validate.conformance.cases.StringDecimalPrecision
+	(*StringDecimalScale)(nil),          // 4: buf.validate.conformance.cases.StringDecimalScale
+	(*StringDecimalPrecisionScale)(nil), // 5: buf.validate.conformance.cases.StringDecimalPrecisionScale
+	(*StringIn)(nil),                    // 6: buf.validate.conformance.cases.StringIn
+	(*StringNotIn)(nil),                 // 7: buf.validate.conformance.cases.StringNotIn
+	(*StringLen)(nil),                   // 8: buf.validate.conformance.cases.StringLen
+	(*StringMinLen)(nil),                // 9: buf.validate.conformance.cases.StringMinLen
+	(*StringMaxLen)(nil),                // 10: buf.validate.conformance.cases.StringMaxLen
+	(*StringMinMaxLen)(nil),             // 11: buf.validate.conformance.cases.StringMinMaxLen
+	(*StringEqualMinMaxLen)(nil),        // 12: buf.validate.conformance.cases.StringEqualMinMaxLen
+	(*StringLenBytes)(nil),              // 13: buf.validate.conformance.cases.StringLenBytes
+	(*StringMinBytes)(nil),              // 14: buf.validate.conformance.cases.StringMinBytes
+	(*StringMaxBytes)(nil),              // 15: buf.validate.conformance.cases.StringMaxBytes
+	(*StringMinMaxBytes)(nil),           // 16: buf.validate.conformance.cases.StringMinMaxBytes
+	(*StringEqualMinMaxBytes)(nil),      // 17: buf.validate.conformance.cases.StringEqualMinMaxBytes
+	(*StringPattern)(nil),               // 18: buf.validate.conformance.cases.StringPattern
+	(*StringPatternEscapes)(nil),        // 19: buf.validate.conformance.cases.StringPatternEscapes
+	(*StringPrefix)(nil),                // 20: buf.validate.conformance.cases.StringPrefix
+	(*StringContains)(nil),              // 21: buf.validate.conformance.cases.StringContains
+	(*StringNotContains)(nil),           // 22: buf.validate.conformance.cases.StringNotContains
+	(*StringSuffix)(nil),                // 23: buf.validate.conformance.cases.StringSuffix
+	(*StringEmail)(nil),                 // 24: buf.validate.conformance.cases.StringEmail
+	(*StringNotEmail)(nil),              // 25: buf.validate.conformance.cases.StringNotEmail
+	(*StringAddress)(nil),               // 26: buf.validate.conformance.cases.StringAddress
+	(*StringNotAddress)(nil),            // 27: buf.validate.conformance.cases.StringNotAddress
+	(*StringHostname)(nil),              // 28: buf.validate.conformance.cases.StringHostname
+	(*StringNotHostname)(nil),           // 29: buf.validate.conformance.cases.StringNotHostname
+	(*StringIP)(nil),                    // 30: buf.validate.conformance.cases.StringIP
+	(*StringNotIP)(nil),                 // 31: buf.validate.conformance.cases.StringNotIP
+	(*StringIPv4)(nil),                  // 32: buf.validate.conformance.cases.StringIPv4
+	(*StringNotIPv4)(nil),               // 33: buf.validate.conformance.cases.StringNotIPv4
+	(*StringIPv6)(nil),                  // 34: buf.validate.conformance.cases.StringIPv6
+	(*StringNotIPv6)(nil),               // 35: buf.validate.conformance.cases.StringNotIPv6
+	(*StringIPWithPrefixLen)(nil),       // 36: buf.validate.conformance.cases.StringIPWithPrefixLen
+	(*StringNotIPWithPrefixLen)(nil),    // 37: buf.validate.conformance.cases.StringNotIPWithPrefixLen
+	(*StringIPv4WithPrefixLen)(nil),     // 38: buf.validate.conformance.cases.StringIPv4WithPrefixLen
+	(*StringNotIPv4WithPrefixLen)(nil),  // 39: buf.validate.conformance.cases.StringNotIPv4WithPrefixLen
+	(*StringIPv6WithPrefixLen)(nil),     // 40: buf.validate.conformance.cases.StringIPv6WithPrefixLen
+	(*StringNotIPv6WithPrefixLen)(nil),  // 41: buf.validate.conformance.cases.StringNotIPv6WithPrefixLen
+	(*StringIPPrefix)(nil),              // 42: buf.validate.conformance.cases.StringIPPrefix
+	(*StringNotIPPrefix)(nil),           // 43: buf.validate.conformance.cases.StringNotIPPrefix
+	(*StringIPv4Prefix)(nil),            // 44: buf.validate.conformance.cases.StringIPv4Prefix
+	(*StringNotIPv4Prefix)(nil),         // 45: buf.validate.conformance.cases.StringNotIPv4Prefix
+	(*StringIPv6Prefix)(nil),            // 46: buf.validate.conformance.cases.StringIPv6Prefix
+	(*StringNotIPv6Prefix)(nil),         // 47: buf.validate.conformance.cases.StringNotIPv6Prefix
+	(*StringURI)(nil),                   // 48: buf.validate.conformance.cases.StringURI
+	(*StringNotURI)(nil),                // 49: buf.validate.conformance.cases.StringNotURI
+	(*StringURIRef)(nil),                // 50: buf.validate.conformance.cases.StringURIRef
+	(*StringNotURIRef)(nil),             // 51: buf.validate.conformance.cases.StringNotURIRef
+	(*StringUUID)(nil),                  // 52: buf.validate.conformance.cases.StringUUID
+	(*StringNotUUID)(nil),               // 53: buf.validate.conformance.cases.StringNotUUID
+	(*StringTUUID)(nil),                 // 54: buf.validate.conformance.cases.StringTUUID
+	(*StringNotTUUID)(nil),              // 55: buf.validate.conformance.cases.StringNotTUUID
+	(*StringULID)(nil),                  // 56: buf.validate.conformance.cases.StringULID
+	(*StringNotULID)(nil),               // 57: buf.validate.conformance.cases.StringNotULID
+	(*StringULIDIgnore)(nil),            // 58: buf.validate.conformance.cases.StringULIDIgnore
+	(*StringHttpHeaderName)(nil),        // 59: buf.validate.conformance.cases.StringHttpHeaderName
+	(*StringHttpHeaderValue)(nil),       // 60: buf.validate.conformance.cases.StringHttpHeaderValue
+	(*StringHttpHeaderNameLoose)(nil),   // 61: buf.validate.conformance.cases.StringHttpHeaderNameLoose
+	(*StringHttpHeaderValueLoose)(nil),  // 62: buf.validate.conformance.cases.StringHttpHeaderValueLoose
+	(*StringUUIDIgnore)(nil),            // 63: buf.validate.conformance.cases.StringUUIDIgnore
+	(*StringInOneof)(nil),               // 64: buf.validate.conformance.cases.StringInOneof
+	(*StringHostAndPort)(nil),           // 65: buf.validate.conformance.cases.StringHostAndPort
+	(*StringHostAndOptionalPort)(nil),   // 66: buf.validate.conformance.cases.StringHostAndOptionalPort
+	(*StringExample)(nil),               // 67: buf.validate.conformance.cases.StringExample
 }
 var file_buf_validate_conformance_cases_strings_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -3115,7 +3305,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 	if File_buf_validate_conformance_cases_strings_proto != nil {
 		return
 	}
-	file_buf_validate_conformance_cases_strings_proto_msgTypes[60].OneofWrappers = []any{
+	file_buf_validate_conformance_cases_strings_proto_msgTypes[64].OneofWrappers = []any{
 		(*StringInOneof_Bar)(nil),
 	}
 	type x struct{}
@@ -3124,7 +3314,7 @@ func file_buf_validate_conformance_cases_strings_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_validate_conformance_cases_strings_proto_rawDesc), len(file_buf_validate_conformance_cases_strings_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   64,
+			NumMessages:   68,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
