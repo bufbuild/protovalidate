@@ -24,7 +24,7 @@ service LocationService {
 message LocationForIpRequest {
   string ip_address = 1 [(buf.validate.field).cel = {
     id: "valid_address"
-    message: "."
+    message: "ip_address must be a valid IP address"
     // `some_string.isIp()` returns whether the string is a valid ip address.
     // `isIp(4)` returns whether a string is an ipv4 address.
     // `isIp(6)` returns whether a string is an ipv6 address.
@@ -41,7 +41,7 @@ message LocationForIpResponse {
 message LocationForIpPrefixRequest {
   string ip_prefix = 1 [(buf.validate.field).cel = {
     id: "valid_prefix"
-    message: "."
+    message: "ip_prefix must be a valid IP with prefix length"
     // `some_string.isIpPrefix()` returns whether the string is a valid ip with prefix length.
     // `isIpPrefix(4)` returns whether a string is an ipv4 with prefix length.
     // `isIpPrefix(6)` returns whether a string is an ipv6 with prefix length.

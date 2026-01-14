@@ -29,7 +29,7 @@ message TeamRoster {
 
   message Player {
     string name = 1;
-    uint32 jersy_number = 2;
+    uint32 jersey_number = 2;
   }
 
   repeated Player players = 1;

@@ -45,7 +45,7 @@ message SearchStoreRequest {
   // term is the search term
   google.protobuf.StringValue term = 1 [(buf.validate.field).cel = {
     id: "search_term_length"
-    message: "search term must be not exceed 100 characters"
+    message: "search term must not exceed 100 characters"
     // This validates that _if_ term is specified, it must be shorter than 100
     // characters long.
     // This rule is only evaluated when this field is specified, because
@@ -69,8 +69,8 @@ message SearchStoreRequest {
   google.protobuf.BoolValue in_stock = 3;
   // min_price is the minimum price that the search results should have.
   google.protobuf.FloatValue min_price = 4 [(buf.validate.field).cel = {
-    id: "min_price_finite"
-    message: "min_price_must_be_positive"
+    id: "min_price_positive"
+    message: "minimum price must be positive"
     // This validates that _if_ min_price is specified, it must be greater than 0.
     // This rule is only evaluated when this field is specified, because
     // google.protobuf.FloatValue is a message type, and CEL rules are evaluated
