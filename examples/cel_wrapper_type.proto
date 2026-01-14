@@ -69,7 +69,7 @@ message SearchStoreRequest {
   google.protobuf.BoolValue in_stock = 3;
   // min_price is the minimum price that the search results should have.
   google.protobuf.FloatValue min_price = 4 [(buf.validate.field).cel = {
-    id: "min_price_finite"
+    id: "min_price_positive"
     message: "minimum price must be positive"
     // This validates that _if_ min_price is specified, it must be greater than 0.
     // This rule is only evaluated when this field is specified, because
