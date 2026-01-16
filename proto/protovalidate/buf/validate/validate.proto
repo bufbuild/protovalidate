@@ -3728,6 +3728,85 @@ message StringRules {
       }
     ];
 
+    // `decimal` specifies that this string represents a decimal with specific precision and scale.
+    //
+    // ```proto
+    // message MyString {
+    //   // Value must be a number with at most six digits, at most two digits after the decimal
+    //   // point, and at most four digits before the decimal point.
+    //   // "1000", "100.1", and "100" are valid, whereas "10000" and "1.111" are not.
+    //   string value = 1 [
+    //     (buf.validate.field).string.decimal.precision = 6,
+    //     (buf.validate.field).string.decimal.scale = 2
+    //   ];
+    // }
+    // ```
+    DecimalRules decimal = 36 [
+      (predefined).cel = {
+        id: "string.decimal.numerals"
+        message: "value must not have characters other than decimal digits and a decimal point"
+        expression: "!has(rules.decimal) || !this.matches('[^0-9.]')"
+      },
+      (predefined).cel = {
+        id: "string.decimal.multiple_points"
+        message: "value must not have multiple decimal points"
+        expression: "!has(rules.decimal) || !this.matches('\\..*\\.')"
+      },
+      (predefined).cel = {
+        id: "string.decimal.leading_point"
+        message: "value must not begin with a decimal point"
+        expression: "!has(rules.decimal) || !this.matches('^\\.')"
+      },
+      (predefined).cel = {
+        id: "string.decimal.trailing_point"
+        message: "value must not end with a decimal point"
+        expression: "!has(rules.decimal) || !this.matches('\\.$')"
+      },
+      (predefined).cel = {
+        id: "string.decimal.leading_zero"
+        message: "value must not have a leading zero"
+        expression: "!has(rules.decimal) || !this.matches('^0[0-9]')"
+      },
+      (predefined).cel = {
+        id: "string.decimal.empty"
+        message: "value must have at least one digit"
+        expression: "!has(rules.decimal) || this != ''"
+      },
+
+      (predefined).cel = {
+        id: "string.decimal.precision"
+        expression:
+          "has(rules.decimal.precision) &&"
+          "this.replace('.', '').size() > rules.decimal.precision"
+          "  ? 'value must have no more than %d digits; got %d digits'"
+          "    .format([rules.decimal.precision, this.replace('.', '').size()])"
+          "  : ''"
+      },
+
+      (predefined).cel = {
+        id: "string.decimal.scale"
+        expression:
+          "has(rules.decimal.scale) && this.contains('.') &&"
+          "(this.size() - this.lastIndexOf('.') - 1) > rules.decimal.scale"
+          "  ? 'value must have no more than %d digits after the decimal place; got %d digits'"
+          "    .format([rules.decimal.scale, (this.size() - this.lastIndexOf('.') - 1)])"
+          "  : ''"
+      },
+
+      (predefined).cel = {
+        id: "string.decimal.precision_scale"
+        expression:
+          "has(rules.decimal.precision) && has(rules.decimal.scale) &&"
+          "(this.contains('.') ? this.indexOf('.') : this.size()) > (rules.decimal.precision - rules.decimal.scale)"
+          "  ? 'value must have no more than %d digits before the decimal place; got %d digits'"
+          "    .format(["
+          "      rules.decimal.precision - rules.decimal.scale,"
+          "      (this.contains('.') ? this.indexOf('.') : this.size()),"
+          "    ])"
+          "  : ''"
+      }
+    ];
+
     // `well_known_regex` specifies a common well-known pattern
     // defined as a regex. If the field value doesn't match the well-known
     // regex, an error message will be generated.
@@ -3808,6 +3887,22 @@ message StringRules {
   // will be treated as predefined field rules.
   // See https://protovalidate.com/schemas/predefined-rules/
   extensions 1000 to max;
+}
+
+// Rules to describe a decimal represented as a string.
+//
+// TODO: Extend to the possible representations that google.type.Decimal allows?
+message DecimalRules {
+  // The total number of digits allowed (before and after the decimal point).
+  optional uint32 precision = 1;
+  // The number of digits allowed after the decimal point; when subtracted from `precision`, the
+  // number of digits allowed before the decimal point.
+  //
+  // This can only be validated when `precision` is also set.
+  //
+  // It also must be less than `precision`. That is, at least one digit must be before the
+  // decimal point.
+  optional uint32 scale = 2;
 }
 
 // KnownRegex contains some well-known patterns.
