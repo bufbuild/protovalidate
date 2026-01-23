@@ -42,6 +42,128 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
+		"decimal/valid": {
+			Message:  &cases.StringDecimal{Val: "12345.12345"},
+			Expected: results.Success(true),
+		},
+		"decimal/valid/fractional": {
+			Message:  &cases.StringDecimal{Val: "12345.12345"},
+			Expected: results.Success(true),
+		},
+		"decimal/valid/zero": {
+			Message:  &cases.StringDecimal{Val: "0"},
+			Expected: results.Success(true),
+		},
+		"decimal/valid/zero_fractional": {
+			Message:  &cases.StringDecimal{Val: "0.12345"},
+			Expected: results.Success(true),
+		},
+		"decimal/invalid/malformed": {
+			Message: &cases.StringDecimal{Val: "1.1.2"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.multiple_points"),
+				},
+			),
+		},
+		"decimal/invalid/numerals": {
+			Message: &cases.StringDecimal{Val: "1.23456e5"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.numerals"),
+				},
+			),
+		},
+		"decimal/invalid/leading_point": {
+			Message: &cases.StringDecimal{Val: ".12345"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.leading_point"),
+				},
+			),
+		},
+		"decimal/invalid/leading_zero": {
+			Message: &cases.StringDecimal{Val: "01"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.leading_zero"),
+				},
+			),
+		},
+		"decimal/invalid/trailing_point": {
+			Message: &cases.StringDecimal{Val: "12345."},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.trailing_point"),
+				},
+			),
+		},
+		"decimal/invalid/empty": {
+			Message: &cases.StringDecimal{Val: ""},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.empty"),
+				},
+			),
+		},
+		"decimal/precision/valid": {
+			Message:  &cases.StringDecimalPrecision{Val: "1234"},
+			Expected: results.Success(true),
+		},
+		"decimal/precision/valid/fractional": {
+			Message:  &cases.StringDecimalPrecision{Val: "1.234"},
+			Expected: results.Success(true),
+		},
+		"decimal/precision/invalid": {
+			Message: &cases.StringDecimalPrecision{Val: "123456"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.precision"),
+				},
+			),
+		},
+		"decimal/scale/valid": {
+			Message:  &cases.StringDecimalScale{Val: "0.12"},
+			Expected: results.Success(true),
+		},
+		"decimal/scale/invalid": {
+			Message: &cases.StringDecimalScale{Val: "0.123"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.scale"),
+				},
+			),
+		},
+		"decimal/precision_scale/valid": {
+			Message:  &cases.StringDecimalPrecisionScale{Val: "1234.56"},
+			Expected: results.Success(true),
+		},
+		"decimal/precision_scale/invalid": {
+			Message: &cases.StringDecimalPrecisionScale{Val: "12345.6"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.decimal"),
+					RuleId: proto.String("string.decimal.precision_scale"),
+				},
+			),
+		},
 		"in/valid": {
 			Message:  &cases.StringIn{Val: "baz"},
 			Expected: results.Success(true),
