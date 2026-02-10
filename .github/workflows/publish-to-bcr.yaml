@@ -18,6 +18,7 @@ jobs:
   publish:
     uses: bazel-contrib/publish-to-bcr/.github/workflows/publish.yaml@v1.1.0
     with:
+      draft: false
       tag_name: ${{ inputs.tag_name || github.ref_name }}
       registry_fork: bufbuild/bazel-central-registry
     secrets:
