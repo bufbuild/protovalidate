@@ -3728,6 +3728,93 @@ message StringRules {
       }
     ];
 
+    // `protobuf_fqn` specifies that the field value must be a valid fully-qualified
+    // Protobuf name as defined by the [Protobuf Language Specification](https://protobuf.com/docs/language-spec).
+    //
+    // A fully-qualified Protobuf name is a dot-separated list of Protobuf identifiers,
+    // where each identifier starts with a letter or underscore and is followed by zero or
+    // more letters, underscores, or digits. The value must be less than 512 characters
+    // and contain no more than 100 dots (i.e. 101 components or fewer).
+    //
+    // Examples: "buf.validate", "google.protobuf.Timestamp", "my_package.MyMessage".
+    //
+    // Note: historically, fully-qualified Protobuf names were represented with a leading
+    // dot (for example, ".buf.validate.StringRules"). Modern Protobuf does not use the
+    // leading dot, and most fully-qualified names are represented without it. Use
+    // `protobuf_dot_fqn` if a leading dot is required.
+    //
+    // If the field value isn't a valid fully-qualified Protobuf name, an error message
+    // will be generated.
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid fully-qualified Protobuf name
+    //   string value = 1 [(buf.validate.field).string.protobuf_fqn = true];
+    // }
+    // ```
+    bool protobuf_fqn = 37 [
+      (predefined).cel = {
+        id: "string.protobuf_fqn"
+        message: "value must be a valid fully-qualified Protobuf name"
+        expression: "!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*){0,100}$')"
+      },
+      (predefined).cel = {
+        id: "string.protobuf_fqn_empty"
+        message: "value is empty, which is not a valid fully-qualified Protobuf name"
+        expression: "!rules.protobuf_fqn || this != ''"
+      },
+      (predefined).cel = {
+        id: "string.protobuf_fqn_too_long"
+        message: "value must be less than 512 characters for a valid fully-qualified Protobuf name"
+        expression: "!rules.protobuf_fqn || this == '' || this.size() < 512"
+      }
+    ];
+
+    // `protobuf_dot_fqn` specifies that the field value must be a valid fully-qualified
+    // Protobuf name with a leading dot, as defined by the
+    // [Protobuf Language Specification](https://protobuf.com/docs/language-spec).
+    //
+    // A fully-qualified Protobuf name with a leading dot is a dot followed by a
+    // dot-separated list of Protobuf identifiers, where each identifier starts with a
+    // letter or underscore and is followed by zero or more letters, underscores, or
+    // digits. The value must be less than 513 characters (512 for the name plus the
+    // leading dot) and the name portion must contain no more than 100 dots (i.e. 101
+    // components or fewer).
+    //
+    // Examples: ".buf.validate", ".google.protobuf.Timestamp", ".my_package.MyMessage".
+    //
+    // Note: this is the historical representation of fully-qualified Protobuf names,
+    // where a leading dot denotes an absolute reference. Modern Protobuf does not use
+    // the leading dot, and most fully-qualified names are represented without it. Most
+    // users will want to use `protobuf_fqn` instead.
+    //
+    // If the field value isn't a valid fully-qualified Protobuf name with a leading dot,
+    // an error message will be generated.
+    //
+    // ```proto
+    // message MyString {
+    //   // value must be a valid fully-qualified Protobuf name with a leading dot
+    //   string value = 1 [(buf.validate.field).string.protobuf_dot_fqn = true];
+    // }
+    // ```
+    bool protobuf_dot_fqn = 38 [
+      (predefined).cel = {
+        id: "string.protobuf_dot_fqn"
+        message: "value must be a valid fully-qualified Protobuf name with a leading dot"
+        expression: "!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*){0,100}$')"
+      },
+      (predefined).cel = {
+        id: "string.protobuf_dot_fqn_empty"
+        message: "value is empty, which is not a valid fully-qualified Protobuf name with a leading dot"
+        expression: "!rules.protobuf_dot_fqn || this != ''"
+      },
+      (predefined).cel = {
+        id: "string.protobuf_dot_fqn_too_long"
+        message: "value must be less than 513 characters for a valid fully-qualified Protobuf name with a leading dot"
+        expression: "!rules.protobuf_dot_fqn || this == '' || this.size() < 513"
+      }
+    ];
+
     // `well_known_regex` specifies a common well-known pattern
     // defined as a regex. If the field value doesn't match the well-known
     // regex, an error message will be generated.
