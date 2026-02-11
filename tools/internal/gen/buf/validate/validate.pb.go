@@ -5570,8 +5570,7 @@ type StringRules_ProtobufFqn struct {
 	//
 	// A fully-qualified Protobuf name is a dot-separated list of Protobuf identifiers,
 	// where each identifier starts with a letter or underscore and is followed by zero or
-	// more letters, underscores, or digits. The value must be less than 512 characters
-	// and contain no more than 100 dots (i.e. 101 components or fewer).
+	// more letters, underscores, or digits.
 	//
 	// Examples: "buf.validate", "google.protobuf.Timestamp", "my_package.MyMessage".
 	//
@@ -5602,9 +5601,7 @@ type StringRules_ProtobufDotFqn struct {
 	// A fully-qualified Protobuf name with a leading dot is a dot followed by a
 	// dot-separated list of Protobuf identifiers, where each identifier starts with a
 	// letter or underscore and is followed by zero or more letters, underscores, or
-	// digits. The value must be less than 513 characters (512 for the name plus the
-	// leading dot) and the name portion must contain no more than 100 dots (i.e. 101
-	// components or fewer).
+	// digits.
 	//
 	// Examples: ".buf.validate", ".google.protobuf.Timestamp", ".my_package.MyMessage".
 	//
@@ -8458,7 +8455,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xe0D\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xc9A\n" +
 	"\vStringRules\x12\x8d\x01\n" +
 	"\x05const\x18\x01 \x01(\tBw\xc2Ht\n" +
 	"r\n" +
@@ -8594,21 +8591,17 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x82\x01\n" +
 	"\vstring.ulid\x12\x1avalue must be a valid ULID\x1aW!rules.ulid || this == '' || this.matches('^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$')\n" +
 	"Y\n" +
-	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\x98\x04\n" +
-	"\fprotobuf_fqn\x18% \x01(\bB\xf2\x03\xc2H\xee\x03\n" +
-	"\xbb\x01\n" +
-	"\x13string.protobuf_fqn\x123value must be a valid fully-qualified Protobuf name\x1ao!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*){0,100}$')\n" +
+	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xe7\x02\n" +
+	"\fprotobuf_fqn\x18% \x01(\bB\xc1\x02\xc2H\xbd\x02\n" +
+	"\xb5\x01\n" +
+	"\x13string.protobuf_fqn\x123value must be a valid fully-qualified Protobuf name\x1ai!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
 	"\x82\x01\n" +
-	"\x19string.protobuf_fqn_empty\x12Bvalue is empty, which is not a valid fully-qualified Protobuf name\x1a!!rules.protobuf_fqn || this != ''\n" +
-	"\xa8\x01\n" +
-	"\x1cstring.protobuf_fqn_too_long\x12Pvalue must be less than 512 characters for a valid fully-qualified Protobuf name\x1a6!rules.protobuf_fqn || this == '' || this.size() < 512H\x00R\vprotobufFqn\x12\xf3\x04\n" +
-	"\x10protobuf_dot_fqn\x18& \x01(\bB\xc6\x04\xc2H\xc2\x04\n" +
-	"\xd9\x01\n" +
-	"\x17string.protobuf_dot_fqn\x12Fvalue must be a valid fully-qualified Protobuf name with a leading dot\x1av!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*){0,100}$')\n" +
+	"\x19string.protobuf_fqn_empty\x12Bvalue is empty, which is not a valid fully-qualified Protobuf name\x1a!!rules.protobuf_fqn || this != ''H\x00R\vprotobufFqn\x12\x8d\x03\n" +
+	"\x10protobuf_dot_fqn\x18& \x01(\bB\xe0\x02\xc2H\xdc\x02\n" +
+	"\xb9\x01\n" +
+	"\x17string.protobuf_dot_fqn\x12Fvalue must be a valid fully-qualified Protobuf name with a leading dot\x1aV!rules.protobuf_dot_fqn || this == '' || this.matches('(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
 	"\x9d\x01\n" +
-	"\x1dstring.protobuf_dot_fqn_empty\x12Uvalue is empty, which is not a valid fully-qualified Protobuf name with a leading dot\x1a%!rules.protobuf_dot_fqn || this != ''\n" +
-	"\xc3\x01\n" +
-	" string.protobuf_dot_fqn_too_long\x12cvalue must be less than 513 characters for a valid fully-qualified Protobuf name with a leading dot\x1a:!rules.protobuf_dot_fqn || this == '' || this.size() < 513H\x00R\x0eprotobufDotFqn\x12\xb8\x05\n" +
+	"\x1dstring.protobuf_dot_fqn_empty\x12Uvalue is empty, which is not a valid fully-qualified Protobuf name with a leading dot\x1a%!rules.protobuf_dot_fqn || this != ''H\x00R\x0eprotobufDotFqn\x12\xb8\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xf1\x04\xc2H\xed\x04\n" +
 	"\xf0\x01\n" +
 	"#string.well_known_regex.header_name\x12&value must be a valid HTTP header name\x1a\xa0\x01rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :'^[^\\u0000\\u000A\\u000D]+$')\n" +
