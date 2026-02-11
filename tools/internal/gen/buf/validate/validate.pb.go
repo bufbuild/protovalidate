@@ -4840,6 +4840,8 @@ type StringRules struct {
 	//	*StringRules_Ipv6Prefix
 	//	*StringRules_HostAndPort
 	//	*StringRules_Ulid
+	//	*StringRules_ProtobufFqn
+	//	*StringRules_ProtobufDotFqn
 	//	*StringRules_WellKnownRegex
 	WellKnown isStringRules_WellKnown `protobuf_oneof:"well_known"`
 	// This applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
@@ -5169,6 +5171,24 @@ func (x *StringRules) GetUlid() bool {
 	if x != nil {
 		if x, ok := x.WellKnown.(*StringRules_Ulid); ok {
 			return x.Ulid
+		}
+	}
+	return false
+}
+
+func (x *StringRules) GetProtobufFqn() bool {
+	if x != nil {
+		if x, ok := x.WellKnown.(*StringRules_ProtobufFqn); ok {
+			return x.ProtobufFqn
+		}
+	}
+	return false
+}
+
+func (x *StringRules) GetProtobufDotFqn() bool {
+	if x != nil {
+		if x, ok := x.WellKnown.(*StringRules_ProtobufDotFqn); ok {
+			return x.ProtobufDotFqn
 		}
 	}
 	return false
@@ -5544,6 +5564,69 @@ type StringRules_Ulid struct {
 	Ulid bool `protobuf:"varint,35,opt,name=ulid,oneof"`
 }
 
+type StringRules_ProtobufFqn struct {
+	// `protobuf_fqn` specifies that the field value must be a valid fully-qualified
+	// Protobuf name as defined by the [Protobuf Language Specification](https://protobuf.com/docs/language-spec).
+	//
+	// A fully-qualified Protobuf name is a dot-separated list of Protobuf identifiers,
+	// where each identifier starts with a letter or underscore and is followed by zero or
+	// more letters, underscores, or digits. The value must be less than 512 characters
+	// and contain no more than 100 dots (i.e. 101 components or fewer).
+	//
+	// Examples: "buf.validate", "google.protobuf.Timestamp", "my_package.MyMessage".
+	//
+	// Note: historically, fully-qualified Protobuf names were represented with a leading
+	// dot (for example, ".buf.validate.StringRules"). Modern Protobuf does not use the
+	// leading dot, and most fully-qualified names are represented without it. Use
+	// `protobuf_dot_fqn` if a leading dot is required.
+	//
+	// If the field value isn't a valid fully-qualified Protobuf name, an error message
+	// will be generated.
+	//
+	// ```proto
+	//
+	//	message MyString {
+	//	  // value must be a valid fully-qualified Protobuf name
+	//	  string value = 1 [(buf.validate.field).string.protobuf_fqn = true];
+	//	}
+	//
+	// ```
+	ProtobufFqn bool `protobuf:"varint,37,opt,name=protobuf_fqn,json=protobufFqn,oneof"`
+}
+
+type StringRules_ProtobufDotFqn struct {
+	// `protobuf_dot_fqn` specifies that the field value must be a valid fully-qualified
+	// Protobuf name with a leading dot, as defined by the
+	// [Protobuf Language Specification](https://protobuf.com/docs/language-spec).
+	//
+	// A fully-qualified Protobuf name with a leading dot is a dot followed by a
+	// dot-separated list of Protobuf identifiers, where each identifier starts with a
+	// letter or underscore and is followed by zero or more letters, underscores, or
+	// digits. The value must be less than 513 characters (512 for the name plus the
+	// leading dot) and the name portion must contain no more than 100 dots (i.e. 101
+	// components or fewer).
+	//
+	// Examples: ".buf.validate", ".google.protobuf.Timestamp", ".my_package.MyMessage".
+	//
+	// Note: this is the historical representation of fully-qualified Protobuf names,
+	// where a leading dot denotes an absolute reference. Modern Protobuf does not use
+	// the leading dot, and most fully-qualified names are represented without it. Most
+	// users will want to use `protobuf_fqn` instead.
+	//
+	// If the field value isn't a valid fully-qualified Protobuf name with a leading dot,
+	// an error message will be generated.
+	//
+	// ```proto
+	//
+	//	message MyString {
+	//	  // value must be a valid fully-qualified Protobuf name with a leading dot
+	//	  string value = 1 [(buf.validate.field).string.protobuf_dot_fqn = true];
+	//	}
+	//
+	// ```
+	ProtobufDotFqn bool `protobuf:"varint,38,opt,name=protobuf_dot_fqn,json=protobufDotFqn,oneof"`
+}
+
 type StringRules_WellKnownRegex struct {
 	// `well_known_regex` specifies a common well-known pattern
 	// defined as a regex. If the field value doesn't match the well-known
@@ -5605,6 +5688,10 @@ func (*StringRules_Ipv6Prefix) isStringRules_WellKnown() {}
 func (*StringRules_HostAndPort) isStringRules_WellKnown() {}
 
 func (*StringRules_Ulid) isStringRules_WellKnown() {}
+
+func (*StringRules_ProtobufFqn) isStringRules_WellKnown() {}
+
+func (*StringRules_ProtobufDotFqn) isStringRules_WellKnown() {}
 
 func (*StringRules_WellKnownRegex) isStringRules_WellKnown() {}
 
@@ -8371,7 +8458,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1a`this != getField(rules, 'const') ? 'value must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xcf;\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xe0D\n" +
 	"\vStringRules\x12\x8d\x01\n" +
 	"\x05const\x18\x01 \x01(\tBw\xc2Ht\n" +
 	"r\n" +
@@ -8507,7 +8594,21 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x82\x01\n" +
 	"\vstring.ulid\x12\x1avalue must be a valid ULID\x1aW!rules.ulid || this == '' || this.matches('^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$')\n" +
 	"Y\n" +
-	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xb8\x05\n" +
+	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\x98\x04\n" +
+	"\fprotobuf_fqn\x18% \x01(\bB\xf2\x03\xc2H\xee\x03\n" +
+	"\xbb\x01\n" +
+	"\x13string.protobuf_fqn\x123value must be a valid fully-qualified Protobuf name\x1ao!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*){0,100}$')\n" +
+	"\x82\x01\n" +
+	"\x19string.protobuf_fqn_empty\x12Bvalue is empty, which is not a valid fully-qualified Protobuf name\x1a!!rules.protobuf_fqn || this != ''\n" +
+	"\xa8\x01\n" +
+	"\x1cstring.protobuf_fqn_too_long\x12Pvalue must be less than 512 characters for a valid fully-qualified Protobuf name\x1a6!rules.protobuf_fqn || this == '' || this.size() < 512H\x00R\vprotobufFqn\x12\xf3\x04\n" +
+	"\x10protobuf_dot_fqn\x18& \x01(\bB\xc6\x04\xc2H\xc2\x04\n" +
+	"\xd9\x01\n" +
+	"\x17string.protobuf_dot_fqn\x12Fvalue must be a valid fully-qualified Protobuf name with a leading dot\x1av!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*){0,100}$')\n" +
+	"\x9d\x01\n" +
+	"\x1dstring.protobuf_dot_fqn_empty\x12Uvalue is empty, which is not a valid fully-qualified Protobuf name with a leading dot\x1a%!rules.protobuf_dot_fqn || this != ''\n" +
+	"\xc3\x01\n" +
+	" string.protobuf_dot_fqn_too_long\x12cvalue must be less than 513 characters for a valid fully-qualified Protobuf name with a leading dot\x1a:!rules.protobuf_dot_fqn || this == '' || this.size() < 513H\x00R\x0eprotobufDotFqn\x12\xb8\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xf1\x04\xc2H\xed\x04\n" +
 	"\xf0\x01\n" +
 	"#string.well_known_regex.header_name\x12&value must be a valid HTTP header name\x1a\xa0\x01rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :'^[^\\u0000\\u000A\\u000D]+$')\n" +
@@ -9019,6 +9120,8 @@ func file_buf_validate_validate_proto_init() {
 		(*StringRules_Ipv6Prefix)(nil),
 		(*StringRules_HostAndPort)(nil),
 		(*StringRules_Ulid)(nil),
+		(*StringRules_ProtobufFqn)(nil),
+		(*StringRules_ProtobufDotFqn)(nil),
 		(*StringRules_WellKnownRegex)(nil),
 	}
 	file_buf_validate_validate_proto_msgTypes[20].OneofWrappers = []any{
