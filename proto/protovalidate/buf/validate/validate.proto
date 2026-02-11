@@ -3756,7 +3756,7 @@ message StringRules {
       (predefined).cel = {
         id: "string.protobuf_fqn"
         message: "value must be a valid fully-qualified Protobuf name"
-        expression: "!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*){0,100}$')"
+        expression: "!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')"
       },
       (predefined).cel = {
         id: "string.protobuf_fqn_empty"
