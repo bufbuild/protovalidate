@@ -3733,8 +3733,7 @@ message StringRules {
     //
     // A fully-qualified Protobuf name is a dot-separated list of Protobuf identifiers,
     // where each identifier starts with a letter or underscore and is followed by zero or
-    // more letters, underscores, or digits. The value must be less than 512 characters
-    // and contain no more than 100 dots (i.e. 101 components or fewer).
+    // more letters, underscores, or digits.
     //
     // Examples: "buf.validate", "google.protobuf.Timestamp", "my_package.MyMessage".
     //
@@ -3762,11 +3761,6 @@ message StringRules {
         id: "string.protobuf_fqn_empty"
         message: "value is empty, which is not a valid fully-qualified Protobuf name"
         expression: "!rules.protobuf_fqn || this != ''"
-      },
-      (predefined).cel = {
-        id: "string.protobuf_fqn_too_long"
-        message: "value must be less than 512 characters for a valid fully-qualified Protobuf name"
-        expression: "!rules.protobuf_fqn || this == '' || this.size() < 512"
       }
     ];
 
@@ -3777,9 +3771,7 @@ message StringRules {
     // A fully-qualified Protobuf name with a leading dot is a dot followed by a
     // dot-separated list of Protobuf identifiers, where each identifier starts with a
     // letter or underscore and is followed by zero or more letters, underscores, or
-    // digits. The value must be less than 513 characters (512 for the name plus the
-    // leading dot) and the name portion must contain no more than 100 dots (i.e. 101
-    // components or fewer).
+    // digits.
     //
     // Examples: ".buf.validate", ".google.protobuf.Timestamp", ".my_package.MyMessage".
     //
@@ -3807,11 +3799,6 @@ message StringRules {
         id: "string.protobuf_dot_fqn_empty"
         message: "value is empty, which is not a valid fully-qualified Protobuf name with a leading dot"
         expression: "!rules.protobuf_dot_fqn || this != ''"
-      },
-      (predefined).cel = {
-        id: "string.protobuf_dot_fqn_too_long"
-        message: "value must be less than 513 characters for a valid fully-qualified Protobuf name with a leading dot"
-        expression: "!rules.protobuf_dot_fqn || this == '' || this.size() < 513"
       }
     ];
 
