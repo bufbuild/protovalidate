@@ -1916,6 +1916,145 @@ func stringSuite() suites.Suite {
 				},
 			),
 		},
+		"protobuf_fqn/buf.validate/valid": {
+			Message:  &cases.StringProtobufFQN{Val: "buf.validate"},
+			Expected: results.Success(true),
+		},
+		"protobuf_fqn/my_package.MyMessage/valid": {
+			Message:  &cases.StringProtobufFQN{Val: "my_package.MyMessage"},
+			Expected: results.Success(true),
+		},
+		"protobuf_fqn/_any_Crazy_CASE_with_01234_numbers/valid": {
+			Message:  &cases.StringProtobufFQN{Val: "_any_Crazy_CASE_with_01234_numbers"},
+			Expected: results.Success(true),
+		},
+		"protobuf_fqn/c3p0/valid": {
+			Message:  &cases.StringProtobufFQN{Val: "c3p0"},
+			Expected: results.Success(true),
+		},
+		"protobuf_fqn/leading_dot/invalid": {
+			Message: &cases.StringProtobufFQN{Val: ".x"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_fqn"),
+					RuleId: proto.String("string.protobuf_fqn"),
+				},
+			),
+		},
+		"protobuf_fqn/empty/invalid": {
+			Message: &cases.StringProtobufFQN{Val: ""},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_fqn"),
+					RuleId: proto.String("string.protobuf_fqn_empty"),
+				},
+			),
+		},
+		"protobuf_fqn/trailing_dot/invalid": {
+			Message: &cases.StringProtobufFQN{Val: "x."},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_fqn"),
+					RuleId: proto.String("string.protobuf_fqn"),
+				},
+			),
+		},
+		"protobuf_fqn/double_dot/invalid": {
+			Message: &cases.StringProtobufFQN{Val: "a..b"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_fqn"),
+					RuleId: proto.String("string.protobuf_fqn"),
+				},
+			),
+		},
+		"protobuf_fqn/leading_digit/invalid": {
+			Message: &cases.StringProtobufFQN{Val: "1a"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_fqn"),
+					RuleId: proto.String("string.protobuf_fqn"),
+				},
+			),
+		},
+		"protobuf_fqn/bad_char/invalid": {
+			Message: &cases.StringProtobufFQN{Val: "a$"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_fqn"),
+					RuleId: proto.String("string.protobuf_fqn"),
+				},
+			),
+		},
+		"protobuf_dot_fqn/.buf.validate/valid": {
+			Message:  &cases.StringProtobufDotFQN{Val: ".buf.validate"},
+			Expected: results.Success(true),
+		},
+		"protobuf_dot_fqn/.my_package.MyMessage/valid": {
+			Message:  &cases.StringProtobufDotFQN{Val: ".my_package.MyMessage"},
+			Expected: results.Success(true),
+		},
+		"protobuf_dot_fqn/._any_Crazy_CASE_with_01234_numbers/valid": {
+			Message:  &cases.StringProtobufDotFQN{Val: "._any_Crazy_CASE_with_01234_numbers"},
+			Expected: results.Success(true),
+		},
+		"protobuf_dot_fqn/empty/invalid": {
+			Message: &cases.StringProtobufDotFQN{Val: ""},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_dot_fqn"),
+					RuleId: proto.String("string.protobuf_dot_fqn_empty"),
+				},
+			),
+		},
+		"protobuf_dot_fqn/trailing_dot/invalid": {
+			Message: &cases.StringProtobufDotFQN{Val: ".x."},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_dot_fqn"),
+					RuleId: proto.String("string.protobuf_dot_fqn"),
+				},
+			),
+		},
+		"protobuf_dot_fqn/double_dot/invalid": {
+			Message: &cases.StringProtobufDotFQN{Val: ".a..b"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_dot_fqn"),
+					RuleId: proto.String("string.protobuf_dot_fqn"),
+				},
+			),
+		},
+		"protobuf_dot_fqn/leading_digit/invalid": {
+			Message: &cases.StringProtobufDotFQN{Val: ".1a"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_dot_fqn"),
+					RuleId: proto.String("string.protobuf_dot_fqn"),
+				},
+			),
+		},
+		"protobuf_dot_fqn/bad_char/invalid": {
+			Message: &cases.StringProtobufDotFQN{Val: ".a$"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.protobuf_dot_fqn"),
+					RuleId: proto.String("string.protobuf_dot_fqn"),
+				},
+			),
+		},
+
 		"example/valid": {
 			Message:  &cases.StringExample{Val: "foobar"},
 			Expected: results.Success(true),

@@ -3793,7 +3793,7 @@ message StringRules {
       (predefined).cel = {
         id: "string.protobuf_dot_fqn"
         message: "value must be a valid fully-qualified Protobuf name with a leading dot"
-        expression: "!rules.protobuf_dot_fqn || this == '' || this.matches('(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')"
+        expression: "!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')"
       },
       (predefined).cel = {
         id: "string.protobuf_dot_fqn_empty"
