@@ -256,6 +256,14 @@ message StringHostAndOptionalPort {
   }];
 }
 
+message StringProtobufFQN {
+  string val = 1 [(buf.validate.field).string.protobuf_fqn = true];
+}
+
+message StringProtobufDotFQN {
+  string val = 1 [(buf.validate.field).string.protobuf_dot_fqn = true];
+}
+
 message StringExample {
   string val = 1 [(buf.validate.field).string.example = "foo"];
 }
