@@ -556,7 +556,7 @@ message FloatRules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -607,7 +607,7 @@ message FloatRules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -771,7 +771,7 @@ message DoubleRules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or `lte`,
-    // the range is reversed, and the field must be outside the specified
+    // the range is reversed, and the field value must be outside the specified
     // range. If the field value doesn't meet the required conditions, an error
     // message is generated.
     //
@@ -822,7 +822,7 @@ message DoubleRules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -985,7 +985,7 @@ message Int32Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1036,7 +1036,7 @@ message Int32Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified value
     // (exclusive). If the value of `gte` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1193,7 +1193,7 @@ message Int64Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1244,7 +1244,7 @@ message Int64Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1401,7 +1401,7 @@ message UInt32Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1452,7 +1452,7 @@ message UInt32Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1609,7 +1609,7 @@ message UInt64Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1660,7 +1660,7 @@ message UInt64Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1815,7 +1815,7 @@ message SInt32Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -1866,7 +1866,7 @@ message SInt32Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2022,7 +2022,7 @@ message SInt64Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2073,7 +2073,7 @@ message SInt64Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2229,7 +2229,7 @@ message Fixed32Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2280,7 +2280,7 @@ message Fixed32Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2436,7 +2436,7 @@ message Fixed64Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2487,7 +2487,7 @@ message Fixed64Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2643,7 +2643,7 @@ message SFixed32Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2694,7 +2694,7 @@ message SFixed32Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2850,7 +2850,7 @@ message SFixed64Rules {
   oneof greater_than {
     // `gt` requires the field value to be greater than the specified value
     // (exclusive). If the value of `gt` is larger than a specified `lt` or
-    // `lte`, the range is reversed, and the field must be outside the
+    // `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -2901,7 +2901,7 @@ message SFixed64Rules {
 
     // `gte` requires the field value to be greater than or equal to the specified
     // value (exclusive). If the value of `gte` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -3232,7 +3232,7 @@ message StringRules {
     expression: "this.contains(rules.not_contains) ? 'contains substring `%s`'.format([rules.not_contains]) : ''"
   }];
 
-  // `in` specifies that the field must be equal to one of the specified
+  // `in` specifies that the field value must be equal to one of the specified
   // values. If the field value isn't one of the specified values, an error
   // message will be generated.
   //
@@ -3264,7 +3264,7 @@ message StringRules {
   // `WellKnown` rules provide advanced rules against common string
   // patterns.
   oneof well_known {
-    // `email` specifies that the field must be a valid email address, for
+    // `email` specifies that the field value must be a valid email address, for
     // example "foo@example.com".
     //
     // Conforms to the definition for a valid email address from the [HTML standard](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address).
@@ -3293,7 +3293,7 @@ message StringRules {
       }
     ];
 
-    // `hostname` specifies that the field must be a valid hostname, for
+    // `hostname` specifies that the field value must be a valid hostname, for
     // example "foo.example.com".
     //
     // A valid hostname follows the rules below:
@@ -3325,7 +3325,7 @@ message StringRules {
       }
     ];
 
-    // `ip` specifies that the field must be a valid IP (v4 or v6) address.
+    // `ip` specifies that the field value must be a valid IP (v4 or v6) address.
     //
     // IPv4 addresses are expected in the dotted decimal format—for example, "192.168.5.21".
     // IPv6 addresses are expected in their text representation—for example, "::1",
@@ -3356,7 +3356,7 @@ message StringRules {
       }
     ];
 
-    // `ipv4` specifies that the field must be a valid IPv4 address—for
+    // `ipv4` specifies that the field value must be a valid IPv4 address—for
     // example "192.168.5.21". If the field value isn't a valid IPv4 address, an
     // error message will be generated.
     //
@@ -3379,7 +3379,7 @@ message StringRules {
       }
     ];
 
-    // `ipv6` specifies that the field must be a valid IPv6 address—for
+    // `ipv6` specifies that the field value must be a valid IPv6 address—for
     // example "::1", or "d7a:115c:a1e0:ab12:4843:cd96:626b:430b". If the field
     // value is not a valid IPv6 address, an error message will be generated.
     //
@@ -3402,7 +3402,7 @@ message StringRules {
       }
     ];
 
-    // `uri` specifies that the field must be a valid URI, for example
+    // `uri` specifies that the field value must be a valid URI, for example
     // "https://example.com/foo/bar?baz=quux#frag".
     //
     // URI is defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
@@ -3429,7 +3429,7 @@ message StringRules {
       }
     ];
 
-    // `uri_ref` specifies that the field must be a valid URI Reference—either
+    // `uri_ref` specifies that the field value must be a valid URI Reference—either
     // a URI such as "https://example.com/foo/bar?baz=quux#frag", or a Relative
     // Reference such as "./foo/bar?query".
     //
@@ -3452,7 +3452,7 @@ message StringRules {
       expression: "!rules.uri_ref || this.isUriRef()"
     }];
 
-    // `address` specifies that the field must be either a valid hostname
+    // `address` specifies that the field value must be either a valid hostname
     // (for example, "example.com"), or a valid IP (v4 or v6) address (for example,
     // "192.168.0.1", or "::1"). If the field value isn't a valid hostname or IP,
     // an error message will be generated.
@@ -3476,7 +3476,7 @@ message StringRules {
       }
     ];
 
-    // `uuid` specifies that the field must be a valid UUID as defined by
+    // `uuid` specifies that the field value must be a valid UUID as defined by
     // [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2). If the
     // field value isn't a valid UUID, an error message will be generated.
     //
@@ -3499,7 +3499,7 @@ message StringRules {
       }
     ];
 
-    // `tuuid` (trimmed UUID) specifies that the field must be a valid UUID as
+    // `tuuid` (trimmed UUID) specifies that the field value must be a valid UUID as
     // defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2) with all dashes
     // omitted. If the field value isn't a valid UUID without dashes, an error message
     // will be generated.
@@ -3523,7 +3523,7 @@ message StringRules {
       }
     ];
 
-    // `ip_with_prefixlen` specifies that the field must be a valid IP
+    // `ip_with_prefixlen` specifies that the field value must be a valid IP
     // (v4 or v6) address with prefix length—for example, "192.168.5.21/16" or
     // "2001:0DB8:ABCD:0012::F1/64". If the field value isn't a valid IP with
     // prefix length, an error message will be generated.
@@ -3547,7 +3547,7 @@ message StringRules {
       }
     ];
 
-    // `ipv4_with_prefixlen` specifies that the field must be a valid
+    // `ipv4_with_prefixlen` specifies that the field value must be a valid
     // IPv4 address with prefix length—for example, "192.168.5.21/16". If the
     // field value isn't a valid IPv4 address with prefix length, an error
     // message will be generated.
@@ -3571,7 +3571,7 @@ message StringRules {
       }
     ];
 
-    // `ipv6_with_prefixlen` specifies that the field must be a valid
+    // `ipv6_with_prefixlen` specifies that the field value must be a valid
     // IPv6 address with prefix length—for example, "2001:0DB8:ABCD:0012::F1/64".
     // If the field value is not a valid IPv6 address with prefix length,
     // an error message will be generated.
@@ -3595,7 +3595,7 @@ message StringRules {
       }
     ];
 
-    // `ip_prefix` specifies that the field must be a valid IP (v4 or v6)
+    // `ip_prefix` specifies that the field value must be a valid IP (v4 or v6)
     // prefix—for example, "192.168.0.0/16" or "2001:0DB8:ABCD:0012::0/64".
     //
     // The prefix must have all zeros for the unmasked bits. For example,
@@ -3624,7 +3624,7 @@ message StringRules {
       }
     ];
 
-    // `ipv4_prefix` specifies that the field must be a valid IPv4
+    // `ipv4_prefix` specifies that the field value must be a valid IPv4
     // prefix, for example "192.168.0.0/16".
     //
     // The prefix must have all zeros for the unmasked bits. For example,
@@ -3653,7 +3653,7 @@ message StringRules {
       }
     ];
 
-    // `ipv6_prefix` specifies that the field must be a valid IPv6 prefix—for
+    // `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix—for
     // example, "2001:0DB8:ABCD:0012::0/64".
     //
     // The prefix must have all zeros for the unmasked bits. For example,
@@ -3682,7 +3682,7 @@ message StringRules {
       }
     ];
 
-    // `host_and_port` specifies that the field must be valid host/port
+    // `host_and_port` specifies that the field value must be a valid host/port
     // pair—for example, "example.com:8080".
     //
     // The host can be one of:
@@ -3705,7 +3705,7 @@ message StringRules {
       }
     ];
 
-    // `ulid` specifies that the field must be a valid ULID (Universally Unique
+    // `ulid` specifies that the field value must be a valid ULID (Universally Unique
     // Lexicographically Sortable Identifier) as defined by the [ULID specification](https://github.com/ulid/spec).
     // If the field value isn't a valid ULID, an error message will be generated.
     //
@@ -3754,7 +3754,7 @@ message StringRules {
     bool protobuf_fqn = 37 [
       (predefined).cel = {
         id: "string.protobuf_fqn"
-        message: "value must be a valid fully-qualified Protobuf name"
+        message: "must be a valid fully-qualified Protobuf name"
         expression: "!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')"
       },
       (predefined).cel = {
@@ -3792,7 +3792,7 @@ message StringRules {
     bool protobuf_dot_fqn = 38 [
       (predefined).cel = {
         id: "string.protobuf_dot_fqn"
-        message: "value must be a valid fully-qualified Protobuf name with a leading dot"
+        message: "must be a valid fully-qualified Protobuf name with a leading dot"
         expression: "!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')"
       },
       (predefined).cel = {
@@ -4117,11 +4117,10 @@ message BytesRules {
       }
     ];
 
-    // `uuid` ensures that the field `value` encodes the 128-bit UUID data as
-    // defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
-    // The field must contain exactly 16 bytes
-    // representing the UUID. If the field value isn't a valid UUID, an error
-    // message will be generated.
+    // `uuid` ensures that the field value encodes 128-bit UUID data as defined
+    // by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
+    // The field must contain exactly 16 bytes representing the UUID. If the
+    // field value isn't a valid UUID, an error message will be generated.
     //
     // ```proto
     // message MyBytes {
@@ -4504,7 +4503,7 @@ message DurationRules {
   oneof greater_than {
     // `gt` requires the duration field value to be greater than the specified
     // value (exclusive). If the value of `gt` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //
@@ -4800,7 +4799,7 @@ message TimestampRules {
   oneof greater_than {
     // `gt` requires the timestamp field value to be greater than the specified
     // value (exclusive). If the value of `gt` is larger than a specified `lt`
-    // or `lte`, the range is reversed, and the field must be outside the
+    // or `lte`, the range is reversed, and the field value must be outside the
     // specified range. If the field value doesn't meet the required conditions,
     // an error message is generated.
     //

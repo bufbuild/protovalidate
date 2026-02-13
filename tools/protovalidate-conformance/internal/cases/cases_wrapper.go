@@ -47,7 +47,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("float.gt"),
 				RuleId:  proto.String("float.gt"),
-				Message: proto.String("value must be greater than 0"),
+				Message: proto.String("must be greater than 0"),
 			}),
 		},
 		"double/valid": {
@@ -64,7 +64,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("double.gt"),
 				RuleId:  proto.String("double.gt"),
-				Message: proto.String("value must be greater than 0"),
+				Message: proto.String("must be greater than 0"),
 			}),
 		},
 		"int64/valid": {
@@ -81,7 +81,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("int64.gt"),
 				RuleId:  proto.String("int64.gt"),
-				Message: proto.String("value must be greater than 0"),
+				Message: proto.String("must be greater than 0"),
 			}),
 		},
 		"int32/valid": {
@@ -98,7 +98,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("int32.gt"),
 				RuleId:  proto.String("int32.gt"),
-				Message: proto.String("value must be greater than 0"),
+				Message: proto.String("must be greater than 0"),
 			}),
 		},
 		"uint64/valid": {
@@ -115,7 +115,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("uint64.gt"),
 				RuleId:  proto.String("uint64.gt"),
-				Message: proto.String("value must be greater than 0"),
+				Message: proto.String("must be greater than 0"),
 			}),
 		},
 		"uint32/valid": {
@@ -132,7 +132,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("uint32.gt"),
 				RuleId:  proto.String("uint32.gt"),
-				Message: proto.String("value must be greater than 0"),
+				Message: proto.String("must be greater than 0"),
 			}),
 		},
 		"bool/valid": {
@@ -149,7 +149,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bool.const"),
 				RuleId:  proto.String("bool.const"),
-				Message: proto.String("value must equal true"),
+				Message: proto.String("must equal true"),
 			}),
 		},
 		"string/valid": {
@@ -166,7 +166,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("string.suffix"),
 				RuleId:  proto.String("string.suffix"),
-				Message: proto.String("value does not have suffix `bar`"),
+				Message: proto.String("does not have suffix `bar`"),
 			}),
 		},
 		"bytes/valid": {
@@ -183,7 +183,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.min_len"),
 				RuleId:  proto.String("bytes.min_len"),
-				Message: proto.String("value length must be at least 3 bytes"),
+				Message: proto.String("must be at least 3 bytes"),
 			}),
 		},
 		"required/string/valid": {
@@ -196,7 +196,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("string.const"),
 				RuleId:  proto.String("string.const"),
-				Message: proto.String("value must equal `bar`"),
+				Message: proto.String("must equal `bar`"),
 			}),
 		},
 		"required/string/empty/invalid": {
@@ -218,7 +218,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("string.const"),
 				RuleId:  proto.String("string.const"),
-				Message: proto.String("value must equal ``"),
+				Message: proto.String("must equal ``"),
 			}),
 		},
 		"required/empty/string/empty/invalid": {
@@ -239,7 +239,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("string.uuid"),
 				RuleId:  proto.String("string.uuid"),
-				Message: proto.String("value must be a valid UUID"),
+				Message: proto.String("must be a valid UUID"),
 			}),
 		},
 		"required/float/valid": {
@@ -252,7 +252,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("float.gt"),
 				RuleId:  proto.String("float.gt"),
-				Message: proto.String("value must be greater than 0"),
+				Message: proto.String("must be greater than 0"),
 			}),
 		},
 		"required/float/empty/invalid": {

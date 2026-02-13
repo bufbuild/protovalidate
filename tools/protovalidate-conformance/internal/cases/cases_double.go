@@ -401,7 +401,7 @@ func doubleSuite() suites.Suite {
 					Field:   results.FieldPath("val"),
 					Rule:    results.FieldPath("double.finite"),
 					RuleId:  proto.String("double.finite"),
-					Message: proto.String("value must be finite"),
+					Message: proto.String("must be finite"),
 				}),
 		},
 		"finite/inf": {
@@ -411,7 +411,7 @@ func doubleSuite() suites.Suite {
 					Field:   results.FieldPath("val"),
 					Rule:    results.FieldPath("double.finite"),
 					RuleId:  proto.String("double.finite"),
-					Message: proto.String("value must be finite")}),
+					Message: proto.String("must be finite")}),
 		},
 		"finite/inf/not_checked": {
 			Message:  &cases.DoubleNotFinite{Val: math.Inf(1)},
@@ -424,7 +424,7 @@ func doubleSuite() suites.Suite {
 					Field:   results.FieldPath("val"),
 					Rule:    results.FieldPath("double.finite"),
 					RuleId:  proto.String("double.finite"),
-					Message: proto.String("value must be finite"),
+					Message: proto.String("must be finite"),
 				},
 			),
 		},

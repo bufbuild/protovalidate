@@ -108,7 +108,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.min_len"),
 				RuleId:  proto.String("bytes.min_len"),
-				Message: proto.String("value length must be at least 3 bytes"),
+				Message: proto.String("must be at least 3 bytes"),
 			}),
 		},
 		"max_len/valid": {
@@ -125,7 +125,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.max_len"),
 				RuleId:  proto.String("bytes.max_len"),
-				Message: proto.String("value must be at most 5 bytes"),
+				Message: proto.String("must be at most 5 bytes"),
 			}),
 		},
 		"min/max_len/valid-01": {
@@ -146,7 +146,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.min_len"),
 				RuleId:  proto.String("bytes.min_len"),
-				Message: proto.String("value length must be at least 3 bytes"),
+				Message: proto.String("must be at least 3 bytes"),
 			}),
 		},
 		"min/max_len/invalid/above": {
@@ -155,7 +155,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.max_len"),
 				RuleId:  proto.String("bytes.max_len"),
-				Message: proto.String("value must be at most 5 bytes"),
+				Message: proto.String("must be at most 5 bytes"),
 			}),
 		},
 		"equal/min_len/max_len/valid": {
@@ -168,7 +168,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.max_len"),
 				RuleId:  proto.String("bytes.max_len"),
-				Message: proto.String("value must be at most 5 bytes"),
+				Message: proto.String("must be at most 5 bytes"),
 			}),
 		},
 		"pattern/valid": {
@@ -181,7 +181,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.pattern"),
 				RuleId:  proto.String("bytes.pattern"),
-				Message: proto.String("value must match regex pattern `^[\\x00-\\x7F]+$`"),
+				Message: proto.String("must match regex pattern `^[\\x00-\\x7F]+$`"),
 			}),
 		},
 		"pattern/invalid/empty": {
@@ -190,7 +190,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.pattern"),
 				RuleId:  proto.String("bytes.pattern"),
-				Message: proto.String("value must match regex pattern `^[\\x00-\\x7F]+$`"),
+				Message: proto.String("must match regex pattern `^[\\x00-\\x7F]+$`"),
 			}),
 		},
 		"pattern/invalid/not_utf8": {
@@ -211,7 +211,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.prefix"),
 				RuleId:  proto.String("bytes.prefix"),
-				Message: proto.String("value does not have prefix 99"),
+				Message: proto.String("does not have prefix 99"),
 			}),
 		},
 		"contains/valid": {
@@ -228,7 +228,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.contains"),
 				RuleId:  proto.String("bytes.contains"),
-				Message: proto.String("value does not contain 626172"),
+				Message: proto.String("does not contain 626172"),
 			}),
 		},
 		"suffix/valid": {
@@ -245,7 +245,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.suffix"),
 				RuleId:  proto.String("bytes.suffix"),
-				Message: proto.String("value does not have suffix 62757a7a"),
+				Message: proto.String("does not have suffix 62757a7a"),
 			}),
 		},
 		"suffix/case_sensitive/invalid": {
@@ -254,7 +254,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.suffix"),
 				RuleId:  proto.String("bytes.suffix"),
-				Message: proto.String("value does not have suffix 62757a7a"),
+				Message: proto.String("does not have suffix 62757a7a"),
 			}),
 		},
 		"IP/valid/v4": {
@@ -271,7 +271,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.ip"),
 				RuleId:  proto.String("bytes.ip"),
-				Message: proto.String("value must be a valid IP address"),
+				Message: proto.String("must be a valid IP address"),
 			}),
 		},
 		"IP/invalid/not_checked": {
@@ -288,7 +288,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.ipv4"),
 				RuleId:  proto.String("bytes.ipv4"),
-				Message: proto.String("value must be a valid IPv4 address"),
+				Message: proto.String("must be a valid IPv4 address"),
 			}),
 		},
 		"IPv4/invalid/not_checked": {
@@ -301,7 +301,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.ipv4"),
 				RuleId:  proto.String("bytes.ipv4"),
-				Message: proto.String("value must be a valid IPv4 address"),
+				Message: proto.String("must be a valid IPv4 address"),
 			}),
 		},
 		"IPv6/valid": {
@@ -314,7 +314,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.ipv6"),
 				RuleId:  proto.String("bytes.ipv6"),
-				Message: proto.String("value must be a valid IPv6 address"),
+				Message: proto.String("must be a valid IPv6 address"),
 			}),
 		},
 		"IPv6/invalid/not_checked": {

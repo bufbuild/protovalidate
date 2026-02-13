@@ -71,7 +71,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.const"),
 				RuleId:  proto.String("duration.const"),
-				Message: proto.String("value must equal 3s"),
+				Message: proto.String("must equal 3s"),
 			}),
 		},
 		"in/valid": {
@@ -93,7 +93,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.in"),
 				RuleId:  proto.String("duration.in"),
-				Message: proto.String(`value must be in list [1s, 0.000001s]`),
+				Message: proto.String(`must be in list [1s, 0.000001s]`),
 			}),
 		},
 		"not in/valid": {
@@ -115,7 +115,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.not_in"),
 				RuleId:  proto.String("duration.not_in"),
-				Message: proto.String(`value must not be in list [0s]`),
+				Message: proto.String(`must not be in list [0s]`),
 			}),
 		},
 		"lt/valid": {
@@ -137,7 +137,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.lt"),
 				RuleId:  proto.String("duration.lt"),
-				Message: proto.String("value must be less than 0s"),
+				Message: proto.String("must be less than 0s"),
 			}),
 		},
 		"lt/invalid": {
@@ -150,7 +150,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.lt"),
 				RuleId:  proto.String("duration.lt"),
-				Message: proto.String("value must be less than 0s"),
+				Message: proto.String("must be less than 0s"),
 			}),
 		},
 		"lte/valid": {
@@ -215,7 +215,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt"),
-				Message: proto.String("value must be greater than 0.000001s"),
+				Message: proto.String("must be greater than 0.000001s"),
 			}),
 		},
 		"gte/valid": {
@@ -245,7 +245,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gte"),
 				RuleId:  proto.String("duration.gte"),
-				Message: proto.String("value must be greater than or equal to 0.001s"),
+				Message: proto.String("must be greater than or equal to 0.001s"),
 			}),
 		},
 		"gt_lt/valid": {
@@ -269,7 +269,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt_lt"),
-				Message: proto.String("value must be greater than 0s and less than 1s"),
+				Message: proto.String("must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/invalid/below": {
@@ -281,7 +281,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt_lt"),
-				Message: proto.String("value must be greater than 0s and less than 1s"),
+				Message: proto.String("must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/invalid/max": {
@@ -294,7 +294,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt_lt"),
-				Message: proto.String("value must be greater than 0s and less than 1s"),
+				Message: proto.String("must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/invalid/min": {
@@ -305,7 +305,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt_lt"),
-				Message: proto.String("value must be greater than 0s and less than 1s"),
+				Message: proto.String("must be greater than 0s and less than 1s"),
 			}),
 		},
 		"gt_lt/exclusive/valid/empty": {
@@ -337,7 +337,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt_lt_exclusive"),
-				Message: proto.String("value must be greater than 1s or less than 0s"),
+				Message: proto.String("must be greater than 1s or less than 0s"),
 			}),
 		},
 		"gt_lt/exclusive/invalid/max": {
@@ -350,7 +350,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt_lt_exclusive"),
-				Message: proto.String("value must be greater than 1s or less than 0s"),
+				Message: proto.String("must be greater than 1s or less than 0s"),
 			}),
 		},
 		"gt_lt/exclusive/invalid/min": {
@@ -361,7 +361,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gt"),
 				RuleId:  proto.String("duration.gt_lt_exclusive"),
-				Message: proto.String("value must be greater than 1s or less than 0s"),
+				Message: proto.String("must be greater than 1s or less than 0s"),
 			}),
 		},
 		"gte_lte/valid": {
@@ -398,7 +398,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gte"),
 				RuleId:  proto.String("duration.gte_lte"),
-				Message: proto.String("value must be greater than or equal to 60s and less than or equal to 3600s"),
+				Message: proto.String("must be greater than or equal to 60s and less than or equal to 3600s"),
 			}),
 		},
 		"gte_lte/invalid/below": {
@@ -411,7 +411,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gte"),
 				RuleId:  proto.String("duration.gte_lte"),
-				Message: proto.String("value must be greater than or equal to 60s and less than or equal to 3600s"),
+				Message: proto.String("must be greater than or equal to 60s and less than or equal to 3600s"),
 			}),
 		},
 		"Ex gte_lte/valid/empty": {
@@ -455,7 +455,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("duration.gte"),
 				RuleId:  proto.String("duration.gte_lte_exclusive"),
-				Message: proto.String("value must be greater than or equal to 3600s or less than or equal to 60s"),
+				Message: proto.String("must be greater than or equal to 3600s or less than or equal to 60s"),
 			}),
 		},
 		"fields_with_other_fields/invalid_other_field": {
@@ -464,7 +464,7 @@ func durationSuite() suites.Suite {
 				Field:   results.FieldPath("int_val"),
 				Rule:    results.FieldPath("int32.gt"),
 				RuleId:  proto.String("int32.gt"),
-				Message: proto.String("value must be greater than 16"),
+				Message: proto.String("must be greater than 16"),
 			}),
 		},
 		"example/valid": {
