@@ -8454,7 +8454,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1aZthis != getField(rules, 'const') ? 'must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xdb?\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xcf?\n" +
 	"\vStringRules\x12\x87\x01\n" +
 	"\x05const\x18\x01 \x01(\tBq\xc2Hn\n" +
 	"l\n" +
@@ -8590,15 +8590,15 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"|\n" +
 	"\vstring.ulid\x12\x14must be a valid ULID\x1aW!rules.ulid || this == '' || this.matches('^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$')\n" +
 	"Y\n" +
-	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xe7\x02\n" +
-	"\fprotobuf_fqn\x18% \x01(\bB\xc1\x02\xc2H\xbd\x02\n" +
-	"\xb5\x01\n" +
-	"\x13string.protobuf_fqn\x123value must be a valid fully-qualified Protobuf name\x1ai!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
+	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xe1\x02\n" +
+	"\fprotobuf_fqn\x18% \x01(\bB\xbb\x02\xc2H\xb7\x02\n" +
+	"\xaf\x01\n" +
+	"\x13string.protobuf_fqn\x12-must be a valid fully-qualified Protobuf name\x1ai!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
 	"\x82\x01\n" +
-	"\x19string.protobuf_fqn_empty\x12Bvalue is empty, which is not a valid fully-qualified Protobuf name\x1a!!rules.protobuf_fqn || this != ''H\x00R\vprotobufFqn\x12\xa7\x03\n" +
-	"\x10protobuf_dot_fqn\x18& \x01(\bB\xfa\x02\xc2H\xf6\x02\n" +
-	"\xd3\x01\n" +
-	"\x17string.protobuf_dot_fqn\x12Fvalue must be a valid fully-qualified Protobuf name with a leading dot\x1ap!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
+	"\x19string.protobuf_fqn_empty\x12Bvalue is empty, which is not a valid fully-qualified Protobuf name\x1a!!rules.protobuf_fqn || this != ''H\x00R\vprotobufFqn\x12\xa1\x03\n" +
+	"\x10protobuf_dot_fqn\x18& \x01(\bB\xf4\x02\xc2H\xf0\x02\n" +
+	"\xcd\x01\n" +
+	"\x17string.protobuf_dot_fqn\x12@must be a valid fully-qualified Protobuf name with a leading dot\x1ap!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
 	"\x9d\x01\n" +
 	"\x1dstring.protobuf_dot_fqn_empty\x12Uvalue is empty, which is not a valid fully-qualified Protobuf name with a leading dot\x1a%!rules.protobuf_dot_fqn || this != ''H\x00R\x0eprotobufDotFqn\x12\xac\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xe5\x04\xc2H\xe1\x04\n" +
