@@ -1459,7 +1459,7 @@ type isFloatRules_GreaterThan interface {
 type FloatRules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -1483,7 +1483,7 @@ type FloatRules_Gt struct {
 type FloatRules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -1745,7 +1745,7 @@ type isDoubleRules_GreaterThan interface {
 type DoubleRules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or `lte`,
-	// the range is reversed, and the field must be outside the specified
+	// the range is reversed, and the field value must be outside the specified
 	// range. If the field value doesn't meet the required conditions, an error
 	// message is generated.
 	//
@@ -1769,7 +1769,7 @@ type DoubleRules_Gt struct {
 type DoubleRules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2021,7 +2021,7 @@ type isInt32Rules_GreaterThan interface {
 type Int32Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2045,7 +2045,7 @@ type Int32Rules_Gt struct {
 type Int32Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified value
 	// (exclusive). If the value of `gte` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2297,7 +2297,7 @@ type isInt64Rules_GreaterThan interface {
 type Int64Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2321,7 +2321,7 @@ type Int64Rules_Gt struct {
 type Int64Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2573,7 +2573,7 @@ type isUInt32Rules_GreaterThan interface {
 type UInt32Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2597,7 +2597,7 @@ type UInt32Rules_Gt struct {
 type UInt32Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2849,7 +2849,7 @@ type isUInt64Rules_GreaterThan interface {
 type UInt64Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -2873,7 +2873,7 @@ type UInt64Rules_Gt struct {
 type UInt64Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3124,7 +3124,7 @@ type isSInt32Rules_GreaterThan interface {
 type SInt32Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3148,7 +3148,7 @@ type SInt32Rules_Gt struct {
 type SInt32Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3399,7 +3399,7 @@ type isSInt64Rules_GreaterThan interface {
 type SInt64Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3423,7 +3423,7 @@ type SInt64Rules_Gt struct {
 type SInt64Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3674,7 +3674,7 @@ type isFixed32Rules_GreaterThan interface {
 type Fixed32Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3698,7 +3698,7 @@ type Fixed32Rules_Gt struct {
 type Fixed32Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3949,7 +3949,7 @@ type isFixed64Rules_GreaterThan interface {
 type Fixed64Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -3973,7 +3973,7 @@ type Fixed64Rules_Gt struct {
 type Fixed64Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -4224,7 +4224,7 @@ type isSFixed32Rules_GreaterThan interface {
 type SFixed32Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -4248,7 +4248,7 @@ type SFixed32Rules_Gt struct {
 type SFixed32Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -4499,7 +4499,7 @@ type isSFixed64Rules_GreaterThan interface {
 type SFixed64Rules_Gt struct {
 	// `gt` requires the field value to be greater than the specified value
 	// (exclusive). If the value of `gt` is larger than a specified `lt` or
-	// `lte`, the range is reversed, and the field must be outside the
+	// `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -4523,7 +4523,7 @@ type SFixed64Rules_Gt struct {
 type SFixed64Rules_Gte struct {
 	// `gte` requires the field value to be greater than or equal to the specified
 	// value (exclusive). If the value of `gte` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -4792,7 +4792,7 @@ type StringRules struct {
 	//
 	// ```
 	NotContains *string `protobuf:"bytes,23,opt,name=not_contains,json=notContains" json:"not_contains,omitempty"`
-	// `in` specifies that the field must be equal to one of the specified
+	// `in` specifies that the field value must be equal to one of the specified
 	// values. If the field value isn't one of the specified values, an error
 	// message will be generated.
 	//
@@ -5222,7 +5222,7 @@ type isStringRules_WellKnown interface {
 }
 
 type StringRules_Email struct {
-	// `email` specifies that the field must be a valid email address, for
+	// `email` specifies that the field value must be a valid email address, for
 	// example "foo@example.com".
 	//
 	// Conforms to the definition for a valid email address from the [HTML standard](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address).
@@ -5244,7 +5244,7 @@ type StringRules_Email struct {
 }
 
 type StringRules_Hostname struct {
-	// `hostname` specifies that the field must be a valid hostname, for
+	// `hostname` specifies that the field value must be a valid hostname, for
 	// example "foo.example.com".
 	//
 	// A valid hostname follows the rules below:
@@ -5269,7 +5269,7 @@ type StringRules_Hostname struct {
 }
 
 type StringRules_Ip struct {
-	// `ip` specifies that the field must be a valid IP (v4 or v6) address.
+	// `ip` specifies that the field value must be a valid IP (v4 or v6) address.
 	//
 	// IPv4 addresses are expected in the dotted decimal format—for example, "192.168.5.21".
 	// IPv6 addresses are expected in their text representation—for example, "::1",
@@ -5293,7 +5293,7 @@ type StringRules_Ip struct {
 }
 
 type StringRules_Ipv4 struct {
-	// `ipv4` specifies that the field must be a valid IPv4 address—for
+	// `ipv4` specifies that the field value must be a valid IPv4 address—for
 	// example "192.168.5.21". If the field value isn't a valid IPv4 address, an
 	// error message will be generated.
 	//
@@ -5309,7 +5309,7 @@ type StringRules_Ipv4 struct {
 }
 
 type StringRules_Ipv6 struct {
-	// `ipv6` specifies that the field must be a valid IPv6 address—for
+	// `ipv6` specifies that the field value must be a valid IPv6 address—for
 	// example "::1", or "d7a:115c:a1e0:ab12:4843:cd96:626b:430b". If the field
 	// value is not a valid IPv6 address, an error message will be generated.
 	//
@@ -5325,7 +5325,7 @@ type StringRules_Ipv6 struct {
 }
 
 type StringRules_Uri struct {
-	// `uri` specifies that the field must be a valid URI, for example
+	// `uri` specifies that the field value must be a valid URI, for example
 	// "https://example.com/foo/bar?baz=quux#frag".
 	//
 	// URI is defined in the internet standard [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
@@ -5345,7 +5345,7 @@ type StringRules_Uri struct {
 }
 
 type StringRules_UriRef struct {
-	// `uri_ref` specifies that the field must be a valid URI Reference—either
+	// `uri_ref` specifies that the field value must be a valid URI Reference—either
 	// a URI such as "https://example.com/foo/bar?baz=quux#frag", or a Relative
 	// Reference such as "./foo/bar?query".
 	//
@@ -5368,7 +5368,7 @@ type StringRules_UriRef struct {
 }
 
 type StringRules_Address struct {
-	// `address` specifies that the field must be either a valid hostname
+	// `address` specifies that the field value must be either a valid hostname
 	// (for example, "example.com"), or a valid IP (v4 or v6) address (for example,
 	// "192.168.0.1", or "::1"). If the field value isn't a valid hostname or IP,
 	// an error message will be generated.
@@ -5385,7 +5385,7 @@ type StringRules_Address struct {
 }
 
 type StringRules_Uuid struct {
-	// `uuid` specifies that the field must be a valid UUID as defined by
+	// `uuid` specifies that the field value must be a valid UUID as defined by
 	// [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2). If the
 	// field value isn't a valid UUID, an error message will be generated.
 	//
@@ -5401,7 +5401,7 @@ type StringRules_Uuid struct {
 }
 
 type StringRules_Tuuid struct {
-	// `tuuid` (trimmed UUID) specifies that the field must be a valid UUID as
+	// `tuuid` (trimmed UUID) specifies that the field value must be a valid UUID as
 	// defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2) with all dashes
 	// omitted. If the field value isn't a valid UUID without dashes, an error message
 	// will be generated.
@@ -5418,7 +5418,7 @@ type StringRules_Tuuid struct {
 }
 
 type StringRules_IpWithPrefixlen struct {
-	// `ip_with_prefixlen` specifies that the field must be a valid IP
+	// `ip_with_prefixlen` specifies that the field value must be a valid IP
 	// (v4 or v6) address with prefix length—for example, "192.168.5.21/16" or
 	// "2001:0DB8:ABCD:0012::F1/64". If the field value isn't a valid IP with
 	// prefix length, an error message will be generated.
@@ -5435,7 +5435,7 @@ type StringRules_IpWithPrefixlen struct {
 }
 
 type StringRules_Ipv4WithPrefixlen struct {
-	// `ipv4_with_prefixlen` specifies that the field must be a valid
+	// `ipv4_with_prefixlen` specifies that the field value must be a valid
 	// IPv4 address with prefix length—for example, "192.168.5.21/16". If the
 	// field value isn't a valid IPv4 address with prefix length, an error
 	// message will be generated.
@@ -5452,7 +5452,7 @@ type StringRules_Ipv4WithPrefixlen struct {
 }
 
 type StringRules_Ipv6WithPrefixlen struct {
-	// `ipv6_with_prefixlen` specifies that the field must be a valid
+	// `ipv6_with_prefixlen` specifies that the field value must be a valid
 	// IPv6 address with prefix length—for example, "2001:0DB8:ABCD:0012::F1/64".
 	// If the field value is not a valid IPv6 address with prefix length,
 	// an error message will be generated.
@@ -5469,7 +5469,7 @@ type StringRules_Ipv6WithPrefixlen struct {
 }
 
 type StringRules_IpPrefix struct {
-	// `ip_prefix` specifies that the field must be a valid IP (v4 or v6)
+	// `ip_prefix` specifies that the field value must be a valid IP (v4 or v6)
 	// prefix—for example, "192.168.0.0/16" or "2001:0DB8:ABCD:0012::0/64".
 	//
 	// The prefix must have all zeros for the unmasked bits. For example,
@@ -5491,7 +5491,7 @@ type StringRules_IpPrefix struct {
 }
 
 type StringRules_Ipv4Prefix struct {
-	// `ipv4_prefix` specifies that the field must be a valid IPv4
+	// `ipv4_prefix` specifies that the field value must be a valid IPv4
 	// prefix, for example "192.168.0.0/16".
 	//
 	// The prefix must have all zeros for the unmasked bits. For example,
@@ -5513,7 +5513,7 @@ type StringRules_Ipv4Prefix struct {
 }
 
 type StringRules_Ipv6Prefix struct {
-	// `ipv6_prefix` specifies that the field must be a valid IPv6 prefix—for
+	// `ipv6_prefix` specifies that the field value must be a valid IPv6 prefix—for
 	// example, "2001:0DB8:ABCD:0012::0/64".
 	//
 	// The prefix must have all zeros for the unmasked bits. For example,
@@ -5535,7 +5535,7 @@ type StringRules_Ipv6Prefix struct {
 }
 
 type StringRules_HostAndPort struct {
-	// `host_and_port` specifies that the field must be valid host/port
+	// `host_and_port` specifies that the field value must be a valid host/port
 	// pair—for example, "example.com:8080".
 	//
 	// The host can be one of:
@@ -5549,7 +5549,7 @@ type StringRules_HostAndPort struct {
 }
 
 type StringRules_Ulid struct {
-	// `ulid` specifies that the field must be a valid ULID (Universally Unique
+	// `ulid` specifies that the field value must be a valid ULID (Universally Unique
 	// Lexicographically Sortable Identifier) as defined by the [ULID specification](https://github.com/ulid/spec).
 	// If the field value isn't a valid ULID, an error message will be generated.
 	//
@@ -6056,11 +6056,10 @@ type BytesRules_Ipv6 struct {
 }
 
 type BytesRules_Uuid struct {
-	// `uuid` ensures that the field `value` encodes the 128-bit UUID data as
-	// defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
-	// The field must contain exactly 16 bytes
-	// representing the UUID. If the field value isn't a valid UUID, an error
-	// message will be generated.
+	// `uuid` ensures that the field value encodes 128-bit UUID data as defined
+	// by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
+	// The field must contain exactly 16 bytes representing the UUID. If the
+	// field value isn't a valid UUID, an error message will be generated.
 	//
 	// ```proto
 	//
@@ -6809,7 +6808,7 @@ type isDurationRules_GreaterThan interface {
 type DurationRules_Gt struct {
 	// `gt` requires the duration field value to be greater than the specified
 	// value (exclusive). If the value of `gt` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
@@ -7223,7 +7222,7 @@ type isTimestampRules_GreaterThan interface {
 type TimestampRules_Gt struct {
 	// `gt` requires the timestamp field value to be greater than the specified
 	// value (exclusive). If the value of `gt` is larger than a specified `lt`
-	// or `lte`, the range is reversed, and the field must be outside the
+	// or `lte`, the range is reversed, and the field value must be outside the
 	// specified range. If the field value doesn't meet the required conditions,
 	// an error message is generated.
 	//
