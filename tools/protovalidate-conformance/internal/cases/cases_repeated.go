@@ -465,7 +465,7 @@ func repeatedSuite() suites.Suite {
 					Field:   results.FieldPath("val[0]"),
 					Rule:    results.FieldPath("repeated.items.duration.gte"),
 					RuleId:  proto.String("duration.gte"),
-					Message: proto.String("value must be greater than or equal to 0.001s"),
+					Message: proto.String("must be greater than or equal to 0.001s"),
 				},
 			),
 		},
