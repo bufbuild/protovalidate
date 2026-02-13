@@ -1,4 +1,4 @@
-// Copyright 2023-2025 Buf Technologies, Inc.
+// Copyright 2023-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ func fieldMaskSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("field_mask.const"),
 				RuleId:  proto.String("field_mask.const"),
-				Message: proto.String("value must equal a"),
+				Message: proto.String("value must equal paths [a]"),
 			}),
 		},
 		"in/valid": {

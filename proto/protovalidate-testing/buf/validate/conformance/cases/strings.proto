@@ -1,4 +1,4 @@
-// Copyright 2023-2025 Buf Technologies, Inc.
+// Copyright 2023-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -254,6 +254,14 @@ message StringHostAndOptionalPort {
     message: "value must be a host and (optional) port pair"
     expression: "this.isHostAndPort(false)"
   }];
+}
+
+message StringProtobufFQN {
+  string val = 1 [(buf.validate.field).string.protobuf_fqn = true];
+}
+
+message StringProtobufDotFQN {
+  string val = 1 [(buf.validate.field).string.protobuf_dot_fqn = true];
 }
 
 message StringExample {

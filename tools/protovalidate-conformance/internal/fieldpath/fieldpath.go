@@ -1,4 +1,4 @@
-// Copyright 2023-2025 Buf Technologies, Inc.
+// Copyright 2023-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -83,15 +83,22 @@ func Unmarshal(
 			}
 			descriptor = extension.TypeDescriptor()
 		} else {
-			descriptor = message.Fields().ByTextName(name)
+			descriptor = message.Fields().ByName(protoreflect.Name(name))
 			oneOf = message.Oneofs().ByName(protoreflect.Name(name))
 		}
 		var element *validate.FieldPathElement
 		switch {
-		case descriptor != nil:
+		case isExt:
+
 			element = &validate.FieldPathElement{
 				FieldNumber: proto.Int32(int32(descriptor.Number())),
 				FieldName:   proto.String(descriptor.TextName()),
+				FieldType:   descriptorpb.FieldDescriptorProto_Type(descriptor.Kind()).Enum(),
+			}
+		case descriptor != nil:
+			element = &validate.FieldPathElement{
+				FieldNumber: proto.Int32(int32(descriptor.Number())),
+				FieldName:   proto.String(string(descriptor.Name())),
 				FieldType:   descriptorpb.FieldDescriptorProto_Type(descriptor.Kind()).Enum(),
 			}
 		case oneOf != nil:

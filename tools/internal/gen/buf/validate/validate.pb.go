@@ -1,4 +1,4 @@
-// Copyright 2023-2025 Buf Technologies, Inc.
+// Copyright 2023-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,35 @@
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
 // source: buf/validate/validate.proto
+
+// [Protovalidate](https://protovalidate.com/) is the semantic validation library for Protobuf.
+// It provides standard annotations to validate common rules on messages and fields, as well as the ability to use [CEL](https://cel.dev) to write custom rules.
+// It's the next generation of [protoc-gen-validate](https://github.com/bufbuild/protoc-gen-validate).
+//
+// This package provides the options, messages, and enums that power Protovalidate.
+// Apply its options to messages, fields, and oneofs in your Protobuf schemas to add validation rules:
+//
+// ```proto
+// message User {
+//   string id = 1 [(buf.validate.field).string.uuid = true];
+//   string first_name = 2 [(buf.validate.field).string.max_len = 64];
+//   string last_name = 3 [(buf.validate.field).string.max_len = 64];
+//
+//   option (buf.validate.message).cel = {
+//     id: "first_name_requires_last_name"
+//     message: "last_name must be present if first_name is present"
+//     expression: "!has(this.first_name) || has(this.last_name)"
+//   };
+// }
+// ```
+//
+// These rules are enforced at runtime by language-specific libraries.
+// See the [developer quickstart](https://protovalidate.com/quickstart/) to get started, or go directly to the runtime library for your language:
+// [Go](https://github.com/bufbuild/protovalidate-go)
+// [JavaScript/TypeScript](https://github.com/bufbuild/protovalidate-es),
+// [Java](https://github.com/bufbuild/protovalidate-java),
+// [Python](https://github.com/bufbuild/protovalidate-python),
+// or [C++](https://github.com/bufbuild/protovalidate-cc).
 
 package validate
 
@@ -336,6 +365,27 @@ func (x *Rule) GetExpression() string {
 // It includes disabling options and a list of Rule messages representing Common Expression Language (CEL) validation rules.
 type MessageRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// `cel_expression` is a repeated field CEL expressions. Each expression specifies a validation
+	// rule to be applied to this message. These rules are written in Common Expression Language (CEL) syntax.
+	//
+	// This is a simplified form of the `cel` Rule field, where only `expression` is set. This allows for
+	// simpler syntax when defining CEL Rules where `id` and `message` derived from the `expression`. `id` will
+	// be same as the `expression`.
+	//
+	// For more information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
+	//
+	// ```proto
+	//
+	//	message MyMessage {
+	//	  // The field `foo` must be greater than 42.
+	//	  option (buf.validate.message).cel_expression = "this.foo > 42";
+	//	  // The field `foo` must be less than 84.
+	//	  option (buf.validate.message).cel_expression = "this.foo < 84";
+	//	  optional int32 foo = 1;
+	//	}
+	//
+	// ```
+	CelExpression []string `protobuf:"bytes,5,rep,name=cel_expression,json=celExpression" json:"cel_expression,omitempty"`
 	// `cel` is a repeated field of type Rule. Each Rule specifies a validation rule to be applied to this message.
 	// These rules are written in Common Expression Language (CEL) syntax. For more information,
 	// [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
@@ -423,6 +473,13 @@ func (x *MessageRules) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MessageRules.ProtoReflect.Descriptor instead.
 func (*MessageRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *MessageRules) GetCelExpression() []string {
+	if x != nil {
+		return x.CelExpression
+	}
+	return nil
 }
 
 func (x *MessageRules) GetCel() []*Rule {
@@ -563,6 +620,24 @@ func (x *OneofRules) GetRequired() bool {
 // the field, the correct set should be used to ensure proper validations.
 type FieldRules struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// `cel_expression` is a repeated field CEL expressions. Each expression specifies a validation
+	// rule to be applied to this message. These rules are written in Common Expression Language (CEL) syntax.
+	//
+	// This is a simplified form of the `cel` Rule field, where only `expression` is set. This allows for
+	// simpler syntax when defining CEL Rules where `id` and `message` derived from the `expression`. `id` will
+	// be same as the `expression`.
+	//
+	// For more information, [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
+	//
+	// ```proto
+	//
+	//	message MyMessage {
+	//	  // The field `value` must be greater than 42.
+	//	  optional int32 value = 1 [(buf.validate.field).cel_expression = "this > 42"];
+	//	}
+	//
+	// ```
+	CelExpression []string `protobuf:"bytes,29,rep,name=cel_expression,json=celExpression" json:"cel_expression,omitempty"`
 	// `cel` is a repeated field used to represent a textual expression
 	// in the Common Expression Language (CEL) syntax. For more information,
 	// [see our documentation](https://buf.build/docs/protovalidate/schemas/custom-rules/).
@@ -711,6 +786,13 @@ func (x *FieldRules) ProtoReflect() protoreflect.Message {
 // Deprecated: Use FieldRules.ProtoReflect.Descriptor instead.
 func (*FieldRules) Descriptor() ([]byte, []int) {
 	return file_buf_validate_validate_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FieldRules) GetCelExpression() []string {
+	if x != nil {
+		return x.CelExpression
+	}
+	return nil
 }
 
 func (x *FieldRules) GetCel() []*Rule {
@@ -4758,6 +4840,8 @@ type StringRules struct {
 	//	*StringRules_Ipv6Prefix
 	//	*StringRules_HostAndPort
 	//	*StringRules_Ulid
+	//	*StringRules_ProtobufFqn
+	//	*StringRules_ProtobufDotFqn
 	//	*StringRules_WellKnownRegex
 	WellKnown isStringRules_WellKnown `protobuf_oneof:"well_known"`
 	// This applies to regexes `HTTP_HEADER_NAME` and `HTTP_HEADER_VALUE` to
@@ -5087,6 +5171,24 @@ func (x *StringRules) GetUlid() bool {
 	if x != nil {
 		if x, ok := x.WellKnown.(*StringRules_Ulid); ok {
 			return x.Ulid
+		}
+	}
+	return false
+}
+
+func (x *StringRules) GetProtobufFqn() bool {
+	if x != nil {
+		if x, ok := x.WellKnown.(*StringRules_ProtobufFqn); ok {
+			return x.ProtobufFqn
+		}
+	}
+	return false
+}
+
+func (x *StringRules) GetProtobufDotFqn() bool {
+	if x != nil {
+		if x, ok := x.WellKnown.(*StringRules_ProtobufDotFqn); ok {
+			return x.ProtobufDotFqn
 		}
 	}
 	return false
@@ -5462,6 +5564,66 @@ type StringRules_Ulid struct {
 	Ulid bool `protobuf:"varint,35,opt,name=ulid,oneof"`
 }
 
+type StringRules_ProtobufFqn struct {
+	// `protobuf_fqn` specifies that the field value must be a valid fully-qualified
+	// Protobuf name as defined by the [Protobuf Language Specification](https://protobuf.com/docs/language-spec).
+	//
+	// A fully-qualified Protobuf name is a dot-separated list of Protobuf identifiers,
+	// where each identifier starts with a letter or underscore and is followed by zero or
+	// more letters, underscores, or digits.
+	//
+	// Examples: "buf.validate", "google.protobuf.Timestamp", "my_package.MyMessage".
+	//
+	// Note: historically, fully-qualified Protobuf names were represented with a leading
+	// dot (for example, ".buf.validate.StringRules"). Modern Protobuf does not use the
+	// leading dot, and most fully-qualified names are represented without it. Use
+	// `protobuf_dot_fqn` if a leading dot is required.
+	//
+	// If the field value isn't a valid fully-qualified Protobuf name, an error message
+	// will be generated.
+	//
+	// ```proto
+	//
+	//	message MyString {
+	//	  // value must be a valid fully-qualified Protobuf name
+	//	  string value = 1 [(buf.validate.field).string.protobuf_fqn = true];
+	//	}
+	//
+	// ```
+	ProtobufFqn bool `protobuf:"varint,37,opt,name=protobuf_fqn,json=protobufFqn,oneof"`
+}
+
+type StringRules_ProtobufDotFqn struct {
+	// `protobuf_dot_fqn` specifies that the field value must be a valid fully-qualified
+	// Protobuf name with a leading dot, as defined by the
+	// [Protobuf Language Specification](https://protobuf.com/docs/language-spec).
+	//
+	// A fully-qualified Protobuf name with a leading dot is a dot followed by a
+	// dot-separated list of Protobuf identifiers, where each identifier starts with a
+	// letter or underscore and is followed by zero or more letters, underscores, or
+	// digits.
+	//
+	// Examples: ".buf.validate", ".google.protobuf.Timestamp", ".my_package.MyMessage".
+	//
+	// Note: this is the historical representation of fully-qualified Protobuf names,
+	// where a leading dot denotes an absolute reference. Modern Protobuf does not use
+	// the leading dot, and most fully-qualified names are represented without it. Most
+	// users will want to use `protobuf_fqn` instead.
+	//
+	// If the field value isn't a valid fully-qualified Protobuf name with a leading dot,
+	// an error message will be generated.
+	//
+	// ```proto
+	//
+	//	message MyString {
+	//	  // value must be a valid fully-qualified Protobuf name with a leading dot
+	//	  string value = 1 [(buf.validate.field).string.protobuf_dot_fqn = true];
+	//	}
+	//
+	// ```
+	ProtobufDotFqn bool `protobuf:"varint,38,opt,name=protobuf_dot_fqn,json=protobufDotFqn,oneof"`
+}
+
 type StringRules_WellKnownRegex struct {
 	// `well_known_regex` specifies a common well-known pattern
 	// defined as a regex. If the field value doesn't match the well-known
@@ -5523,6 +5685,10 @@ func (*StringRules_Ipv6Prefix) isStringRules_WellKnown() {}
 func (*StringRules_HostAndPort) isStringRules_WellKnown() {}
 
 func (*StringRules_Ulid) isStringRules_WellKnown() {}
+
+func (*StringRules_ProtobufFqn) isStringRules_WellKnown() {}
+
+func (*StringRules_ProtobufDotFqn) isStringRules_WellKnown() {}
 
 func (*StringRules_WellKnownRegex) isStringRules_WellKnown() {}
 
@@ -7696,8 +7862,9 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
 	"\n" +
 	"expression\x18\x03 \x01(\tR\n" +
-	"expression\"z\n" +
-	"\fMessageRules\x12$\n" +
+	"expression\"\xa1\x01\n" +
+	"\fMessageRules\x12%\n" +
+	"\x0ecel_expression\x18\x05 \x03(\tR\rcelExpression\x12$\n" +
 	"\x03cel\x18\x03 \x03(\v2\x12.buf.validate.RuleR\x03cel\x124\n" +
 	"\x05oneof\x18\x04 \x03(\v2\x1e.buf.validate.MessageOneofRuleR\x05oneofJ\x04\b\x01\x10\x02R\bdisabled\"F\n" +
 	"\x10MessageOneofRule\x12\x16\n" +
@@ -7705,10 +7872,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\brequired\x18\x02 \x01(\bR\brequired\"(\n" +
 	"\n" +
 	"OneofRules\x12\x1a\n" +
-	"\brequired\x18\x01 \x01(\bR\brequired\"\xbc\n" +
+	"\brequired\x18\x01 \x01(\bR\brequired\"\xe3\n" +
 	"\n" +
 	"\n" +
-	"FieldRules\x12$\n" +
+	"FieldRules\x12%\n" +
+	"\x0ecel_expression\x18\x1d \x03(\tR\rcelExpression\x12$\n" +
 	"\x03cel\x18\x17 \x03(\v2\x12.buf.validate.RuleR\x03cel\x12\x1a\n" +
 	"\brequired\x18\x19 \x01(\bR\brequired\x12,\n" +
 	"\x06ignore\x18\x1b \x01(\x0e2\x14.buf.validate.IgnoreR\x06ignore\x120\n" +
@@ -8287,7 +8455,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1aZthis != getField(rules, 'const') ? 'must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xc79\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xdb?\n" +
 	"\vStringRules\x12\x87\x01\n" +
 	"\x05const\x18\x01 \x01(\tBq\xc2Hn\n" +
 	"l\n" +
@@ -8423,7 +8591,17 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"|\n" +
 	"\vstring.ulid\x12\x14must be a valid ULID\x1aW!rules.ulid || this == '' || this.matches('^[0-7][0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{25}$')\n" +
 	"Y\n" +
-	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xac\x05\n" +
+	"\x11string.ulid_empty\x12)value is empty, which is not a valid ULID\x1a\x19!rules.ulid || this != ''H\x00R\x04ulid\x12\xe7\x02\n" +
+	"\fprotobuf_fqn\x18% \x01(\bB\xc1\x02\xc2H\xbd\x02\n" +
+	"\xb5\x01\n" +
+	"\x13string.protobuf_fqn\x123value must be a valid fully-qualified Protobuf name\x1ai!rules.protobuf_fqn || this == '' || this.matches('^[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
+	"\x82\x01\n" +
+	"\x19string.protobuf_fqn_empty\x12Bvalue is empty, which is not a valid fully-qualified Protobuf name\x1a!!rules.protobuf_fqn || this != ''H\x00R\vprotobufFqn\x12\xa7\x03\n" +
+	"\x10protobuf_dot_fqn\x18& \x01(\bB\xfa\x02\xc2H\xf6\x02\n" +
+	"\xd3\x01\n" +
+	"\x17string.protobuf_dot_fqn\x12Fvalue must be a valid fully-qualified Protobuf name with a leading dot\x1ap!rules.protobuf_dot_fqn || this == '' || this.matches('^\\\\.[A-Za-z_][A-Za-z_0-9]*(\\\\.[A-Za-z_][A-Za-z_0-9]*)*$')\n" +
+	"\x9d\x01\n" +
+	"\x1dstring.protobuf_dot_fqn_empty\x12Uvalue is empty, which is not a valid fully-qualified Protobuf name with a leading dot\x1a%!rules.protobuf_dot_fqn || this != ''H\x00R\x0eprotobufDotFqn\x12\xac\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xe5\x04\xc2H\xe1\x04\n" +
 	"\xea\x01\n" +
 	"#string.well_known_regex.header_name\x12 must be a valid HTTP header name\x1a\xa0\x01rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :'^[^\\u0000\\u000A\\u000D]+$')\n" +
@@ -8578,11 +8756,11 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x18\n" +
 	"\x10duration.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02B\v\n" +
 	"\tless_thanB\x0e\n" +
-	"\fgreater_than\"\xeb\x05\n" +
-	"\x0eFieldMaskRules\x12\xa5\x01\n" +
-	"\x05const\x18\x01 \x01(\v2\x1a.google.protobuf.FieldMaskBs\xc2Hp\n" +
-	"n\n" +
-	"\x10field_mask.const\x1aZthis != getField(rules, 'const') ? 'must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x12\xd7\x01\n" +
+	"\fgreater_than\"\x86\x06\n" +
+	"\x0eFieldMaskRules\x12\xc0\x01\n" +
+	"\x05const\x18\x01 \x01(\v2\x1a.google.protobuf.FieldMaskB\x8d\x01\xc2H\x89\x01\n" +
+	"\x86\x01\n" +
+	"\x10field_mask.const\x1arthis.paths != getField(rules, 'const').paths ? 'must equal paths %s'.format([getField(rules, 'const').paths]) : ''R\x05const\x12\xd7\x01\n" +
 	"\x02in\x18\x02 \x03(\tB\xc6\x01\xc2H\xc2\x01\n" +
 	"\xbf\x01\n" +
 	"\rfield_mask.in\x1a\xad\x01!this.paths.all(p, p in getField(rules, 'in') || getField(rules, 'in').exists(f, p.startsWith(f+'.'))) ? 'must only contain paths in %s'.format([getField(rules, 'in')]) : ''R\x02in\x12\xf4\x01\n" +
@@ -8935,6 +9113,8 @@ func file_buf_validate_validate_proto_init() {
 		(*StringRules_Ipv6Prefix)(nil),
 		(*StringRules_HostAndPort)(nil),
 		(*StringRules_Ulid)(nil),
+		(*StringRules_ProtobufFqn)(nil),
+		(*StringRules_ProtobufDotFqn)(nil),
 		(*StringRules_WellKnownRegex)(nil),
 	}
 	file_buf_validate_validate_proto_msgTypes[20].OneofWrappers = []any{
