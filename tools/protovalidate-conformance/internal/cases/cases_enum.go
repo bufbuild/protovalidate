@@ -74,7 +74,7 @@ func enumSuite() suites.Suite {
 					Field:   results.FieldPath("val"),
 					Rule:    results.FieldPath("enum.defined_only"),
 					RuleId:  proto.String("enum.defined_only"),
-					Message: proto.String("must be one of the defined enum values"),
+					Message: proto.String("value must be one of the defined enum values"),
 				},
 			),
 		},

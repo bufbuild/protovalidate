@@ -108,7 +108,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.min_len"),
 				RuleId:  proto.String("bytes.min_len"),
-				Message: proto.String("length must be at least 3 bytes"),
+				Message: proto.String("must be at least 3 bytes"),
 			}),
 		},
 		"max_len/valid": {
@@ -146,7 +146,7 @@ func bytesSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.min_len"),
 				RuleId:  proto.String("bytes.min_len"),
-				Message: proto.String("length must be at least 3 bytes"),
+				Message: proto.String("must be at least 3 bytes"),
 			}),
 		},
 		"min/max_len/invalid/above": {

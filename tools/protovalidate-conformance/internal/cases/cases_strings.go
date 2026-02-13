@@ -99,7 +99,7 @@ func stringSuite() suites.Suite {
 					Field:   results.FieldPath("val"),
 					Rule:    results.FieldPath("string.len"),
 					RuleId:  proto.String("string.len"),
-					Message: proto.String("value length must be 3 characters"),
+					Message: proto.String("must be 3 characters"),
 				}),
 		},
 		"min_len/valid/equal": {

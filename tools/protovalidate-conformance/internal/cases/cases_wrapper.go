@@ -183,7 +183,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("bytes.min_len"),
 				RuleId:  proto.String("bytes.min_len"),
-				Message: proto.String("value length must be at least 3 bytes"),
+				Message: proto.String("must be at least 3 bytes"),
 			}),
 		},
 		"required/string/valid": {
