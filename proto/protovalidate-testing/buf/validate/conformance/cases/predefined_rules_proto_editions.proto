@@ -41,7 +41,7 @@ extend buf.validate.Int32Rules {
   repeated int32 int32_abs_in_edition_2023 = 1162 [(buf.validate.predefined).cel = {
     id: "int32.abs_in.edition_2023"
     expression: "this in rule || this in rule.map(n, -n)"
-    message: "value must be in absolute value of list"
+    message: "must be in absolute value of list"
   }];
 }
 
@@ -49,7 +49,7 @@ extend buf.validate.Int64Rules {
   repeated google.protobuf.Int64Value int64_abs_in_edition_2023 = 1162 [(buf.validate.predefined).cel = {
     id: "int64.abs_in.edition_2023"
     expression: "this in rule || this in rule.map(n, -n)"
-    message: "value must be in absolute value of list"
+    message: "must be in absolute value of list"
   }];
 }
 

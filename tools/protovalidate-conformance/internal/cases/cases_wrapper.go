@@ -166,7 +166,7 @@ func wrapperSuite() suites.Suite {
 				Field:   results.FieldPath("val"),
 				Rule:    results.FieldPath("string.suffix"),
 				RuleId:  proto.String("string.suffix"),
-				Message: proto.String("value does not have suffix `bar`"),
+				Message: proto.String("does not have suffix `bar`"),
 			}),
 		},
 		"bytes/valid": {

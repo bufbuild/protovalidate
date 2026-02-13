@@ -2298,13 +2298,13 @@ const file_buf_validate_conformance_cases_predefined_rules_proto_editions_proto_
 	"\x1cfloat.abs_range.edition_2023\x12\x1bfloat value is out of range\x1a\x1dthis >= -rule && this <= ruleR\x18floatAbsRangeEdition2023:\xbf\x01\n" +
 	"\x1ddouble_abs_range_edition_2023\x12\x19.buf.validate.DoubleRules\x18\x8a\t \x01(\x01Ba\xc2H^\n" +
 	"\\\n" +
-	"\x1ddouble.abs_range.edition_2023\x12\x1cdouble value is out of range\x1a\x1dthis >= -rule && this <= ruleR\x19doubleAbsRangeEdition2023:\xc7\x01\n" +
-	"\x19int32_abs_in_edition_2023\x12\x18.buf.validate.Int32Rules\x18\x8a\t \x03(\x05Br\xc2Ho\n" +
-	"m\n" +
-	"\x19int32.abs_in.edition_2023\x12'value must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x15int32AbsInEdition2023:\xe4\x01\n" +
-	"\x19int64_abs_in_edition_2023\x12\x18.buf.validate.Int64Rules\x18\x8a\t \x03(\v2\x1b.google.protobuf.Int64ValueBr\xc2Ho\n" +
-	"m\n" +
-	"\x19int64.abs_in.edition_2023\x12'value must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x15int64AbsInEdition2023:\x9f\x01\n" +
+	"\x1ddouble.abs_range.edition_2023\x12\x1cdouble value is out of range\x1a\x1dthis >= -rule && this <= ruleR\x19doubleAbsRangeEdition2023:\xc1\x01\n" +
+	"\x19int32_abs_in_edition_2023\x12\x18.buf.validate.Int32Rules\x18\x8a\t \x03(\x05Bl\xc2Hi\n" +
+	"g\n" +
+	"\x19int32.abs_in.edition_2023\x12!must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x15int32AbsInEdition2023:\xde\x01\n" +
+	"\x19int64_abs_in_edition_2023\x12\x18.buf.validate.Int64Rules\x18\x8a\t \x03(\v2\x1b.google.protobuf.Int64ValueBl\xc2Hi\n" +
+	"g\n" +
+	"\x19int64.abs_in.edition_2023\x12!must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x15int64AbsInEdition2023:\x9f\x01\n" +
 	"\x18uint32_even_edition_2023\x12\x19.buf.validate.UInt32Rules\x18\x8a\t \x01(\bBJ\xc2HG\n" +
 	"E\n" +
 	"\x18uint32.even.edition_2023\x12\x18uint32 value is not even\x1a\x0fthis % 2u == 0uR\x15uint32EvenEdition2023:\x9f\x01\n" +
