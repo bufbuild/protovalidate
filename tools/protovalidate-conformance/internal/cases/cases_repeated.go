@@ -273,7 +273,7 @@ func repeatedSuite() suites.Suite {
 					Field:   results.FieldPath("val[0]"),
 					Rule:    results.FieldPath("repeated.items.string.in"),
 					RuleId:  proto.String("string.in"),
-					Message: proto.String(`value must be in list [foo, bar]`),
+					Message: proto.String(`must be in list [foo, bar]`),
 				},
 			),
 		},

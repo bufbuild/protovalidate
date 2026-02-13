@@ -2243,13 +2243,13 @@ const file_buf_validate_conformance_cases_predefined_rules_proto2_proto_rawDesc 
 	"\x16float.abs_range.proto2\x12\x1bfloat value is out of range\x1a\x1dthis >= -rule && this <= ruleR\x13floatAbsRangeProto2:\xae\x01\n" +
 	"\x17double_abs_range_proto2\x12\x19.buf.validate.DoubleRules\x18\x89\t \x01(\x01B[\xc2HX\n" +
 	"V\n" +
-	"\x17double.abs_range.proto2\x12\x1cdouble value is out of range\x1a\x1dthis >= -rule && this <= ruleR\x14doubleAbsRangeProto2:\xb6\x01\n" +
-	"\x13int32_abs_in_proto2\x12\x18.buf.validate.Int32Rules\x18\x89\t \x03(\x05Bl\xc2Hi\n" +
-	"g\n" +
-	"\x13int32.abs_in.proto2\x12'value must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x10int32AbsInProto2:\xd3\x01\n" +
-	"\x13int64_abs_in_proto2\x12\x18.buf.validate.Int64Rules\x18\x89\t \x03(\v2\x1b.google.protobuf.Int64ValueBl\xc2Hi\n" +
-	"g\n" +
-	"\x13int64.abs_in.proto2\x12'value must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x10int64AbsInProto2:\x8e\x01\n" +
+	"\x17double.abs_range.proto2\x12\x1cdouble value is out of range\x1a\x1dthis >= -rule && this <= ruleR\x14doubleAbsRangeProto2:\xb0\x01\n" +
+	"\x13int32_abs_in_proto2\x12\x18.buf.validate.Int32Rules\x18\x89\t \x03(\x05Bf\xc2Hc\n" +
+	"a\n" +
+	"\x13int32.abs_in.proto2\x12!must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x10int32AbsInProto2:\xcd\x01\n" +
+	"\x13int64_abs_in_proto2\x12\x18.buf.validate.Int64Rules\x18\x89\t \x03(\v2\x1b.google.protobuf.Int64ValueBf\xc2Hc\n" +
+	"a\n" +
+	"\x13int64.abs_in.proto2\x12!must be in absolute value of list\x1a'this in rule || this in rule.map(n, -n)R\x10int64AbsInProto2:\x8e\x01\n" +
 	"\x12uint32_even_proto2\x12\x19.buf.validate.UInt32Rules\x18\x89\t \x01(\bBD\xc2HA\n" +
 	"?\n" +
 	"\x12uint32.even.proto2\x12\x18uint32 value is not even\x1a\x0fthis % 2u == 0uR\x10uint32EvenProto2:\x8e\x01\n" +
