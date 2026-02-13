@@ -145,7 +145,7 @@ func mapSuite() suites.Suite {
 					Field:   results.FieldPath("val[1]"),
 					Rule:    results.FieldPath("map.keys.sint64.lt"),
 					RuleId:  proto.String("sint64.lt"),
-					Message: proto.String("value must be less than 0"),
+					Message: proto.String("must be less than 0"),
 					ForKey:  proto.Bool(true),
 				},
 			),
