@@ -3141,7 +3141,7 @@ message StringRules {
   }];
 
   // `max_bytes` specifies that the field value must have no more than the
-  //specified number of bytes. If the field value contains more bytes, an
+  // specified number of bytes. If the field value contains more bytes, an
   // error message will be generated.
   //
   // ```proto
@@ -3172,7 +3172,7 @@ message StringRules {
   }];
 
   // `prefix` specifies that the field value must have the
-  //specified substring at the beginning of the string. If the field value
+  // specified substring at the beginning of the string. If the field value
   // doesn't start with the specified prefix, an error message will be
   // generated.
   //
@@ -3188,7 +3188,7 @@ message StringRules {
   }];
 
   // `suffix` specifies that the field value must have the
-  //specified substring at the end of the string. If the field value doesn't
+  // specified substring at the end of the string. If the field value doesn't
   // end with the specified suffix, an error message will be generated.
   //
   // ```proto
@@ -3203,7 +3203,7 @@ message StringRules {
   }];
 
   // `contains` specifies that the field value must have the
-  //specified substring anywhere in the string. If the field value doesn't
+  // specified substring anywhere in the string. If the field value doesn't
   // contain the specified substring, an error message will be generated.
   //
   // ```proto
@@ -3218,7 +3218,7 @@ message StringRules {
   }];
 
   // `not_contains` specifies that the field value must not have the
-  //specified substring anywhere in the string. If the field value contains
+  // specified substring anywhere in the string. If the field value contains
   // the specified substring, an error message will be generated.
   //
   // ```proto
@@ -3686,9 +3686,9 @@ message StringRules {
     // pair—for example, "example.com:8080".
     //
     // The host can be one of:
-    //- An IPv4 address in dotted decimal format—for example, "192.168.5.21".
-    //- An IPv6 address enclosed in square brackets—for example, "[2001:0DB8:ABCD:0012::F1]".
-    //- A hostname—for example, "example.com".
+    // - An IPv4 address in dotted decimal format—for example, "192.168.5.21".
+    // - An IPv6 address enclosed in square brackets—for example, "[2001:0DB8:ABCD:0012::F1]".
+    // - A hostname—for example, "example.com".
     //
     // The port is separated by a colon. It must be non-empty, with a decimal number
     // in the range of 0-65535, inclusive.
@@ -4132,8 +4132,8 @@ message EnumRules {
   optional bool defined_only = 2;
 
   // `in` requires the field value to be equal to one of the
-  //specified enum values. If the field value doesn't match any of the
-  //specified values, an error message is generated.
+  // specified enum values. If the field value doesn't match any of the
+  // specified values, an error message is generated.
   //
   // ```proto
   // enum MyEnum {
@@ -4153,7 +4153,7 @@ message EnumRules {
   }];
 
   // `not_in` requires the field value to be not equal to any of the
-  //specified enum values. If the field value matches one of the specified
+  // specified enum values. If the field value matches one of the specified
   // values, an error message is generated.
   //
   // ```proto
@@ -4350,7 +4350,7 @@ message MapRules {
 // AnyRules describe rules applied exclusively to the `google.protobuf.Any` well-known type.
 message AnyRules {
   // `in` requires the field's `type_url` to be equal to one of the
-  //specified values. If it doesn't match any of the specified values, an error
+  // specified values. If it doesn't match any of the specified values, an error
   // message is generated.
   //
   // ```proto
