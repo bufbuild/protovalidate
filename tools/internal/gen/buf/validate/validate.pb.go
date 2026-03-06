@@ -41,7 +41,7 @@
 //
 // These rules are enforced at runtime by language-specific libraries.
 // See the [developer quickstart](https://protovalidate.com/quickstart/) to get started, or go directly to the runtime library for your language:
-// [Go](https://github.com/bufbuild/protovalidate-go)
+// [Go](https://github.com/bufbuild/protovalidate-go),
 // [JavaScript/TypeScript](https://github.com/bufbuild/protovalidate-es),
 // [Java](https://github.com/bufbuild/protovalidate-java),
 // [Python](https://github.com/bufbuild/protovalidate-python),
