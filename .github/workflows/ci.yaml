@@ -38,7 +38,5 @@ jobs:
           mkdir -p .tmp/bin
           cp $(which buf) .tmp/bin/buf
           make checkgenerate
-      - name: Test
-        run: make test
-      - name: Lint
-        run: make lint-go
+      - run: make test-go
+      - run: make lint-go
