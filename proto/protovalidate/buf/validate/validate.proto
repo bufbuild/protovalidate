@@ -633,7 +633,7 @@ message FloatRules {
       (predefined).cel = {
         id: "float.gte_lt"
         expression:
-          "has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
+          "has(rules.lt) && rule.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)"
           "? 'must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''"
       },
       (predefined).cel = {
@@ -3490,7 +3490,7 @@ message StringRules {
       (predefined).cel = {
         id: "string.uuid"
         message: "must be a valid UUID"
-        expression: "!rules.uuid || this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')"
+        expression: "!rules.uuid || this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F{12}$')"
       },
       (predefined).cel = {
         id: "string.uuid_empty"
