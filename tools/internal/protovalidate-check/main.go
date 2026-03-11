@@ -15,12 +15,12 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"os/exec"
 	"strings"
 
+	flag "github.com/spf13/pflag"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/descriptorpb"
 )
