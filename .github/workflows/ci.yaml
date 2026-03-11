@@ -9,32 +9,33 @@ permissions:
   contents: read
   pull-requests: write
 jobs:
-  ci:
-    name: CI
+  test-and-lint:
+    name: Test and lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
         with:
-          fetch-depth: 2
+          go-version-file: tools/go.mod
+          cache-dependency-path: go.work.sum
+      - run: make test-go
+      - run: make lint-go
+  checkgenerate:
+    name: Check generate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
       - uses: bazel-contrib/setup-bazel@0.18.0
         with:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}
           repository-cache: true
-      - name: Install go
-        uses: actions/setup-go@v6
+      - uses: actions/setup-go@v6
         with:
           go-version-file: tools/go.mod
           cache-dependency-path: go.work.sum
-      - name: Install buf
-        uses: bufbuild/buf-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
           setup_only: true
-      - name: Buf generate
-        run: |
-          mkdir -p .tmp/bin
-          cp $(which buf) .tmp/bin/buf
-          make checkgenerate
-      - run: make test-go
-      - run: make lint-go
+      - run: mkdir -p .tmp/bin && cp $(which buf) .tmp/bin/buf
+      - run: make checkgenerate
