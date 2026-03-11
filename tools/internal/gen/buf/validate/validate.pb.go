@@ -7905,7 +7905,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\ttimestamp\x18\x16 \x01(\v2\x1c.buf.validate.TimestampRulesH\x00R\ttimestampB\x06\n" +
 	"\x04typeJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"Z\n" +
 	"\x0fPredefinedRules\x12$\n" +
-	"\x03cel\x18\x01 \x03(\v2\x12.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"\xad\x17\n" +
+	"\x03cel\x18\x01 \x03(\v2\x12.buf.validate.RuleR\x03celJ\x04\b\x18\x10\x19J\x04\b\x1a\x10\x1bR\askippedR\fignore_empty\"\xae\x17\n" +
 	"\n" +
 	"FloatRules\x12\x84\x01\n" +
 	"\x05const\x18\x01 \x01(\x02Bn\xc2Hk\n" +
@@ -7927,12 +7927,12 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\xcd\x01\n" +
 	"\ffloat.gt_lte\x1a\xbc\x01has(rules.lte) && rules.lte >= rules.gt && (this.isNan() || this > rules.lte || this <= rules.gt)? 'must be greater than %s and less than or equal to %s'.format([rules.gt, rules.lte]) : ''\n" +
 	"\xd7\x01\n" +
-	"\x16float.gt_lte_exclusive\x1a\xbc\x01has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))? 'must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''H\x01R\x02gt\x12\xa0\b\n" +
-	"\x03gte\x18\x05 \x01(\x02B\x8b\b\xc2H\x87\b\n" +
+	"\x16float.gt_lte_exclusive\x1a\xbc\x01has(rules.lte) && rules.lte < rules.gt && (this.isNan() || (rules.lte < this && this <= rules.gt))? 'must be greater than %s or less than or equal to %s'.format([rules.gt, rules.lte]) : ''H\x01R\x02gt\x12\xa1\b\n" +
+	"\x03gte\x18\x05 \x01(\x02B\x8c\b\xc2H\x88\b\n" +
 	"\x95\x01\n" +
 	"\tfloat.gte\x1a\x87\x01!has(rules.lt) && !has(rules.lte) && (this.isNan() || this < rules.gte)? 'must be greater than or equal to %s'.format([rules.gte]) : ''\n" +
-	"\xcb\x01\n" +
-	"\ffloat.gte_lt\x1a\xba\x01has(rules.lt) && rule.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)? 'must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''\n" +
+	"\xcc\x01\n" +
+	"\ffloat.gte_lt\x1a\xbb\x01has(rules.lt) && rules.lt >= rules.gte && (this.isNan() || this >= rules.lt || this < rules.gte)? 'must be greater than or equal to %s and less than %s'.format([rules.gte, rules.lt]) : ''\n" +
 	"\xd6\x01\n" +
 	"\x16float.gte_lt_exclusive\x1a\xbb\x01has(rules.lt) && rules.lt < rules.gte && (this.isNan() || (rules.lt <= this && this < rules.gte))? 'must be greater than or equal to %s or less than %s'.format([rules.gte, rules.lt]) : ''\n" +
 	"\xdc\x01\n" +
@@ -8454,7 +8454,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"bool.const\x1aZthis != getField(rules, 'const') ? 'must equal %s'.format([getField(rules, 'const')]) : ''R\x05const\x123\n" +
 	"\aexample\x18\x02 \x03(\bB\x19\xc2H\x16\n" +
 	"\x14\n" +
-	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xce?\n" +
+	"\fbool.example\x1a\x04trueR\aexample*\t\b\xe8\a\x10\x80\x80\x80\x80\x02\"\xcf?\n" +
 	"\vStringRules\x12\x87\x01\n" +
 	"\x05const\x18\x01 \x01(\tBq\xc2Hn\n" +
 	"l\n" +
@@ -8538,10 +8538,10 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"{\n" +
 	"\x0estring.address\x12'must be a valid hostname, or ip address\x1a@!rules.address || this == '' || this.isHostname() || this.isIp()\n" +
 	"r\n" +
-	"\x14string.address_empty\x12<value is empty, which is not a valid hostname, or ip address\x1a\x1c!rules.address || this != ''H\x00R\aaddress\x12\x97\x02\n" +
-	"\x04uuid\x18\x16 \x01(\bB\x80\x02\xc2H\xfc\x01\n" +
-	"\x9e\x01\n" +
-	"\vstring.uuid\x12\x14must be a valid UUID\x1ay!rules.uuid || this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F{12}$')\n" +
+	"\x14string.address_empty\x12<value is empty, which is not a valid hostname, or ip address\x1a\x1c!rules.address || this != ''H\x00R\aaddress\x12\x98\x02\n" +
+	"\x04uuid\x18\x16 \x01(\bB\x81\x02\xc2H\xfd\x01\n" +
+	"\x9f\x01\n" +
+	"\vstring.uuid\x12\x14must be a valid UUID\x1az!rules.uuid || this == '' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')\n" +
 	"Y\n" +
 	"\x11string.uuid_empty\x12)value is empty, which is not a valid UUID\x1a\x19!rules.uuid || this != ''H\x00R\x04uuid\x12\xf1\x01\n" +
 	"\x05tuuid\x18! \x01(\bB\xd8\x01\xc2H\xd4\x01\n" +
