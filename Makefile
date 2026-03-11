@@ -31,8 +31,14 @@ clean: ## Delete intermediate build artifacts
 	git clean -Xdf
 
 .PHONY: test
-test: generate | $(BIN)/bazelisk ## Run all unit tests
+test: test-go test-bazel ## Run all unit tests
+
+.PHONY: test-go
+test-go:
 	$(GO) test -race -cover ./tools/...
+
+.PHONY: test-bazel
+test-bazel: generate | $(BIN)/bazelisk
 	$(BIN)/bazelisk test //...
 
 .PHONY: lint
