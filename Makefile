@@ -50,6 +50,10 @@ lint-go-fix: | $(BIN)/golangci-lint
 lint-proto: | $(BIN)/buf
 	$(BIN)/buf lint
 	$(BIN)/buf breaking --against '.git#branch=main'
+	$(MAKE) lint-protovalidate
+
+.PHONY: lint-protovalidate
+lint-protovalidate:
 	$(GO) run ./tools/internal/protovalidate-check proto/protovalidate
 
 .PHONY: conformance

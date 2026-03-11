@@ -38,6 +38,8 @@ jobs:
           mkdir -p .tmp/bin
           cp $(which buf) .tmp/bin/buf
           make checkgenerate
+      - name: Lint validate.proto
+        run: make lint-protovalidate
       - name: Test
         run: make test
       - name: Lint
