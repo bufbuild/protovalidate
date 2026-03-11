@@ -101,15 +101,15 @@ upgrade-go:
 $(BIN):
 	@mkdir -p $(BIN)
 
-$(BIN)/buf: $(BIN) Makefile
+$(BIN)/buf: Makefile | $(BIN)
 	GOBIN=$(abspath $(@D)) $(GO) install github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
 
-$(BIN)/bazelisk: $(BIN) Makefile
+$(BIN)/bazelisk: Makefile | $(BIN)
 	GOBIN=$(abspath $(@D)) $(GO) install github.com/bazelbuild/bazelisk@$(BAZELISK_VERSION)
 
-$(BIN)/license-header: $(BIN) Makefile
+$(BIN)/license-header: Makefile | $(BIN)
 	GOBIN=$(abspath $(@D)) $(GO) install \
 		  github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(BUF_VERSION)
 
-$(BIN)/golangci-lint: $(BIN) Makefile
+$(BIN)/golangci-lint: Makefile | $(BIN)
 	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
