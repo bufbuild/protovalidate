@@ -35,8 +35,4 @@ jobs:
         with:
           go-version-file: tools/go.mod
           cache-dependency-path: go.work.sum
-      - uses: bufbuild/buf-action@v1
-        with:
-          setup_only: true
-      - run: mkdir -p .tmp/bin && cp $(which buf) .tmp/bin/buf
       - run: make checkgenerate
