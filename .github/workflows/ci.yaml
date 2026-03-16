@@ -18,6 +18,7 @@ jobs:
         with:
           go-version-file: tools/go.mod
           cache-dependency-path: go.work.sum
+      - run: make lint-protovalidate
       - run: make test-go
       - run: make lint-go
   checkgenerate:

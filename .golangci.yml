@@ -51,6 +51,10 @@ issues:
       linters:
         - gosec
         - forbidigo
+    # Package-level lookup tables are intentional
+    - path: tools/internal/protovalidate-check/known.go
+      linters:
+        - gochecknoglobals
     # gci is confused by "slices" and suggests to move it to the end of the import list
     - path: tools/protovalidate-conformance/internal/results/result.go
       linters:
