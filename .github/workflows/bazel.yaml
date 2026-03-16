@@ -1,4 +1,4 @@
-name: Bazel CI
+name: Bazel
 on:
   push:
     branches: [main]
@@ -9,24 +9,19 @@ permissions:
   contents: read
   pull-requests: write
 jobs:
-  ci:
-    name: CI
+  build-and-test:
+    name: Build and test
     runs-on: ubuntu-latest
     strategy:
       matrix:
         type: [legacy, bzlmod]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+      - uses: bazel-contrib/setup-bazel@0.18.0
         with:
-          fetch-depth: 2
-      - name: Install bazelisk
-        uses: bazelbuild/setup-bazelisk@v3
-      - name: Mount bazel cache
-        uses: actions/cache@v5
-        with:
-          path: "~/.cache/bazel"
-          key: bazel-${{matrix.type}}
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}-${{ matrix.type }}
+          repository-cache: true
       - if: matrix.type == 'legacy'
         name: Test Bazel targets with legacy WORKSPACE mode
         run: bazel build --reuse_sandbox_directories --noenable_bzlmod --enable_workspace //... && bazel test --noenable_bzlmod --enable_workspace //...

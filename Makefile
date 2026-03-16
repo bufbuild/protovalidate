@@ -12,7 +12,6 @@ LICENSE_IGNORE := -e internal/testdata/
 BUF_VERSION := v1.61.0
 GOLANGCI_LINT_VERSION := v1.64.7
 BAZELISK_VERSION := v1.27.0
-TOOLS_VERSION := 414d6530d429991dad4636d8d322d2863019a129
 # Set to use a different compiler. For example, `GO=go1.18rc1 make test`.
 GO ?= go
 ARGS ?=
