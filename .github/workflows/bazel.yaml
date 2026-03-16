@@ -1,4 +1,4 @@
-name: Bazel CI
+name: Bazel
 on:
   push:
     branches: [main]
@@ -9,17 +9,14 @@ permissions:
   contents: read
   pull-requests: write
 jobs:
-  ci:
-    name: CI
+  build-and-test:
+    name: Build and test
     runs-on: ubuntu-latest
     strategy:
       matrix:
         type: [legacy, bzlmod]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 2
+      - uses: actions/checkout@v6
       - uses: bazel-contrib/setup-bazel@0.18.0
         with:
           bazelisk-cache: true
