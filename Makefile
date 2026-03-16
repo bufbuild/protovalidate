@@ -58,7 +58,7 @@ lint-proto: | $(BIN)/buf
 	$(MAKE) lint-protovalidate
 
 .PHONY: lint-protovalidate
-lint-protovalidate: | $(BIN)/buf  # Check invariants of validate.proto
+lint-protovalidate: | $(BIN)/buf  ## Check invariants of validate.proto
 	PATH="$(abspath $(BIN)):$$PATH" $(GO) run ./tools/internal/protovalidate-check proto/protovalidate
 
 .PHONY: conformance
