@@ -82,6 +82,7 @@ generate-bazel: | $(BIN)/bazelisk
 .PHONY: generate-proto
 generate-proto: | $(BIN)/buf
 	$(BIN)/buf generate
+	cd ../go_proto_stub && $(GO) mod init buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go && $(GO) mod tidy
 
 .PHONY: generate-license
 generate-license: | $(BIN)/license-header
