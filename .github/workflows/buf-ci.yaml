@@ -15,4 +15,4 @@ jobs:
       - uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
-          push: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push'  }}
+          push: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push' }}
