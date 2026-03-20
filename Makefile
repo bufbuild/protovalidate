@@ -82,7 +82,7 @@ generate-bazel: | $(BIN)/bazelisk
 .PHONY: generate-proto
 generate-proto: | $(BIN)/buf
 	$(BIN)/buf generate
-	cd ../go_proto_stub && $(GO) mod init buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go && $(GO) mod tidy
+	mkdir -p ../go_proto_local && cd ../go_proto_local && $(GO) mod init buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go && $(GO) mod tidy
 
 .PHONY: generate-license
 generate-license: | $(BIN)/license-header
@@ -99,6 +99,10 @@ checkgenerate: generate
 .PHONY: upgrade-go
 upgrade-go:
 	cd ./tools && $(GO) get -u -t ./... && go mod tidy -v
+
+.PHONY: generate-workspace
+generate-workspace: generate-proto
+	cd .. && go work init go_proto_local protovalidate-go protovalidate/tools && go work sync
 
 $(BIN):
 	@mkdir -p $(BIN)
