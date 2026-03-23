@@ -132,6 +132,65 @@ By keeping performance and resource management in mind throughout the
 development process, we can ensure `protovalidate` remains efficient and
 responsive, even as we add new features and fix bugs.
 
+## validate.proto Invariants
+
+`validate.proto` has several structural invariants that must be upheld by
+anyone modifying it — whether adding a new rule, a new type, or a new `*Rules`
+message. A [static checker](../tools/internal/staticcheck) enforces these
+automatically. Run `make lint-proto` to verify them before opening a pull
+request.
+
+### Field-to-rules type mapping
+
+Each field in the `FieldRules.type` oneof corresponds to exactly one `*Rules`
+message and one or more protobuf field kinds. For example, the `string` field
+in the `type` oneof refers to `StringRules`, which applies only to fields of
+kind `string`.
+
+This mapping must be maintained in two places: `validate.proto` itself, and
+every runtime implementation, which must apply the correct `*Rules` message
+based on the field's kind. The static checker validates the proto side; runtime
+conformance tests must cover the implementation side.
+
+### Field name consistency
+
+Each field in `FieldRules.type` must be named to match its corresponding
+`*Rules` message: the lowercase `*Rules` name with the `Rules` suffix removed.
+For example, `StringRules` maps to `string` and `DurationRules` maps to
+`duration`.
+
+### Extension ranges
+
+All `*Rules` messages must declare `extensions 1000 to max;` so that users can
+define predefined rules. The one exception is `AnyRules`, which must _not_ have
+an extension range.
+
+### Example fields
+
+All `*Rules` messages must include a `repeated` example field typed to match
+the rule's target type. The example field:
+
+1. Must be a `repeated` field with the element type matching the rule's target type.
+2. Must have a `(predefined).cel` annotation with expression `"true"` and a rule ID ending in `.example`.
+3. Must not have a `message` set in its `(predefined).cel` annotation.
+
+The exceptions are `AnyRules`, `RepeatedRules`, and `MapRules`, which must not
+have example fields.
+
+### CEL rules on every rule field
+
+Every rule field in a `*Rules` message must have at least one `(predefined).cel`
+annotation. The static checker compiles every expression against the correct type
+environment and verifies the return type: fields without a `message` return
+`string` (empty means pass), and fields with a `message` return `bool`.
+
+Rule IDs must be globally unique and prefixed with the name of the corresponding
+`FieldRules.type` oneof field (e.g. `string.min_len`, `duration.gte`).
+
+A small set of fields are exempt because they are validated directly by runtime
+implementations. The canonical list is in
+[`tools/internal/staticcheck/known.go`](../tools/internal/staticcheck/known.go).
+
 ## Questions?
 
 If you have any questions, please don't hesitate to create an issue, and we'll
