@@ -136,7 +136,7 @@ responsive, even as we add new features and fix bugs.
 
 `validate.proto` has several structural invariants that must be upheld by
 anyone modifying it — whether adding a new rule, a new type, or a new `*Rules`
-message. A [static checker](../tools/internal/staticcheck) enforces these
+message. A [static checker](../tools/internal/protovalidate-check) enforces these
 automatically. Run `make lint-proto` to verify them before opening a pull
 request.
 
@@ -189,7 +189,7 @@ Rule IDs must be globally unique and prefixed with the name of the corresponding
 
 A small set of fields are exempt because they are validated directly by runtime
 implementations. The canonical list is in
-[`tools/internal/staticcheck/known.go`](../tools/internal/staticcheck/known.go).
+[`tools/internal/staticcheck/known.go`](../tools/internal/protovalidate-check/known.go).
 
 ## Questions?
 
