@@ -198,39 +198,13 @@ defined by protovalidate.
 The static checker rejects any expression that references a function or
 variable not declared in that environment.
 
-On top of CEL's standard library, the environment adds:
-
-**Extensions**
-
-The [CEL strings extension][cel-strings] is available, adding string-manipulation
-functions beyond what standard CEL provides (e.g. `upperAscii`, `trim`,
-`splitWithSizeLimit`).
-
-**Variables**
-
-| Name | Type |
-|------|------|
-| `now` | `google.protobuf.Timestamp` |
-| `this` | Field value being validated |
-| `rule` | Value of the specific rule field |
-| `rules` | The full `*Rules` message for the field |
-
-**Functions**
-
-- Type conversions: `double`, `int`, `string`, and `list`.
-- `bytes` overloads for the standard `contains`, `endsWith`, and `startsWith`.
-- Custom protovalidate functions: `unique`, `isNan`, `isInf`, `isHostname`,
-  `isEmail`, `isIp`, `isIpPrefix`, `isUri`, `isUriRef`, `isHostAndPort`,
-  and `getField`.
-
+On top of CEL's standard library, the environment adds several variables and
+functions.
 Full signatures and semantics are documented in the
 [CEL extensions reference][cel-extensions-ref].
-
-**Extending the environment**
-
-The environment is declared in
-[`tools/internal/protovalidate-check/cel.go`](../tools/internal/protovalidate-check/cel.go).
-Any contribution that introduces a new function or variable must add its
+The environment itself is declared in
+[`tools/internal/protovalidate-check/cel.go`](../tools/internal/protovalidate-check/cel.go);
+any contribution that introduces a new function or variable must add its
 signature there.
 
 ## Questions?
@@ -252,7 +226,5 @@ working together to make `protovalidate` the best it can be.
 [file-feature-request]: https://github.com/bufbuild/protovalidate/issues/new?assignees=&labels=Feature&template=feature_request.md&title=%5BFeature+Request%5D
 
 [cel-spec]: https://github.com/google/cel-spec
-
-[cel-strings]: https://celbyexample.com/strings/
 
 [cel-extensions-ref]: https://protovalidate.com/reference/cel_extensions/
