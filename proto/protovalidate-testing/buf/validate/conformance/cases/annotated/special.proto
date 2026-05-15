@@ -1,0 +1,509 @@
+// Copyright 2023-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// String rules for cases that don't fit the simple algebraic or
+// well-known-format pattern: well_known_regex (HTTP header name/value, with
+// strict/loose modes), example metadata, and a field-level user CEL host.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases.annotated;
+
+import "buf/validate/conformance/test_cases.proto";
+import "buf/validate/validate.proto";
+
+// StringHttpHeaderName validates an HTTP header name with strict mode (the
+// default). Three predefined CEL rules live on `well_known_regex`:
+// header_name, header_name_empty, header_value — but only header_name and
+// header_name_empty fire when the regex selector is HEADER_NAME.
+message StringHttpHeaderName {
+  string val = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_NAME];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+          val: "clustername"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+          val: ":authority"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+          val: "abc-123"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+          val: "!+#&.%"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+          val: "FOO.BAR"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: ":"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: ":foo:"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: "foo bar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: "foo\rbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: "foo\nbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: "foo\tbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: "foo\000bar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderName] {
+            val: "foo/bar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringHttpHeaderNameLoose drops strict mode. Only \r\n\0 are forbidden.
+message StringHttpHeaderNameLoose {
+  string val = 1 [(buf.validate.field).string = {
+    well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
+    strict: false
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderNameLoose] {
+          val: "FOO/BAR"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderNameLoose] {
+          val: "FOO\tBAR"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderNameLoose] {
+          val: "FOO BAR"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderNameLoose] {
+          val: "FOO\007BAR"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderNameLoose] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderNameLoose] {
+            val: "foo\rbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderNameLoose] {
+            val: "foo\nbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_name"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringHttpHeaderValue validates an HTTP header value with strict mode. The
+// empty string is valid (no _empty companion fires); rule_id is
+// string.well_known_regex.header_value.
+message StringHttpHeaderValue {
+  string val = 1 [(buf.validate.field).string.well_known_regex = KNOWN_REGEX_HTTP_HEADER_VALUE];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+          val: "foo.bar.baz"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+          val: "/TEST/SOME/PATH"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+          val: "cluster name"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+          val: "cluster\tname"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+          val: "!#%&./+"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+            val: "foo\000bar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_value"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+            val: "foo\007bar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_value"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+            val: "foo\rbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_value"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValue] {
+            val: "foo\nbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_value"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringHttpHeaderValueLoose drops strict mode for HTTP header values. The
+// existing suite only tests bad cases here; good cases overlap with strict.
+message StringHttpHeaderValueLoose {
+  string val = 1 [(buf.validate.field).string = {
+    well_known_regex: KNOWN_REGEX_HTTP_HEADER_VALUE
+    strict: false
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValueLoose] {
+            val: "\000"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_value"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValueLoose] {
+            val: "foo\rbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_value"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHttpHeaderValueLoose] {
+            val: "foo\nbar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.well_known_regex.header_value"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringExample is metadata-only — `example` carries SHOULD-conform sample
+// values that runtimes don't check. The predefined CEL is `true`, so no
+// value ever violates.
+message StringExample {
+  string val = 1 [(buf.validate.field).string.example = "foo"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringExample] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+// StringHostAndOptionalPort is the only host migrated so far that uses
+// field-level user CEL: `(field).cel = { ... isHostAndPort(false) }`. The
+// runtime reports the rule path as "cel[0]" (the user CEL slot), distinct
+// from predefined rules whose path is "<oneof>.<rule_field>".
+message StringHostAndOptionalPort {
+  string val = 1 [(buf.validate.field).cel = {
+    id: "string.host_and_port.optional_port"
+    message: "value must be a host and (optional) port pair"
+    expression: "this.isHostAndPort(false)"
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+          val: "localhost"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+          val: "192.168.0.1"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+          val: "[838e:3861:529f:0e68:2c40:906a:d7b6:4006]"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+          val: "localhost:1234"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+          val: "127.0.0.1:12345"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+          val: "[::1]:8080"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+            val: "abc#123"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port.optional_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+            val: "123.456.789.100"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port.optional_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndOptionalPort] {
+            val: "[1::jk::3]"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port.optional_port"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}

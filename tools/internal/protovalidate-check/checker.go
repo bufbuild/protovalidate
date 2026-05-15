@@ -17,23 +17,25 @@ package main
 import (
 	"fmt"
 
+	"github.com/bufbuild/protovalidate/tools/internal/celenv"
+	"github.com/bufbuild/protovalidate/tools/internal/validateschema"
 	"github.com/google/cel-go/cel"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 
 type Checker struct {
-	schema   *resolvedSchema
+	schema   *validateschema.Schema
 	failures []Failure
 }
 
 func NewChecker(fds *descriptorpb.FileDescriptorSet) (*Checker, error) {
-	schema, err := resolveSchema(fds)
+	schema, err := validateschema.Resolve(fds)
 	if err != nil {
 		return nil, err
 	}
 	// Fail fast: verify that the CEL environment can be constructed.
-	_, err = celEnv(schema.files, cel.DynType, cel.DynType, cel.DynType)
+	_, err = celenv.New(schema.Files, cel.DynType, cel.DynType, cel.DynType)
 	if err != nil {
 		return nil, err
 	}
@@ -55,9 +57,9 @@ func (c *Checker) Failures() []Failure {
 }
 
 func (c *Checker) fail(desc protoreflect.Descriptor, message string) {
-	line := c.schema.file.SourceLocations().ByDescriptor(desc).StartLine
+	line := c.schema.File.SourceLocations().ByDescriptor(desc).StartLine
 	c.failures = append(c.failures, Failure{
-		Path:    c.schema.file.Path(),
+		Path:    c.schema.File.Path(),
 		Line:    line + 1,
 		Message: message,
 	})

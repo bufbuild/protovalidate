@@ -63,5 +63,6 @@ func GlobalSuites() suites.Suites {
 		"library/is_email":                           isEmailSuite(),
 		"library/is_uri":                             isURISuite(),
 		"library/is_uri_ref":                         isURIRefSuite(),
+		"annotated":                                  annotatedSuite(),
 	}
 }

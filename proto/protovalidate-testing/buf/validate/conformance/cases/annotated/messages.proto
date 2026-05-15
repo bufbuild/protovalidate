@@ -1,0 +1,68 @@
+// Copyright 2023-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases.annotated;
+
+import "buf/validate/conformance/test_cases.proto";
+import "buf/validate/validate.proto";
+
+// PersonNames exercises a message-level CEL rule. The same extension shape
+// covers field-level and message-level rules; the test vector is a complete
+// message instance either way.
+message PersonNames {
+  string first_name = 1 [(buf.validate.field).string.max_len = 64];
+  string last_name = 2 [(buf.validate.field).string.max_len = 64];
+
+  option (buf.validate.message).cel = {
+    id: "first_name_requires_last_name"
+    message: "last_name must be present if first_name is present"
+    expression: "!has(this.first_name) || has(this.last_name)"
+  };
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.PersonNames] {}
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.PersonNames] {
+          first_name: "Jon"
+          last_name: "Bodner"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.PersonNames] {
+          last_name: "Smith"
+        }
+      }
+    ]
+    // Demonstrates empty-violations mode: the only firing rule is the
+    // message-level CEL above, which is CEL-derived. The loader takes the
+    // oracle walker's output as the Expected set, so no `violations` block
+    // is needed here. If a future bad case on this host trips an exempt
+    // rule (e.g. `required`), that case must declare its violations
+    // explicitly — the oracle can't see exempt rules.
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.PersonNames] {
+            first_name: "Jon"
+          }
+        }
+      }
+    ]
+  };
+}

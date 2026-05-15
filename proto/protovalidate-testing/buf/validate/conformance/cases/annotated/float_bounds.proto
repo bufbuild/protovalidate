@@ -1,0 +1,163 @@
+// Copyright 2023-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases.annotated;
+
+import "buf/validate/conformance/test_cases.proto";
+import "buf/validate/validate.proto";
+
+message FloatBounds {
+  float val = 1 [(buf.validate.field).float = {
+    in: [
+      5,
+      nan,
+      inf,
+      -inf,
+      10,
+      0.1,
+      0.5,
+      1.1,
+      2147483648
+    ]
+  }];
+  double dval = 2 [(buf.validate.field).double = {
+    in: [
+      5,
+      nan,
+      inf,
+      -inf,
+      10,
+      0.1,
+      0.5,
+      1.1,
+      9007199254740993
+    ]
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: 5
+          dval: 5
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: inf
+          dval: inf
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: -inf
+          dval: inf
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: 10
+          dval: 10
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: 0.1
+          dval: 0.1
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: 0.5
+          dval: 0.5
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: 1.1
+          dval: 1.1
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+          val: 2147483648
+          dval: 9007199254740993
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatBounds]: {
+            val: nan
+            dval: nan
+          }
+        }
+        violations: [
+          {
+            rule_id: "float.in"
+            field_path: "val"
+          },
+          {
+            rule_id: "double.in"
+            field_path: "dval"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message FloatNaNUnique {
+  repeated float val = 1 [(buf.validate.field).repeated.unique = true];
+  repeated double dval = 2 [(buf.validate.field).repeated.unique = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatNaNUnique]:{
+          val: [nan, nan],
+          dval: [nan, nan]
+        }
+      }
+    ]
+  };
+}
+
+message FloatNaN {
+  float val = 1 [(buf.validate.field).float.const = 10];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatNaN]: {val: 10}
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.FloatNaN]: {val: nan}
+        }
+        violations: [
+          {
+            rule_id: "float.const"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}

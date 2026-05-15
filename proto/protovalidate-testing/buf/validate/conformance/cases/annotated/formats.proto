@@ -1,0 +1,2122 @@
+// Copyright 2023-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// String rules for well-known textual formats: email, hostname, address,
+// ip/ipv4/ipv6 (and prefix-length variants), uri/uri_ref, uuid/tuuid/ulid,
+// host_and_port, protobuf_fqn / protobuf_dot_fqn.
+//
+// Each rule is a bool flag on StringRules. Setting it to true activates two
+// (predefined).cel rules — the format check (rule_id "string.<flag>") and an
+// empty-string companion (rule_id "string.<flag>_empty"). Setting it to false
+// (the StringNot* hosts here) leaves the field set but inactive, so even
+// malformed values produce zero violations.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases.annotated;
+
+import "buf/validate/conformance/test_cases.proto";
+import "buf/validate/validate.proto";
+
+// StringEmail validates RFC 5322 email format. Empty input fires the
+// companion string.email_empty rule rather than string.email.
+message StringEmail {
+  string val = 1 [(buf.validate.field).string.email = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+          val: "foo@bar.com"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: "foo@x0123456789012345678901234567890123456789012345678901234567890123456789.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: "foo@-bar.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: "foo@."
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: " foo@example.com "
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: "foo@example.com "
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: " foo@example.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmail] {
+            val: "<foo@example.com>"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringNotEmail sets email = false. The rule is set but inactive, so even
+// malformed values must produce zero violations.
+message StringNotEmail {
+  string val = 1 [(buf.validate.field).string.email = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotEmail] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotEmail] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringHostname {
+  string val = 1 [(buf.validate.field).string.hostname = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+          val: "example.com"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+          val: "ASD.example.com"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+          val: "foo-bar.com"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+          val: "foo.bar."
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "@!#$%^&*&^%$#"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "foo_bar.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "x0123456789012345678901234567890123456789012345678901234567890123456789.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "foo-bar-.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "-foo-bar.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "foo..bar.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "你好.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostname] {
+            val: "."
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.hostname"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotHostname {
+  string val = 1 [(buf.validate.field).string.hostname = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotHostname] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotHostname] {
+          val: "@!#$%^&*&^%$#"
+        }
+      }
+    ]
+  };
+}
+
+message StringAddress {
+  string val = 1 [(buf.validate.field).string.address = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringAddress] {
+          val: "foo.bar.com"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringAddress] {
+          val: "129.168.0.1"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringAddress] {
+          val: "3e::99"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringAddress] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.address_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringAddress] {
+            val: "-foo.bar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.address"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringAddress] {
+            val: "ff::fff::0b"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.address"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotAddress {
+  string val = 1 [(buf.validate.field).string.address = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotAddress] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotAddress] {
+          val: "-foo.bar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIP {
+  string val = 1 [(buf.validate.field).string.ip = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIP] {
+          val: "192.168.0.1"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIP] {
+          val: "3e::99"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIP] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ip_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIP] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ip"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIP {
+  string val = 1 [(buf.validate.field).string.ip = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIP] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIP] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPv4 {
+  string val = 1 [(buf.validate.field).string.ipv4 = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4] {
+          val: "192.168.0.1"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4] {
+            val: "256.0.0.0"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4] {
+            val: "3e::99"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPv4 {
+  string val = 1 [(buf.validate.field).string.ipv4 = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv4] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv4] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPv6 {
+  string val = 1 [(buf.validate.field).string.ipv6 = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6] {
+          val: "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6] {
+          val: "2001:0db8:85a3::8a2e:0370:7334"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6] {
+            val: "ff::fff::0b"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6] {
+            val: "192.168.0.1"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPv6 {
+  string val = 1 [(buf.validate.field).string.ipv6 = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv6] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv6] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPWithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ip_with_prefixlen = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPWithPrefixLen] {
+          val: "192.168.0.1/24"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPWithPrefixLen] {
+          val: "2001:db8:1::1/64"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPWithPrefixLen] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ip_with_prefixlen_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPWithPrefixLen] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ip_with_prefixlen"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPWithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ip_with_prefixlen = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPWithPrefixLen] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPWithPrefixLen] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPv4WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv4_with_prefixlen = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4WithPrefixLen] {
+          val: "192.168.0.1/24"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4WithPrefixLen] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_with_prefixlen_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4WithPrefixLen] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_with_prefixlen"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4WithPrefixLen] {
+            val: "2001:db8:1::1/64"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_with_prefixlen"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPv4WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv4_with_prefixlen = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv4WithPrefixLen] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv4WithPrefixLen] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPv6WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv6_with_prefixlen = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6WithPrefixLen] {
+          val: "2001:db8:1::1/64"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6WithPrefixLen] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_with_prefixlen_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6WithPrefixLen] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_with_prefixlen"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6WithPrefixLen] {
+            val: "192.168.0.1/24"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_with_prefixlen"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPv6WithPrefixLen {
+  string val = 1 [(buf.validate.field).string.ipv6_with_prefixlen = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv6WithPrefixLen] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv6WithPrefixLen] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPPrefix {
+  string val = 1 [(buf.validate.field).string.ip_prefix = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPPrefix] {
+          val: "192.168.0.0/24"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPPrefix] {
+          val: "2001:db8:1::/48"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPPrefix] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ip_prefix_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPPrefix] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ip_prefix"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPPrefix {
+  string val = 1 [(buf.validate.field).string.ip_prefix = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPPrefix] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPPrefix] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPv4Prefix {
+  string val = 1 [(buf.validate.field).string.ipv4_prefix = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4Prefix] {
+          val: "192.168.0.0/24"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4Prefix] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_prefix_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4Prefix] {
+            val: "192.168.0.1/24"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_prefix"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4Prefix] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_prefix"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv4Prefix] {
+            val: "2001:db8:1::/48"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv4_prefix"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPv4Prefix {
+  string val = 1 [(buf.validate.field).string.ipv4_prefix = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv4Prefix] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv4Prefix] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringIPv6Prefix {
+  string val = 1 [(buf.validate.field).string.ipv6_prefix = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6Prefix] {
+          val: "2001:db8:1::/48"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6Prefix] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_prefix_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6Prefix] {
+            val: "2001:db8:1::1/48"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_prefix"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6Prefix] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_prefix"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIPv6Prefix] {
+            val: "192.168.0.0/24"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ipv6_prefix"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotIPv6Prefix {
+  string val = 1 [(buf.validate.field).string.ipv6_prefix = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv6Prefix] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIPv6Prefix] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringURI {
+  string val = 1 [(buf.validate.field).string.uri = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+          val: "https://example.com/foo/bar?baz=quux"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+          val: "urn:isbn:0451450523"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+            val: "urn:isbn:0451450523?baz=%x"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+            val: ":isbn:0451450523"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+            val: "!@#$%^&*"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+            val: "/foo/bar?baz=quux"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+            val: "https://example.com/foo/bar?baz=%x"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURI] {
+            val: "/foo/bar?baz=%x"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotURI {
+  string val = 1 [(buf.validate.field).string.uri = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotURI] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotURI] {
+          val: "!@#$%^&*"
+        }
+      }
+    ]
+  };
+}
+
+message StringURIRef {
+  string val = 1 [(buf.validate.field).string.uri_ref = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURIRef] {
+          val: "https://example.com/foo/bar?baz=quux"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURIRef] {
+          val: "/foo/bar?baz=quux"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringURIRef] {
+            val: "!@#$%^&*"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uri_ref"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotURIRef {
+  string val = 1 [(buf.validate.field).string.uri_ref = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotURIRef] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotURIRef] {
+          val: "!@#$%^&*"
+        }
+      }
+    ]
+  };
+}
+
+message StringUUID {
+  string val = 1 [(buf.validate.field).string.uuid = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "00000000-0000-0000-0000-000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "b45c0c80-8880-11e9-a5b1-000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "B45C0C80-8880-11E9-A5B1-000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "b45c0c80-8880-21e9-a5b1-000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "B45C0C80-8880-21E9-A5B1-000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "a3bb189e-8bf9-3888-9912-ace4e6543002"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "A3BB189E-8BF9-3888-9912-ACE4E6543002"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "8b208305-00e8-4460-a440-5e0dcd83bb0a"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "8B208305-00E8-4460-A440-5E0DCD83BB0A"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "a6edc906-2f9f-5fb2-a373-efac406f0ef2"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+          val: "A6EDC906-2F9F-5FB2-A373-EFAC406F0EF2"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uuid_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uuid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+            val: "ffffffff-ffff-ffff-ffff-fffffffffffff"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uuid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+            val: "8B20830500E84460A4405E0DCD83BB0A"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uuid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringUUID] {
+            val: "8b20830500e84460a4405e0dcd83bb0a"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.uuid"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotUUID {
+  string val = 1 [(buf.validate.field).string.uuid = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotUUID] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotUUID] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringTUUID {
+  string val = 1 [(buf.validate.field).string.tuuid = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "00000000000000000000000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "b45c0c80888011e9a5b1000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "B45C0C80888011E9A5B1000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "b45c0c80888021e9a5b1000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "B45C0C80888021E9A5B1000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "a3bb189e8bf938889912ace4e6543002"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "A3BB189E8BF938889912ACE4E6543002"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "8b20830500e84460a4405e0dcd83bb0a"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "8B20830500E84460A4405E0DCD83BB0A"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "a6edc9062f9f5fb2a373efac406f0ef2"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+          val: "A6EDC9062F9F5FB2A373EFAC406F0EF2"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.tuuid_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.tuuid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+            val: "fffffffffffffffffffffffffffffffff"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.tuuid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+            val: "8B208305-00E8-4460-A440-5E0DCD83BB0A"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.tuuid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringTUUID] {
+            val: "8b208305-00e8-4460-a440-5e0dcd83bb0a"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.tuuid"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotTUUID {
+  string val = 1 [(buf.validate.field).string.tuuid = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotTUUID] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotTUUID] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringULID {
+  string val = 1 [(buf.validate.field).string.ulid = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+          val: "01arz3ndektsv4rrffq69g5fav"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+          val: "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+          val: "01ArZ3NdEkTsV4RrFfQ69G5FaV"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+          val: "00000000000000000000000000"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+          val: "7ZZZZZZZZZZZZZZZZZZZZZZZZZ"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "foobar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "01ARZ3NDEKTSV4RRFFQ69G5FA"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "01ARZ3NDEKTSV4RRFFQ69G5FAVX"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "01ARZ3NDEKTSV4RRFFQ69G5FAI"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "01ARZ3NDEKTSV4RRFFQ69G5FAL"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "01ARZ3NDEKTSV4RRFFQ69G5FAO"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "01ARZ3NDEKTSV4RRFFQ69G5FAU"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringULID] {
+            val: "80000000000000000000000000"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.ulid"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringNotULID {
+  string val = 1 [(buf.validate.field).string.ulid = false];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotULID] {
+          val: ""
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotULID] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+message StringHostAndPort {
+  string val = 1 [(buf.validate.field).string.host_and_port = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+          val: "localhost:1234"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+          val: "127.0.0.1:12345"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+          val: "[::1]:8080"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: "localhost"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: " localhost:8080 "
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: "abc#123:456"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: "123.456.789.100:8080"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: "[1::jk::3]:8080"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: "::1:8080"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringHostAndPort] {
+            val: "localhost:99999"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.host_and_port"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringProtobufFQN {
+  string val = 1 [(buf.validate.field).string.protobuf_fqn = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+          val: "buf.validate"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+          val: "my_package.MyMessage"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+          val: "_any_Crazy_CASE_with_01234_numbers"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+          val: "c3p0"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_fqn_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+            val: ".x"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_fqn"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+            val: "x."
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_fqn"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+            val: "a..b"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_fqn"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+            val: "1a"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_fqn"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufFQN] {
+            val: "a$"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_fqn"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+message StringProtobufDotFQN {
+  string val = 1 [(buf.validate.field).string.protobuf_dot_fqn = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+          val: ".buf.validate"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+          val: ".my_package.MyMessage"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+          val: "._any_Crazy_CASE_with_01234_numbers"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+            val: ""
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_dot_fqn_empty"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+            val: ".x."
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_dot_fqn"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+            val: ".a..b"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_dot_fqn"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+            val: ".1a"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_dot_fqn"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringProtobufDotFQN] {
+            val: ".a$"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.protobuf_dot_fqn"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}

@@ -5,3 +5,6 @@ cover.out
 /bazel-*
 /protovalidate-*.tar.gz
 /release_notes.md
+.idea
+*.iml
+.DS_Store

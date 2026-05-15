@@ -1,0 +1,111 @@
+// Copyright 2023-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases.annotated;
+
+import "buf/validate/conformance/test_cases.proto";
+import "buf/validate/validate.proto";
+
+// InventoryStock exercises rule composition on a map: container-level
+// (min_pairs), key-level (string.min_len), and value-level (int32.gte) rules
+// fire together against a single message instance.
+//
+// The bad cases prove the walker recurses into map.keys and map.values:
+// the empty-map case fires only the container rule; the populated bad case
+// has one entry whose key violates string.min_len and another whose value
+// violates int32.gte, with field_path encoding the offending key.
+message InventoryStock {
+  map<string, int32> stock = 1 [
+    (buf.validate.field).map.min_pairs = 1,
+    (buf.validate.field).map.keys.string.min_len = 1,
+    (buf.validate.field).map.values.int32.gte = 0
+  ];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.InventoryStock] {
+          stock: [{key: "apples", value: 5}]
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.InventoryStock] {}
+        }
+        violations: [
+          {
+            rule_id: "map.min_pairs"
+            field_path: "stock"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.InventoryStock] {
+            stock: [
+              {key: "", value: 5},
+              {key: "x", value: -1}
+            ]
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.min_len"
+            field_path: "stock[\"\"]"
+          },
+          {
+            rule_id: "int32.gte"
+            field_path: "stock[\"x\"]"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// RepeatedItemEmail exercises walker recursion into repeated.items: each
+// element of the list is validated against StringRules.email, with field_path
+// "<field>[<index>]" and rule_path "repeated.items.string.email".
+message RepeatedItemEmail {
+  repeated string val = 1 [(buf.validate.field).repeated.items.string.email = true];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.RepeatedItemEmail] {
+          val: ["alice@example.com", "bob@example.com"]
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.RepeatedItemEmail] {
+            val: ["alice@example.com", "not-an-email"]
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val[1]"
+          }
+        ]
+      }
+    ]
+  };
+}

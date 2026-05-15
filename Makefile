@@ -41,7 +41,7 @@ test-bazel: generate | $(BIN)/bazelisk
 	$(BIN)/bazelisk test //...
 
 .PHONY: lint
-lint: lint-proto lint-go  ## Lint code and protos
+lint: lint-proto lint-go lint-conformance-cases  ## Lint code and protos
 
 .PHONY: lint-go
 lint-go: | $(BIN)/golangci-lint
@@ -60,6 +60,10 @@ lint-proto: | $(BIN)/buf
 .PHONY: lint-protovalidate
 lint-protovalidate: | $(BIN)/buf  ## Check invariants of validate.proto
 	PATH="$(abspath $(BIN)):$$PATH" $(GO) run ./tools/internal/protovalidate-check proto/protovalidate
+
+.PHONY: lint-conformance-cases
+lint-conformance-cases:  generate ## Cross-check annotated conformance cases against the in-repo CEL oracle
+	cd tools && $(GO) run ./internal/protovalidate-conformance-check
 
 .PHONY: conformance
 conformance: ## Build conformance harness

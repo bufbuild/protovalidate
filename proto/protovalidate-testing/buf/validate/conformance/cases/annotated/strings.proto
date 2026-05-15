@@ -1,0 +1,907 @@
+// Copyright 2023-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.validate.conformance.cases.annotated;
+
+import "buf/validate/conformance/test_cases.proto";
+import "buf/validate/validate.proto";
+
+// StringNone has no rules. Any value passes.
+message StringNone {
+  string val = 1;
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNone] {
+          val: "foobar"
+        }
+      }
+    ]
+  };
+}
+
+// StringConst pins val to an exact value.
+message StringConst {
+  string val = 1 [(buf.validate.field).string.const = "foo"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConst] {
+          val: "foo"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConst] {
+            val: "bar"
+          }
+        }
+      }
+    ]
+  };
+}
+
+// StringConstDeclared pins val to an exact value and specifies an exact rule
+message StringConstDeclared {
+  string val = 1 [(buf.validate.field).string.const = "foo"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConstDeclared] {
+          val: "foo"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConstDeclared] {
+            val: "bar"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.const"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+//// StringConstBroken shows bad conformance tests
+//message StringConstBroken {
+//  string val = 1 [(buf.validate.field).string.const = "foo"];
+//
+//  option (buf.validate.conformance.test_cases) = {
+//    good: [
+//      {
+//        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConstBroken] {
+//          val: "bar"
+//        }
+//      },
+//      {
+//        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConst] {
+//          val: "foo"
+//        }
+//      }
+//    ]
+//    bad: [
+//      {
+//        value: {
+//          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConstBroken] {
+//            val: "foo"
+//          }
+//        }
+//        violations: [
+//          {
+//            rule_id: "string.const"
+//            field_path: "val"
+//          }
+//        ]
+//      },
+//      {
+//        value: {
+//          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConstBroken] {
+//            val: "baz"
+//          }
+//        }
+//        violations: [
+//          {
+//            rule_id: "string.len"
+//            field_path: "val"
+//          }
+//        ]
+//      },
+//      {
+//        value: {
+//          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringConstBroken] {
+//            val: "baz"
+//          }
+//        }
+//        violations: [
+//          {
+//            rule_id: "string.const"
+//            field_path: "not_val"
+//          }
+//        ]
+//      }
+//    ]
+//  };
+//}
+
+// StringIn requires val to be one of an allowed set.
+message StringIn {
+  string val = 1 [(buf.validate.field).string = {
+    in: [
+      "bar",
+      "baz"
+    ]
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIn] {
+          val: "baz"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringIn] {
+            val: "foo"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.in"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringNotIn forbids val from being any of a denied set.
+message StringNotIn {
+  string val = 1 [(buf.validate.field).string = {
+    not_in: [
+      "fizz",
+      "buzz"
+    ]
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIn] {
+          val: "bar"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotIn] {
+            val: "fizz"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.not_in"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringLen pins val's char length. ASCII, multibyte, and simple emoji values
+// all count as 3 chars; ZWJ-composite emoji do not, exercising the dynamic
+// "must be 3 characters" message that the oracle derives from the CEL.
+message StringLen {
+  string val = 1 [(buf.validate.field).string.len = 3];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLen] {
+          val: "foo"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLen] {
+          val: "ʙǻɹ"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLen] {
+          val: "😅😄👾"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLen] {
+            val: "fizz"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.len"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLen] {
+            val: "👩🏽‍💻🧑🏾‍💻👨🏼‍💻"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.len"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringMinLen requires val to be at least N chars.
+message StringMinLen {
+  string val = 1 [(buf.validate.field).string.min_len = 3];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinLen] {
+          val: "foo"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinLen] {
+          val: "foobar"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinLen] {
+            val: "pb"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.min_len"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringMaxLen caps val at N chars.
+message StringMaxLen {
+  string val = 1 [(buf.validate.field).string.max_len = 5];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMaxLen] {
+          val: "proto"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMaxLen] {
+          val: "buf"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMaxLen] {
+            val: "validate"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.max_len"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringMinMaxLen pairs min_len and max_len. A value can violate either, but
+// not both, since min < max.
+message StringMinMaxLen {
+  string val = 1 [(buf.validate.field).string = {
+    min_len: 3
+    max_len: 5
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxLen] {
+          val: "quux"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxLen] {
+          val: "foo"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxLen] {
+          val: "proto"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxLen] {
+            val: "pb"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.min_len"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxLen] {
+            val: "validate"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.max_len"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringEqualMinMaxLen forces an exact length via min == max. Only max_len
+// fires when too long; the existing suite asserts this exact rule selection.
+message StringEqualMinMaxLen {
+  string val = 1 [(buf.validate.field).string = {
+    min_len: 5
+    max_len: 5
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEqualMinMaxLen] {
+          val: "proto"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEqualMinMaxLen] {
+            val: "validate"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.max_len"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringLenBytes pins val's byte length. Multibyte and emoji chars affect
+// byte count differently than character count.
+message StringLenBytes {
+  string val = 1 [(buf.validate.field).string.len_bytes = 4];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLenBytes] {
+          val: "fizz"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLenBytes] {
+          val: "Ƥƥ"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLenBytes] {
+          val: "😄"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringLenBytes] {
+            val: "foo"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.len_bytes"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringMinBytes requires val to be at least N bytes.
+message StringMinBytes {
+  string val = 1 [(buf.validate.field).string.min_bytes = 4];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinBytes] {
+          val: "fizz"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinBytes] {
+          val: "proto"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinBytes] {
+            val: "foo"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.min_bytes"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringMaxBytes caps val at N bytes.
+message StringMaxBytes {
+  string val = 1 [(buf.validate.field).string.max_bytes = 8];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMaxBytes] {
+          val: "validate"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMaxBytes] {
+          val: "proto"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMaxBytes] {
+            val: "validation"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.max_bytes"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringMinMaxBytes pairs min_bytes and max_bytes.
+message StringMinMaxBytes {
+  string val = 1 [(buf.validate.field).string = {
+    min_bytes: 4
+    max_bytes: 8
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxBytes] {
+          val: "quux"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxBytes] {
+          val: "fizz"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxBytes] {
+          val: "validate"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxBytes] {
+            val: "pb"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.min_bytes"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringMinMaxBytes] {
+            val: "validation"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.max_bytes"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringEqualMinMaxBytes forces an exact byte length. Existing suite asserts
+// min_bytes (not max_bytes) fires for the too-short value.
+message StringEqualMinMaxBytes {
+  string val = 1 [(buf.validate.field).string = {
+    min_bytes: 4
+    max_bytes: 4
+  }];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEqualMinMaxBytes] {
+          val: "fizz"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEqualMinMaxBytes] {
+            val: "foo"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.min_bytes"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringPattern enforces a regex.
+message StringPattern {
+  string val = 1 [(buf.validate.field).string.pattern = "(?i)^[a-z0-9]+$"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringPattern] {
+          val: "Foo123"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringPattern] {
+            val: "!#@$#$%"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.pattern"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringPatternEscapes covers escape handling in pattern strings.
+message StringPatternEscapes {
+  string val = 1 [(buf.validate.field).string.pattern = "\\* \\\\ \\w"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringPatternEscapes] {
+          val: "* \\ x"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringPatternEscapes] {
+            val: "invalid"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.pattern"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringPrefix requires val to start with a literal.
+message StringPrefix {
+  string val = 1 [(buf.validate.field).string.prefix = "foo"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringPrefix] {
+          val: "foo"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringPrefix] {
+          val: "foobar"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringPrefix] {
+            val: "fizz"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.prefix"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringContains requires a literal substring anywhere in val.
+message StringContains {
+  string val = 1 [(buf.validate.field).string.contains = "bar"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringContains] {
+          val: "bar"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringContains] {
+          val: "barfoo"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringContains] {
+          val: "foobar"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringContains] {
+          val: "foobarbaz"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringContains] {
+            val: "fizzbuzz"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.contains"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringNotContains forbids a literal substring.
+message StringNotContains {
+  string val = 1 [(buf.validate.field).string.not_contains = "bar"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotContains] {
+          val: "fizzbuzz"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringNotContains] {
+            val: "foobarbaz"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.not_contains"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringSuffix requires val to end with a literal.
+message StringSuffix {
+  string val = 1 [(buf.validate.field).string.suffix = "baz"];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringSuffix] {
+          val: "baz"
+        }
+      },
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringSuffix] {
+          val: "foobarbaz"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringSuffix] {
+            val: "bazbarfoo"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.suffix"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+// StringEmailMaxLen exercises rule interaction: a single bad value can trip
+// both string.email and string.max_len, and the test case asserts both
+// violations fire.
+message StringEmailMaxLen {
+  string val = 1 [
+    (buf.validate.field).string.email = true,
+    (buf.validate.field).string.max_len = 32
+  ];
+
+  option (buf.validate.conformance.test_cases) = {
+    good: [
+      {
+        [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmailMaxLen] {
+          val: "alice@example.com"
+        }
+      }
+    ]
+    bad: [
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmailMaxLen] {
+            val: "not-an-email"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmailMaxLen] {
+            val: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.email"
+            field_path: "val"
+          },
+          {
+            rule_id: "string.max_len"
+            field_path: "val"
+          }
+        ]
+      },
+      {
+        value: {
+          [type.googleapis.com/buf.validate.conformance.cases.annotated.StringEmailMaxLen] {
+            val: "flux@xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.com"
+          }
+        }
+        violations: [
+          {
+            rule_id: "string.max_len"
+            field_path: "val"
+          }
+        ]
+      }
+    ]
+  };
+}
