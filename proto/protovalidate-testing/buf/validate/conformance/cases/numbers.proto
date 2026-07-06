@@ -33,9 +33,7 @@ message FloatIn {
   }];
 }
 message FloatNotIn {
-  float val = 1 [(buf.validate.field).float = {
-    not_in: [0]
-  }];
+  float val = 1 [(buf.validate.field).float = {not_in: [0]}];
 }
 message FloatLT {
   float val = 1 [(buf.validate.field).float.lt = 0];
@@ -112,9 +110,7 @@ message DoubleIn {
   }];
 }
 message DoubleNotIn {
-  double val = 1 [(buf.validate.field).double = {
-    not_in: [0]
-  }];
+  double val = 1 [(buf.validate.field).double = {not_in: [0]}];
 }
 message DoubleLT {
   double val = 1 [(buf.validate.field).double.lt = 0];
@@ -191,9 +187,7 @@ message Int32In {
   }];
 }
 message Int32NotIn {
-  int32 val = 1 [(buf.validate.field).int32 = {
-    not_in: [0]
-  }];
+  int32 val = 1 [(buf.validate.field).int32 = {not_in: [0]}];
 }
 message Int32LT {
   int32 val = 1 [(buf.validate.field).int32.lt = 0];
@@ -264,9 +258,7 @@ message Int64In {
   }];
 }
 message Int64NotIn {
-  int64 val = 1 [(buf.validate.field).int64 = {
-    not_in: [0]
-  }];
+  int64 val = 1 [(buf.validate.field).int64 = {not_in: [0]}];
 }
 message Int64LT {
   int64 val = 1 [(buf.validate.field).int64.lt = 0];
@@ -362,9 +354,7 @@ message UInt32In {
   }];
 }
 message UInt32NotIn {
-  uint32 val = 1 [(buf.validate.field).uint32 = {
-    not_in: [0]
-  }];
+  uint32 val = 1 [(buf.validate.field).uint32 = {not_in: [0]}];
 }
 message UInt32LT {
   uint32 val = 1 [(buf.validate.field).uint32.lt = 5];
@@ -435,9 +425,7 @@ message UInt64In {
   }];
 }
 message UInt64NotIn {
-  uint64 val = 1 [(buf.validate.field).uint64 = {
-    not_in: [0]
-  }];
+  uint64 val = 1 [(buf.validate.field).uint64 = {not_in: [0]}];
 }
 message UInt64LT {
   uint64 val = 1 [(buf.validate.field).uint64.lt = 5];
@@ -508,9 +496,7 @@ message SInt32In {
   }];
 }
 message SInt32NotIn {
-  sint32 val = 1 [(buf.validate.field).sint32 = {
-    not_in: [0]
-  }];
+  sint32 val = 1 [(buf.validate.field).sint32 = {not_in: [0]}];
 }
 message SInt32LT {
   sint32 val = 1 [(buf.validate.field).sint32.lt = 0];
@@ -581,9 +567,7 @@ message SInt64In {
   }];
 }
 message SInt64NotIn {
-  sint64 val = 1 [(buf.validate.field).sint64 = {
-    not_in: [0]
-  }];
+  sint64 val = 1 [(buf.validate.field).sint64 = {not_in: [0]}];
 }
 message SInt64LT {
   sint64 val = 1 [(buf.validate.field).sint64.lt = 0];
@@ -653,9 +637,7 @@ message Fixed32In {
   }];
 }
 message Fixed32NotIn {
-  fixed32 val = 1 [(buf.validate.field).fixed32 = {
-    not_in: [0]
-  }];
+  fixed32 val = 1 [(buf.validate.field).fixed32 = {not_in: [0]}];
 }
 message Fixed32LT {
   fixed32 val = 1 [(buf.validate.field).fixed32.lt = 5];
@@ -726,9 +708,7 @@ message Fixed64In {
   }];
 }
 message Fixed64NotIn {
-  fixed64 val = 1 [(buf.validate.field).fixed64 = {
-    not_in: [0]
-  }];
+  fixed64 val = 1 [(buf.validate.field).fixed64 = {not_in: [0]}];
 }
 message Fixed64LT {
   fixed64 val = 1 [(buf.validate.field).fixed64.lt = 5];
@@ -799,9 +779,7 @@ message SFixed32In {
   }];
 }
 message SFixed32NotIn {
-  sfixed32 val = 1 [(buf.validate.field).sfixed32 = {
-    not_in: [0]
-  }];
+  sfixed32 val = 1 [(buf.validate.field).sfixed32 = {not_in: [0]}];
 }
 message SFixed32LT {
   sfixed32 val = 1 [(buf.validate.field).sfixed32.lt = 0];
@@ -872,9 +850,7 @@ message SFixed64In {
   }];
 }
 message SFixed64NotIn {
-  sfixed64 val = 1 [(buf.validate.field).sfixed64 = {
-    not_in: [0]
-  }];
+  sfixed64 val = 1 [(buf.validate.field).sfixed64 = {not_in: [0]}];
 }
 message SFixed64LT {
   sfixed64 val = 1 [(buf.validate.field).sfixed64.lt = 0];

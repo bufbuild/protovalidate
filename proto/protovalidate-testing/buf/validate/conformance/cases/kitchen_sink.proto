@@ -48,16 +48,8 @@ message ComplexTestMsg {
     ]
   }];
   ComplexTestEnum enum_const = 11 [(buf.validate.field).enum.const = 2];
-  google.protobuf.Any any_val = 12 [(buf.validate.field).any = {
-    in: ["type.googleapis.com/google.protobuf.Duration"]
-  }];
-  repeated google.protobuf.Timestamp rep_ts_val = 13 [(buf.validate.field).repeated = {
-    items: {
-      timestamp: {
-        gte: {nanos: 1000000}
-      }
-    }
-  }];
+  google.protobuf.Any any_val = 12 [(buf.validate.field).any = {in: ["type.googleapis.com/google.protobuf.Duration"]}];
+  repeated google.protobuf.Timestamp rep_ts_val = 13 [(buf.validate.field).repeated = {items: {timestamp: {gte: {nanos: 1000000}}}}];
   map<sint32, string> map_val = 14 [(buf.validate.field).map.keys.sint32.lt = 0];
   bytes bytes_val = 15 [(buf.validate.field).bytes.const = "\x00\x99"];
   oneof o {
