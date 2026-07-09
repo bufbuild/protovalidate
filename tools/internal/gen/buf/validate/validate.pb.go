@@ -6591,7 +6591,7 @@ type DurationRules struct {
 	//
 	//	message MyDuration {
 	//	  // value must equal 5s
-	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.const = "5s"];
+	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.const = { seconds: 5 }];
 	//	}
 	//
 	// ```
@@ -6614,7 +6614,9 @@ type DurationRules struct {
 	//
 	//	message MyDuration {
 	//	  // must be in list [1s, 2s, 3s]
-	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.in = ["1s", "2s", "3s"]];
+	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration = {
+	//	    in: [{ seconds: 1 }, { seconds: 2 }, { seconds: 3 }]
+	//	  }];
 	//	}
 	//
 	// ```
@@ -6628,7 +6630,9 @@ type DurationRules struct {
 	//
 	//	message MyDuration {
 	//	  // value must not be in list [1s, 2s, 3s]
-	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.not_in = ["1s", "2s", "3s"]];
+	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration = {
+	//	    not_in: [{ seconds: 1 }, { seconds: 2 }, { seconds: 3 }]
+	//	  }];
 	//	}
 	//
 	// ```
@@ -6774,7 +6778,7 @@ type DurationRules_Lt struct {
 	//
 	//	message MyDuration {
 	//	  // must be less than 5s
-	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.lt = "5s"];
+	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.lt = { seconds: 5 }];
 	//	}
 	//
 	// ```
@@ -6790,7 +6794,7 @@ type DurationRules_Lte struct {
 	//
 	//	message MyDuration {
 	//	  // must be less than or equal to 10s
-	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.lte = "10s"];
+	//	  google.protobuf.Duration value = 1 [(buf.validate.field).duration.lte = { seconds: 10 }];
 	//	}
 	//
 	// ```
