@@ -17,12 +17,14 @@
       "github": "jonbodner-buf"
     },
     {
-      "name": "Sri Krishna Paritala",
-      "email": "skrishna@buf.build",
-      "github": "srikrsna-buf"
+      "name": "Philip Warren",
+      "email": "pwarren@buf.build",
+      "github": "pkwarren"
     }
   ],
-  "repository": ["github:bufbuild/protovalidate"],
+  "repository": [
+    "github:bufbuild/protovalidate"
+  ],
   "versions": [],
   "yanked_versions": {}
 }
