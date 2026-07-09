@@ -88,7 +88,7 @@ extend google.protobuf.FieldOptions {
   //
   // ```proto
   // extend buf.validate.Int32Rules {
-  //   bool is_zero [(buf.validate.predefined).cel = {
+  //   bool is_zero = 1001 [(buf.validate.predefined).cel = {
   //     id: "int32.is_zero",
   //     message: "must be zero",
   //     expression: "!rule || this == 0",
@@ -1747,7 +1747,7 @@ message UInt64Rules {
   // message MyUInt64 {
   //   uint64 value = 1 [
   //     (buf.validate.field).uint64.example = 1,
-  //     (buf.validate.field).uint64.example = -10
+  //     (buf.validate.field).uint64.example = 10
   //   ];
   // }
   // ```
@@ -3028,8 +3028,8 @@ message BoolRules {
   // ```proto
   // message MyBool {
   //   bool value = 1 [
-  //     (buf.validate.field).bool.example = 1,
-  //     (buf.validate.field).bool.example = 2
+  //     (buf.validate.field).bool.example = true,
+  //     (buf.validate.field).bool.example = false
   //   ];
   // }
   // ```
@@ -3239,7 +3239,7 @@ message StringRules {
   // ```proto
   // message MyString {
   //   // must be in list ["apple", "banana"]
-  //   string value = 1 [(buf.validate.field).string.in = "apple", (buf.validate.field).string.in = "banana"];
+  //   string value = 1 [(buf.validate.field).string = { in: ["apple", "banana"] }];
   // }
   // ```
   repeated string in = 10 [(predefined).cel = {
@@ -3253,7 +3253,7 @@ message StringRules {
   // ```proto
   // message MyString {
   //   // value must not be in list ["orange", "grape"]
-  //   string value = 1 [(buf.validate.field).string.not_in = "orange", (buf.validate.field).string.not_in = "grape"];
+  //   string value = 1 [(buf.validate.field).string = { not_in: ["orange", "grape"] }];
   // }
   // ```
   repeated string not_in = 11 [(predefined).cel = {
@@ -4025,7 +4025,7 @@ message BytesRules {
   // ```proto
   // message MyBytes {
   //   // value must in ["\x01\x02", "\x02\x03", "\x03\x04"]
-  //   optional bytes value = 1 [(buf.validate.field).bytes.in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
+  //   optional bytes value = 1 [(buf.validate.field).bytes = { in: ["\x01\x02", "\x02\x03", "\x03\x04"] }];
   // }
   // ```
   repeated bytes in = 8 [(predefined).cel = {
@@ -4041,7 +4041,7 @@ message BytesRules {
   // ```proto
   // message MyBytes {
   //   // value must not in ["\x01\x02", "\x02\x03", "\x03\x04"]
-  //   optional bytes value = 1 [(buf.validate.field).bytes.not_in = {"\x01\x02", "\x02\x03", "\x03\x04"}];
+  //   optional bytes value = 1 [(buf.validate.field).bytes = { not_in: ["\x01\x02", "\x02\x03", "\x03\x04"] }];
   // }
   // ```
   repeated bytes not_in = 9 [(predefined).cel = {
@@ -4258,8 +4258,10 @@ message EnumRules {
   // }
   //
   // message MyMessage {
+  //   MyEnum value = 1 [
   //     (buf.validate.field).enum.example = 1,
   //     (buf.validate.field).enum.example = 2
+  //   ];
   // }
   // ```
   repeated int32 example = 5 [(predefined).cel = {
@@ -4647,7 +4649,7 @@ message DurationRules {
   // message MyDuration {
   //   google.protobuf.Duration value = 1 [
   //     (buf.validate.field).duration.example = { seconds: 1 },
-  //     (buf.validate.field).duration.example = { seconds: 2 },
+  //     (buf.validate.field).duration.example = { seconds: 2 }
   //   ];
   // }
   // ```
@@ -4727,7 +4729,7 @@ message FieldMaskRules {
   // message MyFieldMask {
   //   google.protobuf.FieldMask value = 1 [
   //     (buf.validate.field).field_mask.example = { paths: ["a", "b"] },
-  //     (buf.validate.field).field_mask.example = { paths: ["c.a", "d"] },
+  //     (buf.validate.field).field_mask.example = { paths: ["c.a", "d"] }
   //   ];
   // }
   // ```
@@ -4938,7 +4940,7 @@ message TimestampRules {
   // message MyTimestamp {
   //   google.protobuf.Timestamp value = 1 [
   //     (buf.validate.field).timestamp.example = { seconds: 1672444800 },
-  //     (buf.validate.field).timestamp.example = { seconds: 1672531200 },
+  //     (buf.validate.field).timestamp.example = { seconds: 1672531200 }
   //   ];
   // }
   // ```
@@ -5038,7 +5040,7 @@ message Violation {
   //   bool b = 2 [(buf.validate.field).cel = {
   //     id: "custom_rule",
   //     expression: "!this ? 'b must be true': ''"
-  //   }]
+  //   }];
   // }
   // ```
   //
