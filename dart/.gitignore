@@ -1,0 +1,3 @@
+# Dart tool cache and build output.
+.dart_tool/
+build/

@@ -1,0 +1,14 @@
+# Generates Dart code for the protovalidate runtime and its conformance suite.
+#
+# Run via `make generate-dart`, which invokes:
+#   buf generate --template dart/buf.gen.yaml --include-imports
+#
+# `--include-imports` pulls in the well-known types and descriptor.proto so the
+# runtime has Dart classes for FileDescriptorSet/FieldOptions/etc. Everything is
+# emitted into a single tree to avoid duplicate generated classes across the
+# runtime library and the conformance case protos.
+version: v2
+clean: true
+plugins:
+  - local: protoc-gen-dart
+    out: dart/lib/src/gen

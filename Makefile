@@ -14,6 +14,9 @@ GOLANGCI_LINT_VERSION := v1.64.7
 BAZELISK_VERSION := v1.27.0
 # Set to use a different compiler. For example, `GO=go1.18rc1 make test`.
 GO ?= go
+DART ?= dart
+# Directory containing the protoc-gen-dart plugin (from `dart pub global activate protoc_plugin`).
+PROTOC_GEN_DART_BIN ?= $(HOME)/.pub-cache/bin
 ARGS ?=
 
 
@@ -64,6 +67,26 @@ lint-protovalidate: | $(BIN)/buf  ## Check invariants of validate.proto
 .PHONY: conformance
 conformance: ## Build conformance harness
 	$(GO) build -o $(BIN)/protovalidate-conformance ./tools/protovalidate-conformance
+
+.PHONY: test-dart
+test-dart: ## Analyze and unit-test the Dart runtime
+	cd dart && $(DART) pub get
+	cd dart && $(DART) analyze lib bin
+	cd dart && $(DART) test
+
+.PHONY: conformance-dart
+conformance-dart: conformance ## Run conformance tests against the Dart runtime
+	cd dart && $(DART) pub get
+	cd dart && $(DART) compile exe bin/protovalidate_conformance.dart -o $(abspath $(BIN))/protovalidate-conformance-dart
+	$(BIN)/protovalidate-conformance \
+		--expected_failures=dart/conformance/expected_failures.yaml \
+		$(BIN)/protovalidate-conformance-dart
+
+.PHONY: generate-dart
+generate-dart: | $(BIN)/buf ## Regenerate Dart code for the runtime and conformance suite
+	PATH="$(PROTOC_GEN_DART_BIN):$(abspath $(BIN)):$$PATH" \
+		$(BIN)/buf generate --template dart/buf.gen.yaml --include-imports --include-wkt
+	cd dart && $(DART) run tool/gen_conformance_registry.dart
 
 .PHONY: generate
 generate: ## Regenerate code and license headers

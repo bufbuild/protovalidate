@@ -1,0 +1,12 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  exclude:
+    # Generated code carries its own ignore directives; keep analysis focused on
+    # the hand-written runtime.
+    - lib/src/gen/**
+
+linter:
+  rules:
+    - prefer_final_locals
+    - avoid_print

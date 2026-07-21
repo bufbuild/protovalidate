@@ -1,0 +1,17 @@
+name: protovalidate
+description: >-
+  A Dart runtime for Protovalidate: validates Protobuf messages against the
+  standard (CEL-free) validation rules declared with buf.validate options.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.3.0
+
+dependencies:
+  fixnum: ^1.1.0
+  protobuf: ^5.0.0
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.25.0
