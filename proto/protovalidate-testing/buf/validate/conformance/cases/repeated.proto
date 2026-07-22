@@ -93,13 +93,19 @@ message RepeatedItemNotIn {
   }];
 }
 message RepeatedEnumIn {
-  repeated AnEnum val = 1 [(buf.validate.field).repeated.items.enum = {in: [0]}];
+  repeated AnEnum val = 1 [(buf.validate.field).repeated.items.enum = {
+    in: [0]
+  }];
 }
 message RepeatedEnumNotIn {
-  repeated AnEnum val = 1 [(buf.validate.field).repeated.items.enum = {not_in: [0]}];
+  repeated AnEnum val = 1 [(buf.validate.field).repeated.items.enum = {
+    not_in: [0]
+  }];
 }
 message RepeatedEmbeddedEnumIn {
-  repeated AnotherInEnum val = 1 [(buf.validate.field).repeated.items.enum = {in: [0]}];
+  repeated AnotherInEnum val = 1 [(buf.validate.field).repeated.items.enum = {
+    in: [0]
+  }];
   enum AnotherInEnum {
     ANOTHER_IN_ENUM_UNSPECIFIED = 0;
     ANOTHER_IN_ENUM_A = 1;
@@ -107,7 +113,9 @@ message RepeatedEmbeddedEnumIn {
   }
 }
 message RepeatedEmbeddedEnumNotIn {
-  repeated AnotherNotInEnum val = 1 [(buf.validate.field).repeated.items.enum = {not_in: [0]}];
+  repeated AnotherNotInEnum val = 1 [(buf.validate.field).repeated.items.enum = {
+    not_in: [0]
+  }];
   enum AnotherNotInEnum {
     ANOTHER_NOT_IN_ENUM_UNSPECIFIED = 0;
     ANOTHER_NOT_IN_ENUM_A = 1;
@@ -115,14 +123,20 @@ message RepeatedEmbeddedEnumNotIn {
   }
 }
 message RepeatedAnyIn {
-  repeated google.protobuf.Any val = 1 [(buf.validate.field).repeated.items.any = {in: ["type.googleapis.com/google.protobuf.Duration"]}];
+  repeated google.protobuf.Any val = 1 [(buf.validate.field).repeated.items.any = {
+    in: ["type.googleapis.com/google.protobuf.Duration"]
+  }];
 }
 message RepeatedAnyNotIn {
-  repeated google.protobuf.Any val = 1 [(buf.validate.field).repeated.items.any = {not_in: ["type.googleapis.com/google.protobuf.Timestamp"]}];
+  repeated google.protobuf.Any val = 1 [(buf.validate.field).repeated.items.any = {
+    not_in: ["type.googleapis.com/google.protobuf.Timestamp"]
+  }];
 }
 message RepeatedMinAndItemLen {
   repeated string val = 1 [(buf.validate.field).repeated = {
-    items: {string: {len: 3}}
+    items: {
+      string: {len: 3}
+    }
     min_items: 1
   }];
 }
@@ -133,7 +147,13 @@ message RepeatedMinAndMaxItemLen {
   ];
 }
 message RepeatedDuration {
-  repeated google.protobuf.Duration val = 1 [(buf.validate.field).repeated = {items: {duration: {gte: {nanos: 1000000}}}}];
+  repeated google.protobuf.Duration val = 1 [(buf.validate.field).repeated = {
+    items: {
+      duration: {
+        gte: {nanos: 1000000}
+      }
+    }
+  }];
 }
 message RepeatedExactIgnore {
   repeated uint32 val = 1 [

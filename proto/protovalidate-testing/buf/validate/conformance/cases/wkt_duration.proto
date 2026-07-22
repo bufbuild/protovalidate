@@ -42,7 +42,11 @@ message DurationIn {
   }];
 }
 message DurationNotIn {
-  google.protobuf.Duration val = 1 [(buf.validate.field).duration = {not_in: [{}]}];
+  google.protobuf.Duration val = 1 [(buf.validate.field).duration = {
+    not_in: [
+      {}
+    ]
+  }];
 }
 
 message DurationLT {
