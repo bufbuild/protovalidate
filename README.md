@@ -38,7 +38,7 @@ To start using Protovalidate in your projects, see the [developer quickstart][qu
 
 - [`protovalidate-go`][pv-go] (Go)
 - [`protovalidate-java`][pv-java] (Java)
-- [`protovalidate-python`][pv-python] (Python)
+- [`protovalidate-py`][pv-python] (Python)
 - [`protovalidate-cc`][pv-cc] (C++)
 - [`protovalidate-es`][pv-es] (TypeScript and JavaScript)
 
@@ -68,7 +68,7 @@ Offered under the [Apache 2 license][license].
 
 [pv-go]: https://github.com/bufbuild/protovalidate-go
 [pv-java]: https://github.com/bufbuild/protovalidate-java
-[pv-python]: https://github.com/bufbuild/protovalidate-python
+[pv-python]: https://github.com/bufbuild/protovalidate-py
 [pv-cc]: https://github.com/bufbuild/protovalidate-cc
 [pv-es]: https://github.com/bufbuild/protovalidate-es
 
