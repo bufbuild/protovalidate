@@ -14,5 +14,6 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
       - uses: bufbuild/buf-action@v1
         with:
+          version: "1.72.0"
           token: ${{ secrets.BUF_TOKEN }}
           push: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push' }}

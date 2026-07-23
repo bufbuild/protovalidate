@@ -27,7 +27,9 @@ message FieldMaskRequired {
 }
 
 message FieldMaskConst {
-  google.protobuf.FieldMask val = 1 [(buf.validate.field).field_mask.const = {paths: ["a"]}];
+  google.protobuf.FieldMask val = 1 [(buf.validate.field).field_mask.const = {
+    paths: ["a"]
+  }];
 }
 
 message FieldMaskIn {
@@ -48,5 +50,7 @@ message FieldMaskNotIn {
 }
 
 message FieldMaskExample {
-  google.protobuf.FieldMask val = 1 [(buf.validate.field).field_mask.example = {paths: ["a"]}];
+  google.protobuf.FieldMask val = 1 [(buf.validate.field).field_mask.example = {
+    paths: ["a"]
+  }];
 }
