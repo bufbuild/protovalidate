@@ -214,6 +214,15 @@ func bytesSuite() suites.Suite {
 				Message: proto.String("does not have prefix 99"),
 			}),
 		},
+		"prefix/invalid/empty": {
+			Message: &cases.BytesPrefix{Val: []byte("")},
+			Expected: results.Violations(&validate.Violation{
+				Field:   results.FieldPath("val"),
+				Rule:    results.FieldPath("bytes.prefix"),
+				RuleId:  proto.String("bytes.prefix"),
+				Message: proto.String("does not have prefix 99"),
+			}),
+		},
 		"contains/valid": {
 			Message:  &cases.BytesContains{Val: []byte("candy bars")},
 			Expected: results.Success(true),
@@ -230,6 +239,19 @@ func bytesSuite() suites.Suite {
 				RuleId:  proto.String("bytes.contains"),
 				Message: proto.String("does not contain 626172"),
 			}),
+		},
+		"contains/invalid/empty": {
+			Message: &cases.BytesContains{Val: []byte("")},
+			Expected: results.Violations(&validate.Violation{
+				Field:   results.FieldPath("val"),
+				Rule:    results.FieldPath("bytes.contains"),
+				RuleId:  proto.String("bytes.contains"),
+				Message: proto.String("does not contain 626172"),
+			}),
+		},
+		"contains/valid/embedded_null": {
+			Message:  &cases.BytesContains{Val: []byte("foo\x00bar")},
+			Expected: results.Success(true),
 		},
 		"suffix/valid": {
 			Message:  &cases.BytesSuffix{Val: []byte{0x62, 0x75, 0x7A, 0x7A}},
@@ -256,6 +278,19 @@ func bytesSuite() suites.Suite {
 				RuleId:  proto.String("bytes.suffix"),
 				Message: proto.String("does not have suffix 62757a7a"),
 			}),
+		},
+		"suffix/invalid/empty": {
+			Message: &cases.BytesSuffix{Val: []byte("")},
+			Expected: results.Violations(&validate.Violation{
+				Field:   results.FieldPath("val"),
+				Rule:    results.FieldPath("bytes.suffix"),
+				RuleId:  proto.String("bytes.suffix"),
+				Message: proto.String("does not have suffix 62757a7a"),
+			}),
+		},
+		"suffix/valid/embedded_null": {
+			Message:  &cases.BytesSuffix{Val: []byte("foo\x00buzz")},
+			Expected: results.Success(true),
 		},
 		"IP/valid/v4": {
 			Message:  &cases.BytesIP{Val: []byte{0xC0, 0xA8, 0x00, 0x01}},
