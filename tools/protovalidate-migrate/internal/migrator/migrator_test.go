@@ -152,7 +152,7 @@ func TestMigrator(t *testing.T) {
 
 			srcFile, err := os.Open(filepath.Join(pathPrefix, test.srcPath))
 			require.NoError(t, err)
-			defer srcFile.Close()
+			t.Cleanup(func() { require.NoError(t, srcFile.Close()) })
 
 			outBuf := &bytes.Buffer{}
 			err = m.MigrateFile(test.srcPath, srcFile, outBuf)

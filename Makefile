@@ -9,8 +9,8 @@ MAKEFLAGS += --no-print-directory
 BIN := .tmp/bin
 COPYRIGHT_YEARS := 2023-2026
 LICENSE_IGNORE := -e internal/testdata/
-BUF_VERSION := v1.66.0
-GOLANGCI_LINT_VERSION := v1.64.7
+BUF_VERSION := v1.72.0
+GOLANGCI_LINT_VERSION := v2.13.1
 BAZELISK_VERSION := v1.27.0
 # Set to use a different compiler. For example, `GO=go1.18rc1 make test`.
 GO ?= go
@@ -113,4 +113,4 @@ $(BIN)/license-header: Makefile | $(BIN)
 		  github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(BUF_VERSION)
 
 $(BIN)/golangci-lint: Makefile | $(BIN)
-	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+	GOBIN=$(abspath $(@D)) $(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)

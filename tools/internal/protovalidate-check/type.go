@@ -15,7 +15,7 @@
 package main
 
 import (
-	"github.com/google/cel-go/cel"
+	"cel.dev/cel-go/cel"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 

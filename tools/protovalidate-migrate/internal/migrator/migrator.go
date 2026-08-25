@@ -99,28 +99,28 @@ func (m *Migrator) migrate(rootPath, srcPath string, stat fs.DirEntry) error {
 	}
 }
 
-func (m *Migrator) PrintMigrate(srcPath string) error {
+func (m *Migrator) PrintMigrate(srcPath string) (retErr error) {
 	file, err := os.Open(srcPath)
 	if err != nil {
 		return fmt.Errorf("failed to open %s: %w", srcPath, err)
 	}
-	defer file.Close()
+	defer func() { retErr = errors.Join(retErr, file.Close()) }()
 	return m.MigrateFile(srcPath, file, os.Stdout)
 }
 
-func (m *Migrator) InPlaceMigrate(src os.FileInfo, srcPath string) error {
+func (m *Migrator) InPlaceMigrate(src os.FileInfo, srcPath string) (retErr error) {
 	srcFile, err := os.Open(srcPath)
 	if err != nil {
 		return fmt.Errorf("failed to open source file %s: %w", srcPath, err)
 	}
-	defer srcFile.Close()
+	defer func() { retErr = errors.Join(retErr, srcFile.Close()) }()
 
 	dstFile, err := os.CreateTemp(filepath.Dir(srcFile.Name()), src.Name())
 	if err != nil {
 		return fmt.Errorf("failed to create tmp output file: %w", err)
 	}
-	defer os.Remove(dstFile.Name())
-	defer dstFile.Close()
+	defer func() { retErr = errors.Join(os.Remove(dstFile.Name())) }()
+	defer func() { retErr = errors.Join(retErr, dstFile.Close()) }()
 
 	err = dstFile.Chmod(src.Mode())
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *Migrator) InPlaceMigrate(src os.FileInfo, srcPath string) error {
 	if err != nil {
 		return err
 	}
-	srcFile.Close()
-	dstFile.Close()
+	_ = srcFile.Close()
+	_ = dstFile.Close()
 
 	err = os.Rename(dstFile.Name(), srcFile.Name())
 	if err != nil {
@@ -142,12 +142,12 @@ func (m *Migrator) InPlaceMigrate(src os.FileInfo, srcPath string) error {
 	return nil
 }
 
-func (m *Migrator) OutputMigrate(src os.FileInfo, srcPath, dstPath string) error {
+func (m *Migrator) OutputMigrate(src os.FileInfo, srcPath, dstPath string) (retErr error) {
 	srcFile, err := os.Open(srcPath)
 	if err != nil {
 		return fmt.Errorf("failed to open source file %s: %w", srcPath, err)
 	}
-	defer srcFile.Close()
+	defer func() { retErr = errors.Join(retErr, srcFile.Close()) }()
 
 	const filePerms = 0o755
 	err = os.MkdirAll(filepath.Dir(dstPath), filePerms)
@@ -159,7 +159,7 @@ func (m *Migrator) OutputMigrate(src os.FileInfo, srcPath, dstPath string) error
 	if err != nil {
 		return fmt.Errorf("failed to create destination file %s: %w", dstPath, err)
 	}
-	defer dstFile.Close()
+	defer func() { retErr = errors.Join(retErr, dstFile.Close()) }()
 
 	return m.MigrateFile(srcPath, srcFile, dstFile)
 }
