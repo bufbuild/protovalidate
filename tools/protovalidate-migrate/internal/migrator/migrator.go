@@ -119,8 +119,13 @@ func (m *Migrator) InPlaceMigrate(src os.FileInfo, srcPath string) (retErr error
 	if err != nil {
 		return fmt.Errorf("failed to create tmp output file: %w", err)
 	}
-	defer func() { retErr = errors.Join(os.Remove(dstFile.Name())) }()
-	defer func() { retErr = errors.Join(retErr, dstFile.Close()) }()
+	defer func() {
+		if err := dstFile.Close(); err != nil {
+			retErr = errors.Join(retErr, err)
+		} else {
+			retErr = errors.Join(retErr, os.Remove(dstFile.Name()))
+		}
+	}()
 
 	err = dstFile.Chmod(src.Mode())
 	if err != nil {
