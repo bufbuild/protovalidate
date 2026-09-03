@@ -8609,7 +8609,7 @@ const file_buf_validate_validate_proto_rawDesc = "" +
 	"\x1dstring.protobuf_dot_fqn_empty\x12Uvalue is empty, which is not a valid fully-qualified Protobuf name with a leading dot\x1a%!rules.protobuf_dot_fqn || this != ''H\x00R\x0eprotobufDotFqn\x12\xac\x05\n" +
 	"\x10well_known_regex\x18\x18 \x01(\x0e2\x18.buf.validate.KnownRegexB\xe5\x04\xc2H\xe1\x04\n" +
 	"\xea\x01\n" +
-	"#string.well_known_regex.header_name\x12 must be a valid HTTP header name\x1a\xa0\x01rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :'^[^\\u0000\\u000A\\u000D]+$')\n" +
+	"#string.well_known_regex.header_name\x12 must be a valid HTTP header name\x1a\xa0\x01rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?'^:?[0-9a-zA-Z!#$%&\\'*+.^_|~\\x60-]+$' :'^[^\\u0000\\u000A\\u000D]+$')\n" +
 	"\x8d\x01\n" +
 	")string.well_known_regex.header_name_empty\x125value is empty, which is not a valid HTTP header name\x1a)rules.well_known_regex != 1 || this != ''\n" +
 	"\xe1\x01\n" +

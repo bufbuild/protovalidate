@@ -1528,6 +1528,10 @@ func stringSuite() suites.Suite {
 			Message:  &cases.StringHttpHeaderName{Val: ":authority"},
 			Expected: results.Success(true),
 		},
+		"well_known_regex/header_name/strict/valid/all_chars": {
+			Message:  &cases.StringHttpHeaderName{Val: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'*+-.^_|~`"},
+			Expected: results.Success(true),
+		},
 		"well_known_regex/header_name/strict/valid/numbers": {
 			Message:  &cases.StringHttpHeaderName{Val: "abc-123"},
 			Expected: results.Success(true),
@@ -1562,6 +1566,16 @@ func stringSuite() suites.Suite {
 		},
 		"well_known_regex/header_name/strict/invalid/trailing_colon": {
 			Message: &cases.StringHttpHeaderName{Val: ":foo:"},
+			Expected: results.Violations(
+				&validate.Violation{
+					Field:  results.FieldPath("val"),
+					Rule:   results.FieldPath("string.well_known_regex"),
+					RuleId: proto.String("string.well_known_regex.header_name"),
+				},
+			),
+		},
+		"well_known_regex/header_name/strict/invalid/comma": {
+			Message: &cases.StringHttpHeaderName{Val: "foo,bar"},
 			Expected: results.Violations(
 				&validate.Violation{
 					Field:  results.FieldPath("val"),

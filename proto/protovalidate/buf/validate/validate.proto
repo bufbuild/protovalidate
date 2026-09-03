@@ -3828,7 +3828,7 @@ message StringRules {
         message: "must be a valid HTTP header name"
         expression:
           "rules.well_known_regex != 1 || this == '' || this.matches(!has(rules.strict) || rules.strict ?"
-          "'^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$' :"
+          "'^:?[0-9a-zA-Z!#$%&\\'*+.^_|~\\x60-]+$' :"
           "'^[^\\u0000\\u000A\\u000D]+$')"
       },
       (predefined).cel = {
