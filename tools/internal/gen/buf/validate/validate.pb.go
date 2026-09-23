@@ -6063,10 +6063,12 @@ type BytesRules_Ipv6 struct {
 }
 
 type BytesRules_Uuid struct {
-	// `uuid` ensures that the field value encodes 128-bit UUID data as defined
-	// by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1.2).
-	// The field must contain exactly 16 bytes representing the UUID. If the
-	// field value isn't a valid UUID, an error message will be generated.
+	// `uuid` ensures that the field `value` is exactly 16 bytes long,
+	// the size of a UUID in binary form as defined by
+	// [RFC 9562](https://datatracker.ietf.org/doc/html/rfc9562#section-4).
+	// Only the length is enforced: the version and variant fields
+	// are not checked, and any 16 bytes are accepted.
+	// If the field value doesn't meet this rule, an error message is generated.
 	//
 	// ```proto
 	//
