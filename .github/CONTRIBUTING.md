@@ -207,6 +207,24 @@ The environment itself is declared in
 any contribution that introduces a new function or variable must add its
 signature there.
 
+### Reporting errors
+
+A failed violation is reported to the user as the error type for the language with a string message.
+The error type must provide structured access to the violations, minimally as the language's
+protobuf messages for validate.proto itself, though usually it is useful to provide a higher level
+wrapper for additional features like accessing failed fields via reflection.
+
+The string message should be a summary of the violations rather than describing the entire
+structured violations. For example, a common format is to print the first validation error message,
+and if there are more violations, the count of remaining violations, e.g.,
+
+`user.email: must be a valid email address, and 2 more violations`
+
+Only the message should be printed when available, and when not, the rule ID should be printed.
+If neither is available, print `[unknown]`.
+
+An option may be provided to generate a message string containing all errors instead of a summary.
+
 ## Questions?
 
 If you have any questions, please don't hesitate to create an issue, and we'll
