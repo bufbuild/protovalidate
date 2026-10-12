@@ -31,4 +31,7 @@ jobs:
         with:
           version: "1.72.0"
           token: ${{ secrets.BUF_TOKEN }}
-          push: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push' }}
+          # main is published as a managed module from releases (#470). Push all
+          # other branches, except dependabot's: their push runs do not have
+          # access to a BUF_TOKEN.
+          push: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' && github.actor != 'dependabot[bot]' }}
