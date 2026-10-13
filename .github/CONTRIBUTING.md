@@ -209,21 +209,21 @@ signature there.
 
 ### Reporting errors
 
-A failed violation is reported to the user as the error type for the language with a string message.
-The error type must provide structured access to the violations, minimally as the language's
-protobuf messages for validate.proto itself, though usually it is useful to provide a higher level
-wrapper for additional features like accessing failed fields via reflection.
+All validation failures found during validation must be reported to the user via the
+language's error mechanism. This error must include a string message that contains the
+field name with the first validation failure found, the rule ID and description of that
+validation failure, and a count of the remaining validation failures. The error may also
+contain a string message that lists the field names, rule IDs and descriptions of all validation failures.
 
-The string message should be a summary of the violations rather than describing the entire
-structured violations. For example, a common format is to print the first validation error message,
-and if there are more violations, the count of remaining violations, e.g.,
+The error must provide access to all validation failures found during validation. How these validation failures
+are accessed is language-specific.
+
+An example error message string:
 
 `user.email: must be a valid email address, and 2 more violations`
 
 Only the message should be printed when available, and when not, the rule ID should be printed.
 If neither is available, print `[unknown]`.
-
-An option may be provided to generate a message string containing all errors instead of a summary.
 
 ## Questions?
 
