@@ -207,6 +207,29 @@ The environment itself is declared in
 any contribution that introduces a new function or variable must add its
 signature there.
 
+### Reporting validation failures
+
+Validation failures must be reported to the user, either via the language's
+error mechanism or as a result value that the user checks, whichever is
+idiomatic for the language.
+
+The error or result value must provide access to the structured failures: each
+time a value does not meet a rule, the implementation provides a "violation"
+that describes which rule failed, where it failed, and why.
+
+The error or result value may provide a single string representation, either
+listing every violation or summarizing them, for example the first violation
+and the number of remaining violations.
+
+Implementations may choose to limit the number of violations reported during
+validation. Implementations may also provide an option to "fail fast", and
+immediately return the result on the first rule violation encountered.
+
+The canonical representation of a violation is the Protobuf message
+`buf.validate.Violation`. Implementations may wrap violations in their own type,
+for example to add a string representation, access to the failing value, or
+other conveniences, but must provide access to the canonical representation.
+
 ## Questions?
 
 If you have any questions, please don't hesitate to create an issue, and we'll
