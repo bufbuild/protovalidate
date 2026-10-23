@@ -207,28 +207,28 @@ The environment itself is declared in
 any contribution that introduces a new function or variable must add its
 signature there.
 
-### Reporting errors
+### Reporting validation failures
 
-All validation failures found during validation must be reported to the user via
-the language's error mechanism. This error must include a string message that
-contains the field name with the first validation failure found, the rule ID or
-description of that validation failure, and a count of the remaining validation
-failures. The error may also contain a string message that lists the field names,
-rule IDs and descriptions of all detected validation failures.
+Validation failures must be reported to the user, either via the language's
+error mechanism or as a result value that the user checks, whichever is
+idiomatic for the language.
 
-A protovalidate implementation may choose to limit the number of validation failures
-detected and reported during validation. If an implementation does so, it must
-indicate in the error message that there are unreported validation failures.
+The error or result value must provide access to the structured failures: each
+time a value does not meet a rule, the implementation provides a "violation"
+that describes which rule failed, where it failed, and why.
 
-The error must provide access to all validation failures (up to any imposed limit)
-found during validation. How these validation failures are accessed is language-specific.
+The error or result value may provide a single string representation, either
+listing every violation or summarizing them, for example the first violation
+and the number of remaining violations.
 
-An example error message string:
+Implementations may choose to limit the number of violations reported during
+validation. Implementations may also provide an option to "fail fast", and
+immediately return the result on the first rule violation encountered.
 
-`user.email: must be a valid email address, and 2 more violations`
-
-Only the message should be printed when available, and when not, the rule ID should be printed.
-If neither is available, print `[unknown]`.
+The canonical representation of a violation is the Protobuf message
+`buf.validate.Violation`. Implementations may wrap violations in their own type,
+for example to add a string representation, access to the failing value, or
+other conveniences, but must provide access to the canonical representation.
 
 ## Questions?
 
