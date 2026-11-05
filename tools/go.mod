@@ -3,7 +3,7 @@ module github.com/bufbuild/protovalidate/tools
 go 1.26.0
 
 require (
-	cel.dev/cel-go v0.32.0
+	cel.dev/cel-go v0.33.2
 	github.com/bufbuild/protocompile v0.14.1
 	github.com/spf13/pflag v1.0.10
 	github.com/stretchr/testify v1.12.1
