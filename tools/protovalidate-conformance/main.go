@@ -114,13 +114,14 @@ func (r *suiteRunner) runSuite(suiteName string, suite suites.Suite) error {
 // executorFailureResponse returns a response in which every test case of the
 // request has the executor's error.
 func executorFailureResponse(req *harness.TestConformanceRequest, executorErr error) *harness.TestConformanceResponse {
+	result := &harness.TestResult{
+		Result: &harness.TestResult_UnexpectedError{UnexpectedError: executorErr.Error()},
+	}
 	resp := &harness.TestConformanceResponse{
 		Results: make(map[string]*harness.TestResult, len(req.GetCases())),
 	}
 	for caseName := range req.GetCases() {
-		resp.Results[caseName] = &harness.TestResult{
-			Result: &harness.TestResult_UnexpectedError{UnexpectedError: executorErr.Error()},
-		}
+		resp.Results[caseName] = result
 	}
 	return resp
 }
