@@ -1,0 +1,386 @@
+# Copyright 2023-2026 Buf Technologies, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Implementation Conformance
+# Runs the conformance tests of protovalidate implementations at their default
+# branch, once with the pull request's harness and once with the base branch's,
+# to find the tests the pull request makes fail. Every implementation gets the
+# harness with "go install" or "go run" of the version it pins, so each job puts
+# a go command first on PATH that hands it the harness under test instead, and
+# runs the conformance tests the way the implementation's own CI does, on Linux
+# only. Expected failures lists are passed to the harness, which reports which
+# tests they have, so the results show which entries each implementation has
+# to add or remove. Implementations use the rules of the protovalidate release
+# they pin, so their results are only an estimate when validate.proto changes.
+# The "impl-conformance: skip" label skips every implementation, and
+# "impl-conformance: skip <implementation>" skips one.
+# impl-conformance-report.yaml posts the results. They never fail the pull
+# request; a job fails only if the scripts' tests fail or an implementation
+# didn't call the harness.
+on:
+  pull_request:
+    # Label changes rerun the workflow, because a rerun keeps the labels of the
+    # event that started the run.
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+    paths:
+      - 'go.work'
+      - 'proto/**'
+      - 'tools/go.mod'
+      - 'tools/go.sum'
+      - 'tools/internal/**'
+      - 'tools/protovalidate-conformance/**'
+      - '.github/impl-conformance/**'
+      - '.github/workflows/impl-conformance.yaml'
+permissions:
+  contents: read
+# A new push or skip label makes the results of a run in progress irrelevant.
+# Other labels don't, so their events get a group of their own.
+concurrency:
+  group: >-
+    impl-conformance-${{ github.event.pull_request.number }}${{
+    (github.event.action == 'labeled' || github.event.action == 'unlabeled')
+    && !startsWith(github.event.label.name, 'impl-conformance: skip')
+    && format('-{0}', github.run_id) || '' }}
+  cancel-in-progress: true
+defaults:
+  run:
+    # Unlike the default shell, this also sets pipefail.
+    shell: bash
+jobs:
+  prepare:
+    # Other labels don't change the results, so nothing runs for them.
+    if: >-
+      (github.event.action != 'labeled' && github.event.action != 'unlabeled')
+      || startsWith(github.event.label.name, 'impl-conformance: skip')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      run-tests: ${{ steps.changes.outputs.run-tests }}
+      skipped: ${{ steps.changes.outputs.skipped }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # The merge commit and its first parent, the base branch.
+          fetch-depth: 2
+      # Uploaded first so impl-conformance-report.yaml can find the pull
+      # request even if a later step fails.
+      - name: Save pull request number
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          mkdir -p "${RUNNER_TEMP}/pr"
+          echo "${PR_NUMBER}" > "${RUNNER_TEMP}/pr/pr-number"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: impl-conformance-pr
+          path: ${{ runner.temp }}/pr
+      - name: Test the scripts
+        run: .github/impl-conformance/test.sh
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: tools/go.mod
+          cache-dependency-path: go.work.sum
+      - name: Find changes
+        id: changes
+        env:
+          # One for each implementation job below.
+          IMPLEMENTATIONS: protovalidate-go protovalidate-java protovalidate-py protovalidate-cc protovalidate-es
+          LABELS: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+        run: |
+          mkdir -p .tmp/conformance
+          .github/impl-conformance/impl-conformance.sh changes HEAD^1 .tmp/conformance/changes.json
+          read -r -a implementations <<< "${IMPLEMENTATIONS}"
+          skipped="$(.github/impl-conformance/impl-conformance.sh skipped "${LABELS}" "${implementations[@]}")"
+          echo "skipped=${skipped}" >> "${GITHUB_OUTPUT}"
+          jq --argjson skipped "${skipped}" '.skipped = $skipped' .tmp/conformance/changes.json > .tmp/changes.json
+          mv .tmp/changes.json .tmp/conformance/changes.json
+          if jq -e --argjson count "${#implementations[@]}" '(.skipped | length) < $count' \
+            .tmp/conformance/changes.json > /dev/null; then
+            echo "run-tests=true" >> "${GITHUB_OUTPUT}"
+          fi
+      - uses: actions/upload-artifact@v7
+        with:
+          name: impl-conformance-changes
+          path: .tmp/conformance/changes.json
+      - name: Build protovalidate-conformance
+        if: steps.changes.outputs.run-tests == 'true'
+        run: |
+          go build -o .tmp/conformance/head/protovalidate-conformance ./tools/protovalidate-conformance
+          git worktree add --detach "${RUNNER_TEMP}/base" HEAD^1
+          cd "${RUNNER_TEMP}/base"
+          go build -o "${GITHUB_WORKSPACE}/.tmp/conformance/base/protovalidate-conformance" ./tools/protovalidate-conformance
+      - uses: actions/upload-artifact@v7
+        if: steps.changes.outputs.run-tests == 'true'
+        with:
+          name: conformance
+          path: .tmp/conformance
+          if-no-files-found: error
+  protovalidate-go:
+    needs: prepare
+    if: needs.prepare.outputs.run-tests == 'true' && !contains(fromJSON(needs.prepare.outputs.skipped), 'protovalidate-go')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: bufbuild/protovalidate-go
+          path: protovalidate-go
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+          cache-dependency-path: protovalidate-go/go.sum
+      - uses: actions/download-artifact@v8
+        with:
+          name: conformance
+          path: ${{ runner.temp }}/conformance
+      - name: Install conformance harness
+        run: |
+          .github/impl-conformance/impl-conformance.sh install "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          .github/impl-conformance/impl-conformance.sh install-go "${RUNNER_TEMP}/go-shim/go" "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          echo "${RUNNER_TEMP}/go-shim" >> "${GITHUB_PATH}"
+      - name: Run conformance tests (dynamicpb)
+        working-directory: protovalidate-go
+        run: |
+          "${GITHUB_WORKSPACE}/.github/impl-conformance/impl-conformance.sh" run protovalidate-go dynamicpb \
+            make conformance
+      - name: Run conformance tests (hyperpb)
+        if: always()
+        working-directory: protovalidate-go
+        run: |
+          "${GITHUB_WORKSPACE}/.github/impl-conformance/impl-conformance.sh" run protovalidate-go hyperpb \
+            make conformance-hyperpb
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: impl-conformance-results-protovalidate-go
+          path: ${{ runner.temp }}/results
+  protovalidate-java:
+    needs: prepare
+    if: needs.prepare.outputs.run-tests == 'true' && !contains(fromJSON(needs.prepare.outputs.skipped), 'protovalidate-java')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: bufbuild/protovalidate-java
+          path: protovalidate-java
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+          cache-dependency-path: |
+            protovalidate-java/**/*.gradle*
+            protovalidate-java/**/gradle-wrapper.properties
+            protovalidate-java/gradle/libs.versions.toml
+      # For the go command that installs the harness.
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+          cache: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: conformance
+          path: ${{ runner.temp }}/conformance
+      - name: Install conformance harness
+        run: |
+          .github/impl-conformance/impl-conformance.sh install "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          .github/impl-conformance/impl-conformance.sh install-go "${RUNNER_TEMP}/go-shim/go" "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          echo "${RUNNER_TEMP}/go-shim" >> "${GITHUB_PATH}"
+      # Runs with native rules enabled, then disabled.
+      - name: Run conformance tests
+        working-directory: protovalidate-java
+        run: |
+          "${GITHUB_WORKSPACE}/.github/impl-conformance/impl-conformance.sh" run protovalidate-java conformance \
+            make conformance
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: impl-conformance-results-protovalidate-java
+          path: ${{ runner.temp }}/results
+  protovalidate-py:
+    needs: prepare
+    if: needs.prepare.outputs.run-tests == 'true' && !contains(fromJSON(needs.prepare.outputs.skipped), 'protovalidate-py')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: bufbuild/protovalidate-py
+          path: protovalidate-py
+          submodules: recursive
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+          cache: false
+      # Like protovalidate-py's CI, which caches the native extension's build.
+      - uses: mozilla-actions/sccache-action@v0.0.11
+      - uses: actions/cache@v6
+        with:
+          path: .sccache
+          key: impl-conformance-sccache-protovalidate-py-${{ github.sha }}
+          restore-keys: impl-conformance-sccache-protovalidate-py-
+      - name: Enable sccache
+        run: |
+          echo "SCCACHE_DIR=${GITHUB_WORKSPACE}/.sccache" >> "${GITHUB_ENV}"
+          echo "SCCACHE_CACHE_SIZE=250M" >> "${GITHUB_ENV}"
+          echo "RUSTC_WRAPPER=sccache" >> "${GITHUB_ENV}"
+      - name: Set up Rust
+        run: rustup update
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          python-version: '3.14'
+      - uses: actions/download-artifact@v8
+        with:
+          name: conformance
+          path: ${{ runner.temp }}/conformance
+      - name: Install conformance harness
+        run: |
+          .github/impl-conformance/impl-conformance.sh install "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          .github/impl-conformance/impl-conformance.sh install-go "${RUNNER_TEMP}/go-shim/go" "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          echo "${RUNNER_TEMP}/go-shim" >> "${GITHUB_PATH}"
+      - name: Install dependencies
+        working-directory: protovalidate-py
+        run: uv sync
+      # Runs with protobuf-py messages, then google.protobuf messages.
+      - name: Run conformance tests
+        working-directory: protovalidate-py
+        run: |
+          "${GITHUB_WORKSPACE}/.github/impl-conformance/impl-conformance.sh" run protovalidate-py conformance \
+            uv run pytest test/conformance/test_conformance.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: impl-conformance-results-protovalidate-py
+          path: ${{ runner.temp }}/results
+  protovalidate-cc:
+    needs: prepare
+    if: needs.prepare.outputs.run-tests == 'true' && !contains(fromJSON(needs.prepare.outputs.skipped), 'protovalidate-cc')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: bufbuild/protovalidate-cc
+          path: protovalidate-cc
+      - uses: bazel-contrib/setup-bazel@0.19.1
+        with:
+          disk-cache: impl-conformance-protovalidate-cc
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+          cache: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: conformance
+          path: ${{ runner.temp }}/conformance
+      - name: Install conformance harness
+        run: |
+          .github/impl-conformance/impl-conformance.sh install "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          .github/impl-conformance/impl-conformance.sh install-go "${RUNNER_TEMP}/go-shim/go" "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          echo "${RUNNER_TEMP}/go-shim" >> "${GITHUB_PATH}"
+      # Built first, so the build doesn't count against the harness's timeout
+      # and its log isn't hidden in a log group.
+      - name: Build executor
+        working-directory: protovalidate-cc
+        run: bazel build -c opt //buf/validate/conformance:runner_main
+      - name: Run conformance tests
+        working-directory: protovalidate-cc
+        run: |
+          "${GITHUB_WORKSPACE}/.github/impl-conformance/impl-conformance.sh" run protovalidate-cc conformance \
+            make conformance
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: impl-conformance-results-protovalidate-cc
+          path: ${{ runner.temp }}/results
+  protovalidate-es:
+    needs: prepare
+    if: needs.prepare.outputs.run-tests == 'true' && !contains(fromJSON(needs.prepare.outputs.skipped), 'protovalidate-es')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # https://consoledonottrack.com/
+      DO_NOT_TRACK: 1
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: bufbuild/protovalidate-es
+          path: protovalidate-es
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+          cache: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: protovalidate-es/.nvmrc
+          cache: npm
+          cache-dependency-path: protovalidate-es/package-lock.json
+      - uses: actions/download-artifact@v8
+        with:
+          name: conformance
+          path: ${{ runner.temp }}/conformance
+      - name: Install conformance harness
+        run: |
+          .github/impl-conformance/impl-conformance.sh install "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          .github/impl-conformance/impl-conformance.sh install-go "${RUNNER_TEMP}/go-shim/go" "${RUNNER_TEMP}/bin/protovalidate-conformance"
+          echo "${RUNNER_TEMP}/go-shim" >> "${GITHUB_PATH}"
+      - name: Install dependencies
+        working-directory: protovalidate-es
+        run: npm ci
+      # Loose env mode keeps every environment variable, like PATH with the go
+      # command that installs the harness.
+      - name: Run conformance tests (native rules)
+        working-directory: protovalidate-es
+        run: |
+          "${GITHUB_WORKSPACE}/.github/impl-conformance/impl-conformance.sh" run protovalidate-es native-rules \
+            npx turbo run test --filter=@bufbuild/protovalidate-testing --env-mode=loose
+      - name: Run conformance tests (native rules disabled)
+        if: always()
+        working-directory: protovalidate-es
+        env:
+          PROTOVALIDATE_DISABLE_NATIVE_RULES: '1'
+        run: |
+          "${GITHUB_WORKSPACE}/.github/impl-conformance/impl-conformance.sh" run protovalidate-es cel-rules \
+            npx turbo run test --filter=@bufbuild/protovalidate-testing --env-mode=loose
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: impl-conformance-results-protovalidate-es
+          path: ${{ runner.temp }}/results

@@ -1,0 +1,56 @@
+# Copyright 2023-2026 Buf Technologies, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Implementation Conformance Report
+# Posts impl-conformance.yaml results on the pull request. That workflow can't
+# do it itself because pull requests from forks get a read-only token. This
+# one always runs from the default branch, never checks out pull request code,
+# and treats the downloaded results as untrusted (see report.sh).
+on:
+  workflow_run:
+    workflows: [Implementation Conformance]
+    types: [completed]
+permissions:
+  actions: read
+  checks: write
+  contents: read
+  pull-requests: write
+jobs:
+  report:
+    # A cancelled run was superseded by a newer commit, which gets its own report.
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion != 'cancelled'
+    # At job level, so skipped reports can't replace a pending one.
+    concurrency:
+      group: impl-conformance-report-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+      cancel-in-progress: false
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          sparse-checkout: .github
+      - uses: actions/download-artifact@v8
+        with:
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+          # Skips the protovalidate-conformance binaries, which this job doesn't need.
+          pattern: impl-conformance-*
+          path: ${{ runner.temp }}/artifacts
+      - name: Report results
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+        run: .github/impl-conformance/report.sh post "${RUNNER_TEMP}/artifacts"
