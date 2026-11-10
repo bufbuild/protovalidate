@@ -134,7 +134,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          sparse-checkout: .github
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: bufbuild/protovalidate-go
@@ -176,7 +178,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          sparse-checkout: .github
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: bufbuild/protovalidate-java
@@ -223,7 +227,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          sparse-checkout: .github
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: bufbuild/protovalidate-py
@@ -281,7 +287,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          sparse-checkout: .github
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: bufbuild/protovalidate-cc
@@ -328,7 +336,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          sparse-checkout: .github
+          # Not cone mode, which also checks out root files such as go.work.
+          sparse-checkout: /.github/
+          sparse-checkout-cone-mode: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: bufbuild/protovalidate-es
