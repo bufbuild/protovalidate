@@ -43,6 +43,7 @@ type config struct {
 	args                []string
 	expectedFailureFile string
 	expectedFailures    map[string][]string
+	reportJSON          string
 }
 
 func parseFlags() (*config, error) {
@@ -66,6 +67,7 @@ func parseFlags() (*config, error) {
 	flag.BoolVar(&cfg.dump, "dump", cfg.dump, "output the expected results, without a command")
 	flag.IntVar(&cfg.benchmark, "benchmark", cfg.benchmark, "run benchmarks")
 	flag.StringVar(&cfg.expectedFailureFile, "expected_failures", cfg.expectedFailureFile, "yaml file containing list of expected failures")
+	flag.StringVar(&cfg.reportJSON, "report_json", cfg.reportJSON, "path to write the outcome of each test case to, in JSON format")
 	flag.Parse()
 
 	args := flag.Args()

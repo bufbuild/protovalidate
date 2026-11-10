@@ -33,6 +33,7 @@ You can customize the behavior of the tests using the following flags:
 | `--proto`              | Return results as binary serialized message `buf.validate.conformance.harness.ResultSet` to stdout. | `false`       |
 | `--dump`               | Output the expected results, without a command.                                                     | `false`       |
 | `--expected_failures`  | `.yaml` file containing list of expected failures                                                   | None          |
+| `--report_json <path>` | Write the outcome of each test case to a [JSON report](#json-report).                               | None          |
 
 ## Components
 
@@ -99,6 +100,24 @@ Then we could run the conformance tests with the following command:
   --expected_failures=expected_failures.yaml \
   my-executor
 ```
+
+### JSON Report
+
+For tools that need the outcome of each test case, the `--report_json <path>` flag writes them to a JSON file:
+
+```json
+{
+  "tests": [
+    {
+      "suite": "standard_rules/bool",
+      "case": "const/false/valid",
+      "outcome": "passed"
+    }
+  ]
+}
+```
+
+Each entry in `tests` is a test case selected by `--suite` and `--case`, with an `outcome` of `passed`, `failed`, `failed-as-expected` (an expected failure that failed), `passed-unexpectedly` (an expected failure that passed), or `not-run`. If the executor fails for a suite, the suite's test cases are `not-run`, and the other suites still run. If the harness stops early, for example because a test case is invalid, the file has an `error`, and the test cases of the suites that didn't finish are `not-run`. If the flags can't be parsed, the harness exits without writing the file.
 
 [harness-proto]: /proto/protovalidate-testing/buf/validate/conformance/harness/harness.proto
 [cases-proto]: /proto/protovalidate-testing/buf/validate/conformance/cases
