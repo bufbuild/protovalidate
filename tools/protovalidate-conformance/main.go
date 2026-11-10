@@ -42,41 +42,19 @@ func main() {
 		Options: options,
 	}
 
-	exec := func(suiteName string, suite suites.Suite) error {
-		req, err := suite.ToRequestProto(cfg.caseFilter)
-		if err != nil || len(req.GetCases()) == 0 {
-			return err
-		}
-
-		var resp *harness.TestConformanceResponse
-		if len(cfg.cmd) > 0 { // optional with --dump
-			resp, err = runCommand(cfg, req)
-			if err != nil {
-				return err
-			}
-		}
-		res, err := suite.ProcessResults(
-			suiteName,
-			cfg.caseFilter,
-			resp,
-			options,
-			cfg.expectedFailures[suiteName],
-		)
-		if err != nil {
-			return err
-		}
-		res.Fdset = req.GetFdset()
-		resultSet.AddSuite(res, cfg.verbose)
-		return nil
+	runner := &suiteRunner{
+		cfg:       cfg,
+		options:   options,
+		resultSet: resultSet,
 	}
 
 	if cfg.benchmark > 0 {
 		err = cases.GlobalSuites().
 			Benchmark(cfg.benchmark).
-			Range(cfg.suiteFilter, exec)
+			Range(cfg.suiteFilter, runner.runSuite)
 	} else {
 		err = cases.GlobalSuites().
-			Range(cfg.suiteFilter, exec)
+			Range(cfg.suiteFilter, runner.runSuite)
 	}
 	if err != nil {
 		log.Fatal(err)
@@ -93,4 +71,57 @@ func main() {
 	}
 
 	os.Exit(int(resultSet.Failures))
+}
+
+type suiteRunner struct {
+	cfg       *config
+	options   *harness.ResultOptions
+	resultSet *results.Set
+}
+
+// runSuite runs a suite's test cases and adds their results to the result
+// set. If the executor fails, every test case in the suite fails with its
+// error, and the other suites still run. It returns an error only if the
+// suite's test cases can't be built or checked.
+func (r *suiteRunner) runSuite(suiteName string, suite suites.Suite) error {
+	req, err := suite.ToRequestProto(r.cfg.caseFilter)
+	if err != nil || len(req.GetCases()) == 0 {
+		return err
+	}
+
+	var resp *harness.TestConformanceResponse
+	if len(r.cfg.cmd) > 0 { // optional with --dump
+		resp, err = runCommand(r.cfg, req)
+		if err != nil {
+			resp = executorFailureResponse(req, err)
+		}
+	}
+	res, err := suite.ProcessResults(
+		suiteName,
+		r.cfg.caseFilter,
+		resp,
+		r.options,
+		r.cfg.expectedFailures[suiteName],
+	)
+	if err != nil {
+		return err
+	}
+	res.Fdset = req.GetFdset()
+	r.resultSet.AddSuite(res, r.cfg.verbose)
+	return nil
+}
+
+// executorFailureResponse returns a response in which every test case of the
+// request has the executor's error.
+func executorFailureResponse(req *harness.TestConformanceRequest, executorErr error) *harness.TestConformanceResponse {
+	result := &harness.TestResult{
+		Result: &harness.TestResult_UnexpectedError{UnexpectedError: executorErr.Error()},
+	}
+	resp := &harness.TestConformanceResponse{
+		Results: make(map[string]*harness.TestResult, len(req.GetCases())),
+	}
+	for caseName := range req.GetCases() {
+		resp.Results[caseName] = result
+	}
+	return resp
 }

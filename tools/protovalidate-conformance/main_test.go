@@ -15,10 +15,16 @@
 package main
 
 import (
+	"regexp"
 	"testing"
+	"time"
 
+	"github.com/bufbuild/protovalidate/tools/internal/gen/buf/validate/conformance/harness"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/cases"
+	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/results"
 	"github.com/bufbuild/protovalidate/tools/protovalidate-conformance/internal/suites"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestProcessAllSuites(t *testing.T) {
@@ -35,5 +41,32 @@ func TestProcessAllSuites(t *testing.T) {
 	})
 	if err != nil {
 		t.Error(err)
+	}
+}
+
+func TestRunSuiteExecutorFailure(t *testing.T) {
+	t.Parallel()
+	cfg := &config{
+		suiteFilter:  regexp.MustCompile(`^standard_rules/(bool|bytes)$`),
+		suiteTimeout: 5 * time.Second,
+		cmd:          "false",
+	}
+	options := &harness.ResultOptions{}
+	runner := &suiteRunner{
+		cfg:       cfg,
+		options:   options,
+		resultSet: &results.Set{Options: options},
+	}
+	// An executor that fails doesn't stop the other suites from running.
+	err := cases.GlobalSuites().Range(cfg.suiteFilter, runner.runSuite)
+	require.NoError(t, err)
+	allSuites := cases.GlobalSuites()
+	wantFailures := len(allSuites["standard_rules/bool"]) + len(allSuites["standard_rules/bytes"])
+	assert.Equal(t, int32(wantFailures), runner.resultSet.Failures)
+	require.Len(t, runner.resultSet.Suites, 2)
+	for _, suiteResults := range runner.resultSet.Suites {
+		for _, caseResult := range suiteResults.GetCases() {
+			assert.Contains(t, caseResult.GetGot().GetUnexpectedError(), "failed to execute conformance test")
+		}
 	}
 }
