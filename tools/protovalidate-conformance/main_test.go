@@ -15,6 +15,10 @@
 package main
 
 import (
+	"encoding/json"
+	"errors"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 	"time"
@@ -36,7 +40,7 @@ func TestProcessAllSuites(t *testing.T) {
 		if err != nil {
 			return err
 		}
-		_, err = suite.ProcessResults(suiteName, nil, nil, nil, nil)
+		_, err = suite.ProcessResults(suiteName, nil, nil, nil, nil, nil)
 		return err
 	})
 	if err != nil {
@@ -53,9 +57,11 @@ func TestRunSuiteExecutorFailure(t *testing.T) {
 	}
 	options := &harness.ResultOptions{}
 	runner := &suiteRunner{
-		cfg:       cfg,
-		options:   options,
-		resultSet: &results.Set{Options: options},
+		cfg:            cfg,
+		options:        options,
+		resultSet:      &results.Set{Options: options},
+		report:         &results.Report{},
+		reportedSuites: map[string]bool{},
 	}
 	// An executor that fails doesn't stop the other suites from running.
 	err := cases.GlobalSuites().Range(cfg.suiteFilter, runner.runSuite)
@@ -69,4 +75,45 @@ func TestRunSuiteExecutorFailure(t *testing.T) {
 			assert.Contains(t, caseResult.GetGot().GetUnexpectedError(), "failed to execute conformance test")
 		}
 	}
+	// The report lists the cases as not run, not as failed.
+	require.Len(t, runner.report.Tests, wantFailures)
+	for _, test := range runner.report.Tests {
+		assert.Equal(t, results.OutcomeNotRun, test.Outcome)
+	}
+}
+
+func TestWriteReportAfterError(t *testing.T) {
+	t.Parallel()
+	cfg := &config{
+		suiteFilter: regexp.MustCompile(`^standard_rules/(bool|bytes)$`),
+		caseFilter:  regexp.MustCompile(`^const/`),
+		reportJSON:  filepath.Join(t.TempDir(), "report.json"),
+	}
+	runner := &suiteRunner{
+		cfg:            cfg,
+		report:         &results.Report{},
+		reportedSuites: map[string]bool{"standard_rules/bool": true},
+	}
+	runner.report.AddCase("standard_rules/bool", &harness.CaseResult{Name: "const/true/valid", Success: true})
+	require.NoError(t, runner.writeReport(errors.New("invalid test case")))
+	data, err := os.ReadFile(cfg.reportJSON)
+	require.NoError(t, err)
+	var written results.Report
+	require.NoError(t, json.Unmarshal(data, &written))
+	assert.Equal(t, "invalid test case", written.Error)
+	// The finished suite keeps its results, and the test cases of the suite
+	// that didn't finish are reported as not run.
+	var bytesCases int
+	for _, test := range written.Tests {
+		switch test.Suite {
+		case "standard_rules/bool":
+			assert.Equal(t, results.OutcomePassed, test.Outcome)
+		case "standard_rules/bytes":
+			assert.Equal(t, results.OutcomeNotRun, test.Outcome)
+			bytesCases++
+		default:
+			t.Errorf("unexpected suite %q", test.Suite)
+		}
+	}
+	assert.Positive(t, bytesCases)
 }

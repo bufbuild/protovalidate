@@ -80,10 +80,12 @@ func (s Suite) ProcessResults(
 	resp *harness.TestConformanceResponse,
 	options *harness.ResultOptions,
 	skippedCases []string,
+	report *results.Report,
 ) (*results.SuiteResults, error) {
 	out := &results.SuiteResults{
 		Name: suiteName,
 	}
+	var caseResults []*harness.CaseResult
 	respResults := resp.GetResults()
 	err := s.Range(filter, func(caseName string, testCase Case) error {
 		var actual results.Result
@@ -104,14 +106,16 @@ func (s Suite) ProcessResults(
 		); err != nil {
 			return err
 		}
-		out.AddCase(&harness.CaseResult{
+		caseResult := &harness.CaseResult{
 			Name:            caseName,
 			Success:         testCase.Expected.IsSuccessWith(actual, options),
 			Wanted:          testCase.Expected.ToProto(),
 			Got:             actual.ToProto(),
 			Input:           anyInput,
 			ExpectedFailure: isSkipped(caseName, skippedCases),
-		}, options.GetVerbose())
+		}
+		out.AddCase(caseResult, options.GetVerbose())
+		caseResults = append(caseResults, caseResult)
 		return nil
 	})
 
@@ -119,6 +123,13 @@ func (s Suite) ProcessResults(
 		return nil, fmt.Errorf("failed to process results for suite \"%s\": %w", suiteName, err)
 	}
 
+	// Added only once the whole suite is processed, so a suite is either
+	// entirely in the report or not at all.
+	if report != nil {
+		for _, caseResult := range caseResults {
+			report.AddCase(suiteName, caseResult)
+		}
+	}
 	return out, nil
 }
 
