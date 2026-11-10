@@ -62,17 +62,16 @@ func (set *Set) Print(w io.Writer) {
 type SuiteResults harness.SuiteResults
 
 func (suite *SuiteResults) AddCase(res *harness.CaseResult, verbose bool) {
-	switch {
-	case res.GetSuccess() && !res.GetExpectedFailure():
+	outcome := caseOutcome(res)
+	switch outcome {
+	case OutcomePassed:
 		suite.Successes++
-	case !res.GetSuccess() && res.GetExpectedFailure():
+	case OutcomeFailedAsExpected:
 		suite.ExpectedFailures++
 	default:
 		suite.Failures++
 	}
-	unexpectedFailure := !res.GetSuccess() && !res.GetExpectedFailure()
-	unexpectedSuccess := res.GetSuccess() && res.GetExpectedFailure()
-	if verbose || unexpectedFailure || unexpectedSuccess {
+	if verbose || outcome == OutcomeFailed || outcome == OutcomePassedUnexpectedly {
 		suite.Cases = append(suite.Cases, res)
 	}
 }
