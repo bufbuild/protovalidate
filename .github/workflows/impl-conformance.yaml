@@ -294,7 +294,7 @@ jobs:
         with:
           repository: bufbuild/protovalidate-cc
           path: protovalidate-cc
-      - uses: bazel-contrib/setup-bazel@0.19.1
+      - uses: bazel-contrib/setup-bazel@0.19.2
         with:
           disk-cache: impl-conformance-protovalidate-cc
       - uses: actions/setup-go@v7
