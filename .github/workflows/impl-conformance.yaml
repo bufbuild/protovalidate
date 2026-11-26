@@ -253,7 +253,7 @@ jobs:
           echo "RUSTC_WRAPPER=sccache" >> "${GITHUB_ENV}"
       - name: Set up Rust
         run: rustup update
-      - uses: astral-sh/setup-uv@v10.3.3
+      - uses: astral-sh/setup-uv@v10.4.0
         with:
           python-version: '3.14'
       - uses: actions/download-artifact@v8
